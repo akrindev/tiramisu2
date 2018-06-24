@@ -1,0 +1,43 @@
+body {
+  background: #f8f9fa;
+  padding-top:80px;
+}
+.mb-5 {
+  margin-bottom:20px;
+}
+.list-group {
+  border:none;
+  background: none;
+  background-color: none;
+}
+.list-group-item .i:hover,
+.list-group-item .i a:hover {
+  background: #dd4814;
+  color: #ffffff !important;
+}
+.i a:hover {
+  color: white;
+}
+ul .dropdown-menu li:hover,
+ul .dropdown-menu li a:hover{
+  background-color: #dd4814;
+  color: #eeeeee;
+}
+
+#sidebaara,#content
+{
+  background-color:#fff;
+  margin-bottom:16px;
+  box-shadow:1px 1px 14px #dedede;
+  padding-top:20px;
+  padding-bottom:20px;
+}
+footer
+{
+  margin-top:50px;
+}
+#footer
+{
+  padding:20px;
+  text-align:center;
+}

@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Karla|Lato');
+
+html{
+
+  min-height:100%;
+  position:relative;
+}
+body
+{
+  margin-bottom:70px;
+}
+html,body {
+  max-width:900px;
+  margin:0 auto;
+}
+
+* {
+  margin:0;
+  padding:0;
+}
+#cg {
+  padding-bottom:150px;
+}
+footer{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:60px;
+  padding-top:10px;
+  border-top:1px solid #007aff;
+  background-color:#fff;
+}
+.divider {
+  margin:30px;
+}
+#header {
+  display:block;
+  padding:5px;
+  margin:2px;
+  background:#fff;
+}
+
+#header img {
+	width:30%;
+  height:20%;
+}
+.title {
+  position:absolute;
+  top:40px;
+  right:10px;
+  font-size:12pt;
+}
+
+#top-menu {
+  display:block;
+background:RGBA(33, 56, 149, 255);
+  color:#fff;
+  padding:8px 5px
+}
+#top-menu > strong {
+  color:yellow;
+}
+.list-menu-top {
+ margin-bottom:10px;
+  list-style:none
+}
+.list-menu-top li {
+  display:inline-block;
+    font-size:12px;
+}
+.list-menu-top a {
+  padding:5px 7px;
+  color:#fff
+}
+.list-menu-top a:hover {
+  color:rgba(33,56,149,255);
+  background:#fff;
+}
