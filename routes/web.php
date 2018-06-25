@@ -51,3 +51,12 @@ Route::delete('/edit/crysta/delete', 'CrystaController@destroy');
 Route::get('/store-crysta', 'CrystaController@tambah');
 
 Route::post('/store-crysta', 'CrystaController@tambahPost');
+
+Route::get('/fill_stats', 'FillController@index');
+Route::get('/fill_stats/add', 'FillController@add');
+Route::post('/fill_stats/add', 'FillController@addPost');
+Route::get('/fill_stats/{type}', 'FillController@single');
+Route::get('/fill_stats/{type}/{plus}', 'FillController@single');
+Route::get('/edit/{id}/fillstats', 'FillController@edit');
+Route::post('/edit/{id}/fillstats', 'FillController@editPost');
+Route::delete('/delete/fillstats', 'FillController@destroy');
