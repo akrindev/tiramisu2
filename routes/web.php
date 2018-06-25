@@ -60,3 +60,16 @@ Route::get('/fill_stats/{type}/{plus}', 'FillController@single');
 Route::get('/edit/{id}/fillstats', 'FillController@edit');
 Route::post('/edit/{id}/fillstats', 'FillController@editPost');
 Route::delete('/delete/fillstats', 'FillController@destroy');
+
+/**
+* Monster routes
+*/
+Route::get('/monster', 'MobController@index');
+Route::get('/monster/{slug}', 'MobController@single');
+Route::get('/peta/{slug}', 'MobController@peta');
+
+Route::get('/store-mob', 'MobController@add');
+Route::post('/store-mob', 'MobController@addPost');
+Route::get('/edit/{id}/mobs', 'MobController@edit');
+Route::post('/edit/{id}/mobs', 'MobController@editPost');
+Route::delete('/edit/mob/delete', 'MobController@destroy');

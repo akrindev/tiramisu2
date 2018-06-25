@@ -1,9 +1,11 @@
+@extends('layouts.tabler')
 
-          <?php
+@section('content')
+@php
+  $maps = DB::table('mobs')->select('map')->distinct()->get();
 
-$db = \Config\Database::connect();
-          $db->initialize();?>
-
+  $ele = DB::table('elements')->get();
+    @endphp
 <div class="divider"></div>
 
  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -11,13 +13,13 @@ $db = \Config\Database::connect();
 
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
-    <?php $maps = $db->table('mobs')->select('map')->distinct()->get()->getResult();?>
+
     $(function(){
 
     var maps = [
-    <?php foreach($maps as $map):?>
-      "<?=$map->map;?>",
-      <?php endforeach;?>
+   @foreach ($maps as $map)
+      "{{ $map->map }}",
+   @endforeach
     ];
       $("#map").autocomplete({
       source: maps
@@ -35,7 +37,8 @@ $db = \Config\Database::connect();
       <h3>Tambah data Monster</h3>
 
 
-      <?=form_open();?>
+      {!! form_open() !!}
+		@csrf
 
       <div class="form-group">
         <label>Nama Mobs</label>
@@ -57,11 +60,10 @@ $db = \Config\Database::connect();
         <label>Element Mobs</label>
         <select name="element" class="form-control">
 
-          <?php $ele = $db->table('elements')->get()->getResult();
-          foreach($ele as $el):?>
+         @foreach($ele as $el)
 
-          <option value="<?=$el->nama?>"><?=$el->nama?></option>
-          <?php endforeach;?>
+          <option value="{{ $el->nama }}">{{ $el->nama }}</option>
+          @endforeach
         </select>
       </div>
 
@@ -129,7 +131,7 @@ $db = \Config\Database::connect();
 
       <button type="submit" class="btn btn-primary">Tambah</button>
 
-      <?=form_close();?>
+      {!! form_close() !!}
 
     </div>
   </div>
@@ -138,3 +140,5 @@ $db = \Config\Database::connect();
     </div>
   </div>
 </div>
+
+@endsection
