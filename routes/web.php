@@ -38,3 +38,16 @@ Route::delete('/edit/equip/delete', 'EquipController@destroy');
 Route::get('/store-equip', 'EquipController@tambah');
 
 Route::post('/store-equip', 'EquipController@tambahPost');
+
+
+
+Route::get('/crystas/{slug}', 'CrystaController@crystas');
+Route::get('/crysta/{slug}', 'CrystaController@crysta');
+
+Route::get('/edit/{id}/crysta', 'CrystaController@edit');
+Route::post('/edit/{id}/crysta', 'CrystaController@editPost');
+Route::delete('/edit/crysta/delete', 'CrystaController@destroy');
+
+Route::get('/store-crysta', 'CrystaController@tambah');
+
+Route::post('/store-crysta', 'CrystaController@tambahPost');

@@ -10,4 +10,6 @@ class crysta extends Model
     	'nama', 'slug', 'stats',
       	'type', 'typeslug'
     ];
+
+  	public $timestamps = false;
 }
