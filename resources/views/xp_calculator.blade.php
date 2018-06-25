@@ -1,7 +1,9 @@
+@extends('layouts.tabler')
 
+@section('content')
         <div class="my-3 my-md-5">
           <div class="container">
-            <?=view('cari')?>
+   @include('inc.cari')
               <div class="card">
                 <div class="card-body">
                   <h3 class="card-title">Toram Exp calculator</h3>
@@ -87,3 +89,5 @@
           </div>
 </div>
 <script src="/assets/js/calc.js"></script>
+
+@endsection

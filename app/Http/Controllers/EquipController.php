@@ -192,6 +192,7 @@ class EquipController extends Controller
     file_put_contents($nama,$urlimg);
 
 
+
     return $nama;
   }
 
