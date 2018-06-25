@@ -245,7 +245,7 @@ if ( ! function_exists('stringify_attributes'))
 		$attributes = (array) $attributes;
 		foreach ($attributes as $key => $val)
 		{
-			$atts .= ($js) ? $key . '=' . esc($val, 'js') . ',' : ' ' . $key . '="' . esc($val, 'attr') . '"';
+			$atts .= ($js) ? $key . '=' . e($val, 'js') . ',' : ' ' . $key . '="' . e($val, 'attr') . '"';
 		}
 		return rtrim($atts, ',');
 	}

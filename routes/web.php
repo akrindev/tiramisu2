@@ -25,3 +25,14 @@ Route::get('/facebook/callback', 'Auth\LoginController@callback');
 Route::get('/profile', 'UserController@profile');
 
 Route::get('/profile/{provider_id}', 'UserController@profile');
+
+
+Route::get('/equips/{slug}', 'EquipController@equips');
+Route::get('/equip/{slug}', 'EquipController@equip');
+Route::get('/edit/{id}/equip', 'EquipController@edit');
+Route::post('/edit/{id}/equip', 'EquipController@editPost');
+Route::delete('/edit/equip/delete', 'EquipController@destroy');
+
+Route::get('/store-equip', 'EquipController@tambah');
+
+Route::post('/store-equip', 'EquipController@tambahPost');
