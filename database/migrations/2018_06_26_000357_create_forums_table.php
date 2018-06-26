@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Forums extends Migration
+class CreateForumsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,21 @@ class Forums extends Migration
      */
     public function up()
     {
-        Schema::create('forums', function(Blueprint $table) {
+        Schema::create('forums', function (Blueprint $table) {
           	$table->charset = 'utf8mb4';
           	$table->collation = 'utf8mb4_unicode_ci';
 
-
-        	$table->increments('id');
-          	$table->integer('user_id');
+          	$table->increments('id');
+           	$table->integer('user_id');
           	$table->string('judul');
+          	$table->longText('body');
           	$table->string('slug');
           	$table->string('tags');
-          	$table->integer('views');
+          	$table->integer('views')->default(0);
           	$table->boolean('pinned')->default(0);
           	$table->timestamps();
           	$table->softDeletes();
-
-        });
+});
     }
 
     /**

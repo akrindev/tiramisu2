@@ -79,3 +79,12 @@ Route::get('/cari', function(){
 	return view('toram');
 });
 Route::post('/cari', 'CariController@cari');
+
+
+/**
+* Forum Routes
+*/
+Route::get('/forum', 'ForumController@feed');
+Route::get('/forum/baru', 'ForumController@buat')->middleware('auth');
+Route::post('/forum/baru', 'ForumController@buatSubmit')->middleware('auth');
+Route::get('/forum/{slug}', 'ForumController@baca');
