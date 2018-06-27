@@ -9,6 +9,8 @@ $tags = DB::table('tags')->get();
 
 @section('content')
 
+<link rel="stylesheet" href="/assets/plugins/md/simplemde.min.css">
+
 <div class="my-3 my-md-5">
 
 <div class="container">
@@ -38,8 +40,7 @@ $tags = DB::table('tags')->get();
 
       <div class="form-group">
         <label>Deskripsi</label>
-        <textarea class="form-control {{  $errors->has('deskripsi') ? 'is-invalid': '' }}" name="deskripsi" rows=11></textarea>
-
+        <textarea id="sectionBody" class="form-control" data-provide="markdown"></textarea>
         @if($errors->has('deskripsi'))
         <span class="invalid-feedback">
   			{{$errors->first('deskripsi')}}
@@ -136,6 +137,16 @@ alert(example);
   </div>
 </div>
 
+@endsection
 
+@section('head')
+<link href="/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
+@endsection
+
+@section('footer')
+
+<script src="/assets/js/markdown.js"></script>
+<script src="/assets/js/to-markdown.js"></script>
+<script src="/assets/js/bootstrap-markdown.js"></script>
 
 @endsection

@@ -40,18 +40,18 @@ $crysta = new Crysta;
     <script src="/assets/js/require.min.js"></script>
     <script>
       requirejs.config({
-          baseUrl: '{{ url('/') }}'
-      });
-    </script>
-    <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    	baseUrl: "{{ url('/') }}",
+		});
+	 </script>
     <!-- Dashboard Core -->
     <link href="/assets/css/dashboard.css" rel="stylesheet" />
     <script src="/assets/js/dashboard.js"></script>
 
-
     <!-- Input Mask Plugin -->
     <script src="/assets/plugins/input-mask/plugin.js"></script>
+
+    @yield('head')
+
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109854426-3"></script>
@@ -210,5 +210,9 @@ $crysta = new Crysta;
         </div>
       </footer>
     </div>
+
+    @yield('footer')
+
+
   </body>
 </html>

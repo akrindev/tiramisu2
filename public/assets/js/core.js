@@ -12,10 +12,12 @@ let hexToRgba = function(hex, opacity) {
   return 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', ' + opacity + ')';
 };
 
+
 /**
  *
  */
 $(document).ready(function() {
+
   /** Constant div card */
   const DIV_CARD = 'div.card';
 
@@ -104,4 +106,6 @@ $(document).ready(function() {
       });
     });
   }
+
+
 });
