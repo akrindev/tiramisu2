@@ -88,3 +88,5 @@ Route::get('/forum', 'ForumController@feed');
 Route::get('/forum/baru', 'ForumController@buat')->middleware('auth');
 Route::post('/forum/baru', 'ForumController@buatSubmit')->middleware('auth');
 Route::get('/forum/{slug}', 'ForumController@baca');
+// komentar forum
+Route::post('/forum/{slug}', 'ForumController@comment')->middleware('auth');

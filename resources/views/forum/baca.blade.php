@@ -35,7 +35,7 @@ $tags = explode(',', $tags);
 
           <div class="card-body text-wrap p-3">
 
-     <img src="https://graph.facebook.com/{{$data->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4"> <b> {{ $data->user->name }} </b><br> <small> on {{ waktu($data->created_at) }} </small>
+     <img src="https://graph.facebook.com/{{$data->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4"> <b> {{ $data->user->name }} </b><br> <small class="text-muted"> {{ waktu($data->created_at) }} </small>
             <hr class="my-2">
             <div class="my-1">
               @foreach ($tags as $tag => $n)
@@ -43,43 +43,52 @@ $tags = explode(',', $tags);
               @endforeach
             </div>
             <div class="body-text">
-            @parsedown($data->body)
+            @parsedown(e($data->body))
             </div>
           </div>
         </div>
-@for ($a=10; $a > 0;$a-- )
+@if (count($data->comment))
+@foreach ($data->comment as $comment)
 		<div class="card p-0">
           <div class="card-body p-3">
-            <img src="/img/potum.gif" class="avatar avatar-md float-left mr-4">
-            <b> Akrin Min </b> <br>
-            <small class="text-muted">22 agustus 1998 22:10</small>
+            <img src="https://graph.facebook.com/{{$data->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4">
+            <b> {{ $comment->user->name }} </b> <br>
+            <small class="text-muted">{{ waktu($comment->created_at) }}</small>
             <hr class="my-2">
-            <p class="body-text">
-            Yang ku harapkan hanyalah kamu ehehehehehehe
-            <br>
-            INT untuk menambah MATK dan juga mp
-DEX reduce casting time, jika kamu masih lv 180± dan dex dibawah 200 maka nemesis masih lambat casting
-VIT untuk HP dan DEF
-            </p>
+            <div class="body-text">
+            @parsedown(e($comment->body))
+            </div>
             <a href="#" class="btn btn-sm btn-pill btn-outline-primary float-right">balas</a>
           </div>
    		</div>
 
-@endfor
+@endforeach
 
+@endif
 
+@auth
 		<div class="card p-0">
+          {!! form_open() !!}
+          @csrf
+        @if (session()->has('sukses_comment'))
+          <div class="card-alert alert alert-success">
+            {{ session('sukses_comment') }}
+          </div>
+        @endif
           <div class="card-body p-3">
-            <img src="/img/potum.gif" class="avatar avatar-md float-left mr-4">
-            <b> Akrin Min </b> <br>
-            <small class="text-muted">22 agustus 1998 22:10</small>
+            <img src="https://graph.facebook.com/{{$data->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4">
+            <b> {{ $data->user->name }} </b><br/> &nbsp;
             <hr class="my-2">
 
-            <textarea class="form-control" rows=5></textarea>
+            <textarea name="body" data-provide="markdown" class="form-control" rows=5></textarea>
             <small class="text-muted">Markdown supported</small>
             <button class="btn btn-pill btn-outline-primary float-right my-3">balas </button>
           </div>
+          {!! form_close() !!}
    		</div>
+@else
+   <a href="/fb-login" class="btn btn-outline-primary btn-block mb-5">Masuk untuk membalas</a>
+@endauth
   </div>
 
 
@@ -108,4 +117,19 @@ VIT untuk HP dan DEF
           </div>
         </div>
 
+@endsection
+
+
+@section('head')
+@auth
+<link href="/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
+@endauth
+@endsection
+
+@section('footer')
+@auth
+<script src="/assets/js/markdown.js"></script>
+<script src="/assets/js/to-markdown.js"></script>
+<script src="/assets/js/bootstrap-markdown.js"></script>
+@endauth
 @endsection

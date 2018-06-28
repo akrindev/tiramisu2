@@ -52,7 +52,7 @@ $i = $color[$rand[0]];
       @endforeach
                           </small></td>
                         <td class="text-right">
-                          <b>7</b><br>
+                          <b>{{ $pos->comment->count() }}</b><br>
                           <small class="text-muted">replies</small></td>
                       </tr>
                     @endforeach

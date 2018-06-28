@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Forum;
-use App\Forums_desc;
+use App\ForumsDesc;
 
 class ForumController extends Controller
 {
@@ -60,5 +60,33 @@ class ForumController extends Controller
     return view('forum.baca',[
     	'data' => $baca
     ]);
+  }
+
+  public function comment()
+  {
+    $slug = explode('/',request()->url());
+
+    $forum = Forum::where('slug',end($slug))->first();
+
+    if( ! $forum)
+    {
+      return redirect('/')->with('gagal', 'Thread tidak di temukan');
+    }
+
+
+    request()->validate([
+    	'body'	=> 'required'
+    ]);
+
+	$comment = ForumsDesc::create([
+    	'user_id' => Auth::user()->id,
+      	'forum_id'	=> $forum->id,
+      	'body'	=> request('body')
+    ]);
+
+    if($comment)
+    {
+      return back()->with('sukses_comment', 'Komentar di tambahkan');
+    }
   }
 }
