@@ -40,7 +40,16 @@
                         <small class="text-muted">
    @php $nama = explode(' ',$pos->user->name); @endphp
 
-                        {{ $nama[0] }}  on {{ waktu($pos->created_at) }}
+                        {{ $nama[0] }} • {{ time_ago($pos->created_at) }} •
+     @foreach (explode(',',$pos->tags) as $tag)
+@php
+$color = ['success','warning','primary','danger','secondary'];
+$rand = array_rand($color,2);
+$i = $color[$rand[0]];
+@endphp
+
+                        <span class="tag tag-{{$i}} small">  {{ $tag }}</span>
+      @endforeach
                           </small></td>
                         <td class="text-right">
                           <b>7</b><br>

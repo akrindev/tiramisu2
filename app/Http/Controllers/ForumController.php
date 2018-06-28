@@ -37,7 +37,8 @@ class ForumController extends Controller
       	'judul'	=> request('judul'),
       	'slug' => $slug,
       	'body'	=> request('deskripsi'),
-      	'tags'	=> implode(',',request('tags'))
+      	'tags'	=> implode(',',request('tags')),
+      	'color'	=> request('color') ?? 'yellow'
     ]);
 
     if($forum)

@@ -31,7 +31,7 @@ $tags = explode(',', $tags);
    </div>
 
         <div class="card p-0">
-          <div class="card-status bg-yellow"></div>
+          <div class="card-status bg-{{ $data->color }}"></div>
 
           <div class="card-body text-wrap p-3">
 
