@@ -11,9 +11,8 @@ class ForumController extends Controller
 {
   public function feed()
   {
-    $forums = Forum::get();
-
-    $forums = collect($forums)->sortByDesc('created_at');
+    $forums = Forum::orderBy('created_at','desc')
+      ->paginate(20);
 
     return view('forum.feed')->with('data',$forums);
   }
@@ -51,22 +50,21 @@ class ForumController extends Controller
   public function baca($slug)
   {
     $baca = Forum::where('slug',$slug)->first();
-
+	$comments = $baca->comment;
     if( ! $baca)
     {
       return redirect('/')->with('gagal', 'Thread tidak di temukan');
     }
 
     return view('forum.baca',[
-    	'data' => $baca
+    	'data' => $baca,
+      	'comments' => $comments
     ]);
   }
 
-  public function comment()
+  public function comment($slug)
   {
-    $slug = explode('/',request()->url());
-
-    $forum = Forum::where('slug',end($slug))->first();
+    $forum = Forum::where('slug',$slug)->first();
 
     if( ! $forum)
     {
@@ -87,6 +85,36 @@ class ForumController extends Controller
     if($comment)
     {
       return back()->with('sukses_comment', 'Komentar di tambahkan');
+    }
+  }
+
+  public function commentReply($slug)
+  {
+    $forum = Forum::where('slug',$slug)->first();
+
+    $id = request('id');
+
+    if( ! $forum)
+    {
+      return redirect('/')->with('gagal', 'Thread tidak di temukan');
+    }
+
+
+    request()->validate([
+    	'reply'	=> 'required'
+    ]);
+
+	$comment = ForumsDesc::create([
+    	'user_id' => Auth::user()->id,
+      	'forum_id'	=> $forum->id,
+      	'parent_id' => $id,
+      	'body'	=> request('reply')
+    ]);
+
+
+    if($comment)
+    {
+      return back()->with('sukses_reply-'.$id, 'balasan di tambahkan');
     }
   }
 }

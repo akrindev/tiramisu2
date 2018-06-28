@@ -109,12 +109,7 @@ $colors = ['blue','green','orange','red','yellow','teal','purple','dark','pink']
 
 @section('head')
 <link href="/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
-@endsection
-
-@section('footer')
-
-<script src="/assets/js/markdown.js"></script>
-<script src="/assets/js/to-markdown.js"></script>
-<script src="/assets/js/bootstrap-markdown.js"></script>
-
+<script>
+  require(['mde']);
+</script>
 @endsection

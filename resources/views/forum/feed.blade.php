@@ -27,7 +27,7 @@
               </div>
               <div class="col-md-8">
 
-                <a href="baru" class="align-right btn btn-primary btn-pill mb-3">Tulis baru</a>
+                <a href="/forum/baru" class="align-right btn btn-primary btn-pill mb-3">Tulis baru</a>
 
                 <div class="card">
                   <div class="p-0 m-0">
@@ -60,7 +60,10 @@ $i = $color[$rand[0]];
 
                     </table>
                   </div>
+
                 </div>
+
+                    {{ $data->links() }}
 
               </div>
             </div>

@@ -20,4 +20,9 @@ class Forum extends Model
   {
     return $this->hasMany(ForumsDesc::class);
   }
+
+	public function scopeNotReply($query)
+    {
+      return $this->whereNull('parent_id');
+    }
 }

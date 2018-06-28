@@ -3,6 +3,7 @@
 @section('content')
 
 @php
+$commentss = $comments;
 $tags = $data->tags;
 $tags = explode(',', $tags);
 @endphp
@@ -47,48 +48,66 @@ $tags = explode(',', $tags);
             </div>
           </div>
         </div>
-@if (count($data->comment))
-@foreach ($data->comment as $comment)
+   @php $i = 0; @endphp
+@if (count($comments))
+@foreach (collect($comments)->where('parent_id',null) as $comment)
+   @php $i++; @endphp
 		<div class="card p-0">
           <div class="card-body p-3">
-            <img src="https://graph.facebook.com/{{$data->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4">
+            <img src="https://graph.facebook.com/{{$comment->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4">
             <b> {{ $comment->user->name }} </b> <br>
             <small class="text-muted">{{ waktu($comment->created_at) }}</small>
             <hr class="my-2">
             <div class="body-text">
             @parsedown(e($comment->body))
             </div>
-            <a href="#" class="btn btn-sm btn-pill btn-outline-primary float-right">balas</a>
+            @auth
+            <button class="btn btn-sm float-right btn-outline-primary" data-toggle="collapse" data-target="#comm-{{$i}}" role="button" aria-expanded="false" aria-controls="comm-{{$i}}">reply</button>
+
+            @endauth
           </div>
+
+          @foreach ($comment->getReply as $reply)
+<hr class="my-1">
+          <div class="p-2">
+            <img src="https://graph.facebook.com/{{$reply->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4">
+          <b> {{ $reply->user->name }} </b> <small class="text-muted"> • ({{ waktu($reply->created_at)}})</small><br>
+            <div class="media-body">
+            @parsedown(e($reply->body))
+            </div>
+          </div>
+            @endforeach
+
+          @auth
+
+        @if (session()->has('sukses_reply-'.$comment->id))
+          <div class="card-alert alert alert-success">
+            {{ session('sukses_reply-'.$comment->id) }}
+          </div>
+        @endif
+          <div class="collapse" id="comm-{{$i}}">
+            {!! form_open(url()->current().'/c') !!}
+            @csrf
+            <div class="card-footer">
+              <div class="form-group">
+                <input type="hidden" name="id" value="{{$comment->id}}">
+                <textarea class="form-control" data-provide="markdown" name="reply" required></textarea>
+
+              </div>
+              <button type="submit" class="btn btn-sm btn-primary">reply</button>
+            </div>
+            {!! form_close() !!}
+          </div>
+          @endauth
    		</div>
 
 @endforeach
-
 @endif
 
-@auth
-		<div class="card p-0">
-          {!! form_open() !!}
-          @csrf
-        @if (session()->has('sukses_comment'))
-          <div class="card-alert alert alert-success">
-            {{ session('sukses_comment') }}
-          </div>
-        @endif
-          <div class="card-body p-3">
-            <img src="https://graph.facebook.com/{{$data->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4">
-            <b> {{ $data->user->name }} </b><br/> &nbsp;
-            <hr class="my-2">
 
-            <textarea name="body" data-provide="markdown" class="form-control" rows=5></textarea>
-            <small class="text-muted">Markdown supported</small>
-            <button class="btn btn-pill btn-outline-primary float-right my-3">balas </button>
-          </div>
-          {!! form_close() !!}
-   		</div>
-@else
-   <a href="/fb-login" class="btn btn-outline-primary btn-block mb-5">Masuk untuk membalas</a>
-@endauth
+
+   		@include('inc.forum_comment')
+
   </div>
 
 
@@ -123,13 +142,8 @@ $tags = explode(',', $tags);
 @section('head')
 @auth
 <link href="/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
-@endauth
-@endsection
-
-@section('footer')
-@auth
-<script src="/assets/js/markdown.js"></script>
-<script src="/assets/js/to-markdown.js"></script>
-<script src="/assets/js/bootstrap-markdown.js"></script>
+<script>
+  require(['mde']);
+</script>
 @endauth
 @endsection
