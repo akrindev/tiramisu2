@@ -42,14 +42,15 @@ $colors = ['blue','green','orange','red','yellow','teal','purple','dark','pink']
 
       <div class="form-group">
         <label>Deskripsi</label>
-        <textarea id="sectionBody" name="deskripsi" class="form-control" data-provide="markdown" rows=10></textarea>
+        <textarea id="sectionBody" name="deskripsi" class="form-control{{  $errors->has('deskripsi') ? ' is-invalid': '' }}" data-provide="markdown" rows=10 required></textarea>
+        <div class="help-block">
+
         @if($errors->has('deskripsi'))
-        <span class="invalid-feedback">
+        <small class="text-danger">
   			{{$errors->first('deskripsi')}}
-        </span>
+        </small>
         @endif
-        <div class="help-block text-muted">
-          <small>Markdown supported!</small>
+          <small class="text-muted">Markdown supported!</small>
         </div>
       </div>
 

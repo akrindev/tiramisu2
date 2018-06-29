@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Forum extends Model
 {
     protected $fillable = [
-		'user_id', 'judul', 'body' ,
+		'user_id', 'judul', 'body' , 'pinned',
       	'slug', 'tags', 'views', 'color'
     ];
 

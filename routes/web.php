@@ -91,3 +91,4 @@ Route::get('/forum/{slug}', 'ForumController@baca');
 // komentar forum
 Route::post('/forum/{slug}', 'ForumController@comment')->middleware('auth');
 Route::post('/forum/{slug}/c', 'ForumController@commentReply')->middleware('auth');
+Route::post('/forum/{slug}/pin', 'ForumController@pinned')->middleware('auth');

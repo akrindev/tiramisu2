@@ -32,6 +32,11 @@ $tags = explode(',', $tags);
    </div>
 
         <div class="card p-0">
+          @if ( session()->has('sukses'))
+          <div class="card-alert alert alert-success">
+            {{ session('sukses') }}
+          </div>
+          @endif
           <div class="card-status bg-{{ $data->color }}"></div>
 
           <div class="card-body text-wrap p-3">
@@ -45,6 +50,27 @@ $tags = explode(',', $tags);
             </div>
             <div class="body-text">
             @parsedown(e($data->body))
+
+              @auth
+
+
+         @if (auth()->user()->role == 'admin')
+            {!! form_open(url()->current().'/pin') !!}
+            @csrf
+
+            <input type="hidden" name="pinned" value="{{ $data->id }}">
+              @if ($data->pinned == 0)
+
+            <input type="hidden" name="pinthis" value="1">
+            <button type="submit" class="btn btn-sm btn-pill btn-outline-success">Pin thread </button>
+              @else
+            <input type="hidden" name="pinthis" value="0">
+            <button type="submit" class="btn btn-sm btn-pill btn-outline-danger">Unpin thread </button>
+              @endif
+            {!! form_close() !!}
+         @endif
+
+              @endauth
             </div>
           </div>
         </div>

@@ -36,7 +36,7 @@
                       @foreach ($data as $pos)
                       <tr>
                         <td style="align:center;text-align:center;valign:middle" width=20% class="px-2 py-3"><img src="https://graph.facebook.com/{{ $pos->user->provider_id }}/picture?type=normal" class="avatar"></td>
-                        <td width=75% class="px-0 py-2"><a href="/forum/{{ $pos->slug }}"><b>{{ str_limit($pos->judul,65) }} </b></a> <br>
+                        <td width=75% class="px-0 py-2">{!! $pos->pinned == 1 ? '<i class="fa fa-thumb-tack"></i>':'' !!} <a href="/forum/{{ $pos->slug }}"><b> {{ str_limit($pos->judul,65) }} </b></a> <br>
                         <small class="text-muted">
    @php $nama = explode(' ',$pos->user->name); @endphp
 

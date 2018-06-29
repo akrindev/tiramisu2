@@ -11,7 +11,8 @@ class ForumController extends Controller
 {
   public function feed()
   {
-    $forums = Forum::orderBy('created_at','desc')
+    $forums = Forum::orderByDesc('pinned')
+      ->latest()
       ->paginate(20);
 
     return view('forum.feed')->with('data',$forums);
@@ -31,18 +32,29 @@ class ForumController extends Controller
 
     $slug = substr(str_slug(request('judul')),0,20) . '-' . substr(sha1(now()),0,8);
 
+    $tags = request('tags');
+
+    $i = 0;
+
+    foreach ($tags as $tag)
+    {
+      $secondTags[] = $tag;
+      $i++;
+      if($i == 4) break;
+    }
+
     $forum = Forum::create([
     	'user_id' => Auth::user()->id,
       	'judul'	=> request('judul'),
       	'slug' => $slug,
       	'body'	=> request('deskripsi'),
-      	'tags'	=> implode(',',request('tags')),
+      	'tags'	=> implode(',',$secondTags),
       	'color'	=> request('color') ?? 'yellow'
     ]);
 
     if($forum)
     {
-      return redirect('/')->with('sukses','Thread berhasil dibuat');
+      return redirect('/forum/'.$slug)->with('sukses','Thread berhasil dibuat');
     }
 
   }
@@ -115,6 +127,40 @@ class ForumController extends Controller
     if($comment)
     {
       return back()->with('sukses_reply-'.$id, 'balasan di tambahkan');
+    }
+  }
+
+  /**
+  *
+  * pin the thread
+  * hanya admin yang bisa melakukan pin thread
+  */
+
+  public function pinned($slug)
+  {
+    $forum = Forum::where('slug',$slug)->first();
+    if(! $forum)
+    {
+      abort(404);
+    }
+
+    if(Auth::user()->role != 'admin')
+    {
+      return redirect('/')->with('gagal','Kamu tidak punya hak akses ini!');
+    }
+
+    if(request('pinthis') == 1)
+    {
+      $update = [ 'pinned' => 1 ];
+      $message = 'Thread has been PINNED!';
+    } else {
+      $update = [ 'pinned' => 0 ];
+      $message = 'Thread has been UNPINNED!';
+    }
+
+    if($forum->update($update))
+    {
+      return back()->with('sukses', $message);
     }
   }
 }

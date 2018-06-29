@@ -20,6 +20,7 @@ class CreateForumsDescsTable extends Migration
             $table->increments('id');
           	$table->integer('user_id');
           	$table->integer('forum_id');
+          	$table->integer('parent_id')->nullable();
           	$table->longText('body');
             $table->timestamps();
         });

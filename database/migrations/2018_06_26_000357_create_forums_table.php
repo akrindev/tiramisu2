@@ -23,7 +23,7 @@ class CreateForumsTable extends Migration
           	$table->longText('body');
           	$table->string('slug');
           	$table->string('tags');
-          	$table->string('color');
+          	$table->string('color')->default('yellow');
           	$table->integer('views')->default(0);
           	$table->boolean('pinned')->default(0);
           	$table->timestamps();
