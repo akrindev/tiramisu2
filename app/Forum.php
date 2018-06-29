@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Forum extends Model
 {
+  use SoftDeletes;
+
     protected $fillable = [
 		'user_id', 'judul', 'body' , 'pinned',
       	'slug', 'tags', 'views', 'color'

@@ -24,7 +24,7 @@ $tags = explode(',', $tags);
 <div class="row">
  <div class="col-md-8">
 
-   <a href="/forum" class="btn btn-sm mb-3 btn-outline-secondary btn-pill"> &lt; Back to forum</a>
+   <a href="/forum" class="btn btn-sm mb-3 btn-outline-secondary btn-pill"> <i class="fe fe-chevrons-left"></i> Back to forum</a>
 
    <div class="mb-3">
 
@@ -42,6 +42,13 @@ $tags = explode(',', $tags);
           <div class="card-body text-wrap p-3">
 
      <img src="https://graph.facebook.com/{{$data->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4"> <b> {{ $data->user->name }} </b><br> <small class="text-muted"> {{ waktu($data->created_at) }} </small>
+
+            @if(auth()->user()->id == $data->user_id)
+
+            <a href="/forum/{{ $data->slug }}/edit" class="btn btn-sm btn-pill btn-outline-secondary float-right">edit</a>
+
+            @endif
+
             <hr class="my-2">
             <div class="my-1">
               @foreach ($tags as $tag => $n)
@@ -68,6 +75,13 @@ $tags = explode(',', $tags);
             <button type="submit" class="btn btn-sm btn-pill btn-outline-danger">Unpin thread </button>
               @endif
             {!! form_close() !!}
+
+            <button onclick="event.preventDefault(); dte()" class="float-right btn btn-sm btn-pill btn-outline-danger">hapus</button>
+           {!! form_open(url()->current().'/del',['id' => 'delete-form']) !!}
+            @csrf
+
+           {!! form_close() !!}
+
          @endif
 
               @endauth
@@ -88,8 +102,17 @@ $tags = explode(',', $tags);
             @parsedown(e($comment->body))
             </div>
             @auth
+            <div class="form-group">
+              @if(auth()->user()->role == 'admin')
+              <button onclick="event.preventDefault(); dcm({{$comment->id}});" class="btn btn-sm btn-pill btn-outline-danger">hapus</button>
+              {!! form_open('/forum/delete-comment',['id'=>'cid-'.$comment->id]) !!}
+              @csrf
+              @method("DELETE")
+              <input type="hidden" name="cid" value="{{$comment->id}}">
+              {!! form_close() !!}
+              @endif
             <button class="btn btn-sm float-right btn-outline-primary" data-toggle="collapse" data-target="#comm-{{$i}}" role="button" aria-expanded="false" aria-controls="comm-{{$i}}">reply</button>
-
+            </div>
             @endauth
           </div>
 
@@ -170,6 +193,51 @@ $tags = explode(',', $tags);
 <link href="/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
 <script>
   require(['mde']);
+</script>
+<script>
+ @if(auth()->user()->role == 'admin')
+ function dte()
+  {
+     require(['sa'],function(){
+       swal({
+  title: "Yakin mau hapus data ini?",
+  text: "",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    return document.getElementById('delete-form').submit();
+  } else {
+    swal("Your data is safe!");
+  }
+});
+    });
+  }
+
+   function dcm(i)
+  {
+
+     require(['sa'],function(){
+
+       swal({
+  title: "Yakin mau hapus komentar ini?",
+  text: "",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    return document.getElementById('cid-'+i).submit();
+  } else {
+    swal("Your data is safe!");
+  }
+});
+    });
+  }
+  @endif
 </script>
 @endauth
 @endsection

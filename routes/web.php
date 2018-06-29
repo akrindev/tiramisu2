@@ -91,4 +91,17 @@ Route::get('/forum/{slug}', 'ForumController@baca');
 // komentar forum
 Route::post('/forum/{slug}', 'ForumController@comment')->middleware('auth');
 Route::post('/forum/{slug}/c', 'ForumController@commentReply')->middleware('auth');
+
+// forum function
+
+// admin can delete the pinned the thread
 Route::post('/forum/{slug}/pin', 'ForumController@pinned')->middleware('auth');
+// admin can delete thread
+Route::post('/forum/{slug}/del', 'ForumController@delete')->middleware('auth');
+
+// the user thread can edit his/her thread
+Route::get('/forum/{slug}/edit', 'ForumController@edit')->middleware('auth');
+Route::post('/forum/{slug}/edit', 'ForumController@editSubmit')->middleware('auth');
+
+// admin can delete comment and replied comment
+Route::delete('/forum/delete-comment', 'ForumController@deleteComment');

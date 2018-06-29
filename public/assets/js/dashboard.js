@@ -23,6 +23,7 @@ paths: {
 'bmde': 'assets/js/bootstrap-markdown',
   'md': 'assets/js/markdown',
   'tmd': 'assets/js/to-markdown',
+  'sa': '//unpkg.com/sweetalert/dist/sweetalert.min'
 }
 });
 window.tabler = {

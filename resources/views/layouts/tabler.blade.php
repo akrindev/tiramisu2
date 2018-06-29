@@ -14,8 +14,8 @@ $crysta = new Crysta;
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="Content-Language" content="en" />
-    <meta name="msapplication-TileColor" content="#2d89ef">
-    <meta name="theme-color" content="#4188c9">
+    <meta name="msapplication-TileColor" content="#fff">
+    <meta name="theme-color" content="#06f">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -84,7 +84,7 @@ $crysta = new Crysta;
               <div class="d-flex order-lg-2 ml-auto">
 @guest
  				<div class="nav-item d-md-flex">
-                   <a href="/fb-login" class="btn btn-sm btn-outline-primary">Login with FB</a>
+                   <a href="/fb-login" class="btn btn-sm btn-outline-primary"><i class="fe fe-facebook"></i> Login</a>
                  </div>
 @else
                <div class="nav-item d-md-flex">
@@ -180,6 +180,10 @@ $crysta = new Crysta;
 
                   <li class="nav-item">
                     <a href="/fill_stats" class="nav-link"><i class="fe fe-edit-2"></i> Fill stats formula</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="/forum" class="nav-link"><i class="fe fe-users"></i> Forum</a>
                   </li>
                 </ul>
               </div>

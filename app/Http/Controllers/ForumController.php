@@ -102,7 +102,7 @@ class ForumController extends Controller
 
   public function commentReply($slug)
   {
-    $forum = Forum::where('slug',$slug)->first();
+    $forum = Forum::where('slug',$slug)->firstOrFail();
 
     $id = request('id');
 
@@ -132,17 +132,67 @@ class ForumController extends Controller
 
   /**
   *
+  * edit thread
+  */
+
+  public function edit($slug)
+  {
+    $thread = Forum::where('slug',$slug)->firstOrFail();
+
+    if(Auth::user()->id != $thread->user_id)
+    {
+      return redirect('/')->with('gagal','Tidak punya hak akses ini!!');
+    }
+
+
+    return view('forum.edit',['data' => $thread]);
+  }
+
+  public function editSubmit($slug)
+  {
+    $thread = Forum::where('slug',$slug)->firstOrFail();
+
+    if(Auth::user()->id != $thread->user_id)
+    {
+      return redirect('/')->with('gagal','Tidak punya hak akses ini!!');
+    }
+
+    request()->validate([
+    	'judul' => 'required|min:5',
+      	'deskripsi'	=> 'required|min:20',
+    ]);
+
+
+    $tags = request('tags');
+
+    $i = 0;
+
+    foreach ($tags as $tag)
+    {
+      $secondTags[] = $tag;
+      $i++;
+      if($i == 4) break;
+    }
+
+    if($thread->update([
+      	'judul'	=> request('judul'),
+      	'body'	=> request('deskripsi'),
+      	'tags'	=> implode(',',$secondTags),
+      	'color'	=> request('color') ?? 'yellow'
+    ]))
+    {
+      return redirect('/forum/'.$thread->slug)->with('sukses', 'Thread Updated!!');
+    }
+  }
+  /**
+  *
   * pin the thread
   * hanya admin yang bisa melakukan pin thread
   */
 
   public function pinned($slug)
   {
-    $forum = Forum::where('slug',$slug)->first();
-    if(! $forum)
-    {
-      abort(404);
-    }
+    $forum = Forum::where('slug',$slug)->firstOrFail();
 
     if(Auth::user()->role != 'admin')
     {
@@ -161,6 +211,45 @@ class ForumController extends Controller
     if($forum->update($update))
     {
       return back()->with('sukses', $message);
+    }
+  }
+
+  /**
+  *
+  * Delete thread
+  */
+  public function delete($slug)
+  {
+    $forum = Forum::where('slug',$slug)->firstOrFail();
+
+    if(Auth::user()->role != 'admin')
+    {
+      return redirect('/')->with('gagal','Kamu tidak punya hak akses ini!');
+    }
+
+    if($forum->delete())
+    {
+      return redirect('/')->with('sukses', 'Thread di hapus');
+    }
+  }
+
+  /**
+  *
+  * delete komentar
+  */
+
+  public function deleteComment()
+  {
+    $forum = ForumsDesc::findOrFail(request('cid'));
+
+    if(Auth::user()->role != 'admin')
+    {
+      return redirect('/')->with('gagal','Kamu tidak punya hak akses ini!');
+    }
+
+    if($forum->delete())
+    {
+      return back()->with('sukses', 'komentar di hapus');
     }
   }
 }
