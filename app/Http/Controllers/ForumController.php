@@ -100,7 +100,15 @@ class ForumController extends Controller
     ]);
 
 
-    $forum->notify(new ThreadReplied('Menjawab',$forum,$forum->comment()->latest()->first()));
+    if(auth()->id() != $forum->user_id)
+    {
+        $forum->notify(
+          new ThreadReplied(
+            'Menjawab di',
+            $forum,
+            $forum->comment()->latest()->first())
+        );
+    }
 
     if($comment)
     {
@@ -135,8 +143,15 @@ class ForumController extends Controller
 
     $replied = ForumsDesc::find($id);
 
-    $replied->notify(new ThreadReplied('Membalas',$forum,$forum->comment()->latest()->first()));
-
+    if(auth()->id() != $replied->user_id)
+    {
+      $replied->notify(
+        new ThreadReplied(
+          'Membalas di',
+          $forum,
+          $forum->comment()->latest()->first())
+      );
+    }
 
     if($comment)
     {

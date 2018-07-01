@@ -2,7 +2,10 @@
 <div class="dropdown">
       <a class="nav-link icon" data-toggle="dropdown">
               <i class="fe fe-bell"></i>
+
+@if (count(auth()->user()->notifications) > 0)
                  <span class="nav-unread"></span>
+@endif
        </a>
 
   <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
@@ -15,7 +18,13 @@
                         <div class="small text-muted">{{ $notify->created_at->diffForHumans() }} </div>
                       </div>
                     </a>
+
     	@endforeach
+
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item text-center text-muted-dark">Mark all as read</a>
+    @else
+    <span> Tidak ada notifikasi</span>
     @endif
 
 

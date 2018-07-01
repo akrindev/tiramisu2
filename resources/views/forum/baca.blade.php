@@ -43,7 +43,7 @@ $tags = explode(',', $tags);
 
      <img src="https://graph.facebook.com/{{$data->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4"> <a href="/profile/{{$data->user->provider_id }}"> <b> {{ $data->user->name }} </b></a><br> <small class="text-muted"> {{ waktu($data->created_at) }}  . <i class="fe fe-eye"></i> {{ $data->views }}</small>
 
-            @if(auth()->user()->id == $data->user_id)
+            @if(auth()->user() && auth()->user()->id == $data->user_id)
 
             <a href="/forum/{{ $data->slug }}/edit" class="btn btn-sm btn-pill btn-outline-secondary float-right">edit</a>
 
@@ -113,8 +113,26 @@ $tags = explode(',', $tags);
               @endif
             <button class="btn btn-sm float-right btn-outline-primary" data-toggle="collapse" data-target="#comm-{{$i}}" role="button" aria-expanded="false" aria-controls="comm-{{$i}}">reply</button>
             </div>
+
             @endauth
           </div>
+          @auth
+
+          <div class="collapse" id="comm-{{$i}}">
+            {!! form_open(url()->current().'/c') !!}
+            @csrf
+            <div class="card-footer">
+              <div class="form-group">
+                <input type="hidden" name="id" value="{{$comment->id}}">
+                <textarea class="form-control" data-provide="markdown" name="reply" required></textarea>
+
+              </div>
+              <button type="submit" class="btn btn-sm btn-primary">reply</button>
+            </div>
+            {!! form_close() !!}
+          </div>
+          @endauth
+
 
           @foreach ($comment->getReply as $reply)
 <hr class="my-1">
@@ -124,7 +142,7 @@ $tags = explode(',', $tags);
             <div class="media-body">
             @parsedown(e($reply->body))
             </div>
-             @if(auth()->user()->role == 'admin')
+             @if(auth()->check() && auth()->user()->role == 'admin')
               <button onclick="event.preventDefault(); dcm({{$reply->id}});" class="btn btn-sm btn-pill btn-outline-danger float-right">hapus</button>
               {!! form_open('/forum/delete-comment',['id'=>'cid-'.$reply->id]) !!}
               @csrf
@@ -142,19 +160,6 @@ $tags = explode(',', $tags);
             {{ session('sukses_reply-'.$comment->id) }}
           </div>
         @endif
-          <div class="collapse" id="comm-{{$i}}">
-            {!! form_open(url()->current().'/c') !!}
-            @csrf
-            <div class="card-footer">
-              <div class="form-group">
-                <input type="hidden" name="id" value="{{$comment->id}}">
-                <textarea class="form-control" data-provide="markdown" name="reply" required></textarea>
-
-              </div>
-              <button type="submit" class="btn btn-sm btn-primary">reply</button>
-            </div>
-            {!! form_close() !!}
-          </div>
           @endauth
    		</div>
 

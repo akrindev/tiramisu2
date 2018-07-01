@@ -44,7 +44,7 @@ class ThreadReplied extends Notification
     public function toArray($notifiable)
     {
         return [
-          	'by'	=> auth()->user()->name,
+          	'by'	=> explode(' ',auth()->user()->name)[0],
             'message' => $this->q . ' ' . $this->thread->judul,
 
           	'link'	=> $this->thread->slug.'/#reply'.$this->reply->id
