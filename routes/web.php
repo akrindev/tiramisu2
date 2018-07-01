@@ -24,7 +24,7 @@ Route::get('/exp', 'XpController@index');
 Route::get('/fb-login', 'Auth\LoginController@redirect');
 Route::get('/facebook/callback', 'Auth\LoginController@callback');
 
-Route::get('/profile', 'UserController@profile');
+Route::get('/profile', 'UserController@profileku');
 
 Route::get('/profile/{provider_id}', 'UserController@profile');
 
@@ -98,6 +98,8 @@ Route::post('/forum/{slug}/c', 'ForumController@commentReply')->middleware('auth
 Route::post('/forum/{slug}/pin', 'ForumController@pinned')->middleware('auth');
 // admin can delete thread
 Route::post('/forum/{slug}/del', 'ForumController@delete')->middleware('auth');
+
+Route::post('/forum/{slug}/delete', 'ForumController@deleteByUser')->middleware('auth');
 
 // the user thread can edit his/her thread
 Route::get('/forum/{slug}/edit', 'ForumController@edit')->middleware('auth');

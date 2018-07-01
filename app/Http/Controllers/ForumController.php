@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Notifications\ThreadReplied;
 use Auth;
 use App\Forum;
 use App\ForumsDesc;
+use Cookie;
 
 class ForumController extends Controller
 {
@@ -68,6 +70,9 @@ class ForumController extends Controller
       return redirect('/')->with('gagal', 'Thread tidak di temukan');
     }
 
+    $baca->increment('views');
+
+
     return view('forum.baca',[
     	'data' => $baca,
       	'comments' => $comments
@@ -94,6 +99,9 @@ class ForumController extends Controller
       	'body'	=> request('body')
     ]);
 
+
+    $forum->notify(new ThreadReplied('Menjawab',$forum,$forum->comment()->latest()->first()));
+
     if($comment)
     {
       return back()->with('sukses_comment', 'Komentar di tambahkan');
@@ -116,12 +124,18 @@ class ForumController extends Controller
     	'reply'	=> 'required'
     ]);
 
-	$comment = ForumsDesc::create([
+   // dd($forum->comment);
+
+	$comment = $forum->comment()->create([
     	'user_id' => Auth::user()->id,
       	'forum_id'	=> $forum->id,
       	'parent_id' => $id,
       	'body'	=> request('reply')
     ]);
+
+    $replied = ForumsDesc::find($id);
+
+    $replied->notify(new ThreadReplied('Membalas',$forum,$forum->comment()->latest()->first()));
 
 
     if($comment)
@@ -223,6 +237,22 @@ class ForumController extends Controller
     $forum = Forum::where('slug',$slug)->firstOrFail();
 
     if(Auth::user()->role != 'admin')
+    {
+      return redirect('/')->with('gagal','Kamu tidak punya hak akses ini!');
+    }
+
+    if($forum->delete())
+    {
+      return redirect('/')->with('sukses', 'Thread di hapus');
+    }
+  }
+
+  // delete by user
+  public function deleteByUser($slug)
+  {
+    $forum = Forum::where('slug',$slug)->firstOrFail();
+
+    if(Auth::id() == $forum->user_id)
     {
       return redirect('/')->with('gagal','Kamu tidak punya hak akses ini!');
     }

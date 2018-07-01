@@ -41,7 +41,7 @@ $tags = explode(',', $tags);
 
           <div class="card-body text-wrap p-3">
 
-     <img src="https://graph.facebook.com/{{$data->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4"> <b> {{ $data->user->name }} </b><br> <small class="text-muted"> {{ waktu($data->created_at) }} </small>
+     <img src="https://graph.facebook.com/{{$data->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4"> <a href="/profile/{{$data->user->provider_id }}"> <b> {{ $data->user->name }} </b></a><br> <small class="text-muted"> {{ waktu($data->created_at) }}  . <i class="fe fe-eye"></i> {{ $data->views }}</small>
 
             @if(auth()->user()->id == $data->user_id)
 
@@ -95,7 +95,7 @@ $tags = explode(',', $tags);
 		<div class="card p-0">
           <div class="card-body p-3">
             <img src="https://graph.facebook.com/{{$comment->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4">
-            <b> {{ $comment->user->name }} </b> <br>
+            <b><a href="/profile/{{$comment->user->provider_id }}">  {{ $comment->user->name }}</a> </b> <br>
             <small class="text-muted">{{ waktu($comment->created_at) }}</small>
             <hr class="my-2">
             <div class="body-text">
@@ -118,12 +118,20 @@ $tags = explode(',', $tags);
 
           @foreach ($comment->getReply as $reply)
 <hr class="my-1">
-          <div class="p-2">
+          <div id="#reply{{$reply->id}}" class="p-2">
             <img src="https://graph.facebook.com/{{$reply->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4">
-          <b> {{ $reply->user->name }} </b> <small class="text-muted"> • ({{ waktu($reply->created_at)}})</small><br>
+            <b><a href="/profile/{{$reply->user->provider_id }}">  {{ $reply->user->name }}</a> </b> <small class="text-muted"> • ({{ waktu($reply->created_at)}})</small><br>
             <div class="media-body">
             @parsedown(e($reply->body))
             </div>
+             @if(auth()->user()->role == 'admin')
+              <button onclick="event.preventDefault(); dcm({{$reply->id}});" class="btn btn-sm btn-pill btn-outline-danger float-right">hapus</button>
+              {!! form_open('/forum/delete-comment',['id'=>'cid-'.$reply->id]) !!}
+              @csrf
+              @method("DELETE")
+              <input type="hidden" name="cid" value="{{$reply->id}}">
+              {!! form_close() !!}
+              @endif
           </div>
             @endforeach
 
@@ -210,7 +218,7 @@ $tags = explode(',', $tags);
   if (willDelete) {
     return document.getElementById('delete-form').submit();
   } else {
-    swal("Your data is safe!");
+    swal("Aman gan!");
   }
 });
     });
@@ -232,7 +240,7 @@ $tags = explode(',', $tags);
   if (willDelete) {
     return document.getElementById('cid-'+i).submit();
   } else {
-    swal("Your data is safe!");
+    swal("Aman gan!");
   }
 });
     });

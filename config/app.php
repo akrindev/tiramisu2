@@ -153,7 +153,7 @@ return [
 
       Laravel\Socialite\SocialiteServiceProvider::class,
       Intervention\Image\ImageServiceProvider::class,
-
+CyrildeWit\EloquentViewable\EloquentViewableServiceProvider::class,
         /*
          * Application Service Providers...
          */

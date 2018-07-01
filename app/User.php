@@ -26,4 +26,24 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+  	/**
+    *
+    * Thread by User
+    */
+  	public function thread()
+    {
+      return $this->hasMany(Forum::class);
+    }
+
+  	/**
+    *
+    * Comment by user
+    */
+  	public function comment()
+    {
+      return $this->hasMany(ForumsDesc::class);
+    }
+
 }

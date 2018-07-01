@@ -65,29 +65,12 @@ endif;
         <tr>
           <td width=""> <a href="/forum/{{ $thread->slug }}">{{ str_limit($thread->body,40) }} </a><br>
             <small class="text-muted">{{ waktu($thread->created_at) }} • <i class="fe fe-eye"></i> {{ $thread->views }} <i class="fe fe-message-square"></i> {{ $thread->comment->count() }} </small></td>
-          <td> <a href="/forum/{{$thread->slug}}/edit" class="text-primary">edit</a> | <a href="/forum/{{$thread->slug}}/del" class="text-danger" onClick="if(confirm('Yakin mau ngehapus?')) { return true; } else { return false;}">hapus</a>  </td>
-
         </tr>
 @endforeach
       </table>
        </div>
       </div>
    @endif
-
-  <div class="col-md-8">
-    <div class="card">
-      <h3 class="card-title"> Notifikasi </h3>
-      <ul>
-      @foreach ($profile->notifications as $notify)
-        <li><b> {{ $notify->data['by'] }} </b>
-        <a href="/forum/{{$notify->data['link']}}">
-      {{ $notify->data['message'] }}
-        </a> {{ $notify->created_at->diffForHumans() }}
-      </li>
-      @endforeach
-      </ul>
-    </div>
-      </div>
 
 
     </div>

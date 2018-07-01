@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 class Forum extends Model
 {
-  use SoftDeletes;
+  use SoftDeletes, Notifiable;
 
     protected $fillable = [
 		'user_id', 'judul', 'body' , 'pinned',
@@ -24,8 +25,8 @@ class Forum extends Model
     return $this->hasMany(ForumsDesc::class);
   }
 
-	public function scopeNotReply($query)
-    {
-      return $this->whereNull('parent_id');
-    }
+  public function notify($notify)
+  {
+    return $this->user->notify($notify);
+  }
 }

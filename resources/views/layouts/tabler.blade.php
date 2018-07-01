@@ -88,7 +88,7 @@ $crysta = new Crysta;
                  </div>
 @else
                <div class="nav-item d-md-flex">
-
+@include('inc.bell')
                 <div class="dropdown">
                   <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
                     <span class="avatar" style="background-image: url(https://graph.facebook.com/{{ Auth::user()->provider_id }}/picture?type=normal"></span>
