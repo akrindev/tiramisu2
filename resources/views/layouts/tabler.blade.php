@@ -79,7 +79,7 @@ $crysta = new Crysta;
           <div class="container">
             <div class="d-flex">
               <a class="header-brand" href="/">
-                <img src="/img/potum.gif" class="header-brand-img" alt="Toram-id.info logo"> Toram-id.info
+                <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="/img/potum.gif" class="header-brand-img lazyload" alt="Toram-id.info logo"> Toram-id.info
               </a>
               <div class="d-flex order-lg-2 ml-auto">
 @guest

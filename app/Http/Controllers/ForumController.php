@@ -64,11 +64,12 @@ class ForumController extends Controller
   public function baca($slug)
   {
     $baca = Forum::where('slug',$slug)->first();
-	$comments = $baca->comment;
-    if( ! $baca)
+	if( ! $baca)
     {
       return redirect('/')->with('gagal', 'Thread tidak di temukan');
     }
+
+    $comments = $baca->comment;
 
     $baca->increment('views');
 
@@ -212,6 +213,35 @@ class ForumController extends Controller
     {
       return redirect('/forum/'.$thread->slug)->with('sukses', 'Thread Updated!!');
     }
+  }
+
+  /**
+  *
+  * Show by tag
+  */
+  public function byTag($nya)
+  {
+    $forum = Forum::where('tags','like','%'. $nya .'%')
+      ->paginate(20);
+
+
+    return view('forum.feed',[
+    	'data' => $forum
+    ]);
+  }
+
+  /**
+  *
+  * cari berdasarkan judul forum
+  */
+  public function cari()
+  {
+    $key = request('key');
+    $forum = Forum::where('judul','like','%'.$key.'%')->latest()->paginate(20);
+
+    return view('forum.feed',[
+    	'data'	=>	$forum
+    ]);
   }
   /**
   *

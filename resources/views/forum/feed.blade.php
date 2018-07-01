@@ -27,16 +27,31 @@
               </div>
               <div class="col-md-8">
 
-                <a href="/forum/baru" class="align-right btn btn-primary btn-pill mb-3">Tulis baru</a>
+                <a href="/forum/baru" class="float-right btn btn-primary btn-pill mb-3">Tulis baru</a>
+
+            <div id="cari-kan">
+              {!! form_open('/forum/cari') !!}
+              @csrf
+              <div class="form-group">
+                <div class="input-group">
+                <input type="search" name="key" class="form-control" placeholder="cari di forum ..." required pattern="{2,}">    <span class="input-group-append">
+                              <button class="btn btn-outline-primary" type="button"><i class="fe fe-search"></i> Cari!</button>
+                            </span>
+                </div>
+              </div>
+
+              {!! form_close() !!}
+            </div>
+
 
                 <div class="card">
                   <div class="p-0 m-0">
                     <table class="table card-table table-striped">
-
-                      @foreach ($data as $pos)
+				@if($data->count() > 0)
+                    @foreach ($data as $pos)
                       <tr>
                         <td width=85% class="px-2 py-2">
-                          <img src="https://graph.facebook.com/{{ $pos->user->provider_id }}/picture?type=normal" class="avatar float-left mr-4">
+                          <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{ $pos->user->provider_id }}/picture?type=normal" class="avatar float-left mr-4 lazyload">
                           {!! $pos->pinned == 1 ? '<i class="fa fa-paperclip"></i>':'' !!} <a href="/forum/{{ $pos->slug }}"><b> {{ str_limit($pos->judul,65) }} </b></a> <br>
                         <small class="text-muted">
    @php $nama = explode(' ',$pos->user->name); @endphp
@@ -57,6 +72,11 @@ $i = $color[$rand[0]];
                           <small class="text-muted">replies</small></td>
                       </tr>
                     @endforeach
+                 @else
+                      <tr class="p-4">
+                        <td>Belum ada diskusi! :'(</td>
+                      </tr>
+                 @endif
 
 
                     </table>

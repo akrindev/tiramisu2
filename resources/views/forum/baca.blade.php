@@ -41,7 +41,7 @@ $tags = explode(',', $tags);
 
           <div class="card-body text-wrap p-3">
 
-     <img src="https://graph.facebook.com/{{$data->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4"> <a href="/profile/{{$data->user->provider_id }}"> <b> {{ $data->user->name }} </b></a><br> <small class="text-muted"> {{ waktu($data->created_at) }}  . <i class="fe fe-eye"></i> {{ $data->views }}</small>
+     <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{$data->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4 lazyload"> <a href="/profile/{{$data->user->provider_id }}"> <b> {{ $data->user->name }} </b></a><br> <small class="text-muted"> {{ waktu($data->created_at) }}  . <i class="fe fe-eye"></i> {{ $data->views }}</small>
 
             @if(auth()->user() && auth()->user()->id == $data->user_id)
 
@@ -94,7 +94,7 @@ $tags = explode(',', $tags);
    @php $i++; @endphp
 		<div class="card p-0">
           <div class="card-body p-3">
-            <img src="https://graph.facebook.com/{{$comment->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4">
+            <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{$comment->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4 lazyload">
             <b><a href="/profile/{{$comment->user->provider_id }}">  {{ $comment->user->name }}</a> </b> <br>
             <small class="text-muted">{{ waktu($comment->created_at) }}</small>
             <hr class="my-2">
@@ -137,7 +137,7 @@ $tags = explode(',', $tags);
           @foreach ($comment->getReply as $reply)
 <hr class="my-1">
           <div id="#reply{{$reply->id}}" class="p-2">
-            <img src="https://graph.facebook.com/{{$reply->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4">
+            <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{$reply->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4 lazyload">
             <b><a href="/profile/{{$reply->user->provider_id }}">  {{ $reply->user->name }}</a> </b> <small class="text-muted"> • ({{ waktu($reply->created_at)}})</small><br>
             <div class="media-body">
             @parsedown(e($reply->body))

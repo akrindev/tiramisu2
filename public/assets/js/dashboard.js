@@ -6,7 +6,7 @@ shim: {
 'vector-map': ['jquery'],
 'vector-map-de': ['vector-map', 'jquery'],
 'vector-map-world': ['vector-map', 'jquery'],
-'core': ['bootstrap', 'jquery'],
+'core': ['bootstrap', 'jquery','li'],
 'mde': ['bmde','md','tmd'],
 },
 paths: {
@@ -23,7 +23,8 @@ paths: {
 'bmde': 'assets/js/bootstrap-markdown',
   'md': 'assets/js/markdown',
   'tmd': 'assets/js/to-markdown',
-  'sa': '//unpkg.com/sweetalert/dist/sweetalert.min'
+  'sa': '//unpkg.com/sweetalert/dist/sweetalert.min',
+  'li': '//d33wubrfki0l68.cloudfront.net/js/4a9135fe7794de2463227d8b056e63f2e403b6a5/js/lazysizes.min'
 }
 });
 window.tabler = {

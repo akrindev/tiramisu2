@@ -5,7 +5,6 @@ $tags = DB::table('tags')->get();
 
 @endphp
 <div class="d-none d-sm-block">
-<table class="table card-table">
   @if (count($tags) > 0)
   	@foreach ($tags as $tag)
   @php
@@ -13,17 +12,20 @@ $tags = DB::table('tags')->get();
 $color = ['success','warning','primary','danger','secondary'];
 $rand = array_rand($color,2);
 $i = $color[$rand[0]];
-
   @endphp
-  <tr>
-    <td>{{ $tag->name}} </td>
-    <td class="text-right"><span class="badge badge-{{$i}}">{{ rand(00,99) }}</span></td>
-  </tr>
+
+
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">
+      <a href="/forum/tag/{{$tag->name}}">{{ $tag->name}} </a>
+    <span class="badge badge-{{$i}} float-right">{{ DB::table('forums')->where('tags','like','%'.$tag->name.'%')->whereNull('deleted_at')->count() }}</span>
+
+  </li>
   	@endforeach
+  </ul>
   @else
   <p>Belum ada tags</p>
   @endif
-</table>
 </div>
 
 <div class="d-block d-sm-none">
@@ -35,7 +37,7 @@ $rand = array_rand($color,2);
 $i = $color[$rand[0]];
     @endphp
 
-    <a href="#" class="tag tag-{{$i}}">{{$tag->name}}</a>
+    <a href="/forum/tag/{{$tag->name}}" class="tag tag-{{$i}}">{{$tag->name}}</a>
     @endforeach
    </div>
 </div>
