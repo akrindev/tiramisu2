@@ -16,7 +16,7 @@ class UserController extends Controller
     **/
  	public function profileku()
     {
-      $threads = Auth::user()->thread;
+      $threads = Auth::user()->thread()->paginate(10);
 
       $z = Forum::where('user_id',auth()->id());
 
@@ -40,6 +40,15 @@ class UserController extends Controller
         'threads'	=> $threads
       ]);
     }
+
+  public function notifikasi()
+  {
+    $notif = auth()->user()->notifications()->paginate(25);
+
+    return view('auth.notifikasi',[
+    	'data'	=>	$notif
+    ]);
+  }
 
 
   /**

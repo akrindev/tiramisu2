@@ -41,25 +41,11 @@ $crysta = new Crysta;
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-
-    <script src="/assets/js/require.min.js"></script>
-    <script>
-      requirejs.config({
-    	baseUrl: "{{ url('/') }}",
-		});
-	 </script>
     <!-- Dashboard Core -->
     <link href="/assets/css/dashboard.css" rel="stylesheet" />
-    <script src="/assets/js/dashboard.js"></script>
-
-    <!-- Input Mask Plugin -->
-    <script src="/assets/plugins/input-mask/plugin.js"></script>
-
-    <script>
-      define(['jquery'],function($){
-      	$("img").addClass('lazyload');
-      });
-    </script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/vendors/bootstrap.bundle.min.js"></script>
+     <script src="/assets/js/core.js"></script>
     @yield('head')
 
   </head>
@@ -72,7 +58,7 @@ $crysta = new Crysta;
           <div class="container">
             <div class="d-flex">
               <a class="header-brand" href="/">
-                <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="/img/potum.gif" class="header-brand-img lazyload" alt="Toram-id.info logo"> Toram-id.info
+                <img src="/img/potum.gif" class="header-brand-img lazyload" alt="Toram-id.info logo"> Toram
               </a>
               <div class="d-flex order-lg-2 ml-auto">
 @guest
@@ -209,6 +195,8 @@ $crysta = new Crysta;
     </div>
 
     @yield('footer')
+
+ <script src="/assets/js/lazy.js"></script>
 
 
   </body>

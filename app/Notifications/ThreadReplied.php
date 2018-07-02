@@ -47,7 +47,7 @@ class ThreadReplied extends Notification
           	'by'	=> explode(' ',auth()->user()->name)[0],
             'message' => $this->q . ' ' . $this->thread->judul,
 
-          	'link'	=> $this->thread->slug.'/#reply'.$this->reply->id
+          	'link'	=> $this->thread->slug.'#reply'.$this->reply->id
         ];
     }
 }

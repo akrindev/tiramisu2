@@ -10,7 +10,7 @@
 
   <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 @if (count(auth()->user()->notifications))
-    @foreach (auth()->user()->notifications as $notify)
+    @foreach (collect(auth()->user()->notifications)->take(5) as $notify)
                     <a href="/forum/{{$notify->data['link']}}" class="dropdown-item d-flex">
 
                       <div>
@@ -22,7 +22,7 @@
     	@endforeach
 
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item text-center text-muted-dark">Mark all as read</a>
+                    <a href="/profile/notifikasi" class="dropdown-item text-center text-muted-dark">Lihat semua</a>
     @else
     <span> Tidak ada notifikasi</span>
     @endif

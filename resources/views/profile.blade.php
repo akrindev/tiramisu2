@@ -2,8 +2,8 @@
 @php
 $res = 0;
 
-if(count($threads) > 0):
-	foreach ($threads as $t):
+if(auth()->user()->thread->count() > 0):
+	foreach (auth()->user()->thread as $t):
 		$res += $t->comment->count();
 	endforeach;
 endif;
@@ -43,7 +43,7 @@ endif;
             </thead>
             <tbody>
               <tr>
-                <td> {{ $profile->count() }} </td>
+                <td> {{ auth()->user()->thread->count() }} </td>
                 <td> {{ auth()->user()->comment->count() }} </td>
                 <td> {{ $res }} </td>
                 <td> {{ $profile->thread->sum('views') }}
@@ -56,7 +56,7 @@ endif;
 
    @if(count($threads) > 0)
 
-      <div class="col-md-8">
+      <div class="col-md-12">
 	<div class="card">
       <div class="card-header">
         <h3 class="class-title">Latest threads</h3>
@@ -65,29 +65,48 @@ endif;
 @foreach($threads as $thread)
 
         <tr>
-          <td width=""> <a href="/forum/{{ $thread->slug }}">{{ str_limit($thread->body,40) }} </a><br>
+          <td width="80%"> <a href="/forum/{{ $thread->slug }}">{{ str_limit($thread->judul,50) }} </a><br>
             <small class="text-muted">{{ waktu($thread->created_at) }} • <i class="fe fe-eye"></i> {{ $thread->views }} <i class="fe fe-message-square"></i> {{ $thread->comment->count() }} </small></td>
-          <td> <a href="/forum/{{$thread->slug}}/edit" class="text-primary">edit</a> | <a href="/forum/{{$thread->slug}}/del" class="text-danger" onClick="if(confirm('Yakin mau ngehapus?')) { return true; } else { return false;}">hapus</a>  </td>
+          <td> <a href="/forum/{{$thread->slug}}/edit" class="text-primary">edit</a> |
+              <a onclick="event.preventDefault(); dcm({{$thread->id}});" class="text-danger">hapus</a>
+              {!! form_open('/forum/'.$thread->slug.'/delete',['id'=>'cid-'.$thread->id]) !!}
+              @csrf
+              @method("DELETE")
+              <input type="hidden" name="cid" value="{{$thread->id}}">
+              {!! form_close() !!}</td>
 
         </tr>
 @endforeach
       </table>
+      {{ $threads->links() }}
+
        </div>
       </div>
    @endif
 
   <div class="col-md-8">
     <div class="card">
-      <h3 class="card-title"> Notifikasi </h3>
-      <ul>
-      @foreach ($profile->notifications as $notify)
-        <li><b> {{ $notify->data['by'] }} </b>
+      <div class="card-header">
+        <h3 class="card-title"> Notifikasi </h3>
+  <div class="card-options">
+    <a href="/profile/notifikasi" class="btn btn-sm btn-pill btn-outline-primary float-right">Lihat semua</a>
+        </div>
+      </div>
+@if(count($profile->notifications) > 0)
+      <div class="card-body p-1">
+      @foreach (collect($profile->notifications)->take(5) as $notify)
+      <i class="fe fe-check"></i>  <b> {{ $notify->data['by'] }} </b>
         <a href="/forum/{{$notify->data['link']}}">
       {{ $notify->data['message'] }}
         </a> {{ $notify->created_at->diffForHumans() }}
-      </li>
+      <br>
       @endforeach
-      </ul>
+      </div>
+@else
+      <div class="card-body">
+      <b> belum ada notif :') </b>
+      </div>
+@endif
     </div>
       </div>
 
@@ -97,4 +116,29 @@ endif;
   </div>
 </div>
 
+@endsection
+
+@section('footer')
+
+<script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+   function dcm(i)
+  {
+    swal({
+      title: "Yakin mau hapus ini?",
+      text: "",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        return document.getElementById('cid-'+i).submit();
+      } else {
+        swal("Aman gan!");
+      }
+    });
+
+  }
+</script>
 @endsection

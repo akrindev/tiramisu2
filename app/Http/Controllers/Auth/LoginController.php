@@ -79,7 +79,7 @@ class LoginController extends Controller
       $uname = explode(' ',$uname);
       $name = str_slug($uname[0]).rand(000,999);
 
-      $gender = $raw['gender'];
+      $gender = $raw['gender'] ?? 'hode';
 
       switch($gender)
       {

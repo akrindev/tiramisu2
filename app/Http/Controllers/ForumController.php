@@ -299,12 +299,14 @@ class ForumController extends Controller
 
     if(Auth::id() == $forum->user_id)
     {
-      return redirect('/')->with('gagal','Kamu tidak punya hak akses ini!');
+      if($forum->delete())
+      {
+        return redirect('/')->with('sukses', 'Thread di hapus');
+      }
     }
-
-    if($forum->delete())
+    else
     {
-      return redirect('/')->with('sukses', 'Thread di hapus');
+      return redirect('/')->with('gagal','Kamu tidak punya hak akses ini!');
     }
   }
 

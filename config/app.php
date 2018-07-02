@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Jakarta',
 
     /*
     |--------------------------------------------------------------------------
@@ -152,9 +152,7 @@ return [
          */
 
       Laravel\Socialite\SocialiteServiceProvider::class,
-      Intervention\Image\ImageServiceProvider::class,
-CyrildeWit\EloquentViewable\EloquentViewableServiceProvider::class,
-        /*
+      Intervention\Image\ImageServiceProvider::class,        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
