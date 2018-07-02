@@ -40,4 +40,45 @@ class UserController extends Controller
         'threads'	=> $threads
       ]);
     }
+
+
+  /**
+  *
+  * Setting
+  */
+
+  public function settingProfile()
+  {
+    return view('auth.setting_profile',[
+    	'data'	=> auth()->user()
+    ]);
+  }
+
+  public function settingProfileSubmit()
+  {
+    $user = User::findOrFail(auth()->id());
+
+    request()->validate([
+    	'username'	=> 'required|alpha_num|max:10',
+      	'ign'	=> 'required',
+      	'biodata'	=> 'required|max:160',
+      	'alamat'	=>  'required|max:160',
+      	'birthdat'	=> 'date|nullable'
+    ]);
+
+    if(request()->username != $user->username && $user->changed == 0)
+    {
+      $user->username = request()->username;
+      $user->changed = 1;
+    }
+
+    $user->email = request()->email;
+    $user->ign = request()->ign;
+    $user->biodata = request()->biodata;
+    $user->alamat = request()->alamat;
+
+    $user->save();
+
+    return back()->with('sukses', 'Data telah di ubah!');
+  }
 }

@@ -14,6 +14,11 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+
+          	$table->charset = 'utf8mb4';
+          	$table->collation = 'utf8mb4_unicode_ci';
+
+
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
@@ -24,7 +29,10 @@ class CreateUsersTable extends Migration
           	$table->boolean('banned')->default(0);
           	$table->string('ign');
           	$table->string('alamat');
+          	$table->enum('gender',['cowok','cewek','hode'])->default('hode');
+          	$table->date('birthday')->nullable();
           	$table->enum('role',['admin','staff','member'])->default('member');
+          	$table->boolean('changed')->default(0);
           	$table->rememberToken();
             $table->timestamps();
         });

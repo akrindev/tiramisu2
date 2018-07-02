@@ -28,6 +28,13 @@ Route::get('/profile', 'UserController@profileku');
 
 Route::get('/profile/{provider_id}', 'UserController@profile');
 
+/**
+*
+* Setting
+*/
+Route::get('/setting/profile', 'UserController@settingProfile');
+Route::post('/setting/profile', 'UserController@settingProfileSubmit');
+
 
 Route::get('/equips/{slug}', 'EquipController@equips');
 Route::get('/equip/{slug}', 'EquipController@equip');

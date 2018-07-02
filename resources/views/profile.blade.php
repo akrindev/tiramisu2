@@ -15,13 +15,15 @@ endif;
     <div class="row">
       <div class="col-md-4 mb-5">
         <img src="https://graph.facebook.com/{{$profile->provider_id}}/picture?type=normal" class="img img-fluid mr-3 float-left">
-        <b> {{ $profile->name }} </b> <br>
-        <span class="text-muted"> Male </span><br>
+        <b> {{ $profile->name }} </b>
+        <span class="text-muted"> ({{ $profile->username }}) </span>
+        <br><br>
+        <span class="text-muted">  {{ $profile->gender }}</span>
         <p class="text-muted">
           {{ $profile->biodata }}
         </p>
         @auth
-        <a href="#" class="btn btn-link btn-sm">edit profile</a>
+        <a href="/setting/profile" class="btn btn-link btn-sm">edit profile</a>
         @endauth
       </div>
 

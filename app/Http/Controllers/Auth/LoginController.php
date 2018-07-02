@@ -57,6 +57,11 @@ class LoginController extends Controller
 
       $user = $this->findOrCreate($facebook);
 
+      if($user->banned == 1)
+      {
+        return redirect('/')->with('gagal', 'Akun di banned!! hubungi admin untuk menindak lanjuti');
+      }
+
       Auth::login($user, true);
 
       return redirect($this->redirectTo);
@@ -69,6 +74,26 @@ class LoginController extends Controller
 
       $raw = $facebook->getRaw();
 
+      $uname = $facebook->getName();
+
+      $uname = explode(' ',$uname);
+      $name = str_slug($uname[0]).rand(000,999);
+
+      $gender = $raw['gender'];
+
+      switch($gender)
+      {
+        case 'male':
+          $gender = 'cowok';
+          break;
+        case 'female':
+          $gender = 'cewek';
+          break;
+        default:
+          $gender = 'hode';
+          break;
+      }
+
       if( ! $user)
       {
         $user = new User;
@@ -77,7 +102,8 @@ class LoginController extends Controller
         $user->email = $facebook->getEmail();
         $user->biodata = 'Saya pemain Toram!';
         $user->ign = '-';
-        $user->username = '-';
+        $user->username = $name;
+        $user->gender = $gender;
         $user->alamat = 'Bumi, Indonesia';
         $user->link = $raw['link'] ?? '-';
         $user->save();

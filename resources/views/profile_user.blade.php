@@ -14,15 +14,12 @@ endif;
 
     <div class="row">
       <div class="col-md-4 mb-5">
-        <img src="https://graph.facebook.com/{{$profile->provider_id}}/picture?type=normal" class="img img-fluid mr-3 float-left">
+        <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{$profile->provider_id}}/picture?type=normal" class="img img-fluid mr-3 float-left lazyload">
         <b> {{ $profile->name }} </b> <br>
         <span class="text-muted"> Male </span><br>
         <p class="text-muted">
           {{ $profile->biodata }}
         </p>
-        @auth
-        <a href="#" class="btn btn-link btn-sm">edit profile</a>
-        @endauth
       </div>
 
       <div class="col-md-8">

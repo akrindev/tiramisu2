@@ -26,17 +26,22 @@ $crysta = new Crysta;
 
     <title>Toram {{ $title ?? 'Online Database Indonesia' }}</title>
 
-
+<!-- open graph -->
 <meta property="og:url"                content="{{ url()->current() }}" />
 <meta property="og:type"               content="article" />
 <meta content='Toram Online Indonesia' property='og:site_name'/>
-<meta property="og:title"              content="{{ $title ?? 'Online Database Indonesia' }}" />
+<meta property="og:title"              content="Toram {{ $title ?? 'Online Database Indonesia' }}" />
 <meta property="og:description"        content="{{ $deskripsi ?? 'Toram online Database bahasa indonesia, items, weapon, armor, monster, etc' }}" />
 <meta property="og:image"              content="http://toram-id.info/img/logo.gif" />
 <meta property="fb:app_id" content="2008283499456981"/>
 
+<!-- // open graph -->
+
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+
     <script src="/assets/js/require.min.js"></script>
     <script>
       requirejs.config({
@@ -50,28 +55,16 @@ $crysta = new Crysta;
     <!-- Input Mask Plugin -->
     <script src="/assets/plugins/input-mask/plugin.js"></script>
 
+    <script>
+      define(['jquery'],function($){
+      	$("img").addClass('lazyload');
+      });
+    </script>
     @yield('head')
 
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109854426-3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-109854426-3');
-</script>
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-6056470544527952",
-    enable_page_level_ads: true
-  });
-</script>
-
   </head>
+
+
   <body class="">
     <div class="page">
       <div class="page-main">
@@ -97,7 +90,7 @@ $crysta = new Crysta;
                     </span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                    <a class="dropdown-item" href="/u">
+                    <a class="dropdown-item" href="/profile">
                       <i class="dropdown-icon fe fe-user"></i> Profile
                     </a>
                     <a class="dropdown-item" href="#" onClick="alert('under development')">
