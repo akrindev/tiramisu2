@@ -4,13 +4,17 @@
 @if (count($data) == 1)
 @section('title','Toram '.$data[0]->nama)
 
-@section('description','Toram '.$data[0]->nama.' Monster, dan Boss monster')
+@section('description','Toram '.$data[0]->nama.' berada pada '. $data[0]->map .' Monster, dan Boss monster')
 @section('image',url($data[0]->pics))
+@elseif (count($data) > 0)
+@section('title','Toram list Monsters '.$data[0]->map)
+
+@section('description','Toram database list monster pada '.$data[0]->map .', dan boss')
+
+@section('image',to_img())
 @else
-@section('title','Toram list Monsters')
-
-@section('description','Toram database crysta, dan gem monster dan boss')
-
+@section('title','Toram list monster')
+@section('description','Toram Monster list beserta boss')
 @section('image',to_img())
 @endif
 
@@ -99,6 +103,14 @@
                 </div>
 
      @endforeach
+<div class="col-12">
+         {{ $data->appends(request()->except('page'))->links() }}
+              </div>
+   @else
+
+              <div class="col-12">
+              <h3>tidak ada</h3>
+              </div>
    @endif
 
               </div>

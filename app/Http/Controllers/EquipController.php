@@ -15,7 +15,7 @@ class EquipController extends Controller
       return redirect('/');
 
 
-    $kunci = Barang::where('typeslug',$slug)->get();
+    $kunci = Barang::where('typeslug',$slug)->paginate(20);
 
     if(!$kunci)
     {
@@ -31,7 +31,7 @@ class EquipController extends Controller
       return redirect('/');
 
 
-    $kunci = Barang::where('slug',$slug)->get();
+    $kunci = Barang::where('slug',$slug)->paginate(1);
 
     if(!$kunci)
     {

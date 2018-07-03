@@ -68,7 +68,7 @@ class UserController extends Controller
     $user = User::findOrFail(auth()->id());
 
     request()->validate([
-    	'username'	=> 'required|alpha_num|max:10',
+    	'username'	=> 'required|alpha_num|max:10|unique:users,username,'.$user->id,
       	'ign'	=> 'required',
       	'biodata'	=> 'required|max:160',
       	'alamat'	=>  'required|max:160',
@@ -80,13 +80,13 @@ class UserController extends Controller
     switch($gender)
     {
       case 1:
-        $gender = "cowok";
+        $gen = "cowok";
         break;
       case 2:
-        $gender = "cewek";
+        $gen = "cewek";
           break;
       default:
-        $gender = 'hode';
+        $gen= 'hode';
         break;
     }
 
@@ -100,7 +100,7 @@ class UserController extends Controller
     $user->ign = request()->ign;
     $user->biodata = request()->biodata;
     $user->alamat = request()->alamat;
-    $user->gender = $gender;
+    $user->gender = $gen;
 
     $user->save();
 

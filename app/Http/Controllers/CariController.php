@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Barang;
 use App\Crysta;
+use App\Mob;
 
 class CariController extends Controller
 {
@@ -13,11 +14,24 @@ class CariController extends Controller
       $key = request('key');
       $type = request('type');
 
-      if($type == 'perlengkapan')
+      if($type == "" && $key == "")
       {
-        return $this->cariPerlengkapan($key);
-      } else {
-        return $this->cariCrysta($key);
+        return redirect('/')->with('gagal','Ups!! cari apa?');
+      }
+//      dd(request()->input());
+      switch ($type)
+      {
+        case 'perlengkapan':
+          return $this->cariPerlengkapan($key);
+          break;
+        case 'crysta':
+          return $this->cariCrysta($key);
+          break;
+        case 'mons':
+          return $this->cariItems($key);
+          break;
+        default:
+          return back()->with('gagal','terjadi kesalahan');
       }
     }
 
@@ -25,7 +39,7 @@ class CariController extends Controller
 
     private function cariPerlengkapan($key)
     {
-      $f = Barang::where('nama','LIKE', '%' . $key . '%')->get();
+      $f = Barang::where('nama','LIKE', '%' . $key . '%')->paginate(30);
 
       if(! $f)
       {
@@ -40,7 +54,7 @@ class CariController extends Controller
 
     private function cariCrysta($key)
     {
-      $f = Crysta::where('nama', 'LIKE','%'.$key.'%')->get();
+      $f = Crysta::where('nama', 'LIKE','%'.$key.'%')->paginate(30);
 
       if(! $f)
       {
@@ -49,6 +63,19 @@ class CariController extends Controller
 
       return view('crysta/crysta',[
           'data' => $f
+      ]);
+    }
+
+    private function cariItems($key)
+    {
+      $k = Mob::where('nama','like','%'.$key.'%')
+        ->orWhere('drop_items','like','%'.$key.'%')
+        ->orWhere('drop_equip','like','%'.$key.'%')
+        ->orWhere('notes','like','%'.$key.'%')
+        ->paginate(20);
+
+      return view('monster.mobs',[
+      	'data'	=> $k
       ]);
     }
 }

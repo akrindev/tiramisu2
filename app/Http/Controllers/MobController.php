@@ -11,15 +11,16 @@ class MobController extends Controller
 {
     public function index()
     {
-      $data = Mob::get();
+      $data = Mob::select('map','mapslug')->distinct()->get();
 
-      return view('monster.mobs')->with('data', $data);
+
+      return view('monster.index')->with('data', $data);
     }
 
 
     public function single($slug)
     {
-      $mons = Mob::where('slug',$slug)->get();
+      $mons = Mob::where('slug',$slug)->paginate(1);
 
       if( ! $mons)
       {
@@ -33,7 +34,7 @@ class MobController extends Controller
 
     public function peta($slug)
     {
-      $mons = Mob::where('mapslug',$slug)->get();
+      $mons = Mob::where('mapslug',$slug)->paginate(20);
 
       if(!$mons)
       {

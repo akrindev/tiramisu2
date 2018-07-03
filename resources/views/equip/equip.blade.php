@@ -6,7 +6,7 @@
 @section('description','Toram '.$data[0]->nama.' crysta, dan gem monster dan boss')
 @section('image',url($data[0]->pics))
 @else
-@section('title','Toram list '.$data[0]->type)
+@section('title','Toram list equip')
 
 @section('description','Toram database crysta, dan gem monster dan boss')
 
@@ -82,6 +82,14 @@
               </div>
 
       @endforeach
+              <div class="col-12">
+
+         {{ $data->appends(request()->except('page'))->links() }}
+              </div>
+   @else
+              <div class="col-12">
+              <h3>tidak ada</h3>
+              </div>
    @endif
               <!-- yeyy -->
             </div>

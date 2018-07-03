@@ -83,9 +83,7 @@ Route::post('/edit/{id}/mobs', 'MobController@editPost');
 Route::delete('/edit/mob/delete', 'MobController@destroy');
 
 
-Route::get('/cari', function(){
-	return view('toram');
-});
+Route::get('/cari', 'CariController@cari');
 Route::post('/cari', 'CariController@cari');
 
 

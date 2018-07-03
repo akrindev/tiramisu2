@@ -47,16 +47,22 @@
               <span class="input-group-text">@</span>
              </span>
         <input type="text" name="username" class="form-control
-        {{  $errors->has('username') ? 'is-invalid': '' }}" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{ $data->username }}" required>
+        {{  $errors->has('username') ? 'is-invalid': '' }}" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{ $data->username }}" required {{ $data->changed == 1 ? 'disabled':'' }}>
         </div>
         @if($errors->has('username'))
-        <span class="invalid-feedback">
+        <span class="text-danger">
   			{{$errors->first('username')}}
         </span>
         @endif
+        @if ($data->changed == 0)
         <small class="help-block text-muted">
           Hanya dapat di ganti sekali!
         </small>
+        @else
+        <small class="help-block text-danger">
+          Username sudah pernah diganti
+        </small>
+        @endif
       </div>
 
 
@@ -105,11 +111,11 @@
           <label class="form-label"> Jenis kelamin</label>
           <select class="form-control" name="gender">
 
-            <option value="0" {{ $data->gender == 0 ? 'selected':'' }}> Hode </option>
+            <option value="0" {{ $data->gender == "hode" ? 'selected':'' }}> Hode </option>
 
-            <option value="1" {{ $data->gender == 3 ? 'selected':'' }}>Cowok</option>
+            <option value="1" {{ $data->gender == "cowok" ? 'selected':'' }}>Cowok</option>
 
-            <option value="2" {{ $data->gender == 2 ? 'selected':'' }}>Cewek</option>
+            <option value="2" {{ $data->gender == "cewek" ? 'selected':'' }}>Cewek</option>
           </select>
         </div>
       <div class="form-group">

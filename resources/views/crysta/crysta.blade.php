@@ -5,7 +5,7 @@
 
 @section('description','Toram '.$data[0]->nama.' crysta, dan gem monster dan boss')
 @else
-@section('title','Toram crysta list '.$data[0]->type)
+@section('title','Toram crysta list')
 
 @section('description','Toram database crysta, dan gem monster dan boss')
 
@@ -57,11 +57,16 @@
 
 
       @endforeach
+   @else
+
+              <div class="col-12">
+              <h3>tidak ada</h3>
+              </div>
    @endif
      </div>
 
 
-            {{ $data->links() }}
+            {{ $data->appends(request()->except('page'))->links() }}
     </div>
 
   </div>
