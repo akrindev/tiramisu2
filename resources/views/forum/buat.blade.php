@@ -9,6 +9,9 @@ $colors = ['blue','green','orange','red','yellow','teal','purple','dark','pink']
 
 @endphp
 
+@section('title','Buat thread forum baru')
+@section('description','Buat thread forum baru')
+@section('image',to_img())
 @section('content')
 
 <link rel="stylesheet" href="/assets/plugins/md/simplemde.min.css">

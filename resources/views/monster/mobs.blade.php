@@ -1,5 +1,19 @@
 @extends('layouts.tabler')
 
+
+@if (count($data) == 1)
+@section('title','Toram '.$data[0]->nama)
+
+@section('description','Toram '.$data[0]->nama.' Monster, dan Boss monster')
+@section('image',url($data[0]->pics))
+@else
+@section('title','Toram list Monsters')
+
+@section('description','Toram database crysta, dan gem monster dan boss')
+
+@section('image',to_img())
+@endif
+
 @section('content')
         <div class="my-3 my-md-5">
           <div class="container">

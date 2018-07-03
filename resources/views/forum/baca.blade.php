@@ -1,5 +1,10 @@
 @extends('layouts.tabler')
 
+
+@section('title',$data->judul . ' | ' .$data->user->name)
+@section('description',str_limit($data->body,140))
+@section('image',to_img($data->body))
+
 @section('content')
 
 @php

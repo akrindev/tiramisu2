@@ -23,16 +23,16 @@ $crysta = new Crysta;
     <meta name="MobileOptimized" content="320">
     <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-
-    <title>Toram {{ $title ?? 'Online Database Indonesia' }}</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png"> <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png"> <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png"> <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png"> <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png"> <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png"> <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png"> <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png"> <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png"> <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png"> <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"> <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png"> <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"> <link rel="manifest" href="/manifest.json"><meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <title>@yield('title') | Toram</title>
 
 <!-- open graph -->
-<meta property="og:url"                content="{{ url()->current() }}" />
-<meta property="og:type"               content="article" />
+<meta property="og:url" content="{{ url()->current() }}" />
+<meta property="og:type" content="article" />
 <meta content='Toram Online Indonesia' property='og:site_name'/>
-<meta property="og:title"              content="Toram {{ $title ?? 'Online Database Indonesia' }}" />
-<meta property="og:description"        content="{{ $deskripsi ?? 'Toram online Database bahasa indonesia, items, weapon, armor, monster, etc' }}" />
-<meta property="og:image"              content="http://toram-id.info/img/logo.gif" />
+<meta property="og:title" content="@yield('title')" />
+<meta property="og:description" content="@yield('description')" />
+<meta property="og:image" content="@yield('image')" />
 <meta property="fb:app_id" content="2008283499456981"/>
 
 <!-- // open graph -->
@@ -79,12 +79,8 @@ $crysta = new Crysta;
                     <a class="dropdown-item" href="/profile">
                       <i class="dropdown-icon fe fe-user"></i> Profile
                     </a>
-                    <a class="dropdown-item" href="#" onClick="alert('under development')">
+                    <a class="dropdown-item" href="/profile/setting">
                       <i class="dropdown-icon fe fe-settings"></i> Settings
-                    </a>
-                    <a class="dropdown-item" href="/ucapan/buat">
-
-                     <i class="dropdown-icon fe fe-mail"></i> Tulis Ucapan
                     </a>
                     <a class="dropdown-item" href="#" onClick="alert('under development')">
                       <i class="dropdown-icon fe fe-send"></i> Message
@@ -186,7 +182,7 @@ $crysta = new Crysta;
               Copyright © 2018 <a href="/">Toram Online</a>. Theme by <a href="https://codecalm.net" target="_blank">codecalm.net</a> All rights reserved.
             </div>
 
-            <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
+            <div class="col-12 d-none d-md-block col-lg-auto mt-3 mt-lg-0 text-center">
               <b>{ }</b> with <b class="text-danger">&hearts;</b> in <b>Pekalongan, Indonesia</b>
             </div>
           </div>

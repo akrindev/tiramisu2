@@ -1,5 +1,9 @@
 @extends('layouts.tabler')
 
+@section('title','Tambah data crysta')
+@section('description','Tambah data crysta')
+@section('image',to_img())
+
 @section('content')
 <div class="my-3 my-md-5">
 

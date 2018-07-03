@@ -1,5 +1,10 @@
 @extends('layouts.tabler')
 
+@section('title','Toram online database dan komunitas indonesia')
+@section('description','Toram Online database dan komunitas indonesia, jelajahi data monster, equip, crysta dan berita lainnya disini')
+@section('image',to_img())
+
+
 @section('content')
 
         <div class="my-3 my-md-5">
@@ -9,8 +14,7 @@
 
         <h1>Selamat datang!</h1>
 
-        Jelajahi informasi Toram Online, senjata, armor, drop dan lainnya.
-
+        Jelajahi informasi Toram Online, senjata, armor, drop dan lainnya. Unofficial site Toram, Fansite Toram online.
        <hr>
 
 

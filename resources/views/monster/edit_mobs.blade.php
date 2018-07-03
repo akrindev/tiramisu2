@@ -1,5 +1,9 @@
 @extends('layouts.tabler')
 
+@section('title','Edit monster '.$nama)
+@section('image',to_img())
+
+
 @section('content')
 @php
   $maps = DB::table('mobs')->select('map')->distinct()->get();

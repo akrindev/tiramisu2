@@ -1,5 +1,11 @@
 @extends('layouts.tabler')
 
+
+@section('title','Pengaturan profile')
+@section('description','Pengaturan profile')
+@section('image',to_img())
+
+
 @section('content')
 
 <link rel="stylesheet" href="/assets/plugins/md/simplemde.min.css">

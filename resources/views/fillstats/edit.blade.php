@@ -1,5 +1,10 @@
 @extends('layouts.tabler')
 
+
+@section('title','Edit fillstats')
+@section('description','Edit fillstats')
+@section('image',to_img())
+
 @section('content')
 <div class="my-3 my-md-5">
 

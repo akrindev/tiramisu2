@@ -1,5 +1,10 @@
 @extends('layouts.tabler')
 
+
+@section('title',' Semua Notifikasi')
+@section('description','Profile Notifikasi')
+@section('image',to_img())
+
 @section('content')
 <div class="my-3 my-md-5">
   <div class="container">

@@ -8,6 +8,12 @@ if(count($threads) > 0):
 	endforeach;
 endif;
 @endphp
+
+
+@section('title','Profile '.$profile->name)
+@section('description',$profile->biodata)
+@section('image','https://graph.facebook.com/'.$profile->provider_id.'/picture?type=normal')
+
 @section('content')
 <div class="my-3 my-md-5">
   <div class="container">

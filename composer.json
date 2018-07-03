@@ -31,7 +31,8 @@
         },
       	"files": [
           "app/Helpers/form_helper.php",
-          "app/Helpers/time_ago_helper.php"
+          "app/Helpers/time_ago_helper.php",
+          "app/Helpers/image_helper.php"
         ]
     },
     "autoload-dev": {

@@ -1,5 +1,19 @@
 @extends('layouts.tabler')
 
+@if (count($data) == 1)
+@section('title','Toram '.$data[0]->nama)
+
+@section('description','Toram '.$data[0]->nama.' crysta, dan gem monster dan boss')
+@section('image',url($data[0]->pics))
+@else
+@section('title','Toram list '.$data[0]->type)
+
+@section('description','Toram database crysta, dan gem monster dan boss')
+
+@section('image',to_img())
+@endif
+
+
 @section('content')
         <div class="my-3 my-md-5">
           <div class="container">
@@ -13,7 +27,7 @@
               <div class="col-sm-6 col-lg-4">
                 <div class="card p-3">
                   <a href="/equip/{{$pos->slug}}" class="mb-3">
-                    <img src="/{{ $pos->pics != '' ? $pos->pics: 'img/logo_toramonline.png' }}" class="rounded">
+                    <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="/{{ $pos->pics != '' ? $pos->pics: 'img/logo_toramonline.png' }}" class="rounded lazyload">
                   </a>
                   <div class="d-flex align-items-center">
 

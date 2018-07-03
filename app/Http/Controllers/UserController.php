@@ -72,7 +72,7 @@ class UserController extends Controller
       	'ign'	=> 'required',
       	'biodata'	=> 'required|max:160',
       	'alamat'	=>  'required|max:160',
-      	'birthdat'	=> 'date|nullable'
+      	'birthday'	=> 'date|nullable'
     ]);
 
     if(request()->username != $user->username && $user->changed == 0)

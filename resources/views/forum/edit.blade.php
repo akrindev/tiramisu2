@@ -9,6 +9,11 @@ $colors = ['blue','green','orange','red','yellow','teal','purple','dark','pink']
 
 @endphp
 
+
+@section('title','Edit Thread '.$data->judul)
+@section('description','Edit Thread '.$data->judul)
+@section('image',to_img())
+
 @section('content')
 
 <link rel="stylesheet" href="/assets/plugins/md/simplemde.min.css">

@@ -1,5 +1,20 @@
 @extends('layouts.tabler')
 
+@if (count($data) == 1)
+@section('title','Toram crysta '.$data[0]->nama)
+
+@section('description','Toram '.$data[0]->nama.' crysta, dan gem monster dan boss')
+@else
+@section('title','Toram crysta list '.$data[0]->type)
+
+@section('description','Toram database crysta, dan gem monster dan boss')
+
+@endif
+
+
+@section('image',to_img())
+
+
 @section('content')
         <div class="my-3 my-md-5">
           <div class="container">
@@ -43,7 +58,10 @@
 
       @endforeach
    @endif
-              </div>
+     </div>
+
+
+            {{ $data->links() }}
     </div>
 
   </div>

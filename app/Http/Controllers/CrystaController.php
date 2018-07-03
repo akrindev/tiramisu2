@@ -16,7 +16,7 @@ class CrystaController extends Controller
       return redirect('/');
     }
 
-    $crysta = Crysta::where('typeslug',$slug)->get();
+    $crysta = Crysta::where('typeslug',$slug)->paginate(20);
 
     if( ! $crysta)
     {
@@ -33,7 +33,7 @@ class CrystaController extends Controller
       return redirect('/');
     }
 
-    $crysta = Crysta::where('slug',$slug)->get();
+    $crysta = Crysta::where('slug',$slug)->paginate(1);
 
     if( ! $crysta)
     {

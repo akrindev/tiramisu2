@@ -1,5 +1,9 @@
 @extends('layouts.tabler')
 
+@section('title','Forum Toram Indonesia')
+@section('description','Forum toram online indonesia, diskusi tentang toram online, curhat, kisah cinta di toram')
+@section('image',to_img())
+
 @section('content')
 
         <div class="my-3 my-md-5">
