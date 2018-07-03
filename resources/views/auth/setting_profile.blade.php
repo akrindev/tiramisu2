@@ -101,6 +101,17 @@
         </div>
 
 
+        <div class="form-group">
+          <label class="form-label"> Jenis kelamin</label>
+          <select class="form-control" name="gender">
+
+            <option value="0" {{ $data->gender == 0 ? 'selected':'' }}> Hode </option>
+
+            <option value="1" {{ $data->gender == 3 ? 'selected':'' }}>Cowok</option>
+
+            <option value="2" {{ $data->gender == 2 ? 'selected':'' }}>Cewek</option>
+          </select>
+        </div>
       <div class="form-group">
         <label class="form-label">Tempat tinggal</label>
         <input type="text" name="alamat" value="{{ $data->alamat }}" class="form-control {{  $errors->has('alamat') ? 'is-invalid': '' }}" required>

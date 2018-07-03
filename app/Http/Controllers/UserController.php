@@ -16,7 +16,7 @@ class UserController extends Controller
     **/
  	public function profileku()
     {
-      $threads = Auth::user()->thread()->paginate(10);
+      $threads = Auth::user()->thread()->latest()->paginate(10);
 
       $z = Forum::where('user_id',auth()->id());
 
@@ -75,6 +75,21 @@ class UserController extends Controller
       	'birthday'	=> 'date|nullable'
     ]);
 
+    $gender = request()->gender;
+
+    switch($gender)
+    {
+      case 1:
+        $gender = "cowok";
+        break;
+      case 2:
+        $gender = "cewek";
+          break;
+      default:
+        $gender = 'hode';
+        break;
+    }
+
     if(request()->username != $user->username && $user->changed == 0)
     {
       $user->username = request()->username;
@@ -85,6 +100,7 @@ class UserController extends Controller
     $user->ign = request()->ign;
     $user->biodata = request()->biodata;
     $user->alamat = request()->alamat;
+    $user->gender = $gender;
 
     $user->save();
 

@@ -24,7 +24,7 @@ endif;
         <b> {{ $profile->name }} </b>
         <span class="text-muted"> ({{ $profile->username }}) </span>
         <br><br>
-        <span class="text-muted">  {{ $profile->gender }}</span>
+      <b>Ign:</b>  <span class="text-muted">  {{ $profile->ign }} ~ {{ $profile->gender }}</span>
         <p class="text-muted">
           {{ $profile->biodata }}
         </p>

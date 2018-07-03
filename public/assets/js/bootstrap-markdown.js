@@ -1215,11 +1215,11 @@
               var sanitizedLink = $('<div>' + link + '</div>').text();
 
               // transform selection and set the cursor into chunked text
-              e.replaceSelection('![' + chunk + '](' + sanitizedLink + ' "' + e.__localize('enter image title here') + '")');
+              e.replaceSelection('![' + chunk + '](' + sanitizedLink + ')');
               cursor = selected.start + 2;
 
               // Set the next tab
-              e.setNextTab(e.__localize('enter image title here'));
+              e.setNextTab(e.__localize());
 
               // Set the cursor
               e.setSelection(cursor, cursor + chunk.length);
