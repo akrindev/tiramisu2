@@ -44,7 +44,7 @@ endif;
             </thead>
             <tbody>
               <tr>
-                <td> {{ $profile->count() }} </td>
+                <td> {{ $profile->thread->count() }} </td>
                 <td> {{ auth()->user()->comment->count() }} </td>
                 <td> {{ $res }} </td>
                 <td> {{ $profile->thread->sum('views') }}
