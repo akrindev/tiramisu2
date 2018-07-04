@@ -8,6 +8,7 @@ use Auth;
 use App\Forum;
 use App\ForumsDesc;
 use Cookie;
+use Image;
 
 class ForumController extends Controller
 {
@@ -328,5 +329,35 @@ class ForumController extends Controller
     {
       return back()->with('sukses', 'komentar di hapus');
     }
+  }
+
+  public function uploader()
+  {
+  //  return response()->json(request()->file('gambar'));
+      if(request()->hasFile('gambar'))
+      {
+        $gambar = request()->file('gambar');
+
+        $name = substr(md5(now()),0,8).'.png';
+
+        Image::make($gambar->path())
+          ->insert(public_path().'/img/up-on.png')
+          ->save(public_path().'/uploads/'.$name);
+
+        $Cupload = new CUpload;
+        $up = $Cupload->upload(public_path().'/uploads/'.$name);
+
+        unlink(public_path().'/uploads/'.$name);
+
+        $url_img = $up['secure_url'];
+
+        return response()->json([
+        	'url'	=> $url_img,
+          	'token'	=> csrf_token()
+        ]);
+      }
+
+    return false;
+
   }
 }

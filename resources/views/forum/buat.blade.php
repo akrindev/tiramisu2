@@ -104,6 +104,35 @@ $colors = ['blue','green','orange','red','yellow','teal','purple','dark','pink']
 </div>
 
   <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"> Image uploader </h3>
+      </div>
+
+      <div class="card-body">
+{!! form_open_multipart('/uploader',['id'=>'my-upload']) !!}
+        @csrf
+        <div class="form-group">
+          <label class="form-label">Upload image</label>
+
+   <div class="custom-file">
+       <input type="file" class="custom-file-input mr-5" name="gambar" id="gambar" accept="image/*">
+       <label class="custom-file-label"></label>
+    </div>
+
+        </div>
+
+        <button type="submit" class="btn btnku btn-pill btn-outline-primary">Unggah</button>
+{!! form_close() !!}
+
+        <div class="form-group">
+          <label class="form-result">Result</label>
+          <input type="text" class="form-control" id="result" value="">
+          <small class="text-muted dsc"></small>
+        </div>
+      </div>
+
+    </div>
   </div>
     </div>
   </div>
@@ -121,4 +150,63 @@ $colors = ['blue','green','orange','red','yellow','teal','purple','dark','pink']
 <script src="/assets/js/to-markdown.js">
 </script>
 
+@endsection
+
+@section('footer')
+<script>
+  $(document).ready(function(){
+      $('#my-upload').on('submit', function(e){
+        e.preventDefault();
+        var token = '{{ csrf_token() }}';
+        var form = e.target;
+        var data = new FormData(form);
+        $('input[name="_token"]').val(token);
+
+        $.ajax({
+          xhr: function() {
+    		var xhr = new window.XMLHttpRequest();
+
+    		xhr.upload
+              .addEventListener(
+              	"progress",
+                function(evt) {
+      				if (evt.lengthComputable) {
+        			var percentComplete = evt.loaded / evt.total;
+        			percentComplete = parseInt(percentComplete * 100);
+
+            $(".btnku").html('<i class="fa fa-spinner fa-spin"></i> Mengunggah... ('+percentComplete+'%)')
+              .addClass('disabled');
+      		}
+   			 }, false);
+
+    		return xhr;
+ 		  },
+          type:'POST',
+          url: form.action,
+          method: form.method,
+          processData: false,
+          contentType: false,
+          data: data,
+          processData: false,
+          beforeSend:function(){
+          },
+          success: function(data){
+
+            $('#result').val(data.url).focus().addClass('is-valid').select();
+            $(".btnku").text('Upload')
+            .removeClass('disabled');
+
+            token = data.token;
+            $(".dsc").text("copy url");
+          },
+          error:function(j,t,e){
+            alert('terjadi kesalahan');
+
+            $(".btnku").text('Upload')
+            .removeClass('disabled');
+          }
+        })
+      })
+    })
+</script>
 @endsection
