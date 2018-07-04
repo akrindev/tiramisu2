@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\DB;
 
 $tags = DB::table('tags')->get();
+$randartikel = DB::table('forums')->inRandomOrder()->take(5)->get();
 
 @endphp
 <div class="d-none d-sm-block">
@@ -40,4 +41,14 @@ $i = $color[$rand[0]];
     <a href="/forum/tag/{{$tag->name}}" class="tag tag-{{$i}}">{{$tag->name}}</a>
     @endforeach
    </div>
+</div>
+
+<hr class="m-0 p-0">
+<div class="p-3">
+@foreach ($randartikel as $artikel)
+
+<i class="fe fe-plus"></i> <a href="/forum/{$artikel->slug}">{{ $artikel->judul }}</a> <small class="text-muted">({{ time_ago($artikel->created_at) }}) </small>
+  <br>
+
+@endforeach
 </div>
