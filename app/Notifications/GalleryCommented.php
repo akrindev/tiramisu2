@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class ThreadReplied extends Notification
+class GalleryCommented extends Notification
 {
     use Queueable;
 
@@ -16,11 +16,11 @@ class ThreadReplied extends Notification
      *
      * @return void
      */
-    public function __construct($q,$thread, $reply)
+    public function __construct($q, $gallery, $comment)
     {
       	$this->q = $q;
-        $this->thread = $thread;
-      	$this->reply = $reply;
+        $this->gallery = $gallery;
+      	$this->comment = $comment;
     }
 
     /**
@@ -34,7 +34,6 @@ class ThreadReplied extends Notification
         return ['database'];
     }
 
-
     /**
      * Get the array representation of the notification.
      *
@@ -44,10 +43,10 @@ class ThreadReplied extends Notification
     public function toArray($notifiable)
     {
         return [
-          	'by'	=> explode(' ',auth()->user()->name)[0],
-            'message' => $this->q . ' ' . $this->thread->judul,
+            'by'	=> explode(' ',auth()->user()->name)[0],
+            'message' => $this->q . ' ' . str_limit($this->gallery->body,30),
 
-          	'link'	=> url('/forum/'.$this->thread->slug.'#reply'.$this->reply->id)
+          	'link'	=> url('/gallery/'.$this->gallery->id.'#reply'.$this->comment->id)
         ];
     }
 }

@@ -46,4 +46,13 @@ class User extends Authenticatable
       return $this->hasMany(ForumsDesc::class);
     }
 
+  	/**
+    *
+    * User gallery
+    */
+  	public function gallery()
+    {
+      return $this->hasMany(Gallery::class);
+    }
+
 }

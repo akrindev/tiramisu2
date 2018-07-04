@@ -24,7 +24,7 @@ Route::get('/exp', 'XpController@index');
 Route::get('/fb-login', 'Auth\LoginController@redirect');
 Route::get('/facebook/callback', 'Auth\LoginController@callback');
 
-Route::get('/profile/notifikasi', 'UserController@notifikasi');
+Route::get('/profile/notifikasi', 'UserController@notifikasi')->middleware('auth');
 
 Route::get('/profile', 'UserController@profileku')->middleware('auth');
 
@@ -53,22 +53,21 @@ Route::get('/crystas/{slug}', 'CrystaController@crystas');
 Route::get('/crysta/{slug}', 'CrystaController@crysta');
 
 Route::get('/edit/{id}/crysta', 'CrystaController@edit');
-Route::post('/edit/{id}/crysta', 'CrystaController@editPost');
-Route::delete('/edit/crysta/delete', 'CrystaController@destroy');
+Route::post('/edit/{id}/crysta', 'CrystaController@editPost')->middleware('auth');
+Route::delete('/edit/crysta/delete', 'CrystaController@destroy')->middleware('auth');
 
-Route::get('/store-crysta', 'CrystaController@tambah');
+Route::get('/store-crysta', 'CrystaController@tambah')->middleware('auth');
 
-Route::post('/store-crysta', 'CrystaController@tambahPost');
+Route::post('/store-crysta', 'CrystaController@tambahPost')->middleware('auth');
 
 Route::get('/fill_stats', 'FillController@index');
 Route::get('/fill_stats/add', 'FillController@add');
 Route::post('/fill_stats/add', 'FillController@addPost');
 Route::get('/fill_stats/{type}', 'FillController@single');
 Route::get('/fill_stats/{type}/{plus}', 'FillController@single');
-Route::get('/edit/{id}/fillstats', 'FillController@edit');
-Route::post('/edit/{id}/fillstats', 'FillController@editPost');
-Route::delete('/delete/fillstats', 'FillController@destroy');
-
+Route::get('/edit/{id}/fillstats', 'FillController@edit')->middleware('auth');
+Route::post('/edit/{id}/fillstats', 'FillController@editPost')->middleware('auth');
+Route::delete('/delete/fillstats', 'FillController@destroy')->middleware('auth');
 /**
 * Monster routes
 */
@@ -76,11 +75,11 @@ Route::get('/monster', 'MobController@index');
 Route::get('/monster/{slug}', 'MobController@single');
 Route::get('/peta/{slug}', 'MobController@peta');
 
-Route::get('/store-mob', 'MobController@add');
-Route::post('/store-mob', 'MobController@addPost');
-Route::get('/edit/{id}/mobs', 'MobController@edit');
-Route::post('/edit/{id}/mobs', 'MobController@editPost');
-Route::delete('/edit/mob/delete', 'MobController@destroy');
+Route::get('/store-mob', 'MobController@add')->middleware('auth');
+Route::post('/store-mob', 'MobController@addPost')->middleware('auth');
+Route::get('/edit/{id}/mobs', 'MobController@edit')->middleware('auth');
+Route::post('/edit/{id}/mobs', 'MobController@editPost')->middleware('auth');
+Route::delete('/edit/mob/delete', 'MobController@destroy')->middleware('auth');
 
 
 Route::get('/cari', 'CariController@cari');
@@ -115,4 +114,21 @@ Route::get('/forum/{slug}/edit', 'ForumController@edit')->middleware('auth');
 Route::post('/forum/{slug}/edit', 'ForumController@editSubmit')->middleware('auth');
 
 // admin can delete comment and replied comment
-Route::delete('/forum/delete-comment', 'ForumController@deleteComment');
+Route::delete('/forum/delete-comment', 'ForumController@deleteComment')->middleware('auth');
+
+
+/**
+*
+*
+* Gallery
+*/
+Route::get('/gallery', 'GalleryController@index');
+Route::post('/gallery', 'GalleryController@upload')->middleware('auth');
+Route::get('/gallery/{id}', 'GalleryController@single');
+Route::post('/gallery/{id}', 'GalleryController@comment');
+
+Route::get('/gallery/{id}/edit', 'GalleryController@edit')->middleware('auth');
+Route::post('/gallery/{id}/edit', 'GalleryController@editSubmit')->middleware('auth');
+
+Route::delete('/gallery/destroy', 'GalleryController@destroy')->middleware('auth');
+Route::delete('/gallery/destroy/comment', 'GalleryController@destroyComment')->middleware('auth');

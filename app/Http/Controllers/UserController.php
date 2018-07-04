@@ -33,7 +33,7 @@ class UserController extends Controller
         	return $this->profileku();
       }
 
-      $threads = $user->thread;
+      $threads = $user->thread()->latest()->paginate(8);
 
       return view("profile_user", [
       	'profile' => $user,

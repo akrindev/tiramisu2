@@ -66,12 +66,13 @@ endif;
 @foreach($threads as $thread)
 
         <tr>
-          <td width=""> <a href="/forum/{{ $thread->slug }}">{{ str_limit($thread->body,40) }} </a><br>
+          <td width=""> <a href="/forum/{{ $thread->slug }}">{{ str_limit($thread->judul,40) }} </a><br>
             <small class="text-muted">{{ waktu($thread->created_at) }} • <i class="fe fe-eye"></i> {{ $thread->views }} <i class="fe fe-message-square"></i> {{ $thread->comment->count() }} </small></td>
         </tr>
 @endforeach
       </table>
        </div>
+        {{ $threads->links() }}
       </div>
    @endif
 

@@ -11,7 +11,7 @@
   <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 @if (count(auth()->user()->notifications))
     @foreach (collect(auth()->user()->notifications)->take(5) as $notify)
-                    <a href="/forum/{{$notify->data['link']}}" class="dropdown-item d-flex">
+                    <a href="{{$notify->data['link']}}" class="dropdown-item d-flex">
 
                       <div>
                         <strong>{{ $notify->data['by'] }}</strong> {{ str_limit($notify->data['message'] ,25) }}

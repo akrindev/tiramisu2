@@ -220,7 +220,7 @@ $tags = explode(',', $tags);
  @if(auth()->user()->role == 'admin')
  function dte()
   {
-     require(['sa'],function(){
+
        swal({
   title: "Yakin mau hapus data ini?",
   text: "",
@@ -235,28 +235,24 @@ $tags = explode(',', $tags);
     swal("Aman gan!");
   }
 });
-    });
+
   }
 
    function dcm(i)
   {
-
-     require(['sa'],function(){
-
-       swal({
-  title: "Yakin mau hapus komentar ini?",
-  text: "",
-  icon: "warning",
-  buttons: true,
-  dangerMode: true,
-})
-.then((willDelete) => {
-  if (willDelete) {
-    return document.getElementById('cid-'+i).submit();
-  } else {
-    swal("Aman gan!");
-  }
-});
+    swal({
+      title: "Yakin mau hapus komentar ini?",
+      text: "",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        return document.getElementById('cid-'+i).submit();
+      } else {
+        swal("Aman gan!");
+      }
     });
   }
   @endif

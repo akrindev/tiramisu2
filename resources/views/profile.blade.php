@@ -102,7 +102,7 @@ endif;
       <div class="card-body p-1">
       @foreach (collect($profile->notifications)->take(5) as $notify)
       <i class="fe fe-check"></i>  <b> {{ $notify->data['by'] }} </b>
-        <a href="/forum/{{$notify->data['link']}}">
+        <a href="{{$notify->data['link']}}">
       {{ $notify->data['message'] }}
         </a> {{ $notify->created_at->diffForHumans() }}
       <br>
