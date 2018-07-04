@@ -46,7 +46,7 @@ $tags = explode(',', $tags);
 
           <div class="card-body text-wrap p-3">
 
-     <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{$data->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4 lazyload"> <a href="/profile/{{$data->user->provider_id }}"> <b> {{ $data->user->name }} </b></a><br> <small class="text-muted"> {{ waktu($data->created_at) }}  . <i class="fe fe-eye"></i> {{ $data->views }}</small>
+     <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{$data->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4 lazyload"> <a href="/profile/{{$data->user->provider_id }}"> <b> {{ $data->user->name }} </b></a><br> <small class="text-muted"> {{ waktu($data->created_at) }}  . <i class="fe fe-eye"></i> {{ $data->views }} <i class="fe fe-message-square"></i> {{ $data->comment->count() }} </small>
 
             @if(auth()->user() && auth()->user()->id == $data->user_id)
 
