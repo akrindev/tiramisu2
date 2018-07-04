@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Gallery;
 use App\GalleryComment;
+use App\User;
 use App\Notifications\GalleryCommented;
 use Image;
 
@@ -32,6 +33,44 @@ class GalleryController extends Controller
       ]);
     }
 
+  	public function myGallery()
+    {
+      $galleries = auth()->user()->gallery()->latest()->paginate(20);
+
+      return view('gallery.my_gallery',[
+        'by'	=> auth()->user()->name,
+      	'data'	=> $galleries,
+        'total'	=> auth()->user()->gallery->count()
+      ]);
+    }
+
+  	public function getUserGallery($provider_id)
+    {
+      $user = User::where('provider_id',$provider_id)->firstOrFail();
+
+      $galleries = Gallery::where('user_id',$user->id);
+
+      return view('gallery.my_gallery',[
+        'by'	=> $user->name,
+      	'data'	=> $galleries->latest()->paginate(20),
+        'total'	=> $galleries->count()
+      ]);
+    }
+
+  	public function getByTag($tag)
+    {
+      $galleries = Gallery::where('body','like','%#'.$tag.'%')
+        ->latest()
+        ->paginate(20);
+      $count = Gallery::where('body','like','%#'.$tag.'%')->distinct()->count();
+
+      return view('gallery.index_tag',[
+      	'data'	=> $galleries,
+        'tag' => $tag,
+        'total' => $count
+      ]);
+    }
+
   	public function upload()
     {
       request()->validate([
@@ -43,8 +82,6 @@ class GalleryController extends Controller
            ]);
 
       $body = e(request()->body);
-
-      $body = preg_replace('/#(\w+)/',"<a href='/gallery/tag/\\1'>#\\1</a>",$body);
 
 
       if(request()->hasFile('gambar'))
@@ -118,7 +155,7 @@ class GalleryController extends Controller
 
       $gallery->comment()->create([
         'user_id'	=> auth()->id(),
-      	'body'	=> request()->body
+      	'body'	=> e(request()->body)
       ]);
 
 
@@ -135,15 +172,18 @@ class GalleryController extends Controller
     }
   	/**
     *
-    * Admin berhak menghapus
+    * Admin / gambar milik user berhak menghapus
     */
   	public function destroy()
     {
       $img = Gallery::findOrFail(request()->id);
 
-      if(auth()->user()->role == 'member' || $img->user_id != auth()->id())
+      if($img->user_id != auth()->id())
       {
-        return redirect('/')->with('gagal','Akses Ditolak');
+        if(auth()->user()->role == 'member')
+        {
+          return redirect('/')->with('gagal','Akses Ditolak');
+        }
       }
 
       if($img->delete())

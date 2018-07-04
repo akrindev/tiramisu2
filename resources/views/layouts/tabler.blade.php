@@ -160,6 +160,11 @@ $crysta = new Crysta;
                   <li class="nav-item">
                     <a href="/forum" class="nav-link"><i class="fe fe-users"></i> Forum</a>
                   </li>
+
+                  <li class="nav-item">
+                    <a href="/gallery" class="nav-link"><i class="fe fe-image"></i> Gallery</a>
+                  </li>
+
                 </ul>
               </div>
             </div>

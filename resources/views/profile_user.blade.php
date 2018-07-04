@@ -21,11 +21,16 @@ endif;
     <div class="row">
       <div class="col-md-4 mb-5">
         <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{$profile->provider_id}}/picture?type=normal" class="img img-fluid mr-3 float-left lazyload">
-        <b> {{ $profile->name }} </b> <br>
-        <span class="text-muted"> Male </span><br>
+
+        <b> {{ $profile->name }} </b>
+        <span class="text-muted"> ({{ $profile->username }}) </span>
+        <br><br>
+      <b>Ign:</b>  <span class="text-muted">  {{ $profile->ign }} ~ {{ $profile->gender }}</span><br>
+        {{ $profile->alamat }}
         <p class="text-muted">
           {{ $profile->biodata }}
         </p>
+        <a href="/gallery/by/{{$profile->provider_id}}" class="btn btn-pill btn-sm btn-link">My Gallery</a>
       </div>
 
       <div class="col-md-8">
@@ -48,6 +53,27 @@ endif;
                 <td> {{ $profile->comment->count() }} </td>
                 <td> {{ $res }} </td>
                 <td> {{ $profile->thread->sum('views') }}
+              </tr>
+            </tbody>
+          </table>
+
+<hr class="m-0 p-0">
+           <div class="card-header mt-0">
+            <h4 class="card-title">Aktifitas Gallery</h4>
+          </div>
+          <table class="table card-table">
+            <thead>
+              <tr>
+                <th> images</th>
+                <th> Menjawab </th>
+                <th> views </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> {{ $profile->gallery->count() }} </td>
+                <td> {{ $profile->gallerycomment->count() }} </td>
+                <td> {{ $profile->gallery->sum('views') }}
               </tr>
             </tbody>
           </table>

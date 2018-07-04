@@ -1,7 +1,7 @@
 @extends('layouts.tabler')
 
-@section('title','Toram Gallery')
-@section('description','Toram Online gallery, images, foto garam, cinta, hoax dan lainnya')
+@section('title','Toram Gallery tag '. $tag)
+@section('description','Toram Online '. $tag .' gallery, images, foto garam, cinta, hoax dan lainnya')
 
 @section('content')
 
@@ -20,9 +20,9 @@
           <div class="container">
             <div class="page-header">
               <h1 class="page-title">
-                Gallery
+                Gallery tag #{{ $tag }}
               </h1>
-              <div class="page-subtitle">Total {{ App\Gallery::get()->count() }} images </div>
+              <div class="page-subtitle">Total {{ $total }} images </div>
             </div>
 
 @auth
@@ -93,7 +93,7 @@
   @endauth
                   </div>
                   <div class="d-flex align-items-center px-2">
-                    <div class="mr-3" style=""><img src="https://graph.facebook.com/{{$pos->user->provider_id}}/picture?type=normal" class="avatar avatar-md lazyload"></div>
+                    <div class="mr-3" style=""><img src="https://graph.facebook.com/{{$pos->user->provider_id}}/picture?type=normal" class="avatar avatar-md"></div>
                     <div>
                       <div>{{ $pos->user->name }}  </div>
                       <small class="d-block text-muted">{{ $pos->created_at->diffForHumans() }} .

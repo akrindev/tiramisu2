@@ -24,13 +24,14 @@ endif;
         <b> {{ $profile->name }} </b>
         <span class="text-muted"> ({{ $profile->username }}) </span>
         <br><br>
-      <b>Ign:</b>  <span class="text-muted">  {{ $profile->ign }} ~ {{ $profile->gender }}</span>
+      <b>Ign:</b>  <span class="text-muted">  {{ $profile->ign }} ~ {{ $profile->gender }}</span><br>
+        {{ $profile->alamat }}
         <p class="text-muted">
           {{ $profile->biodata }}
         </p>
-        @auth
+
         <a href="/setting/profile" class="btn btn-link btn-sm">edit profile</a>
-        @endauth
+        <a href="/mygallery" class="btn btn-link btn-sm">My Gallery</a>
       </div>
 
       <div class="col-md-8">
@@ -53,6 +54,26 @@ endif;
                 <td> {{ auth()->user()->comment->count() }} </td>
                 <td> {{ $res }} </td>
                 <td> {{ $profile->thread->sum('views') }}
+              </tr>
+            </tbody>
+          </table>
+<hr class="m-0 p-0">
+           <div class="card-header mt-0">
+            <h4 class="card-title">Aktifitas Gallery</h4>
+          </div>
+          <table class="table card-table">
+            <thead>
+              <tr>
+                <th> images</th>
+                <th> Menjawab </th>
+                <th> views </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> {{ auth()->user()->gallery->count() }} </td>
+                <td> {{ auth()->user()->gallerycomment->count() }} </td>
+                <td> {{ $profile->gallery->sum('views') }}
               </tr>
             </tbody>
           </table>

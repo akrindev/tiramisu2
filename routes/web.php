@@ -124,8 +124,12 @@ Route::delete('/forum/delete-comment', 'ForumController@deleteComment')->middlew
 */
 Route::get('/gallery', 'GalleryController@index');
 Route::post('/gallery', 'GalleryController@upload')->middleware('auth');
+Route::get('/gallery/tag/{tag}', 'GalleryController@getByTag');
+Route::get('/gallery/by/{provider_id}', 'GalleryController@getUserGallery');
+
 Route::get('/gallery/{id}', 'GalleryController@single');
 Route::post('/gallery/{id}', 'GalleryController@comment');
+Route::get('/mygallery', 'GalleryController@myGallery')->middleware('auth');
 
 Route::get('/gallery/{id}/edit', 'GalleryController@edit')->middleware('auth');
 Route::post('/gallery/{id}/edit', 'GalleryController@editSubmit')->middleware('auth');

@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title','Toram Gallery')
+@section('title','Toram '. $by .' Gallery')
 @section('description','Toram Online gallery, images, foto garam, cinta, hoax dan lainnya')
 
 @section('content')
@@ -20,9 +20,9 @@
           <div class="container">
             <div class="page-header">
               <h1 class="page-title">
-                Gallery
+                {{ $by }} Gallery
               </h1>
-              <div class="page-subtitle">Total {{ App\Gallery::get()->count() }} images </div>
+              <div class="page-subtitle">Total {{ $total }} images </div>
             </div>
 
 @auth
@@ -42,7 +42,7 @@
                   {{ session('sukses') }}
                 </div>
                 @endif
-{!! form_open_multipart() !!}
+{!! form_open_multipart('/gallery') !!}
                 @csrf
                 <div class="row">
                 <div class="form-group col-12">
@@ -80,7 +80,7 @@
                   <div class="mb-2 body-text"> {!!
       preg_replace('/#(\w+)/',"<a href='/gallery/tag/\\1'>#\\1</a>",$pos->body) !!}
   @auth
-    @if (auth()->user()->role == 'admin' || auth()->id() == $pos->user_id)
+    @if (auth()->id() == $pos->user_id)
                     <br><br>
                   <button onclick="dg({{$pos->id}})" class="btn btn-sm btn-pill btn-outline-danger float-right">hapus</button>
          {!! form_open('/gallery/destroy',['id'=>'gid'.$pos->id]) !!}
@@ -93,7 +93,7 @@
   @endauth
                   </div>
                   <div class="d-flex align-items-center px-2">
-                    <div class="mr-3" style=""><img src="https://graph.facebook.com/{{$pos->user->provider_id}}/picture?type=normal" class="avatar avatar-md lazyload"></div>
+                    <div class="mr-3" style=""><img src="https://graph.facebook.com/{{$pos->user->provider_id}}/picture?type=normal" class="avatar avatar-md"></div>
                     <div>
                       <div>{{ $pos->user->name }}  </div>
                       <small class="d-block text-muted">{{ $pos->created_at->diffForHumans() }} .
@@ -145,6 +145,7 @@ function fileReader(input) {
 
 
 @auth
+ @if (auth()->user()->role == 'admin')
 
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
@@ -167,6 +168,7 @@ function fileReader(input) {
       });
   }
 </script>
+ @endif
 @endauth
 
 @endsection

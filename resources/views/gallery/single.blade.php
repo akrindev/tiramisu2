@@ -45,11 +45,12 @@
                       <small class="d-block text-muted">{{ $pos->created_at->diffForHumans() }} . <i class="fe fe-message-square"></i> {{ $pos->comment->count() }} <i class="fe fe-eye"></i> {{ $pos->views }} </small>
                     </div>
                     </div>
-                  <div class="my-2 body-text"> {!! $pos->body !!}
+                  <div class="my-2 body-text"> {!!
+      preg_replace('/#(\w+)/',"<a href='/gallery/tag/\\1'>#\\1</a>",$pos->body) !!}
                      @auth
-    @if (auth()->user()->role == 'admin')
+    @if (auth()->user()->role == 'admin' || auth()->id() == $pos->user_id)
                     <br><br>
-                  <button onclick="dg({{$pos->id}})" class="btn btn-sm btn-pill btn-outline-danger float-right">hapus</button>
+                  <button onclick="dg({{$pos->id}})" class="btn btn-sm btn-pill btn-outline-danger float-right">hapus</button> <a href="/gallery/{{$pos->id}}/edit" class="btn btn-sm btn-pill btn-outline-secondary">edit</a>
          {!! form_open('/gallery/destroy',['id'=>'gid'.$pos->id]) !!}
                     @csrf
                     @method("DELETE")
@@ -83,8 +84,8 @@
             <b><a href="/profile/{{$comment->user->provider_id }}">  {{ $comment->user->name }}</a> </b> <br>
             <small class="text-muted">{{ waktu($comment->created_at) }}</small>
             <hr class="my-2">
-            <div class="body-text">
-            @parsedown(e($comment->body))
+            <div class="body-text">{!!
+      preg_replace('/#(\w+)/',"<a href='/gallery/tag/\\1'>#\\1</a>",$comment->body) !!}
             </div>
             @auth
             <div class="form-group">

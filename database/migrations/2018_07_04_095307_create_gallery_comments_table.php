@@ -14,6 +14,9 @@ class CreateGalleryCommentsTable extends Migration
     public function up()
     {
         Schema::create('gallery_comments', function (Blueprint $table) {
+            $table->charset = 'utf8mb4';
+          	$table->collation = 'utf8mb4_unicode_ci';
+
             $table->increments('id');
           	$table->integer('user_id');
           	$table->integer('gallery_id');
