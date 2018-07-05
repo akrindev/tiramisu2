@@ -8,7 +8,7 @@
       <priority>0.6</priority>
       <image:image>
         <image:loc>
-          {{ $equip->pics }}
+          {{ url('/'.$equip->pics) }}
         </image:loc>
       </image:image>
     </url>
@@ -24,7 +24,7 @@
 
   @foreach ($tags as $tag)
     <url>
-      <loc>{{ url('/equip/' . $tag->name) }}</loc>
+      <loc>{{ url('/forum/tag/' . $tag->name) }}</loc>
       <changefreq>weekly</changefreq>
       <priority>0.6</priority>
     </url>

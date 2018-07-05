@@ -1,5 +1,9 @@
 {
- "name": "App",
+ "name": "Toram-id",
+ "short_name": "Toram-id", 
+ "lang": "en-US",
+ "start_url": "/",
+ "display": "standalone",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
