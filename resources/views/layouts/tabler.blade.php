@@ -183,7 +183,8 @@ $crysta = new Crysta;
         <div class="container">
           <div class="row align-items-center flex-row-reverse">
             <div class="col-auto ml-lg-auto">
-              <div class="row align-items-center">
+              <div class="text-center">
+                <a href="/kebijakan-privasi">Kebijakan privasi</a> .      <a href="/rules">Rules / Peraturan</a>
               </div>
             </div>
             <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">

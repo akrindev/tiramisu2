@@ -16,6 +16,12 @@ Route::get('/', function () {
 });
 Route::get('/sitemap.xml', 'SitemapController@index');
 
+/**
+* About Us
+*/
+Route::get('/kebijakan-privasi', 'AboutController@kebijakanPrivasi');
+Route::get('/rules', 'AboutController@rules');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
