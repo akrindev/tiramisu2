@@ -14,7 +14,7 @@
 
 <div class="container">
 <div class='row'>
-  <div class="col-12">
+  <div class="col-md-8">
     <div class="card">
 
       <div class="card-header">
@@ -139,7 +139,44 @@
   </div>
 </div>
 
-  <div class="col-12">
+  <div class="col-md-4">
+
+  <div class="card">
+    <div class="card-body">
+      {!! form_open('/save/contact') !!}
+      @csrf
+      <b> Data kontak</b>
+
+      <div class="form-group">
+        <label class="form-label">
+          ID Line:
+        </label>
+        <input type="text" name="line" class="form-control {{ $errors->has('line') ? 'is-invalid':''}}" value="{{$data->contact->line}}" required>
+        @if ($errors->has('line'))
+        <small class="text-danger">
+          {{ $errors->first('line') }}
+        </small>
+        @endif
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">
+          No. Whatsapp:
+        </label>
+        <input type="number" pattern="(\()?(\+62|62|0)(\d{2,3})?\)?[ .-]?\d{2,4}[ .-]?\d{2,4}" name="whatsapp" class="form-control {{ $errors->has('whatsapp') ? 'is-invalid':''}}" placeholder="contoh: +62823456789" value="{{$data->contact->whatsapp}}" required>
+        @if ($errors->has('whatsapp'))
+        <small class="text-danger">
+          {{ $errors->first('whatsapp') }}
+        </small>
+        @endif
+        <small class="text-muted">Di awali dengan kode negara</small>
+      </div>
+
+      <button class="btn btn-pill btn-outline-primary" type="submit">Submit</button>
+
+      {!! form_close() !!}
+    </div>
+  </div>
   </div>
     </div>
   </div>
