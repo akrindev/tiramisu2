@@ -32,6 +32,11 @@ class User extends Authenticatable
     {
       return $this->hasOne(Contact::class);
     }
+
+  	public function shop()
+    {
+      return $this->hasMany(Shop::class);
+    }
   	/**
     *
     * Thread by User

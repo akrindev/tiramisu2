@@ -38,6 +38,16 @@
         <small class="text-{{ $data->laku == 0 ? 'danger': 'success'}}">{{ $data->laku == 0 ? 'Belum laku': 'Laku'}}</small><br><br>
        {{$data->deskripsi}}
 
+        @auth
+        @if(auth()->user()->role == 'admin')
+{!! form_open('/shop/delete') !!}
+@csrf
+ @method("DELETE")
+        <input type="hidden" name="id" value="{{$data->id}}">
+        <button type="submit" class="btn btn-danger float-right">Hapus</button>
+ {!! form_close() !!}
+        @endif
+        @endauth
         <hr class="my-3">
         <b>Hubungi </b> <br>
         <b>Line: </b> <a href="#">@ {{ $data->user->contact->line}}</a> <br>

@@ -138,6 +138,44 @@ endif;
       </div>
 
 
+    @if($profile->shop->count() > 0)
+
+      <div class="col-md-12">
+          <div class="row">
+
+    @foreach ($profile->shop as $shop)
+       <div class="col-md-6">
+         <div class="card">
+           @if(session()->has('sukses-laku-'.$shop->id))
+           <div class="card-alert alert alert-success">
+             {{ session('sukses-laku-'.$shop->id)}}
+           </div>
+           @endif
+          <img class="card-img-top" style="max-height:300px" src="{{$shop->gambar}}">
+           <div class="card-body">
+             <b>Kamu menjual: </b> <a href="/shop/show/{{$shop->slug}}">{{$shop->nama_barang}}</a><br>
+             <b> Seharga: </b> {{ number_format($shop->harga) }} Spina <br>
+             <b> Pada: </b> {{ waktu($shop->created_at) }}<br>
+             <b> Status: </b> <small class="text-{{ $shop->laku == 0 ? 'danger': 'success'}}">{{ $shop->laku == 0 ? 'Belum laku': 'Laku'}}</small><br>
+             <b> Dilihat sebanyak: </b> {{ $shop->views}}x<br>
+             <a href="/shop/edit/{{$shop->slug}}">edit</a>
+             <hr class="my-1">
+             <b> Apakah sudah laku? </b><br>
+             {!! form_open('/ya/laku') !!}
+             @csrf
+             <input type="hidden" name="id" value="{{$shop->id}}">
+             <input type="hidden" name="laku" value="{{ $shop->laku == 1 ? '0':'1'}}">
+             <button type="submit" class="btn btn-outline-{{$shop->laku == 0 ? 'success':'danger'}} btn-sm btn-pill">{{$shop->laku == 0 ? 'Ya laku':'Belum laku'}}</button>
+             {!! form_close() !!}
+           </div>
+         </div>
+       </div>
+    @endforeach
+         </div>
+      </div>
+    @endif
+
+
     </div>
 
   </div>

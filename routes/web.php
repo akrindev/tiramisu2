@@ -149,5 +149,9 @@ Route::delete('/gallery/destroy/comment', 'GalleryController@destroyComment')->m
 */
 Route::get('/shop', 'ShopController@discover');
 Route::get('/shop/show/{slug}', 'ShopController@show');
+Route::get('/shop/edit/{slug}', 'ShopController@edit')->middleware('auth');
+Route::post('/shop/edit/{slug}', 'ShopController@editSubmit')->middleware('auth');
 Route::get('/shop/jual', 'ShopController@jual')->middleware('auth');
 Route::post('/shop/jual', 'ShopController@jualSubmit')->middleware('auth');
+Route::post('/ya/laku', 'ShopController@laku')->middleware('auth');
+Route::delete('/shop/delete', 'ShopController@delete')->middleware('auth');
