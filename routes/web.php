@@ -31,6 +31,8 @@ Route::get('/profile/notifikasi', 'UserController@notifikasi')->middleware('auth
 Route::get('/profile', 'UserController@profileku')->middleware('auth');
 
 Route::get('/profile/{provider_id}', 'UserController@profile');
+
+Route::post('/save/contact', 'UserController@saveContact');
 /**
 *
 * Setting
@@ -138,3 +140,14 @@ Route::post('/gallery/{id}/edit', 'GalleryController@editSubmit')->middleware('a
 
 Route::delete('/gallery/destroy', 'GalleryController@destroy')->middleware('auth');
 Route::delete('/gallery/destroy/comment', 'GalleryController@destroyComment')->middleware('auth');
+
+
+/**
+*
+*
+* Shop
+*/
+Route::get('/shop', 'ShopController@discover');
+Route::get('/shop/show/{slug}', 'ShopController@show');
+Route::get('/shop/jual', 'ShopController@jual')->middleware('auth');
+Route::post('/shop/jual', 'ShopController@jualSubmit')->middleware('auth');

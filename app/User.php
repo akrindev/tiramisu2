@@ -28,6 +28,10 @@ class User extends Authenticatable
     ];
 
 
+  	public function contact()
+    {
+      return $this->hasOne(Contact::class);
+    }
   	/**
     *
     * Thread by User

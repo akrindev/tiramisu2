@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Contact;
 use App\Forum;
 use Auth;
 use DB;
@@ -106,4 +107,29 @@ class UserController extends Controller
 
     return back()->with('sukses', 'Data telah di ubah!');
   }
+
+  	public function saveContact()
+    {
+      request()->validate([
+      	'line' => 'required',
+        'whatsapp' => 'required|numeric'
+      ]);
+
+      $contact = Contact::find(auth()->id());
+      $con = new Contact;
+
+      if(!$contact)
+      {
+        $con->user_id	= auth()->id();
+        $con->line = request()->line;
+        $con->whatsapp = request()->whatsapp;
+        $con->save();
+      } else {
+        $contact->line = request()->line;
+        $contact->whatsapp = request()->whatsapp;
+        $contact->save();
+      }
+
+      return redirect('/shop/jual');
+    }
 }
