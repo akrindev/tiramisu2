@@ -8,12 +8,27 @@ $crysta = new Crysta;
 ?>
 
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="id-ID">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv="Content-Language" content="en" />
+    <meta http-equiv="Content-Language" content="id-ID" />
+
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
     <meta name="msapplication-TileColor" content="#fff">
     <meta name="theme-color" content="#06f">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
@@ -21,9 +36,14 @@ $crysta = new Crysta;
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+
+      <link rel="canonical" href="{{ url()->current() }}"/>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png"> <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png"> <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png"> <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png"> <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png"> <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png"> <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png"> <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png"> <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png"> <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png"> <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"> <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png"> <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"> <link rel="manifest" href="/manifest.json"><meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="apple-mobile-web-app-title" content="toram-id.info">
+    <meta name="application-name" content="toram-id.info">
+
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+
     <title>@yield('title') | Toram</title>
 
 <!-- open graph -->
@@ -46,6 +66,14 @@ $crysta = new Crysta;
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/vendors/bootstrap.bundle.min.js"></script>
      <script src="/assets/js/core.js"></script>
+     <script>
+      if('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function() {
+                console.log('Service Worker Registered');
+          });
+      }
+    </script>
     @yield('head')
 
   </head>

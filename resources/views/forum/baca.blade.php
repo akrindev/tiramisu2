@@ -1,8 +1,8 @@
 @extends('layouts.tabler')
 
 
-@section('title',$data->judul . ' | ' .$data->user->name)
-@section('description',str_limit($data->body,140))
+@section('title',$data->judul)
+@section('description',str_limit(strip_tags($data->body,140)))
 @section('image',to_img($data->body))
 
 @section('content')

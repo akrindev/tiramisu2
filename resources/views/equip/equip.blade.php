@@ -48,7 +48,7 @@
                    <br />
                    <strong>Drop</strong>
                    <br />
-                   -
+                   @parsedown($pos->drop)
                    <br />
                    <br />
                    <strong>Quest</strong>

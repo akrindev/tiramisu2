@@ -172,7 +172,7 @@ class MobController extends Controller
 
       $make->text('(c) toram-id.info', 15, 10, function($font)
           {
-              $font->size(18);
+              $font->size(24);
               $font->color('#ffffff');
               $font->align('left');
               $font->valign('bottom');
