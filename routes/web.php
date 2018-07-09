@@ -167,5 +167,11 @@ Route::delete('/shop/delete', 'ShopController@delete')->middleware('auth');
 *
 * Quiz Toram
 */
-Route::get('/quiz/buat', 'QuizController@tambah')->middleware('auth');
-Route::post('/quiz/buat', 'QuizController@tambahSubmit');
+Route::get('/quiz', 'QuizController@show');
+Route::get('/quiz/mulai', 'QuizController@mulaiQuiz');
+Route::get('/quiz/begin', 'QuizController@kerjakan');
+Route::get('/quiz/i', 'QuizController@ajax');
+Route::get('/quiz/i/{id}', 'QuizController@ajax');
+
+Route::get('/quiz/buat', 'QuizController@tambah');
+Route::post('/quiz/buat', 'QuizController@tambahSubmit')->middleware('auth');

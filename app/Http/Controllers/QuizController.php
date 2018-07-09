@@ -3,9 +3,60 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Quiz;
 
 class QuizController extends Controller
 {
+  	public function show()
+    {
+      return view('quiz.show');
+    }
+
+  	public function mulaiQuiz()
+    {
+      $quizzes = Quiz::whereApproved(1)->inRandomOrder()->take(10)->get();
+
+      $i = 1;
+
+      foreach($quizzes as $k):
+      	// taruh quiz di session
+      	session()->put('q-'.$k->id,[
+        	'quiz_id'	=> $k->id,
+          	'by'		=> $k->user->name,
+         	'question'	=> $k->question,
+          	'jawaban_a'	=> $k->answer_a,
+          	'jawaban_b'	=> $k->answer_b,
+          	'jawaban_c'	=> $k->answer_c,
+          	'jawaban_d'	=> $k->answer_d,
+          	'benar'	=> $k->correct,
+        ]);
+
+      	// nomer quiz
+      	$i++;
+      endforeach;
+
+      session()->put('qkey',sha1(now()));
+
+      return view('quiz.kerjakan');
+    }
+
+  	public function kerjakan()
+    {
+      if(!session('qkey'))
+      {
+        return redirect('/quiz');
+      }
+
+      return view('quiz.begin');
+    }
+
+  	public function ajax($id = 1)
+    {
+      return view('quiz.ajax',[
+      	'data'	=> session('q-'.$id)
+      ]);
+    }
+
     public function tambah()
     {
       return view('quiz.tambah');
@@ -14,38 +65,48 @@ class QuizController extends Controller
   	public function tambahSubmit()
     {
 
-      $response = [
-        'messages' => [],
-        'csrfHash' => csrf_token()
-      ];
       $val = \Validator::make(request()->all(),[
-		'question' => 'required',
+		'pertanyaan' => 'required',
         'jawaban_a' => 'required',
         'jawaban_b' => 'required',
         'jawaban_c' => 'required',
         'jawaban_d' => 'required',
+        'benar'	=> 'required'
+      ],[
+      	'required' => 'Kolom ini nggak boleh di kosongin'
       ]);
 
-      $response['success'] = true;
 
-      foreach($val->getMessageBag()->toArray() as $e)
-      {
-        dd($e);
-      }
+      $response = [
+        'success' => true,
+        'messages' => [],
+        'csrfHash' => csrf_token()
+      ];
 
-      return;
-
-      if($val->fails())
+      if($val->fails() === true)
       {
         $response = [
           'success' => false,
-          'messages' => $val->errors()->all()
+          'messages' => $val->getMessageBag()->toArray()
         ];
 
       }
 
+      $quiz = Quiz::create([
+      	'user_id'	=> auth()->id(),
+        'question'	=> request()->pertanyaan,
+        'answer_a'	=> request()->jawaban_a,
+        'answer_b'	=> request()->jawaban_b,
+        'answer_c'	=> request()->jawaban_c,
+        'answer_d'	=> request()->jawaban_d,
+        'correct'		=> request()->benar
+      ]);
 
-      return response()->json($response)
-        ->header('Content-Type','application/json');
+      if($quiz)
+      {
+
+    	  return response()->json($response)
+      		  ->header('Content-Type','application/json');
+      }
     }
 }

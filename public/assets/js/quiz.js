@@ -1,5 +1,5 @@
 
-	$('#tambbah-quiz').submit(function(e) {
+	$('#tambah-quiz').submit(function(e) {
 		e.preventDefault();
 
 		var me = $(this);
@@ -12,36 +12,16 @@
 
 		// perform ajax
 		$.ajax({
-           xhr: function() {
-    		var xhr = new window.XMLHttpRequest();
-
-    		xhr.upload
-              .addEventListener(
-              	"progress",
-                function(evt) {
-      				if (evt.lengthComputable) {
-        			var percentComplete = evt.loaded / evt.total;
-        			percentComplete = parseInt(percentComplete * 100);
-
-            $(".btnku").html('<i class="fa fa-spinner fa-spin"></i> Mengunggah... ('+percentComplete+'%)')
-              .addClass('disabled');
-      		}
-   			 }, false);
-
-    		return xhr;
- 		  },
 			url: me.attr('action'),
 			type: 'post',
-			data: data,
-            processData: false,
-            contentType: false,
+			data: me.serialize(),
 			success: function(response) {
 
             	$("#csrfp").val(response.csrfHash);
 
 				if (response.success == true) {
 					// if success we would show message
-   swal('sukses gan');
+   swal('sukses gan','Kuy buat lagi','success');
 					// and also remove the error class
 
 					$('.form-control').removeClass('is-invalid')
@@ -54,19 +34,23 @@
                   $("#submitbtn").removeClass('disabled');
 				}
 				else {
-                  		$("#submitbtn").removeClass('disabled');
-                  $("#submitbtn").text('Send quiz');
+
+                  $("#submitbtn")
+                    .removeClass('disabled');
+                  $("#submitbtn")
+                    .text('Send quiz');
+
 					$.each(response.messages, function(key, value) {
 						var element = $('#' + key);
 
-						element.closest('div.form-group')
-						.find('.text-danger')
+					element
+						.removeClass('is-invalid')
+						.addClass(key.length > 0 ? 'is-invalid' : 'is-valid');
+                      element.parent('div.form-group')
+						.find('div.invalid-feedback')
 						.remove();
 
-                      element.removeClass('is-invalid')
-						.addClass(value.length > 0 ? 'is-invalid' : 'is-valid')
-
-						element.after(value);
+						element.after('<div class="invalid-feedback">'+value+'</div>');
 					});
 				}
 			}

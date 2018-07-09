@@ -17,7 +17,6 @@ class CreateQuizzesTable extends Migration
             $table->increments('id');
           	$table->integer('user_id');
           	$table->text('question');
-          	$table->text('gambar')->nullable();
           	$table->text('answer_a');
           	$table->text('answer_b');
           	$table->text('answer_c');

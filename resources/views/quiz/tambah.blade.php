@@ -22,48 +22,38 @@
               Buat quiz
             </h3>
           </div>
-
-          {!! form_open_multipart('/quiz/buat',['id'=>'tambah-quiz']) !!}
+@auth
+          {!! form_open('/quiz/buat',['id'=>'tambah-quiz']) !!}
           <div class="card-body p-3">
-
-            <div class="form-group">
-              <label class="form-label"> Gambar</label>
-              <div id="preview"></div>
-             <div class="custom-file">
-               <input type="file" class="custom-file-input mr-5" name="gambar" id="gambar" accept="image/*">
-              <label class="custom-file-label">Pilih gambar</label>
-             </div>
-              <small class="text-muted">Optional (jika menggunakan gambar)</small>
-            </div>
 
 
             <div class="form-group">
               <label class="form-label">Pertanyaan</label>
-              <textarea class="form-control" data-provide="markdown" name="pertanyaan" rows=5></textarea>
+              <textarea class="form-control" id="pertanyaan" data-provide="markdown" name="pertanyaan" rows=5 required></textarea>
             </div>
 
 
             <div class="form-group">
               <label class="form-label">Jawaban A</label>
-              <input type="text" name="jawaban_a" class="form-control" required>
+              <input type="text" id="jawaban_a" name="jawaban_a" class="form-control" required>
             </div>
 
 
             <div class="form-group">
               <label class="form-label">Jawaban B</label>
-              <input type="text" name="jawaban_a" class="form-control" required>
+              <input type="text" id="jawaban_b" name="jawaban_b" class="form-control" required>
             </div>
 
 
             <div class="form-group">
               <label class="form-label">Jawaban C</label>
-              <input type="text" name="jawaban_a" class="form-control" required>
+              <input type="text" id="jawaban_c" name="jawaban_c" class="form-control" required>
             </div>
 
 
             <div class="form-group">
               <label class="form-label">Jawaban D</label>
-              <input type="text" name="jawaban_a" class="form-control" required>
+              <input type="text" id="jawaban_d" name="jawaban_d" class="form-control" required>
             </div>
 
 
@@ -73,22 +63,22 @@
               </div>
               <div class="selectgroup selectgroup-pills">
                  <label class="selectgroup-item">
-                     <input type="radio" name="icon-input" value="a" class="selectgroup-input" checked="">
+                     <input type="radio" name="benar" value="a" class="selectgroup-input" checked="">
                             <span class="selectgroup-button selectgroup-button-icon">A</span>
                  </label>
 
                  <label class="selectgroup-item">
-                     <input type="radio" name="icon-input" value="b" class="selectgroup-input">
+                     <input type="radio" name="benar" value="b" class="selectgroup-input">
                             <span class="selectgroup-button selectgroup-button-icon">B</span>
                  </label>
 
                  <label class="selectgroup-item">
-                     <input type="radio" name="icon-input" value="c" class="selectgroup-input">
+                     <input type="radio" name="benar" value="c" class="selectgroup-input">
                             <span class="selectgroup-button selectgroup-button-icon">C</span>
                  </label>
 
                  <label class="selectgroup-item">
-                     <input type="radio" name="icon-input" value="d" class="selectgroup-input">
+                     <input type="radio" name="benar" value="d" class="selectgroup-input">
                             <span class="selectgroup-button selectgroup-button-icon">D</span>
                  </label>
 
@@ -97,18 +87,38 @@
 
 
             <div class="form-group">
-              <small class="btnku text-muted">...</small>
               <button type="submit" class="btn btn-pill btn-outline-primary" id="submitbtn">kirim</button>
             </div>
 
           </div>
           <input type="hidden" name="_token" value="{{ csrf_token() }}" id="csrfp">
           {!! form_close() !!}
+@else
+          <div class="card-body">
+            <strong>Upss!! akses <a href="/fb-login">Login</a> dibutuhkan untuk menambah quiz</strong>
+          </div>
+@endauth
         </div>
       </div>
       <!-- col md 8 -->
 
       <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              Peraturan membuat quiz
+            </h3>
+          </div>
+          <div class="card-body p-3">
+            - Quiz masih bersangkutan dengan Toram.<br>
+            - Quiz tidak merendahkan orang, agama atau organisasi.<br>
+            - Berbahasa sopan<br>
+            - Tidak mengandung unsur <b>Pornografi</b><br>
+            - INGAT untuk mengoreksi sebelum mengirim quiz<br>
+            - Isi semua data yang di butuhkan, tidak boleh kosong<br>
+
+          </div>
+        </div>
       </div>
 
     </div>
@@ -129,22 +139,4 @@
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/assets/js/quiz.js"></script>
 
-<script>
-
-function fileReader(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-
-            $('#preview').html('Preview: <img src="'+e.target.result+'" class="img-fluid mb-3"/>');
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-</script>
-<script>
- $("#gambar").change(function(){
-   fileReader(this);
- })
-</script>
 @endsection
