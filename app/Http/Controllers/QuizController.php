@@ -14,13 +14,13 @@ class QuizController extends Controller
 
   	public function mulaiQuiz()
     {
-      $quizzes = Quiz::whereApproved(1)->inRandomOrder()->take(10)->get();
+      $quizzes = Quiz::whereApproved(1)->inRandomOrder()->take(10)->distinct()->get();
 
       $i = 1;
 
       foreach($quizzes as $k):
       	// taruh quiz di session
-      	session()->put('q-'.$k->id,[
+      	session()->put('q-'.$i,[
         	'quiz_id'	=> $k->id,
           	'by'		=> $k->user->name,
          	'question'	=> $k->question,
@@ -28,7 +28,6 @@ class QuizController extends Controller
           	'jawaban_b'	=> $k->answer_b,
           	'jawaban_c'	=> $k->answer_c,
           	'jawaban_d'	=> $k->answer_d,
-          	'benar'	=> $k->correct,
         ]);
 
       	// nomer quiz
@@ -50,11 +49,21 @@ class QuizController extends Controller
       return view('quiz.begin');
     }
 
-  	public function ajax($id = 1)
+  	public function ajax($id)
     {
+      $id = ($id > 10) ? 1 : $id;
+
       return view('quiz.ajax',[
-      	'data'	=> session('q-'.$id)
+      	'data'	=> session('q-'.$id),
+        'id' => $id
       ]);
+    }
+
+  	public function saveAnswer()
+    {
+      session(request()->except('_token'));
+
+      return response()->json(['success'=> true]);
     }
 
     public function tambah()

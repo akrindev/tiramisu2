@@ -16,20 +16,29 @@
     <div class="row">
 
       <div class="col-md-8">
+        <div class="alert alert-primary">
+          Klik <b>Simpan</b> sebelum melanjutkan ke soal berikutnya
+        </div>
         <div class="card">
+
           <div class="card-header">
             <h3 class="card-title">
               Quiz
             </h3>
           </div>
-
+{!! form_open('/quiz/save',['id'=>'simpan-gan']) !!}
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
+<div class="dimmer">
+  <div class="loader"></div>
+  <div class="dimmer-content">
 
             <div id="kerjakan">
+              <div class="my-4">wait . . .</div>
             </div>
-
+  </div>
+</div>
           </div>
-
+{!! form_close() !!}
         </div>
       </div>
       <!-- col md 8 -->
@@ -41,7 +50,7 @@
               Buat Quizmu sendiri
             </h3>
           </div>
-          <div class="card-body p-3" style="font-size:14px;font-weight:400">
+          <div class="card-body p-3" style="font-size:14px;font-weight:400;">
 
             Buat quizmu sendiri, biarkan mereka menjawab quizmu.<br>
             <a href=/quiz/buat class="btn btn-sm btn-pill btn-outline-primary float-right">Buat Quiz!</a>
@@ -70,7 +79,43 @@
 
 
 <script>
-  $("#kerjakan").load('/quiz/i');
+
+
+  $(".dimmer").addClass('active');
+    $("#kerjakan").load('/quiz/i/1',function(){
+    	$(".dimmer").removeClass('active');
+    });
+
+  function gantiSoal(i)
+  {
+
+  $(".dimmer").addClass('active');
+    $("#kerjakan").load('/quiz/i/'+i,function(){
+    	$(".dimmer").removeClass('active');
+    });
+  }
+
+  $("#simpan-gan").submit(function(e){
+    e.preventDefault();
+
+    var me = $(this);
+
+    $.ajax({
+      url: me.attr('action'),
+      data: me.serialize(),
+      type: 'POST',
+      beforeSend: function(){
+        $("#btn-simpan").html('<i class="fa fa-spinner fa-spin"></i> Menyimpan');
+      },
+      success: function(){
+        swal('ok');
+      }
+
+    }).always(function(){
+    	$("#btn-simpan").html("Simpan");
+    });
+
+  });
 </script>
 
 

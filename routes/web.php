@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/tes',function(){
+dump(session()->all());
+});
+
 Route::get('/', function () {
     return view('toram');
 });
@@ -170,8 +174,9 @@ Route::delete('/shop/delete', 'ShopController@delete')->middleware('auth');
 Route::get('/quiz', 'QuizController@show');
 Route::get('/quiz/mulai', 'QuizController@mulaiQuiz');
 Route::get('/quiz/begin', 'QuizController@kerjakan');
-Route::get('/quiz/i', 'QuizController@ajax');
+
 Route::get('/quiz/i/{id}', 'QuizController@ajax');
+Route::post('/quiz/save', 'QuizController@saveAnswer');
 
 Route::get('/quiz/buat', 'QuizController@tambah');
 Route::post('/quiz/buat', 'QuizController@tambahSubmit')->middleware('auth');
