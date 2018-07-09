@@ -161,3 +161,11 @@ Route::get('/shop/jual', 'ShopController@jual')->middleware('auth');
 Route::post('/shop/jual', 'ShopController@jualSubmit')->middleware('auth');
 Route::post('/ya/laku', 'ShopController@laku')->middleware('auth');
 Route::delete('/shop/delete', 'ShopController@delete')->middleware('auth');
+
+
+/**
+*
+* Quiz Toram
+*/
+Route::get('/quiz/buat', 'QuizController@tambah')->middleware('auth');
+Route::post('/quiz/buat', 'QuizController@tambahSubmit');
