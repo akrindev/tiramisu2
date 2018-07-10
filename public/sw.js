@@ -2,12 +2,14 @@ const cacheVersion = 'toram-id-1';
 
 const filesToCache = [
   '/',
+  '/assets/js/jquery.min.js',
   '/assets/js/core.js',
   '/assets/js/vendors/bootstrap.bundle.min.js',
   '/assets/css/dashboard.css',
   '/assets/js/bootstrap-markdown.js',
   '/assets/js/markdown.js',
-  '/img/potum.gif'
+  '/img/potum.gif',
+  '//unpkg.com/sweetalert/dist/sweetalert.min.js'
 ];
 
 self.addEventListener('install', function(event) {
@@ -33,4 +35,3 @@ self.addEventListener('fetch', function(event) {
       })
   );
 });
-

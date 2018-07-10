@@ -190,6 +190,10 @@ $crysta = new Crysta;
                   </li>
 
                   <li class="nav-item">
+                    <a href="/quiz" class="nav-link"><i class="fe fe-award"></i> Quiz</a>
+                  </li>
+
+                  <li class="nav-item">
                     <a href="/gallery" class="nav-link"><i class="fe fe-image"></i> Gallery</a>
                   </li>
                   <li class="nav-item">

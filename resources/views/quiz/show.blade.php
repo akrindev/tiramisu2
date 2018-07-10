@@ -31,7 +31,7 @@
 
             jika jawaban benar kurang dari 3 point + 2<br>
                  jika jawaban benar 3-5 point + 5<br>
-                 jika jawaban 6-8 point + 7<br>
+                 jika jawaban benar 6-8 point + 7<br>
             jika jawaban benar 9-10 point +10
             <br><br>
 
@@ -53,7 +53,7 @@
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
 
             Buat quizmu sendiri, biarkan mereka menjawab quizmu.<br>
-            <a href=/quiz/buat class="btn btn-sm btn-pill btn-outline-primary float-right">Buat Quiz!</a>
+            <a href=/quiz/buat class="btn btn-pill btn-outline-primary float-right mt-4">Buat Quiz!</a>
 
           </div>
         </div>
