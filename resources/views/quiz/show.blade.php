@@ -40,6 +40,30 @@
           </div>
 
         </div>
+
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fe fe-award"></i> 20 Top Scores
+            </h3>
+          </div>
+          <div class="table-responsive">
+          <table class="card-table table table-outline text-nowrap table-vcenter table-striped table-hovered" style="font-size:14px;font-weight:400">
+            <thead>
+              <tr>
+                <th> No </th>
+                <th> Nama </th>
+                <th> Benar </th>
+              <th> Salah </th>
+                <th> Point </th>
+
+              </tr>
+            </thead>
+         @include('inc.top_score_quiz')
+          </table>
+          </div>
+        </div>
       </div>
       <!-- col md 8 -->
 
