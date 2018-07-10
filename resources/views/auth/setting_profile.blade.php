@@ -151,7 +151,7 @@
         <label class="form-label">
           ID Line:
         </label>
-        <input type="text" name="line" class="form-control {{ $errors->has('line') ? 'is-invalid':''}}" value="{{$data->contact->line}}" required>
+        <input type="text" name="line" class="form-control {{ $errors->has('line') ? 'is-invalid':''}}" value="{{$data->contact->line ?? ''}}" required>
         @if ($errors->has('line'))
         <small class="text-danger">
           {{ $errors->first('line') }}
@@ -163,7 +163,7 @@
         <label class="form-label">
           No. Whatsapp:
         </label>
-        <input type="number" pattern="(\()?(\+62|62|0)(\d{2,3})?\)?[ .-]?\d{2,4}[ .-]?\d{2,4}" name="whatsapp" class="form-control {{ $errors->has('whatsapp') ? 'is-invalid':''}}" placeholder="contoh: +62823456789" value="{{$data->contact->whatsapp}}" required>
+        <input type="number" pattern="(\()?(\+62|62|0)(\d{2,3})?\)?[ .-]?\d{2,4}[ .-]?\d{2,4}" name="whatsapp" class="form-control {{ $errors->has('whatsapp') ? 'is-invalid':''}}" placeholder="contoh: +62823456789" value="{{$data->contact->whatsapp ?? ''}}" required>
         @if ($errors->has('whatsapp'))
         <small class="text-danger">
           {{ $errors->first('whatsapp') }}

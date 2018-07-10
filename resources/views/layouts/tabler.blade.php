@@ -107,7 +107,7 @@ $crysta = new Crysta;
                     <a class="dropdown-item" href="/profile">
                       <i class="dropdown-icon fe fe-user"></i> Profile
                     </a>
-                    <a class="dropdown-item" href="/profile/setting">
+                    <a class="dropdown-item" href="/setting/profile">
                       <i class="dropdown-icon fe fe-settings"></i> Settings
                     </a>
                     <a class="dropdown-item" href="#" onClick="alert('under development')">
