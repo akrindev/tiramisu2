@@ -244,4 +244,53 @@ class QuizController extends Controller
       		  ->header('Content-Type','application/json');
       }
     }
+
+  	public function edit($id)
+    {
+      $quiz = Quiz::findOrFail($id);
+
+      if(auth()->id() != $quiz->user_id)
+      {
+        return redirect('/')->with('gagal','Akses ditolak');
+      }
+
+      return view('quiz.edit',[
+      	"data" => $quiz
+      ]);
+    }
+
+  	public function editSubmit($id)
+    {
+      $quiz = Quiz::findOrFail($id);
+
+      if(auth()->id() != $quiz->user_id)
+      {
+        return redirect('/')->with('gagal','Akses ditolak');
+      }
+
+      request()->validate([
+		'pertanyaan' => 'required',
+        'jawaban_a' => 'required',
+        'jawaban_b' => 'required',
+        'jawaban_c' => 'required',
+        'jawaban_d' => 'required',
+        'benar'	=> 'required'
+      ],[
+      	'required' => 'Kolom ini nggak boleh di kosongin'
+      ]);
+
+      $updated = $quiz->update([
+        'question'	=> request()->pertanyaan,
+        'answer_a'	=> request()->jawaban_a,
+        'answer_b'	=> request()->jawaban_b,
+        'answer_c'	=> request()->jawaban_c,
+        'answer_d'	=> request()->jawaban_d,
+        'correct'	=> request()->benar
+      ]);
+
+      if($updated)
+      {
+        return back()->with('sukses','Data berhasil di ubah yey *-*)/');
+      }
+    }
 }

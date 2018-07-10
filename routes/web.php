@@ -172,14 +172,16 @@ Route::delete('/shop/delete', 'ShopController@delete')->middleware('auth');
 * Quiz Toram
 */
 Route::get('/quiz', 'QuizController@show');
-Route::get('/quiz/mulai', 'QuizController@mulaiQuiz');
-Route::get('/quiz/begin', 'QuizController@kerjakan');
+Route::get('/quiz/mulai', 'QuizController@mulaiQuiz')->middleware('auth');
+Route::get('/quiz/begin', 'QuizController@kerjakan')->middleware('auth');
 
-Route::get('/quiz/i/{id}', 'QuizController@ajax');
-Route::post('/quiz/save', 'QuizController@saveAnswer');
-Route::get('/ajax/terjawab', 'QuizController@ajaxTerjawab');
-Route::get('/quiz/koreksi', 'QuizController@koreksi');
+Route::get('/quiz/i/{id}', 'QuizController@ajax')->middleware('auth');
+Route::post('/quiz/save', 'QuizController@saveAnswer')->middleware('auth');
+Route::get('/ajax/terjawab', 'QuizController@ajaxTerjawab')->middleware('auth');
+Route::get('/quiz/koreksi', 'QuizController@koreksi')->middleware('auth');
 Route::get('/quiz/profile', 'QuizController@myProfile')->middleware('auth');
+Route::get('/quiz/edit/{id}', 'QuizController@edit')->middleware('auth');
+Route::post('/quiz/edit/{id}', 'QuizController@editSubmit')->middleware('auth');
 
 Route::get('/quiz/buat', 'QuizController@tambah');
 Route::post('/quiz/buat', 'QuizController@tambahSubmit')->middleware('auth');

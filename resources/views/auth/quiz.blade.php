@@ -96,15 +96,15 @@
       <div class="col-md-6">
         <div class="card">
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
-            <b>Q:</b> @parsedown($q->question)
+            <b>Q:</b> @parsedown(e($q->question))
             <hr class="my-2">
-            <div {{ $q->correct == 'a' ? 'class="text-success"':''}}> <b>A:</b> @parsedown($q->answer_a) </div>
+            <div {{ $q->correct == 'a' ? 'class="text-success"':''}}> <b>A:</b> @parsedown(e($q->answer_a)) </div>
 
-            <div {{ $q->correct == 'b' ? 'class="text-success"':''}}> <b>B:</b> @parsedown($q->answer_b) </div>
+            <div {{ $q->correct == 'b' ? 'class="text-success"':''}}> <b>B:</b> @parsedown(e($q->answer_b)) </div>
 
-            <div {{ $q->correct == 'c' ? 'class="text-success"':''}}><b>C:</b> @parsedown($q->answer_c) </div>
+            <div {{ $q->correct == 'c' ? 'class="text-success"':''}}><b>C:</b> @parsedown(e($q->answer_c)) </div>
 
-            <div {{ $q->correct == 'd' ? 'class="text-success"':''}}><b>D:</b> @parsedown($q->answer_d) </div>
+            <div {{ $q->correct == 'd' ? 'class="text-success"':''}}><b>D:</b> @parsedown(e($q->answer_d)) </div>
 
             <div>
               <b>Jawaban benar: {{ $q->correct }}</b><br>
@@ -122,6 +122,10 @@
 <div class="progress progress-xs">
                 <div class="progress-bar bg-danger" style="width: {{ $q->salah/($q->benar+$q->salah)*100 }}%"></div>
              </div>
+
+             <div class="form-group mt-5">
+               <a href="/quiz/edit/{{$q->id}}" class="btn btn-secondary">edit</a>
+              </div>
             </div>
           </div>
         </div>
