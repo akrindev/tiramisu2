@@ -183,6 +183,15 @@ class QuizController extends Controller
       ]);
     }
 
+  	public function myProfile()
+    {
+      $quizzes = Auth::user()->quiz()->paginate(10);
+
+      return view('auth.quiz',[
+      	'quizzes' => $quizzes
+      ]);
+    }
+
     public function tambah()
     {
       return view('quiz.tambah');
