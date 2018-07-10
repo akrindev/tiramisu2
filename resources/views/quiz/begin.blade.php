@@ -47,14 +47,14 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">
-              Buat Quizmu sendiri
+              Terjawab
             </h3>
           </div>
           <div class="card-body p-3" style="font-size:14px;font-weight:400;">
-
-            Buat quizmu sendiri, biarkan mereka menjawab quizmu.<br>
-            <a href=/quiz/buat class="btn btn-sm btn-pill btn-outline-primary float-right">Buat Quiz!</a>
-
+            <div id="terjawab" class="mb-3"></div>
+<div class="alert alert-primary">
+  Tips: Klik tabel di atas untuk menuju soal pada nomer tertentu
+            </div>
           </div>
         </div>
       </div>
@@ -84,6 +84,7 @@
   $(".dimmer").addClass('active');
     $("#kerjakan").load('/quiz/i/1',function(){
     	$(".dimmer").removeClass('active');
+      	$("#terjawab").load('/ajax/terjawab');
     });
 
   function gantiSoal(i)
@@ -92,6 +93,26 @@
   $(".dimmer").addClass('active');
     $("#kerjakan").load('/quiz/i/'+i,function(){
     	$(".dimmer").removeClass('active');
+    });
+  }
+
+  function koreksi()
+  {
+    swal({
+    	title: 'Koreksi',
+      	text: 'Kamu yakin mau koreksi ?',
+      	icon: 'warning',
+      	buttons: true
+    }).then((gas) => {
+    	if(gas)
+          {
+            swal('oke, mengoreksi . . .');
+            return window.location.href = '/quiz/koreksi';
+          }
+      	else
+          {
+            swal('fyuh');
+          }
     });
   }
 
@@ -113,6 +134,7 @@
 
     }).always(function(){
     	$("#btn-simpan").html("Simpan");
+      	$("#terjawab").load('/ajax/terjawab');
     });
 
   });

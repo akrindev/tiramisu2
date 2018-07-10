@@ -7,7 +7,7 @@
 
    <div class="custom-controls-stacked">
          <label class="custom-control custom-radio">
-            <input type="radio" class="custom-control-input" name="jawaban-{{ $id }}" value="a">
+            <input type="radio" class="custom-control-input" name="jawaban-{{ $id }}" value="a" {{ session('jawaban-'.$id) == 'a' ? 'checked': '' }}>
             <div class="custom-control-label">{{ $data['jawaban_a'] }}</div>
          </label>
    </div>
@@ -15,7 +15,7 @@
 
    <div class="custom-controls-stacked">
          <label class="custom-control custom-radio">
-            <input type="radio" class="custom-control-input" name="jawaban-{{ $id }}" value="b">
+            <input type="radio" class="custom-control-input" name="jawaban-{{ $id }}" value="b" {{ session('jawaban-'.$id) == 'b' ? 'checked': '' }}>
             <div class="custom-control-label">{{ $data['jawaban_b'] }}</div>
          </label>
    </div>
@@ -23,7 +23,7 @@
 
    <div class="custom-controls-stacked">
          <label class="custom-control custom-radio">
-            <input type="radio" class="custom-control-input" name="jawaban-{{ $id }}" value="c">
+            <input type="radio" class="custom-control-input" name="jawaban-{{ $id }}" value="c" {{ session('jawaban-'.$id) == 'c' ? 'checked': '' }}>
             <div class="custom-control-label">{{ $data['jawaban_c'] }}</div>
          </label>
    </div>
@@ -31,7 +31,7 @@
 
    <div class="custom-controls-stacked">
          <label class="custom-control custom-radio">
-            <input type="radio" class="custom-control-input" name="jawaban-{{ $id }}" value="d">
+            <input type="radio" class="custom-control-input" name="jawaban-{{ $id }}" value="d" {{ session('jawaban-'.$id) == 'd' ? 'checked': '' }}>
             <div class="custom-control-label">{{ $data['jawaban_d'] }}</div>
          </label>
    </div>
@@ -51,6 +51,6 @@
   @if ( $id != 10)
   <span onClick="gantiSoal({{$id+1}})" class="btn btn-secondary float-right">Selanjutnya</span>
   @else
-  <span onClick="koreksi({{$id+1}})" class="btn btn-outline-success float-right">Koreksi</span>
+  <span onClick="koreksi()" class="btn btn-outline-success float-right">Koreksi</span>
   @endif
 </div>

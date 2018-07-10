@@ -177,6 +177,8 @@ Route::get('/quiz/begin', 'QuizController@kerjakan');
 
 Route::get('/quiz/i/{id}', 'QuizController@ajax');
 Route::post('/quiz/save', 'QuizController@saveAnswer');
+Route::get('/ajax/terjawab', 'QuizController@ajaxTerjawab');
+Route::get('/quiz/koreksi', 'QuizController@koreksi');
 
 Route::get('/quiz/buat', 'QuizController@tambah');
 Route::post('/quiz/buat', 'QuizController@tambahSubmit')->middleware('auth');

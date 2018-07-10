@@ -37,6 +37,16 @@ class User extends Authenticatable
     {
       return $this->hasMany(Shop::class);
     }
+
+  	public function quiz()
+    {
+      return $this->hasMany(Quiz::class);
+    }
+
+  	public function quizScore()
+    {
+      return $this->hasOne(QuizScore::class);
+    }
   	/**
     *
     * Thread by User
