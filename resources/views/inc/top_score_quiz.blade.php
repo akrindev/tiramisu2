@@ -7,8 +7,12 @@ $i=1;
 <tbody>
 @foreach ($scores as $score)
    <tr>
-     <td> {{ $i }} </td>
-     <td> {{ $score->user->name }} </td>
+     <td cass="text-center">
+      <img src="https://graph.facebook.com/{{$score->user->provider_id}}/picture?type=normal" class="avatar avatar-md d-block"/></td>
+     <td>
+       <div> {{ $score->user->name }}</div>
+       <small class="text-muted">Peringkat {{ $i }} </small>
+     </td>
      <td>  <b>{{ $score->benar }}</b>
        <div class="progress progress-xs">
                 <div class="progress-bar bg-green" style="width: {{ $score->benar/($score->benar+$score->salah)*100 }}%"></div>

@@ -1,7 +1,6 @@
 const cacheVersion = 'toram-id-1';
 
 const filesToCache = [
-  '/',
   '/assets/js/jquery.min.js',
   '/assets/js/core.js',
   '/assets/js/vendors/bootstrap.bundle.min.js',

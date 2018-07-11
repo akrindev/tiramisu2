@@ -115,12 +115,12 @@ class QuizController extends Controller
         }
 
         // hapys sesi
-        session()->forget('jawaban-'.$i);
-        session()->forget('q-'.$i);
+        session()->forget(['jawaban-'.$i,'q-'.$i]);
+       // session()->forget('q-'.$i);
       }
 
       // selesai mengoreksi hapus kunci soal
-      session()->forget('qkey');
+      session()->forget(['qkey']);
 
       switch($benar)
       {
@@ -265,7 +265,10 @@ class QuizController extends Controller
 
       if(auth()->id() != $quiz->user_id)
       {
-        return redirect('/')->with('gagal','Akses ditolak');
+        if(auth()->user()->role == 'member')
+        {
+        	return redirect('/')->with('gagal','Akses ditolak');
+        }
       }
 
       request()->validate([
@@ -292,5 +295,41 @@ class QuizController extends Controller
       {
         return back()->with('sukses','Data berhasil di ubah yey *-*)/');
       }
+    }
+
+
+  	public function destroy()
+    {
+      $quiz = Quiz::findOrFail(request()->id);
+
+      if(auth()->id() != $quiz->user_id)
+      {
+        if(auth()->user()->role == 'member')
+        {
+        	return redirect('/')->with('gagal','Akses ditolak');
+        }
+      }
+
+      if($quiz->delete())
+      {
+        return back()->with('sukses',"Data berhasil dihapus");
+      }
+    }
+
+  	public function admin()
+    {
+      if(auth()->user()->role != 'admin')
+      {
+        return redirect('/')->with('gagal', 'Akses Ditolak');
+      }
+
+      $quizzes = Quiz::latest()->paginate(20);
+      $scores = QuizScore::get();
+
+      return view('quiz.admin', [
+        'quiz'		=> Quiz::get(),
+      	'quizzes'	=> $quizzes,
+        'scores'	=> $scores
+      ]);
     }
 }

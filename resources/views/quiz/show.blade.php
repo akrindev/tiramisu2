@@ -49,10 +49,10 @@
             </h3>
           </div>
           <div class="table-responsive">
-          <table class="card-table table table-outline text-nowrap table-vcenter table-striped table-hovered" style="font-size:14px;font-weight:400">
+          <table class="card-table table table-outline text-nowrap table-vcenter table-striped table-hover" style="font-size:14px;font-weight:400">
             <thead>
               <tr>
-                <th> No </th>
+                <th class="text-center w-1"><i class="icon-people"></i></th>
                 <th> Nama </th>
                 <th> Benar </th>
               <th> Salah </th>

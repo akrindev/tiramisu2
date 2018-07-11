@@ -38,7 +38,6 @@
 
 </div>
 
-<input type="hidden" name="qid-{{$id}}" value="{{ $data['quiz_id'] }}">
 <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 
 
