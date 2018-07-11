@@ -101,14 +101,14 @@
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/assets/js/quiz.js"></script>
 
-@guess
+@guest
 <script>
   function mulai()
   {
     swal('Kayaknya kamu harus login dulu deh','','warning');
   }
 </script>
-@endguess
+@endguest
 @auth
 <script>
   function mulai()
