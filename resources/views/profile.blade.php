@@ -79,6 +79,7 @@ endif;
             </tbody>
           </table>
 
+    @if(auth()->user()->quizScore)
           <hr class="m-0 p-0">
 
            <div class="card-header mt-0">
@@ -119,6 +120,7 @@ endif;
           </table>
             <a href="/quiz/profile" class="btn btn-outline-primary float-right">Selengkapnya</a>
           </div>
+    @endif
         </div>
       </div>
 

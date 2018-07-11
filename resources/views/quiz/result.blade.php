@@ -35,12 +35,15 @@
           </div>
             <div class="form-group mt-3">
               <a href="/quiz/mulai" class="btn btn-outline-primary"> Mulai lagi </a>
-              <a href="/quiz/baru" class="btn btn-outline-secondary"> Buat quiz </a>
+              <a href="/quiz/buat" class="btn btn-outline-secondary"> Buat quiz </a>
+
+              <a href="/quiz" class="btn btn-outline-success float-right"> Ke quiz </a>
             </div>
           </div>
         </div>
       </div>
 
+      @if ($score)
       <div class="col-md-5">
 
         <div class="card">
@@ -58,15 +61,15 @@
               </tr>
             </thead>
             <tr>
-              <td class="text-success"> {{ auth()->user()->quizScore->benar }} </td>
-                       <td class="text-danger"> {{ auth()->user()->quizScore->salah }} </td>
-                       <td class=""> {{ auth()->user()->quizScore->point }} </td>
+              <td class="text-success"> {{ $score->benar+$benar }} </td>
+                       <td class="text-danger"> {{ $score->salah+$salah }} </td>
+                       <td class=""> {{ $score->point+$point }} </td>
             </tr>
           </table>
         </div>
 
       </div>
-
+      @endif
     </div>
 
   </div>

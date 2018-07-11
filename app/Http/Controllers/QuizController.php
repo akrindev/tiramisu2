@@ -54,6 +54,11 @@ class QuizController extends Controller
 
   	public function ajax($id)
     {
+      if( ! request()->ajax() || ! session('qkey'))
+      {
+        die('Miaww senpai chann *-*)/');
+      }
+
       $id = ($id > 10) ? 1 : $id;
 
       return view('quiz.ajax',[
@@ -64,6 +69,11 @@ class QuizController extends Controller
 
   	public function ajaxTerjawab()
     {
+      if( ! request()->ajax() || ! session('qkey'))
+      {
+        die('Miaww senpai chann *-*)/');
+      }
+
       $terjawab = 0;
 
       for ($i = 1; $i <= 10;$i++)
@@ -144,42 +154,27 @@ class QuizController extends Controller
           break;
         default:
           $point = 2;
-          break;
       }
 
-      $score = Auth::user()->quizScore;
+      $benarku = auth()->user()->quizScore->benar ?? 0;
+      $salahku = auth()->user()->quizScore->salah ?? 0;
+      $pointku = auth()->user()->quizScore->point ?? 0;
 
-      $total_benar = 0;
-      $total_salah = 0;
-      $total_point = 0;
-
-      if( ! $score)
-      {
-        QuizScore::create([
-          'user_id' => auth()->id(),
-          'benar' => 0,
-          'salah'	=> 0,
-          'point'	=> 0
-        ]);
-      }
-      else
-      {
-        $total_benar = $score->benar;
-        $total_salah = $score->salah;
-        $total_point = $score->point;
-      }
-
-      $result = QuizScore::where('user_id',auth()->id())
-        ->update([
-      	'benar' => $total_benar + $benar,
-        'salah' => $total_salah + $salah,
-        'point' => $total_point + $point
+      $score = QuizScore::updateOrCreate(
+      [
+        'user_id' => auth()->id()
+      ],
+      [
+        'benar' 	=> $benarku + $benar,
+        'salah'		=> $salahku + $salah,
+        'point'		=> $pointku + $point
       ]);
 
       return view('quiz.result',[
       	'benar' => $benar,
         'salah' => $salah,
-        'point' => $point
+        'point' => $point,
+        'score'	=> Auth::user()->quizScore
       ]);
     }
 
