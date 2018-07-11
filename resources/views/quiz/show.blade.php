@@ -81,6 +81,13 @@
 
           </div>
         </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title"><i class="fe fe-activity"></i> Statistik Quiz</h3>
+          </div>
+          @include('inc.statistik_quiz')
+        </div>
       </div>
 
     </div>
