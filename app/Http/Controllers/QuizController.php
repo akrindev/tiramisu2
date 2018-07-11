@@ -180,7 +180,7 @@ class QuizController extends Controller
 
   	public function myProfile()
     {
-      $quizzes = Auth::user()->quiz()->paginate(10);
+      $quizzes = Auth::user()->quiz()->latest()->paginate(10);
 
       return view('auth.quiz',[
       	'quizzes' => $quizzes

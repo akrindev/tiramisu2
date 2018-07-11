@@ -79,7 +79,7 @@ endif;
             </tbody>
           </table>
 
-    @if(auth()->user()->quizScore)
+    @if( ! is_null(auth()->user()->quizScore))
           <hr class="m-0 p-0">
 
            <div class="card-header mt-0">
@@ -118,9 +118,14 @@ endif;
               </tr>
             </tbody>
           </table>
-            <a href="/quiz/profile" class="btn btn-outline-primary float-right">Selengkapnya</a>
           </div>
+
     @endif
+
+          <div class="card-body p-3">
+
+            <a href="/quiz/profile" class="btn btn-outline-primary float-right">Dashboard quiz</a>
+          </div>
         </div>
       </div>
 
