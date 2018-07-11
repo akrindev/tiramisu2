@@ -10,6 +10,9 @@
     </div>
     <div class="row">
       <div class="col-md-12">
+     @if(auth()->user()->role == 'admin')
+        <a href="/quiz/admin" class="btn btn-outline-primary mb-5">Dashboard Quiz Admin</a>
+     @endif
         <div class="card">
            <div class="card-header mt-0">
             <h4 class="card-title">Aktifitas Quiz</h4>
@@ -19,7 +22,7 @@
           <table class="table card-table table-striped text-nowrap table-vcenter">
             <thead>
               <tr>
-                <th> Quizku</th>
+                <th> Quiz</th>
                 <th class="text-green"> Benar </th>
                 <th class="text-danger"> Salah </th>
                 <th class="text-primary"> Point </th>
@@ -27,8 +30,8 @@
             </thead>
             <tbody>
               <tr>
-                <td> <div>{{ auth()->user()->quiz->count() }} </div>
-                  <small class="text-muted"> Quiz yang tersubmit</small>
+                <td> <div>{{ auth()->user()->quizScore->benar+auth()->user()->quizScore->salah }}x </div>
+                  <small class="text-muted"> Ngerjain quiz </small>
                        </td>
                 <td class="text-green"> {{ auth()->user()->quizScore->benar }}
                 <div class="progress progress-xs">
@@ -40,7 +43,9 @@
                 <div class="progress-bar bg-danger" style="width: {{ auth()->user()->quizScore->salah/(auth()->user()->quizScore->benar+auth()->user()->quizScore->salah)*100 }}%"></div>
              </div>
                 </td>
-                <td class="text-primary"> {{ auth()->user()->quizScore->point }}
+                <td class="text-primary">
+                  <div>{{ auth()->user()->quizScore->point }}</div>
+                  <div class="small text-muted">Terakhir ngerjain: {{ auth()->user()->quizScore->updated_at->diffForHumans() }}</div>
                 <div class="progress progress-xs">
                 <div class="progress-bar bg-primary" style="width: {{ auth()->user()->quizScore->point/(auth()->user()->quizScore->benar+auth()->user()->quizScore->salah)*100 }}%"></div>
              </div>
@@ -52,6 +57,8 @@
 
           <hr class="my-1">
   @endif
+
+@if ($quizzes->count() > 0)
            <div class="card-header mt-0">
             <h4 class="card-title">My Quiz</h4>
           </div>
@@ -71,13 +78,13 @@
                   <td class="text-success"> <div>{{ auth()->user()->quiz->sum('benar') }} </div>
                     <small class="text-muted">Menjawab dengan benar</small>
                   <div class="progress progress-xs">
-                <div class="progress-bar bg-success" style="width: {{ auth()->user()->quiz()->sum('benar')/(auth()->user()->quiz->sum('benar')+auth()->user()->quiz->sum('salah') == 0 ?: 1)*100 }}%"></div>
+                <div class="progress-bar bg-success" style="width: {{ auth()->user()->quiz()->sum('benar')/((auth()->user()->quiz->sum('benar')+auth()->user()->quiz->sum('salah') == 0) ? 1 : auth()->user()->quiz->sum('benar')+auth()->user()->quiz->sum('salah'))*100 }}%"></div>
              </div>
                   </td>
                   <td class="text-danger"> <div>{{ auth()->user()->quiz->sum('salah') }} </div>
                     <small class="text-muted">Menjawab salah</small>
                   <div class="progress progress-xs">
-                <div class="progress-bar bg-danger" style="width: {{ auth()->user()->quiz()->sum('salah')/(auth()->user()->quiz->sum('benar')+auth()->user()->quiz->sum('salah') == 0 ?: 1)*100 }}%"></div>
+                <div class="progress-bar bg-danger" style="width: {{ auth()->user()->quiz()->sum('salah')/((auth()->user()->quiz->sum('benar')+auth()->user()->quiz->sum('salah') == 0) ? 1: auth()->user()->quiz->sum('benar')+auth()->user()->quiz->sum('salah') )*100 }}%"></div>
              </div>
                   </td>
                   <td class="text-primary"> <div>{{ auth()->user()->quiz->sum('benar')+auth()->user()->quiz->sum('salah') }}</div>
@@ -88,7 +95,7 @@
               </tbody>
             </table>
           </div>
-
+@endif
         </div>
       </div>
 
@@ -108,20 +115,21 @@
             <div {{ $q->correct == 'd' ? 'class="text-success"':''}}><b>D:</b> @parsedown(e($q->answer_d)) </div>
 
             <div>
+              <hr class="my-1">
               <b>Jawaban benar: {{ $q->correct }}</b><br>
               <small class="text-muted">
-                {{ $q->created_at->diffForHumans() }}
+                {{ $q->created_at->diffForHumans() }} .
                 {!! $q->approved == 1 ? '<span class="text-success">Diterima</span>':'<span class="text-danger">Ditolak</span>'!!}
               </small>
               <br>
               <b>Dijawab sebanyak: </b> {{ $q->benar+$q->salah}}x<br>
               <b class="text-success"> {{ $q->benar }} </b>x menjawab dengan benar<br>
               <div class="progress progress-xs">
-                <div class="progress-bar bg-success" style="width: {{ $q->benar/($q->benar+$q->salah == 0 ?: 1)*100 }}%"></div>
+                <div class="progress-bar bg-success" style="width: {{ $q->benar/(($q->benar+$q->salah) == 0 ? 1 : $q->benar+$q->salah)*100 }}%"></div>
              </div>
               <b class="text-danger"> {{ $q->salah }} </b>x menjawab salah<br>
 <div class="progress progress-xs">
-                <div class="progress-bar bg-danger" style="width: {{ $q->salah/($q->benar+$q->salah == 0 ?: 1)*100 }}%"></div>
+                <div class="progress-bar bg-danger" style="width: {{ $q->salah/(($q->benar+$q->salah) == 0 ? 1 : $q->benar+$q->salah)*100 }}%"></div>
              </div>
 
              <div class="form-group mt-5">

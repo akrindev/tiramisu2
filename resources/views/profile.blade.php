@@ -110,7 +110,8 @@ endif;
                 <div class="progress-bar bg-danger" style="width: {{ auth()->user()->quizScore->salah/(auth()->user()->quizScore->benar+auth()->user()->quizScore->salah)*100 }}%"></div>
              </div>
                 </td>
-                <td class="text-primary"> {{ auth()->user()->quizScore->point }}
+                <td class="text-primary"> <div>{{ auth()->user()->quizScore->point }}</div>
+                  <small class="text-muted"></small>
                 <div class="progress progress-xs">
                 <div class="progress-bar bg-primary" style="width: {{ auth()->user()->quizScore->point/(auth()->user()->quizScore->benar+auth()->user()->quizScore->salah)*100 }}%"></div>
              </div>

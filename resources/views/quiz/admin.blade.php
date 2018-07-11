@@ -2,6 +2,11 @@
 
 @section('title','My quiz')
 
+@php
+$a = $quiz->take(1)->sortByDesc('created_at')->first();
+@endphp
+
+
 @section('content')
 <div class="my-5">
   <div class="container">
@@ -32,17 +37,17 @@
                   <td class="text-success"> <div>{{ $quiz->sum('benar') }} </div>
                     <small class="text-muted">Menjawab dengan benar</small>
                   <div class="progress progress-xs">
-                <div class="progress-bar bg-success" style="width: {{ $quiz->sum('benar')/($quiz->sum('benar')+$quiz->sum('salah') == 0 ?: 1)*100 }}%"></div>
+                <div class="progress-bar bg-success" style="width: {{ $quiz->sum('benar')/($quiz->sum('benar')+$quiz->sum('salah') == 0 ? 1 : $quiz->sum('benar')+$quiz->sum('salah'))*100 }}%"></div>
              </div>
                   </td>
                   <td class="text-danger"> <div>{{ $quiz->sum('salah') }} </div>
                     <small class="text-muted">Menjawab salah</small>
                   <div class="progress progress-xs">
-                <div class="progress-bar bg-danger" style="width: {{ $quiz->sum('salah')/($quiz->sum('benar')+$quiz->sum('salah') == 0 ?: 1)*100 }}%"></div>
+                <div class="progress-bar bg-danger" style="width: {{ $quiz->sum('salah')/($quiz->sum('benar')+$quiz->sum('salah') == 0 ? 1 : $quiz->sum('benar')+$quiz->sum('salah'))*100 }}%"></div>
              </div>
                   </td>
                   <td class="text-primary"> <div>{{ $quiz->sum('benar')+$quiz->sum('salah') }}</div>
-                    <small class="text-muted">Quizku di jawab sebanyak ↑</small>
+                    <small class="text-muted">Quiz di jawab</small>
 
                   </td>
                   <td> <div class="text-success"> {{ $quiz->where('approved',1)->count() }}</div><small class="text-muted"> Quiz diterima</small><br>
@@ -51,6 +56,10 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+          <div class="card-body p-3" style="font-size:14px;font-weight:400">
+            <strong> Terakhir di submit: </strong><span class="text-muted"> {{ $a->created_at->diffForHumans() }}</span><br>
+             <strong> Oleh: </strong><span class="text-muted"> {{ $a->user->name }}</span><br>
           </div>
 
         </div>
@@ -78,6 +87,8 @@
             <div {{ $q->correct == 'd' ? 'class="text-success"':''}}><b>D:</b> @parsedown(e($q->answer_d)) </div>
 
             <div>
+              <hr class="my-1">
+              <b>Oleh :</b> <a href="/profile/{{$q->user->provider_id}}">{{$q->user->name}}</a><br>
               <b>Jawaban benar: {{ $q->correct }}</b><br>
               <small class="text-muted">
                 {{ $q->created_at->diffForHumans() }}
@@ -87,20 +98,26 @@
               <b>Dijawab sebanyak: </b> {{ $q->benar+$q->salah}}x<br>
               <b class="text-success"> {{ $q->benar }} </b>x menjawab dengan benar<br>
               <div class="progress progress-xs">
-                <div class="progress-bar bg-success" style="width: {{ $q->benar/($q->benar+$q->salah == 0 ?: 1)*100 }}%"></div>
+                <div class="progress-bar bg-success" style="width: {{ $q->benar/($q->benar+$q->salah == 0 ? 1 : $q->benar+$q->salah)*100 }}%"></div>
              </div>
               <b class="text-danger"> {{ $q->salah }} </b>x menjawab salah<br>
 <div class="progress progress-xs">
-                <div class="progress-bar bg-danger" style="width: {{ $q->salah/($q->benar+$q->salah == 0 ?: 1)*100 }}%"></div>
+                <div class="progress-bar bg-danger" style="width: {{ $q->salah/($q->benar+$q->salah == 0 ? 1 : $q->benar+$q->salah)*100 }}%"></div>
              </div>
 
              <div class="form-group mt-5">
                <a href="/quiz/edit/{{$q->id}}" class="btn btn-secondary">edit</a>
                {!! form_open('/quiz/destroy', ['id'=>'hapus']) !!}
                @csrf
-               @method("DELETE")
+
                <input type="hidden" value="{{$q->id}}" name="id" nyan="{{$q->id}}">
-               <button type="submit" class="btn btn-outline-danger float-right">hapus</button>
+            @if ($q->approved == 1)
+               <input type="hidden" value="0" name="status">
+               <button type="submit" class="btn btn-outline-danger float-right">Tolak</button>
+            @else
+               <input type="hidden" value="1" name="status">
+               <button type="submit" class="btn btn-outline-success float-right">Terima</button>
+            @endif
                {!! form_close() !!}
               </div>
             </div>
@@ -126,22 +143,21 @@
   $("#hapus").submit(function(e){
   	e.preventDefault();
     swal({
-    	title: 'Hapus quiz ini?',
+    	title: 'Ubah status quiz ini?',
       	text:'',
       	icon: 'warning',
       	buttons: true,
     }).then((gas) => {
     	if(gas)
           {
-            swal('menghapus');
+            swal('mengubah');
             $.ajax({
             	url: $(this).attr('action'),
               	type:'post',
               	data: $(this).serialize(),
-              	success:function(){
-                  swal('dihapus');
-                var rm = $(this).attr('nyan');
-                  $(".nyan-"+rm).slideUp();
+              	success:function(e){
+                  swal('diubah ketika refresh');
+
                 },
               	error: function(r,t,y)
               {

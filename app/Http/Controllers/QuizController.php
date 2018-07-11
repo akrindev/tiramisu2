@@ -293,21 +293,22 @@ class QuizController extends Controller
     }
 
 
+  	/**
+    * Only admin can do this action
+    */
   	public function destroy()
     {
       $quiz = Quiz::findOrFail(request()->id);
 
-      if(auth()->id() != $quiz->user_id)
+      if(auth()->user()->role == 'member')
       {
-        if(auth()->user()->role == 'member')
-        {
-        	return redirect('/')->with('gagal','Akses ditolak');
-        }
-      }
+      	return redirect('/')->with('gagal','Akses ditolak');       }
 
-      if($quiz->delete())
+      $quiz->approved = request()->status;
+
+      if($quiz->save())
       {
-        return back()->with('sukses',"Data berhasil dihapus");
+        return response()->json(['success'=>true]);
       }
     }
 

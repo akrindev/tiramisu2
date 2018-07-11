@@ -178,7 +178,7 @@ Route::get('/quiz/koreksi', 'QuizController@koreksi')->middleware('auth');
 Route::get('/quiz/profile', 'QuizController@myProfile')->middleware('auth');
 Route::get('/quiz/edit/{id}', 'QuizController@edit')->middleware('auth');
 Route::post('/quiz/edit/{id}', 'QuizController@editSubmit')->middleware('auth');
-Route::delete('/quiz/destroy', 'QuizController@destroy')->middleware('auth');
+Route::post('/quiz/destroy', 'QuizController@destroy')->middleware('auth');
 
 Route::get('/quiz/admin', 'QuizController@admin')->middleware('auth');
 
