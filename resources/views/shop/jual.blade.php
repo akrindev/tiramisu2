@@ -105,12 +105,13 @@
         <label class="form-label">
           No. Whatsapp:
         </label>
-        <input type="number" pattern="/(\()?(\+62|62|0)(\d{2,3})?\)?[ .-]?\d{2,4}[ .-]?\d{2,4}/" name="whatsapp" class="form-control {{ $errors->has('whatsapp') ? 'is-invalid':''}}" required>
+        <input type="text" pattern="(\()?(\+62|62|0)(\d{2,3})?\)?[ .-]?\d{2,4}[ .-]?\d{2,4}" name="whatsapp" class="form-control {{ $errors->has('whatsapp') ? 'is-invalid':''}}" placeholder="contoh: +62823456789" value="" required>
         @if ($errors->has('whatsapp'))
         <small class="text-danger">
           {{ $errors->first('whatsapp') }}
         </small>
         @endif
+        <small class="text-muted">Di awali dengan kode negara</small>
       </div>
 
       <button class="btn btn-pill btn-outline-primary" type="submit">Submit</button>

@@ -8,7 +8,7 @@
    <div class="custom-controls-stacked">
          <label class="custom-control custom-radio">
             <input type="radio" class="custom-control-input" name="jawaban-{{ $id }}" value="a" {{ session('jawaban-'.$id) == 'a' ? 'checked': '' }}>
-            <div class="custom-control-label">{{ @parsedown(e($data['jawaban_a'])) }}</div>
+            <div class="custom-control-label">@parsedown(e($data['jawaban_a'])) </div>
          </label>
    </div>
 
@@ -16,7 +16,7 @@
    <div class="custom-controls-stacked">
          <label class="custom-control custom-radio">
             <input type="radio" class="custom-control-input" name="jawaban-{{ $id }}" value="b" {{ session('jawaban-'.$id) == 'b' ? 'checked': '' }}>
-            <div class="custom-control-label">{{ @parsedown(e($data['jawaban_b'])) }}</div>
+            <div class="custom-control-label">@parsedown(e($data['jawaban_b']))</div>
          </label>
    </div>
 
@@ -24,7 +24,7 @@
    <div class="custom-controls-stacked">
          <label class="custom-control custom-radio">
             <input type="radio" class="custom-control-input" name="jawaban-{{ $id }}" value="c" {{ session('jawaban-'.$id) == 'c' ? 'checked': '' }}>
-            <div class="custom-control-label">{{ @parsedown(e($data['jawaban_c'])) }}</div>
+            <div class="custom-control-label">@parsedown(e($data['jawaban_c']))</div>
          </label>
    </div>
 
@@ -32,7 +32,7 @@
    <div class="custom-controls-stacked">
          <label class="custom-control custom-radio">
             <input type="radio" class="custom-control-input" name="jawaban-{{ $id }}" value="d" {{ session('jawaban-'.$id) == 'd' ? 'checked': '' }}>
-            <div class="custom-control-label">{{ @parsedown(e($data['jawaban_d'])) }}</div>
+            <div class="custom-control-label">@parsedown(e($data['jawaban_d'])) </div>
          </label>
    </div>
 
