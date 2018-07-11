@@ -47,7 +47,7 @@ $i = $color[$rand[0]];
 <div class="p-3">
 @foreach ($randartikel as $artikel)
 
-<i class="fe fe-plus"></i> <a href="/forum/{$artikel->slug}">{{ $artikel->judul }}</a> <small class="text-muted">({{ time_ago($artikel->created_at) }}) </small>
+<i class="fe fe-plus"></i> <a href="/forum/{{$artikel->slug}}">{{ $artikel->judul }}</a> <small class="text-muted">({{ time_ago($artikel->created_at) }}) </small>
   <br>
 
 @endforeach

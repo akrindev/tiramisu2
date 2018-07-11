@@ -1,7 +1,7 @@
 @php
 $scores = App\QuizScore::take(10)->get();
 
-$scores = collect($scores)->sortByDesc('benar')->sortByDesc('point')->sortBy('salah');
+$scores = collect($scores)->sortByDesc('benar')->sortByDesc('point');
 $i=1;
 @endphp
 <tbody>
