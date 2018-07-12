@@ -23,6 +23,7 @@
             <thead>
               <tr>
                 <th> Quiz</th>
+                <th> Peringkat</th>
                 <th class="text-green"> Benar </th>
                 <th class="text-danger"> Salah </th>
                 <th class="text-primary"> Point </th>
@@ -32,6 +33,10 @@
               <tr>
                 <td> <div>{{ auth()->user()->quizScore->benar+auth()->user()->quizScore->salah }}x </div>
                   <small class="text-muted"> Ngerjain quiz </small>
+                       </td>
+
+                <td> <div>{{ auth()->user()->quizScore->select(\DB::Raw('point, FIND_IN_SET( point, (SELECT GROUP_CONCAT( point ORDER BY point DESC) FROM quiz_scores) ) AS rank'))->first()->rank }} </div>
+                  <small class="text-muted"> Ranking</small>
                        </td>
                 <td class="text-green"> {{ auth()->user()->quizScore->benar }}
                 <div class="progress progress-xs">

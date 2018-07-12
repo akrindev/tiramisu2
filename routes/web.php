@@ -168,6 +168,7 @@ Route::delete('/shop/delete', 'ShopController@delete')->middleware('auth');
 * Quiz Toram
 */
 Route::get('/quiz', 'QuizController@show');
+Route::get('/quiz/score', 'QuizController@allScores');
 Route::get('/quiz/mulai', 'QuizController@mulaiQuiz')->middleware('auth');
 Route::get('/quiz/begin', 'QuizController@kerjakan')->middleware('auth');
 

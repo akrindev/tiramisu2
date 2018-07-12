@@ -89,7 +89,7 @@ endif;
           <table class="table card-table table-striped text-nowrap table-vcenter">
             <thead>
               <tr>
-                <th> Quizku</th>
+                <th> Peringkat</th>
                 <th class="text-green"> Benar </th>
                 <th class="text-danger"> Salah </th>
                 <th class="text-primary"> Point </th>
@@ -97,8 +97,8 @@ endif;
             </thead>
             <tbody>
               <tr>
-                <td> <div>{{ auth()->user()->quiz->count() }} </div>
-                  <small class="text-muted"> Quiz yang tersubmit</small>
+                <td> <div>{{ auth()->user()->quizScore->select(\DB::Raw('point, FIND_IN_SET( point, (SELECT GROUP_CONCAT( point ORDER BY point DESC) FROM quiz_scores) ) AS rank'))->first()->rank }} </div>
+                  <small class="text-muted"> Ranking</small>
                        </td>
                 <td class="text-green"> {{ auth()->user()->quizScore->benar }}
                 <div class="progress progress-xs">
@@ -111,6 +111,7 @@ endif;
              </div>
                 </td>
                 <td class="text-primary"> <div>{{ auth()->user()->quizScore->point }}</div>
+                  <small class="text-muted">terakhir: {{ auth()->user()->quizScore->updated_at->diffForHumans() }}</small>
                   <small class="text-muted"></small>
                 <div class="progress progress-xs">
                 <div class="progress-bar bg-primary" style="width: {{ auth()->user()->quizScore->point/(auth()->user()->quizScore->benar+auth()->user()->quizScore->salah)*100 }}%"></div>

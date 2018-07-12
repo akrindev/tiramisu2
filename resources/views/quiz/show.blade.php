@@ -47,6 +47,10 @@
             <h3 class="card-title">
               <i class="fe fe-award"></i> 20 Top Scores
             </h3>
+
+            <div class="card-options">
+              <a href="/quiz/score" class="btn btn-sm btn-pill btn-outline-primary">Lihat semua</a>
+            </div>
           </div>
           <div class="table-responsive">
           <table class="card-table table table-outline text-nowrap table-vcenter table-striped table-hover" style="font-size:14px;font-weight:400">
@@ -97,16 +101,7 @@
 @endsection
 
 @section('footer')
-<link href="/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
-<script src="/assets/js/bootstrap-markdown.js">
-</script>
-<script src="/assets/js/markdown.js">
-</script>
-<script src="/assets/js/to-markdown.js">
-</script>
-
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="/assets/js/quiz.js"></script>
 
 @guest
 <script>
