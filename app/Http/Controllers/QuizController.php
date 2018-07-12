@@ -294,7 +294,7 @@ class QuizController extends Controller
 
   	public function allScores()
     {
-      $scores = QuizScore::select(\DB::Raw('*, FIND_IN_SET( point, (SELECT GROUP_CONCAT( point ORDER BY point DESC) FROM quiz_scores) ) AS rank'))->orderBy('rank','asc')->paginate(50);
+      $scores = QuizScore::orderBy('point','desc')->paginate(50);
 
       return view('quiz.all_score',[
       	'scores' => $scores

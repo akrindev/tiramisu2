@@ -2,6 +2,11 @@
 
 @section('title','Top score quiz')
 
+@php
+
+$page = request()->page > 1 ? (request()->page-1)*50 : 1;
+@endphp
+
 @section('content')
 <div class="my-5">
   <div class="container">
@@ -39,7 +44,7 @@
       <div style="background-image: url(https://graph.facebook.com/{{$score->user->provider_id}}/picture?type=normal)" class="avatar d-block"></div></td>
      <td>
        <div> {{ str_limit($score->user->name,20) }}</div>
-       <div class="small text-muted">Peringkat {{ $score->rank }} </div>
+       <div class="small text-muted">Peringkat {{ $page }} </div>
      </td>
      <td>  <b>{{ $score->benar }}</b>
        <div class="progress progress-xs">
@@ -61,7 +66,7 @@
      </td>
 
    </tr>
-
+@php $page++; @endphp
 @endforeach
 </tbody>
 
