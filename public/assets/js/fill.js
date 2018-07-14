@@ -86,7 +86,7 @@ class SIMULATOR {
     }
 
     getDropdown(slot_num) {
-        let buffer = `<select id="slot${slot_num}" onchange="update_stats(${slot_num})"><option value=0>CHOOSE STAT</option>`;
+        let buffer = `<select class="form-control form-control-sm col-6"  id="slot${slot_num}" onchange="update_stats(${slot_num})"><option value=0>CHOOSE STAT</option>`;
         let last_cat = '';
         let cat_id = 0;
 
@@ -94,7 +94,7 @@ class SIMULATOR {
             if (this.weap_arm === 'a' && data.cat === 'Awaken Elements') continue;
             if (last_cat !== data.cat) {
                 // add heading
-                buffer += `<option value="-1" disabled="disabled" style="color: blue">&gt;--${data.cat}--&lt;</option>`;
+                buffer += `<option value="-1" disabled="disabled" style="color: blue">--${data.cat}--</option>`;
                 last_cat = data.cat;
             }
 
@@ -570,7 +570,7 @@ function update_config(aspect) {
 function build_stat_dropdown() {
   let buffer = '';
   for (let i = 0; i < 6; i++) {
-    buffer += Simulator.getDropdown(i) + ` <input style="width: 50px;" disabled=disabled type="number" value='' id='slot${i}_value' oninput="update_stats(${i})"></input><br />`;
+    buffer += Simulator.getDropdown(i) + ` <input class="col-3 form-control form-control-sm pl-1" disabled=disabled type="number" value='' id='slot${i}_value' oninput="update_stats(${i})"></input><br />`;
   }
   document.getElementById('stat_menu').innerHTML = buffer;
 }
@@ -605,7 +605,7 @@ function show_details(pot) {
     buffer += `<tr><td>${++s}</td><td>${step[0]}</td><td style="text-align: right">${step[1]}</td></tr>`
   }
 
-  buffer += `</table><div style="text-align: right"><button style="background: none; border: none; color: blue;" onclick="copy_formula_for_pot('${pot}')">[Copy Formula]</button></div><h3 style="text-align: center">Materials Used</h3><table style="width:100%"><tr><th style="width:75%">Materials</th><th>Pts.</th></tr>`
+  buffer += `</table><div style="text-align: right"></div><h3 style="text-align: center">Bahan yang digunakan</h3><table style="width:100%"><tr><th style="width:75%">Bahan</th><th>Pts.</th></tr>`
 
   for (let m in formula.mats) {
     buffer += `<tr><td style="text-align: left">${m}</td><td style="text-align: right">${formula.mats[m]}</td></tr>`;
@@ -658,11 +658,11 @@ function sync_ui_with_sim () {
 }
 
 function prompt_potential() {
-  let pot = prompt('Please enter the amount of potential to create a statting recipe for.');
+  let pot = prompt('Masukkan jumlah potensi');
   if (!pot) return;
 
   pot = parseInt(pot);
-  if (!pot || pot < 1) return alert('Please enter a valid positive number.');
+  if (!pot || pot < 1) return alert('Potensi tidak sah gan.');
   get_results(pot);
 }
 

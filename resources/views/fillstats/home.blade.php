@@ -11,6 +11,11 @@
   @include('inc.cari')
             <div class="row">
 
+              <div class="col-12">
+                <div class="alert alert-info">
+                  <b>New!!</b> Fill stats calculator <a href="/fill_stats/calculator">Klik disini</a>
+                </div>
+              </div>
               <!-- loop -->
 @php
 

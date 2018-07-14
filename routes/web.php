@@ -71,7 +71,7 @@ Route::get('/store-crysta', 'CrystaController@tambah')->middleware('auth');
 Route::post('/store-crysta', 'CrystaController@tambahPost')->middleware('auth');
 
 Route::get('/fill_stats', 'FillController@index');
-Route::gwt('/fill_stats/calculator', 'FillController@calculator');
+Route::get('/fill_stats/calculator', 'FillController@calculator');
 Route::get('/fill_stats/add', 'FillController@add');
 Route::post('/fill_stats/add', 'FillController@addPost');
 Route::get('/fill_stats/{type}', 'FillController@single');
