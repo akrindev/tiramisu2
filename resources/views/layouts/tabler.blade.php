@@ -189,6 +189,11 @@ $crysta = new Crysta;
                   <li class="nav-item">
                     <a href="/gallery" class="nav-link"><i class="fe fe-image"></i> Gallery</a>
                   </li>
+
+                  <li class="nav-item">
+                    <a href="/bgm" class="nav-link"><i class="fe fe-music"></i>Background music</a>
+                  </li>
+
                   <li class="nav-item">
                     <a href="/shop" class="nav-link"><i class="fe fe-shopping-cart"></i> Marketplace</a>
                   </li>
@@ -228,6 +233,14 @@ $crysta = new Crysta;
 
  <script src="/assets/js/lazy.js"></script>
 
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-109854426-2', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
 
   </body>
 </html>

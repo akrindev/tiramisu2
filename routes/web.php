@@ -17,6 +17,14 @@ Route::get('/', function () {
 Route::get('/sitemap.xml', 'SitemapController@index');
 
 /**
+*
+* Background Music
+*/
+Route::get('/bgm', 'BgmController@show');
+Route::get('/bgm/{slug}', 'BgmController@single');
+Route::post('/bgm/{slug}', 'BgmController@postComment')->middleware('auth');
+Route::delete('/bgm/destroy', 'BgmController@destroy')->middleware('auth');
+/**
 * About Us
 */
 Route::get('/kebijakan-privasi', 'AboutController@kebijakanPrivasi');
