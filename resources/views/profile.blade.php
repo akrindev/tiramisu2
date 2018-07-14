@@ -89,7 +89,9 @@ endif;
           <table class="table card-table table-striped text-nowrap table-vcenter">
             <thead>
               <tr>
-                <th> Peringkat</th>
+         <!-- help me :'(
+			<th> Peringkat</th>
+		-->
                 <th class="text-green"> Benar </th>
                 <th class="text-danger"> Salah </th>
                 <th class="text-primary"> Point </th>
@@ -97,9 +99,10 @@ endif;
             </thead>
             <tbody>
               <tr>
-                <td> <div>{{ auth()->user()->quizScore->select(\DB::Raw('point, FIND_IN_SET( point, (SELECT GROUP_CONCAT( point ORDER BY point DESC) FROM quiz_scores) ) AS rank'))->first()->rank }} </div>
+<!--  help me :'(
+               <td> <div>{{ auth()->user()->quizScore->select(\DB::Raw('point, FIND_IN_SET( point, (SELECT GROUP_CONCAT( point ORDER BY point DESC) FROM quiz_scores) ) AS rank'))->first()->rank }} </div>
                   <small class="text-muted"> Ranking</small>
-                       </td>
+                       </td> -->
                 <td class="text-green"> {{ auth()->user()->quizScore->benar }}
                 <div class="progress progress-xs">
                 <div class="progress-bar bg-green" style="width: {{ auth()->user()->quizScore->benar/(auth()->user()->quizScore->benar+auth()->user()->quizScore->salah)*100 }}%"></div>

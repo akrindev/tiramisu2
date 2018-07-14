@@ -1,7 +1,5 @@
 @php
-$scores = App\QuizScore::take(20)->get();
-
-$scores = collect($scores)->sortByDesc(['point']);
+$scores = App\QuizScore::orderBy('point','desc')->paginate(20);
 
 $i=1;
 @endphp

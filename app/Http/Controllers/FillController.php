@@ -9,6 +9,11 @@ use Auth;
 
 class FillController extends Controller
 {
+
+  	public function calculator()
+    {
+      return view('fillstats.calculator');
+    }
     public function index()
     {
       $items = Fill_stat::get();
