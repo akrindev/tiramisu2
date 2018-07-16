@@ -58,4 +58,14 @@
     </url>
   @endforeach
 
+
+
+  @foreach ($bgm as $bm)
+    <url>
+      <loc>{{ url('/bgm/' . $bm->slug) }}</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+    </url>
+  @endforeach
+
 </urlset>
