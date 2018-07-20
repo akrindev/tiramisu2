@@ -114,6 +114,7 @@ $colors = ['blue','green','orange','red','yellow','teal','purple','dark','pink']
         @csrf
         <div class="form-group">
           <label class="form-label">Upload image</label>
+          <div id="preview"></div>
 
    <div class="custom-file">
        <input type="file" class="custom-file-input mr-5" name="gambar" id="gambar" accept="image/*">
@@ -124,6 +125,7 @@ $colors = ['blue','green','orange','red','yellow','teal','purple','dark','pink']
 
         <button type="submit" class="btn btnku btn-pill btn-outline-primary">Unggah</button>
 {!! form_close() !!}
+        <hr class="my-2">
 
         <div class="form-group">
           <label class="form-result">Result</label>
@@ -153,8 +155,28 @@ $colors = ['blue','green','orange','red','yellow','teal','purple','dark','pink']
 @endsection
 
 @section('footer')
+
+<script>
+function fileReader(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+
+            $('#preview').html('Preview: <img src="'+e.target.result+'" class="img-fluid mb-2"/>');
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
+<script>
+ $("#gambar").change(function(){
+   fileReader(this);
+ })
+</script>
+
 <script>
   $(document).ready(function(){
+
       $('#my-upload').on('submit', function(e){
         e.preventDefault();
         var token = '{{ csrf_token() }}';
