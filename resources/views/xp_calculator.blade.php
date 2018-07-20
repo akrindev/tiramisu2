@@ -9,8 +9,14 @@
           <div class="container">
    @include('inc.cari')
               <div class="card">
-                <div class="card-body">
+                  <div class="card-header">
                   <h3 class="card-title">Toram Exp calculator</h3>
+                  </div>
+                  <div class="card-alert alert alert-info">
+                    <b>New!!</b> Fill stats calculator <a href="/fill_stats/calculator"> Click here </a>
+                  </div>
+
+                <div class="card-body">
   <div class="row">
 
     <div class="h3 mb-5 col-12">Harga</div>
