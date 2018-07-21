@@ -56,6 +56,33 @@ $crysta = new Crysta;
 <meta property="fb:app_id" content="2008283499456981"/>
 
 <!-- // open graph -->
+<meta name="google-site-verification" content="da3qNV1VnD0nhZNfFMx3Ov_6dnyvYMlUT7OChWqSbmY" />
+<meta name="description" content="@yield('description')">
+<meta name='language' content='id_id'/>
+<meta name='robots' content='all,index,follow'/>
+<meta content='follow, all' name='alexabot'/>
+<meta content='id' name='language'/>
+<meta content='Indonesia' name='geo.placename'/>
+<meta content='global' name='target'/>
+<meta content='Indonesia' name='geo.country'/>
+<meta content='all' name='googlebot'/>
+<meta content='all' name='msnbot'/>
+<meta content='all' name='Googlebot-Image'/>
+<meta content='all' name='Slurp'/>
+<meta content='all' name='ZyBorg'/>
+<meta content='all' name='Scooter'/>
+<meta content='ALL' name='spiders'/>
+<meta content='general' name='rating'/>
+<meta content='all' name='WEBCRAWLERS'/>
+
+
+<script type='application/ld+json'>
+{
+	 "@context": "http://schema.org",
+	 "@type": "WebSite",
+	 "url": "{{ url('/') }}"
+ }
+</script>
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">

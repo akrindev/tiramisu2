@@ -211,6 +211,9 @@ function fileReader(input) {
           data: data,
           processData: false,
           beforeSend:function(){
+
+            $(".btnku").html('<i class="fa fa-spinner fa-spin"></i> Mengunggah...')
+              .addClass('disabled');
           },
           success: function(data){
 

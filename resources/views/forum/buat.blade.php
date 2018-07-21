@@ -189,17 +189,16 @@ function fileReader(input) {
     		var xhr = new window.XMLHttpRequest();
 
     		xhr.upload
-              .addEventListener(
-              	"progress",
-                function(evt) {
-      				if (evt.lengthComputable) {
-        			var percentComplete = evt.loaded / evt.total;
+              .addEventListener("progress", function(evt) {
+      			if (evt.lengthComputable)
+                {
+        		   var percentComplete = evt.loaded / evt.total;
         			percentComplete = parseInt(percentComplete * 100);
 
             $(".btnku").html('<i class="fa fa-spinner fa-spin"></i> Mengunggah... ('+percentComplete+'%)')
               .addClass('disabled');
-      		}
-   			 }, false);
+      		   }
+   			  }, false);
 
     		return xhr;
  		  },
@@ -210,7 +209,10 @@ function fileReader(input) {
           contentType: false,
           data: data,
           processData: false,
-          beforeSend:function(){
+          beforeSend: function(){
+
+            $(".btnku").html('<i class="fa fa-spinner fa-spin"></i> Mengunggah...')
+              .addClass('disabled');
           },
           success: function(data){
 

@@ -6,7 +6,10 @@ $randartikel = DB::table('forums')->inRandomOrder()->take(5)->get();
 
 @endphp
 <div class="d-none d-sm-block">
+
   @if (count($tags) > 0)
+
+<ul class="list-group list-group-flush">
   	@foreach ($tags as $tag)
   @php
 
@@ -14,9 +17,6 @@ $color = ['success','warning','primary','danger','secondary'];
 $rand = array_rand($color,2);
 $i = $color[$rand[0]];
   @endphp
-
-
-<ul class="list-group list-group-flush">
   <li class="list-group-item">
       <a href="/forum/tag/{{$tag->name}}">{{ $tag->name}} </a>
     <span class="badge badge-{{$i}} float-right">{{ DB::table('forums')->where('tags','like','%'.$tag->name.'%')->whereNull('deleted_at')->count() }}</span>
