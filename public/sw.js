@@ -8,7 +8,8 @@ const filesToCache = [
   '/assets/js/bootstrap-markdown.js',
   '/assets/js/markdown.js',
   '/img/potum.gif',
-  '//unpkg.com/sweetalert/dist/sweetalert.min.js'
+  '//unpkg.com/sweetalert/dist/sweetalert.min.js',
+  '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
 ];
 
 self.addEventListener('install', function(event) {

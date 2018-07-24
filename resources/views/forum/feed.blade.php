@@ -56,11 +56,12 @@
                       <tr>
                         <td width=85% class="px-2 py-2">
                           <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{ $pos->user->provider_id }}/picture?type=normal" class="avatar float-left mr-4 lazyload">
-                          {!! $pos->pinned == 1 ? '<i class="fa fa-paperclip"></i>':'' !!} <a href="/forum/{{ $pos->slug }}"><b> {{ str_limit($pos->judul,65) }} </b></a> <br>
+                          {!! $pos->pinned == 1 ? '<i class="fa fa-paperclip"></i>':'' !!}
+                          <a href="/forum/{{ $pos->slug }}"><b> {{ str_limit($pos->judul,65) }} </b></a> <br>
                         <small class="text-muted">
    @php $nama = explode(' ',$pos->user->name); @endphp
 
-                        {{ $nama[0] }} • {{ time_ago($pos->created_at) }} •
+                        By: {{ $nama[0] }} &nbsp; {{ time_ago($pos->created_at) }} <br />
      @foreach (explode(',',$pos->tags) as $tag)
 @php
 $color = ['success','warning','primary','danger','secondary'];

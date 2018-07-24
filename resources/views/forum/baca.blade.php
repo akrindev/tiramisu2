@@ -2,7 +2,7 @@
 
 
 @section('title',$data->judul)
-@section('description',str_limit(strip_tags($data->body,140)))
+@section('description',str_limit(strip_tags((new Parsedown)->text($data->body),140)))
 @section('image',to_img($data->body))
 
 @section('content')
@@ -46,7 +46,8 @@ $tags = explode(',', $tags);
 
           <div class="card-body text-wrap p-3">
 
-     <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{$data->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4 lazyload"> <a href="/profile/{{$data->user->provider_id }}"> <b> {{ $data->user->name }} </b></a><br> <small class="text-muted"> {{ waktu($data->created_at) }}  . <i class="fe fe-eye"></i> {{ $data->views }} <i class="fe fe-message-square"></i> {{ $data->comment->count() }} </small>
+     <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{$data->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4 lazyload"><a href="/profile/{{$data->user->provider_id }}" data-author="{{ $data->user->name }}"> <b> {{ $data->user->name }} </b></a><br>
+            <small class="text-muted"> {{ waktu($data->created_at) }}  &nbsp; <i class="fe fe-eye"></i> {{ $data->views }} &nbsp; <i class="fe fe-message-square"></i> {{ $data->comment->count() }} </small>
 
             @if(auth()->user() && auth()->user()->id == $data->user_id)
 
@@ -57,14 +58,13 @@ $tags = explode(',', $tags);
             <hr class="my-2">
             <div class="my-1">
               @foreach ($tags as $tag => $n)
-              <a class="tag"> {{ $n }} </a>
+              <a class="tag" href="/forum/tag/{{ $n }}"> {{ $n }} </a>
               @endforeach
             </div>
             <div class="body-text">
             @parsedown(e($data->body))
 
-              @auth
-
+  @auth
 
          @if (auth()->user()->role == 'admin')
             {!! form_open(url()->current().'/pin') !!}
@@ -89,7 +89,7 @@ $tags = explode(',', $tags);
 
          @endif
 
-              @endauth
+@endauth
             </div>
           </div>
         </div>
@@ -100,7 +100,7 @@ $tags = explode(',', $tags);
 		<div class="card p-0">
           <div class="card-body p-3">
             <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{$comment->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4 lazyload">
-            <b><a href="/profile/{{$comment->user->provider_id }}">  {{ $comment->user->name }}</a> </b> <br>
+            <b><a href="/profile/{{$comment->user->provider_id }}" data-author="{{ $comment->user->name }}">  {{ $comment->user->name }}</a> </b> <br>
             <small class="text-muted">{{ waktu($comment->created_at) }}</small>
             <hr class="my-2">
             <div class="body-text">
@@ -143,7 +143,7 @@ $tags = explode(',', $tags);
 <hr class="my-1">
           <div id="#reply{{$reply->id}}" class="p-2">
             <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{$reply->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4 lazyload">
-            <b><a href="/profile/{{$reply->user->provider_id }}">  {{ $reply->user->name }}</a> </b> <small class="text-muted"> • ({{ waktu($reply->created_at)}})</small><br>
+            <b><a href="/profile/{{$reply->user->provider_id }}" data-author="{{ $comment->user->name }}">  {{ $reply->user->name }}</a> </b> <small class="text-muted"> • ({{ waktu($reply->created_at)}})</small><br>
             <div class="media-body">
             @parsedown(e($reply->body))
             </div>
