@@ -104,7 +104,14 @@ Route::delete('/edit/mob/delete', 'MobController@destroy')->middleware('auth');
 Route::get('/cari', 'CariController@cari');
 Route::post('/cari', 'CariController@cari');
 
+/*
+*
+* Admin page
+*/
+Route::get('/admin', 'AdminController@home')->middleware(['admin']);
 
+Route::get('/admin/users', 'AdminController@users');
+//->middleware(['admin']);
 /**
 * Forum Routes
 */

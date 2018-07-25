@@ -27,6 +27,11 @@ class User extends Authenticatable
          'remember_token',
     ];
 
+  	public function isAdmin()
+    {
+      return $this->role == 'admin' ? true : false;
+    }
+
 
   	public function contact()
     {

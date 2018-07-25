@@ -152,7 +152,10 @@ return [
          */
 
       Laravel\Socialite\SocialiteServiceProvider::class,
-      Intervention\Image\ImageServiceProvider::class,        /*
+      Intervention\Image\ImageServiceProvider::class,
+      Yajra\Datatables\DatatablesServiceProvider::class,
+
+      /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
@@ -214,6 +217,7 @@ return [
 
       'Socialite' => Laravel\Socialite\Facades\Socialite::class,
       'Image' => Intervention\Image\Facades\Image::class,
+      'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     ],
 
 ];
