@@ -71,6 +71,72 @@
     </div>
 
     <div class="row">
+
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fe fe-user"></i> Visitor and views
+            </h3>
+         </div>
+
+         <div class="table-responsive">
+         <table class="card-table table table-outline table-vcenter table-striped" style="font-size:14px;font-weight:400">
+           <thead>
+             <tr>
+               <th>Page</th>
+               <th>Visitor</th>
+               <th>Views</th>
+             </tr>
+           </thead>
+       @foreach ($visitor as $visit)
+           <tr>
+             <td> {{ $visit['pageTitle'] }} </td>
+             <td> {{ $visit['visitors'] }} </td>
+             <td> {{ $visit['pageViews'] }} </td>
+           </tr>
+       @endforeach
+         </table>
+        </div>
+      </div>
+
+    </div>
+
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fe fe-user"></i> Total Visitor and views
+            </h3>
+         </div>
+           <div class="card-chart-bg" style="height: 50%">
+             <div id="tvisit"></div>
+          </div>
+
+         <div class="o-auto" style="height: 280px">
+         <table class="card-table table table-outline table-vcenter table-striped" style="font-size:14px;font-weight:400">
+           <thead>
+             <tr>
+               <th>Page</th>
+               <th>Visitor</th>
+               <th>Views</th>
+             </tr>
+           </thead>
+       @foreach ($totalVisitor as $vis)
+           <tr>
+             <td> {{ waktu($vis['date']) }} </td>
+             <td> {{ $vis['visitors'] }} </td>
+             <td> {{ $vis['pageViews'] }} </td>
+           </tr>
+       @endforeach
+         </table>
+        </div>
+      </div>
+
+    </div>
+
      <div class="col-12">
        <div class="card">
           <div class="card-header">
@@ -98,7 +164,6 @@
          </div>
        </div>
       </div>
-    </div>
 
 
   </div>
@@ -107,6 +172,8 @@
 
 @section('head')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
+
+    <link href="/assets/plugins/charts-c3/plugin.css" rel="stylesheet" />
 @endsection
 
 @section('footer')
@@ -114,6 +181,8 @@
 <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
 
+<script src="/assets/plugins/charts-c3/js/c3.min.js"></script>
+<script src="/assets/plugins/charts-c3/js/d3.v3.min.js"></script>
    <script>
          $(function() {
                $('#users').DataTable({
@@ -134,4 +203,43 @@
             });
          });
          </script>
+
+  	<script>
+         	$(document).ready(function() {
+                      		var chart = c3.generate({
+                      			bindto: '#tvisit',
+                      			padding: {
+                      				bottom: 0,
+                      				left: -1,
+                      				right: -1
+                      			},
+                      			data: {
+
+                      				columns: [
+['visitor',
+                         @foreach ($totalVisitor as $v)
+                      					 {{ $v['visitors']}},
+                          @endforeach
+                                         ],['pageviews',
+                         @foreach ($totalVisitor as $pv)
+                          {{ $pv['pageViews']}},
+                          @endforeach
+                      				]
+                                                    ],
+                      				type: 'area-spline'
+                      			},
+             axis: {
+               x: {
+                type: 'category',
+                categories: [
+                @foreach ($totalVisitor as $p)
+                            '{{ $p['date']->day }}',
+                @endforeach
+                ]
+               }
+             }
+
+                      		});
+                      	});
+  </script>
 @endsection

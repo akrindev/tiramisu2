@@ -110,8 +110,8 @@ Route::post('/cari', 'CariController@cari');
 */
 Route::get('/admin', 'AdminController@home')->middleware(['admin']);
 
-Route::get('/admin/users', 'AdminController@users');
-//->middleware(['admin']);
+Route::get('/admin/users', 'AdminController@users')->middleware(['admin']);
+Route::get('/admin/tes', 'AdminController@tes');
 /**
 * Forum Routes
 */
