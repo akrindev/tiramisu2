@@ -138,7 +138,7 @@
     </div>
 
 
-      <div class="col-md-4 col-lg-6">
+      <div class="col-md-6 col-lg-4">
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">
@@ -169,7 +169,7 @@
     </div>
 
 
-      <div class="col-md-4 col-lg-6">
+      <div class="col-md-6 col-lg-4">
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">
@@ -198,7 +198,7 @@
     </div>
 
 
-      <div class="col-md-4 col-lg-6">
+      <div class="col-md-6 col-lg-4">
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">
@@ -266,6 +266,8 @@
 
 <script src="/assets/plugins/charts-c3/js/c3.min.js"></script>
 <script src="/assets/plugins/charts-c3/js/d3.v3.min.js"></script>
+
+<script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
    <script>
          $(function() {
                $('#users').DataTable({
@@ -324,5 +326,53 @@
 
                       		});
                       	});
+  </script>
+
+
+<script>
+  $(document).ready(function(){
+  $("#users").on('click', '.change[data-id]', function(e){
+    e.preventDefault();
+
+    var id = $(this).data('id');
+
+    swal({
+      title: 'Ubah data user ini?',
+      text: '',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true
+    }).then((ok) => {
+    	if(ok) {
+          $.ajax({
+          	url: '/admin/change-user',
+            type: 'POST',
+            data: {
+              	_method: 'PUT',
+            	id: id,
+            	p: $(this).data('p')
+            },
+            success: function(r){
+              swal('Data berhasil di ubah','','success');
+
+              var kamu = $("#users").find(".change[data-id="+id+"]");
+              if(r.ban == 1) {
+            kamu.removeClass('btn-outline-success').addClass('btn-outline-danger').text('banned');
+              }
+              else
+               {
+            kamu.removeClass('btn-outline-danger').addClass('btn-outline-success').text('active');
+              }
+            },
+            error: function(err){
+              swal('kesalahan '+err);
+            }
+          });
+        } else {
+          swal('not ok');
+        }
+    });
+  });
+    });
   </script>
 @endsection

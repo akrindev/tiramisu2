@@ -46,8 +46,8 @@ class AdminController extends Controller
       return datatables()->of(User::orderBy('created_at','desc'))
         ->addColumn('action', function($user){
           return $user->banned == 1 ?
-            '<a href="#" class="btn btn-sm btn-outline-danger">banned</a>' :
-          '<a href="#" class="btn btn-sm btn-outline-success">active</a>';
+            '<a href="#" data-id="'.$user->id.'" data-p="0" class="btn btn-sm btn-outline-danger change">banned</a>' :
+          '<a href="#" data-id="'.$user->id.'" data-p="1" class="btn btn-sm btn-outline-success change">active</a>';
         })
         ->addColumn('pic', function($user){
         	return "<div style='background-image: url(https://graph.facebook.com/$user->provider_id/picture?type=normal)' class='avatar m-1 ml-1 float-left'></div> ";
@@ -63,5 +63,18 @@ class AdminController extends Controller
         })
         ->rawColumns(['pic','name','action','thread'])
         ->make(true);
+    }
+
+  	public function changeUser()
+    {
+      $user = User::findOrFail(request()->id);
+
+      $user->banned = request()->p;
+      $user->save();
+
+      return response()->json([
+        'success'	=>	true,
+        'ban'		=> request()->p
+      ]);
     }
 }
