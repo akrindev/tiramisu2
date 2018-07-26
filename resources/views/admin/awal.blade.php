@@ -108,7 +108,7 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">
-              <i class="fe fe-user"></i> Total Visitor and views
+              <i class="fe fe-activity"></i> Total Visitor and views
             </h3>
          </div>
            <div class="card-chart-bg" style="height: 50%">
@@ -129,6 +129,89 @@
              <td> {{ waktu($vis['date']) }} </td>
              <td> {{ $vis['visitors'] }} </td>
              <td> {{ $vis['pageViews'] }} </td>
+           </tr>
+       @endforeach
+         </table>
+        </div>
+      </div>
+
+    </div>
+
+
+      <div class="col-md-4 col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fe fe-user"></i> Most Visitor views
+            </h3>
+         </div>
+
+         <div class="o-auto" style="height: 300px">
+         <table class="card-table table table-outline table-vcenter table-striped" style="font-size:10px;font-weight:400">
+           <thead>
+             <tr>
+               <th>Url</th>
+               <th>Page</th>
+               <th>Views</th>
+             </tr>
+           </thead>
+       @foreach ($mostVisit as $visi)
+           <tr>
+             <td> {{ $visi['url'] }} </td>
+             <td> {{ $visi['pageTitle'] }} </td>
+             <td> {{ $visi['pageViews'] }} </td>
+           </tr>
+       @endforeach
+         </table>
+        </div>
+      </div>
+
+    </div>
+
+
+      <div class="col-md-4 col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fe fe-user"></i> Top referrers
+            </h3>
+         </div>
+
+         <div class="o-auto" style="height: 300px">
+         <table class="card-table table table-outline table-vcenter table-striped" style="font-size:10px;font-weight:400">
+           <thead>
+             <tr>
+               <th>Url</th>
+               <th>Views</th>
+             </tr>
+           </thead>
+       @foreach ($topRef as $top)
+           <tr>
+             <td> {{ $top['url'] }} </td>
+             <td> {{ $top['pageViews'] }} </td>
+           </tr>
+       @endforeach
+         </table>
+        </div>
+      </div>
+
+    </div>
+
+
+      <div class="col-md-4 col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fe fe-user"></i> Top Browsers
+            </h3>
+         </div>
+
+         <div class="o-auto" style="height: 300px">
+         <table class="card-table table table-outline table-vcenter table-striped" style="font-size:10px;font-weight:400">
+       @foreach ($topBrowsers as $topb)
+           <tr>
+             <td> {{ $topb['browser'] }} </td>
+             <td> {{ $topb['sessions'] }} </td>
            </tr>
        @endforeach
          </table>

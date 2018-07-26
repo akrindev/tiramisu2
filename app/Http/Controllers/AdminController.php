@@ -19,7 +19,14 @@ class AdminController extends Controller
       $visitor = Analytics::fetchVisitorsAndPageViews(Period::days(7))->take(10);
 
       $totalVisitor = Analytics::fetchTotalVisitorsAndPageViews(Period::days(7));
- //    dd($totalVisitor);
+
+      $mostVisit = Analytics::fetchMostVisitedPages(Period::days(7));
+
+      $topRef = Analytics::fetchTopReferrers(Period::days(7));
+
+      $topBrowsers = Analytics::fetchTopBrowsers(Period::days(7));
+
+ //   dd($topBrowsers);
 
       $users = User::all();
       $forums = Forum::all();
@@ -29,7 +36,8 @@ class AdminController extends Controller
 
       return view('admin.awal',compact(
         ['users', 'forums', 'quiz', 'gallery',
-         'fcom', 'visitor', 'totalVisitor']
+         'fcom', 'visitor', 'totalVisitor', 'mostVisit',
+         'topRef', 'topBrowsers']
       ));
     }
 
