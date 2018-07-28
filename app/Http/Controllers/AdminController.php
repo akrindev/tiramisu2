@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Forum;
-use App\ForumsDesc;
-use App\Quiz;
-use App\Gallery;
+use App\{
+  User, Forum, ForumsDesc, Quiz, Gallery, Tag
+};
+
 use Datatables;
 use Analytics;
 use Spatie\Analytics\Period;
@@ -33,11 +32,12 @@ class AdminController extends Controller
       $fcom = ForumsDesc::all();
       $quiz = Quiz::all();
       $gallery = Gallery::all();
+      $tags = Tag::all();
 
       return view('admin.awal',compact(
         ['users', 'forums', 'quiz', 'gallery',
          'fcom', 'visitor', 'totalVisitor', 'mostVisit',
-         'topRef', 'topBrowsers']
+         'topRef', 'topBrowsers', 'tags']
       ));
     }
 
@@ -76,5 +76,41 @@ class AdminController extends Controller
         'success'	=>	true,
         'ban'		=> request()->p
       ]);
+    }
+
+  	/**
+    * Adding tag forum
+    */
+  	public function tagForum()
+    {
+      $tag = new Tag;
+      $tag->name = request()->tag;
+      $tag->save();
+
+      return response()->json(['success'=>true]);
+    }
+
+  	public function fetchTag($i)
+    {
+      $tag = Tag::find($i);
+
+      return response()->json(['tag'=>$tag->name,'id'=>$tag->id]);
+    }
+
+    public function editTag()
+    {
+      $tag = Tag::find(request()->id);
+      $tag->name = request()->tag;
+      $tag->save();
+
+      return response()->json(['success'=>true]);
+    }
+
+  	public function tagHapus()
+    {
+      $tag = Tag::find(request()->id);
+      $tag->delete();
+
+      return response()->json(['success'=>true]);
     }
 }

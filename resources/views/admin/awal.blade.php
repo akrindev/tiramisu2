@@ -220,6 +220,30 @@
 
     </div>
 
+      <div class="col-md-6 col-lg-4">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title"> Forum tags
+            </h3>
+            <div class="card-options">
+              <button class="btn btn-outline-primary" data-toggle="modal" data-target="#addTag">Tambah data tag </button>
+            </div>
+          </div>
+          <div class="o-auto" style="height:300px">
+          <table class="card-table table table-striped o-auto" style="font-weight: 400;font-size:16px;height:150px" id="tagsForum">
+
+         @foreach ($tags as $tag)
+            <tr id="tg-{{$tag->id}}">
+              <td> <button class="btn btn-sm btn-outline-primary tagged-{{$tag->id}}" onClick="yeah({{$tag->id}});"><i class="fe fe-edit"></i> </button> <button class="btn btn-sm btn-outline-danger" onClick="hapus({{$tag->id}});"><i class="fe fe-trash-2"></i> </button> {{ $tag->name }} </td>
+              <td class="text-right"> <span class="tag tag-red"> {{ DB::table('forums')->where('tags','like','%'.$tag->name.'%')->whereNull('deleted_at')->count() }}</span> </td>
+            </tr>
+
+         @endforeach
+          </table>
+          </div>
+        </div>
+      </div>
+
      <div class="col-12">
        <div class="card">
           <div class="card-header">
@@ -249,6 +273,68 @@
       </div>
 
 
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addTag" tabindex="-1" role="dialog" aria-labelledby="addTag" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addTag">Tambah data Tag forum</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+
+{!! form_open('/admin/tagforum',['id'=>'tagforum']) !!}
+      @csrf
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">
+            Tag name </label>
+          <input type="text" name="tag" class="form-control ">
+          <small class="text-muted"> tanpa spasi 1 kata </small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="tagsave">Save</button>
+      </div>
+
+{!! form_close() !!}
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="editTag" tabindex="-1" role="dialog" aria-labelledby="editTag" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editTag">Edit data Tag forum</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+
+{!! form_open('/admin/editforum',['id'=>'editforum']) !!}
+      @csrf
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">
+            Tag name </label>
+          <input type="hidden" name="id" id="etag">
+          <input type="text" id=edit name="tag" class="form-control ">
+          <small class="text-muted"> tanpa spasi 1 kata </small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="etagsave">Save</button>
+      </div>
+
+{!! form_close() !!}
+    </div>
   </div>
 </div>
 @endsection
@@ -282,7 +368,7 @@
                         { data: 'ign', name: 'ign' },
                         { data: 'biodata', name: 'biodata' },
                         { data: 'gender', name: 'gender' },
-                        { data: 'created_at', name: 'joined' },
+                        { data: 'created_at', name: 'created_at' },
                  		{ data: 'action', name: 'action', orderable: false, searchable:false}
                      ]
             });
@@ -373,6 +459,111 @@
         }
     });
   });
+
+
+    $("#tagforum").submit(function(e){
+    	e.preventDefault();
+
+      $("#tagsave").html("<i class='fa fa-spinner fa-spin'></i> menyimpan . . .").addClass('disabled');
+      var me = $(this);
+
+      $.ajax({
+      	url: me.attr('action'),
+        type: 'POST',
+        data: me.serialize(),
+        success: function(){
+          swal('data ditambahkan ketika di reload');
+
+      $("#addTag").modal("hide");
+	      $("#tagsave").html("Save").removeClass('disabled');
+          $(this).reset();
+        },
+        error: function(r,y,u){
+          alert(r+y+u);
+        },
+        always:function(){
+
+        }
+
+      });
     });
+
+
+    $("#editforum").submit(function(e){
+    	e.preventDefault();
+
+      $("#etagsave").html("<i class='fa fa-spinner fa-spin'></i> menyimpan . . .").addClass('disabled');
+      var me = $(this);
+
+      $.ajax({
+      	url: me.attr('action'),
+        type: 'POST',
+        data: me.serialize(),
+        success: function(){
+          swal('data diedit ketika di reload');
+
+      $("#editTag").modal("hide");
+	      $("#etagsave").html("Save")
+            .removeClass('disabled');
+          $("form")[1].reset();
+        },
+        error: function(r,y,u){
+          alert(r+y+u);
+        },
+        always:function(){
+
+        }
+
+      });
+    });
+    });
+  </script>
+  <script>
+    function yeah(i)
+    {
+      $("#editTag").modal("show");
+      $(".tagged-"+i).html("<i class='fa fa-spin fa-spinner'></i>");
+      $.ajax({
+      	url: '/admin/tagedit/'+i,
+        type: 'GET',
+        dataType: 'JSON',
+        success: function(r){
+          $('#edit[name="tag"]').val(r.tag);
+          $('#etag[name="id"]').val(r.id);
+          $(".tagged-"+i).html("<i class='fe fe-edit'></i>");
+        }
+      });
+    }
+
+    function hapus(dd)
+    {
+      swal({
+      	title: 'Hapus Tag ini?',
+        text: '',
+        icon: 'warning',
+        buttons: true,
+        dangerMode:true
+      }).then((isOk) => {
+      	if(isOk) {
+          $.ajax({
+          	url: '/admin/taghapus',
+            type: 'POST',
+            dataType: 'JSON',
+            data: {
+              id: dd
+            },
+            success: function() {
+              swal('Dihapus');
+              $("#tg-"+dd).slideUp();
+            },
+            error: function(r,t,y) {
+              alert(r+t+y);
+            }
+          });
+        } else {
+          swal('no');
+        }
+      })
+    }
   </script>
 @endsection
