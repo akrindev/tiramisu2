@@ -360,4 +360,24 @@ class ForumController extends Controller
     return false;
 
   }
+
+
+  	/**
+    * forum like
+    */
+  public function postLike()
+  {
+	$thread = Forum::findOrFail(request()->id);
+
+    if(auth()->user()->hasLikedThread($thread) || !auth()->check())
+    {
+    	return response()->json(["sukses"=>false]);
+    }
+
+    $like = $thread->likes()->create([
+    	'user_id'	=> auth()->id()
+    ]);
+
+    return response()->json(["sukses"=>true]);
+  }
 }

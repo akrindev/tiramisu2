@@ -125,6 +125,8 @@ Route::post('/forum/baru', 'ForumController@buatSubmit')->middleware('auth');
 Route::get('/forum/tag/{nya}', 'ForumController@byTag');
 Route::get('/forum/cari', 'ForumController@feed');
 Route::post('/forum/cari', 'ForumController@cari');
+Route::post('/forum/like', 'ForumController@postLike');
+
 Route::get('/forum/{slug}', 'ForumController@baca');
 // komentar forum
 Route::post('/forum/{slug}', 'ForumController@comment')->middleware('auth');

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Forum;
 
 class User extends Authenticatable
 {
@@ -30,6 +31,24 @@ class User extends Authenticatable
   	public function isAdmin()
     {
       return $this->role == 'admin' ? true : false;
+    }
+
+  	/**
+    *
+    * User likes
+    */
+  	public function likes()
+    {
+      return $this->morphMany(Like::class, 'likeable');
+    }
+
+  	public function hasLikedThread(Forum $forum)
+    {
+      return (bool) $forum->likes
+        ->where('likeable_id', $forum->id)
+        ->where('likeable_type', get_class($forum))
+        ->where('user_id', $this->id)
+        ->count();
     }
 
 

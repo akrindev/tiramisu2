@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBgMusicsTable extends Migration
+class CreateLikesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateBgMusicsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bg_musics', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->increments('id');
-          	$table->string('title');
-          	$table->string('slug');
-          	$table->string('video_id');
-          	$table->string('channel_title');
-          	$table->string('channel_id');
-          	$table->dateTime('pada');
+          	$table->integer('user_id');
+          	$table->integer('likeable_id');
+          	$table->string('likeable_type');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateBgMusicsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bg_musics');
+        Schema::dropIfExists('likes');
     }
 }

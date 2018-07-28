@@ -64,6 +64,23 @@ $tags = explode(',', $tags);
             <div class="body-text">
             @parsedown(e($data->body))
 
+           <div class="my-3">
+             {!! form_open('/',["id"=>"likeme"]) !!}
+             @csrf
+             <input type="hidden" name="id" value="{{$data->id}}">
+             <i onclick="$(this).submit();" id="like" class="fe fe-heart @auth {{ auth()->user()->hasLikedThread($data) ? 'text-red' :''}} @endauth" style="font-size:15px"></i> &nbsp; <span class="@auth {{ auth()->user()->hasLikedThread($data) ? 'text-red' :'text-muted'}} @endauth" id="count-liked" data-suka="{{$data->likes->count()}}">
+             {{ auth()->check() ?
+             	auth()->user()->hasLikedThread($data) ?
+             		$data->likes->count() == 1 ?
+             		'Kamu menyukai ini'	:
+             		'Kamu dan ' . ($data->likes->count()-1) . ' lainnya menyukai ini'
+             	: $data->likes->count() . ' menyukai ini' :
+             	$data->likes->count() . ' menyukai ini'
+             }}
+             </span>
+             {!! form_close() !!}
+           </div>
+
   @auth
 
          @if (auth()->user()->role == 'admin')
@@ -215,8 +232,12 @@ $tags = explode(',', $tags);
 </script>
 <script src="/assets/js/to-markdown.js">
 </script>
+
+<script src="/assets/js/forum.js">
+</script>
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+
  @if(auth()->user()->role == 'admin')
  function dte()
   {

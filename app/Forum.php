@@ -29,4 +29,11 @@ class Forum extends Model
   {
     return $this->user->notify($notify);
   }
+
+  public function likes()
+  {
+    return $this->morphMany(Like::class, 'likeable');
+  }
+
+
 }
