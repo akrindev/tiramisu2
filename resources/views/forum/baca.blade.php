@@ -22,12 +22,28 @@ $tags = explode(',', $tags);
     font-weight:400;
   }
 </style>
-
+<script type="application/ld+json">
+{
+  "@context":"http://schema.org",
+  "@type":"DiscussionForumPosting",
+  "@id":"{{ url()->current() }}",
+  "headline":"{{ $data->judul }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ $data->user->name }}"
+  },
+  "interactionStatistic": {
+    "@type": "InteractionCounter",
+    "interactionType": "http://schema.org/CommentAction",
+    "userInteractionCount": {{ $comments->count()+1 }}
+  }
+}
+</script>
         <div class="my-3 my-md-5">
           <div class="container">
 
-<div class="row">
- <div class="col-md-8">
+	<div class="row">
+	 <div class="col-md-8">
 
    <a href="/forum" class="btn btn-sm mb-3 btn-outline-secondary btn-pill"> <i class="fe fe-chevrons-left"></i> Back to forum</a>
 
@@ -212,8 +228,7 @@ $tags = explode(',', $tags);
 
   </div>
 
-
-              <div class="col-md-4">
+     <div class="col-md-4">
 
                 <!-- tags -->
 
@@ -234,7 +249,7 @@ $tags = explode(',', $tags);
 
               </div>
 
-            </div>
+    </div>
           </div>
         </div>
 
