@@ -15,6 +15,7 @@ class VerifyCsrfToken extends Middleware
         '/quiz/buat',
       	'/admin/change-user',
       	'/admin/taghapus',
-      	'/forum/likereply'
+      	'/forum/likereply',
+      	'/send-token/fcm'
     ];
 }

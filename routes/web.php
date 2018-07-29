@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('toram');
 });
 Route::get('/sitemap.xml', 'SitemapController@index');
-
+Route::post('/send-token/fcm', 'UserController@sendToken');
 /**
 *
 * Background Music

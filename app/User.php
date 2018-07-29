@@ -34,6 +34,10 @@ class User extends Authenticatable
       return $this->role == 'admin' ? true : false;
     }
 
+  	public function fcm()
+    {
+      return $this->hasOne(Fcm::class);
+    }
   	/**
     *
     * User likes

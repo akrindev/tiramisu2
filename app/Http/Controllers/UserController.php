@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Contact;
 use App\Forum;
+use App\Fcm;
 use Auth;
 use DB;
 
@@ -131,5 +132,21 @@ class UserController extends Controller
       }
 
       return redirect('/shop/jual');
+    }
+
+  	public function sendToken()
+    {
+      if(!auth()->check())
+      {
+        return response()->json(["success"=>false]);
+      }
+
+      Fcm::updateOrCreate([
+      	'user_id'	=> auth()->id()
+      ],[
+      	'token'	=> request()->token
+      ]);
+
+      return response()->json(["success"=>true]);
     }
 }

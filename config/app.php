@@ -154,7 +154,7 @@ return [
       Laravel\Socialite\SocialiteServiceProvider::class,
       Intervention\Image\ImageServiceProvider::class,
       Yajra\Datatables\DatatablesServiceProvider::class,
-
+	  Kawankoding\Fcm\FcmServiceProvider::class,
       /*
          * Application Service Providers...
          */
@@ -218,6 +218,7 @@ return [
       'Socialite' => Laravel\Socialite\Facades\Socialite::class,
       'Image' => Intervention\Image\Facades\Image::class,
       'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+      'Fcm' => Kawankoding\Fcm\FcmFacade::class,
     ],
 
 ];

@@ -110,6 +110,18 @@ class ForumController extends Controller
             $forum,
             $forum->comment()->latest()->first())
         );
+
+      	if($forum->user->fcm()->count() > 0)
+        {
+          fcm()->to([$forum->user->fcm->token])
+            ->notification([
+            	'title' => 'Forum anda mendapat komentar',
+              	'body' => explode(' ',auth()->user()->name)[0] . ' Menjawab pada ' . $forum->judul,
+              	'icon'	=> 'https://graph.facebook.com/'.auth()->user()->provider_id.'/picture?type=normal',
+              	'click_action' => 'https://toram-id.info/forum/'.$forum->slug
+            ])
+            ->send();
+        }
     }
 
     if($comment)
@@ -153,6 +165,19 @@ class ForumController extends Controller
           $forum,
           $forum->comment()->latest()->first())
       );
+
+
+      	if($replied->user->fcm()->count() > 0)
+        {
+          fcm()->to([$replied->user->fcm->token])
+            ->notification([
+            	'title' => 'Komentar anda mendapat balasan',
+              	'body' => explode(' ',auth()->user()->name)[0] . ' Membalas pada ' . $forum->judul,
+              	'icon'	=> 'https://graph.facebook.com/'.auth()->user()->provider_id.'/picture?type=normal',
+              	'click_action' => 'https://toram-id.info/forum/'.$forum->slug
+            ])
+            ->send();
+        }
     }
 
     if($comment)

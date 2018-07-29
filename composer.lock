@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "343890825a728bef5b09c58f3c7ceec9",
+    "content-hash": "13284c162dcc0ef6ebe25b589a3c9628",
     "packages": [
         {
             "name": "cloudinary/cloudinary_php",
@@ -944,6 +944,53 @@
                 }
             ],
             "time": "2015-04-20T18:58:01+00:00"
+        },
+        {
+            "name": "kawankoding/laravel-fcm",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kawankoding/laravel-fcm.git",
+                "reference": "00df4d9889954564b0124f92d55ffbcfdf856fdf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kawankoding/laravel-fcm/zipball/00df4d9889954564b0124f92d55ffbcfdf856fdf",
+                "reference": "00df4d9889954564b0124f92d55ffbcfdf856fdf",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.1.0|~5.2.0|~5.3.0|~5.4.0|~5.5.0|~5.6.0",
+                "php": "^5.6|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Kawankoding\\Fcm\\FcmServiceProvider"
+                    ],
+                    "aliases": {
+                        "Fcm": "Kawankoding\\Fcm\\FcmFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Kawankoding\\Fcm\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Muhammad Amirul Ihsan",
+                    "email": "muh.amirul.ihsan@gmail.com"
+                }
+            ],
+            "description": "A package to send Firebase notification cross Laravel Application",
+            "time": "2018-04-11T13:38:39+00:00"
         },
         {
             "name": "laravel/framework",

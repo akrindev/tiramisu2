@@ -9,6 +9,7 @@
         "cloudinary/cloudinary_php": "^1.10",
         "fideloper/proxy": "^4.0",
         "intervention/image": "^2.4",
+        "kawankoding/laravel-fcm": "^0.1.1",
         "laravel/framework": "5.6.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
