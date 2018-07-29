@@ -197,6 +197,22 @@ $tags = explode(',', $tags);
             <b><a href="/profile/{{$reply->user->provider_id }}" data-author="{{ $comment->user->name }}">  {{ $reply->user->name }}</a> </b> <small class="text-muted"> • ({{ waktu($reply->created_at)}})</small><br>
             <div class="media-body">
             @parsedown(e($reply->body))
+
+              <div class="my-2 small text-right">
+
+             <i id="likes-reply" data-id="{{ $reply->id }}" class="fe fe-heart @auth {{ auth()->user()->hasLikedThreadReply($reply) ? 'text-red' :''}} @endauth" style="font-size:15px"></i>
+             &nbsp;
+             <span class="@auth {{ auth()->user()->hasLikedThreadReply($reply) ? 'text-red' :'text-muted'}} @endauth" id="count-liked-reply-{{ $reply->id }}" data-suka="{{$reply->likes->count()}}">
+             {{ auth()->check() ?
+             	auth()->user()->hasLikedThreadReply($reply) ?
+             		$reply->likes->count() == 1 ?
+             		'Kamu menyukai ini'	:
+             		'Kamu dan ' . ($reply->likes->count()-1) . ' lainnya menyukai ini'
+             	: $reply->likes->count() . ' menyukai ini' :
+             	$reply->likes->count() . ' menyukai ini'
+             }}
+             </span>
+              </div>
             </div>
              @if(auth()->check() && auth()->user()->role == 'admin')
               <button onclick="event.preventDefault(); dcm({{$reply->id}});" class="btn btn-sm btn-pill btn-outline-danger float-right">hapus</button>
