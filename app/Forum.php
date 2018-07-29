@@ -35,5 +35,10 @@ class Forum extends Model
     return $this->morphMany(Like::class, 'likeable');
   }
 
+  public function myLike(\App\Like $like)
+  {
+    return $like->where('user_id',$this->id);
+  }
+
 
 }

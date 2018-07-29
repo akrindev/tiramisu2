@@ -43,6 +43,11 @@ class User extends Authenticatable
       return $this->morphMany(Like::class, 'likeable');
     }
 
+  	public function myLovedThread()
+    {
+      return $this->hasMany(Like::class);
+    }
+
   	public function hasLikedThread(Forum $forum)
     {
       return (bool) $forum->likes

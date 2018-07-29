@@ -32,6 +32,10 @@ endif;
 
         <a href="/setting/profile" class="btn btn-link btn-sm">edit profile</a>
         <a href="/mygallery" class="btn btn-link btn-sm">My Gallery</a>
+
+        @if(auth()->user()->isAdmin())
+        <a href="/admin" class="btn btn-link btn-sm">Admin Dashboard</a>
+        @endif
       </div>
 
       <div class="col-md-8">
@@ -40,13 +44,15 @@ endif;
             <h4 class="card-title">Aktifitas Forum</h4>
 
           </div>
-          <table class="table card-table">
+          <div class="table-responsive">
+          <table class="table card-table table-vcenter">
             <thead>
               <tr>
                 <th> posts</th>
                 <th> Menjawab </th>
                 <th> Terjawab </th>
                 <th> views </th>
+                <th class="text-red"> <i class="fe fe-heart"></i> Loves</th>
               </tr>
             </thead>
             <tbody>
@@ -54,10 +60,14 @@ endif;
                 <td> {{ auth()->user()->thread->count() }} </td>
                 <td> {{ auth()->user()->comment->count() }} </td>
                 <td> {{ $res }} </td>
-                <td> {{ $profile->thread->sum('views') }}
+                <td> {{ $profile->thread->sum('views') }} </td>
+                <td>   {{ auth()->user()->myLovedThread->count() }} <small class="text-muted"> <i class="fe fe-heart text-red"></i> Given</small> <br />
+
+                </td>
               </tr>
             </tbody>
           </table>
+          </div>
 <hr class="m-0 p-0">
            <div class="card-header mt-0">
             <h4 class="card-title">Aktifitas Gallery</h4>
@@ -147,7 +157,7 @@ endif;
 
         <tr>
           <td width="80%"> <a href="/forum/{{ $thread->slug }}">{{ str_limit($thread->judul,50) }} </a><br>
-            <small class="text-muted">{{ waktu($thread->created_at) }} • <i class="fe fe-eye"></i> {{ $thread->views }} <i class="fe fe-message-square"></i> {{ $thread->comment->count() }} </small></td>
+            <small class="text-muted">{{ waktu($thread->created_at) }} <br /><i class="fe fe-eye"></i> {{ $thread->views }}   <i class="fe fe-message-square"></i> {{ $thread->comment->count() }}   <i class="fe fe-heart"></i> {{ $thread->likes->count() }}</small> </td>
           <td> <a href="/forum/{{$thread->slug}}/edit" class="text-primary">edit</a> |
               <a onclick="event.preventDefault(); dcm({{$thread->id}});" class="text-danger">hapus</a>
               {!! form_open('/forum/'.$thread->slug.'/delete',['id'=>'cid-'.$thread->id]) !!}
