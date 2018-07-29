@@ -126,6 +126,7 @@ Route::get('/forum/tag/{nya}', 'ForumController@byTag');
 Route::get('/forum/cari', 'ForumController@feed');
 Route::post('/forum/cari', 'ForumController@cari');
 Route::post('/forum/like', 'ForumController@postLike');
+Route::post('/forum/likereply', 'ForumController@postLikeReply');
 
 Route::get('/forum/{slug}', 'ForumController@baca');
 // komentar forum

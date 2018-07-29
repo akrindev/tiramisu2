@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Forum;
+use App\ForumsDesc;
 
 class User extends Authenticatable
 {
@@ -47,6 +48,15 @@ class User extends Authenticatable
       return (bool) $forum->likes
         ->where('likeable_id', $forum->id)
         ->where('likeable_type', get_class($forum))
+        ->where('user_id', $this->id)
+        ->count();
+    }
+
+  	public function hasLikedThreadReply(ForumsDesc $reply)
+    {
+      return (bool) $reply->likes
+        ->where('likeable_id', $reply->id)
+        ->where('likeable_type', get_class($reply))
         ->where('user_id', $this->id)
         ->count();
     }

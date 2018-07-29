@@ -37,7 +37,6 @@ $crysta = new Crysta;
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
 
-      <link rel="canonical" href="{{ url()->current() }}"/>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="apple-mobile-web-app-title" content="toram-id.info">
     <meta name="application-name" content="toram-id.info">
@@ -93,6 +92,16 @@ $crysta = new Crysta;
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/vendors/bootstrap.bundle.min.js"></script>
      <script src="/assets/js/core.js"></script>
+    <script>
+
+if('serviceWorker' in navigator)
+{
+    navigator.serviceWorker.register('/sw.js')
+        .then(function() {
+              console.log('Service Worker Registered');
+        });
+}
+    </script>
 
     @yield('head')
 

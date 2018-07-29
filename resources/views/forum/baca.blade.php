@@ -122,6 +122,24 @@ $tags = explode(',', $tags);
             <hr class="my-2">
             <div class="body-text">
             @parsedown(e($comment->body))
+
+
+           <div class="my-3">
+
+             <i id="likes" data-id="{{ $comment->id }}" class="fe fe-heart @auth {{ auth()->user()->hasLikedThreadReply($comment) ? 'text-red' :''}} @endauth" style="font-size:15px"></i>
+             &nbsp;
+             <span class="@auth {{ auth()->user()->hasLikedThreadReply($comment) ? 'text-red' :'text-muted'}} @endauth" id="count-liked-reply-{{ $comment->id }}" data-suka="{{$comment->likes->count()}}">
+             {{ auth()->check() ?
+             	auth()->user()->hasLikedThreadReply($comment) ?
+             		$comment->likes->count() == 1 ?
+             		'Kamu menyukai ini'	:
+             		'Kamu dan ' . ($comment->likes->count()-1) . ' lainnya menyukai ini'
+             	: $comment->likes->count() . ' menyukai ini' :
+             	$comment->likes->count() . ' menyukai ini'
+             }}
+             </span>
+           </div>
+
             </div>
             @auth
             <div class="form-group">

@@ -380,4 +380,20 @@ class ForumController extends Controller
 
     return response()->json(["sukses"=>true]);
   }
+
+  public function postLikeReply()
+  {
+    $reply = ForumsDesc::findOrFail(request()->id);
+
+    if(auth()->user()->hasLikedThreadReply($reply) || !auth()->check())
+    {
+    	return response()->json(["sukses"=>false]);
+    }
+
+    $like = $reply->likes()->create([
+    	'user_id'	=> auth()->id()
+    ]);
+
+    return response()->json(["sukses"=>true]);
+  }
 }
