@@ -52,6 +52,22 @@
         </div>
       </div>
 
+
+      <div class="col-md-8">
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title"> Step </h3>
+          </div>
+
+          <div class=" o-auto" style="font-size:14px;font-weight:400;height: 26rem">
+            <div id="details">
+              Step akan tampil disini
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="col-md-4">
 
         <div class="card">
@@ -59,7 +75,7 @@
             <h3 class="card-title"> Hasil </h3>
           </div>
 
-          <div class="card-body p-3 o-auto" style="font-size:14px;font-weight:40p;height: 26rem">
+          <div class="o-auto" style="font-size:14px;font-weight:40p;height: 26rem">
             <div id="results">
             Hasil akan tampil disini
             </div>
@@ -67,20 +83,17 @@
         </div>
       </div>
 
-      <div class="col-md-4">
-
-        <div class="card">
+      <div class="col-md-8">
+      	<div class="card">
           <div class="card-header">
-            <h3 class="card-title"> Step </h3>
+            <h3 class="card-title"> Banyak di gunakan </h3>
           </div>
-
-          <div class="card-body p-3 o-auto" style="font-size:14px;font-weight:400;height: 26rem">
-            <div id="details">
-              Step akan tampil disini
-            </div>
+          <div class="card-body">
+            <div id="stat_formulas"></div>
           </div>
         </div>
       </div>
+
 
 
 
@@ -91,6 +104,8 @@
 
 @section('head')
 <script src="/assets/js/fill.js"></script>
+
+<script src="/assets/js/formula.js"></script>
 <script>
 $("body").ready(function(){
 	build_menu();

@@ -86,7 +86,7 @@ class SIMULATOR {
     }
 
     getDropdown(slot_num) {
-        let buffer = `<select class="form-control form-control-sm col-6"  id="slot${slot_num}" onchange="update_stats(${slot_num})"><option value=0>CHOOSE STAT</option>`;
+        let buffer = `<select class="form-control form-control-sm col-6"  id="slot${slot_num}" onchange="update_stats(${slot_num})"><option value=0>PILIH STAT</option>`;
         let last_cat = '';
         let cat_id = 0;
 
@@ -123,7 +123,7 @@ class SIMULATOR {
     }
 
     setStat(slot_num, value_name, new_value) {
-        if (value_name === 'CHOOSE STAT' || value_name === 0) this.stats[slot_num] = null;
+        if (value_name === 'PILIH STAT' || value_name === 0) this.stats[slot_num] = null;
         let data = this.getStatData(value_name);
 
         let isNeg = new_value < 0;
@@ -590,14 +590,14 @@ function get_results(custom_pot) {
     buffer.push(`<tr class='results' onclick="show_details('${pot}')" id="pot_${pot}"><td style="text-align: left">${pot}</td><td style="text-align: right">${formula.success.toFixed(2)}%</td></tr>`);
   }
 
-  document.getElementById('results').innerHTML = '<table style="width:100%"><tr><th style="text-align: left">Potential</th><th style="text-align: right">Success Rate</th></tr>' + buffer.join('') + '</table>';
+  document.getElementById('results').innerHTML = '<table style="width:100%" class="card-table table table-striped"><tr><th style="text-align: left">Potential</th><th style="text-align: right">Success Rate</th></tr>' + buffer.join('') + '</table>';
   show_details(result_keys[0]);
 }
 
 function show_details(pot) {
   if (!Simulator.results[pot]) return;
   let formula = Simulator.results[pot];
-  let buffer = `<table style="width:100%"><tr><td style="width: 15%; color: green; font-weight: bold; text-align: left">POT ${pot}</td><td style="width: 70%"></td><td style="width:15%; color: green; font-weight: bold; text-align: right">${formula.success.toFixed(2)}%</td></tr>`;
+  let buffer = `<table style="width:100%" class="card-table table table-striped"><tr><td style="width: 15%; color: green; font-weight: bold; text-align: left">POT ${pot}</td><td style="width: 70%"></td><td style="width:15%; color: green; font-weight: bold; text-align: right">${formula.success.toFixed(2)}%</td></tr>`;
   buffer += `<tr><th style="text-align: left">Step</th><th style="text-align: left">Change</th><th  style="text-align: right">Pot</th></tr>`;
 
   let s = 0;
@@ -605,7 +605,7 @@ function show_details(pot) {
     buffer += `<tr><td>${++s}</td><td>${step[0]}</td><td style="text-align: right">${step[1]}</td></tr>`
   }
 
-  buffer += `</table><div style="text-align: right"></div><h3 style="text-align: center">Bahan yang digunakan</h3><table style="width:100%"><tr><th style="width:75%">Bahan</th><th>Pts.</th></tr>`
+  buffer += `</table><div class="my-3"></div><h3 style="text-align: center">Bahan yang digunakan</h3><table style="width:100%" class="card-table table table-striped"><tr><th style="width:75%">Bahan</th><th>Pts.</th></tr>`
 
   for (let m in formula.mats) {
     buffer += `<tr><td style="text-align: left">${m}</td><td style="text-align: right">${formula.mats[m]}</td></tr>`;
@@ -623,8 +623,8 @@ function escapeHTML (str) {
 function show_formulas() {
   let buffer = Formulas.sort((a,b) => b.weap_arm.localeCompare(a.weap_arm)).map(f => {
     let json = escapeHTML(JSON.stringify(f));
-    return `<button class="formula_button" onclick='set_formula(${json})' style="width: 100%; text-align: left">${f.weap_arm === 'w' ? '<span style="color: red; font-weight: bold">Weapon</span>' : '<span style="color: Green; font-weight: bold">Armor</span>'}<br />${f.stats.filter(s => s[1] > 0 || s[2]).map(s => FORMULA.toStepString(...s)).join('<br />')}</button>`
-  }).join('<br />');
+    return `<button class="btn btn-outline-primary mr-2 mb-2" onclick='set_formula(${json});document.querySelector("#details").scrollIntoView()' style="text-align: left">${f.weap_arm === 'w' ? '<span style="color: red; font-weight: bold">Weapon</span>' : '<span style="color: Green; font-weight: bold">Armor</span>'}<br />${f.stats.filter(s => s[1] > 0 || s[2]).map(s => FORMULA.toStepString(...s)).join('<br />')}</button>`
+  });
   document.getElementById('stat_formulas').innerHTML = buffer;
 }
 
