@@ -4,8 +4,6 @@
   @foreach ($equips as $equip)
     <url>
       <loc>{{ url('/equip/' . $equip->slug) }}</loc>
-      <changefreq>weekly</changefreq>
-      <priority>0.6</priority>
       <image:image>
         <image:loc>
           {{ url('/'.$equip->pics) }}
@@ -17,25 +15,18 @@
   @foreach ($crystas as $crysta)
     <url>
       <loc>{{ url('/crysta/' . $crysta->slug) }}</loc>
-      <changefreq>weekly</changefreq>
-      <priority>0.6</priority>
     </url>
   @endforeach
 
   @foreach ($tags as $tag)
     <url>
       <loc>{{ url('/forum/tag/' . $tag->name) }}</loc>
-      <changefreq>weekly</changefreq>
-      <priority>0.6</priority>
     </url>
   @endforeach
 
   @foreach ($forums as $forum)
     <url>
       <loc>{{ url('/forum/' . $forum->slug) }}</loc>
-      <lastmod> {{ $forum->created_at->toAtomString() }}</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.6</priority>
       <image:image>
         <image:loc>
           {{ to_img($forum->body) }}
@@ -47,9 +38,6 @@
   @foreach ($images as $img)
     <url>
       <loc>{{ url('/gallery/' . $img->id) }}</loc>
-      <lastmod>{{ $img->created_at->toAtomString() }}</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.6</priority>
       <image:image>
         <image:loc>
           {{ $img->gambar }}
@@ -58,13 +46,9 @@
     </url>
   @endforeach
 
-
-
   @foreach ($bgm as $bm)
     <url>
       <loc>{{ url('/bgm/' . $bm->slug) }}</loc>
-      <changefreq>monthly</changefreq>
-      <priority>0.6</priority>
     </url>
   @endforeach
 
