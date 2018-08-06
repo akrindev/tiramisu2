@@ -122,4 +122,8 @@ class User extends Authenticatable
       return $this->hasMany(Gallery::class);
     }
 
+  	public function scammers()
+    {
+      return $this->hasMany(Scammer::class);
+    }
 }
