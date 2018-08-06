@@ -23,7 +23,6 @@ class BgmController extends Controller
       $bgm = BgMusic::where('slug',$slug)->firstOrFail();
       $random = BgMusic::inRandomOrder()->take(5)->get();
 
-      dd($random);
 	  $a = $this->cokot('https://youtubemp3api.com/@grab?vidID='.$bgm->video_id.'&format=mp3&streams=mp3&api=button');
 
       $play = (new Simple_html_dom)->load($a)->find('a')[4]->href;
