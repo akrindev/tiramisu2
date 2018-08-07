@@ -11,6 +11,15 @@ use App\CatScammer;
 
 class ScammerController extends Controller
 {
+  	public function show()
+    {
+      $lists = Scammer::all();
+
+      return view('scammer.show',[
+      	'data'	=> $lists
+      ]);
+    }
+
   	public function read($slug)
     {
       $scam = Scammer::where('slug',$slug)->firstOrFail();
@@ -75,7 +84,7 @@ class ScammerController extends Controller
         }
 
 
-        return redirect('/scammer/r/'.$slug);
+        return response()->json(['redirect'=>$slug]);
       }
     }
 }

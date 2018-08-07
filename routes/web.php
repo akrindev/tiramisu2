@@ -214,6 +214,7 @@ Route::post('/quiz/buat', 'QuizController@tambahSubmit')->middleware('auth');
 *
 * Scammer route
 */
+Route::get('/scammer', 'ScammerController@show');
 Route::get('/scammer/tambah', 'ScammerController@add')->middleware('auth');
 Route::post('/scammer/tambah', 'ScammerController@addPost')->middleware('auth');
 //Read

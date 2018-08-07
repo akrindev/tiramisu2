@@ -13,7 +13,7 @@
           <div class="card-header">
             <h3 class="card-title">Tambah data scammer</h3>
           </div>
-          {!! form_open_multipart('/scammer/tambah',["id"=>"scammedr-catcher"]) !!}
+          {!! form_open_multipart('/scammer/tambah',["id"=>"scammer-catcher"]) !!}
           @csrf
           <div class="card-body p-3">
 
@@ -80,8 +80,18 @@
   </div>
 @endsection
 
+@section('head')
+ <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css" />
+@endsection
+
 @section('footer')
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/index.js"></script>
+    <script type="text/javascript">
+        loadProgressBar();
+    </script>
 <script>
+
 (function () {
   "use strict";
 
@@ -91,16 +101,15 @@
 
 
 
-  	let fileList = [];
-  	let renderFileList, sendFile;
+  	let fileList = new FormData();
+  	let renderFileList, sendFile, percentCompleted;
 
   fileInput.addEventListener('change', (evnt) => {
- 	fileList = [];
 	fileListDisplay.innerHTML = '';
   	fileListDisplay.innerHTML = '<table class="table table-striped">';
   	for (let i = 0; i < fileInput.files.length; i++) {
 
-      fileList.push(fileInput.files[i]);
+      fileList.append('gambar['+i+']',fileInput.files[i]);
 
       	let reader = new FileReader();
 
@@ -120,20 +129,15 @@
 	fileCatcher.addEventListener('submit', (event) => {
       event.preventDefault();
 
-	  let data = new FormData(),
-          request;
-
-    	data.append('file', fileList);
-
-    	request = new XMLHttpRequest();
-    	request.upload.addEventListener('progress', function(e) {
-    	var percent_complete = (e.loaded / e.total)*100;
-
-    	document.querySelector('#kirim').innerText = 'kirim '+percent_complete+' %';
-    });
-    request.responseType = 'json';
-    request.open('post', '/scammer/tambah');
-    request.send(data);
+	  fileList = new FormData(event.target);
+		document.querySelector("#kirim")
+        	.innerHTML = '<i class="fa fa-spinner fa-spin"></i> mengirim ';
+      axios.post('/scammer/tambah', fileList)
+        .then((r) => {
+      		window.location.href = '/scammer/r/'+r.data.redirect;
+      	}).catch((err) => {
+       		alert(err);
+      	});
 });
 })();
 </script>

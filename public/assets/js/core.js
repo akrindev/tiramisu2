@@ -47,7 +47,6 @@ let hexToRgba = function(hex, opacity) {
 		  .then(function(currentToken) {
 		    if (currentToken) {
 		      saveToken(currentToken);
-		      setTokenSentToServer(true);
 		    } else {
 		      console.log('No Instance ID token available. Request permission to generate one.');
 		      setTokenSentToServer(false);
@@ -78,6 +77,7 @@ let hexToRgba = function(hex, opacity) {
         },
         success: function(){
           console.log('horray');
+		  setTokenSentToServer(true);
         },
         error: function(){
           console.log('error');

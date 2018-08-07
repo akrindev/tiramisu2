@@ -60,12 +60,13 @@
 
             @endforeach
                     <a class="carousel-control-prev" href="#carousel-controls" role="button" data-slide="prev">
-                        <span class="text-primary carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="text-primary">Previous</span>
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="text-primary">Prev</span>
                       </a>
                       <a class="carousel-control-next" href="#carousel-controls" role="button" data-slide="next">
-                        <span class="text-primary carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="text-primary">Next</span>
+                          <span class="text-primary">Next</span>
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+
                       </a>
                </div>
             </div>
