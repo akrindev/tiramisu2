@@ -21,7 +21,7 @@
      <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{$data->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4 lazyload"><a href="/profile/{{$data->user->provider_id }}" data-author="{{ $data->user->name }}"> <b> {{ $data->user->name }} </b></a><br>
             <small class="text-muted"> {{ waktu($data->created_at) }} &nbsp; <i class="fe fe-message-square"></i> {{ $data->comment->count() }} </small>
 
-            @if(auth()->user() && auth()->user()->id == $data->user_id)
+            @if(auth()->check() && auth()->user()->id == $data->user_id)
 
             <a href="/scammer/{{ $data->slug }}/edit" class="btn btn-sm btn-pill btn-outline-secondary float-right">edit</a>
 

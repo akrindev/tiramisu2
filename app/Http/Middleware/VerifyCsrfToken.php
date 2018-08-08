@@ -16,6 +16,6 @@ class VerifyCsrfToken extends Middleware
       	'/admin/change-user',
       	'/admin/taghapus',
       	'/forum/likereply',
-      	'/send-token/fcm'
+      	'/send-token/fcm',
     ];
 }

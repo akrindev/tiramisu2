@@ -215,6 +215,13 @@ Route::post('/quiz/buat', 'QuizController@tambahSubmit')->middleware('auth');
 * Scammer route
 */
 Route::get('/scammer', 'ScammerController@show');
+Route::get('/scammer/cari', 'ScammerController@cari');
+Route::get('/scammer/{slug}/edit', 'ScammerController@edit')->middleware('auth');
+Route::post('/scammer/{slug}/edit', 'ScammerController@editPost')->middleware('auth');
+
+Route::post('/scammer/img', 'ScammerController@editImg')->middleware('auth');
+Route::delete('/scammer/delete', 'ScammerController@scammerDelete')->middleware('auth');
+
 Route::get('/scammer/tambah', 'ScammerController@add')->middleware('auth');
 Route::post('/scammer/tambah', 'ScammerController@addPost')->middleware('auth');
 //Read

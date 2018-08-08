@@ -109,10 +109,6 @@ endif;
             </thead>
             <tbody>
               <tr>
-<!--  help me :'(
-               <td> <div>{{ auth()->user()->quizScore->select(\DB::Raw('point, FIND_IN_SET( point, (SELECT GROUP_CONCAT( point ORDER BY point DESC) FROM quiz_scores) ) AS rank'))->first()->rank }} </div>
-                  <small class="text-muted"> Ranking</small>
-                       </td> -->
                 <td class="text-green"> {{ auth()->user()->quizScore->benar }}
                 <div class="progress progress-xs">
                 <div class="progress-bar bg-green" style="width: {{ auth()->user()->quizScore->benar/(auth()->user()->quizScore->benar+auth()->user()->quizScore->salah)*100 }}%"></div>
@@ -174,6 +170,23 @@ endif;
        </div>
       </div>
    @endif
+
+@if(auth()->user()->scammers->count() > 0)
+    <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Scammer post</h3>
+      </div>
+
+      <div class="card-body p-3" style="font-size:13px;font-weight:400;">
+        @foreach(auth()->user()->scammers as $scam)
+        <i class="fe fe-inbox"></i> <a href="/scammer/r/{{$scam->slug}}">{{ $scam->judul }}</a> <br>
+        @endforeach
+      </div>
+    </div>
+   </div>
+@endif
+
 
   <div class="col-md-8">
     <div class="card">

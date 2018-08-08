@@ -9,26 +9,6 @@
         <div class="my-3 my-md-5">
           <div class="container">
             <div class="row">
-              <div class="col-md-4">
-
-                <!-- tags -->
-
-                <div class="card">
-                  <div class="card-header">
-                    <h3 class="card-title">
-                      Berdasarkan Tags
-                    </h3>
-                  </div>
-                    <div class="p-0 m-0">
-
-                      @include('inc.tags')
-
-                    </div>
-
-                </div>
-                <!-- // tags -->
-
-              </div>
               <div class="col-md-8">
 
                 <a href="/forum/baru" class="float-right btn btn-primary btn-pill mb-3">Tulis baru</a>
@@ -90,6 +70,27 @@ $i = $color[$rand[0]];
                 </div>
 
                     {{ $data->links() }}
+
+              </div>
+
+              <div class="col-md-4">
+
+                <!-- tags -->
+
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      Berdasarkan Tags
+                    </h3>
+                  </div>
+                    <div class="p-0 m-0">
+
+                      @include('inc.tags')
+
+                    </div>
+
+                </div>
+                <!-- // tags -->
 
               </div>
             </div>
