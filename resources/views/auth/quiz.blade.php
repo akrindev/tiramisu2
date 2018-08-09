@@ -104,7 +104,34 @@
         </div>
       </div>
 
+ <div class="col-md-6">
+   <div class="card">
+     <div class="card-body p-3" style="font-size:13px;font-weight:400;">Quiz code adalah dimana kamu dapat membuat soal sendiri dari quiz yang telah kamu submit tanpa tercampur quiz dari member lain. member lain harus memasukkan <b>kode</b> terlebih dahulu. minimal kamu sudah mensubmit 15 quiz.
+     <br><br>
+       <a href="/quiz/buat-kode" class="btn btn-outline-primary btn-pill">Buat quiz berkode</a>
+     </div>
+   </div>
+ </div>
+
+@if(auth()->user()->quizCode->count() > 0)
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">My quiz code</h3>
+      </div>
+      <div class="card-body p-3" style="font-size:13px;font-weight:400">
+        @foreach(collect(auth()->user()->quizCode->take(5))->sortByDesc('created_at') as $q)
+          <i class="fe fe-plus"></i> <a href="/quiz/kode/{{$q->code}}">{{$q->code}}</a> <small class="text-muted">{{ $q->created_at->diffForHumans() }}</small> <br>
+        @endforeach
+        </div>
+    </div>
+  </div>
+@endif
+
 @if ($quizzes->count() > 0)
+      <div class="col-md-12">
+        <h5>Kuisku</h5>
+      </div>
       @foreach ($quizzes as $q)
       <div class="col-md-6">
         <div class="card">

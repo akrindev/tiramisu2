@@ -208,7 +208,14 @@ Route::get('/quiz/admin', 'QuizController@admin')->middleware('auth');
 
 Route::get('/quiz/buat', 'QuizController@tambah');
 Route::post('/quiz/buat', 'QuizController@tambahSubmit')->middleware('auth');
-
+// quiz with code
+Route::get('/quiz/buat-kode', 'QuizController@buatKode')->middleware('auth');
+Route::post('/quiz/buat-kode', 'QuizController@buatKodePost')->middleware('auth');
+Route::post('/quiz/cek-kode', 'QuizController@cekKode');
+Route::get('/quiz/kode/{code}', 'QuizController@lihatKode');
+Route::get('/quiz/kode/{code}/mulai', 'QuizController@ambilQuiz')->middleware('auth');
+Route::get('/quiz/code/begin', 'QuizController@kerjakanByCode')->middleware('auth');
+Route::get('/quiz/code/koreksi', 'QuizController@koreksiByCode')->middleware('auth');
 
 /**
 *

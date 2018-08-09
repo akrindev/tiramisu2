@@ -37,6 +37,28 @@
 
             <a href="/quiz/mulai" class="btn btn-pill btn-outline-success" onClick="event.preventDefault();mulai()">Mulai quiz</a>
 
+          <div class="my-3"></div>
+            <div class="p-3">
+            {!! form_open('/quiz/cek-kode',["id"=>"quiz-code"]) !!}
+            @csrf
+
+              <div class="form-group">
+                <label for="" class="form-label">Quiz Kode</label>
+                <div class="row">
+                  <div class="col-8">
+                <input type="number" class="form-control" name="kode" id="the-code" value=""></div>
+                  <div class="col-4">
+                  <button type="submit" class="btn btn-outline-primary" id="cek-kode">cek kode</button>
+
+                  </div>
+                </div>
+
+
+              <div id="info-kode"></div>
+              </div>
+
+            {!! form_close() !!}
+            </div>
           </div>
 
         </div>
@@ -100,8 +122,50 @@
 </div>
 @endsection
 
+@section('head')
+ <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css" />
+@endsection
+
 @section('footer')
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/index.js"></script>
+    <script type="text/javascript">
+        loadProgressBar();
+    </script>
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+(function() {
+  "use strict";
+
+  let kode = document.getElementById('cek-kode');
+  let btnKode = document.getElementById('quiz-code');
+
+  btnKode.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    kode.innerHTML = '<i class="fa fa-spinner fa-spin"></i> checking...';
+
+    let data = new FormData(event.target);
+
+    axios.post(btnKode.getAttribute('action'), data)
+    .then((r) => {
+    	if(r.data.success) {
+          document.getElementById('info-kode')
+          .innerHTML = '<div class="alert alert-success mt-5">'+r.data.reason+'</div>';
+        } else {
+          swal(r.data.reason, {
+          	icon: 'error'
+          });
+        }
+
+    kode.innerHTML = 'cek kode';
+    }).catch((err) => {
+    	alert(err);
+    });
+  });
+})();
+</script>
 
 @guest
 <script>

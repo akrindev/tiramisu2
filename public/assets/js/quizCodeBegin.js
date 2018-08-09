@@ -27,7 +27,7 @@
     	if(gas)
           {
             swal('oke, mengoreksi . . .');
-            return window.location.href = '/quiz/koreksi';
+            return window.location.href = '/quiz/code/koreksi';
           }
       	else
           {

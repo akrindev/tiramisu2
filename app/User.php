@@ -90,6 +90,11 @@ class User extends Authenticatable
     {
       return $this->hasOne(QuizScore::class);
     }
+
+  	public function quizCode()
+    {
+      return $this->hasMany(QuizCode::class);
+    }
   	/**
     *
     * Thread by User
