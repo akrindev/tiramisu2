@@ -86,6 +86,91 @@
             </div>
           </div>
         </div>
+
+@if ($data->comment->count() > 0)
+@foreach (collect($data->comment)->where('parent_id',null) as $comment)
+		<div class="card p-0" id="their-{{$comment->id}}">
+          <div class="card-body p-3">
+            <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{$comment->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4 lazyload">
+            <b><a href="/profile/{{$comment->user->provider_id }}" data-author="{{ $comment->user->name }}">  {{ $comment->user->name }}</a> </b> <br>
+            <small class="text-muted">{{ waktu($comment->created_at) }}</small>
+            <hr class="my-2">
+            <div class="body-text">
+            @parsedown(e($comment->body))
+
+
+            </div>
+            @auth
+            <div class="form-group">
+              @if(auth()->user()->role == 'admin')
+
+              {!! form_open('/scammer/delete-comment',['id'=>'cid-'.$comment->id, "class"=>"delete-comment"]) !!}
+              @csrf
+              <button class="btn btn-sm btn-pill btn-outline-danger">hapus</button>
+              @method("DELETE")
+              <input type="hidden" name="cid" value="{{$comment->id}}">
+              {!! form_close() !!}
+              @endif
+            <button class="btn btn-sm float-right btn-outline-primary" data-toggle="collapse" data-target="#comm-{{$comment->id}}" role="button" aria-expanded="false" aria-controls="comm-{{$comment->id}}">reply</button>
+            </div>
+
+            @endauth
+          </div>
+          @auth
+
+          <div class="collapse" id="comm-{{$comment->id}}">
+            {!! form_open(url()->current().'/c') !!}
+            @csrf
+            <div class="card-footer">
+              <div class="form-group">
+                <input type="hidden" name="id" value="{{$comment->id}}">
+                <textarea class="form-control" data-provide="markdown" name="reply" required></textarea>
+
+              </div>
+              <button type="submit" class="btn btn-sm btn-primary">reply</button>
+            </div>
+            {!! form_close() !!}
+          </div>
+          @endauth
+
+
+          @foreach ($comment->getReply as $reply)
+          <hr class="my-1">
+          <div id="their-{{$reply->id}}">
+            <div id="#reply{{$reply->id}}" class="p-2">
+            <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{$reply->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4 lazyload">
+            <b><a href="/profile/{{$reply->user->provider_id }}" data-author="{{ $comment->user->name }}">  {{ $reply->user->name }}</a> </b> <small class="text-muted"> • ({{ waktu($reply->created_at)}})</small><br>
+            <div class="media-body">
+            @parsedown(e($reply->body))
+
+            </div>
+             @if(auth()->check() && auth()->user()->role == 'admin')
+              {!! form_open('/forum/delete-comment',['id'=>'cid-'.$reply->id,"class"=>"delete-comment"]) !!}
+              @csrf
+
+              <button type="submit" class="btn btn-sm btn-pill btn-outline-danger float-right mb-2">hapus</button>
+              @method("DELETE")
+              <input type="hidden" name="cid" value="{{$reply->id}}">
+              {!! form_close() !!}
+              @endif
+          </div>
+          </div>
+          @endforeach
+
+          @auth
+
+        @if (session()->has('sukses_reply-'.$comment->id))
+          <div class="card-alert alert alert-success">
+            {{ session('sukses_reply-'.$comment->id) }}
+          </div>
+        @endif
+          @endauth
+   		</div>
+
+@endforeach
+@endif
+
+        @include('inc.scammer_comment')
       </div>
     </div>
   </div>
@@ -98,6 +183,16 @@
 
 @section('footer')
 @auth
+<link href="/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
+<script src="/assets/js/bootstrap-markdown.js">
+</script>
+<script src="/assets/js/markdown.js">
+</script>
+<script src="/assets/js/to-markdown.js">
+</script>
+@endauth
+
+@auth
 @if(auth()->user()->isAdmin())
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -106,6 +201,7 @@
         loadProgressBar();
     </script>
 <script src="/assets/js/scammer.js"></script>
+
 @endif
 @endauth
 @endsection

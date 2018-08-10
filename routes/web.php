@@ -234,3 +234,6 @@ Route::get('/scammer/tambah', 'ScammerController@add')->middleware('auth');
 Route::post('/scammer/tambah', 'ScammerController@addPost')->middleware('auth');
 //Read
 Route::get('/scammer/r/{slug}', 'ScammerController@read');
+Route::post('/scammer/r/{slug}', 'ScammerController@comment')->middleware('auth');
+Route::post('/scammer/r/{slug}/c', 'ScammerController@commentReply')->middleware('auth');
+Route::delete('/scammer/delete-comment', 'ScammerController@deleteComment')->middleware('admin');

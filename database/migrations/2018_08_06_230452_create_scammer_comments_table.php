@@ -15,6 +15,7 @@ class CreateScammerCommentsTable extends Migration
     {
         Schema::create('scammer_comments', function (Blueprint $table) {
             $table->increments('id');
+          	$table->integer('parent_id');
           	$table->integer('user_id');
           	$table->integer('scammer_id');
           	$table->longText('body');

@@ -28,4 +28,9 @@ class Scammer extends Model
     {
       return $this->belongsTo(CatScammer::class, 'cat_scammer_id');
     }
+
+    public function notify($notify)
+    {
+      return $this->user->notify($notify);
+    }
 }

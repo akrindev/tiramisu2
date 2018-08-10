@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Notifications\ScammerReplied;
 use Image;
 use App\Scammer;
 use App\ScammerPic;
 use App\ScammerComment;
 use App\CatScammer;
+use Auth;
 
 class ScammerController extends Controller
 {
@@ -193,6 +195,113 @@ class ScammerController extends Controller
     $scam->delete();
 
     return response()->json(["sukses"=>true]);
+  }
+
+
+  public function comment($slug)
+  {
+    $scam = Scammer::where('slug',$slug)->first();
+
+    if( ! $scam)
+    {
+      return redirect('/')->with('gagal', 'Thread tidak di temukan');
+    }
+
+
+    request()->validate([
+    	'body'	=> 'required|min:5'
+    ]);
+
+	$comment = ScammerComment::create([
+    	'user_id' => Auth::user()->id,
+      	'scammer_id'	=> $scam->id,
+      	'body'	=> request('body')
+    ]);
+
+
+    if(auth()->id() != $scam->user_id)
+    {
+        $scam->notify(
+          new ScammerReplied(
+            'Menjawab di',
+            $scam,
+            $scam->comment()->latest()->first())
+        );
+
+      	if($scam->user->fcm()->count() > 0)
+        {
+          fcm()->to([$scam->user->fcm->token])
+            ->notification([
+            	'title' => 'Post anda mendapat komentar',
+              	'body' => explode(' ',auth()->user()->name)[0] . ' Menjawab pada ' . $forum->judul,
+              	'icon'	=> 'https://graph.facebook.com/'.auth()->user()->provider_id.'/picture?type=normal',
+              	'click_action' => 'https://toram-id.info/scammer/r/'.$scam->slug
+            ])
+            ->send();
+        }
+    }
+
+    if($comment)
+    {
+      return back()->with('sukses_comment', 'Komentar di tambahkan');
+    }
+  }
+
+  public function commentReply($slug)
+  {
+    $scam = Scammer::where('slug',$slug)->firstOrFail();
+
+    $id = request('id');
+
+    request()->validate([
+    	'reply'	=> 'required'
+    ]);
+
+	$comment = $scam->comment()->create([
+    	'user_id' => Auth::user()->id,
+      	'scammer_id'	=> $scam->id,
+      	'parent_id' => $id,
+      	'body'	=> request('reply')
+    ]);
+
+    $replied = ScammerComment::find($id);
+
+    if(auth()->id() != $replied->user_id)
+    {
+      $replied->notify(
+        new ScammerReplied(
+          'Membalas di',
+          $scam,
+          $scam->comment()->latest()->first())
+      );
+
+
+      	if($replied->user->fcm()->count() > 0)
+        {
+          fcm()->to([$replied->user->fcm->token])
+            ->notification([
+            	'title' => 'Komentar anda mendapat balasan',
+              	'body' => explode(' ',auth()->user()->name)[0] . ' Membalas pada ' . $scam->judul,
+              	'icon'	=> 'https://graph.facebook.com/'.auth()->user()->provider_id.'/picture?type=normal',
+              	'click_action' => 'https://toram-id.info/forum/'.$scam->slug
+            ])
+            ->send();
+        }
+    }
+
+    if($comment)
+    {
+      return back()->with('sukses_reply-'.$id, 'balasan di tambahkan');
+    }
+  }
+
+  public function deleteComment()
+  {
+    $komen = ScammerComment::findOrFail(request()->cid);
+
+    $komen->delete();
+
+    return response()->json(["success"=>true]);
   }
 
 
