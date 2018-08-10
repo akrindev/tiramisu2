@@ -14,7 +14,7 @@
           <div class="card-header">
             <h3 class="card-title">Tambah data scammer</h3>
           </div>
-          {!! form_open_multipart('/',["id"=>"scammer-catcher"]) !!}
+          {!! form_open_multipart('/scammer/'.$scam->slug.'/edit',["id"=>"scammer-catcher"]) !!}
           @csrf
           <div class="card-body p-3">
 

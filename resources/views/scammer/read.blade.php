@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title',$data->judul)
+@section('title','Toram '.$data->judul)
 
 @section('content')
 <div class="my-5">
@@ -28,7 +28,17 @@
             @endif
 
             <hr class="my-2">
-
+        @auth
+            @if(auth()->user()->isAdmin())
+            {!! form_open('/scammer/delete-by-admin',["id"=>"hapus-scammer"]) !!}
+            <button type="submit" class="btn btn-outline-danger btn-sm" >hapus</button>
+            <input type="hidden" name="id" value="{{$data->id}}">
+            @method('DELETE')
+            @csrf
+            {!! form_close() !!}
+            @endif
+        @endauth
+            <br><br>
             <i class="fe fe-tag"></i> <a href="">{{$data->kategori->name}}</a>
             <br />
             <strong>Kronologi</strong> <br>
@@ -80,4 +90,22 @@
     </div>
   </div>
 </div>
+@endsection
+
+@section('head')
+ <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css" />
+@endsection
+
+@section('footer')
+@auth
+@if(auth()->user()->isAdmin())
+<script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/index.js"></script>
+    <script type="text/javascript">
+        loadProgressBar();
+    </script>
+<script src="/assets/js/scammer.js"></script>
+@endif
+@endauth
 @endsection

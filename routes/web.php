@@ -228,6 +228,7 @@ Route::post('/scammer/{slug}/edit', 'ScammerController@editPost')->middleware('a
 
 Route::post('/scammer/img', 'ScammerController@editImg')->middleware('auth');
 Route::delete('/scammer/delete', 'ScammerController@scammerDelete')->middleware('auth');
+Route::delete('/scammer/delete-by-admin', 'ScammerController@deleteByAdmin')->middleware('admin');
 
 Route::get('/scammer/tambah', 'ScammerController@add')->middleware('auth');
 Route::post('/scammer/tambah', 'ScammerController@addPost')->middleware('auth');

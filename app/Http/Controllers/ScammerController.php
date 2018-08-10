@@ -195,4 +195,19 @@ class ScammerController extends Controller
     return response()->json(["sukses"=>true]);
   }
 
+
+  public function deleteByAdmin()
+  {
+    $scam = Scammer::findOrFail(request()->id);
+
+    if(! auth()->user()->isAdmin())
+    {
+    	return response()->json(["success"=>false]);
+    }
+
+    $scam->delete();
+
+    return response()->json(["success"=>true]);
+  }
+
 }

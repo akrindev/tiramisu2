@@ -10,7 +10,7 @@
     </div>
 
     <div class="row">
-      <div class="col-12">
+      <div class="col-md-12">
                         <a href="/scammer/tambah" class="float-right btn btn-primary btn-pill mb-3">Tambah data scammer</a>
 
             <div id="cari-kan">
@@ -27,17 +27,17 @@
               {!! form_close() !!}
             </div>
 
-        <div class="card">
+        <div class="card" style="word-wrap:break-word;">
           <table class="card-table table table-striped m-0">
             @forelse ($data as $list)
             <tr>
-              <td class="p-3">
-                <a href="/scammer/r/{{$list->slug}}">{{$list->judul}} </a> <br>
+              <td class="p-3" style="word-wrap:break-word">
+                <a style="word-wrap:break-word;" href="/scammer/r/{{$list->slug}}">{{$list->judul}} </a> <br>
                 <strong>Facebook: </strong> <span class="text-muted"> {{ $list->facebook}} </span> <br>
                 <strong>ID Line: </strong> <span class="text-muted"> {{ $list->line }} </span><br>
                 <strong>Ign Toram:</strong> <span class="text-muted"> {{ $list->ign }}</span> <br>
                 <strong>kerugian: </strong> <span class="text-danger"> {{ number_format($list->spina) }}s </span> <br>
-                <strong><i class="fe fe-tag"></i> </strong> <a href="/scammer/k/{{$list->kategori->id}}">{{ $list->kategori->name }}</a>
+                <strong><i class="fe fe-tag"></i> </strong> <a href="/scammer/k/{{$list->kategori->id}}">{{ $list->kategori->name }}</a> <small class="text-muted float-right"><i class="fe fe-clock"></i> {{ $list->created_at->diffForHumans() }}</small>
                 </td>
 
               <td style="width:30%" class="p-3">
