@@ -14,4 +14,9 @@ class QuizScoreCode extends Model
     {
     	return $this->belongsTo(QuizCode::class);
     }
+
+  	public function user()
+    {
+      return $this->belongsTo(User::class);
+    }
 }
