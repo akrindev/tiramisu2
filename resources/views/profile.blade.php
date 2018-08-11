@@ -180,7 +180,7 @@ endif;
 
       <div class="card-body p-3" style="font-size:13px;font-weight:400;">
         @foreach(auth()->user()->scammers as $scam)
-        <i class="fe fe-inbox"></i> <a href="/scammer/r/{{$scam->slug}}">{{ $scam->judul }}</a> <br>
+        <i class="fe fe-inbox"></i> <a href="/scammer/r/{{$scam->slug}}">{{ $scam->judul }}</a> <small class="text-muted">( <i class="fe fe-message-square"></i> {{ $scam->comment->count() }} )</small> <br>
         @endforeach
       </div>
     </div>

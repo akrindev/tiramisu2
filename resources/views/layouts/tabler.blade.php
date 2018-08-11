@@ -1,13 +1,4 @@
-<?php
-use App\Barang;
-use App\Crysta;
-
-$item = new Barang;
-$crysta = new Crysta;
-
-?>
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ID">
   <head>
     <meta charset="UTF-8">
@@ -181,27 +172,25 @@ if('serviceWorker' in navigator)
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Perlengkapan</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
 @php
-       $a = $item->select('type','typeslug')->distinct()->get();
-
-        foreach($a as $b):
+       $a = (new App\Barang)->select('type','typeslug')->distinct()->get();
 @endphp
+
+        @foreach ($a as $b)
                       <a href="/equips/{{ $b->typeslug }}" class="dropdown-item ">{{ $b->type }}</a>
 
-                      @php endforeach; @endphp
+        @endforeach
                     </div>
                   </li>
                   <li class="nav-item dropdown">
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-star"></i> Crysta</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
  @php
-       $c = $crysta->select('type','typeslug')->distinct()->get();
-
-        foreach($c as $d):
-  @endphp
+       $c = (new App\Crysta)->select('type','typeslug')->distinct()->get();
+@endphp
+        @foreach ($c as $d)
                       <a href="/crystas/{{ $d->typeslug }}" class="dropdown-item ">{{ $d->type }}</a>
 
-                      @php endforeach @endphp
-
+        @endforeach
                     </div>
                   </li>
 
@@ -213,7 +202,7 @@ if('serviceWorker' in navigator)
                   </li>
 
                   <li class="nav-item">
-                    <a href="/fill_stats" class="nav-link"><i class="fe fe-edit-2"></i> Fill stats formula</a>
+                    <a href="/fill_stats" class="nav-link"><i class="fe fe-edit-2"></i> Fill stats</a>
                   </li>
 
                   <li class="nav-item">
@@ -230,6 +219,10 @@ if('serviceWorker' in navigator)
 
                   <li class="nav-item">
                     <a href="/bgm" class="nav-link"><i class="fe fe-music"></i>Background music</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="/scammer" class="nav-link"><i class="fe fe-user-x"></i>Penipuan</a>
                   </li>
 
                   <li class="nav-item">
@@ -271,6 +264,7 @@ if('serviceWorker' in navigator)
 
  <script src="/assets/js/lazy.js"></script>
 
+@if(env('APP_ENV') === 'production')
 <!-- Google Analytics -->
 <script>
 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -279,6 +273,6 @@ ga('send', 'pageview');
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 <!-- End Google Analytics -->
-
+@endif
   </body>
 </html>
