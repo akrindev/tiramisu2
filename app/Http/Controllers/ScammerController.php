@@ -18,7 +18,9 @@ class ScammerController extends Controller
       $lists = Scammer::latest()->paginate(20);
 
       return view('scammer.show',[
-      	'data'	=> $lists
+      	'data'	=> $lists,
+        'title'	=> 'Daftar kasus penipuan / scam toram online',
+        'description'	=> 'Daftar akun penipu toram online'
       ]);
     }
 
@@ -28,6 +30,17 @@ class ScammerController extends Controller
 
       return view('scammer.read',[
         'data'	=> $scam
+      ]);
+    }
+
+  	public function kategori($id)
+    {
+      $cats = CatScammer::findOrFail($id);
+
+      return view('scammer.show', [
+      	"data"	=> $cats->scammer()->latest()->paginate(20),
+        'title'	=> 'Scam kategori ' . $cats->name,
+        'description'	=> 'Kasus penipuan toram online kategori ' . $cats->name
       ]);
     }
 

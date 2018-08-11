@@ -1,6 +1,7 @@
 @extends('layouts.tabler')
 
-@section('title', 'Daftar scammer toram online')
+@section('title', $title)
+@section('description', $description)
 
 @section('content')
 <div class="my-5">
@@ -10,7 +11,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-8">
                         <a href="/scammer/tambah" class="float-right btn btn-primary btn-pill mb-3">Tambah data scammer</a>
 
             <div id="cari-kan">
@@ -37,7 +38,7 @@
                 <strong>ID Line: </strong> <span class="text-muted"> {{ $list->line }} </span><br>
                 <strong>Ign Toram:</strong> <span class="text-muted"> {{ $list->ign }}</span> <br>
                 <strong>kerugian: </strong> <span class="text-danger"> {{ number_format($list->spina) }}s </span> <br>
-                <strong><i class="fe fe-tag"></i> </strong> <a href="/scammer/k/{{$list->kategori->id}}">{{ $list->kategori->name }}</a> <small class="text-muted float-right"><i class="fe fe-clock"></i> {{ $list->created_at->diffForHumans() }}</small>
+                <strong><i class="fe fe-tag"></i> </strong> <a href="/scammer/kategori/{{$list->kategori->id}}">{{ $list->kategori->name }}</a> <small class="text-muted float-right"><i class="fe fe-clock"></i> {{ $list->created_at->diffForHumans() }}</small>
                 </td>
 
               <td style="width:30%" class="p-3">
@@ -57,6 +58,20 @@
         </div>
       </div>
 
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+          <h3 class="card-title">Kategori</h3>
+          </div>
+          <div class="card-body p-3" style="font-size:13px;font-weight:400">
+            @forelse ((new App\CatScammer)->distinct()->get() as $sc)
+            <i class="fe fe-tag"></i> <a href="/scammer/kategori/{{$sc->id}}">{{ $sc->name }}</a> <small class="text-muted">( {{ $sc->scammer->count() }} )</small> <br>
+            @empty
+            <div class="p-5">nothing</div>
+            @endforelse
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

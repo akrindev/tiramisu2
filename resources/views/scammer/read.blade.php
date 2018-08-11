@@ -1,6 +1,8 @@
 @extends('layouts.tabler')
 
 @section('title','Toram '.$data->judul)
+@section('description', strip_tags((new Parsedown)->text($data->body)))
+@section('image',$data->picture[0]->url ?? to_img())
 
 @section('content')
 <div class="my-5">
@@ -9,7 +11,7 @@
       <div class="col-md-8">
 
 
-   <a href="/scammer" class="btn btn-sm mb-3 btn-outline-secondary btn-pill"> <i class="fe fe-chevrons-left"></i> Back to scammers list</a>
+   <a href="/scammer" class="btn btn-sm mb-3 btn-outline-secondary btn-pill"> <i class="fe fe-chevrons-left"></i> Back to scammer</a>
 
         <div class="my-3">
           <h4 class="mb-0">{{ $data->judul }} </h4>

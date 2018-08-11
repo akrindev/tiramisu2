@@ -68,6 +68,19 @@
                 </div>
 
            </div>
+
+
+          <div class="col-6 col-sm-4 col-lg-2">
+
+                <div class="card">
+                  <div class="card-body p-3 text-center">
+
+                    <div class="h1 m-0">{{ (new App\Scammer)->count() }} </div>
+                    <div class="text-muted mb-4">Total Penipuan</div>
+                  </div>
+                </div>
+
+           </div>
     </div>
 
     <div class="row">
@@ -230,12 +243,36 @@
             </div>
           </div>
           <div class="o-auto" style="height:300px">
-          <table class="card-table table table-striped o-auto" style="font-weight: 400;font-size:16px;height:150px" id="tagsForum">
+          <table class="card-table table table-striped o-auto" style="font-weight: 400;font-size:13px;height:150px" id="tagsForum">
 
          @foreach ($tags as $tag)
             <tr id="tg-{{$tag->id}}">
               <td> <button class="btn btn-sm btn-outline-primary tagged-{{$tag->id}}" onClick="yeah({{$tag->id}});"><i class="fe fe-edit"></i> </button> <button class="btn btn-sm btn-outline-danger" onClick="hapus({{$tag->id}});"><i class="fe fe-trash-2"></i> </button> {{ $tag->name }} </td>
               <td class="text-right"> <span class="tag tag-red"> {{ DB::table('forums')->where('tags','like','%'.$tag->name.'%')->whereNull('deleted_at')->count() }}</span> </td>
+            </tr>
+
+         @endforeach
+          </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title"> Kategori penipuan
+            </h3>
+            <div class="card-options">
+              <button class="btn btn-outline-primary" data-toggle="modal" data-target="#addTagPenipu">Tambah kategori </button>
+            </div>
+          </div>
+          <div class="o-auto" style="height:300px">
+          <table class="card-table table table-striped o-auto" style="font-weight: 400;font-size:13px;height:150px" id="tagsPenipu">
+
+         @foreach ((new App\CatScammer)->get() as $scam)
+            <tr id="sc-{{$scam->id}}">
+              <td> <button class="btn btn-sm btn-outline-primary taggedp-{{$scam->id}}" onClick="editPenipu({{$scam->id}});"><i class="fe fe-edit"></i> </button> <button class="btn btn-sm btn-outline-danger" onClick="hapusScam({{$scam->id}});"><i class="fe fe-trash-2"></i> </button> {{ $scam->name }} </td>
+              <td class="text-right"> <span class="tag tag-red"> {{ $scam->scammer->count() }}</span> </td>
             </tr>
 
          @endforeach
@@ -306,6 +343,37 @@
   </div>
 </div>
 
+  <!-- Modal -->
+<div class="modal fade" id="addTagPenipu" tabindex="-1" role="dialog" aria-labelledby="addTagPenipu" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addTagPenipu">Tambah kategori penipu</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+
+{!! form_open('/admin/catscam',['id'=>'catscammer']) !!}
+      @csrf
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">
+           Nama Kategori </label>
+          <input type="text" name="kategori" class="form-control ">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="scamsave">Save</button>
+      </div>
+
+{!! form_close() !!}
+    </div>
+  </div>
+</div>
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="editTag" tabindex="-1" role="dialog" aria-labelledby="editTag" aria-hidden="true">
@@ -331,6 +399,38 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary" id="etagsave">Save</button>
+      </div>
+
+{!! form_close() !!}
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="editScam" tabindex="-1" role="dialog" aria-labelledby="editScam" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editScam">Edit kategori scam</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+
+{!! form_open('/admin/editscam',['id'=>'editscam']) !!}
+      @csrf
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">
+            Nama kategori </label>
+          <input type="hidden" name="id" id="stag">
+          <input type="text" id="skat" name="kat" class="form-control ">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="stagsave">Save</button>
       </div>
 
 {!! form_close() !!}
@@ -489,6 +589,35 @@
     });
 
 
+    $("#catscammer").submit(function(e){
+    	e.preventDefault();
+
+      $("#scamsave").html("<i class='fa fa-spinner fa-spin'></i> menyimpan . . .").addClass('disabled');
+      var me = $(this);
+
+      $.ajax({
+      	url: me.attr('action'),
+        type: 'POST',
+        data: me.serialize(),
+        success: function(){
+          swal('data ditambahkan ketika di reload');
+
+      $("#addTagPenipu").modal("hide");
+	      $("#scamsave").html("Save")
+            .removeClass('disabled');
+          $(this)[0].reset();
+        },
+        error: function(r,y,u){
+          alert(r+y+u);
+        },
+        always:function(){
+
+        }
+
+      });
+    });
+
+
     $("#editforum").submit(function(e){
     	e.preventDefault();
 
@@ -516,9 +645,41 @@
 
       });
     });
+
+
+    $("#editscam").submit(function(e){
+    	e.preventDefault();
+
+      $("#stagsave").html("<i class='fa fa-spinner fa-spin'></i> menyimpan . . .").addClass('disabled');
+      var me = $(this);
+
+      $.ajax({
+      	url: me.attr('action'),
+        type: 'POST',
+        data: me.serialize(),
+        success: function(){
+          swal('data diedit ketika di reload');
+
+      $("#editScam").modal("hide");
+	      $("#stagsave").html("Save")
+            .removeClass('disabled');
+          $("form")[0].reset();
+        },
+        error: function(r,y,u){
+          alert(r+y+u);
+        },
+        always:function(){
+
+        }
+
+      });
+    });
     });
   </script>
   <script>
+
+    var token = '{{ csrf_token() }}';
+
     function yeah(i)
     {
       $("#editTag").modal("show");
@@ -534,6 +695,23 @@
         }
       });
     }
+
+    function editPenipu(i)
+    {
+      $("#editScam").modal("show");
+      $(".taggedp-"+i).html("<i class='fa fa-spin fa-spinner'></i>");
+      $.ajax({
+      	url: '/admin/scamedit/'+i,
+        type: 'GET',
+        dataType: 'JSON',
+        success: function(r){
+          $('#skat[name="kat"]').val(r.kat);
+          $('#stag[name="id"]').val(r.id);
+          $(".taggedp-"+i).html("<i class='fe fe-edit'></i>");
+        }
+      });
+    }
+
 
     function hapus(dd)
     {
@@ -555,6 +733,39 @@
             success: function() {
               swal('Dihapus');
               $("#tg-"+dd).slideUp();
+            },
+            error: function(r,t,y) {
+              alert(r+t+y);
+            }
+          });
+        } else {
+          swal('no');
+        }
+      })
+    }
+
+
+    function hapusScam(dd)
+    {
+      swal({
+      	title: 'Hapus kategori ini?',
+        text: '',
+        icon: 'warning',
+        buttons: true,
+        dangerMode:true
+      }).then((isOk) => {
+      	if(isOk) {
+          $.ajax({
+          	url: '/admin/scamhapus',
+            type: 'POST',
+            dataType: 'JSON',
+            data: {
+              id: dd,
+              _token: token
+            },
+            success: function() {
+              swal('Dihapus');
+              $("#sc-"+dd).slideUp();
             },
             error: function(r,t,y) {
               alert(r+t+y);

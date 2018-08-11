@@ -113,4 +113,43 @@ class AdminController extends Controller
 
       return response()->json(['success'=>true]);
     }
+
+  	/**
+    * scamer kategori
+    */
+
+  	public function addKategoriScam()
+    {
+      $tag = new \App\CatScammer;
+      $tag->name = request()->kategori;
+      $tag->save();
+
+      return response()->json(['success'=>true]);
+    }
+
+
+  	public function fetchScam($i)
+    {
+      $tag = \App\CatScammer::find($i);
+
+      return response()->json(['kat'=>$tag->name,'id'=>$tag->id]);
+    }
+
+  	public function editScam()
+    {
+      $tag = \App\CatScammer::find(request()->id);
+      $tag->name = request()->kat;
+      $tag->save();
+
+      return response()->json(['success'=>true]);
+    }
+
+
+  	public function hapusScam()
+    {
+      $tag = \App\CatScammer::find(request()->id);
+      $tag->delete();
+
+      return response()->json(['success'=>true]);
+    }
 }

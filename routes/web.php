@@ -116,6 +116,12 @@ Route::post('/admin/tagforum', 'AdminController@tagForum')->middleware('admin');
 Route::get('/admin/tagedit/{i}', 'AdminController@fetchTag')->middleware('admin');
 Route::post('/admin/editforum', 'AdminController@editTag')->middleware('admin');
 Route::post('/admin/taghapus', 'AdminController@tagHapus')->middleware('admin');
+
+Route::post('/admin/catscam', 'AdminController@addKategoriScam')->middleware('admin');
+Route::get('/admin/scamedit/{i}', 'AdminController@fetchScam')->middleware('admin');
+Route::post('/admin/editscam', 'AdminController@editScam')->middleware('admin');
+Route::post('/admin/scamhapus', 'AdminController@hapusScam')->middleware('admin');
+
 /**
 * Forum Routes
 */
@@ -223,6 +229,7 @@ Route::get('/quiz/code/koreksi', 'QuizController@koreksiByCode')->middleware('au
 */
 Route::get('/scammer', 'ScammerController@show');
 Route::get('/scammer/cari', 'ScammerController@cari');
+Route::get('/scammer/kategori/{id}', 'ScammerController@kategori');
 Route::get('/scammer/{slug}/edit', 'ScammerController@edit')->middleware('auth');
 Route::post('/scammer/{slug}/edit', 'ScammerController@editPost')->middleware('auth');
 
