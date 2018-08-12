@@ -32,7 +32,6 @@
 		  .then(function(currentToken) {
 		    if (currentToken) {
 		      saveToken(currentToken);
-		      setTokenSentToServer(true);
 		    } else {
 		      console.log('No Instance ID token available. Request permission to generate one.');
 		      setTokenSentToServer(false);
@@ -60,6 +59,7 @@
           token: currentToken
         },
         success: function(){
+		  setTokenSentToServer(true);
           console.log('horray');
         }
       });

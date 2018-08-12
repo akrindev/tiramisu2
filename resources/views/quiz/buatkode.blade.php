@@ -62,9 +62,9 @@
                         </label></div>
         @parsedown($quiz->question) <br><br>
           <strong>a:</strong> {{ $quiz->answer_a }} <br>
-          <strong>b:</strong> {{ $quiz->answer_a }} <br>
-          <strong>c:</strong> {{ $quiz->answer_a }} <br>
-          <strong>d:</strong> {{ $quiz->answer_a }} <br><br>
+          <strong>b:</strong> {{ $quiz->answer_b }} <br>
+          <strong>c:</strong> {{ $quiz->answer_c }} <br>
+          <strong>d:</strong> {{ $quiz->answer_d }} <br><br>
           <strong>correct:</strong> {{ $quiz->correct }} <br>
         </div>
       </div>

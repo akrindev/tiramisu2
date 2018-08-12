@@ -82,9 +82,12 @@
     <link href="/assets/css/dashboard.css" rel="stylesheet" />
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/vendors/bootstrap.bundle.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
-
      <script src="/assets/js/core.js"></script>
+
+@auth
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+     <script src="/assets/js/fcm.js"></script>
+@endauth
 
     <script>
 if('serviceWorker' in navigator)

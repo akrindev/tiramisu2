@@ -336,11 +336,15 @@ class QuizController extends Controller
         return redirect('/quiz/kode/'.$code)->with('gagal', 'kamu sudah mengerjakan kuis ini');
       }
 
-      $quizzes = $quiz->soal;
+      $quizzes = collect(explode(',',$quiz->soal->soal))->take(10);
+
+      $randQuizzes = $quizzes->shuffle();
+
+      $randQuizzes->all();
 
       $i = 1;
 
-      foreach(explode(',',$quizzes->soal) as $ki):
+      foreach($randQuizzes as $ki):
 
       	$k = Quiz::find($ki);
       	// taruh quiz di session
