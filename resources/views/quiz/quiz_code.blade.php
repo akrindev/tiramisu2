@@ -9,6 +9,7 @@ $page = request()->page > 1 ? (request()->page-1)*50+1 : 1;
 @endphp
 
 @section('content')
+
 <div class="my-5">
   <div class="container">
     <div class="page-header">
@@ -55,7 +56,7 @@ $page = request()->page > 1 ? (request()->page-1)*50+1 : 1;
                 <th> Nama </th>
                 <th> Benar </th>
               <th> Salah </th>
-
+                <th>Pada</th>
               </tr>
             </thead>
 
@@ -79,6 +80,9 @@ $page = request()->page > 1 ? (request()->page-1)*50+1 : 1;
        <div class="progress progress-xs">
                 <div class="progress-bar bg-red" style="width: {{ $score->salah/($score->benar+$score->salah)*100 }}%"></div>
              </div>
+     </td>
+     <td>
+       <small class="text-muted">{{ waktu($score->updated_at) }}</small>
      </td>
 
    </tr>

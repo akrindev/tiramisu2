@@ -314,7 +314,9 @@ class QuizController extends Controller
   	public function lihatKode($code)
     {
       $quiz = QuizCode::whereCode($code)->firstOrFail();
-      $scores = $quiz->quizScore()->orderBy('benar','desc')->paginate(50);
+      $scores = $quiz->quizScore()->orderBy('benar','desc')
+        ->orderBy('updated_at', 'asc')
+        ->paginate(50);
 
       return view('quiz.quiz_code', [
       	'data'	=> $quiz->soal,
