@@ -10,10 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('toram');
 });
+
 Route::get('/sitemap.xml', 'SitemapController@index');
 Route::post('/send-token/fcm', 'UserController@sendToken');
 /**
@@ -90,9 +90,20 @@ Route::delete('/delete/fillstats', 'FillController@destroy')->middleware('auth')
 /**
 * Monster routes
 */
-Route::get('/monster', 'MobController@index');
-Route::get('/monster/{slug}', 'MobController@single');
-Route::get('/peta/{slug}', 'MobController@peta');
+Route::get('/monster', 'MonsterController@index');
+Route::get('/monster/{id}', 'MonsterController@showMons');
+Route::get('/peta', 'MonsterController@index');
+Route::get('/peta/{id}', 'MonsterController@peta');
+Route::get('/item/{id}', 'MonsterController@showItem');
+
+// CRUD
+Route::get('/mons/data/drop', 'MonsterController@dataDrop')->middleware('admin');
+Route::post('/mons/store/mobs', 'MonsterController@storeMob')->middleware('admin');
+Route::match(['get', 'post'], '/mons/drop/store', 'MonsterController@storeDrop')->middleware('admin');
+Route::match(['get', 'post'], '/mons/store', 'MonsterController@storeMons')->middleware('admin');
+// -- CRUD
+
+
 
 Route::get('/store-mob', 'MobController@add')->middleware('auth');
 Route::post('/store-mob', 'MobController@addPost')->middleware('auth');

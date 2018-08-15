@@ -1,9 +1,9 @@
 @extends('layouts.tabler')
 
 
-@section('title','Toram list Monsters')
+@section('title','Toram database Monsters')
 
-@section('description','Toram database monster, dan hidden monster dan boss')
+@section('description','Toram database monster, hidden monster dan boss')
 
 @section('image',to_img())
 
@@ -23,12 +23,12 @@
                       Monster pada peta
                     </h3>
                   </div>
-                  <div class="card-body">
+                  <div class="card-body p-3">
 
 
       @foreach ($data as $pos)
-                    <b><i class="fe fe-github"></i></b>
-                    <a href="/peta/{{$pos->mapslug}}">{{$pos->map}}</a> <br />
+                    <b><i class="fe fe-github mr-2"></i></b>
+                    <a href="/peta/{{$pos->id}}">{{$pos->name}}</a> <br />
      @endforeach
 
                   <div>
