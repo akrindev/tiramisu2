@@ -48,6 +48,10 @@ $page = request()->page > 1 ? (request()->page-1)*50+1 : 1;
             </h3>
 
           </div>
+  @auth
+   @if(App\QuizScoreCode::where('quiz_code_id', $data->quizCode->id)
+        		->where('user_id', auth()->id())
+        		->first())
           <div class="table-responsive">
           <table class="card-table table table-outline text-nowrap table-vcenter table-striped table-hover" style="font-size:14px;font-weight:400">
             <thead>
@@ -94,6 +98,13 @@ $page = request()->page > 1 ? (request()->page-1)*50+1 : 1;
 
           </table>
           </div>
+   @else
+          <div class="card-body">
+          Score akan tampil jika telah mengerjakan quiz
+          </div>
+   @endif
+  @endauth
+
         </div>
 
       </div>
