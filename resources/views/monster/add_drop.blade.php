@@ -129,6 +129,10 @@
  var control = $select[0].selectize;
  control.clear();
           });
+        } else {
+          swal("Data drop sudah ada",{
+          	icon: 'error'
+          });
         }
 
       simpan.innerHTML = 'Simpan';

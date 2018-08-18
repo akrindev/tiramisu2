@@ -260,6 +260,16 @@ class MonsterController extends Controller
   {
     if(request()->input())
     {
+      $same = Drop::where('name', request()->name)
+        		->get();
+
+      if($same->count() > 0)
+      {
+        return response()->json([
+          'success'	=>	false
+        ]);
+      }
+
       $type = request()->type;
       $dropType = DropType::find($type);
 
