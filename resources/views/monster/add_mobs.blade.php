@@ -64,7 +64,7 @@
           </div>
 
           <div class="row">
-            <div class="col-6">
+            <div class="col-4">
 
           <div class="form-group">
             <label class="form-label">level</label>
@@ -73,11 +73,20 @@
 
             </div>
 
-            <div class="col-6">
+            <div class="col-4">
 
           <div class="form-group">
             <label class="form-label">HP</label>
             <input type="number" class="form-control" name="hp">
+          </div>
+            </div>
+
+
+            <div class="col-4">
+
+          <div class="form-group">
+            <label class="form-label">XP</label>
+            <input type="number" class="form-control" name="xp">
           </div>
             </div>
           </div>
@@ -209,6 +218,7 @@
           }).then(() => {
     		simpan.innerHTML = 'Simpan';
           	form.reset();
+            form.clear();
           });
         }
     }).catch((err) => alert(err));

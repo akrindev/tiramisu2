@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Resep extends Model
 {
   protected $fillable = [
-  	'drop_id', 'material', 'jumlah'
+  	'drop_id', 'material', 'jumlah',
+    'fee', 'level', 'diff'
   ];
   public $timestamps = false;
 

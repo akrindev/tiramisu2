@@ -21,6 +21,7 @@ class CreateMonstersTable extends Migration
           	$table->integer('level');
           	$table->tinyInteger('type');
           	$table->integer('hp')->nullable();
+          	$table->integer('xp')->nullable();
           	$table->enum('pet',['y', 'n']);
           	$table->string('picture')->nullable();
         });

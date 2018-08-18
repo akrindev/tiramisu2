@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title', 'Peta ' . $data->name)
+@section('title', 'Toram map ' . $data->name)
 @section('description', $data->name . ' adalah peta yang berada di toram')
 @section('image', to_img())
 
@@ -8,7 +8,7 @@
 <div class="my-5">
   <div class="container">
     <div class="page-header">
-      <h1 class="page-title">{{ $data->name }}</h1>
+      <h1 class="page-title">Toram {{ $data->name }}</h1>
     </div>
 
     <div class="row">
@@ -37,12 +37,15 @@
              <dd>
                <span class="text-muted">Element: {{$mons->element->name}}</span>
              </dd>
+            @if($mons->drops->count() > 0)
              <b>Drop:</b><br>
              @foreach ($mons->drops as $drop)
              <a href="/item/{{$drop->id}}"> <img src="{{$drop->dropType->url}}" alt="" class="avatar avatar-sm"> {{$drop->name}} </a> <small class="text-muted">({{ $drop->proses ?? '-' }}pts / {{$drop->sell ?? '-'}}s)</small> <br>
              @endforeach
+
+            @endif
             </div>
-          @endforeach
+             @endforeach
           </dl> <!-- // dl end -->
           </div>
         </div>

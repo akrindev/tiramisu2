@@ -54,30 +54,7 @@ Route::post('/save/contact', 'UserController@saveContact');
 Route::get('/setting/profile', 'UserController@settingProfile');
 Route::post('/setting/profile', 'UserController@settingProfileSubmit');
 
-
-Route::get('/equips/{slug}', 'EquipController@equips');
-Route::get('/equip/{slug}', 'EquipController@equip');
-Route::get('/edit/{id}/equip', 'EquipController@edit');
-Route::post('/edit/{id}/equip', 'EquipController@editPost');
-Route::delete('/edit/equip/delete', 'EquipController@destroy');
-
-Route::get('/store-equip', 'EquipController@tambah');
-
-Route::post('/store-equip', 'EquipController@tambahPost');
-
-
-
-Route::get('/crystas/{slug}', 'CrystaController@crystas');
-Route::get('/crysta/{slug}', 'CrystaController@crysta');
-
-Route::get('/edit/{id}/crysta', 'CrystaController@edit');
-Route::post('/edit/{id}/crysta', 'CrystaController@editPost')->middleware('auth');
-Route::delete('/edit/crysta/delete', 'CrystaController@destroy')->middleware('auth');
-
-Route::get('/store-crysta', 'CrystaController@tambah')->middleware('auth');
-
-Route::post('/store-crysta', 'CrystaController@tambahPost')->middleware('auth');
-
+// fill stats
 Route::get('/fill_stats', 'FillController@index');
 Route::get('/fill_stats/calculator', 'FillController@calculator');
 Route::get('/fill_stats/add', 'FillController@add');
@@ -87,33 +64,38 @@ Route::get('/fill_stats/{type}/{plus}', 'FillController@single');
 Route::get('/edit/{id}/fillstats', 'FillController@edit')->middleware('auth');
 Route::post('/edit/{id}/fillstats', 'FillController@editPost')->middleware('auth');
 Route::delete('/delete/fillstats', 'FillController@destroy')->middleware('auth');
+
+
+
 /**
 * Monster routes
 */
+Route::get('/search', 'MonsterController@search');
 Route::get('/monster', 'MonsterController@index');
 Route::get('/monster/{id}', 'MonsterController@showMons');
+Route::get('/item/{id}', 'MonsterController@showItem');
+Route::get('/items/{id}', 'MonsterController@showItems');
 Route::get('/peta', 'MonsterController@index');
 Route::get('/peta/{id}', 'MonsterController@peta');
-Route::get('/item/{id}', 'MonsterController@showItem');
+
+Route::get('/monster/{id}/edit', 'MonsterController@editMons')->middleware('admin');
+Route::post('/monster/{id}/edit', 'MonsterController@editMobPost')->middleware('admin');
+Route::delete('/monster/{id}/hapus', 'MonsterController@monsHapus')->middleware('admin');
+Route::get('/item/{id}/edit', 'MonsterController@editItem')->middleware('admin');
+Route::post('/item/{id}/edit', 'MonsterController@editItemPost')->middleware('admin');
+Route::delete('/item/{id}/hapus', 'MonsterController@hapusItem')->middleware('admin');
 
 // CRUD
+Route::get('/mons/fetch/{id}', 'MonsterController@fetchI')->middleware('admin');
+Route::match(['get', 'post'], '/mons/store/resep', 'MonsterController@storeResep')->middleware('admin');
+Route::delete('/mons/hapus/resep/{id}', 'MonsterController@hapusResep')->middleware('admin');
 Route::get('/mons/data/drop', 'MonsterController@dataDrop')->middleware('admin');
 Route::post('/mons/store/mobs', 'MonsterController@storeMob')->middleware('admin');
 Route::match(['get', 'post'], '/mons/drop/store', 'MonsterController@storeDrop')->middleware('admin');
 Route::match(['get', 'post'], '/mons/store', 'MonsterController@storeMons')->middleware('admin');
+Route::match(['get', 'post'], '/store/peta', 'MonsterController@editMap')->middleware('admin');
 // -- CRUD
 
-
-
-Route::get('/store-mob', 'MobController@add')->middleware('auth');
-Route::post('/store-mob', 'MobController@addPost')->middleware('auth');
-Route::get('/edit/{id}/mobs', 'MobController@edit')->middleware('auth');
-Route::post('/edit/{id}/mobs', 'MobController@editPost')->middleware('auth');
-Route::delete('/edit/mob/delete', 'MobController@destroy')->middleware('auth');
-
-
-Route::get('/cari', 'CariController@cari');
-Route::post('/cari', 'CariController@cari');
 
 /*
 *

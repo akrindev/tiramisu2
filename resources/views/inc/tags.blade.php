@@ -2,7 +2,7 @@
 use Illuminate\Support\Facades\DB;
 
 $tags = DB::table('tags')->get();
-$randartikel = DB::table('forums')->inRandomOrder()->take(5)->get();
+$randartikel = DB::table('forums')->where('deleted_at', null)->inRandomOrder()->take(5)->get();
 
 @endphp
 <div id="fb-root"></div>

@@ -7,7 +7,7 @@
 
 @section('content')
 
-        <div class="my-3 my-md-5">
+        <div class="my-8">
           <div class="container">
 
             @include('inc.cari')
@@ -34,14 +34,6 @@
             <hr>
       @endif
 
-            @if(Auth::check() && Auth::user()->role == 'admin')
-
-                    <a href="/store-equip" class="btn btn-secondary">Tambah data equip</a>
-                    <a href="/store-mob" class="btn btn-secondary">Tambah data monster</a>
-                    <a href="/store-crysta" class="btn btn-secondary">Tambah data crysta</a>
-
-                    <a href="/fill_stats/add" class="btn btn-secondary">Tambah data fill stats</a>
-             @endif
       </div>
     </div>
 

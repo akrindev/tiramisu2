@@ -1,167 +1,269 @@
 @extends('layouts.tabler')
 
-@section('title','Edit monster '.$nama)
-@section('image',to_img())
-
-
 @section('content')
-@php
-  $maps = DB::table('mobs')->select('map')->distinct()->get();
+<div class="my-5">
+  <div class="container">
 
-  $ele = DB::table('elements')->get();
-    @endphp
+    <div class="row">
+      <div class="col-md-8">
 
-<div class="divider"></div>
+        <div class="card">
+          <div class="card-header">
+          <h3 class="card-title">Edit data monster</h3>
+          </div>
+          <div class="card-alert alert alert-info">Jika data drop tidak di temukan, tambah data dropnya <a href="/mons/drop/store">disini</a>
+          </div>
 
- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
+        <div class="card-body p-3" style="font-size:13px;font-weight:400">
 
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-    $(function(){
+          {!! form_open_multipart('/monster/'.$data->id.'/edit',["id"=>"mons-catcher"]) !!}
+          @csrf
 
-    var maps = [
-    @foreach ($maps as $maap)
-      "{{ $maap->map }}",
-    @endforeach
-    ];
-      $("#map").autocomplete({
-      source: maps
-      });
-    });
-</script>
-<div class="my-3 my-md-5">
-
-<div class="container">
-<div class='row'>
-  <div class="col">
-    <div class="card">
-  @if(session()->has('sukses'))
-      <div class="card-alert alert alert-success">
-        {{ session('sukses') }}
-      </div>
-  @endif
-      <div class="card-body">
-      <h3>Edit data Monster</h3>
-
-
-      {!! form_open() !!}
-        @csrf
+          <div class="form-group">
+            <label class="form-label">Nama</label>
+            <input type="text" class="form-control" name="nama" value="{{ $data->name }}" required>
+          </div>
 
       <div class="form-group">
-        <label>Nama Mobs</label>
-        <input type="text" name="nama" class="form-control" value="{{ $nama }}" required>
-      </div>
+        <label class="form-label">Type</label>
+<div class="selectgroup selectgroup-pills">
+  <label class="selectgroup-item">
+    <input type="radio" name="type" class="selectgroup-input" value="1" {{ $data->type == 1 ? 'checked':''}}>
+    <span class="selectgroup-button">Normal mons</span>
+  </label>
+   <label class="selectgroup-item">
+    <input type="radio" name="type" class="selectgroup-input" value="2" {{ $data->type == 2 ? 'checked':''}}>
+    <span class="selectgroup-button">Mini Boss</span>
+  </label>
+   <label class="selectgroup-item">
+    <input type="radio" name="type" class="selectgroup-input" value="3" {{ $data->type == 3 ? 'checked':''}}>
+    <span class="selectgroup-button">Boss</span>
+  </label>
+        </div>
+
+        </div>
+
+          <div class="form-group">
+            <label class="form-label">Map</label>
+            <select name="map" id="map" class="form-control custom-select" required>
+              <option value=""></option>
+            @foreach ((new App\Map)->get() as $map)
+              <option value="{{$map->id}}" {{ $data->map_id == $map->id ? 'selected':''}}>{{ $map->name }}</option>
+            @endforeach
+            </select>
+          </div>
 
 
-      <div class="form-group">
-        <label>Type Mobs</label>
-        <select name="type" class="form-control">
-          <option value="Normal Monster" {{  $type == "Normal Monster" ? 'selected' : '' }}>Normal Mobs</option>
-          <option value="Field Boss" {{  $type == "Field Boss" ? 'selected' : '' }}>Field Boss</option>
-          <option value="Boss" {{  $type == "Boss" ? 'selected' : '' }}>Boss</option>
-        </select>
-      </div>
+          <div class="form-group">
+            <label class="form-label">Bisa dijadikan pet?</label>
+            <label class="custom-switch">
+               <input type="checkbox" name="pet" class="custom-switch-input"  {{ $data->pet == 'y' ? 'checked':''}}>
+                <span class="custom-switch-indicator"></span>
+                <span class="custom-switch-description"></span>
+             </label>
+          </div>
+
+          <div class="row">
+            <div class="col-4">
+
+          <div class="form-group">
+            <label class="form-label">level</label>
+            <input type="number" class="form-control" name="level" value="{{ $data->level }}" required>
+          </div>
+
+            </div>
+
+            <div class="col-4">
+
+          <div class="form-group">
+            <label class="form-label">HP</label>
+            <input type="number" class="form-control" name="hp" value="{{ $data->hp }}">
+          </div>
+            </div>
 
 
-      <div class="form-group">
-        <label>Element Mobs</label>
-        <select name="element" class="form-control">
+            <div class="col-4">
 
+          <div class="form-group">
+            <label class="form-label">XP</label>
+            <input type="number" class="form-control" name="xp">
+          </div>
+            </div>
+          </div>
 
-       @foreach($ele as $el)
+          <div class="form-group">
+            <label class="form-label">Drop items</label>
+            <select id="drop-item" class="form-control" multiple="multiple" name="drop[]" required>
 
-          <option value="{{ $el->nama }}" {{ $element == $el->nama ? 'selected' : '' }}>{{ $el->nama }}</option>
-       @endforeach
-        </select>
-      </div>
-
-
-      <div class="form-group">
-        <label>HP Mobs</label>
-        <input type="number" name="hp" class="form-control" value="{{ $hp }}" required>
-      </div>
-
-
-      <div class="form-group">
-        <label>XP Mobs</label>
-        <input type="number" name="xp" class="form-control" value="{{ $xp }}" required>
-      </div>
-
-
-      <div class="form-group">
-        <label>Level Mobs</label>
-        <input type="number" name="level" class="form-control" value="{{ $level }}" required>
-      </div>
-
-
-      <div class="form-group">
-        <label>Gambar</label><br>
-
-                          <img src="/{{ $pics != '' ? $pics: 'img/logo_toramonline.png' }}" class="rounded">
-        <input type="radio" name="withimg" value="ya" > Dengan gambar
-        <input type="text" name="pics" class="form-control" value="{{ $pics }}">
-        <div class="help-block">upload dulu di <a href="https://ctrlq.org/images/">ctrlq.org</a> copy disini linknya</div>
-      </div>
-
-
-      <div class="form-group">
-        <label>Peta</label>
-        <input type="text" id="map" name="map" class="form-control" value="{{ $map }}" required>
-      </div>
-
-
-      <div class="form-group">
-        <label>Dapat di jadikan pet?</label><br>
-        <input type="radio" name="kandang" value="Ya" {{ $kandang == "Ya" ? 'checked' : '' }}> Ya &nbsp; &nbsp;
-        <input type="radio" name="kandang" value="Tidak" {{ $kandang == "Tidak" ? 'checked' : '' }}> Tidak
-      </div>
-
-
-      <div class="form-group">
-        <label>Drop items</label>
-        <textarea rows=5 name="drop_items" class="form-control">{{ $drop_items }}</textarea>
-        <div class="help-block">Note: <span class="text-muted">Nama items</span> (proc),<br>
-        pisahkan dengan koma</div>
-      </div>
-
+            </select>
+          </div>
 
       <div class="form-group">
-        <label>Drop Equip / xtall </label>
-        <textarea rows=5 name="drop_equip" class="form-control">{{ $drop_equip }}</textarea>
-        <div class="help-block">Note: <span class="text-muted">Nama equip/xtall</span> (proc),<br>
-        pisahkan dengan koma</div>
+        <label class="form-label">Element</label>
+<div class="selectgroup selectgroup-pills">
+  @foreach ((new App\Element)->get() as $el)
+  <label class="selectgroup-item">
+    <input type="radio" name="element" class="selectgroup-input" value="{{$el->id}}" {{ $loop->first ? 'checked':'' }}>
+    <span class="selectgroup-button">{{ $el->name }}</span>
+  </label>
+  @endforeach
+        </div>
+
+        </div>
+
+          <div class="form-group">
+            <label class="form-label">Screenshot</label>
+            <div id="preview"></div>
+            <input type="file" name="picture" class="form-control" accept="image/*">
+          </div>
+
+
+          <div class="form-group">
+            <button class="btn btn-outline-primary btn-pill" type="submit" id="simpan">Simpan</button> <span class="btn btn-outline-danger" id="hapus-mons">Hapus</span>
+          </div>
+
+          {!! form_close() !!}
+
+          {!! form_open('/monster/'.$data->id.'/hapus',['id'=>'form-hapus']) !!}
+          @csrf
+          @method('delete')
+          {!! form_close() !!}
+        </div>
       </div>
-
-
-      <div class="form-group">
-        <label>Remarks / info lainmya</label>
-        <textarea rows=5 name="notes" class="form-control">{{ $notes }}</textarea>
-      </div>
-
-      <button type="submit" class="btn btn-primary">Ubah</button>
-
-
-        <a onclick="if(confirm('Hapus data ini?')){ event.preventDefault();
-                                                     document.getElementById('delete-form').submit(); }else{ return false; }" class="btn btn-danger">Hapus</a>
-
-
-      {!! form_close() !!}
-
-
-        {!! form_open('/edit/mob/delete',['id' => 'delete-form']) !!}
-        <input type="hidden" name="id" value="{{ $id }}">
- @csrf
-        @method("DELETE")
-
-        {!! form_close() !!}
-
-
-    </div>
     </div>
   </div>
 </div>
-</div>
-</div>
 
+@endsection
+
+@section('head')
+ <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css" />
+<script src="/assets/js/vendors/selectize.min.js"></script>
+@endsection
+
+@section('footer')
+<script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/index.js"></script>
+    <script type="text/javascript">
+        loadProgressBar();
+    </script>
+<script>
+  $('#map').selectize({
+    render: {
+      option: function (data, escape) {
+        return '<div>' +
+          '<span class="title">' + escape(data.text) + '</span>' +
+          '</div>';
+      },
+      item: function (data, escape) {
+        return '<div>' +
+          escape(data.text) +
+          '</div>';
+      }
+    }
+  });
+</script>
+  <script>
+  $('#drop-item').selectize({
+    valueField: 'id',
+    labelField: 'name',
+    searchField: 'name',
+    create: false,
+    persist: false,
+    options: [],
+    delimiter:',',
+    render: {
+      option: function (item, escape) {
+        return '<div>' +
+          '<span class="image"><img src="' + item.drop_type.url + '" alt=""></span>' +
+          '<span class="title">' + escape(item.name) + '</span>' +
+          '</div>';
+      },
+      item: function (data, escape) {
+        return '<div>' +
+          '<span class="image"><img src="' + data.drop_type.url + '" alt=""></span>' +
+          escape(data.name) +
+          '</div>';
+      }
+    },
+    load: function(query, callback) {
+        if (!query.length) return callback();
+        $.ajax({
+            url: '/mons/store',
+          	data: {
+              q: query
+            },
+            type: 'GET',
+            error: function() {
+                callback();
+            },
+            success: function(res) {
+                callback(res.data);
+            }
+        });
+    },onInitialize: function(){
+    var selectize = this;
+    $.get("/mons/fetch/{{ $data->id }}", function( data ) {
+        selectize.addOption(data); // This is will add to option
+        var selected_items = [];
+        $.each(data, function( i, obj) {
+            selected_items.push(obj.id);
+        });
+        selectize.setValue(selected_items); //this will set option values as default
+    });
+}
+});
+
+
+    </script>
+
+<script>
+(function(){
+  let form = document.getElementById("mons-catcher");
+  let simpan = document.getElementById("simpan");
+  let hapusMons = document.getElementById("hapus-mons");
+  let hapusForm = document.getElementById("form-hapus");
+
+  form.addEventListener('submit', (e) => {
+  	e.preventDefault();
+
+    let data = new FormData(e.target);
+
+    simpan.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Menyimpan';
+
+    axios.post('/monster/{{ $data->id}}/edit', data)
+    .then((res) => {
+    	if(res.data.success) {
+          swal("Data monster di edit", {
+          	icon: 'success'
+          }).then(() => {
+    		simpan.innerHTML = 'Simpan';
+          	window.location.href = '/monster/{{$data->id}}';
+          });
+        }
+    }).catch((err) => alert(err));
+  });
+
+  hapusMons.addEventListener('click', (e) => {
+  	e.preventDefault();
+
+    swal({
+      title:'Hapus data monster ini?',
+      text:'',
+      icon:'warning',
+      buttons:true,
+      dangerMode:true
+    }).then((yakin) => {
+    	if(yakin) {
+          hapusForm.submit();
+        } else {
+          swal('oke gan aman!!');
+        }
+
+    });
+
+  });
+})();
+</script>
 @endsection

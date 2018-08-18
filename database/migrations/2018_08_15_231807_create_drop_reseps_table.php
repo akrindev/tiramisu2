@@ -21,6 +21,7 @@ class CreateDropResepsTable extends Migration
           	$table->integer('fee')->nullable();
           	$table->integer('level')->nullable();
           	$table->integer('diff')->nullable();
+          	$table->integer('set')->nullable();
         });
     }
 

@@ -38,17 +38,17 @@
 
           <div class="form-group">
             <label class="form-label">NPC Selling price</label>
-            <input type="number" class="form-control" name="sell" required>
+            <input type="number" class="form-control" name="sell">
           </div>
 
 
           <div class="form-group">
             <label class="form-label">Proses pts</label>
-            <input type="number" class="form-control" name="proses" required>
+            <input type="number" class="form-control" name="proses" >
           </div>
 
           <div class="form-group">
-            <label class="form-label">Tambahan / Note <small class="text-muted">boleh kosong</small></label>
+            <label class="form-label">Tambahan / Note / Status weapon / item <small class="text-muted">boleh kosong</small></label>
             <textarea name="note" rows="5" class="form-control"></textarea>
           </div>
 
@@ -90,7 +90,7 @@
         loadProgressBar();
     </script>
 <script>
-  $('#select-type').selectize({
+ var $select = $('#select-type').selectize({
     render: {
       option: function (data, escape) {
         return '<div>' +
@@ -126,7 +126,8 @@
           	icon: 'success'
           }).then(() => {
           	form.reset();
-            form.clear();
+ var control = $select[0].selectize;
+ control.clear();
           });
         }
 

@@ -117,7 +117,7 @@ $tags = explode(',', $tags);
             <button onclick="event.preventDefault(); dte()" class="float-right btn btn-sm btn-pill btn-outline-danger">hapus</button>
            {!! form_open(url()->current().'/del',['id' => 'delete-form']) !!}
             @csrf
-
+            @method('delete')
            {!! form_close() !!}
 
          @endif

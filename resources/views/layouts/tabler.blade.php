@@ -174,32 +174,57 @@ if('serviceWorker' in navigator)
                   <li class="nav-item">
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Perlengkapan</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
-@php
-       $a = (new App\Barang)->select('type','typeslug')->distinct()->get();
-@endphp
 
-        @foreach ($a as $b)
-                      <a href="/equips/{{ $b->typeslug }}" class="dropdown-item ">{{ $b->type }}</a>
+                      <a href="/items/26" class="dropdown-item ">Pedang</a>
+                      <a href="/items/27" class="dropdown-item ">Pedang Raya</a>
+                      <a href="/items/28" class="dropdown-item ">Tinju</a>
+                      <a href="/items/29" class="dropdown-item ">Tombak</a>
+                      <a href="/items/13" class="dropdown-item ">Alat Sihir</a>
+                      <a href="/items/30" class="dropdown-item ">Tongkat</a>
+                      <a href="/items/14" class="dropdown-item ">Busur</a>
+                      <a href="/items/15" class="dropdown-item ">Bowgun</a>
+                      <a href="/items/25" class="dropdown-item ">Katana</a>
+                      <a href="/items/31" class="dropdown-item ">Zirah</a>
+                      <a href="/items/33" class="dropdown-item ">Pelengkap</a>
+                      <a href="/items/32" class="dropdown-item ">Tambahan</a>
+                      <a href="/items/43" class="dropdown-item ">Tameng</a>
+                      <a href="/items/44" class="dropdown-item ">Pisau</a>
+                      <a href="/items/46" class="dropdown-item ">Panah</a>
 
-        @endforeach
                     </div>
                   </li>
                   <li class="nav-item dropdown">
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-star"></i> Crysta</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
- @php
-       $c = (new App\Crysta)->select('type','typeslug')->distinct()->get();
-@endphp
-        @foreach ($c as $d)
-                      <a href="/crystas/{{ $d->typeslug }}" class="dropdown-item ">{{ $d->type }}</a>
+                      <a href="/items/34" class="dropdown-item ">Crysta Umum</a>
+                      <a href="/items/35" class="dropdown-item ">Crysta Senjata</a>
+                      <a href="/items/36" class="dropdown-item ">Crysta Zirah</a>
+                      <a href="/items/37" class="dropdown-item ">Crysta Tambahan</a>
+                      <a href="/items/38" class="dropdown-item ">Crysta Pelengkap</a>
+                      <a href="/items/39" class="dropdown-item ">Crysta Penguat</a>
+                      <a href="/items/41" class="dropdown-item ">Crysta Permata</a>
 
-        @endforeach
                     </div>
                   </li>
 
 <li class="nav-item">
                     <a href="/monster" class="nav-link"><i class="fe fe-github"></i> Monster</a>
                   </li>
+
+
+                  <li class="nav-item dropdown">
+                    <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-folder"></i>Items</a>
+                    <div class="dropdown-menu dropdown-menu-arrow">
+                      <a href="/items/1" class="dropdown-item ">Logam</a>
+                      <a href="/items/2" class="dropdown-item ">Kain</a>
+                      <a href="/items/3" class="dropdown-item ">Fauna</a>
+                      <a href="/items/4" class="dropdown-item ">Kayu</a>
+                      <a href="/items/5" class="dropdown-item ">Obat</a>
+                      <a href="/items/6" class="dropdown-item ">Mana</a>
+
+                    </div>
+                  </li>
+
                   <li class="nav-item">
                     <a href="/exp" class="nav-link"><i class="fe fe-bar-chart"></i> Exp calculator</a>
                   </li>
@@ -226,10 +251,6 @@ if('serviceWorker' in navigator)
 
                   <li class="nav-item">
                     <a href="/scammer" class="nav-link"><i class="fe fe-user-x"></i>Penipuan</a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a href="/shop" class="nav-link"><i class="fe fe-shopping-cart"></i> Marketplace</a>
                   </li>
 
                 </ul>

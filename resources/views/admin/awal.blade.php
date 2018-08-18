@@ -11,6 +11,16 @@
       <h1 class="page-title"> Admin Dashboard</h1>
     </div>
 
+    <div class="row mb-5">
+      <div class="col-md-12">
+        <div class="alert alert-info"><b>Tips!</b> &nbsp; Tambahkan drop terlebih dahulu, setelah itu monster setelah monster tambah resep</div>
+        <a href="/mons/store" class="btn btn-sm mb-2">Store monster</a>
+        <a href="/mons/drop/store" class="btn btn-sm mb-2">Store drop</a>
+        <a href="/mons/store/resep" class="btn btn-sm mb-2">Store resep</a>
+        <a href="/store/peta" class="btn btn-sm mb-2">Edit Peta</a>
+      </div>
+    </div>
+
 
     <div class="row row-cards">
           <div class="col-6 col-sm-4 col-lg-2">

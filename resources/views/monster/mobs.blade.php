@@ -29,6 +29,9 @@
                [Boss]
           @endswitch
                   </a></b>
+          @if(auth()->check() && auth()->user()->isAdmin())
+              <a href="/monster/{{$data->id}}/edit" class="btn btn-sm btn-outline-secondary">edit</a>
+          @endif
               </dt>
               <dd>
                 @if(!is_null($data->picture))
@@ -36,7 +39,8 @@
                 @endif
                 <b>Element: </b> {{$data->element->name}} <br>
                 <b>Pet: </b> {{ $data->pet === 'y' ? 'bisa':'tidak'}} <br>
-                <b>HP:</b> {{ $data->hp ?? '-'}}
+                <b>HP:</b> {{ $data->hp ?? '-'}} <br>
+                <b>XP:</b> {{ $data->xp ?? '-' }}
                 <div class="mb-2"></div>
                 <b>Peta:</b> <a href="/peta/{{$data->map->id}}"> {{ $data->map->name }}</a>
                 <div class="my-2"></div>
