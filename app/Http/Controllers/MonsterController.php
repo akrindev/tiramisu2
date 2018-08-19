@@ -48,6 +48,11 @@ class MonsterController extends Controller
   {
     $q = request()->q;
 
+    if(strlen($q) < 2)
+    {
+      return redirect('/')->with('gagal', 'Mencari harus memiliki 2 karakter atau lebih');
+    }
+
     $drops = Drop::where('name','like','%'.$q.'%')
       			->orderBy('name')
       			->remember(60)
