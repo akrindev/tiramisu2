@@ -12,6 +12,9 @@
 
     <div class="row">
       <div class="col-md-8">
+      @include('inc.cari')
+      </div>
+      <div class="col-md-8">
         <div class="card">
           <div class="card-body p-3" style="font-size:13px;font-weight:400">
 
@@ -35,7 +38,7 @@
               </dt>
               <dd>
                 @if(!is_null($data->picture))
-                <img src="/{{$data->picture}}" alt="" class="rounded my-4">
+                <img src="/{{$data->picture}}" class="rounded my-4 d-block">
                 @endif
                 <b>Element: </b> {{$data->element->name}} <br>
                 <b>Pet: </b> {{ $data->pet === 'y' ? 'bisa':'tidak'}} <br>

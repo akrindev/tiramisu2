@@ -86,7 +86,7 @@
 
           <div class="form-group">
             <label class="form-label">XP</label>
-            <input type="number" class="form-control" name="xp">
+            <input type="number" class="form-control" name="xp" value="{{ $data->xp }}">
           </div>
             </div>
           </div>

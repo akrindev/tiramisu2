@@ -11,7 +11,7 @@ class Monster extends Model
 
     protected $fillable = [
     	'map_id', 'element_id', 'name', 'level', 'type',
-      	'hp', 'pet', 'picture'
+      	'hp', 'pet', 'picture', 'xp'
     ];
   	public $timestamps = false;
 

@@ -98,6 +98,9 @@ class MonsterController extends Controller
           });
 
       $make->save(public_path($nama));
+
+
+      $mons->picture = $nama;
     }
 
 
@@ -109,7 +112,6 @@ class MonsterController extends Controller
     $mons->hp	= request()->hp;
     $mons->xp	= request()->xp;
     $mons->pet	= request()->pet ? 'y' : 'n';
-    $mons->picture = $nama ?? null;
     $mons->save();
 
     $drops = Drop::find(request()->drop);

@@ -13,6 +13,9 @@
 
     <div class="row">
       <div class="col-md-8">
+      @include('inc.cari')
+      </div>
+      <div class="col-md-8">
 
         <div class="card">
           <div class="card-body p-3" style="font-size:13px;font-weight:400">
