@@ -29,7 +29,7 @@
 
             @if(! is_null($item->note))
               <div class="my-1 ml-5" style="font-size:11px;font-weight:350">
-                @parsedown(e($item->note))
+                @parsedown(nl2br(e($item->note)))
               </div>
             @endif
             </div>
