@@ -79,7 +79,6 @@
 
            </div>
 
-
           <div class="col-6 col-sm-4 col-lg-2">
 
                 <div class="card">
@@ -87,6 +86,25 @@
 
                     <div class="h1 m-0">{{ (new App\Scammer)->count() }} </div>
                     <div class="text-muted mb-4">Total Penipuan</div>
+                  </div>
+                </div>
+
+           </div>
+
+
+          <div class="col-6 col-sm-4 col-lg-2">
+
+                <div class="card">
+                  <div class="card-body p-3 text-center">
+ <div class="text-right small">
+   <span class="text-success mr-2">
+                      {{ (new App\Monster)->count() }} mobs
+    </span> <span class="text-primary">
+                      {{ (new App\Resep)->count() }} resep
+   </span>
+                    </div>
+                    <div class="h1 m-0">{{ (new App\Drop)->count() }} </div>
+                    <div class="text-muted mb-4">Total Drop</div>
                   </div>
                 </div>
 
