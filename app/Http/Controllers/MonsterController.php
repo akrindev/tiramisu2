@@ -172,18 +172,16 @@ class MonsterController extends Controller
             });
 
         $make->save(public_path($nama));
+
+        $item->picture	= $nama;
       }
 
-      	$item->name		= request()->name;
-    	$item->drop_type_id = request()->type;
-        $item->proses	= request()->proses;
-        $item->sell		= request()->sell;
-        $item->note		= request()->note;
-        $item->picture	= $nama ?? null;
-    	$item->save();
-
-
-
+      $item->name		= request()->name;
+      $item->drop_type_id = request()->type;
+      $item->proses	= request()->proses;
+      $item->sell		= request()->sell;
+      $item->note		= request()->note;
+      $item->save();
 
       return response()->json([
       	'success'	=>	true,
