@@ -14,7 +14,7 @@ class MonsterController extends Controller
 {
   public function index()
   {
-    $data = Map::get();
+    $data = Map::orderBy('name')->get();
 
     return view('monster.index', compact('data'));
   }
@@ -55,12 +55,12 @@ class MonsterController extends Controller
 
     $drops = Drop::where('name','like','%'.$q.'%')
       			->orderBy('name')
-      			->remember(60)
+      			//->remember(60)
       			->get();
 
     $monsters = Monster::where('name','like','%'.$q.'%')
       			->orderBy('name')
-      			->remember(60)
+      			//->remember(60)
       			->get();
 
     return view('monster.search',compact('drops', 'monsters', 'q'));

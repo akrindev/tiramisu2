@@ -68,18 +68,15 @@
 
            <div class="mb-5">
            <dt class="mb-1">
-           <b class="h6"> <a class="text-primary" href="/monster/{{$mons->id}}">{{ $mons->name }} (Lv {{$mons->level}})
-             @switch($mons->type)
-             @case(1)
-               [Normal monster]
-               @break
+           <b class="h6"> <a class="text-primary" href="/monster/{{$mons->id}}">{{ $mons->name }} (Lv {{$mons->level}}) </a>
+          @switch($mons->type)
              @case(2)
-               [Mini boss]
+               <img src="/img/f_boss.png" alt="mini boss" style="display:inline;max-width:120px;max-height:15px;">
                @break
              @case(3)
-               [Boss]
+               <img src="/img/boss.png" class="boss" style="display:inline;max-width:120px;max-height:15px;">
           @endswitch
-             </a> </b>
+             </b>
            </dt>
              <dd>
                <span class="text-muted">Element: {{$mons->element->name}}</span>

@@ -20,18 +20,15 @@
 
             <dl>
               <dt>
-                <b class="h5"><a href="/monster/{{$data->id}}" class="text-primary"> {{ $data->name }} (Lv {{$data->level}})
+                <b class="h5"><a href="/monster/{{$data->id}}" class="text-primary"> {{ $data->name }} (Lv {{$data->level}})</a>
           @switch($data->type)
-             @case(1)
-               [Normal monster]
-               @break
              @case(2)
-               [Mini boss]
+               <img src="/img/f_boss.png" alt="mini boss" style="display:inline;max-width:120px;max-height:15px;">
                @break
              @case(3)
-               [Boss]
+               <img src="/img/boss.png" class="boss" style="display:inline;max-width:120px;max-height:15px;">
           @endswitch
-                  </a></b>
+                 </b>
           @if(auth()->check() && auth()->user()->isAdmin())
               <a href="/monster/{{$data->id}}/edit" class="btn btn-sm btn-outline-secondary">edit</a>
           @endif
