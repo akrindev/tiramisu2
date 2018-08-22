@@ -202,7 +202,7 @@ if('serviceWorker' in navigator)
                       <a href="/items/37" class="dropdown-item ">Crysta Tambahan</a>
                       <a href="/items/38" class="dropdown-item ">Crysta Pelengkap</a>
                       <a href="/items/39" class="dropdown-item ">Crysta Penguat</a>
-                      <a href="/items/41" class="dropdown-item ">Crysta Permata</a>
+                      <a href="/items/41" class="dropdown-item ">Permata</a>
 
                     </div>
                   </li>

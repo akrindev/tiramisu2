@@ -67,7 +67,8 @@
         loadProgressBar();
     </script>
 <script>
-$('.editMap').click(function() {
+$('.editMap').click(function(e) {
+  e.preventDefault();
 
   var u = $(this).attr('data');
   var name = $("#map"+u).text();

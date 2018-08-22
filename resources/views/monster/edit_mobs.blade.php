@@ -103,7 +103,7 @@
 <div class="selectgroup selectgroup-pills">
   @foreach ((new App\Element)->get() as $el)
   <label class="selectgroup-item">
-    <input type="radio" name="element" class="selectgroup-input" value="{{$el->id}}" {{ $el->id === $data->element_id ? 'checked':'' }}>
+    <input type="radio" name="element" class="selectgroup-input" value="{{$el->id}}" {{ $el->id == $data->element_id ? 'checked':'' }}>
     <span class="selectgroup-button">{{ $el->name }}</span>
   </label>
   @endforeach
