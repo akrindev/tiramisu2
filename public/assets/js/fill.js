@@ -624,7 +624,7 @@ function show_formulas() {
   let buffer = Formulas.sort((a,b) => b.weap_arm.localeCompare(a.weap_arm)).map(f => {
     let json = escapeHTML(JSON.stringify(f));
     return `<button class="btn btn-outline-primary mr-2 mb-2" onclick='set_formula(${json});document.querySelector("#details").scrollIntoView()' style="text-align: left">${f.weap_arm === 'w' ? '<span style="color: red; font-weight: bold">Weapon</span>' : '<span style="color: Green; font-weight: bold">Armor</span>'}<br />${f.stats.filter(s => s[1] > 0 || s[2]).map(s => FORMULA.toStepString(...s)).join('<br />')}</button>`
-  });
+  }).join('');
   document.getElementById('stat_formulas').innerHTML = buffer;
 }
 
