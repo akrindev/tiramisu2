@@ -36,10 +36,6 @@
             </div>
 
             <div class="form-group">
-              <label class="form-label"> Potensial</label>
-              <input class="form-control" type="number" value=0 id='recipe_pot' onchange="update_config('recipe_pot')">
-            </div>
-            <div class="form-group">
             	<div id="stat_menu" class="row gutter-xs p-2">
 
             	</div>
