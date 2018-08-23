@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title', 'Toram '. $data->name)
+@section('title', 'Toram '. $data->name . ' (Lv '. $data->level .')')
 @section('image', $data->picture ?? url('/img/potum.gif'))
 
 @section('content')
@@ -41,6 +41,12 @@
                 <b>Pet: </b> {{ $data->pet === 'y' ? 'bisa':'tidak' }} <br>
                 <b>HP:</b> {{ $data->hp ?? '-'}} <br>
                 <b>XP:</b> {{ $data->xp ?? '-' }}
+
+              @if($data->type == 3 || $data->type == 2)
+                <br>
+                <b>Leveling:</b> {{ $data->level-3 }} <span class="text-muted">s/d</span> {{ $data->level+3 }}
+              @endif
+
                 <div class="mb-2"></div>
                 <b>Peta:</b> <a href="/peta/{{ $data->map->id }}"> {{ $data->map->name }}</a>
                 <div class="my-2"></div>

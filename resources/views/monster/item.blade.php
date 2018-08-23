@@ -1,7 +1,7 @@
 @extends('layouts.tabler')
 
 @section('title', 'Toram ' . $item->name)
-@section('description', $item->name . '')
+@section('description', $item->name . ': ' . strip_tags(trim($item->note)) ?? '' )
 @section('image', $item->picture ?? to_img())
 
 @section('content')
