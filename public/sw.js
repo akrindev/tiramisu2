@@ -5,6 +5,7 @@ const filesToCache = [
   '/assets/js/core.js',
   '/assets/js/vendors/bootstrap.bundle.min.js',
   '/assets/css/dashboard.css',
+  '/assets/css/app.min.css',
   '/assets/js/bootstrap-markdown.js',
   '/assets/js/markdown.js',
   '/img/potum.gif',

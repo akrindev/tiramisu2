@@ -79,9 +79,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
     <!-- Dashboard Core -->
-    <link href="/assets/css/dashboard.css" rel="stylesheet" />
+    <link href="/assets/css/app.min.css" rel="stylesheet" />
     <script src="/assets/js/jquery.min.js"></script>
-    <script src="/assets/js/vendors/bootstrap.bundle.min.js"></script>
      <script src="/assets/js/core.js"></script>
 
 @auth
@@ -92,10 +91,10 @@
     <script>
 if('serviceWorker' in navigator)
 {
-    navigator.serviceWorker.register('/sw.js')
-        .then(function() {
-              console.log('Service Worker Registered');
-        });
+  navigator.serviceWorker.register('/sw.js')
+    .then(function() {
+    console.log('Service Worker Registered');
+  });
 }
     </script>
 
@@ -287,6 +286,8 @@ if('serviceWorker' in navigator)
     @yield('footer')
 
  <script src="/assets/js/lazy.js"></script>
+ <script src="/assets/js/vendors/bootstrap.bundle.min.js"></script>
+
 
 @if(env('APP_ENV') === 'production')
 <!-- Google Analytics -->

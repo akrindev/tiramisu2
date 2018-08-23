@@ -35,12 +35,17 @@
              </b>
            </dt>
              <dd>
-               <span class="text-muted">Element: {{$mons->element->name}}</span>
+              <b>Element:</b>  <span class="">{{$mons->element->name}}</span> <br>
+               <b>Peta:</b> <a href="/peta/{{ $mons->map->id }}"> {{ $mons->map->name }}</a>
              </dd>
             @if($mons->drops->count() > 0)
              <b>Drop:</b><br>
              @foreach ($mons->drops as $drop)
-             <a href="/item/{{$drop->id}}"> <img src="{{$drop->dropType->url}}" alt="" class="avatar avatar-sm"> {{$drop->name}} </a> <small class="text-muted">({{ $drop->proses ?? '-' }}pts / {{$drop->sell ?? '-'}}s)</small> <br>
+             <a href="/item/{{$drop->id}}"> <img src="{{$drop->dropType->url}}" class="avatar avatar-sm"> {{$drop->name}} </a>
+             @if ($drop->proses && $drop->sell)
+             <small class="text-muted">({{ $drop->proses ?? '-' }}pts / {{ $drop->sell ?? '-' }}s)</small>
+             @endif
+             <br>
              @endforeach
 
             @endif
@@ -50,6 +55,10 @@
           </div>
         </div>
 
+      </div>
+
+      <div class="col-md-4">
+      @include('inc.menu')
       </div>
     </div>
   </div>

@@ -16,7 +16,7 @@
       </div>
       <div class="col-md-8">
         <div class="card">
-          <div class="card-body p-3" style="font-size:13px;font-weight:400">
+          <div class="card-body p-3" style="font-size:12px;font-weight:400">
 
           @if($drops->count() > 0)
             @foreach($drops as $item)
@@ -28,7 +28,7 @@
            @endif
 
             @if(! is_null($item->note))
-              <div class="my-1 ml-5" style="font-size:11px;font-weight:350">
+              <div class="my-1 ml-5">
                 @parsedown(nl2br(e($item->note)))
               </div>
             @endif
@@ -45,7 +45,7 @@
 
            <div class="mb-5">
            <dt class="mb-1">
-           <b class="h6"> <a class="text-primary" href="/monster/{{$mons->id}}">{{ $mons->name }} (Lv {{$mons->level}}) </a>
+           <b class="h6"> <a class="text-primary" href="/monster/{{ $mons->id }}">{{ $mons->name }} (Lv {{ $mons->level }}) </a>
           @switch($mons->type)
              @case(2)
                <img src="/img/f_boss.png" alt="mini boss" style="display:inline;max-width:120px;max-height:15px;">
@@ -56,7 +56,7 @@
             </b>
            </dt>
              <dd>
-               <span class="text-muted">Element: {{$mons->element->name}}</span> <br>
+               <b>Element:</b> <span> {{$mons->element->name}}</span> <br>
                <b>Peta: </b> <a href="/peta/{{ $mons->map->id }}">{{ $mons->map->name }}</a>
              </dd>
             </div>

@@ -43,5 +43,14 @@
       <a href="/items/39" class="d-block mb-1 col-6"> <img src="/img/drop/crysta_up.jpg" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Crysta Penguat</a>
       <a href="/items/41" class="d-block mb-1 col-6"> <img src="/img/drop/permata.jpg" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Permata</a>
     </div>
+
+    <div class="my-1 row gutters-xs">
+      <a href="/items/1" class="d-block mb-1 col-6"> <img src="/img/drop/logam.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Logam</a>
+      <a href="/items/2" class="d-block mb-1 col-6"> <img src="/img/drop/kain.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Kain</a>
+      <a href="/items/3" class="d-block mb-1 col-6"> <img src="/img/drop/fauna.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Fauna</a>
+      <a href="/items/4" class="d-block mb-1 col-6"> <img src="/img/drop/kayu.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Kayu</a>
+      <a href="/items/5" class="d-block mb-1 col-6"> <img src="/img/drop/obat.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Obat</a>
+      <a href="/items/6" class="d-block mb-1 col-6"> <img src="/img/drop/mana.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Mana</a>
+    </div>
   </div>
 </div>

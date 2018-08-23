@@ -16,7 +16,7 @@
       </div>
       <div class="col-md-8">
         <div class="card">
-          <div class="card-body p-3" style="font-size:13px;font-weight:400">
+          <div class="card-body p-3" style="font-size:12px;font-weight:400">
 
             @forelse($data as $item)
             <div class="mb-5">
@@ -27,7 +27,7 @@
            @endif
 
             @if(! is_null($item->note))
-              <div class="my-1 ml-5" style="font-size:11px;font-weight:350">
+              <div class="my-1 ml-5">
                 @parsedown(nl2br(e($item->note)))
               </div>
             @endif

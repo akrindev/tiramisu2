@@ -2,7 +2,7 @@
 
 @section('title', 'Toram ' . $item->name)
 @section('description', $item->name . '')
-@section('image', to_img())
+@section('image', $item->picture ?? to_img())
 
 @section('content')
 <div class="my-5">
@@ -17,7 +17,7 @@
       </div>
       <div class="col-md-8">
         <div class="card">
-          <div class="card-body p-3" style="font-size:13px;font-weight:400">
+          <div class="card-body p-3" style="font-size:12px;font-weight:400">
 
             <dl>
               <dt>
@@ -31,12 +31,12 @@
                 @if(!is_null($item->picture))
                 <img src="/{{$item->picture}}" class="rounded my-2">
                 @endif
-                <div class="my-2" style="font-size:12px;font-weight:350">
+                <div class="my-2">
                 @parsedown(nl2br(e($item->note)))
                 </div>
 
                 <div class="mt-3">
-                <b>Peta: </b> <a href="/peta/{{$item->monsters[0]->map->id ?? '#'}}">{{ $item->monsters[0]->map->name ??'-' }}</a>
+                <a href="/peta/{{$item->monsters[0]->map->id ?? '#'}}">{{ $item->monsters[0]->map->name ??'' }}</a>
         @if($item->resep->count() > 0)
                   <br><br>
               <strong>Resep</strong><br>
@@ -62,13 +62,14 @@
               </dd>
             </dl>
             <div class="my-5"></div>
+       @if ($data->count())
             <hr class="mb-3">
             <dl> <!-- dl start -->
           @foreach ($data as $mons)
 
            <div class="mb-5">
            <dt class="mb-1">
-           <b class="h6"> <a class="text-primary" href="/monster/{{$mons->id}}">{{ $mons->name }} (Lv {{$mons->level}}) </a>
+           <b class="h6"> <a class="text-primary" href="/monster/{{ $mons->id }}">{{ $mons->name }} (Lv {{ $mons->level }}) </a>
           @switch($mons->type)
              @case(2)
                <img src="/img/f_boss.png" alt="mini boss" style="display:inline;max-width:120px;max-height:15px;">
@@ -79,15 +80,21 @@
              </b>
            </dt>
              <dd>
-               <span class="text-muted">Element: {{$mons->element->name}}</span>
+              <b>Element:</b> <span> {{$mons->element->name}}</span> <br>
+               <b>Peta:</b> <a href="/peta/{{ $mons->map->id }}">{{ $mons->map->name }} </a>
              </dd>
              <b>Drop:</b><br>
              @foreach ($mons->drops as $drop)
-             <a href="/item/{{$drop->id}}"> <img src="{{$drop->dropType->url}}" alt="" class="avatar avatar-sm"> {{$drop->name}} </a> <small class="text-muted">({{ $drop->proses ?? '-' }}pts / {{$drop->sell ?? '-'}}s)</small> <br>
+             <a href="/item/{{ $drop->id }}"> <img src="{{ $drop->dropType->url }}" class="avatar avatar-sm"> {{ $drop->name }} </a>
+             @if ($drop->proses && $drop->sell)
+             <small class="text-muted">({{ $drop->proses ?? '-' }}pts / {{ $drop->sell ?? '-' }}s)</small>
+             @endif
+             <br>
              @endforeach
             </div>
           @endforeach
           </dl> <!-- // dl end -->
+       @endif
           </div>
         </div>
 
