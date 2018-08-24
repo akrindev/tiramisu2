@@ -67,6 +67,21 @@ class MonsterController extends Controller
 
   }
 
+  public function leveling()
+  {
+    $lvl = (int) request()->input('level', 50);
+    $min = $lvl-3;
+    $max = $lvl+3;
+
+    $data = Monster::whereIn('type',[2,3])
+        			->whereBetween('level', [$min,$max])
+        			->orderBy('level')
+        			->get();
+
+
+    return view('monster.leveling', compact('lvl','data'));
+  }
+
   public function showMons($id)
   {
     $data = Monster::findOrFail($id);
