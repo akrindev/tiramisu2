@@ -207,31 +207,20 @@ if('serviceWorker' in navigator)
                   </li>
 
 <li class="nav-item">
-                    <a href="/monster" class="nav-link"><i class="fe fe-github"></i> Monster</a>
+                    <a href="/monster" class="nav-link"><i class="fe fe-github"></i> Monster / Peta</a>
                   </li>
 
 
                   <li class="nav-item dropdown">
-                    <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-folder"></i>Items</a>
+                    <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-folder"></i>Alat / Tools</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
-                      <a href="/items/1" class="dropdown-item ">Logam</a>
-                      <a href="/items/2" class="dropdown-item ">Kain</a>
-                      <a href="/items/3" class="dropdown-item ">Fauna</a>
-                      <a href="/items/4" class="dropdown-item ">Kayu</a>
-                      <a href="/items/5" class="dropdown-item ">Obat</a>
-                      <a href="/items/6" class="dropdown-item ">Mana</a>
 
+                      <a href="/fill_stats" class="dropdown-item">Fill stats formula</a>
+                      <a href="/fill_stats/calculator" class="dropdown-item ">Fill stats Calculator</a>
+                      <a href="/leveling" class="dropdown-item">Leveling Finder</a>
+                      <a href="/exp" class="dropdown-item">Exp Calculator</a>
                     </div>
                   </li>
-
-                  <li class="nav-item">
-                    <a href="/exp" class="nav-link"><i class="fe fe-bar-chart"></i> Exp calculator</a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a href="/fill_stats" class="nav-link"><i class="fe fe-edit-2"></i> Fill stats</a>
-                  </li>
-
                   <li class="nav-item">
                     <a href="/forum" class="nav-link"><i class="fe fe-users"></i> Forum</a>
                   </li>
