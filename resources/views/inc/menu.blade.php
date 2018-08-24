@@ -52,5 +52,26 @@
       <a href="/items/5" class="d-block mb-1 col-6"> <img src="/img/drop/obat.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Obat</a>
       <a href="/items/6" class="d-block mb-1 col-6"> <img src="/img/drop/mana.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Mana</a>
     </div>
+
+    <hr class="my-1">
+
+    <div class="my-1 row gutters-xs">
+      <b class="d-block col-12 mb-2">Monster Type</b>
+      <a href="/monster/type/normal" class="d-block mb-1 col-6"><i class="fe fe-github"></i> Normal Monster</a>
+      <a href="/monster/type/mini_boss" class="d-block mb-1 col-6"> <img src="/img/f_boss.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Mini Boss</a>
+      <a href="/monster/type/boss" class="d-block mb-1 col-6"> <img src="/img/boss.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Boss</a>
+
+    </div>
+
+    <div class="my-1 row gutters-xs">
+    <b class="d-block col-12 mb-2">Monster Unsur</b>
+      <a href="/monster/unsur/air" class="d-block mb-1 col-6">Air</a>
+      <a href="/monster/unsur/angin" class="d-block mb-1 col-6">Angin</a>
+      <a href="/monster/unsur/bumi" class="d-block mb-1 col-6">Bumi</a>
+      <a href="/monster/unsur/api" class="d-block mb-1 col-6">Api</a>
+      <a href="/monster/unsur/gelap" class="d-block mb-1 col-6">Gelap</a>
+      <a href="/monster/unsur/cahaya" class="d-block mb-1 col-6">Cahaya</a>
+      <a href="/monster/unsur/netral" class="d-block mb-1 col-6">Neutral</a>
+    </div>
   </div>
 </div>

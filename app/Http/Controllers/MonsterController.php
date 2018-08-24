@@ -74,6 +74,62 @@ class MonsterController extends Controller
     return view('monster.mobs', compact('data'));
   }
 
+  public function showMonsType($name)
+  {
+    $type = $name;
+
+    switch($type)
+    {
+      case 'boss':
+        $tipe = 3;
+        break;
+      case 'mini_boss':
+        $tipe = 2;
+        break;
+      default:
+        $tipe = 1;
+    }
+
+    $data = Monster::whereType($tipe)
+      			->orderBy('name')
+      			->paginate(20);
+
+    return view('monster.type', compact('data','type'));
+  }
+
+  public function showMonsEl($type)
+  {
+    switch($type)
+    {
+      case 'air':
+        $el = 1;
+        break;
+      case 'angin':
+        $el = 2;
+        break;
+      case 'bumi':
+        $el = 3;
+        break;
+      case 'api':
+        $el = 4;
+        break;
+      case 'gelap':
+        $el = 5;
+        break;
+      case 'cahaya':
+        $el = 6;
+        break;
+      default:
+        $el = 7;
+    }
+
+    $data = Monster::whereElementId($el)
+      				->orderBy('level')
+      				->paginate(20);
+
+    return view('monster.type',compact('data','type'));
+  }
+
   public function editMons($id)
   {
     $data = Monster::findOrFail($id);

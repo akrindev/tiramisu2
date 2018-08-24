@@ -73,6 +73,8 @@ Route::delete('/delete/fillstats', 'FillController@destroy')->middleware('auth')
 Route::get('/search', 'MonsterController@search');
 Route::get('/monster', 'MonsterController@index');
 Route::get('/monster/{id}', 'MonsterController@showMons');
+Route::get('/monster/type/{name}', 'MonsterController@showMonsType');
+Route::get('/monster/unsur/{type}', 'MonsterController@showMonsEl');
 Route::get('/item/{id}', 'MonsterController@showItem');
 Route::get('/items/{id}', 'MonsterController@showItems');
 Route::get('/peta', 'MonsterController@index');
