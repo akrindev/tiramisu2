@@ -104,7 +104,7 @@
    </span>
                     </div>
                     <div class="h1 m-0">{{ (new App\Drop)->count() }} </div>
-                    <div class="text-muted mb-4">Total Drop</div>
+                    <div class="text-muted mb-4">Total Items</div>
                   </div>
                 </div>
 
