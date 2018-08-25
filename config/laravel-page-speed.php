@@ -23,6 +23,7 @@ return [
     |
     */
     'skip' => [
+      	'monster/*/edit',
         '*.xml',
         '*.less',
         '*.pdf',
