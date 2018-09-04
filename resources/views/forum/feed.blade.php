@@ -41,7 +41,10 @@
                         <small class="text-muted">
    @php $nama = explode(' ',$pos->user->name); @endphp
 
-                        By: {{ $nama[0] }} &nbsp; {{ time_ago($pos->created_at) }} <br />
+                        <i class="fe fe-user"></i> {{ $nama[0] }} &nbsp; <i class="fe fe-clock"></i> {{ time_ago($pos->created_at) }}
+
+      &nbsp; <i class="fe fe-eye"></i> {{ $pos->views }}
+                          <br />
      @foreach (explode(',',$pos->tags) as $tag)
 @php
 $color = ['success','warning','primary','danger','secondary'];
