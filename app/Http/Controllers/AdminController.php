@@ -8,25 +8,11 @@ use App\{
 };
 
 use Datatables;
-use Analytics;
-use Spatie\Analytics\Period;
 
 class AdminController extends Controller
 {
   	public function home()
     {
-      $visitor = Analytics::fetchVisitorsAndPageViews(Period::days(7))->take(10);
-
-      $totalVisitor = Analytics::fetchTotalVisitorsAndPageViews(Period::days(7));
-
-      $mostVisit = Analytics::fetchMostVisitedPages(Period::days(7));
-
-      $topRef = Analytics::fetchTopReferrers(Period::days(7));
-
-      $topBrowsers = Analytics::fetchTopBrowsers(Period::days(7));
-
- //   dd($topBrowsers);
-
       $users = User::all();
       $forums = Forum::all();
       $fcom = ForumsDesc::all();
@@ -36,8 +22,7 @@ class AdminController extends Controller
 
       return view('admin.awal',compact(
         ['users', 'forums', 'quiz', 'gallery',
-         'fcom', 'visitor', 'totalVisitor', 'mostVisit',
-         'topRef', 'topBrowsers', 'tags']
+         'fcom', 'tags']
       ));
     }
 
