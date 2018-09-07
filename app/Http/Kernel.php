@@ -21,13 +21,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrustProxies::class,
 
       //suctom
-     // \RenatoMarinho\LaravelPageSpeed\Middleware\InlineCss::class,
-    \RenatoMarinho\LaravelPageSpeed\Middleware\ElideAttributes::class,
-    \RenatoMarinho\LaravelPageSpeed\Middleware\InsertDNSPrefetch::class,
-    \RenatoMarinho\LaravelPageSpeed\Middleware\RemoveComments::class,
-    \RenatoMarinho\LaravelPageSpeed\Middleware\TrimUrls::class,
-    //\RenatoMarinho\LaravelPageSpeed\Middleware\RemoveQuotes::class,
-    \RenatoMarinho\LaravelPageSpeed\Middleware\CollapseWhitespace::class,
+
     ];
 
     /**
@@ -51,7 +45,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
-              \Barryvdh\Cors\HandleCors::class,
+          	'cors',
         ],
     ];
 
@@ -74,5 +68,6 @@ class Kernel extends HttpKernel
       //my middleware
 
         'admin' => \App\Http\Middleware\RedirectIfNotAdmin::class,
+      	'cors' => \Barryvdh\Cors\HandleCors::class,
     ];
 }

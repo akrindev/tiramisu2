@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/forum', 'Api\ForumController@feed');
+Route::get('/forum/{id}', 'Api\ForumController@show');
