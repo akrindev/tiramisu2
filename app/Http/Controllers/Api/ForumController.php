@@ -31,21 +31,37 @@ class ForumController extends Controller
       $item = Forum::whereId($id)->with([
         'user:id,name,provider_id',
         'comment' => function ($query){
-          $query->with('user:id,name,provider_id');
+          $query->with([
+            'user:id,name,provider_id',
+          	'getReply' => function ($q){
+              $q->with('user:id,name,provider_id');
+            }])
+            ->where('parent_id', null);
         }
       ])->first();//dd(collect($read));
 
       $item->body = (new \Parsedown)->text(e($item->body));
       $item->created = waktu($item->created_at);
+
+      // get comment
       $item->comment->map(function ($i,$k){
         $i->user->name = e($i->user->name);
         $i->body = (new \Parsedown)->text(e($i->body));
         $i->created = waktu($i->created_at);
+
+        // get reply comment
+        $i->getReply->map(function ($n){
+          $n->body = (new \Parsedown)->text(e($n->body));
+          $n->created = waktu($n->created_at);
+
+          return $n;
+        });
+
         return $i;
       });
 
 
-      return response()->json($item,200)
+      return response()->json($item,200,[],JSON_PRETTY_PRINT)
         ->header('Access-Control-Allow-Origin','*');
     }
 }
