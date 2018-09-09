@@ -23,7 +23,8 @@ class ForumController extends Controller
         return $item;
       });
 
-      return response()->json($data,200);
+      return response()->json($data,200)
+        ->header('Cache-Control','max-age=14000, public');
     }
 
   	public function show($id)
