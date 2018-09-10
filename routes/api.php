@@ -20,3 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/forum', 'Api\ForumController@feed');
 Route::get('/forum/{id}', 'Api\ForumController@show');
 Route::get('/fill/{type}/{plus}', 'Api\FillController@show');
+
+Route::get('/map', 'Api\MonsterController@showMap');
+Route::get('/map/{id}', 'Api\MonsterController@showByMap');
