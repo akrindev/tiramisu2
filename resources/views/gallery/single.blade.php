@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title','Toram Gambar oleh '.$pos->user->name)
+@section('title','Toram '.$pos->user->name)
 @section('description',$pos->body)
 @section('image',$pos->gambar)
 @section('content')

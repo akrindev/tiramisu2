@@ -39,4 +39,17 @@ class MonsterController extends Controller
 
     return response()->json($mobs, 200, [], JSON_PRETTY_PRINT);
   }
+
+  public function showMonsByMap($id)
+  {
+    $mons = Monster::with([
+      			'map',
+      			'element'
+    			])
+    			->whereMapId($id)
+      			->orderBy('name')
+      			->get();
+
+    return response()->json($mons, 200, [], JSON_PRETTY_PRINT);
+  }
 }

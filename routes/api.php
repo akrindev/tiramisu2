@@ -23,3 +23,4 @@ Route::get('/fill/{type}/{plus}', 'Api\FillController@show');
 
 Route::get('/map', 'Api\MonsterController@showMap');
 Route::get('/map/{id}', 'Api\MonsterController@showByMap');
+Route::get('/mons/{id}', 'Api\MonsterController@showMonsByMap');
