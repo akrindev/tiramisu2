@@ -18,6 +18,7 @@
         <a href="/mons/drop/store" class="btn btn-sm mb-2">Store drop</a>
         <a href="/mons/store/resep" class="btn btn-sm mb-2">Store resep</a>
         <a href="/store/peta" class="btn btn-sm mb-2">Edit Peta</a>
+        <a href="/edit-tentang" class="btn btn-sm mb-2">Edit About Us</a>
       </div>
     </div>
 

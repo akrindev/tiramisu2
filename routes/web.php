@@ -29,6 +29,9 @@ Route::delete('/bgm/destroy', 'BgmController@destroy')->middleware('auth');
 */
 Route::get('/kebijakan-privasi', 'AboutController@kebijakanPrivasi');
 Route::get('/rules', 'AboutController@rules');
+Route::get('/tentang-kami', 'AboutController@about');
+
+Route::match(['get','post'], '/edit-tentang','AboutController@editAbout')->middleware('admin');
 
 Auth::routes();
 
