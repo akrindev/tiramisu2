@@ -33,6 +33,7 @@ endif;
 
         <a href="/setting/profile" class="btn btn-link btn-sm">edit profile</a>
         <a href="/mygallery" class="btn btn-link btn-sm">My Gallery</a>
+        <a href="/forum/baru" class="btn btn-link btn-sm">Tulis post</a>
 
         @if(auth()->user()->isAdmin())
         <a href="/admin" class="btn btn-link btn-sm">Admin Dashboard</a>
@@ -147,15 +148,16 @@ endif;
       <div class="col-md-12">
 	<div class="card">
       <div class="card-header">
-        <h3 class="class-title">Latest threads</h3>
+        <h3 class="card-title">My Posts</h3>
       </div>
-      <table class="table card-table">
+      <table class="table card-table table-striped" style="font-size:13px;font-weight:400">
 @foreach($threads as $thread)
 
         <tr>
-          <td width="80%"> <a href="/forum/{{ $thread->slug }}">{{ str_limit($thread->judul,50) }} </a><br>
+          <td width="80%" class="p-2"> <a href="/forum/{{ $thread->slug }}">{{ str_limit($thread->judul,50) }} </a><br>
             <small class="text-muted">{{ waktu($thread->created_at) }} <br /><i class="fe fe-eye"></i> {{ $thread->views }}   <i class="fe fe-message-square"></i> {{ $thread->comment->count() }}   <i class="fe fe-heart"></i> {{ $thread->likes->count() }}</small> </td>
-          <td> <a href="/forum/{{$thread->slug}}/edit" class="text-primary">edit</a> |
+
+          <td class="p-2"> <a href="/forum/{{$thread->slug}}/edit" class="text-primary">edit</a> |
               <a onclick="event.preventDefault(); dcm({{$thread->id}});" class="text-danger">hapus</a>
               {!! form_open('/forum/'.$thread->slug.'/delete',['id'=>'cid-'.$thread->id]) !!}
               @csrf
