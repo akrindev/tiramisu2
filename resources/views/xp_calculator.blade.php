@@ -13,7 +13,8 @@
                   <h3 class="card-title">Toram Exp calculator</h3>
                   </div>
                   <div class="card-alert alert alert-info">
-                    <b>New!!</b> Fill stats calculator <a href="/fill_stats/calculator"> Click here </a>
+                    <b>New!!</b> Fill stats calculator <a href="/fill_stats/calculator"> Click here </a><br>
+                    <b>Hot!!</b> Have you try? <a href="/leveling">Toram Leveling Finder</a>
                   </div>
 
                 <div class="card-body">
