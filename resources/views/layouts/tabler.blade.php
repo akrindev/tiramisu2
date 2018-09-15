@@ -100,6 +100,7 @@ if('serviceWorker' in navigator)
 
     @yield('head')
 
+    @includeWhen(env('APP_ENV') === 'production', 'inc.ads')
   </head>
 
 
