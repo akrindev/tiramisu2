@@ -23,9 +23,10 @@ endif;
         <img src="https://graph.facebook.com/{{$profile->provider_id}}/picture?type=normal" class="img img-fluid mr-3 float-left">
         <b> {{ $profile->name }} </b>
         <span class="text-muted"> ({{ $profile->username }}) </span>
-        <br><br>
-      <b>Ign:</b>  <span class="text-muted">  {{ $profile->ign }} ~ {{ $profile->gender }}</span><br>
-        {{ $profile->alamat }}
+        <br>
+      <b>Ign:</b>  <span class="text-muted">  {{ $profile->ign }} <br>
+        <i class="fe fe-users"></i> {{ $profile->gender }}</span><br>
+        <i class="fe fe-map-pin"></i> {{ $profile->alamat }}
         <p class="text-muted">
           {{ $profile->biodata }}
         </p>
