@@ -207,8 +207,12 @@ if('serviceWorker' in navigator)
                     </div>
                   </li>
 
-<li class="nav-item">
-                    <a href="/monster" class="nav-link"><i class="fe fe-github"></i> Monster / Peta</a>
+<li class="nav-item dropdown">
+      <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-github"></i> Peta &amp; NPC</a>
+  <div class="dropdown-menu dropdown-menu-arrow">
+    <a href="/monster" class="dropdown-item">Peta</a>
+    <a href="/npc" class="dropdown-item">NPC</a>
+  </div>
                   </li>
 
 
