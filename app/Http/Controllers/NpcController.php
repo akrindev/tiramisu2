@@ -10,6 +10,26 @@ use Image;
 
 class NpcController extends Controller
 {
+  public function show()
+  {
+    $npcs = Npc::paginate(10);
+
+    return view('npc.show', compact('npcs'));
+  }
+
+  public function quest($id)
+  {
+    $npc = Npc::findOrFail($id);
+    $data = $npc->with([
+      'quest' => function ($query) {
+    		$query->with('reward');
+    	}
+    ])->get();
+    return view('npc.quest', [
+    	'npc'	=> $npc
+    ]);
+  }
+
   public function store()
   {
     if(request()->input() && request()->isMethod('post'))
@@ -113,7 +133,7 @@ class NpcController extends Controller
         }
       }
 
-      if(count($rewards))
+      if(count($rewards) > 0)
       {
         $i = 0;
 

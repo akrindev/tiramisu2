@@ -22,7 +22,7 @@ class NpcTujuan extends Model
     return $this->belongsTo(Drop::class);
   }
 
-  public function defeat()
+  public function monster()
   {
     return $this->belongsTo(Monster::class);
   }

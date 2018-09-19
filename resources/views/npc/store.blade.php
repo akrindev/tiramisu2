@@ -122,6 +122,7 @@ let submit = document.getElementById('store-npc'),
           	icon: 'success'
           });
         }
+      submit.reset();
 
     })
     .catch(err => alert(err));

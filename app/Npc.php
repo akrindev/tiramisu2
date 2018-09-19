@@ -16,8 +16,8 @@ class Npc extends Model
     return $this->hasMany(NpcQuest::class);
   }
 
-  public function reward()
+  public function map()
   {
-    return $this->hasMany(NpcReward::class);
+    return $this->belongsTo(Map::class);
   }
 }
