@@ -109,6 +109,9 @@ Route::get('/npc/npc-{id}', 'NpcController@quest');
 Route::middleware(['admin'])->group(function(){
   Route::match(['get', 'post'], '/npc/store', 'NpcController@store');
   Route::match(['get', 'post'], '/npc/store/quest', 'NpcController@storeQuest');
+
+  Route::delete('/npc/delete-quest/{id}', 'NpcController@deleteQuest');
+  Route::delete('/npc/delete-npc/{id}', 'NpcController@deleteNpc');
 });
 // --NPC
 

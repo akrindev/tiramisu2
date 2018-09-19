@@ -153,4 +153,31 @@ class NpcController extends Controller
 
     return view('npc.store_quest');
   }
+
+  public function deleteNpc($id)
+  {
+    $npc = Npc::findOrFail($id);
+
+    if(auth()->user()->role != 'admin')
+    {
+      return redirect('/')->with('gagal', 'Akses di tolak');
+    }
+
+    $npc->delete();
+
+    return response()->json(['success' => true]);
+  }
+
+  public function deleteQuest($id)
+  {
+    $quest = NpcQuest::findOrFail($id);
+
+    if(auth()->user()->role != 'admin')
+    {
+      return redirect('/')->with('gagal', 'Akses di tolak');
+    }
+
+    $quest->delete();
+    return response()->json(['success' => true]);
+  }
 }
