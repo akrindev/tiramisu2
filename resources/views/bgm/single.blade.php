@@ -25,7 +25,7 @@
 
   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 
-            <img src="http://ytimg.googleusercontent.com/vi/{{ $bgm->video_id }}/sddefault.jpg" class="img img-fluid">
+            <img src="https://ytimg.googleusercontent.com/vi/{{ $bgm->video_id }}/sddefault.jpg" class="img img-fluid">
             <div class="my-3">
 		<strong>Play</strong><br>
          <audio controls loop="loop" preload="none">
