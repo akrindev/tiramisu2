@@ -110,6 +110,8 @@ Route::middleware(['admin'])->group(function(){
   Route::match(['get', 'post'], '/npc/store', 'NpcController@store');
   Route::match(['get', 'post'], '/npc/store/quest', 'NpcController@storeQuest');
 
+  Route::get('/npc/edit/{id}', 'NpcController@editNpc');
+  Route::put('/npc/edit', 'NpcController@editNpcSubmit');
   Route::delete('/npc/delete-quest/{id}', 'NpcController@deleteQuest');
   Route::delete('/npc/delete-npc/{id}', 'NpcController@deleteNpc');
 });

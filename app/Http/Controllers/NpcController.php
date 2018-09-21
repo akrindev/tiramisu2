@@ -154,6 +154,51 @@ class NpcController extends Controller
     return view('npc.store_quest');
   }
 
+  public function editNpc($id)
+  {
+    $npc = Npc::findOrFail($id);
+
+    return view('npc.edit_npc', compact('npc'));
+  }
+
+  public function editNpcSubmit()
+  {
+    $id = request()->id;
+
+    $npc = Npc::findOrFail($id);
+
+    $npc->name = request('name');
+    $npc->map_id = request('map');
+
+    if(request()->hasFile('picture'))
+    {
+      $file = request()->file('picture')->getRealPath();
+
+      $nama = '/imgs/npc/'.str_slug(strtolower(request('name'))).'-'.rand(00000,99999).'.png';
+
+      $make = Image::make($file);
+
+      $make->text('(c) toram-id.info',15,30, function($font) {
+       $font->file(3);
+       $font->size(34);
+       $font->color('#ffffff');
+       $font->align('left');
+       $font->valign('bottom');
+      });
+
+       $make->save(public_path($nama));
+
+       $npc->picture = $nama;
+      }
+
+    $npc->save();
+
+    return response()->json([
+      'success' => true,
+      'id' => $id
+    ]);
+  }
+
   public function deleteNpc($id)
   {
     $npc = Npc::findOrFail($id);

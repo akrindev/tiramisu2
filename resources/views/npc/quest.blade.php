@@ -19,7 +19,7 @@
             <div style="display:block;clear:both" class="mb-5">
               <img src="{{ $npc->picture }}" style="width:100px;height:100px;float:left" class="mr-3">
            <i class="fe fe-wind"></i> <a href="/npc/{{ $npc->id }}">{{ $npc->name }}</a>
-              @if (auth()->check() && auth()->user()->isAdmin()) <span class="text-danger" onclick="delNpc({{ $npc->id }})">[Hapus]</span>
+              @if (auth()->check() && auth()->user()->isAdmin()) <span class="text-danger" onclick="delNpc({{ $npc->id }})">[Hapus]</span> <a href="/npc/edit/{{ $npc->id }}">[edit]</a>
               @endif
               <br>
               <small class="text-muted">( {{ $npc->map->name }} )</small>
