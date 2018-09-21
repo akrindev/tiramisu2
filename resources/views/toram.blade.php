@@ -9,6 +9,7 @@
 
         <div class="my-8">
           <div class="container">
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 
             @include('inc.cari')
 

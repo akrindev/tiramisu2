@@ -78,7 +78,12 @@ $tags = explode(',', $tags);
               @endforeach
             </div>
             <div class="body-text">
+
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+
             @parsedown(e($data->body))
+
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 
            <div class="my-3">
              {!! form_open('/',["id"=>"likeme"]) !!}

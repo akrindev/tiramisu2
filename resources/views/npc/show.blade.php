@@ -13,6 +13,7 @@
 
     <div class="row">
       <div class="col-md-8">
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
         <div class="card">
           <div class="card-body p-3" style="font-size:13px;font-weight:400">
           @foreach ($npcs as $npc)

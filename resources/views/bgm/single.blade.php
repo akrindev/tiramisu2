@@ -22,6 +22,9 @@
             <h3 class="card-title"> {{ $bgm->title }} </h3>
           </div>
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
+
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+
             <img src="http://ytimg.googleusercontent.com/vi/{{ $bgm->video_id }}/sddefault.jpg" class="img img-fluid">
             <div class="my-3">
 		<strong>Play</strong><br>
@@ -32,6 +35,9 @@
             </audio>
         <br>
               <hr class="my-2">
+
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+
               <div class="my-3">
               @foreach ($downloads as $download)
 

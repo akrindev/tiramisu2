@@ -18,6 +18,8 @@
         <div class="card">
           <div class="card-body p-3" style="font-size:12px;font-weight:400">
 
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+
             @forelse($data as $item)
             <div class="mb-5">
               <img src="{{ $item->dropType->url }}" alt="{{ $item->dropType->name }}" class="avatar avatar-sm mr-1" style="max-width:21px;max-height:21px">

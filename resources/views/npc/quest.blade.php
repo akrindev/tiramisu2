@@ -15,6 +15,7 @@
       <div class="col-md-8">
         <a href="/npc" class="mb-5 btn btn-outline-primary btn-pill">← back to npc</a>
         <div class="card">
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
           <div class="card-body p-3" style="font-size:13px;font-weight:400">
             <div style="display:block;clear:both" class="mb-5">
               <img src="{{ $npc->picture }}" style="width:100px;height:100px;float:left" class="mr-3">
@@ -26,6 +27,7 @@
            </div>
             <div style="clear:both"></div>
             <hr class="my-1">
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
             @foreach($npc->quest as $quest)
             <div class="mb-5">
              <b>Nama Quest:</b> {{ $quest->name }}

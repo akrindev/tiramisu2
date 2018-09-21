@@ -33,6 +33,7 @@
 
           {!! form_close() !!}
           </div>
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
           <table class="card-table table table-striped table-hover" style="font-size:12px">
             <tr>
               <td><div><b>Note!</b>  <br> <span class="text-danger">Boss</span>  <span class="text-success ml-5">Mini Boss</span> </div></td>

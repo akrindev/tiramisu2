@@ -15,6 +15,7 @@
       @include('inc.cari')
       </div>
       <div class="col-md-8">
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
         <div class="card">
           <div class="card-body p-3" style="font-size:12px;font-weight:400">
 
@@ -42,7 +43,9 @@
 
 
           @if($monsters->count() > 0)
-            <div class="mt-5"></div>
+            <div class="mt-5">
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+            </div>
 
             <dl> <!-- dl start -->
           @foreach ($monsters as $mons)
