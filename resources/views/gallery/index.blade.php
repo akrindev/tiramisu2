@@ -42,29 +42,9 @@
                   {{ session('sukses') }}
                 </div>
                 @endif
-{!! form_open_multipart() !!}
-                @csrf
-                <div class="row">
-                <div class="form-group col-12">
-                  <label class="form-label"> Deskripsi </label>
-                  <textarea name="body" class="form-control"></textarea>
-                  <span class="text-muted help-block">Max 140 character</span>
-                </div>
-                <div class="form-group col-md-8">
-                        <div class="form-label">Upload kenangan</div>
-                  <div id="preview"></div>
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input mr-5" name="gambar" id="gambar" accept="image/*">
-                          <label class="custom-file-label"></label>
-                        </div>
-                </div>
-  				 <div class="col-md-4 mt-5 mb-4">
 
-                <button type="submit" class="btn btn-pill btn-primary float-right">Unggah</button>
+                @include('inc.gallery_upload')
 
-                    </div>
-                </div>
-{!! form_close() !!}
                </div>
             </div>
 @endauth
@@ -124,6 +104,22 @@
 </div>
 @endsection
 
+@section('head')
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css" />
+<style type="text/css">
+  #nprogress .bar {
+    background: red !important;
+  }
+  #nprogress .peg {
+    box-shadow: 0 0 10px red, 0 0 5px red !important;
+  }
+  #nprogress .spinner-icon {
+    border-top-color: red !important;
+    border-left-color: red !important;
+  }
+</style>
+@endsection
+
 @section('footer')
 <script>
 function fileReader(input) {
@@ -147,6 +143,37 @@ function fileReader(input) {
 @auth
 
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//unpkg.com/axios/dist/axios.min.js"></script><script src="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/index.js"></script>
+
+    <script type="text/javascript">
+        loadProgressBar();
+    </script>
+<script>
+let submit = document.getElementById('form-upload');
+
+  submit.addEventListener('submit', (e) => {
+  	e.preventDefault();
+    let btnUpload = document.getElementById("unggah");
+    let data = new FormData(e.target);
+    btnUpload.innerHTML = "<i class='fa fa-spinner fa-spin'></i> Mengunggah ";
+
+    axios.post('/gallery', data)
+     .then((res) => {
+      if(res.data.success){
+        swal('Gambar telah di unggah',{
+        	icon: 'success'
+        }).then(() => {
+        	window.location.reload();
+        });
+      }
+      btnUpload.innerHTML = "Unggah";
+
+    }).catch(err => alert(err));
+
+
+  });
+
+</script>
 <script>
 
    function dg(i)

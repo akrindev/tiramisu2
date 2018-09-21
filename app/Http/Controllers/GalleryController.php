@@ -108,7 +108,7 @@ class GalleryController extends Controller
         'gambar'	=> $url_img
       ]);
 
-      return back()->with('sukses','Gambar telah di unggah!');
+      return response()->json(['success' => true]);
     }
 
   	public function edit($id)
