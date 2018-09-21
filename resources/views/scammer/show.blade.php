@@ -29,6 +29,7 @@
             </div>
 
         <div class="card" style="word-wrap:break-word;">
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
           <table class="card-table table table-striped m-0">
             @forelse ($data as $list)
             <tr>

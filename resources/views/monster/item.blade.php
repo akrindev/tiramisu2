@@ -62,9 +62,7 @@
                 </div>
               </dd>
             </dl>
-            <div class="my-5">
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
-            </div>
+            <div class="my-5"></div>
        @if ($data->count())
             <hr class="mb-3">
             <dl> <!-- dl start -->
@@ -98,6 +96,9 @@
           @endforeach
           </dl> <!-- // dl end -->
        @endif
+
+     @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+
           </div>
         </div>
 

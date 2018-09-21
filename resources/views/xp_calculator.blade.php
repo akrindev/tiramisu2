@@ -17,6 +17,7 @@
                     <b>Hot!!</b> Have you try? <a href="/leveling">Toram Leveling Finder</a>
                   </div>
 
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
                 <div class="card-body">
   <div class="row">
 
@@ -44,6 +45,7 @@
 
 
 
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 
 
     <div class="h2 mb-5 col-12">Level</div>
@@ -88,6 +90,7 @@
     </div>
     </div>
 
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 <div class="col-xs-12">
 <br />
 <br />

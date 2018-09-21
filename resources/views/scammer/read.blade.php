@@ -29,8 +29,8 @@
 
             @endif
 
-            <hr class="my-2">
         @auth
+            <hr class="my-2">
             @if(auth()->user()->isAdmin())
             {!! form_open('/scammer/delete-by-admin',["id"=>"hapus-scammer"]) !!}
             <button type="submit" class="btn btn-outline-danger btn-sm" >hapus</button>
@@ -43,6 +43,7 @@
             <br><br>
             <i class="fe fe-tag"></i> <a href="">{{$data->kategori->name}}</a>
             <br />
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
             <strong>Kronologi</strong> <br>
 
             @parsedown(e($data->body))
