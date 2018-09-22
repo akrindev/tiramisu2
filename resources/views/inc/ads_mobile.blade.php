@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="row container-fluid">
 <!-- mobile easy -->
 <ins class="adsbygoogle mb-5 text-center"
      style="display:block;width:320px;height:50px"
