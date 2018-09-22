@@ -15,4 +15,9 @@ class Map extends Model
     {
       return $this->hasMany(Monster::class);
     }
+
+  	public function npc()
+    {
+      return $this->hasMany(Npc::class);
+    }
 }
