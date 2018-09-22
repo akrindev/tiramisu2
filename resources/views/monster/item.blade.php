@@ -66,7 +66,7 @@
        @if ($item->fromQuest->count() > 0)
               <b>Quest:</b> <br />
           @foreach ($item->fromQuest as $quest)
-- <a href="/npc/npc-{{ $quest->quest->npc->id }}">{{ $quest->quest->name }}</a><br />
+- <a href="/npc/quest/{{ $quest->quest->id }}">{{ $quest->quest->name }}</a><br />
           @endforeach
 
        @endif

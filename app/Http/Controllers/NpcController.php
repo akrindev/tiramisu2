@@ -26,6 +26,13 @@ class NpcController extends Controller
     ]);
   }
 
+  public function singleQuest($id)
+  {
+    $quest = NpcQuest::findOrFail($id);
+
+    return view('npc.single_quest', compact('quest'));
+  }
+
   public function store()
   {
     if(request()->input() && request()->isMethod('post'))

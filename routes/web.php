@@ -105,6 +105,7 @@ Route::match(['get', 'post'], '/store/peta', 'MonsterController@editMap')->middl
 // NPC
 Route::get('/npc', 'NpcController@show');
 Route::get('/npc/npc-{id}', 'NpcController@quest');
+Route::get('/npc/quest/{id}', 'NpcController@singleQuest');
 
 Route::middleware(['admin'])->group(function(){
   Route::match(['get', 'post'], '/npc/store', 'NpcController@store');
