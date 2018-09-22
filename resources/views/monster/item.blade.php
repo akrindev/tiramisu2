@@ -62,7 +62,15 @@
                 </div>
               </dd>
             </dl>
-            <div class="my-5"></div>
+            <div class="my-5">
+       @if ($item->fromQuest->count() > 0)
+              <b>Quest:</b> <br />
+          @foreach ($item->fromQuest as $quest)
+- <a href="/npc/npc-{{ $quest->quest->npc->id }}">{{ $quest->quest->name }}</a><br />
+          @endforeach
+
+       @endif
+            </div>
        @if ($data->count())
             <hr class="mb-3">
             <dl> <!-- dl start -->

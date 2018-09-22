@@ -20,11 +20,7 @@ class NpcController extends Controller
   public function quest($id)
   {
     $npc = Npc::findOrFail($id);
-    $data = $npc->with([
-      'quest' => function ($query) {
-    		$query->with('reward');
-    	}
-    ])->get();
+
     return view('npc.quest', [
     	'npc'	=> $npc
     ]);

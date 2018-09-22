@@ -28,4 +28,9 @@ class Drop extends Model
     {
       return $this->hasMany(Resep::class);
     }
+
+  	public function fromQuest()
+    {
+      return $this->hasMany(NpcReward::class);
+    }
 }

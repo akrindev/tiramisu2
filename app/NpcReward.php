@@ -13,7 +13,7 @@ class NpcReward extends Model
 
   public function quest()
   {
-    return $this->belongsTo(NpcQuest::class);
+    return $this->belongsTo(NpcQuest::class,'npc_quest_id');
   }
 
   public function drop()
