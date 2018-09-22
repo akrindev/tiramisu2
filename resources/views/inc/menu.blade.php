@@ -73,5 +73,9 @@
       <a href="/monster/unsur/cahaya" class="d-block mb-1 col-6">Cahaya</a>
       <a href="/monster/unsur/netral" class="d-block mb-1 col-6">Neutral</a>
     </div>
+
+    <div class="my-1 row gutters-xs">
+      <a href="/npc" class="d-block mb-1 col-6">NPC List</a>
+    </div>
   </div>
 </div>

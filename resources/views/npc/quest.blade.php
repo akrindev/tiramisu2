@@ -60,6 +60,9 @@
           </div>
         </div>
       </div>
+      <div class="col-md-4">
+      @include('inc.menu')
+      </div>
     </div>
   </div>
 </div>
