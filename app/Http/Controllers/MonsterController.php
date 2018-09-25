@@ -164,7 +164,7 @@ class MonsterController extends Controller
 
       $make = Image::make($file);
 
-      $make->text('(c) toram-id.info',15,30, function($font)
+      $make->text('toram-id.info',15,30, function($font)
           {
               $font->file(3);
               $font->size(34);
@@ -233,7 +233,7 @@ class MonsterController extends Controller
 
         $make = Image::make($file);
 
-        $make->text('(c) toram-id.info',15,30, function($font)
+        $make->text('toram-id.info',15,30, function($font)
             {
                 $font->file(3);
                 $font->size(34);
@@ -281,7 +281,7 @@ class MonsterController extends Controller
     if(request()->input())
     {
       $q = request()->q;
-      $drops = Drop::with('dropType')->where('name', 'like' ,'%'.$q.'%')->paginate(10);
+      $drops = Drop::with('dropType')->where('name', 'like' ,'%'.$q.'%')->orderBy('name')->paginate(15);
 
       return response()->json($drops);
     }
@@ -310,7 +310,7 @@ class MonsterController extends Controller
 
       $make = Image::make($file);
 
-      $make->text('(c) toram-id.info',15,30, function($font)
+      $make->text('toram-id.info',15,30, function($font)
           {
               $font->file(3);
               $font->size(34);
@@ -357,7 +357,7 @@ class MonsterController extends Controller
 
         $make = Image::make($file);
 
-        $make->text('(c) toram-id.info',15,30, function($font)
+        $make->text(' toram-id.info',15,30, function($font)
             {
                 $font->file(3);
                 $font->size(34);
