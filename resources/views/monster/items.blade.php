@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title', 'Toram database ' . $type->name)
+@section('title', 'Toram drop list ' . $type->name)
 @section('image', to_img())
 
 @section('content')

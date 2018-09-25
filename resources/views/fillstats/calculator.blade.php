@@ -14,6 +14,9 @@
     </div>
 
     <div class="row">
+      <div class="col-12">
+      @include('inc.cari')
+      </div>
 
       <div class="col-12">
         <div class="alert alert-info">

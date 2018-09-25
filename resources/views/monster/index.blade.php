@@ -1,8 +1,8 @@
 @extends('layouts.tabler')
 
 
-@section('title','Toram database Monsters')
-@section('description','Toram database monster, Mini boss dan boss')
+@section('title','Toram drop list Monsters')
+@section('description','Toram database / drop list monster, Mini boss dan boss')
 @section('image',to_img())
 
 @section('content')

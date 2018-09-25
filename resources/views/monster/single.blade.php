@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title', 'Toram map ' . $data->name)
+@section('title', 'Toram drop map ' . $data->name)
 @section('description', $data->name . ' adalah peta yang berada di toram')
 @section('image', to_img())
 
