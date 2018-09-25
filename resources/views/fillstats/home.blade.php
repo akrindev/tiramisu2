@@ -26,16 +26,15 @@
 
               <div class="col-12 mb-6">
  @foreach($fills as $fo)
-                <a href="/fill_stats/{{ $fo->type == 1 ? 'Armor':'Weapon'  }}/{{ $fo->plus }}" class="btn btn-sm btn-pill btn-secondary">
+                <a href="/fill_stats/{{ $fo->type == 1 ? 'Armor':'Weapon'  }}/{{ $fo->plus }}" class="btn btn-sm btn-pill btn-secondary" onclick="event.preventDefault();document.getElementById('{{ $fo->type == 1 ? 'armor':'weapon'  }}{{ "+$fo->plus" }}').scrollIntoView();">
                   {{ $fo->type == 1 ? 'Armor':'Weapon'  }}{{ " (+$fo->plus)" }}</a>
  @endforeach
               </div>
 
   @foreach($fills as $fl)
               <div class="col-12">
-              <h1 class="page-title">
+              <h1 class="page-title" id="{{ $fl->type == 1 ? 'armor':'weapon'  }}{{ "+$fl->plus" }}">
                 {{ $fl->type == 1 ? 'Armor':'Weapon'  }}{{ " (+$fl->plus)" }}
-
               </h1>
               </div>
 
