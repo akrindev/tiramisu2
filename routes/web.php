@@ -91,6 +91,17 @@ Route::get('/item/{id}/edit', 'MonsterController@editItem')->middleware('admin')
 Route::post('/item/{id}/edit', 'MonsterController@editItemPost')->middleware('admin');
 Route::delete('/item/{id}/hapus', 'MonsterController@hapusItem')->middleware('admin');
 
+Route::middleware(['auth'])->group(function() {
+	Route::get('/contribution/show', 'ContributionController@show');
+  	Route::post('/contribution/edit', 'ContributionController@edit');
+  	Route::get('/contribution/fetch/{id}', 'ContributionController@fetch');
+
+  	Route::middleware(['admin'])->group(function() {
+    	Route::get('/contribution/sudo', 'ContributionController@moderasi');
+    	Route::post('/contribution/sudo', 'ContributionController@sudoModerasi');
+    });
+});
+
 // CRUD
 Route::get('/mons/fetch/{id}', 'MonsterController@fetchI')->middleware('admin');
 Route::match(['get', 'post'], '/mons/store/resep', 'MonsterController@storeResep')->middleware('admin');

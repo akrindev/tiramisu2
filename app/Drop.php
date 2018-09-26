@@ -33,4 +33,9 @@ class Drop extends Model
     {
       return $this->hasMany(NpcReward::class);
     }
+
+  	public function dropDone()
+    {
+      return $this->hasOne(DropDone::class);
+    }
 }

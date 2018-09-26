@@ -131,4 +131,17 @@ class User extends Authenticatable
     {
       return $this->hasMany(Scammer::class);
     }
+
+  	/**
+    * User Contribution
+    */
+  	public function contribution()
+    {
+      return $this->hasOne(Contribution::class);
+    }
+
+  	public function contributionDrop()
+    {
+      return $this->hasMany(ContributionDrop::class);
+    }
 }
