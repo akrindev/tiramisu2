@@ -271,7 +271,7 @@ class MonsterController extends Controller
   public function showItems($id)
   {
     $type = DropType::findOrFail($id);
-    $data = $type->drop;
+    $data = $type->drop()->paginate(25);
 
     return view('monster.items', compact('type', 'data'));
   }

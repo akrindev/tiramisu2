@@ -36,6 +36,6 @@ class Drop extends Model
 
   	public function dropDone()
     {
-      return $this->hasOne(DropDone::class);
+      return $this->hasOne(DropDone::class, 'drop_id');
     }
 }

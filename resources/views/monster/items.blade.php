@@ -28,6 +28,10 @@
               <a href="/item/{{ $item->id }}/edit" class="btn btn-sm btn-outline-secondary">edit</a>
            @endif
 
+            @if(! is_null($item->picture))
+              <img src="/{{ $item->picture }}" class="rounded ml-5 my-2 d-block" width="120px" height="120px">
+            @endif
+
             @if(! is_null($item->note))
               <div class="my-1 ml-5">
                 @parsedown(nl2br(e($item->note)))
@@ -40,6 +44,8 @@
 
           </div>
         </div>
+
+        {{ $data->links() }}
       </div>
 
       <div class="col-md-4">

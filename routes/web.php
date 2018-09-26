@@ -95,6 +95,7 @@ Route::middleware(['auth'])->group(function() {
 	Route::get('/contribution/show', 'ContributionController@show');
   	Route::post('/contribution/edit', 'ContributionController@edit');
   	Route::get('/contribution/fetch/{id}', 'ContributionController@fetch');
+  	Route::get('/contribution/submit', 'ContributionController@mySubmition');
 
   	Route::middleware(['admin'])->group(function() {
     	Route::get('/contribution/sudo', 'ContributionController@moderasi');

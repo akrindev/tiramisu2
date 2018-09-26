@@ -10,6 +10,7 @@ class DropDone extends Model
   protected $fillable = [
   	'drop_id'
   ];
+  public $timestamps = false;
 
   public function drop()
   {

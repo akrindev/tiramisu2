@@ -14,8 +14,8 @@ class ContributionController extends Controller
   {
     $drops = Drop::whereIn('drop_type_id', [13, 14, 15, 25, 26, 27, 28, 29, 30, 31, 32, 33])
       ->whereDoesntHave('dropDone')
-      ->orderByDesc('drop_type_id')
-      ->paginate();
+      ->orderBy('drop_type_id')
+      ->paginate(30);
 
     return view('contribution.show', compact('drops'));
   }
@@ -55,9 +55,18 @@ class ContributionController extends Controller
 
   }
 
+  public function mySubmition()
+  {
+    $data = auth()->user()->contributionDrop()
+      ->latest()
+      ->paginate(30);
+
+    return view('contribution.my_contribution', compact('data'));
+  }
+
   public function moderasi()
   {
-    $mods = CoDrop::whereAccepted(0)->latest()->paginate();
+    $mods = CoDrop::whereAccepted(0)->latest()->paginate(30);
 
     return view('contribution.moderasi', compact('mods'));
   }
@@ -68,13 +77,19 @@ class ContributionController extends Controller
     $to = Drop::findOrFail($from->drop_id);
 
     $to->name = $from->name;
-    $to->picture = $from->picture;
+
+    if(! is_null($from->picture)):
+    	$to->picture = $from->picture;
+
+    	auth()->user()->contribution()->updateOrCreate([])->increment('point',5);
+    endif;
 
     $from->accepted = 1;
 
     $from->save();
     $to->save();
 
+    DropDone::create(['drop_id'=> $to->id]);
 
     auth()->user()->contribution()->updateOrCreate([])->increment('point',3);
 

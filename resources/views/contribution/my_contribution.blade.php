@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title', 'Moderasi Contribusi')
+@section('title', 'My Contribusi')
 
 
 @section('content')
@@ -20,15 +20,18 @@
       <div class="col-md-8">
         <div class="card">
           <div class="card-body p-3" style="font-size:13px">
-            @foreach($mods as $drop)
+            @if($data->count() == 0)
+            <b>Belum ada kontribusi</b>
+            @endif
+            @foreach($data as $drop)
 
             <div class="mb-1">
 
-              <img src="{{ $drop->drop->dropType->url }}" class="avatar avatar-sm mr-2" style="width:18px;height:18px"> <a class="h5 text-primary" href="/item/{{ $drop->drop->id }}"> {{ $drop->drop->name }}</a> <button type="button" class="btn btn-outline-warning btn-sm btn-pill ml-4 f-edit" id="{{ $drop->id }}">
-  terima?
+              <img src="{{ $drop->drop->dropType->url }}" class="avatar avatar-sm mr-2" style="width:18px;height:18px"> <a class="h5 text-primary" href="/item/{{ $drop->drop->id }}"> {{ $drop->drop->name }}</a> <button type="button" class="btn btn-outline-{{ $drop->accepted == 1 ? 'success':'danger' }} btn-sm btn-pill ml-4" id="{{ $drop->id }}">
+  {{ $drop->accepted == 1 ? 'diterima':'pending' }}
 </button><br>
               edited to: {{ $drop->name }} <br>
-              by: {{ $drop->user->name }} <br>
+              On: {{ $drop->created_at->diffForHumans() }} <br>
               @if(! is_null($drop->picture))
               <img src="/{{ $drop->picture }}" width="120px" height="120px" class="my-2 rounded">
               <div style="font-size:11px;font-weight:400">@parsedown(nl2br(e($drop->note)))
@@ -39,7 +42,7 @@
           </div>
         </div>
 
-        {{ $mods->links() }}
+        {{ $data->links() }}
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title', 'My Contribution')
+@section('title', 'Need Contribution')
 
 
 @section('content')
@@ -8,10 +8,13 @@
   <div class="container">
 
     <div class="page-header">
-      <h3 class="page-title">My Contribution</h3>
+      <h3 class="page-title">Need Contribution</h3>
     </div>
 
     <div class="row">
+      <div class="col-md-4">
+      @include('inc.contribution_menu')
+      </div>
       <div class="col-md-8">
         <div class="card">
           <div class="card-body p-3" style="font-size:13px">
