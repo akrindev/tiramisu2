@@ -29,7 +29,7 @@
            @endif
 
             @if(! is_null($item->picture))
-              <img src="/{{ $item->picture }}" class="rounded ml-5 my-2 d-block" width="120px" height="120px">
+              <img src="/img/ball-triangle.svg" data-src="/{{ $item->picture }}" class="rounded ml-5 my-2 d-block lazyload" width="120px" height="120px">
             @endif
 
             @if(! is_null($item->note))
