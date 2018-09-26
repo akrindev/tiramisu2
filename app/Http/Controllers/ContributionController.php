@@ -81,7 +81,7 @@ class ContributionController extends Controller
     if(! is_null($from->picture)):
     	$to->picture = $from->picture;
 
-    	auth()->user()->contribution()->updateOrCreate([])->increment('point',5);
+    	Contribution::updateOrCreate(['user_id'=>$from->user_id])->increment('point',5);
     endif;
 
     $from->accepted = 1;
@@ -91,7 +91,7 @@ class ContributionController extends Controller
 
     DropDone::create(['drop_id'=> $to->id]);
 
-    auth()->user()->contribution()->updateOrCreate([])->increment('point',3);
+	Contribution::updateOrCreate(['user_id'=>$from->user_id])->increment('point',3);
 
 
     return response()->json(['success'=>true]);
