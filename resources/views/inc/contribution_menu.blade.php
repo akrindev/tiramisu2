@@ -12,7 +12,7 @@
     jika mengedit disertai dengan gambar, jangan lupa untuk mengecrop terlebih dahulu dengan rasio 1:1 <br> usahakan untuk memakai hanya equip tersebut </small> <br>
     <hr class="my-1">
     <strong>5 Top contributor</strong> <br>
-    @foreach((new App\Contribution)->get() as $con)
+    @foreach((new App\Contribution)->orderByDesc('point')->take(5)->get() as $con)
       - {{ $con->user->name }} ({{ $con->user->contribution->point }} point) <br>
     @endforeach
   @if(auth()->user()->isAdmin())
