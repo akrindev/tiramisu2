@@ -65,3 +65,8 @@ $i = $color[$rand[0]];
 <div class="my-5">
 <div class="fb-page" data-href="https://www.facebook.com/memetoid/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/memetoid/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/memetoid/">Meme Toram Online Indonesia</a></blockquote></div>
 </div>
+<div class="my-5">
+
+    @includeWhen(env('APP_ENV') == 'production', 'inc.ads_matched')
+
+</div>

@@ -77,5 +77,7 @@
     <div class="my-1 row gutters-xs">
       <a href="/npc" class="d-block mb-1 col-6">NPC List</a>
     </div>
+
+    @includeWhen(env('APP_ENV') == 'production', 'inc.ads_matched')
   </div>
 </div>
