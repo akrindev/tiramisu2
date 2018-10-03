@@ -69,7 +69,7 @@
              <dd>
 
                @if ($mons->picture != null)
-               <img src="{{ $mons->picture }}" alt="{{ $mons->name }}" class="rounded my-2 d-block" width="150px" height="150px">
+               <img src="/{{ $mons->picture }}" alt="{{ $mons->name }}" class="rounded my-2 d-block" width="150px" height="150px">
                @endif
 
                <b>Element:</b> <span> {{$mons->element->name}}</span> <br>
