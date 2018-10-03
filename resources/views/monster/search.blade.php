@@ -32,6 +32,10 @@
               <a href="/item/{{ $item->id }}/edit" class="btn btn-sm btn-outline-secondary">edit</a>
            @endif
 
+           @if ($item->picture != null)
+           <img src="/{{ $item->picture }}" alt="{{ $item->name }}" class="rounded my-2 d-block ml-5" width="150px" height="150px">
+           @endif
+
             @if(! is_null($item->note))
               <div class="my-1 ml-5">
                 @parsedown(nl2br(e($item->note)))
@@ -63,6 +67,11 @@
             </b>
            </dt>
              <dd>
+
+               @if ($mons->picture != null)
+               <img src="{{ $mons->picture }}" alt="{{ $mons->name }}" class="rounded my-2 d-block" width="150px" height="150px">
+               @endif
+
                <b>Element:</b> <span> {{$mons->element->name}}</span> <br>
                <b>Peta: </b> <a href="/peta/{{ $mons->map->id }}">{{ $mons->map->name }}</a>
              </dd>

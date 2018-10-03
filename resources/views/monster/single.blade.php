@@ -40,6 +40,11 @@
              </b>
            </dt>
              <dd>
+
+               @if ($mons->picture != null)
+               <img src="{{ $mons->picture }}" alt="{{ $mons->name }}" class="rounded my-2 d-block" width="150px" height="150px">
+               @endif
+
               <b>Element:</b>  <span class="">{{$mons->element->name}}</span> <br>
                <b>Peta:</b> <a href="/peta/{{ $mons->map->id }}"> {{ $mons->map->name }}</a>
              </dd>
