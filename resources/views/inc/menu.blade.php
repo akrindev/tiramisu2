@@ -75,8 +75,14 @@
     </div>
 
     <div class="my-1 row gutters-xs">
+      <a href="/leveling" class="d-block mb-1 col-6">Leveling Finder (full boss &amp; mini boss)</a>
+      <a href="/fill_stats" class="d-block mb-1 col-6">Fill stats formula +13, +14, +15 etc</a>
+      <a href="/fill_stats/calculator" class="d-block mb-1 col-6">Fill stat calculator</a>
+      <a href="/exp" class="d-block mb-1 col-6">Exp Calculator [ntap]</a>
       <a href="/npc" class="d-block mb-1 col-6">NPC List</a>
     </div>
+
+    <hr class="my-1">
 
     @includeWhen(env('APP_ENV') == 'production', 'inc.ads_matched')
   </div>
