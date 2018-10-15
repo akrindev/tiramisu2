@@ -11,7 +11,7 @@
             <div class="row">
               <div class="col-md-8">
 
-                <a href="/forum/baru" class="float-right btn btn-primary btn-pill mb-3">Tulis baru</a>
+                <a href="/forum/baru" class="float-right btn btn-outline-primary btn-pill mb-3"> <i class="fe fe-edit-2"></i> Buat thread</a>
 
             <div id="cari-kan">
               {!! form_open('/forum/cari') !!}
