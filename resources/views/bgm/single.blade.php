@@ -2,7 +2,7 @@
 
 @section('title',$bgm->title. ' - Download or play')
 @section('description',$bgm->title.' Toram online background music list download or play online')
-@section('image','http://ytimg.googleusercontent.com/vi/'.$bgm->video_id.'/sddefault.jpg')
+@section('image','https://ytimg.googleusercontent.com/vi/'.$bgm->video_id.'/sddefault.jpg')
 
 @section('content')
 <div class="my-5">
@@ -27,26 +27,17 @@
 
             <img src="https://ytimg.googleusercontent.com/vi/{{ $bgm->video_id }}/sddefault.jpg" class="img img-fluid">
             <div class="my-3">
-		<strong>Play</strong><br>
-         <audio controls loop="loop" preload="none">
-            <source src="{{ $play }}" >
-                Browser Anda tidak mendukung HTML5 Audio <!---  -----bool(false)
--->
-            </audio>
         <br>
               <hr class="my-2">
 
   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 
               <div class="my-3">
-              @foreach ($downloads as $download)
 
-             @auth
-              <a href="{{ $download->href }}" class="btn btn-outline-primary mr-2 mb-2"> <i class="fe fe-music"></i> {{ str_replace('s','s ',$download->plaintext) }} </a>
-             @else
-              <a href="#" onClick="dload();" class="btn btn-outline-primary mr-2 mb-2"> <i class="fe fe-music"></i> {{ str_replace('s','s ',$download->plaintext) }} </a>
-             @endauth
-              @endforeach
+<div class="my-3">
+<h6>Download</h6>
+  <iframe src='//api.listenvid.com/?default/{{ $bgm->video_id }}/mp3' width='100%' height='100px' scrolling='no' style='border:none;'></iframe>
+              </div>
                 <br><br>
                 <p>
                   <b> Lainnya: </b><br />

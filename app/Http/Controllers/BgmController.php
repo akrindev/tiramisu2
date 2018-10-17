@@ -23,16 +23,8 @@ class BgmController extends Controller
       $bgm = BgMusic::where('slug',$slug)->firstOrFail();
       $random = BgMusic::inRandomOrder()->take(5)->get();
 
-	  $a = $this->cokot('https://youtubemp3api.com/@grab?vidID='.$bgm->video_id.'&format=mp3&streams=mp3&api=button');
-
-      $play = (new Simple_html_dom)->load($a)->find('a')[4]->href;
-
-      $downloads = (new Simple_html_dom)->load($a)->find('a');
-
       return view('bgm.single', [
       	'bgm' => $bgm,
-        'play' => $play,
-        'downloads' => $downloads,
         'random' => $random
       ]);
     }
@@ -83,7 +75,7 @@ class BgmController extends Controller
       //curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
        // curl_setopt($ch, CURLOPT_TIMEOUT, 20);
 
-      curl_setopt($ch, CURLOPT_REFERER, 'https://youtubemp3api.com/');
+      curl_setopt($ch, CURLOPT_REFERER, 'https://www.yt-download.org/');
 
       return curl_exec($ch);
 	}
