@@ -9,6 +9,6 @@ if( ! function_exists('to_img'))
       return end($matches);
     }
 
-    return url('/img/potum.gif');
+    return url('/img/potum.png');
   }
 }

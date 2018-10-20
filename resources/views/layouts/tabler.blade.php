@@ -111,7 +111,7 @@ if('serviceWorker' in navigator)
           <div class="container">
             <div class="d-flex">
               <a class="header-brand" href="/">
-                <img src="/img/potum.gif" class="header-brand-img lazyload" alt="Toram-id.info logo"> Toram
+                <img src="/img/potum.png" class="header-brand-img lazyload" alt="Toram-id.info logo"> Toram
               </a>
               <div class="d-flex order-lg-2 ml-auto">
 @guest
