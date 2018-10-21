@@ -68,7 +68,15 @@ Route::get('/edit/{id}/fillstats', 'FillController@edit')->middleware('auth');
 Route::post('/edit/{id}/fillstats', 'FillController@editPost')->middleware('auth');
 Route::delete('/delete/fillstats', 'FillController@destroy')->middleware('auth');
 
-
+/**
+* skills
+*/
+Route::get('/skill', 'SkillController@index');
+Route::get('/skill/{name}', 'SkillController@show');
+Route::middleware(['admin'])->group(function() {
+	Route::post('/skill/edit', 'SkillController@edit');
+  	Route::post('/skill/edit/save', 'SkillController@save');
+});
 
 /**
 * Monster routes
