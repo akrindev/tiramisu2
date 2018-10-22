@@ -89,6 +89,8 @@
     </div>
     @endforeach
     </div>
+
+    @include('inc.menu_skill')
   </div>
   </div>
 </div>

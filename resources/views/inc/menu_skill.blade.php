@@ -1,25 +1,9 @@
-@extends('layouts.tabler')
 
-@section('title', 'Toram Skill List')
-@section('description', 'Informasi skill toram online fill skill list')
-@section('image', to_img())
-
-@section('content')
-
-<div class="my-5">
-  <div class="container">
-
-  <div class="page-header">
-    <h3 class="page-title">Toram Skills</h3>
-  </div>
-
-
-  <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-4">
     <div class="card">
       <div class="card-body p-3" style="font-size:14px;font-weight:400">
 
-        @foreach($skills->groupBy('type') as $skill => $child)
+        @foreach(collect((new App\Skill)->get())->groupBy('type') as $skill => $child)
         <div class="mb-5">
         <h4>{{ ucfirst($skill) }}</h4>
 
@@ -36,8 +20,3 @@
       </div>
     </div>
     </div>
-  </div>
-  </div>
-</div>
-
-@endsection

@@ -19,6 +19,8 @@
         <a href="/mons/store/resep" class="btn btn-sm mb-2">Store resep</a>
         <a href="/store/peta" class="btn btn-sm mb-2">Edit Peta</a>
         <a href="/npc/store" class="btn btn-sm mb-2">Edit Npc</a>
+        <a href="/contribution/show" class="btn btn-sm mb-2">Kontribusi</a>
+        <a href="/skill" class="btn btn-sm mb-2">Skill</a>
         <a href="/edit-tentang" class="btn btn-sm mb-2">Edit About Us</a>
       </div>
     </div>
