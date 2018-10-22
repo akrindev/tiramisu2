@@ -31,6 +31,15 @@
         <input type="text" class="form-control" name="name" value="{{ $skill->name }}" required>
       </div>
 
+        <div class="form-group">
+          <label class="form-label">Anggota skill</label>
+          <select name="skill" id="select-type" class="form-control custom-select" required>
+          @foreach((new App\Skill)->get() as $type)
+            <option value="{{$type->id}}" data-data='{"image": "{{ $type->picture }}"}'>{{ $type->name }}</option>
+          @endforeach
+          </select>
+        </div>
+
      <div class="form-group">
        <label class="form-label">Type</label>
        <div class="selectgroup selectgroup-pills">
@@ -134,4 +143,27 @@
 <script src="/assets/js/to-markdown.js">
 </script>
 
+<script src="/assets/js/vendors/selectize.min.js"></script>
+@endsection
+
+@section('footer')
+
+<script>
+$('#select-type').selectize({
+    render: {
+      option: function (data, escape) {
+        return '<div>' +
+          '<span class="image"><img src="' + data.image + '" alt=""></span>' +
+          '<span class="title">' + escape(data.text) + '</span>' +
+          '</div>';
+      },
+      item: function (data, escape) {
+        return '<div>' +
+          '<span class="image"><img src="' + data.image + '" alt=""></span>' +
+          escape(data.text) +
+          '</div>';
+      }
+    }
+  });
+</script>
 @endsection

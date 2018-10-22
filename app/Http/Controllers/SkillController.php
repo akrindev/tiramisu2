@@ -46,6 +46,7 @@ class SkillController extends Controller
       	'body'	=> 'required'
     ]);
 
+    $skill->skill_id = request('skill');
     $skill->name = request('name');
     $skill->type = implode(',',request('type'));
     $skill->mp   = request('mp');

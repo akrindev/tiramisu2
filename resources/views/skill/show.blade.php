@@ -10,7 +10,7 @@
   <div class="container">
 
   <div class="page-header">
-    <h3 class="page-title">Toram Skill {{ $name }}</h3>
+    <h3 class="page-title">Toram {{ $name }}</h3>
   </div>
 
 
