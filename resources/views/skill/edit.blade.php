@@ -35,7 +35,7 @@
           <label class="form-label">Anggota skill</label>
           <select name="skill" id="select-type" class="form-control custom-select" required>
           @foreach((new App\Skill)->get() as $type)
-            <option value="{{$type->id}}" data-data='{"image": "{{ $type->picture }}"}'>{{ $type->name }}</option>
+            <option value="{{$type->id}}" data-data='{"image": "{{ $type->picture }}"}' {{ $type->id == $skill->skill_id ? 'selected':'' }}>{{ $type->name }}</option>
           @endforeach
           </select>
         </div>
@@ -65,8 +65,96 @@
      </div>
 
      <div class="form-group">
-       <label class="form-label">Jarak</label>
+       <label class="form-label">Jarak <small class="text-muted">(m)</small> </label>
        <input type="number" class="form-control" name="range" value="{{ $skill->range }}">
+     </div>
+
+
+     <div class="form-group">
+       <label class="form-label">Untuk senjata</label>
+       <div class="selectgroup selectgroup-pills">
+
+         <label class="selectgroup-item">
+         <input name="for[]" type="checkbox" class="selectgroup-input" value="all" {{ in_array('all', explode(',', $skill->for)) ? 'checked' : '' }}>
+           <span class="selectgroup-button">semua senjata</span>
+         </label>
+         <label class="selectgroup-item">
+         <input name="for[]" type="checkbox" class="selectgroup-input" value="bg" {{ in_array('bg', explode(',', $skill->for)) ? 'checked' : '' }}>
+           <span class="selectgroup-button">bowgun</span>
+         </label>
+
+         <label class="selectgroup-item">
+         <input name="for[]" type="checkbox" class="selectgroup-input" value="busur" {{ in_array('busur', explode(',', $skill->for)) ? 'checked' : '' }}>
+           <span class="selectgroup-button">busur</span>
+         </label>
+
+         <label class="selectgroup-item">
+         <input name="for[]" type="checkbox" class="selectgroup-input" value="dw" {{ in_array('dw', explode(',', $skill->for)) ? 'checked' : '' }}>
+           <span class="selectgroup-button">pedang ganda</span>
+         </label>
+         <label class="selectgroup-item">
+         <input name="for[]" type="checkbox" class="selectgroup-input" value="katana" {{ in_array('katana', explode(',', $skill->for)) ? 'checked' : '' }}>
+           <span class="selectgroup-button">katana</span>
+         </label>
+
+         <label class="selectgroup-item">
+         <input name="for[]" type="checkbox" class="selectgroup-input" value="kuckle" {{ in_array('knuckle', explode(',', $skill->for)) ? 'checked' : '' }}>
+           <span class="selectgroup-button">tinju</span>
+         </label>
+
+         <label class="selectgroup-item">
+         <input name="for[]" type="checkbox" class="selectgroup-input" value="md" {{ in_array('md', explode(',', $skill->for)) ? 'checked' : '' }}>
+           <span class="selectgroup-button">alat sihir</span>
+         </label>
+         <label class="selectgroup-item">
+         <input name="for[]" type="checkbox" class="selectgroup-input" value="mdsub" {{ in_array('mdsub', explode(',', $skill->for)) ? 'checked' : '' }}>
+           <span class="selectgroup-button">alat sihir sokongan</span>
+         </label>
+         <label class="selectgroup-item">
+         <input name="for[]" type="checkbox" class="selectgroup-input" value="ohs" {{ in_array('ohs', explode(',', $skill->for)) ? 'checked' : '' }}>
+           <span class="selectgroup-button">pedang</span>
+         </label>
+
+         <label class="selectgroup-item">
+         <input name="for[]" type="checkbox" class="selectgroup-input" value="panah" {{ in_array('panah', explode(',', $skill->for)) ? 'checked' : '' }}>
+           <span class="selectgroup-button">panah</span>
+         </label>
+
+
+         <label class="selectgroup-item">
+         <input name="for[]" type="checkbox" class="selectgroup-input" value="pisau" {{ in_array('pisau', explode(',', $skill->for)) ? 'checked' : '' }}>
+           <span class="selectgroup-button">pisau</span>
+         </label>
+
+
+         <label class="selectgroup-item">
+         <input name="for[]" type="checkbox" class="selectgroup-input" value="shield" {{ in_array('shield', explode(',', $skill->for)) ? 'checked' : '' }}>
+           <span class="selectgroup-button">tameng</span>
+         </label>
+
+         <label class="selectgroup-item">
+         <input name="for[]" type="checkbox" class="selectgroup-input" value="ths" {{ in_array('ths', explode(',', $skill->for)) ? 'checked' : '' }}>
+           <span class="selectgroup-button">pedang raya</span>
+         </label>
+         <label class="selectgroup-item">
+         <input name="for[]" type="checkbox" class="selectgroup-input" value="tongkat" {{ in_array('tongkat', explode(',', $skill->for)) ? 'checked' : '' }}>
+           <span class="selectgroup-button">tongkat</span>
+         </label>
+         <label class="selectgroup-item">
+         <input name="for[]" type="checkbox" class="selectgroup-input" value="tombak" {{ in_array('tombak', explode(',', $skill->for)) ? 'checked' : '' }}>
+           <span class="selectgroup-button">tombak</span>
+         </label>
+
+         <label class="selectgroup-item">
+         <input name="for[]" type="checkbox" class="selectgroup-input" value="heavy" {{ in_array('heavy', explode(',', $skill->for)) ? 'checked' : '' }}>
+           <span class="selectgroup-button">armor berat</span>
+         </label>
+         <label class="selectgroup-item">
+         <input name="for[]" type="checkbox" class="selectgroup-input" value="light" {{ in_array('light', explode(',', $skill->for)) ? 'checked' : '' }}>
+           <span class="selectgroup-button">armor ringan</span>
+         </label>
+
+       </div>
      </div>
 
      <div class="form-group">
