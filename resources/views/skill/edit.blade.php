@@ -48,13 +48,13 @@
            <span class="selectgroup-button">active</span>
          </label>
          <label class="selectgroup-item">
-         <input name="type[]" type="checkbox" class="selectgroup-input" value="passive">
+         <input name="type[]" type="checkbox" class="selectgroup-input" value="passive" {{ in_array('passive', explode(',',$skill->type)) ? 'checked' : '' }}>
            <span class="selectgroup-button">passive</span></label>
          <label class="selectgroup-item">
-         <input name="type[]" type="checkbox" class="selectgroup-input" value="skill fisik">
+         <input name="type[]" type="checkbox" class="selectgroup-input" value="skill fisik" {{ in_array('skill fisik', explode(',',$skill->type)) ? 'checked' : '' }}>
            <span class="selectgroup-button">skill fisik</span></label>
          <label class="selectgroup-item">
-         <input name="type[]" type="checkbox" class="selectgroup-input" value="skill sihir">
+         <input name="type[]" type="checkbox" class="selectgroup-input" value="skill sihir" {{ in_array('skill sihir', explode(',',$skill->type)) ? 'checked' : '' }}>
            <span class="selectgroup-button">skill sihir</span></label>
        </div>
      </div>
@@ -66,7 +66,7 @@
 
      <div class="form-group">
        <label class="form-label">Jarak</label>
-       <input type="number" class="form-control" name="range">
+       <input type="number" class="form-control" name="range" value="{{ $skill->range }}">
      </div>
 
      <div class="form-group">
@@ -74,11 +74,11 @@
        <div class="selectgroup selectgroup-pills">
 
          <label class="selectgroup-item">
-         <input name="combo_awal" type="radio" class="selectgroup-input" value="1">
+         <input name="combo_awal" type="radio" class="selectgroup-input" value="1" {{ $skill->combo_awal == 1 ? 'checked' : '' }}>
            <span class="selectgroup-button">ya</span>
          </label>
          <label class="selectgroup-item">
-         <input name="combo_awal" type="radio" class="selectgroup-input" value="0">
+         <input name="combo_awal" type="radio" class="selectgroup-input" value="0" {{ $skill->combo_awal == 0 ? 'checked' : '' }}>
            <span class="selectgroup-button">tidak</span>
          </label>
 
@@ -90,11 +90,11 @@
        <div class="selectgroup selectgroup-pills">
 
          <label class="selectgroup-item">
-         <input name="combo_tengah" type="radio" class="selectgroup-input" value="1">
+         <input name="combo_tengah" type="radio" class="selectgroup-input" value="1" {{ $skill->combo_tengah == 1 ? 'checked' : '' }}>
            <span class="selectgroup-button">ya</span>
          </label>
          <label class="selectgroup-item">
-         <input name="combo_tengah" type="radio" class="selectgroup-input" value="0">
+         <input name="combo_tengah" type="radio" class="selectgroup-input" value="0" {{ $skill->combo_tengah == 0 ? 'checked' : '' }}>
            <span class="selectgroup-button">tidak</span>
          </label>
 
