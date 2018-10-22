@@ -16,6 +16,9 @@
 
   <div class="row">
     <div class="col-md-8">
+
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+
     @foreach($skills->child as $skill)
       <div class="card">
       <div class="card-body p-3" style="font-size:14px;font-weight:400">

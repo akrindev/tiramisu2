@@ -3,6 +3,9 @@
     <div class="card">
       <div class="card-body p-3" style="font-size:14px;font-weight:400">
 
+
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+
         @foreach(collect((new App\Skill)->get())->groupBy('type') as $skill => $child)
         <div class="mb-5">
         <h4>{{ ucfirst($skill) }}</h4>
@@ -16,6 +19,9 @@
         </div>
 
         @endforeach
+
+
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_matched')
 
       </div>
     </div>
