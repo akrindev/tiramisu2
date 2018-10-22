@@ -40,6 +40,19 @@
           </select>
         </div>
 
+
+     <div class="form-group">
+       <label class="form-label">Skill level</label>
+       <div class="selectgroup selectgroup-pills">
+         @for($i = 1; 4 >= $i; $i++)
+         <label class="selectgroup-item">
+         <input name="level" type="radio" class="selectgroup-input" value="{{ $i }}" {{ $skill->level == $i ? 'checked' : '' }}>
+           <span class="selectgroup-button">{{ $i }}</span>
+         </label>
+         @endfor
+       </div>
+     </div>
+
      <div class="form-group">
        <label class="form-label">Type</label>
        <div class="selectgroup selectgroup-pills">

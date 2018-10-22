@@ -52,6 +52,7 @@ class SkillController extends Controller
     $skill->mp   = request('mp');
     $skill->range = request('range');
     $skill->for = implode(',', request('for'));
+    $skill->level = request('level');
     $skill->combo_awal = request('combo_awal');
     $skill->combo_tengah = request('combo_tengah');
     $skill->element_id	= request('element');
