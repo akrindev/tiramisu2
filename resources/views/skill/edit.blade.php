@@ -61,7 +61,7 @@
            <span class="selectgroup-button">active</span>
          </label>
          <label class="selectgroup-item">
-         <input name="type[]" type="checkbox" class="selectgroup-input" value="passive" {{ in_array('passive', explode(',',$skill->type)) ? 'checked' : '' }}>
+         <input name="type[]" type="checkbox" class="selectgroup-input" value="pasif" {{ in_array('passive', explode(',',$skill->type)) ? 'checked' : '' }}>
            <span class="selectgroup-button">passive</span></label>
          <label class="selectgroup-item">
          <input name="type[]" type="checkbox" class="selectgroup-input" value="skill fisik" {{ in_array('skill fisik', explode(',',$skill->type)) ? 'checked' : '' }}>
@@ -69,6 +69,9 @@
          <label class="selectgroup-item">
          <input name="type[]" type="checkbox" class="selectgroup-input" value="skill sihir" {{ in_array('skill sihir', explode(',',$skill->type)) ? 'checked' : '' }}>
            <span class="selectgroup-button">skill sihir</span></label>
+         <label class="selectgroup-item">
+         <input name="type[]" type="checkbox" class="selectgroup-input" value="EX Skill" {{ in_array('EX Skill', explode(',',$skill->type)) ? 'checked' : '' }}>
+           <span class="selectgroup-button">EX Skill</span></label>
        </div>
      </div>
 
