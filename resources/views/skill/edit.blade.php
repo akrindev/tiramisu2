@@ -114,7 +114,7 @@
          </label>
 
          <label class="selectgroup-item">
-         <input name="for[]" type="checkbox" class="selectgroup-input" value="kuckle" {{ in_array('knuckle', explode(',', $skill->for)) ? 'checked' : '' }}>
+         <input name="for[]" type="checkbox" class="selectgroup-input" value="knuckle" {{ in_array('knuckle', explode(',', $skill->for)) ? 'checked' : '' }}>
            <span class="selectgroup-button">tinju</span>
          </label>
 
