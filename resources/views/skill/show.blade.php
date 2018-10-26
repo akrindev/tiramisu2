@@ -25,7 +25,7 @@
 
         <img src="{{ $skill->picture }}" alt="{{ $skill->name }}" class="avatar avatar-md float-left mr-4 avatar-blue"> <a href="/skill/{{ str_replace(' ', '-',$name) }}/{{ str_replace(' ', '-', $skill->name) }}"> <b> {{ $skill->name }} </b></a><br>
         <small class="text-muted">
-        Skill level {{ $skill->level }}
+        Skill level {{ $skill->level }}  <a href="/skill/{{ str_replace(' ', '-',$name) }}/{{ str_replace(' ', '-', $skill->name) }}" class="text-right ml-5"> <i class="fe fe-message-square"></i> {{ $skill->comment->count() }} diskusi </a>
         </small>
         @if(auth()->check() && auth()->user()->isAdmin())
         {!! form_open('/skill/edit') !!}

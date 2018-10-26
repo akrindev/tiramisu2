@@ -24,8 +24,8 @@
 
         <img src="{{ $skill->picture }}" alt="{{ $skill->name }}" class="avatar avatar-md float-left mr-4 avatar-blue"> <a href="/skill/{{ str_replace(' ', '-',$name) }}/{{ $skill->name }}"> <b> {{ $skill->name }} </b></a><br>
         <small class="text-muted">
-        Skill level {{ $skill->level }}
-        </small>
+          Skill level {{ $skill->level }} <span class="ml-5"> <i class="fe fe-message-square"></i> {{ $skill->comment->count() }} diskusi
+</span>        </small>
         @if(auth()->check() && auth()->user()->isAdmin())
         {!! form_open('/skill/edit') !!}
         @csrf
@@ -103,12 +103,13 @@
             </div>
             @auth
             <div class="form-group">
-              @if(auth()->user()->role == 'admin')
-              <button onclick="event.preventDefault(); dcm({{$comment->id}});" class="btn btn-sm btn-pill btn-outline-danger">hapus</button>
-              {!! form_open('/forum/delete-comment',['id'=>'cid-'.$comment->id]) !!}
+              @if(auth()->user()->isAdmin())
+
+              {!! form_open('/skill-delete-comment') !!}
               @csrf
               @method("DELETE")
-              <input type="hidden" name="cid" value="{{$comment->id}}">
+              <input type="hidden" name="id" value="{{ $comment->id }}">
+              <button class="btn btn-sm btn-pill btn-outline-danger">hapus</button>
               {!! form_close() !!}
               @endif
             </div>

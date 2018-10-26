@@ -84,6 +84,17 @@ class SkillController extends Controller
     return view('skill.edit', compact('skill'));
   }
 
+  public function deleteComment()
+  {
+    $id = request('id');
+
+    $skill = SkillComment::findOrFail($id);
+
+    $skill->delete();
+
+    return back();
+  }
+
   public function save()
   {
     $id = request('id');
