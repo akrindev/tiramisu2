@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title', 'Toram ' . $name)
+@section('title', 'Toram skill ' . $name)
 @section('description', 'Informasi skill '. $name .' toram online full skill list')
 @section('image', to_img())
 
@@ -10,7 +10,7 @@
   <div class="container">
 
   <div class="page-header">
-    <h3 class="page-title">Toram {{ $name }}</h3>
+    <h3 class="page-title">Toram skill {{ $name }}</h3>
   </div>
 
 
@@ -19,11 +19,10 @@
 
   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 
-    @foreach($skills->child as $skill)
       <div class="card">
       <div class="card-body p-3" style="font-size:14px;font-weight:400">
 
-        <img src="{{ $skill->picture }}" alt="{{ $skill->name }}" class="avatar avatar-md float-left mr-4 avatar-blue"> <a href="/skill/{{ str_replace(' ', '-',$name) }}/{{ str_replace(' ', '-', $skill->name) }}"> <b> {{ $skill->name }} </b></a><br>
+        <img src="{{ $skill->picture }}" alt="{{ $skill->name }}" class="avatar avatar-md float-left mr-4 avatar-blue"> <a href="/skill/{{ str_replace(' ', '-',$name) }}/{{ $skill->name }}"> <b> {{ $skill->name }} </b></a><br>
         <small class="text-muted">
         Skill level {{ $skill->level }}
         </small>
@@ -90,7 +89,37 @@
         </div>
       </div>
     </div>
-    @endforeach
+
+      @foreach($skill->comment as $comment)
+		<div class="card p-0">
+          <div class="card-body p-3">
+            <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{$comment->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4 lazyload">
+            <b><a href="/profile/{{$comment->user->provider_id }}" data-author="{{ $comment->user->name }}">  {{ $comment->user->name }}</a> </b> <br>
+            <small class="text-muted">{{ waktu($comment->created_at) }}</small>
+            <hr class="my-2">
+            <div class="body-text" style="font-size:14px">
+            @parsedown(e($comment->body))
+
+            </div>
+            @auth
+            <div class="form-group">
+              @if(auth()->user()->role == 'admin')
+              <button onclick="event.preventDefault(); dcm({{$comment->id}});" class="btn btn-sm btn-pill btn-outline-danger">hapus</button>
+              {!! form_open('/forum/delete-comment',['id'=>'cid-'.$comment->id]) !!}
+              @csrf
+              @method("DELETE")
+              <input type="hidden" name="cid" value="{{$comment->id}}">
+              {!! form_close() !!}
+              @endif
+            </div>
+
+            @endauth
+          </div>
+
+   		</div>
+      @endforeach
+
+      @include('inc.skill_comment')
     </div>
 
     @include('inc.menu_skill')

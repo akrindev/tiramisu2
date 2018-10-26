@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{
-  Skill, SkillList
+  Skill, SkillList, SkillComment
 };
+use App\Notifications\SkillReplied;
 
 class SkillController extends Controller
 {
@@ -23,6 +24,55 @@ class SkillController extends Controller
     $skills = Skill::whereName($name)->firstOrFail();
 
     return view('skill.show', compact('skills', 'name'));
+  }
+
+  public function single($parent, $child)
+  {
+    $parent = str_replace('-', ' ', $parent);
+    $name = trim(str_replace('-', ' ', $child));
+
+    $skillparent = Skill::whereName($parent)->firstOrFail();
+    $skill = $skillparent->child()->whereName($name)->firstOrFail();
+
+    return view('skill.single', compact('skill', 'name'));
+  }
+
+  public function comment($parent, $child)
+  {
+    request()->validate([
+    	'body'	=> 'required|min:15'
+    ]);
+
+    $parent = str_replace('-', ' ', $parent);
+    $name = trim(str_replace('-', ' ', $child));
+
+    $skillparent = Skill::whereName($parent)->firstOrFail();
+    $skill = $skillparent->child()->whereName($name)->firstOrFail();
+
+    $skill->comment()->create([
+    	'user_id'	=> auth()->user()->id,
+      	'body'		=> request('body')
+    ]);
+
+    $notify = $skill->comment()->where('user_id', '!=', auth()->id())->get();
+
+    $to = collect($notify)->unique('user_id');
+
+    foreach($to->values()->all() as $pesan)
+    {
+      $pesan->notify(new SkillReplied('juga berkomentar', $skill));
+
+       fcm()->to([$pesan->user->fcm->token])
+         ->notification([
+         	'title' => 'Seseorang juga berkomentar di '. $skill->name,
+           	'body' => explode(' ',auth()->user()->name)[0] . ' juga berkomentar di '. $skill->name,
+           	'icon'	=> 'https://graph.facebook.com/'.auth()->user()->provider_id.'/picture?type=normal',
+              	'click_action' => url('/skill/'.str_replace(' ', '-', $parent).'/'.str_replace(' ', '-', $name))
+         ])
+         ->send();
+    }
+
+    return back()->with('sukses_comment', 'komentar telah di tambahkan');
   }
 
   public function edit()

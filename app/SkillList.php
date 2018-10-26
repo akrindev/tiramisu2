@@ -22,4 +22,9 @@ class SkillList extends Model
   {
     return $this->belongsTo(Element::class);
   }
+
+  public function comment()
+  {
+    return $this->hasMany(SkillComment::class);
+  }
 }

@@ -73,6 +73,8 @@ Route::delete('/delete/fillstats', 'FillController@destroy')->middleware('auth')
 */
 Route::get('/skill', 'SkillController@index');
 Route::get('/skill/{name}', 'SkillController@show');
+Route::get('/skill/{parent}/{child}', 'SkillController@single');
+Route::post('/skill/{parent}/{child}', 'SkillController@comment');
 Route::middleware(['admin'])->group(function() {
 	Route::post('/skill/edit', 'SkillController@edit');
   	Route::post('/skill/edit/save', 'SkillController@save');
