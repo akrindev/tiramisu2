@@ -235,6 +235,10 @@ if('serviceWorker' in navigator)
                   </li>
 
                   <li class="nav-item">
+                    <a href="/skill" class="nav-link"><i class="fe fe-droplet"></i>Skill</a>
+                  </li>
+
+                  <li class="nav-item">
                     <a href="/gallery" class="nav-link"><i class="fe fe-image"></i> Gallery</a>
                   </li>
 
