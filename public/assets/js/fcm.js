@@ -66,7 +66,7 @@
 	}
 
 	messaging.onMessage(function(payload) {
-	  document.write("Message received. ", payload);
+	  console.log("Message received. ", payload);
 	  notificationTitle = payload.data.title;
 	  notificationOptions = {
 	  	body: payload.data.body,
