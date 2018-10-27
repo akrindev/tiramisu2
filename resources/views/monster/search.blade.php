@@ -51,6 +51,7 @@
   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
             </div>
 
+             <strong class="h4">Monster</strong> <br>
             <dl> <!-- dl start -->
           @foreach ($monsters as $mons)
 
@@ -78,6 +79,16 @@
             </div>
              @endforeach
           </dl> <!-- // dl end -->
+          @endif
+
+          @if($maps->count() > 0)
+            <div class="mt-5">
+              <strong class="h4">Peta</strong> <br>
+              @foreach($maps as $map)
+             <i class="fe fe-github mr-2"></i> <a href="/peta/{{ $map->id }}">{{ $map->name }}</a> <br>
+              @endforeach
+            </div>
+
           @endif
           </div>
         </div>

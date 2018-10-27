@@ -55,15 +55,17 @@ class MonsterController extends Controller
 
     $drops = Drop::where('name','like','%'.$q.'%')
       			->orderBy('name')
-      			//->remember(60)
       			->get();
 
     $monsters = Monster::where('name','like','%'.$q.'%')
       			->orderBy('name')
-      			//->remember(60)
       			->get();
 
-    return view('monster.search',compact('drops', 'monsters', 'q'));
+    $maps = Map::where('name', 'like', '%'.$q.'%')
+      			->orderBy('name')
+      			->get();
+
+    return view('monster.search',compact('drops', 'monsters', 'maps','q'));
 
   }
 
