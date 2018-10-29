@@ -25,7 +25,7 @@
 
     <div class="form-group form-group-sm col-md-4 col-xs-12">
       <label>Nightmare Cystal (Kristal teror)</label>
-      <input type="number" id="nc" class="form-control" value="12500">
+      <input type="number" id="nc" class="form-control" value="7500">
       <div class="help-block">Harga NC per stk</div>
     </div>
 
@@ -56,14 +56,14 @@
     </div>
 
     <div class="form-group form-group-sm col-md-4 col-xs-6">
-      <label>Level Persen (%)</label>
+      <label>Level Persen sekarang (%) <small class="text-muted">(1-99%)</small> </label>
       <input type="number" id="lvperc" class="form-control" value="1">
       <div class="help-block"></div>
     </div>
 
     <div class="form-group form-group-sm col-md-4 col-xs-6">
       <label>Target Level</label>
-      <input type="number" id="lvtarget" class="form-control" value="150">
+      <input type="number" id="lvtarget" class="form-control" value="170">
       <div class="help-block"></div>
     </div>
 
