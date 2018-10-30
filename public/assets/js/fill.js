@@ -223,10 +223,15 @@ class FORMULA {
 
     static toStepString(stat, value) {
       let increment_indicator = value > 0 ? '+' : '-';
+      let a = '<span class="text-danger">',
+          b = '</span>';
+
       value = Math.abs(value);
+      let cu = stat.slice(0, -1) + increment_indicator + ' ' + value + '%';
       if (stat.indexOf('%') === 0) return increment_indicator + value + stat;
-      else if (stat.slice(-1) === '%') return stat.slice(0, -1) + increment_indicator + ' ' + value + '%';
-      return stat + ' ' + increment_indicator + ' ' + value
+      else if (stat.slice(-1) === '%') return increment_indicator === '-' ? a + cu + b : cu ;
+      let ince = stat + ' ' + increment_indicator + ' ' + value
+      return increment_indicator === '-' ? '<span class="text-danger">' + ince + '</span>' : ince
     }
 
     potFloor(number) {
@@ -587,7 +592,7 @@ function get_results(custom_pot) {
   let buffer = []
   for (let pot of result_keys) {
     let formula = Simulator.results[pot];
-    buffer.push(`<tr class='results' onclick="show_details('${pot}')" id="pot_${pot}"><td style="text-align: left">${pot}</td><td style="text-align: right">${formula.success.toFixed(2)}%</td></tr>`);
+    buffer.push(`<tr class='results' onclick="show_details('${pot}');document.querySelector('#details').scrollIntoView()" id="pot_${pot}"><td style="text-align: left" class="text-primary"><u>${pot}</u></td><td style="text-align: right">${formula.success.toFixed(2)}%</td></tr>`);
   }
 
   document.getElementById('results').innerHTML = '<table style="width:100%" class="card-table table table-striped"><tr><th style="text-align: left">Potential</th><th style="text-align: right">Success Rate</th></tr>' + buffer.join('') + '</table>';
@@ -605,13 +610,14 @@ function show_details(pot) {
     buffer += `<tr><td>${++s}</td><td>${step[0]}</td><td style="text-align: right">${step[1]}</td></tr>`
   }
 
-  buffer += `</table><div class="my-3"></div><h3 style="text-align: center">Bahan yang digunakan</h3><table style="width:100%" class="card-table table table-striped"><tr><th style="width:75%">Bahan</th><th>Pts.</th></tr>`
+  buffer += `</table><div class="my-5"></div><h3 style="text-align: center">Bahan yang digunakan</h3><table style="width:100%" class="card-table table table-striped"><tr><th style="width:75%">Bahan</th><th>Pts.</th></tr>`
 
   for (let m in formula.mats) {
     buffer += `<tr><td style="text-align: left">${m}</td><td style="text-align: right">${formula.mats[m]}</td></tr>`;
   }
 
   buffer += '</table>';
+  buffer += '<div class="mt-3 mr-5 text-right"> <img src="/img/potum.png" class="mr-4" width="50px" height="50px"> <span class="text-primary">toram-id.info</span></div>';
 
   document.getElementById('details').innerHTML = buffer;
 }
@@ -623,7 +629,7 @@ function escapeHTML (str) {
 function show_formulas() {
   let buffer = Formulas.sort((a,b) => b.weap_arm.localeCompare(a.weap_arm)).map(f => {
     let json = escapeHTML(JSON.stringify(f));
-    return `<button class="btn btn-outline-primary mr-2 mb-2" onclick='set_formula(${json});document.querySelector("#details").scrollIntoView()' style="text-align: left">${f.weap_arm === 'w' ? '<span style="color: red; font-weight: bold">Weapon</span>' : '<span style="color: Green; font-weight: bold">Armor</span>'}<br />${f.stats.filter(s => s[1] > 0 || s[2]).map(s => FORMULA.toStepString(...s)).join('<br />')}</button>`
+    return `<button class="btn btn-outline-primary mr-2 mb-2" onclick='set_formula(${json});document.querySelector("#details").scrollIntoView()' style="text-align: left">${f.weap_arm === 'w' ? '<span style="color: red; font-weight: bold">Weapon</span>' : '<span style="color: Green; font-weight: bold">Armor</span>'}<br />${f.stats.map(s => FORMULA.toStepString(...s)).join('<br />')}</button>`
   }).join('');
   document.getElementById('stat_formulas').innerHTML = buffer;
 }
@@ -683,4 +689,24 @@ function copy_formula_for_pot(pot) {
   aux.select();
   document.execCommand("copy");
   document.body.removeChild(aux);
+}
+
+function saveAsImg() {
+  let srcDoc = document.getElementById("details"),
+      imgDoc = document.getElementById("imgsaved"),
+      dl = document.getElementById('dl-image');
+
+  html2canvas(srcDoc,{
+    allowTaint:true,
+  }).then((canvas) => {
+  	let img = canvas.toDataURL("image/png");
+    dl.href = img;
+    dl.download = 'fill_stats '+ Math.floor(Math.random()*22) +'(toram-id.info).png'
+    imgDoc.src = img;
+  });
+
+
+
+  $("#saveImgModal").modal('show');
+
 }

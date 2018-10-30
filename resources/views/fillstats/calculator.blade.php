@@ -1,7 +1,7 @@
 @extends('layouts.tabler')
 
 @section('title','Toram fill stats Calculator')
-@section('description','Toram fill stats calculator +16')
+@section('description','Toram fill stats calculator +16 +17')
 @section('image',to_img())
 
 @section('content')
@@ -48,6 +48,8 @@
 
             <div class="form-group">
               <button class="btn btn-outline-primary" onclick="get_results()">Lihat!</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-outline-secondary" onclick='prompt_potential()'>Set Potensi</button>
+              &nbsp;&nbsp;&nbsp;<button class="btn btn-outline-success" onclick='saveAsImg()'><i class="fe fe-image"></i> Save as image</button>
+
             </div>
           </div>
         </div>
@@ -104,9 +106,29 @@
     </div>
   </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="saveImgModal" tabindex="-1" role="dialog" aria-labelledby="saveImgModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="saveImgModalTitle">Save As Image</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="" id="imgsaved">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a class="btn btn-primary" id="dl-image">Download</a>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 @section('head')
+<script src="/assets/js/vendors/html2canvas.min.js"></script>
 <script src="/assets/js/fill.js"></script>
 
 <script src="/assets/js/formula.js"></script>
