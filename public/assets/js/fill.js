@@ -602,7 +602,8 @@ function get_results(custom_pot) {
 function show_details(pot) {
   if (!Simulator.results[pot]) return;
   let formula = Simulator.results[pot];
-  let buffer = `<table style="width:100%" class="card-table table table-striped"><tr><td style="width: 15%; color: green; font-weight: bold; text-align: left">POT ${pot}</td><td style="width: 70%"></td><td style="width:15%; color: green; font-weight: bold; text-align: right">${formula.success.toFixed(2)}%</td></tr>`;
+
+  let buffer = true_stat() + `<table style="width:100%" class="card-table table table-striped"><tr><td style="width: 15%; color: green; font-weight: bold; text-align: left">POT ${pot}</td><td style="width: 70%"></td><td style="width:15%; color: green; font-weight: bold; text-align: right">${formula.success.toFixed(2)}%</td></tr>`;
   buffer += `<tr><th style="text-align: left">Step</th><th style="text-align: left">Change</th><th  style="text-align: right">Pot</th></tr>`;
 
   let s = 0;
@@ -613,6 +614,7 @@ function show_details(pot) {
   buffer += `</table><div class="my-5"></div><h3 style="text-align: center">Bahan yang digunakan</h3><table style="width:100%" class="card-table table table-striped"><tr><th style="width:75%">Bahan</th><th>Pts.</th></tr>`
 
   for (let m in formula.mats) {
+    if(formula.mats[m] !== 0)
     buffer += `<tr><td style="text-align: left">${m}</td><td style="text-align: right">${formula.mats[m]}</td></tr>`;
   }
 
@@ -632,6 +634,20 @@ function show_formulas() {
     return `<button class="btn btn-outline-primary mr-2 mb-2" onclick='set_formula(${json});document.querySelector("#details").scrollIntoView()' style="text-align: left">${f.weap_arm === 'w' ? '<span style="color: red; font-weight: bold">Weapon</span>' : '<span style="color: Green; font-weight: bold">Armor</span>'}<br />${f.stats.map(s => FORMULA.toStepString(...s)).join('<br />')}</button>`
   }).join('');
   document.getElementById('stat_formulas').innerHTML = buffer;
+}
+
+function true_stat() {
+  let data = [];
+  for (let i = 0; i < Simulator.stats.length; i++) {
+    let s = Simulator.stats[i];
+    if (!s) continue;
+
+    let name = FORMULA.toStepString(s.name, s.value);
+
+    data.push(name);
+  }
+
+  return `<div class="m-5"><b>Stats:</b> ${data.map(item => item).join(', ')}</div>`;
 }
 
 function set_formula(data) {
