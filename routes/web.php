@@ -16,6 +16,14 @@ Route::get('/', function () {
 
 Route::get('/sitemap.xml', 'SitemapController@index');
 Route::post('/send-token/fcm', 'UserController@sendToken');
+
+/**
+* Refine
+*/
+Route::view('/refine', 'refine.index');
+Route::view('/refine/simulasi', 'refine.simulasi');
+
+
 /**
 *
 * Background Music
