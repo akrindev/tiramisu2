@@ -157,7 +157,7 @@ function build_table() {
         <table class="card-table table table-striped table-bordered text-nowrap">`;
   buffer += '<thead class="thead-dark"> <th>ore &amp; ref </th>'
 
-  for(let x = 1; x <= 14; x++) {
+  for(let x = 1; x <= 15; x++) {
     let re = new Refine(x);
     buffer += `<th>+${re.nilaiRef()} to +${re.nilaiRef(true)} </th>`
   }
@@ -166,7 +166,7 @@ function build_table() {
 
   for(let item of BAHAN) {
     buffer += `<tr><td><b>${item.nama}</b></td>`;
-    for(let i = 1; i <=14; i++) {
+    for(let i = 1; i <=15; i++) {
      	let r = new Refine(i, item.nama)
     	buffer += `<td class="table-${r.run() > 80 ? 'success' : r.run() < 30 ? 'danger' : 'primary'}">` + r.run() + '%' + `<br /> <small class="text-muted"><b>Risk: </b> ${r.risk()} </small>` + `</td>`;
   	}
