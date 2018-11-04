@@ -15,6 +15,7 @@
       <div class="col-md-8">
       <div class="card">
         <div class="card-body p-3">
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
         <div class=row>
         <div class="form-group col-md-6">
           <label class="form-label">Weapon</label>
@@ -78,6 +79,7 @@
           <div class="form-group col-12">
             <button class="btn btn-pill btn-outline-primary" onclick="getResult()">Tempa</button>
           </div>
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 
         <div class="form-group col-12">
         <b>Weapon: </b>  <span id="r-weapon"></span> <br>
@@ -98,6 +100,7 @@
           <h3 class="card-title">Refine</h3>
         </div>
         <div class="card-body p-3">
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
         - <a href="/refine">Tentang Refine</a> <br>
         - <a href="/refine/simulasi">Simulasi Refine</a>
         </div>
