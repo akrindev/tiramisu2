@@ -2,7 +2,7 @@
 
 @section('title', 'Toram simulasi refine')
 @section('description', 'Toram simulasi refine, guide refine toram, toram refine success rate, toram table success rate refine, refine guide toram, toram refine simulator')
-@section('image', to_img())
+@section('image', '/img/refine.png')
 
 @section('content')
 <div class="my-5">
@@ -79,7 +79,6 @@
           <div class="form-group col-12">
             <button class="btn btn-pill btn-outline-primary" onclick="getResult()">Tempa</button>
           </div>
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 
         <div class="form-group col-12">
         <b>Weapon: </b>  <span id="r-weapon"></span> <br>

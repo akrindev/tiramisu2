@@ -2,7 +2,7 @@
 
 @section('title', 'Toram refine guide')
 @section('description', 'Toram guide refine, toram refine success rate, toram table success rate refine, refine guide toram, toram refine simulator')
-@section('image', to_img())
+@section('image', '/img/refine.png')
 
 
 @section('content')
