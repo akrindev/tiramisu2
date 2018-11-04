@@ -35,6 +35,9 @@
              </b>
            </dt>
              <dd>
+            @if(! is_null($mons->picture))
+              <img src="/img/ball-triangle.svg" data-src="/{{ $mons->picture }}" class="rounded my-2 d-block lazyload" width="150px" height="150px">
+            @endif
               <b>Element:</b>  <span class="">{{$mons->element->name}}</span>
             @if ($mons->type == 3 || $mons->type == 2)
                <br>
