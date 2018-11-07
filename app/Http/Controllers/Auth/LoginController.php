@@ -64,6 +64,12 @@ class LoginController extends Controller
 
       Auth::login($user, true);
 
+      $user->historyLogin()->create([
+      	'ip'	=> request()->ip(),
+        'browser'	=> request()->userAgent(),
+        'extra'		=> 'Logged In!!'
+      ]);
+
       return redirect($this->redirectTo);
 
     }

@@ -38,6 +38,12 @@ class User extends Authenticatable
     {
       return $this->hasOne(Fcm::class);
     }
+
+  	public function historyLogin()
+    {
+      return $this->hasMany(HistoryLogin::class);
+    }
+
   	/**
     *
     * User likes
