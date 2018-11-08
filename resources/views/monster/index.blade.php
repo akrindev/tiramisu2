@@ -2,7 +2,7 @@
 
 
 @section('title','Toram drop list Monsters')
-@section('description','Toram database / drop list monster, Mini boss dan boss')
+@section('description','Toram database / drop list monster, Mini boss dan boss, toram map')
 @section('image',to_img())
 
 @section('content')

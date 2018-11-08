@@ -2,7 +2,7 @@
 
 @section('title', 'Toram ' . $item->name)
 @section('description', $item->name . ': ' . strip_tags(trim($item->note)) ?? '' )
-@section('image', $item->picture ?? to_img())
+@section('image', !is_null($item->picture) ? '/'.$item->picture : to_img())
 
 @section('content')
 <div class="my-5">
@@ -18,7 +18,7 @@
       <div class="col-md-8">
   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
         <div class="card">
-          <div class="card-body p-3" style="font-size:12px;font-weight:400">
+          <div class="card-body p-3" style="font-size:13px;font-weight:400">
 
             <dl>
               <dt>

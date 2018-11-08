@@ -16,46 +16,54 @@
       </div>
       <div class="col-md-8">
   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
-        <div class="card">
-          <div class="card-body p-3" style="font-size:12px;font-weight:400">
+
 
           @if($drops->count() == 0 && $monsters->count() == 0)
+        <div class="card">
+          <div class="card-body p-3" style="font-size:12px;font-weight:400">
             <b>Pencarian <u>{{ $q }}</u> tidak di temukan</b>
+            </div>
+        </div>
           @endif
 
-          @if($drops->count() > 0)
-            @foreach($drops as $item)
-            <div class="mb-5">
+     @if($drops->count() > 0)
+       @foreach($drops as $item)
+        <div class="card">
+          <div class="card-body p-3" style="font-size:12px;font-weight:400">
               <img src="{{ $item->dropType->url }}" alt="{{ $item->dropType->name }}" class="avatar avatar-sm mr-1" style="max-width:21px;max-height:21px">
               <b class="h6"><a class="text-primary" href="/item/{{ $item->id }}">{{ $item->name }}</a></b>
            @if (auth()->check() && auth()->user()->isAdmin())
               <a href="/item/{{ $item->id }}/edit" class="btn btn-sm btn-outline-secondary">edit</a>
            @endif
 
-           @if ($item->picture != null)
-           <img src="/{{ $item->picture }}" alt="{{ $item->name }}" class="rounded my-2 d-block ml-5" width="150px" height="150px">
-           @endif
+            <div class="row">
+            @if(! is_null($item->picture))
+              <div class="col-md-3">
+              <img src="/img/ball-triangle.svg" data-src="/{{ $item->picture }}" class="rounded my-2 d-block lazyload" width="170px" height="170px"> </div>
+            @endif
 
             @if(! is_null($item->note))
-              <div class="my-1 ml-5">
+              <div class="col-md-9 my-1">
                 @parsedown(nl2br(e($item->note)))
               </div>
             @endif
+             </div>
             </div>
-            @endforeach
-          @endif
+        </div>
+       @endforeach
+     @endif
 
-
-          @if($monsters->count() > 0)
-            <div class="mt-5">
+       @if($monsters->count() > 0 || $maps->count() > 0)
+        <div class="card">
+          <div class="card-body p-3" style="font-size:12px;font-weight:400">
+          <div class="my-5">
   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
             </div>
 
-             <strong class="h4">Monster</strong> <br>
-            <dl> <!-- dl start -->
+          <strong class="h4">Monster</strong> <br>
+          <dl> <!-- dl start -->
           @foreach ($monsters as $mons)
-
-           <div class="mb-5">
+          <div class="mb-5">
            <dt class="mb-1">
            <b class="h6"> <a class="text-primary" href="/monster/{{ $mons->id }}">{{ $mons->name }} (Lv {{ $mons->level }}) </a>
           @switch($mons->type)
@@ -67,19 +75,21 @@
           @endswitch
             </b>
            </dt>
-             <dd>
-
+            <dd>
+            <div class="row">
                @if ($mons->picture != null)
-               <img src="/{{ $mons->picture }}" alt="{{ $mons->name }}" class="rounded my-2 d-block" width="150px" height="150px">
+               <div class="col-md-3"><img src="/{{ $mons->picture }}" alt="{{ $mons->name }}" class="rounded my-2 d-block" width="170px" height="170px"></div>
                @endif
 
+               <div class="col-md-9">
                <b>Element:</b> <span> {{$mons->element->name}}</span> <br>
                <b>Peta: </b> <a href="/peta/{{ $mons->map->id }}">{{ $mons->map->name }}</a>
-             </dd>
+               </div>
             </div>
-             @endforeach
+            </dd>
+            </div>
+          @endforeach
           </dl> <!-- // dl end -->
-          @endif
 
           @if($maps->count() > 0)
             <div class="mt-5">
@@ -88,10 +98,10 @@
              <i class="fe fe-github mr-2"></i> <a href="/peta/{{ $map->id }}">{{ $map->name }}</a> <br>
               @endforeach
             </div>
-
           @endif
           </div>
         </div>
+       @endif
 
       </div>
 

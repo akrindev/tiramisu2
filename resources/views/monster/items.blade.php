@@ -15,35 +15,38 @@
         @include('inc.cari')
       </div>
       <div class="col-md-8">
+
+       @forelse($data as $item)
         <div class="card">
-          <div class="card-body p-3" style="font-size:12px;font-weight:400">
+          <div class="card-body p-3" style="font-size:13px;font-weight:400">
 
   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
-
-            @forelse($data as $item)
-            <div class="mb-5">
+            <div>
               <img src="{{ $item->dropType->url }}" alt="{{ $item->dropType->name }}" class="avatar avatar-sm mr-1" style="max-width:21px;max-height:21px">
               <b class="h6"><a class="text-primary" href="/item/{{ $item->id }}">{{ $item->name }}</a></b>
            @if (auth()->check() && auth()->user()->isAdmin())
               <a href="/item/{{ $item->id }}/edit" class="btn btn-sm btn-outline-secondary">edit</a>
            @endif
 
+            <div class="row">
             @if(! is_null($item->picture))
-              <img src="/img/ball-triangle.svg" data-src="/{{ $item->picture }}" class="rounded ml-5 my-2 d-block lazyload" width="150px" height="150px">
+              <div class="col-md-3">
+              <img src="/img/ball-triangle.svg" data-src="/{{ $item->picture }}" class="rounded my-2 d-block lazyload" width="170px" height="170px"> </div>
             @endif
 
             @if(! is_null($item->note))
-              <div class="my-1 ml-5">
+              <div class="col-md-9 my-1">
                 @parsedown(nl2br(e($item->note)))
               </div>
             @endif
-            </div>
-            @empty
-            <div class="h5">Tidak di temukan</div>
-            @endforelse
+             </div>
 
+            </div>
           </div>
         </div>
+       @empty
+            <div class="h5">Tidak di temukan</div>
+       @endforelse
 
         {{ $data->links() }}
       </div>

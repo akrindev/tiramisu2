@@ -19,14 +19,22 @@
 
   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 
+
+        @if($data->npc->count() > 0)
         <div class="card">
           <div class="card-body p-3" style="font-size:13px;font-weight:400">
-          @foreach($data->npc as $npc)
+            <strong class="h6">NPC</strong> <br>
+             @foreach($data->npc as $npc)
            - <b>NPC:</b> <a href="/npc/npc-{{ $npc->id }}"> {{ $npc->name }} </a> <br />
           @endforeach
-            <dl> <!-- dl start -->
-          @foreach ($data->monster as $mons)
+          </div>
+        </div>
+        @endif
 
+      @foreach ($data->monster as $mons)
+        <div class="card">
+          <div class="card-body p-3" style="font-size:13px;font-weight:400">
+          <dl> <!-- dl start -->
            <div class="mb-5">
            <dt class="mb-1">
            <b class="h6"> <a class="text-primary" href="/monster/{{$mons->id}}">{{ $mons->name }} (Lv {{$mons->level}}) </a>
@@ -39,12 +47,12 @@
           @endswitch
              </b>
            </dt>
-             <dd>
-
+             <div class="row">
                @if ($mons->picture != null)
-               <img src="/{{ $mons->picture }}" alt="{{ $mons->name }}" class="rounded my-2 d-block" width="150px" height="150px">
+               <div class="col-md-4"><img src="//toram-id.info/{{ $mons->picture }}" alt="{{ $mons->name }}" class="rounded my-2 d-block" width="150px" height="150px"></div>
                @endif
-
+             <div class="col-md-8">
+               <dd>
               <b>Element:</b>  <span class="">{{$mons->element->name}}</span> <br>
                <b>Peta:</b> <a href="/peta/{{ $mons->map->id }}"> {{ $mons->map->name }}</a>
              </dd>
@@ -59,11 +67,13 @@
              @endforeach
 
             @endif
+              </div>
+             </div>
             </div>
-             @endforeach
           </dl> <!-- // dl end -->
           </div>
         </div>
+      @endforeach
 
       </div>
 

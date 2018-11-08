@@ -1,7 +1,7 @@
 @extends('layouts.tabler')
 
 @section('title', 'Toram '. $data->name . ' (Lv '. $data->level .')')
-@section('image', $data->picture ?? url('/img/potum.gif'))
+@section('image', !is_null($data->picture) ? '/'.$data->picture : to_img())
 
 @section('content')
 <div class="my-5">
@@ -38,9 +38,9 @@
                 @if(!is_null($data->picture))
                 <img src="/{{ $data->picture }}" class="rounded my-4 d-block">
                 @endif
-                <b>Element: </b> {{ $data->element->name }} <br>
+                <b>Unsur: </b> {{ $data->element->name }} <br>
                 <b>Pet: </b> {{ $data->pet === 'y' ? 'bisa':'tidak' }} <br>
-                <b>HP:</b> {{ $data->hp ?? '-'}} <br>
+                <b>HP:</b> {{ $data->hp ?? '-' }} <br>
                 <b>XP:</b> {{ $data->xp ?? '-' }}
 
               @if($data->type == 3 || $data->type == 2)
