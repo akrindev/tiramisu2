@@ -99,7 +99,7 @@ class SIMULATOR {
             }
 
             cat_id++;
-            buffer += `<option value="${cat_id}">${data.name}</option>`;
+            buffer += `<option value="${cat_id}" id="s${slot_num}_${cat_id}">${data.name}</option>`;
         }
 
         buffer += '</select>';
@@ -542,6 +542,11 @@ let Simulator = new SIMULATOR();
 
 function update_stats(slot_num) {
   let dropdown_value = parseInt(document.getElementById('slot' + slot_num).value);
+
+  for(let me = 0; me < SLOTS; me++) {
+    $("#s" + me + "_" + dropdown_value).hide()
+  }
+
   if (dropdown_value > 0) {
     document.getElementById('slot' + slot_num + '_value').disabled = false;
   }
