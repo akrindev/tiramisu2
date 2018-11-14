@@ -17,7 +17,7 @@
     <div class="card">
       <div class="card-body p-3">
 
-     {!! form_open('/skill/edit/save') !!}
+     {!! form_open('/skill/e/'.$skill->id.'/save') !!}
      @csrf
         <input type="hidden" name="id" value="{{ $skill->id }}">
 
@@ -61,7 +61,7 @@
            <span class="selectgroup-button">active</span>
          </label>
          <label class="selectgroup-item">
-         <input name="type[]" type="checkbox" class="selectgroup-input" value="pasif" {{ in_array('passive', explode(',',$skill->type)) ? 'checked' : '' }}>
+         <input name="type[]" type="checkbox" class="selectgroup-input" value="pasif" {{ in_array('passive', explode(',',$skill->type)) || in_array('pasif', explode(',',$skill->type)) ? 'checked' : '' }}>
            <span class="selectgroup-button">passive</span></label>
          <label class="selectgroup-item">
          <input name="type[]" type="checkbox" class="selectgroup-input" value="skill fisik" {{ in_array('skill fisik', explode(',',$skill->type)) ? 'checked' : '' }}>

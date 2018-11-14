@@ -75,10 +75,8 @@ class SkillController extends Controller
     return back()->with('sukses_comment', 'komentar telah di tambahkan');
   }
 
-  public function edit()
+  public function edit($id)
   {
-    $id = request('id');
-
     $skill = SkillList::findOrFail($id);
 
     return view('skill.edit', compact('skill'));

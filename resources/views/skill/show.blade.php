@@ -28,12 +28,8 @@
         Skill level {{ $skill->level }}  <a href="/skill/{{ str_replace(' ', '-',$name) }}/{{ str_replace(' ', '-', $skill->name) }}" class="text-right ml-5"> <i class="fe fe-message-square"></i> {{ $skill->comment->count() }} diskusi </a>
         </small>
         @if(auth()->check() && auth()->user()->isAdmin())
-        {!! form_open('/skill/edit') !!}
-        @csrf
-        @method('post')
-        <input type="hidden" name="id" value="{{ $skill->id }}">
-        <button type="submit" class="btn btn-sm btn-secondary float-right">edit</button>
-        {!! form_close() !!}
+
+        <a href="/skill/e/{{ $skill->id }}/edit" class="btn btn-sm btn-secondary float-right">edit</a>
         @endif
         <hr class="my-2">
 

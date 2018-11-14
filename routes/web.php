@@ -84,8 +84,8 @@ Route::get('/skill/{name}', 'SkillController@show');
 Route::get('/skill/{parent}/{child}', 'SkillController@single');
 Route::post('/skill/{parent}/{child}', 'SkillController@comment');
 Route::middleware(['admin'])->group(function() {
-	Route::post('/skill/edit', 'SkillController@edit');
-  	Route::post('/skill/edit/save', 'SkillController@save');
+	Route::get('/skill/e/{id}/edit', 'SkillController@edit');
+  	Route::post('/skill/e/{id}/save', 'SkillController@save');
   	Route::delete('/skill-delete-comment', 'SkillController@deleteComment');
 });
 
