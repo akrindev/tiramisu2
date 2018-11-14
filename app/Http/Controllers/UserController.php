@@ -112,26 +112,18 @@ class UserController extends Controller
   	public function saveContact()
     {
       request()->validate([
-      	'line' => 'required',
-        'whatsapp' => 'required|numeric'
+      	'line' => 'min:3',
+        'whatsapp' => 'min:10'
       ]);
 
-      $contact = Contact::find(auth()->id());
-      $con = new Contact;
+      Contact::updateOrCreate([
+      	'user_id' => auth()->id()
+      ], [
+      	'line'	=> request('line'),
+        'whatsapp'	=> request('whatsapp')
+      ]);
 
-      if(!$contact)
-      {
-        $con->user_id	= auth()->id();
-        $con->line = request()->line;
-        $con->whatsapp = request()->whatsapp;
-        $con->save();
-      } else {
-        $contact->line = request()->line;
-        $contact->whatsapp = request()->whatsapp;
-        $contact->save();
-      }
-
-      return redirect('/shop/jual');
+      return back()->with('c-sukses', 'data telah di simpan!!');
     }
 
   	public function sendToken()

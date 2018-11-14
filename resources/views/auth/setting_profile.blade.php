@@ -142,6 +142,11 @@
   <div class="col-md-4">
 
   <div class="card">
+    @if(session('c-sukses'))
+    <div class="card-alert alert alert-success">
+    {{ session('c-sukses') }}
+    </div>
+    @endif
     <div class="card-body">
       {!! form_open('/save/contact') !!}
       @csrf
@@ -151,7 +156,7 @@
         <label class="form-label">
           ID Line:
         </label>
-        <input type="text" name="line" class="form-control {{ $errors->has('line') ? 'is-invalid':''}}" value="{{$data->contact->line ?? ''}}" required>
+        <input type="text" name="line" class="form-control {{ $errors->has('line') ? 'is-invalid':''}}" value="{{$data->contact->line ?? ''}}">
         @if ($errors->has('line'))
         <small class="text-danger">
           {{ $errors->first('line') }}
@@ -163,11 +168,11 @@
         <label class="form-label">
           No. Whatsapp:
         </label>
-        <input type="text" pattern="(\()?(\+62|62|0)(\d{2,3})?\)?[ .-]?\d{2,4}[ .-]?\d{2,4}" name="whatsapp" class="form-control {{ $errors->has('whatsapp') ? 'is-invalid':''}}" placeholder="contoh: +62823456789" value="{{$data->contact->whatsapp ?? ''}}" required>
+        <input type="text" pattern="(\()?(\+62|62|0)(\d{2,3})?\)?[ .-]?\d{2,4}[ .-]?\d{2,4}" name="whatsapp" class="form-control {{ $errors->has('whatsapp') ? 'is-invalid':''}}" placeholder="contoh: +62823456789" value="{{$data->contact->whatsapp ?? ''}}">
         @if ($errors->has('whatsapp'))
         <small class="text-danger">
           {{ $errors->first('whatsapp') }}
-        </small>
+        </small> <br>
         @endif
         <small class="text-muted">Di awali dengan kode negara</small>
       </div>
