@@ -8,6 +8,7 @@ use App\Drop;
 use App\DropType;
 use App\Map;
 use App\Resep;
+use App\LogSearch;
 use Image;
 
 class MonsterController extends Controller
@@ -52,6 +53,11 @@ class MonsterController extends Controller
     {
       return redirect('/')->with('gagal', 'Mencari harus memiliki 2 karakter atau lebih');
     }
+
+    LogSearch::create([
+    	'user_id'	=> auth()->id() ?? null,
+      	'q'			=> $q
+    ]);
 
     $drops = Drop::where('name','like','%'.$q.'%')
       			->orderBy('name')
