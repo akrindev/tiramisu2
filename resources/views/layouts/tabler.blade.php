@@ -175,18 +175,18 @@ if('serviceWorker' in navigator)
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Perlengkapan</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
 
-                      <a href="/items/26" class="dropdown-item ">Pedang</a>
-                      <a href="/items/27" class="dropdown-item ">Pedang Raya</a>
+                      <a href="/items/26" class="dropdown-item ">Pedang 1 Tangan</a>
+                      <a href="/items/27" class="dropdown-item ">Pedang 2 Tangan</a>
                       <a href="/items/28" class="dropdown-item ">Tinju</a>
                       <a href="/items/29" class="dropdown-item ">Tombak</a>
-                      <a href="/items/13" class="dropdown-item ">Alat Sihir</a>
+                      <a href="/items/13" class="dropdown-item ">Pesawat Sihir</a>
                       <a href="/items/30" class="dropdown-item ">Tongkat</a>
                       <a href="/items/14" class="dropdown-item ">Busur</a>
                       <a href="/items/15" class="dropdown-item ">Bowgun</a>
                       <a href="/items/25" class="dropdown-item ">Katana</a>
                       <a href="/items/31" class="dropdown-item ">Zirah</a>
-                      <a href="/items/33" class="dropdown-item ">Pelengkap</a>
-                      <a href="/items/32" class="dropdown-item ">Tambahan</a>
+                      <a href="/items/33" class="dropdown-item ">Perkakas Tambahan</a>
+                      <a href="/items/32" class="dropdown-item ">Perkakas Spesial</a>
                       <a href="/items/43" class="dropdown-item ">Tameng</a>
                       <a href="/items/44" class="dropdown-item ">Pisau</a>
                       <a href="/items/46" class="dropdown-item ">Panah</a>
@@ -199,8 +199,8 @@ if('serviceWorker' in navigator)
                       <a href="/items/34" class="dropdown-item ">Crysta Umum</a>
                       <a href="/items/35" class="dropdown-item ">Crysta Senjata</a>
                       <a href="/items/36" class="dropdown-item ">Crysta Zirah</a>
-                      <a href="/items/37" class="dropdown-item ">Crysta Tambahan</a>
-                      <a href="/items/38" class="dropdown-item ">Crysta Pelengkap</a>
+                      <a href="/items/37" class="dropdown-item ">Crysta Perkakas Spesial</a>
+                      <a href="/items/38" class="dropdown-item ">Crysta Perkakas Tambahan</a>
                       <a href="/items/39" class="dropdown-item ">Crysta Penguat</a>
                       <a href="/items/41" class="dropdown-item ">Permata</a>
 
