@@ -27,6 +27,15 @@ class MonsterController extends Controller
     return view('monster.single', compact('data'));
   }
 
+  public function addMap()
+  {
+    Map::create([
+    	'name'	=> request()->name
+    ]);
+
+    return response()->json(["success" => true]);
+  }
+
   public function editMap()
   {
     if(request()->input() || request()->ajax())

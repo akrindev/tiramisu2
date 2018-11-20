@@ -8,6 +8,7 @@
     <div class="row">
       <div class="col-md-8 mb-5"><a href="/admin" class="btn btn-primary">Kembali ke halaman admin</a></div>
       <div class="col-md-8">
+        <button class="btn btn-outline-primary btn-pill mb-5" id="addMap">Tambah Map</button>
         <div class="card">
           <div class="card-body p-3" style="font-size:14px;font-weight:350">
 
@@ -52,6 +53,39 @@
     </div>
   </div>
 </div>
+
+
+
+
+<div class="modal fade" id="addMapModal" tabindex="-1" role="dialog" aria-labelledby="addMapModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      {!! form_open('/',['id' => 'add-peta']) !!}
+      <div class="modal-header">
+        <h5 class="modal-title" id="addMapModalLabel">Tambah data map</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        @csrf
+        <div class="form-group">
+          <label class="form-label">Name</label>
+          <input type="text" id="input-map" class="form-control" name="name" required>
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary" type="submit" id="simpanMap">Save</button>
+      </div>
+
+        {!! form_close() !!}
+    </div>
+  </div>
+</div>
 @endsection
 
 @section('head')
@@ -78,11 +112,16 @@ $('.editMap').click(function(e) {
   $("#exampleModal").modal('show');
 
 });
+
+$('#addMap').click(function(e) {
+	$("#addMapModal").modal('show');
+});
 </script>
 
 <script>
 (function(){
-  let form = document.getElementById("catch-peta");
+  let form = document.getElementById("catch-peta"),
+      addMap = document.getElementById("add-peta");
   let sendTo = '/store/peta';
 
   form.addEventListener('submit', (e) => {
@@ -110,6 +149,32 @@ $('.editMap').click(function(e) {
         }
 
     document.getElementById('simpan')
+    .innerHTML = 'Simpan';
+
+    }).catch((err) => alert(err));
+  });
+
+
+  addMap.addEventListener('submit', (e) => {
+  	e.preventDefault();
+
+    let data = new FormData(e.target);
+
+    document.getElementById('simpanMap')
+    .innerHTML = '<i class="fa fa-spinner fa-spin"></i> menyimpan';
+
+    axios.post('/save/new-map', data)
+    .then((res) => {
+    	if(res.data.success) {
+          swal('Data map telah di tambahkan', {
+          	icon: 'success'
+          }).then(() => {
+            jQuery("#addMapModal").modal('hide');
+            window.location.reload();
+          });
+        }
+
+    document.getElementById('simpanMap')
     .innerHTML = 'Simpan';
 
     }).catch((err) => alert(err));

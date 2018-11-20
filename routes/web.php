@@ -131,6 +131,7 @@ Route::post('/mons/store/mobs', 'MonsterController@storeMob')->middleware('admin
 Route::match(['get', 'post'], '/mons/drop/store', 'MonsterController@storeDrop')->middleware('admin');
 Route::match(['get', 'post'], '/mons/store', 'MonsterController@storeMons')->middleware('admin');
 Route::match(['get', 'post'], '/store/peta', 'MonsterController@editMap')->middleware('admin');
+Route::post('/save/new-map', 'MonsterController@addMap')->middleware('admin');
 // -- CRUD
 
 // NPC
