@@ -273,7 +273,7 @@ if('serviceWorker' in navigator)
               </div>
             </div>
             <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
-              Copyright © 2018 <a href="/">Toram Online</a>. Theme by <a href="https://codecalm.net" target="_blank">codecalm.net</a> All rights reserved.
+              Copyright © 2018 <a href="//id.toram.jp" rel="nofollow" target="_blank">Toram Online - ASOBIMO, INC</a>. Theme by <a href="https://codecalm.net" target="_blank">codecalm.net</a> All rights reserved.
             </div>
 
             <div class="col-12 d-none d-md-block col-lg-auto mt-3 mt-lg-0 text-center">

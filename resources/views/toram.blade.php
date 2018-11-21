@@ -16,7 +16,7 @@
         <h1>Selamat datang!</h1>
 
        <div class="row">
-         <div class="col-md-8 mb-5"> Jelajahi informasi Toram Online, senjata, armor, drop dan lainnya. Unofficial site Toram, Fansite Toram online.</div>
+         <div class="col-md-8 mb-5"> Jelajahi informasi Toram Online, senjata, armor, drop dan lainnya. Unofficial site Toram Online, Fansite Toram online. <br> In game screenshot are &copy; ASOBIMO, INC. </div>
          <div class="col-md-4">
          @include('inc.menu')
          </div>
