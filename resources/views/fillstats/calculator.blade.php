@@ -47,8 +47,10 @@
             </div>
 
             <div class="form-group">
-              <button class="btn btn-outline-primary" onclick="get_results()">Lihat!</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-outline-secondary" onclick='prompt_potential()'>Set Potensi</button>
-              &nbsp;&nbsp;&nbsp;<button class="btn btn-outline-success" onclick='saveAsImg()'><i class="fe fe-image"></i> Save as image</button>
+              <button class="btn btn-outline-primary m-1" onclick="get_results()">Lihat!</button>
+              <button class="btn btn-outline-secondary m-1" onclick='prompt_potential()'>Set Potensi</button>
+              <button class="btn btn-outline-success m-1" onclick='saveAsImg()'><i class="fe fe-image"></i> Save as image</button>
+              <button class="btn btn-outline-danger m-1"  onclick="build_menu()"><i class="fe fe-refresh-ccw"></i> Reset</button>
 
             </div>
           </div>

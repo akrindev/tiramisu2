@@ -652,7 +652,10 @@ function true_stat() {
     data.push(name);
   }
 
-  return `<div class="m-5"><b>Stats:</b> ${data.map(item => item).join(', ')}</div>`;
+  let type = Simulator.weap_arm === 'w' ? 'Weapon / Senjata' : 'Armor / Zirah';
+  let getType = `<b class="text-${Simulator.weap_arm === 'w' ? 'danger' : 'success'}"> [ ${type} ] </b>`
+
+  return `<div class="p-5"><b>Stats:</b> <br /> ${data.map(item => item).join(', ')} <br /> <b>Type:</b> ${getType}</div>`;
 }
 
 function set_formula(data) {
