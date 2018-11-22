@@ -290,3 +290,16 @@ Route::get('/scammer/r/{slug}', 'ScammerController@read');
 Route::post('/scammer/r/{slug}', 'ScammerController@comment')->middleware('auth');
 Route::post('/scammer/r/{slug}/c', 'ScammerController@commentReply')->middleware('auth');
 Route::delete('/scammer/delete-comment', 'ScammerController@deleteComment')->middleware('admin');
+
+
+/**
+* Emblem Route
+*/
+Route::middleware('admin')->group(function() {
+  Route::view('/prestasi/add', 'emblem.add');
+  Route::post('/prestasi/add', 'EmblemController@store');
+  Route::get('/prestasi/{id}/edit', 'EmblemController@edit');
+  Route::put('/prestasi/{id}/edit', 'EmblemController@editPost');
+});
+Route::get('/prestasi', 'EmblemController@index');
+Route::get('/prestasi/{id}', 'EmblemController@show');
