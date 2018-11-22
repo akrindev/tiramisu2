@@ -23,7 +23,7 @@
       <div class="card">
       <div class="card-body p-3" style="font-size:14px;font-weight:400">
 
-        <img src="{{ $skill->picture }}" alt="{{ $skill->name }}" class="avatar avatar-md float-left mr-4 avatar-blue"> <a href="/skill/{{ str_replace(' ', '-',$name) }}/{{ str_replace(' ', '-', $skill->name) }}"> <b> {{ $skill->name }} </b></a><br>
+        <img src="{{ $skill->picture }}" alt="{{ $skill->name }}" class="avatar avatar-md float-left mr-4 avatar-blue"> <a href="/skill/{{ str_replace(' ', '-',$name) }}/{{ str_replace(' ', '-', $skill->name) }}"> <b> {{ is_null($skill->r_name) ? $skill->name : $skill->r_name }} </b></a><br>
         <small class="text-muted">
         Skill level {{ $skill->level }}  <a href="/skill/{{ str_replace(' ', '-',$name) }}/{{ str_replace(' ', '-', $skill->name) }}" class="text-right ml-5"> <i class="fe fe-message-square"></i> {{ $skill->comment->count() }} diskusi </a>
         </small>

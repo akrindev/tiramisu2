@@ -31,6 +31,12 @@
         <input type="text" class="form-control" name="name" value="{{ $skill->name }}" required>
       </div>
 
+
+      <div class="form-group">
+        <label class="form-label">Real Nama skill</label>
+        <input type="text" class="form-control" name="r_name" value="{{ $skill->r_name }}" required>
+      </div>
+
         <div class="form-group">
           <label class="form-label">Anggota skill</label>
           <select name="skill" id="select-type" class="form-control custom-select" required>

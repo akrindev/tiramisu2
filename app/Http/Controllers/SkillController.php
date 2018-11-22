@@ -34,6 +34,8 @@ class SkillController extends Controller
     $skillparent = Skill::whereName($parent)->firstOrFail();
     $skill = $skillparent->child()->whereName($name)->firstOrFail();
 
+    $name = is_null($skill->r_name) ? $skill->name : $skill->r_name;
+
     return view('skill.single', compact('skill', 'name'));
   }
 
@@ -107,6 +109,7 @@ class SkillController extends Controller
 
     $skill->skill_id = request('skill');
     $skill->name = request('name');
+    $skill->r_name = request('r_name');
     $skill->type = implode(',',request('type'));
     $skill->mp   = request('mp');
     $skill->range = request('range');
