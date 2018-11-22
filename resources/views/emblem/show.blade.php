@@ -22,7 +22,7 @@
             @endif
             <br>
            <span> {{ $emblem->body }} </span> <br>
-           <b>Reward:</b> <i> {{ $emblem->reward }} </i>
+           <b>Reward:</b> <i class="text-success"> {{ $emblem->reward }} </i>
 
           </div>
         </div>
