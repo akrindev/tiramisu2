@@ -303,3 +303,32 @@ Route::middleware('admin')->group(function() {
 });
 Route::get('/prestasi', 'EmblemController@index');
 Route::get('/prestasi/{id}', 'EmblemController@show');
+
+Route::prefix('webview')->group(function() {
+  	Route::view('/eq', 'webview.monster.menu_eq');
+  	Route::view('/exp', 'webview.xp_calculator');
+
+	Route::get('/item/{id}', 'WebView\MonsterController@showItem');
+	Route::get('/items/{id}', 'WebView\MonsterController@showItems');
+
+  	Route::get('/leveling', 'WebView\MonsterController@leveling');
+
+  	Route::view('/fill/calculator', 'webview.fill_calculator');
+
+
+    Route::get('/prestasi', 'WebView\EmblemController@index');
+    Route::get('/prestasi/{id}', 'WebView\EmblemController@show');
+
+
+    Route::get('/monster', 'WebView\MonsterController@index');
+    Route::get('/monster/{id}', 'WebView\MonsterController@showMons');
+    Route::get('/monster/type/{name}', 'WebView\MonsterController@showMonsType');
+    Route::get('/monster/unsur/{type}', 'WebView\MonsterController@showMonsEl');
+
+
+    Route::get('/peta', 'WebView\MonsterController@index');
+    Route::get('/peta/{id}', 'WebView\MonsterController@peta');
+
+
+    Route::get('/search', 'WebView\MonsterController@search');
+});
