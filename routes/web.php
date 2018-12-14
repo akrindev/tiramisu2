@@ -157,6 +157,7 @@ Route::middleware(['admin'])->group(function(){
 Route::get('/admin', 'AdminController@home')->middleware(['admin']);
 
 Route::get('/admin/users', 'AdminController@users')->middleware(['admin']);
+Route::get('/admin/searches', 'AdminController@logSearches')->middleware(['admin']);
 Route::put('/admin/change-user', 'AdminController@changeUser')->middleware('admin');
 Route::post('/admin/tagforum', 'AdminController@tagForum')->middleware('admin');
 Route::get('/admin/tagedit/{i}', 'AdminController@fetchTag')->middleware('admin');

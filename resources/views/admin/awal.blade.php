@@ -118,6 +118,28 @@
 
     <div class="row">
 
+     <div class="col-md-6 col-lg-4">
+       <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fe fe-user"></i> Latest Search
+            </h3>
+         </div>
+         <div class="table-responsive">
+         <table class="card-table table table-outline text-nowrap table-vcenter table-striped" id="searches" style="font-size:14px;font-weight:400">
+           <thead>
+             <tr>
+             <th> Key </th>
+             <th> By </th>
+             <th> On </th>
+             </tr>
+           </thead>
+
+         </table>
+         </div>
+       </div>
+      </div>
+
       <div class="col-md-6 col-lg-4">
         <div class="card">
           <div class="card-header">
@@ -355,6 +377,22 @@
                         { data: 'gender', name: 'gender' },
                         { data: 'created_at', name: 'created_at' },
                  		{ data: 'action', name: 'action', orderable: false, searchable:false}
+                     ]
+            });
+         });
+         </script>
+
+
+   <script>
+         $(function() {
+               $('#searches').DataTable({
+               processing: true,
+               serverSide: true,
+               ajax: "{{ url('/admin/searches') }}",
+               columns: [
+                 		{ data: 'q' , name: 'q'},
+                        { data: 'user_id', name: 'user_id' },
+                        { data: 'created_at', name: 'created_at' }
                      ]
             });
          });

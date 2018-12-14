@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{
-  User, Forum, ForumsDesc, Quiz, Gallery, Tag
+  User, Forum, ForumsDesc, Quiz,
+  Gallery, Tag, LogSearch
 };
 
 use Datatables;
@@ -24,6 +25,15 @@ class AdminController extends Controller
         ['users', 'forums', 'quiz', 'gallery',
          'fcom', 'tags']
       ));
+    }
+
+  	public function logSearches()
+    {
+      return datatables()->of(LogSearch::orderBy('created_at', 'desc'))
+        ->editColumn('user_id', function ($user) {
+        	return $user->user->name ?? 'unknown';
+        })
+        ->make(true);
     }
 
   	public function users()
