@@ -21,7 +21,7 @@
           <div class="p-0 m-0">
 
           <table class="table card-table table-striped">
-            @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+
               @foreach($cooks as $cook)
                 @if($loop->index % 8 == 0)
                 @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
