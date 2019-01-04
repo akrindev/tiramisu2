@@ -23,8 +23,8 @@
           <table class="table card-table table-striped">
             @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
               @foreach($cooks as $cook)
-                @if($cook->index % 8 == 0)
-                  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+                @if($loop->index % 8 == 0)
+                @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
                 @endif
               <tr>
                 <td class="px-2 py-2">

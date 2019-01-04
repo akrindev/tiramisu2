@@ -129,7 +129,8 @@ form.addEventListener('submit', (e) => {
         swal('Data telah di tambahkan!!', {
         	icon: 'success'
         }).then(() => {
-        	form[0].reset();
+        	form.reset();
+          	$("#preview").html('');
         });
       }
     }).catch(e => alert(e));
