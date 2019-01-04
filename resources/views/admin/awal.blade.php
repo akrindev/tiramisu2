@@ -22,6 +22,7 @@
          <a href="/prestasi/add" class="btn btn-sm mb-2">Tambah Emblem</a>
         <a href="/contribution/show" class="btn btn-sm mb-2">Kontribusi</a>
         <a href="/skill" class="btn btn-sm mb-2">Skill</a>
+        <a href="/cooking/store" class="btn btn-sm mb-2">Store Cooking </a>
         <a href="/edit-tentang" class="btn btn-sm mb-2">Edit About Us</a>
       </div>
     </div>

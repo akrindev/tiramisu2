@@ -14,6 +14,17 @@ Route::get('/', function () {
     return view('toram');
 });
 
+Route::prefix('/cooking')->group(function () {
+  Route::get('/', 'CookingController@index');
+
+  Route::middleware('admin')->group(function() {
+  	Route::view('/store', 'cooking.store');
+    Route::post('/store', 'CookingController@store');
+
+    Route::delete('/delete/{id}', 'CookingController@delete');
+  });
+});
+
 Route::get('/sitemap.xml', 'SitemapController@index');
 Route::post('/send-token/fcm', 'UserController@sendToken');
 

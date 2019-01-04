@@ -251,6 +251,14 @@ if('serviceWorker' in navigator)
                     <a href="/scammer" class="nav-link"><i class="fe fe-user-x"></i>Penipuan</a>
                   </li>
 
+            <li class="nav-item dropdown">
+                  <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-list"></i> Lainnya</a>
+              <div class="dropdown-menu dropdown-menu-arrow">
+                <a href="/prestasi" class="dropdown-item">Emblem / Prestasi</a>
+                <a href="/cooking" class="dropdown-item">Cooking / Masakan</a>
+              </div>
+                  </li>
+
                 </ul>
               </div>
             </div>
