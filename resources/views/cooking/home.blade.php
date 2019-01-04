@@ -28,7 +28,13 @@
                 @endif
               <tr>
                 <td class="px-2 py-2">
-                  <b class="text-primary"> {{ $cook->name }} </b> <span class="btn btn-sm btn-outline-danger ml-1" onclick="delthis({{ $cook->id }})">delete?</span> <br>
+                  <b class="text-primary"> {{ $cook->name }} </b>
+                  @auth
+                  @if(auth()->user()->isAdmin())
+                  <span class="btn btn-sm btn-outline-danger ml-1" onclick="delthis({{ $cook->id }})">delete?</span>
+                  @endif
+                  @endauth
+                  <br>
                   <small class="text-muted">Masakan Lv {{ $cook->level }} <img src="/img/cook-pt.png" class="rounded mr-1 ml-2" width="20px" height="20px"> {{ $cook->pt }}pt</small> <br>
                   <span class="text-warning">{{ $cook->buff }}</span>
                 </td>
