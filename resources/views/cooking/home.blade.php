@@ -24,7 +24,12 @@
 
               @foreach($cooks as $cook)
                 @if($loop->index % 8 == 0)
-                @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+
+              <tr>
+                <td class="p-0" colspan=2>
+                  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+                </td>
+              </tr>
                 @endif
               <tr>
                 <td class="px-2 py-2">
