@@ -10,7 +10,7 @@ class CookingController extends Controller
 {
   public function index()
   {
-    $cooks = Cooking::orderByDesc('level')->get();
+    $cooks = Cooking::orderBy('level')->get();
 
     return view('cooking.home', compact('cooks'));
   }
