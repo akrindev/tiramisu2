@@ -29,7 +29,7 @@
      @if($drops->count() > 0)
        @foreach($drops as $item)
         <div class="card">
-          <div class="card-body p-3" style="font-size:12px;font-weight:400">
+          <div class="card-body p-3" style="font-size:14px;font-weight:400">
               <img src="{{ $item->dropType->url }}" alt="{{ $item->dropType->name }}" class="avatar avatar-sm mr-1" style="max-width:21px;max-height:21px">
               <b class="h6"><a class="text-primary" href="/item/{{ $item->id }}">{{ $item->name }}</a></b>
            @if (auth()->check() && auth()->user()->isAdmin())
@@ -53,17 +53,13 @@
        @endforeach
      @endif
 
-       @if($monsters->count() > 0 || $maps->count() > 0)
-        <div class="card">
-          <div class="card-body p-3" style="font-size:12px;font-weight:400">
-          <div class="my-5">
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
-            </div>
-
-          <strong class="h4">Monster</strong> <br>
-          <dl> <!-- dl start -->
+        @if($monsters->count() > 0)
           @foreach ($monsters as $mons)
-          <div class="mb-5">
+        <div class="card">
+          <div class="card-body p-3" style="font-size:14px;font-weight:400">
+
+          <dl> <!-- dl start -->
+          <div class="">
            <dt class="mb-1">
            <b class="h6"> <a class="text-primary" href="/monster/{{ $mons->id }}">{{ $mons->name }} (Lv {{ $mons->level }}) </a>
           @switch($mons->type)
@@ -88,8 +84,18 @@
             </div>
             </dd>
             </div>
-          @endforeach
           </dl> <!-- // dl end -->
+          </div>
+        </div>
+          @endforeach
+        @endif
+
+       @if($maps->count() > 0)
+        <div class="card">
+          <div class="card-body p-3" style="font-size:14px;font-weight:400">
+          <div class="my-5">
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+            </div>
 
           @if($maps->count() > 0)
             <div class="mt-5">
