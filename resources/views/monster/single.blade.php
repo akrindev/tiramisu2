@@ -17,8 +17,7 @@
       </div>
       <div class="col-md-8">
 
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
-
+   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
 
         @if($data->npc->count() > 0)
         <div class="card">

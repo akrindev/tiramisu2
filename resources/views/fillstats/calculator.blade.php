@@ -21,10 +21,10 @@
       <div class="col-12">
         <div class="alert alert-info">
         Untuk melihat fill stats formula <a href="/fill_stats">klik disini</a>
-    </div>
-      </div>
+        </div>
 
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+         @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+      </div>
 
       <div class="col-md-4">
         <div class="card">

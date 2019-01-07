@@ -16,7 +16,7 @@
       </div>
       <div class="col-md-8">
 
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
 
        @forelse($data as $item)
         <div class="card">

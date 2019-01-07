@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title', 'Toram refine guide')
+@section('title', 'Toram Online Refine Guide')
 @section('description', 'Toram guide refine, toram refine success rate, toram table success rate refine, refine guide toram, toram refine simulator')
 @section('image', '/img/refine.png')
 

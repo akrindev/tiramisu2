@@ -79,7 +79,7 @@ $tags = explode(',', $tags);
             </div>
             <div class="body-text">
 
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+ @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
 
             @parsedown(e($data->body))
 

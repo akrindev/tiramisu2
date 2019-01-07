@@ -15,9 +15,7 @@
       @include('inc.cari')
       </div>
       <div class="col-md-8">
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
-
-
+   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
           @if($drops->count() == 0 && $monsters->count() == 0 && $maps->count() == 0)
         <div class="card">
           <div class="card-body p-3" style="font-size:12px;font-weight:400">
