@@ -218,6 +218,31 @@
       </div>
 
 
+     <div class="col-12">
+       <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fe fe-user"></i> Last Login
+            </h3>
+         </div>
+         <div class="table-responsive">
+         <table class="card-table table table-outline table-vcenter table-striped" id="lasts" style="font-size:14px;font-weight:400">
+           <thead>
+             <tr>
+                <th class="text-center w-1"><i class="icon-people" data-pic></i></th>
+             <th> Name </th>
+             <th> IP </th>
+             <th> Browser  </th>
+             <th> Info </th>
+             <th> Date  </th>
+             </tr>
+           </thead>
+
+         </table>
+         </div>
+       </div>
+      </div>
+
   </div>
 </div>
 
@@ -378,6 +403,20 @@
                         { data: 'gender', name: 'gender' },
                         { data: 'created_at', name: 'created_at' },
                  		{ data: 'action', name: 'action', orderable: false, searchable:false}
+                     ]
+            });
+
+           $('#lasts').DataTable({
+               processing: true,
+               serverSide: true,
+               ajax: "{{ url('/admin/last-login') }}",
+               columns: [
+                 		{ data: 'pic' , name: 'pic', searchable:false, orderable: false},
+                        { data: 'name', name: 'name' },
+                        { data: 'ip', name: 'ip' },
+                        { data: 'browser', name: 'browser' },
+                        { data: 'extra', name: 'extra' },
+                        { data: 'created_at', name: 'date' }
                      ]
             });
          });

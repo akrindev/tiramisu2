@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\{
   User, Forum, ForumsDesc, Quiz,
-  Gallery, Tag, LogSearch
+  Gallery, Tag, LogSearch, HistoryLogin
 };
 
 use Datatables;
@@ -57,6 +57,25 @@ class AdminController extends Controller
         	return $user->created_at->diffForHumans();
         })
         ->rawColumns(['pic','name','action','contact'])
+        ->make(true);
+    }
+
+  	public function lastLogin()
+    {
+      return datatables()->of(HistoryLogin::orderByDesc('created_at'))
+        ->addColumn('pic', function($history){
+        	return "<div style='background-image: url(https://graph.facebook.com/{$history->user->provider_id}/picture?type=normal)' class='avatar m-1 ml-1 float-left'></div> ";
+        })
+        ->editColumn('name', function($history){
+        	return "<div><strong class='mr-2 mb-2 text-center'>{$history->user->name}</strong><br><small class='text-muted'>@{$history->user->username}</small></div>";
+        })
+        ->editColumn('browser', function ($history) {
+        	return "<div><small> {$history->browser} </small></div>";
+        })
+        ->editColumn('created_at',function($history){
+        	return $history->created_at->diffForHumans();
+        })
+        ->rawColumns(['pic', 'name', 'browser'])
         ->make(true);
     }
 
