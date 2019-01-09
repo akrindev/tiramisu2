@@ -409,6 +409,7 @@
            $('#lasts').DataTable({
                processing: true,
                serverSide: true,
+               searching:false,
                ajax: "{{ url('/admin/last-login') }}",
                columns: [
                  		{ data: 'pic' , name: 'pic', searchable:false, orderable: false},
@@ -416,7 +417,7 @@
                         { data: 'ip', name: 'ip' },
                         { data: 'browser', name: 'browser' },
                         { data: 'extra', name: 'extra' },
-                        { data: 'created_at', name: 'date' }
+                        { data: 'created_at', name: 'created_at' }
                      ]
             });
          });
