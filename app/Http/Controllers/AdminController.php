@@ -47,8 +47,8 @@ class AdminController extends Controller
         ->addColumn('pic', function($user){
         	return "<div style='background-image: url(https://graph.facebook.com/$user->provider_id/picture?type=normal)' class='avatar m-1 ml-1 float-left'></div> ";
         })
-        ->addColumn('thread', function($user){
-        	return "<div>{$user->thread->count()}</div>";
+        ->addColumn('contact', function($user){
+        	return "<div>  {$user->contact['line']} <br>  {$user->contact['whatsapp']} </div>";
         })
         ->editColumn('name', function($user){
         	return "<div><strong class='mr-2 mb-2 text-center'>$user->name</strong><br><small class='text-muted'>@$user->username</small></div>";
@@ -56,7 +56,7 @@ class AdminController extends Controller
         ->editColumn('created_at',function($user){
         	return $user->created_at->diffForHumans();
         })
-        ->rawColumns(['pic','name','action','thread'])
+        ->rawColumns(['pic','name','action','contact'])
         ->make(true);
     }
 

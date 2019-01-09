@@ -202,7 +202,7 @@
              <tr>
                 <th class="text-center w-1"><i class="icon-people" data-pic></i></th>
              <th> Name </th>
-             <th> thread </th>
+             <th> Kontak (line &amp; whatsapp) </th>
              <th> Alamat  </th>
              <th> IGN  </th>
              <th> Biodata  </th>
@@ -371,7 +371,7 @@
                columns: [
                  		{ data: 'pic' , name: 'pic', searchable:false, orderable: false},
                         { data: 'name', name: 'name' },
-                        { data: 'thread', name: 'thread' },
+                        { data: 'contact', name: 'contact' },
                         { data: 'alamat', name: 'alamat' },
                         { data: 'ign', name: 'ign' },
                         { data: 'biodata', name: 'biodata' },
