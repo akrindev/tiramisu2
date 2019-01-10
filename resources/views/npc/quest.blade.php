@@ -50,7 +50,7 @@
                   <span class="text-danger">Bunuh <a href="/monster/{{ $tujuan->monster->id }}">{{ $tujuan->monster->name }}</a> </span> x{{ $tujuan->many }} <br>
                 @endif
                 @if ($tujuan->defeat == 2)
-                  <span class="text-success">Kumpulkan <a href="/item/{{ $tujuan->drop->name }}">{{ $tujuan->drop->name }}</a></span> x{{ $tujuan->many }} <br>
+                  <span class="text-success">Kumpulkan <a href="/item/{{ $tujuan->drop->id }}">{{ $tujuan->drop->name }}</a></span> x{{ $tujuan->many }} <br>
                 @endif
               @endforeach
 

@@ -35,78 +35,115 @@
                 <div class="my-2">
                 @parsedown(nl2br(e($item->note)))
                 </div>
+              </dd>
+            </dl>
+         <!-- using tab -->
+          <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="drop-tab" data-toggle="tab" href="#drop" role="tab" aria-controls="drop" aria-selected="true">
+                Drop dari
+              @if($data->count() > 0)
+              <span class="nav-unread"></span>
+              @endif
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="mats-tab" data-toggle="tab" href="#mats" role="tab" aria-controls="mats" aria-selected="false">Bahan resep
+              @if($item->resep->count() > 0)
+              <span class="nav-unread"></span>
+              @endif
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="from-quest-tab" data-toggle="tab" href="#from-quest" role="tab" aria-controls="from-quest" aria-selected="false">Dari Quest
+              @if ($item->fromQuest->count() > 0)
+              <span class="nav-unread"></span>
+              @endif
+              </a>
+            </li>
+          </ul>
 
-                <div class="mt-3">
-                <a href="/peta/{{$item->monsters[0]->map->id ?? '#'}}">{{ $item->monsters[0]->map->name ??'' }}</a>
+
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="drop" role="tabpanel" aria-labelledby="drop-tab">
+              <div class="my-5">
+              @if($data->count() > 0)
+                <dl> <!-- dl start -->
+              @foreach ($data as $mons)
+
+               <div class="mb-5">
+               <dt class="mb-1">
+               <b class="h6"> <a class="text-primary" href="/monster/{{ $mons->id }}">{{ $mons->name }} (Lv {{ $mons->level }}) </a>
+              @switch($mons->type)
+                 @case(2)
+                   <img src="/img/f_boss.png" alt="mini boss" style="display:inline;max-width:120px;max-height:15px;">
+                   @break
+                 @case(3)
+                   <img src="/img/boss.png" class="boss" style="display:inline;max-width:120px;max-height:15px;">
+              @endswitch
+                 </b>
+               </dt>
+                 <dd>
+                   @if ($mons->picture != null)
+                   <img src="/{{ $mons->picture }}" alt="{{ $mons->name }}" class="rounded my-2 d-block" width="150px" height="150px">
+                   @endif
+                  <b>Unsur:</b> <span> {{$mons->element->name}}</span> <br>
+                   <b>Peta:</b> <a href="/peta/{{ $mons->map->id }}">{{ $mons->map->name }} </a>
+                 </dd>
+                 <b>Drop:</b><br>
+                 @foreach ($mons->drops as $drop)
+                 <a href="/item/{{ $drop->id }}"> <img src="{{ $drop->dropType->url }}" class="avatar avatar-sm"> {{ $drop->name }} </a>
+                 @if ($drop->proses && $drop->sell)
+                 <small class="text-muted">({{ $drop->proses ?? '-' }}pts / {{ $drop->sell ?? '-' }}s)</small>
+                 @endif
+                 <br>
+                 @endforeach
+                </div>
+              @endforeach
+          </dl>
+              @else
+                <small class="text-muted">-- tidak ada --</small>
+              @endif
+              </div>
+            </div>
+            <div class="tab-pane fade" id="mats" role="tabpanel" aria-labelledby="mats-tab">
+
+
+             <div class="mt-5">
         @if($item->resep->count() > 0)
-                  <br><br>
               <strong>Resep</strong><br>
-                  @foreach($item->resep as $resep)
+                @foreach($item->resep as $resep)
                   <b>Fee:</b> {{ $resep->fee ?? '-' }}s <span class="ml-5"></span>
                   <b>Level:</b> {{ $resep->level ?? '-' }} <br>
                   <b>diff:</b> {{ $resep->diff ?? '-' }} <span class="ml-5"></span>
                   <b>Set:</b> {{ $resep->set ?? '-'}}pcs <br><br>
                     @foreach (explode(',',$resep->material) as $mat)
-          @php $x = $loop->index;
-               $y = $x@endphp
-        @if(is_null(App\Drop::find($mat)))
-          @php $x = $loop->index+1;
-               $y = $loop->index-1;
-          @endphp
-        @else
-             Bahan {{ $y == 0 ? 1: $y }}: <img src="{{ App\Drop::find($mat)->dropType->url }}" class="avatar avatar-sm" style="max-width:16px;max-height:16px"> <a href="/item/{{ App\Drop::find($mat)->id }}"> {{ App\Drop::find($mat)->name }}</a> x{{ explode(',',$resep->jumlah)[$x] }}<br>
-        @endif
+             Bahan: <img src="{{ App\Drop::find($mat)->dropType->url }}" class="avatar avatar-sm" style="max-width:16px;max-height:16px"> <a href="/item/{{ App\Drop::find($mat)->id }}"> {{ App\Drop::find($mat)->name }}</a> x{{ explode(',',$resep->jumlah)[$x] }}<br>
+
                     @endforeach
                   @endforeach
+         @else
+            <small class="text-muted">-- Tidak ada --</small>
          @endif
                 </div>
-              </dd>
-            </dl>
-            <div class="my-5">
-       @if ($item->fromQuest->count() > 0)
-              <b>Quest:</b> <br />
-          @foreach ($item->fromQuest as $quest)
-- <a href="/npc/quest/{{ $quest->quest->id }}">{{ $quest->quest->name }}</a><br />
-          @endforeach
 
-       @endif
             </div>
-       @if ($data->count())
-            <hr class="mb-3">
-            <dl> <!-- dl start -->
-          @foreach ($data as $mons)
+            <div class="tab-pane fade" id="from-quest" role="tabpanel" aria-labelledby="from-quest-tab">
+              <div class="mt-5">
+                @if ($item->fromQuest->count() > 0)
+                  <b>Quest:</b> <br />
+                  @foreach ($item->fromQuest as $quest)
+                    - <a href="/npc/quest/{{ $quest->quest->id }}">{{ $quest->quest->name }}</a><br />
+                  @endforeach
+                @else
+                   <small class="text-muted">-- Tidak ada --</small>
+                @endif
+              </div>
 
-           <div class="mb-5">
-           <dt class="mb-1">
-           <b class="h6"> <a class="text-primary" href="/monster/{{ $mons->id }}">{{ $mons->name }} (Lv {{ $mons->level }}) </a>
-          @switch($mons->type)
-             @case(2)
-               <img src="/img/f_boss.png" alt="mini boss" style="display:inline;max-width:120px;max-height:15px;">
-               @break
-             @case(3)
-               <img src="/img/boss.png" class="boss" style="display:inline;max-width:120px;max-height:15px;">
-          @endswitch
-             </b>
-           </dt>
-             <dd>
-               @if ($mons->picture != null)
-               <img src="/{{ $mons->picture }}" alt="{{ $mons->name }}" class="rounded my-2 d-block" width="150px" height="150px">
-               @endif
-              <b>Element:</b> <span> {{$mons->element->name}}</span> <br>
-               <b>Peta:</b> <a href="/peta/{{ $mons->map->id }}">{{ $mons->map->name }} </a>
-             </dd>
-             <b>Drop:</b><br>
-             @foreach ($mons->drops as $drop)
-             <a href="/item/{{ $drop->id }}"> <img src="{{ $drop->dropType->url }}" class="avatar avatar-sm"> {{ $drop->name }} </a>
-             @if ($drop->proses && $drop->sell)
-             <small class="text-muted">({{ $drop->proses ?? '-' }}pts / {{ $drop->sell ?? '-' }}s)</small>
-             @endif
-             <br>
-             @endforeach
             </div>
-          @endforeach
-          </dl> <!-- // dl end -->
-       @endif
+          </div>
+
+        <!-- end tab -->
 
      @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 

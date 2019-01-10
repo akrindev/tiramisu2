@@ -106,48 +106,48 @@ class NpcController extends Controller
 
       if(count($mons) > 0)
       {
-        $i = 0;
+        $m = 0;
 
         foreach($mons as $mon)
         {
           $quest->tujuan()->create([
               'defeat'	=> 1,
-              'monster_id'	=> $mon[$i],
-              'many'	=> $monsMany[$i]
+              'monster_id'	=> $mon,
+              'many'	=> $monsMany[$m]
           ]);
 
-          $i++;
+          $m++;
         }
       }
 
       if(count($drops) > 0)
       {
-        $i = 0;
+        $d = 0;
 
         foreach($drops as $drop)
         {
           $quest->tujuan()->create([
               'defeat'	=> 2,
-              'drop_id'	=> $drop[$i],
-              'many'	=> $dropsMany[$i]
+              'drop_id'	=> $drop,
+              'many'	=> $dropsMany[$d]
           ]);
 
-          $i++;
+          $d++;
         }
       }
 
       if(count($rewards) > 0)
       {
-        $i = 0;
+        $r = 0;
 
         foreach($rewards as $reward)
         {
           $quest->reward()->create([
-              'drop_id'	=> $reward[$i],
-              'many'	=> $rewardMany[$i]
+              'drop_id'	=> $reward,
+              'many'	=> $rewardMany[$r]
           ]);
 
-          $i++;
+          $r++;
         }
       }
 

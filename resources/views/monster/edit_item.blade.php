@@ -1,11 +1,6 @@
 @extends('layouts.tabler')
 
 @section('content')
-@php
-  $maps = DB::table('mobs')->select('map')->distinct()->get();
-
-  $ele = DB::table('elements')->get();
-    @endphp
 <div class="divider"></div>
 <div class="my-3 my-md-5">
 

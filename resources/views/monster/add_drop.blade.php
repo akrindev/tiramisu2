@@ -2,8 +2,6 @@
 
 @section('content')
 @php
-  $maps = DB::table('mobs')->select('map')->distinct()->get();
-
   $ele = DB::table('elements')->get();
     @endphp
 <div class="divider"></div>

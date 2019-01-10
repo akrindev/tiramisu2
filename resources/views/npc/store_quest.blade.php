@@ -17,7 +17,7 @@
           </div>
           <div class="card-body p-3" style="font-size:13px">
 
-            {!! form_open('/',["id" => "store-npc"]) !!}
+            {!! form_open('/npc/store/quest',["id" => "store-npc"]) !!}
             @csrf
 
           <div class="form-group">
@@ -170,7 +170,7 @@
 </script>
 
 <script>
-let submit = document.getElementById('store-npc'),
+let submit = document.getElementById('store-npdc'),
     btnSubmit = document.getElementById("btn-tambah");
 
   submit.addEventListener('submit', (e) => {
