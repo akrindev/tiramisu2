@@ -205,7 +205,7 @@ class FORMULA {
         let potential = ((data.value > value ? data.value : value) - (data.value > value ? value : data.value)) * stat.pot;
         if (stat.type !== this.weap_arm && ['a', 'w'].includes(stat.type)) potential *= 2;
         if(['e'].includes(stat.type)) potential /= 10;
-        if (increment < 0) potential *= 0.305;
+        if (increment < 0) potential *= 0.3;
         else potential *= -1;
         // ... and determine penalty
         potential *= this.determinePenalty();
