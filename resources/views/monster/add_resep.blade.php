@@ -58,6 +58,19 @@
             <label class="form-label">Set</label>
             <input type="number" class="form-control" name="set">
           </div>
+
+               <div class="col-6">
+              <label class="form-label">Base pot</label>
+                <input type="number" name="pot" class="form-control">
+              </div>
+
+            <div class="col-6">
+
+          <div class="form-group">
+            <label class="form-label">Base atk/def</label>
+            <input type="number" class="form-control" name="base">
+          </div>
+            </div>
             </div>
             </div>
           </div>

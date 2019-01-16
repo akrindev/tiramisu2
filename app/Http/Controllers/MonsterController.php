@@ -420,7 +420,9 @@ class MonsterController extends Controller
         'fee'	=> request()->fee,
         'level'	=> request()->level,
         'diff'	=> request()->diff,
-        'set'	=> request()->set
+        'set'	=> request()->set,
+        'pot'	=> request()->pot,
+        'base'	=> request()->base
       ]);
 
       return response()->json(["success"=>true]);

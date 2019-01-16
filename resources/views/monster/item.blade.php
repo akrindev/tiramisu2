@@ -115,10 +115,14 @@
                 @foreach($item->resep as $resep)
                   <b>Fee:</b> {{ $resep->fee ?? '-' }}s <span class="ml-5"></span>
                   <b>Level:</b> {{ $resep->level ?? '-' }} <br>
-                  <b>diff:</b> {{ $resep->diff ?? '-' }} <span class="ml-5"></span>
-                  <b>Set:</b> {{ $resep->set ?? '-'}}pcs <br><br>
+                  <b>Diff:</b> {{ $resep->diff ?? '-' }} <span class="ml-5"></span>
+                  <b>Set:</b> {{ $resep->set ?? '-'}}pcs <br>
+                 <b>Base pot:</b> {{ $resep->pot }} <span class="ml-5"></span>
+                 <b>Base atk/def:</b> {{ $resep->base }}
+               <div class="mt-5"></div>
+               <b>Bahan:</b> <br><br>
                     @foreach (explode(',',$resep->material) as $mat)
-             Bahan: <img src="{{ App\Drop::find($mat)->dropType->url }}" class="avatar avatar-sm" style="max-width:16px;max-height:16px"> <a href="/item/{{ App\Drop::find($mat)->id }}"> {{ App\Drop::find($mat)->name }}</a> x{{ explode(',',$resep->jumlah)[$x] }}<br>
+             <img src="{{ App\Drop::find($mat)->dropType->url }}" class="avatar avatar-sm" style="max-width:16px;max-height:16px"> <a href="/item/{{ App\Drop::find($mat)->id }}"> {{ App\Drop::find($mat)->name }}</a> x{{ explode(',',$resep->jumlah)[$loop->index] }}<br>
 
                     @endforeach
                   @endforeach
