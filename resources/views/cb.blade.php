@@ -18,7 +18,7 @@
 
             <div class="form-group">
               <label class="form-label">Harga Jual</label>
-              <input type="text" class="form-control" name="harga" id="harga">
+              <input type="text" class="form-control" name="harga" id="harga" value="1">
             </div>
 
             <div class="form-group">
@@ -55,6 +55,9 @@
 
           </div>
         </div>
+      </div>
+      <div class="col-md-4">
+        @include('inc.menu')
       </div>
     </div>
 

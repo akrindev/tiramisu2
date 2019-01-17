@@ -225,6 +225,7 @@ if('serviceWorker' in navigator)
                       <a href="/leveling" class="dropdown-item">Leveling Finder</a>
                       <a href="/exp" class="dropdown-item">Exp Calculator</a>
                       <a href="/refine/simulasi" class="dropdown-item">Simulasi Refine</a>
+                      <a href="/cb" class="dropdown-item">Consignment Board Calculator</a>
                     </div>
                   </li>
                   <li class="nav-item">

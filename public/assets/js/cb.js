@@ -59,6 +59,11 @@ k.addEventListener('click', () => {
       vharga = document.getElementById("harga").value,
       vtax = document.getElementById("tax").value;
 
+  if(isNaN(vharga)) {
+    alert("kesalahan masukan")
+    document.getElementById("harga").value = 1
+    return;
+  }
   CB.setHarga(vharga);
   inp()
 

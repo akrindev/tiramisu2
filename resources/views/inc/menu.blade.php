@@ -81,6 +81,7 @@
       <a href="/skill" class="d-block mb-1 col-6">Skill List</a>
       <a href="/refine" class="d-block mb-1 col-6">Refine Guide</a>
       <a href="/refine/simulasi" class="d-block mb-1 col-6">Refine simulator</a>
+      <a href="/cb" class="d-block mb-1 col-6">Consignment Board Calculator</a>
       <a href="/leveling" class="d-block mb-1 col-6">Leveling Finder</a>
       <a href="/fill_stats" class="d-block mb-1 col-6">Fill stats formula +13, +14, +15 etc</a>
       <a href="/fill_stats/calculator" class="d-block mb-1 col-6">Fill stat calculator</a>
