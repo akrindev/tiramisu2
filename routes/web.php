@@ -13,6 +13,7 @@
 Route::get('/', function () {
     return view('toram');
 });
+Route::view('/cb', 'cb');
 
 Route::prefix('/cooking')->group(function () {
   Route::get('/', 'CookingController@index');

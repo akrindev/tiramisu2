@@ -8,7 +8,7 @@ class Resep extends Model
 {
   protected $fillable = [
   	'drop_id', 'material', 'jumlah',
-    'fee', 'level', 'diff'
+    'fee', 'level', 'diff', 'set', 'pot', 'base'
   ];
   public $timestamps = false;
 
