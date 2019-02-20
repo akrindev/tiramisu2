@@ -29,7 +29,7 @@
     <meta name="MobileOptimized" content="320">
 
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="apple-mobile-web-app-title" content="toram-id.info">
+    <meta name="apple-mobile-web-app-title" content="toram-id">
     <meta name="application-name" content="toram-id.info">
 
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
@@ -116,7 +116,7 @@ if('serviceWorker' in navigator)
               <div class="d-flex order-lg-2 ml-auto">
 @guest
  				<div class="nav-item d-md-flex">
-                   <a href="/fb-login" class="btn btn-sm btn-outline-primary"><i class="fe fe-facebook"></i> Login</a>
+                   <a href="https://toram-id.website/fb-login" class="btn btn-sm btn-outline-primary"><i class="fe fe-facebook"></i> Login</a>
                  </div>
 @else
                <div class="nav-item d-md-flex">
