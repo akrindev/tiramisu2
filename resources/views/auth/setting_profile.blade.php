@@ -42,25 +42,26 @@
 
       <div class="form-group">
         <label class="form-label">Username</label>
-          <div class="input-group">
+		  @if($data->changed == 0)
+          	<div class="input-group">
             <span class="input-group-prepend" id="basic-addon1">
               <span class="input-group-text">@</span>
              </span>
         <input type="text" name="username" class="form-control
-        {{  $errors->has('username') ? 'is-invalid': '' }}" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{ $data->username }}" required {{ $data->changed == 1 ? 'disabled':'' }}>
+        {{  $errors->has('username') ? 'is-invalid': '' }}" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{ $data->username }}" required>
         </div>
+		  @else
+		  	<div class="form-control-plaintext text-success">{{ $data->username }}</div>
+		  <input type="hidden" name="username" value="{{ $data->username }}">
+		  @endif
         @if($errors->has('username'))
-        <span class="text-danger">
+        <span class="help-block text-danger">
   			{{$errors->first('username')}}
-        </span>
+        </span> <br>
         @endif
         @if ($data->changed == 0)
         <small class="help-block text-muted">
           Hanya dapat di ganti sekali!
-        </small>
-        @else
-        <small class="help-block text-danger">
-          Username sudah pernah diganti
         </small>
         @endif
       </div>
