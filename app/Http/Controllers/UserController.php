@@ -20,8 +20,6 @@ class UserController extends Controller
     {
       $threads = Auth::user()->thread()->latest()->paginate(10);
 
-      $z = Forum::where('user_id',auth()->id());
-
       return view('profile')->with('profile',Auth::user())
         ->with('threads',$threads);
     }
