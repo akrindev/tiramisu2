@@ -14,6 +14,7 @@ class FillController extends Controller
     {
       return view('fillstats.calculator');
     }
+
     public function index()
     {
       $items = Fill_stat::get();
@@ -28,6 +29,7 @@ class FillController extends Controller
 
     public function single($type,$plus=false)
     {
+	  /**
       $tipe = $type == 'Armor' ? 1 : 2;
 
       if($plus == false){
@@ -41,6 +43,8 @@ class FillController extends Controller
       return view('fillstats/home',[
           'data' => $data
       ]);
+	  */
+	  return $this->index();
     }
 
   	public function add()
