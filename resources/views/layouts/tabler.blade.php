@@ -116,7 +116,7 @@ if('serviceWorker' in navigator)
               <div class="d-flex order-lg-2 ml-auto">
 @guest
  				<div class="nav-item d-md-flex">
-                   <a href="https://toram-id.website/fb-login" class="btn btn-sm btn-outline-primary"><i class="fe fe-facebook"></i> Login</a>
+                   <a href="{{ url('/') }}/fb-login" class="btn btn-sm btn-outline-primary"><i class="fe fe-facebook"></i> Login</a>
                  </div>
 @else
                <div class="nav-item d-md-flex">
