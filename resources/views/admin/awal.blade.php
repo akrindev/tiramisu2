@@ -18,6 +18,7 @@
         <a href="/mons/drop/store" class="btn btn-sm mb-2">Store drop</a>
         <a href="/mons/store/resep" class="btn btn-sm mb-2">Store resep</a>
         <a href="/store/peta" class="btn btn-sm mb-2">Edit Peta</a>
+		  <a href="/fill_stats/add" class="btn btn-sm mb-2">Store fill stats formula</a>
         <a href="/npc/store" class="btn btn-sm mb-2">Edit Npc</a>
          <a href="/prestasi/add" class="btn btn-sm mb-2">Tambah Emblem</a>
         <a href="/contribution/show" class="btn btn-sm mb-2">Kontribusi</a>

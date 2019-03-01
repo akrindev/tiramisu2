@@ -39,7 +39,7 @@
       <div class="form-group {{  $errors->has('type') ? 'has-error': '' }}">
         <label>plus </label>
         <select name="plus" class="form-control">
-      @for ($i=10;$i<17;$i++)
+      @for ($i=10;$i < 22;$i++)
           <option value="{{ $i }}">{{ $i }}</option>
       @endfor
         </select>
