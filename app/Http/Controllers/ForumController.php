@@ -64,11 +64,7 @@ class ForumController extends Controller
 
   public function baca($slug)
   {
-    $baca = Forum::where('slug',$slug)->first();
-	if( ! $baca)
-    {
-      return redirect('/')->with('gagal', 'Thread tidak di temukan');
-    }
+    $baca = Forum::where('slug',$slug)->firstOrFail();
 
     $comments = $baca->comment;
 
@@ -83,13 +79,7 @@ class ForumController extends Controller
 
   public function comment($slug)
   {
-    $forum = Forum::where('slug',$slug)->first();
-
-    if( ! $forum)
-    {
-      return redirect('/')->with('gagal', 'Thread tidak di temukan');
-    }
-
+    $forum = Forum::where('slug',$slug)->firstOrFail();
 
     request()->validate([
     	'body'	=> 'required'
@@ -136,17 +126,9 @@ class ForumController extends Controller
 
     $id = request('id');
 
-    if( ! $forum)
-    {
-      return redirect('/')->with('gagal', 'Thread tidak di temukan');
-    }
-
-
     request()->validate([
     	'reply'	=> 'required'
     ]);
-
-   // dd($forum->comment);
 
 	$comment = $forum->comment()->create([
     	'user_id' => Auth::user()->id,
