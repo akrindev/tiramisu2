@@ -59,6 +59,8 @@ k.addEventListener('click', () => {
       vharga = document.getElementById("harga").value,
       vtax = document.getElementById("tax").value;
 
+  vharga = vharga.replace(/,/g, '');
+
   if(isNaN(vharga)) {
     alert("kesalahan masukan")
     document.getElementById("harga").value = 1
@@ -76,6 +78,8 @@ k.addEventListener('click', () => {
 
 function inp() {
   let vharga = document.getElementById("harga").value
+
+  vharga = vharga.replace(/,/g, '');
 
   document.getElementById("harga").value = c(vharga)
 }
