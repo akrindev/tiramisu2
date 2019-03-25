@@ -2,7 +2,7 @@
 
 @section('title', 'Toram ' . $item->name)
 @section('description', $item->name . ': ' . strip_tags(trim($item->note)) ?? '' )
-@section('image', !is_null($item->picture) ? '/'.$item->picture : to_img())
+@section('image', !is_null($item->picture) ? asset($item->picture) : to_img())
 
 @section('content')
 <div class="my-5">
