@@ -100,6 +100,8 @@ if('serviceWorker' in navigator)
 
     @yield('head')
 
+    @include('inc.sharethis')
+
     @includeWhen(env('APP_ENV') === 'production', 'inc.ads')
   </head>
 
