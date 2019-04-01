@@ -51,6 +51,7 @@
               <button class="btn btn-outline-secondary m-1" onclick='prompt_potential()'>Set Potensi</button>
               <button class="btn btn-outline-success m-1" onclick='saveAsImg()'><i class="fe fe-image"></i> Save as image</button>
               <button class="btn btn-outline-danger m-1"  onclick="build_menu()"><i class="fe fe-refresh-ccw"></i> Reset</button>
+              <a href="/fill_stats" class="btn btn-pill btn-outline-warning m-1"><i class="fe fe-settings"></i> Manual formula</a>
 
             </div>
           </div>
