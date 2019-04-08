@@ -38,10 +38,10 @@
                 @if(!is_null($data->picture))
                 <img src="/{{ $data->picture }}" class="rounded my-4 d-block">
                 @endif
-                <b>Unsur: </b> {{ $data->element->name }} <br>
-                <b>Pet: </b> {{ $data->pet === 'y' ? 'bisa':'tidak' }} <br>
-                <b>HP:</b> {{ $data->hp ?? '-' }} <br>
-                <b>XP:</b> {{ $data->xp ?? '-' }}
+                <b>Unsur: </b> {{ ucfirst($data->element->name) }} <br>
+              <!--  <b>Pet: </b> {{ $data->pet === 'y' ? 'bisa':'tidak' }} <br> -->
+                <b>HP:</b> <span class="text-muted">{{ $data->hp ?? '-- unknown --' }} </span><br>
+                <b>XP:</b> <span class="text-muted">{{ $data->xp ?? '-- unknown --' }} </span>
 
               @if($data->type == 3 || $data->type == 2)
                 <br>

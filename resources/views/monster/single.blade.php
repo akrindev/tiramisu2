@@ -52,7 +52,7 @@
                @endif
              <div class="col-md-8">
                <dd>
-              <b>Element:</b>  <span class="">{{$mons->element->name}}</span> <br>
+              <b>Unsur:</b>  <span class="">{{ ucfirst($mons->element->name) }}</span> <br>
                <b>Peta:</b> <a href="/peta/{{ $mons->map->id }}"> {{ $mons->map->name }}</a>
              </dd>
             @if($mons->drops->count() > 0)

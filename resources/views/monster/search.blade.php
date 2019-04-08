@@ -1,13 +1,13 @@
 @extends('layouts.tabler')
 
-@section('title', 'Toram '. $q )
+@section('title', 'Hasil pencarian: '. $q )
 @section('image', to_img())
 
 @section('content')
 <div class="my-5">
   <div class="container">
     <div class="page-header">
-      <h1 class="page-title">Toram {{ $q }}</h1>
+      <h1 class="page-title">Hasil pencarian: {{ $q }}</h1>
     </div>
 
     <div class="row">
@@ -76,7 +76,10 @@
                @endif
 
                <div class="col-md-9">
-               <b>Element:</b> <span> {{$mons->element->name}}</span> <br>
+               <b>Unsur:</b> <span> {{ ucfirst($mons->element->name) }}</span> <br>
+               <b>HP:</b> <span class="text-muted"> {{ $mons->hp ?? '-- unknown --' }} </span> <br>
+
+                <b>Leveling:</b> {{ $mons->level-3 }} <span class="text-muted">s/d</span> {{ $mons->level+3 }} <br>
                <b>Peta: </b> <a href="/peta/{{ $mons->map->id }}">{{ $mons->map->name }}</a>
                </div>
             </div>
@@ -91,12 +94,8 @@
        @if($maps->count() > 0)
         <div class="card">
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
-          <div class="my-5">
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
-            </div>
-
           @if($maps->count() > 0)
-            <div class="mt-5">
+            <div>
               <strong class="h4">Peta</strong> <br>
               @foreach($maps as $map)
              <i class="fe fe-github mr-2"></i> <a href="/peta/{{ $map->id }}">{{ $map->name }}</a> <br>

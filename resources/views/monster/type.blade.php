@@ -41,7 +41,8 @@
               <img src="/img/ball-triangle.svg" data-src="/{{ $mons->picture }}" class="rounded my-2 d-block lazyload" width="170px" height="170px"></div>
             @endif
                <div class="col-md-9">
-              <b>Element:</b>  <span class="">{{$mons->element->name}}</span>
+              <b>Unsur:</b>  <span class="">{{ ucfirst($mons->element->name) }}</span> <br>
+              <b>HP:</b> <span class="text-muted"> {{ $mons->hp ?? '-- unknown--' }} </span>
             @if ($mons->type == 3 || $mons->type == 2)
                <br>
                <b>Leveling:</b> {{ $mons->level-3 }} <span class="text-muted">s/d</span> {{ $mons->level+3 }}
