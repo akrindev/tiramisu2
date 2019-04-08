@@ -20,7 +20,7 @@
 
        @forelse($data as $item)
         <div class="card">
-          <div class="card-body p-3" style="font-size:13px;font-weight:400">
+          <div class="card-body p-3" style="font-size:14px;font-weight:400">
             <div>
               <img src="{{ $item->dropType->url }}" alt="{{ $item->dropType->name }}" class="avatar avatar-sm mr-1" style="max-width:21px;max-height:21px">
               <b class="h6"><a class="text-primary" href="/item/{{ $item->id }}">{{ $item->name }}</a></b>
