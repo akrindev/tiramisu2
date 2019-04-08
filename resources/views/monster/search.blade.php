@@ -77,9 +77,13 @@
 
                <div class="col-md-9">
                <b>Unsur:</b> <span> {{ ucfirst($mons->element->name) }}</span> <br>
-               <b>HP:</b> <span class="text-muted"> {{ $mons->hp ?? '-- unknown --' }} </span> <br>
+               <b>HP:</b> <span class="text-muted"> {{ $mons->hp ?? '-- unknown --' }} </span>
 
-                <b>Leveling:</b> {{ $mons->level-3 }} <span class="text-muted">s/d</span> {{ $mons->level+3 }} <br>
+              @if($mons->type == 3 || $mons->type == 2)
+                 <br>
+                <b>Leveling:</b> {{ $mons->level-3 }} <span class="text-muted">s/d</span> {{ $mons->level+3 }}
+              @endif
+                 <br>
                <b>Peta: </b> <a href="/peta/{{ $mons->map->id }}">{{ $mons->map->name }}</a>
                </div>
             </div>
