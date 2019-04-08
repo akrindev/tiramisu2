@@ -119,4 +119,26 @@ class LoginController extends Controller
     }
 
 
+  	public function devLogin()
+    {
+      // must be only in development
+      if(! app()->isLocal())
+      {
+        return $this->redirect();
+      }
+
+      // login as admin
+      $user = User::find(1);
+
+      Auth::login($user, true);
+
+      $user->historyLogin()->create([
+      	'ip'	=> request()->ip(),
+        'browser'	=> request()->userAgent(),
+        'extra'		=> 'Logged In as Development!!'
+      ]);
+
+      return redirect($this->redirectTo);
+    }
+
 }

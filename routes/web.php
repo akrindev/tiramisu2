@@ -60,6 +60,8 @@ Route::post('/uploader', 'ForumController@uploader');
 
 Route::get('/exp', 'XpController@index');
 
+// LOGIN
+Route::get('/logindev', 'Auth\LoginController@devLogin');
 Route::get('/fb-login', 'Auth\LoginController@redirect');
 Route::get('/facebook/callback', 'Auth\LoginController@callback');
 
