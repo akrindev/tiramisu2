@@ -57,7 +57,8 @@
 
     <div class="my-1 row gutters-xs">
       <b class="d-block col-12 mb-2">Monster Type</b>
-      <a href="/monster/type/normal" class="d-block mb-1 col-6"><i class="fe fe-github"></i> Normal Monster</a>
+
+      <span class="d-block mb-1 col-6"><i class="fe fe-github mr-1"></i><a href="/monster/type/normal">Normal Monster</a></span>
       <a href="/monster/type/mini_boss" class="d-block mb-1 col-6"> <img src="/img/f_boss.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Mini Boss</a>
       <a href="/monster/type/boss" class="d-block mb-1 col-6"> <img src="/img/boss.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Boss</a>
 
@@ -78,15 +79,19 @@
       <b class="d-block col-12 mb-2">Lainnya</b>
       <a href="/prestasi" class="d-block mb-1 col-12"> <img src="/img/prestasi.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Emblem / Prestasi</a>
       <a href="/cooking" class="d-block mb-1 col-12"> <img src="/img/cook-pt.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Cooking</a>
-      <a href="/skill" class="d-block mb-1 col-6">Skill List</a>
-      <a href="/refine" class="d-block mb-1 col-6">Refine Guide</a>
-      <a href="/refine/simulasi" class="d-block mb-1 col-6">Refine simulator</a>
-      <a href="/cb" class="d-block mb-1 col-6">Consignment Board Calculator</a>
-      <a href="/leveling" class="d-block mb-1 col-6">Leveling Finder</a>
-      <a href="/fill_stats" class="d-block mb-1 col-6">Fill stats formula +13, +14, +15 etc</a>
-      <a href="/fill_stats/calculator" class="d-block mb-1 col-6">Fill stat calculator</a>
-      <a href="/exp" class="d-block mb-1 col-6">Exp Calculator [ntap]</a>
-      <a href="/npc" class="d-block mb-1 col-6">NPC List</a>
+
+      <div class="d-block col-12 mb-5"></div>
+
+      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/peta">Peta</a> </span>
+      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/skill">Skill List</a></span>
+      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/refine">Refine Guide</a></span>
+      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/refine/simulasi">Refine simulator</a></span>
+      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/cb">Papan Market Calculator</a></span>
+      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/leveling">Leveling List</a></span>
+      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/fill_stats">Fill stats formula +17, +18</a></span>
+      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/fill_stats/calculator">Fill stat calculator</a></span>
+      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/exp">Exp Calculator</a></span>
+      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/npc">NPC List</a></span>
     </div>
 
     <hr class="my-1">
