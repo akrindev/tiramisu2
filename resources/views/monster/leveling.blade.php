@@ -49,7 +49,7 @@
               </small>
             </td>
             <td class="px-2 py-2">
-              <div>HP</div> <small class="text-muted">{{ number_format($mob->hp) }}</small>
+              <div>HP</div> <small class="text-muted">{{ $mob->hp ?? 'unknown' }}</small>
             </td>
           </tr>
          @endforeach

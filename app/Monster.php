@@ -29,4 +29,12 @@ class Monster extends Model
     {
       return $this->belongsTo(Element::class);
     }
+
+  /*
+  // attributes
+  */
+  	public function getHpAttribute($value)
+    {
+      return is_null($value) ? null : number_format($value);
+    }
 }
