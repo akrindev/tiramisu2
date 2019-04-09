@@ -107,7 +107,8 @@ Route::middleware(['admin'])->group(function() {
 * Monster routes
 */
 Route::get('/search', 'MonsterController@search');
-Route::get('/leveling', 'MonsterController@leveling');
+Route::get('/leveling', 'LevelingController@show');
+
 Route::get('/monster', 'MonsterController@index');
 Route::get('/monster/{id}', 'MonsterController@showMons');
 Route::get('/monster/type/{name}', 'MonsterController@showMonsType');
