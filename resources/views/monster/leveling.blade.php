@@ -94,7 +94,7 @@
             </td>
             <td class="px-2 py-2">
               <div>HP &amp; Unsur</div> <small class="text-muted"><i class="fe fe-thermometer mr-1"></i>{{ $mob->hp ?? 'unknown' }}</small> <br>
-              <small class="text-secondary"><i class="fe fe-alert-triangle mr-1"></i> Bumi</small>
+              <small class="text-secondary"><i class="fe fe-alert-triangle mr-1"></i> {{ ucfirst($mob->element->name) }} </small>
             </td>
           </tr>
          @endforeach
