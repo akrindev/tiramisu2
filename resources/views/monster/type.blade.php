@@ -42,7 +42,8 @@
             @endif
                <div class="col-md-9">
               <b>Unsur:</b>  <span class="">{{ ucfirst($mons->element->name) }}</span> <br>
-              <b>HP:</b> <span class="text-muted"> {{ $mons->hp ?? '-- unknown--' }} </span>
+              <b>HP:</b> <span class="text-muted"> {{ $mons->hp ?? '-- unknown--' }} </span> <br>
+               <b>XP:</b> <span class="text-muted"> {{ $mons->xp ?? '-- unknown --' }} </span>
             @if ($mons->type == 3 || $mons->type == 2)
                <br>
                <b>Leveling:</b> {{ $mons->level-3 }} <span class="text-muted">s/d</span> {{ $mons->level+3 }}
