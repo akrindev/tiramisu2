@@ -77,7 +77,7 @@
 
           <div class="form-group">
             <label class="form-label">HP</label>
-            <input type="number" class="form-control" name="hp" value="{{ $data->hp }}">
+            <input type="number" class="form-control" name="hp" value="{{ str_replace(',', '', $data->hp) }}">
           </div>
             </div>
 
