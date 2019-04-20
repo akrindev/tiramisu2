@@ -601,6 +601,8 @@ function get_results(custom_pot) {
     buffer.push(`<tr class='results' onclick="show_details('${pot}');document.querySelector('#details').scrollIntoView()" id="pot_${pot}"><td style="text-align: left" class="text-primary"><u>${pot}</u></td><td style="text-align: right">${formula.success.toFixed(2)}%</td></tr>`);
   }
 
+  document.getElementById('hasil-help').innerHTML = '<div class="card-alert alert alert-warning"><b>Tips:</b> Tap pot / success rate untuk melihat step</div>'
+
   document.getElementById('results').innerHTML = '<table style="width:100%" class="card-table table table-striped"><tr><th style="text-align: left">Potential</th><th style="text-align: right">Success Rate</th></tr>' + buffer.join('') + '</table>';
   show_details(result_keys[0]);
 }

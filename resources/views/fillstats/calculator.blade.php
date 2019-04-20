@@ -80,7 +80,7 @@
           <div class="card-header">
             <h3 class="card-title"> Hasil </h3>
           </div>
-
+          <div id="hasil-help"></div>
           <div class="o-auto" style="font-size:14px;font-weight:40p;height: 26rem">
             <div id="results">
             Hasil akan tampil disini
