@@ -43,7 +43,7 @@
                 </td>
 
               <td style="width:30%" class="p-3">
-                <img src="{{$list->picture()->first()->url}}" alt="" class="img rounded">
+                <img src="{{ $list->picture()->first()->url ?? to_img() }}" alt="" class="img rounded">
               </td>
             </tr>
             @empty

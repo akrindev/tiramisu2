@@ -100,8 +100,7 @@ class ScammerController extends Controller
             ->insert(public_path().'/img/up-on.png')
             ->save(public_path().'/uploads/'.$name);
 
-          $Cupload = new CUpload;
-          $up = $Cupload->upload(public_path().'/uploads/'.$name);
+          $up = app('cloudinary')->uploadImg(public_path().'/uploads/'.$name);
 
           unlink(public_path().'/uploads/'.$name);
 
