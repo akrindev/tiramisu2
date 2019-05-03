@@ -212,13 +212,7 @@ class ScammerController extends Controller
 
   public function comment($slug)
   {
-    $scam = Scammer::where('slug',$slug)->first();
-
-    if( ! $scam)
-    {
-      return redirect('/')->with('gagal', 'Thread tidak di temukan');
-    }
-
+    $scam = Scammer::where('slug',$slug)->firstOrFail();
 
     request()->validate([
     	'body'	=> 'required|min:5'
@@ -245,7 +239,7 @@ class ScammerController extends Controller
           fcm()->to([$scam->user->fcm->token])
             ->notification([
             	'title' => 'Post anda mendapat komentar',
-              	'body' => explode(' ',auth()->user()->name)[0] . ' Menjawab pada ' . $forum->judul,
+              	'body' => explode(' ',auth()->user()->name)[0] . ' Menjawab pada ' . $scam->judul,
               	'icon'	=> 'https://graph.facebook.com/'.auth()->user()->provider_id.'/picture?type=normal',
               	'click_action' => 'https://toram-id.info/scammer/r/'.$scam->slug
             ])
@@ -253,10 +247,8 @@ class ScammerController extends Controller
         }
     }
 
-    if($comment)
-    {
-      return back()->with('sukses_comment', 'Komentar di tambahkan');
-    }
+    return back()->with('sukses_comment', 'Komentar di tambahkan');
+
   }
 
   public function commentReply($slug)
