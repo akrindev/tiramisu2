@@ -13,7 +13,7 @@ class GalleryController extends Controller
 {
     public function index()
     {
-      $galleries = Gallery::latest()->paginate(20);
+      $galleries = Gallery::latest()->paginate(15);
 
       return view('gallery.index',[
       	'data'	=> $galleries
@@ -22,20 +22,18 @@ class GalleryController extends Controller
 
   	public function single($id)
     {
-      $img = Gallery::findOrFail($id);
+      $img = Gallery::with('comments')->findOrFail($id);
 
       $img->increment('views');
-      $comments = $img->comment;
 
       return view('gallery.single',[
-      	'pos' => $img,
-        'comments' => $comments
+      	'pos' => $img
       ]);
     }
 
   	public function myGallery()
     {
-      $galleries = auth()->user()->gallery()->latest()->paginate(20);
+      $galleries = auth()->user()->gallery()->latest()->paginate(15);
 
       return view('gallery.my_gallery',[
         'by'	=> auth()->user()->name,
@@ -152,7 +150,7 @@ class GalleryController extends Controller
       	'body'	=> 'required|min:5'
       ]);
 
-      $gallery->comment()->create([
+      $gallery->comments()->create([
         'user_id'	=> auth()->id(),
       	'body'	=> e(request()->body)
       ]);
@@ -163,7 +161,7 @@ class GalleryController extends Controller
           new GalleryCommented(
             'Mengomentari gambar ',
             $gallery,
-            $gallery->comment()->latest()->first())
+            $gallery->comments()->latest()->first())
         );
 
 

@@ -42,7 +42,7 @@
                     <div class="mr-3" style=""><img src="https://graph.facebook.com/{{$pos->user->provider_id}}/picture?type=normal" class="avatar avatar-md"></div>
                     <div>
                       <div><a href="/profile/{{$pos->user->provider_id}}">{{ $pos->user->name }}</a> </div>
-                      <small class="d-block text-muted">{{ $pos->created_at->diffForHumans() }} . <i class="fe fe-message-square"></i> {{ $pos->comment->count() }} <i class="fe fe-eye"></i> {{ $pos->views }} </small>
+                      <small class="d-block text-muted">{{ $pos->created_at->diffForHumans() }} . <i class="fe fe-message-square"></i> {{ $pos->comments->count() }} <i class="fe fe-eye"></i> {{ $pos->views }} </small>
                     </div>
                     </div>
                   <div class="my-2 body-text"> {!!
@@ -74,9 +74,9 @@
 
             <div class="row">
 
-     @if ($comments->count() > 0)
+     @if ($pos->comments->count() > 0)
       <div class="col-12">
-     	@foreach ($comments as $comment)
+     	@foreach ($pos->comments as $comment)
 
 		<div class="card p-0">
           <div class="card-body p-3">

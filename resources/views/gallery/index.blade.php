@@ -78,7 +78,7 @@
                       <div>{{ $pos->user->name }}  </div>
                       <small class="d-block text-muted">{{ $pos->created_at->diffForHumans() }} .
 
-                        <i class="fe fe-message-square"></i> {{ $pos->comment->count() }} <i class="fe fe-eye"></i> {{ $pos->views }}
+                        <i class="fe fe-message-square"></i> {{ $pos->comments->count() }} <i class="fe fe-eye"></i> {{ $pos->views }}
                      </small>
 
                     </div>
@@ -96,7 +96,9 @@
               </div>
         @endif
 
-              {{ $data->links() }}
+              <div class="col-12">
+              	{{ $data->links() }}
+              </div>
 
             </div>
 
