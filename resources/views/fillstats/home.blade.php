@@ -62,8 +62,13 @@
 
                 </div>
               </div>
-    @endif
-@endforeach
+           @if($loop->index % 7 === 0)
+              <div class="col-md-6 col-xl-4">
+                    @includeWhen(!app()->isLocal(), 'inc.ads_mobile')
+              </div>
+           @endif
+    	 @endif
+	@endforeach
 
 
    @endforeach
