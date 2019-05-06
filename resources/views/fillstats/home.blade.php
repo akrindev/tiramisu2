@@ -17,12 +17,6 @@
                 </div>
               </div>
               <!-- loop -->
-@php
-
- $fill = DB::table('fill_stats')->select('type','plus')->distinct()->get();
-  $fills = collect($fill)->sortBy('plus')->sortBy('type');
-
-@endphp
 
               <div class="col-12 mb-6">
  @foreach($fills as $fo)

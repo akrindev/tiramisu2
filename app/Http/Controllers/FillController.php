@@ -17,13 +17,14 @@ class FillController extends Controller
 
     public function index()
     {
-      $items = Fill_stat::get();
+      $data = Fill_stat::get()->sortBy('plus')
+        					  ->sortBy('type');
 
-        //->orderBy('plus','ASC')->orderBy('type','ASC');
-      $data = collect($items)->sortBy('plus')
-        						->sortBy('type');
+      $fills = Fill_stat::select(['type','plus'])->distinct()->get()
+        ->sortBy('plus')
+        ->sortBy('type');
 
-      return view('fillstats.home')->with('data',$data);
+      return view('fillstats.home', compact('data','fills'));
     }
 
 
