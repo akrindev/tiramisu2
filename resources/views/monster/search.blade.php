@@ -18,8 +18,11 @@
    @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
           @if($drops->count() == 0 && $monsters->count() == 0 && $maps->count() == 0)
         <div class="card">
-          <div class="card-body p-3" style="font-size:12px;font-weight:400">
-            <b>Pencarian <u>{{ $q }}</u> tidak di temukan.</b> <br> Barangkali kamu mencari <a href="/leveling">Toram leveling finder ?</a>
+          <div class="card-body p-3" style="font-size:15px;font-weight:400">
+            <b>Pencarian <u>{{ $q }}</u> tidak di temukan.</b>
+            <div class="my-3"></div>
+
+            Barangkali kamu mencari <b><a href="/leveling">Toram leveling finder ?</a></b>
             </div>
         </div>
           @endif
