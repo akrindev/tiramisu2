@@ -6,31 +6,32 @@
 @section('image',to_img())
 
 @section('content')
-        <div class="my-3 my-md-5">
-          <div class="container">
-  @include('inc.cari')
-            <div class="row">
-
-              <div class="col-12">
+<div class="my-3 my-md-5">
+  <div class="container">
+     @include('inc.cari')
+    <div class="row">
+      <div class="col-12">
                 <div class="alert alert-info">
                   <b>New!!</b> Fill stats calculator <a href="/fill_stats/calculator">Klik disini</a>
                 </div>
               </div>
-              <!-- loop -->
-
-              <div class="col-12 mb-6">
+      <div class="col-12 my-5">
  @foreach($fills as $fo)
-                <a href="/fill_stats/{{ $fo->type == 1 ? 'Armor':'Weapon'  }}/{{ $fo->plus }}" class="btn btn-sm btn-pill btn-secondary" onclick="event.preventDefault();document.getElementById('{{ $fo->type == 1 ? 'armor':'weapon'  }}{{ "+$fo->plus" }}').scrollIntoView();">
+         <a href="/fill_stats/{{ $fo->type == 1 ? 'Armor':'Weapon'  }}/{{ $fo->plus }}" class="btn btn-sm btn-pill btn-secondary" onclick="event.preventDefault();document.getElementById('{{ $fo->type == 1 ? 'armor':'weapon'  }}{{ "+$fo->plus" }}').scrollIntoView();">
                   {{ $fo->type == 1 ? 'Armor':'Weapon'  }}{{ " (+$fo->plus)" }}</a>
  @endforeach
-              </div>
+
+        <div class="m-3 text-center">
+          <small class="text-muted">Terdapat {{ $data->count() }} formula </small>
+        </div>
+       </div>
 
   @foreach($fills as $fl)
-              <div class="col-12">
-              <h1 class="page-title" id="{{ $fl->type == 1 ? 'armor':'weapon'  }}{{ "+$fl->plus" }}">
-                {{ $fl->type == 1 ? 'Armor':'Weapon'  }}{{ " (+$fl->plus)" }}
-              </h1>
-              </div>
+      <div class="col-12">
+        <h1 class="page-title" id="{{ $fl->type == 1 ? 'armor':'weapon'  }}{{ "+$fl->plus" }}">
+          {{ $fl->type == 1 ? 'Armor':'Weapon'  }}{{ " (+$fl->plus)" }}
+        </h1>
+      </div>
 
    	@foreach($data as $pos)
          @if($pos->type == $fl->type && $pos->plus == $fl->plus)
@@ -45,31 +46,28 @@
                     </div>
                   </div>
                   <div class="card-body">
-                 {!! nl2br((new Parsedown)->text(e($pos->steps))) !!}
+                 {!! nl2br(e($pos->steps)) !!}
                   </div>
 
-@if(Auth::check() && Auth::user()->role == 'admin')
+			@if(Auth::check() && Auth::user()->isAdmin())
                   <div class="card-footer">
                     <a href="/edit/{{ $pos->id }}/fillstats" class="btn btn-primary">edit</a>
                   </div>
- @endif
+            @endif
 
                 </div>
               </div>
            @if($loop->index % 7 === 0)
               <div class="col-md-6 col-xl-4">
-                    @includeWhen(!app()->isLocal(), 'inc.ads_mobile')
+                @includeWhen(!app()->isLocal(), 'inc.ads_mobile')
               </div>
            @endif
     	 @endif
 	@endforeach
 
-
    @endforeach
-
-              <!-- yeyy -->
-            </div>
-          </div>
+    </div>
+  </div>
 </div>
 
 @endsection
