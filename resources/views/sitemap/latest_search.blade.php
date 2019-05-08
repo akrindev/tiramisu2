@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title', 'Unique Search')
+@section('title', 'Pencarian Terakhir')
 @section('description', 'Pencarian terakhir, unique search by users')
 
 @section('image', to_img())

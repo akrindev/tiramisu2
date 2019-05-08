@@ -10,8 +10,8 @@ class SitemapController extends Controller
   	public function show()
     {
       $searchTotal = LogSearch::count();
-      $searches = LogSearch::distinct()->select('q')->paginate(250);
+      $searches = LogSearch::latest()->select('q')->paginate(250);
 
-      return view('sitemap.unique_search', compact('searches', 'searchTotal'));
+      return view('sitemap.latest_search', compact('searches', 'searchTotal'));
     }
 }
