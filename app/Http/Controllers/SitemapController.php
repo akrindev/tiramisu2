@@ -3,31 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Barang;
-use App\Crysta;
-use App\Forum;
-use App\Gallery;
-use App\Tag;
-use App\BgMusic;
+use App\LogSearch;
 
 class SitemapController extends Controller
 {
-    public function index()
+  	public function show()
     {
-      $barang = Barang::all();
-      $crysta = Crysta::all();
-      $forum = Forum::all();
-      $img = Gallery::all();
-      $tag = Tag::all();
-      $bgm = BgMusic::all();
+      $searchTotal = LogSearch::count();
+      $searches = LogSearch::distinct()->select('q')->paginate(250);
 
-      return response()->view('sitemap.index',[
-      	'equips' => $barang,
-        'crystas' => $crysta,
-        'forums' => $forum,
-        'images'	=> $img,
-        'tags' => $tag,
-        'bgm' => $bgm
-      ])->header('Content-Type', 'text/xml');
+      return view('sitemap.unique_search', compact('searches', 'searchTotal'));
     }
 }

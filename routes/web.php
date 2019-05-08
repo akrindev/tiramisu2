@@ -26,7 +26,7 @@ Route::prefix('/cooking')->group(function () {
   });
 });
 
-Route::get('/sitemap.xml', 'SitemapController@index');
+Route::get('/latest_search', 'SitemapController@show');
 Route::post('/send-token/fcm', 'UserController@sendToken');
 
 /**
