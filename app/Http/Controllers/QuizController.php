@@ -262,10 +262,7 @@ class QuizController extends Controller
 
       if(auth()->id() != $quiz->user_id)
       {
-        if(auth()->user()->role == 'member')
-        {
-        	return redirect('/')->with('gagal','Akses ditolak');
-        }
+        return redirect('/')->with('gagal','Akses ditolak');
       }
 
       request()->validate([
@@ -532,26 +529,14 @@ class QuizController extends Controller
   	public function destroy()
     {
       $quiz = Quiz::findOrFail(request()->id);
-
-      if(auth()->user()->role == 'member')
-      {
-      	return redirect('/')->with('gagal','Akses ditolak');       }
-
       $quiz->approved = request()->status;
+      $quiz->save();
 
-      if($quiz->save())
-      {
-        return response()->json(['success'=>true]);
-      }
+      return response()->json(['success'=>true]);
     }
 
   	public function admin()
     {
-      if(auth()->user()->role != 'admin')
-      {
-        return redirect('/')->with('gagal', 'Akses Ditolak');
-      }
-
       $quizzes = Quiz::latest()->paginate(20);
       $scores = QuizScore::get();
 

@@ -108,23 +108,45 @@ Route::middleware(['admin'])->group(function() {
 */
 Route::get('/search', 'MonsterController@search');
 Route::get('/leveling', 'LevelingController@show');
-
-Route::get('/monster', 'MonsterController@index');
-Route::get('/monster/{id}', 'MonsterController@showMons');
-Route::get('/monster/type/{name}', 'MonsterController@showMonsType');
-Route::get('/monster/unsur/{type}', 'MonsterController@showMonsEl');
-Route::get('/item/{id}', 'MonsterController@showItem');
-Route::get('/items/{id}', 'MonsterController@showItems');
 Route::get('/peta', 'MonsterController@index');
 Route::get('/peta/{id}', 'MonsterController@peta');
 
-Route::get('/monster/{id}/edit', 'MonsterController@editMons')->middleware('admin');
-Route::post('/monster/{id}/edit', 'MonsterController@editMobPost')->middleware('admin');
-Route::delete('/monster/{id}/hapus', 'MonsterController@monsHapus')->middleware('admin');
-Route::get('/item/{id}/edit', 'MonsterController@editItem')->middleware('admin');
-Route::post('/item/{id}/edit', 'MonsterController@editItemPost')->middleware('admin');
-Route::delete('/item/{id}/hapus', 'MonsterController@hapusItem')->middleware('admin');
+Route::prefix('monster')->group(function() {
+	Route::get('/', 'MonsterController@index');
+	Route::get('/{id}', 'MonsterController@showMons');
+	Route::get('/type/{name}', 'MonsterController@showMonsType');
+	Route::get('/unsur/{type}', 'MonsterController@showMonsEl');
 
+  	// admin route
+  	Route::middleware('admin')->group(function() {
+		Route::get('/{id}/edit', 'MonsterController@editMons');
+		Route::post('/{id}/edit', 'MonsterController@editMobPost');
+		Route::delete('/{id}/hapus', 'MonsterController@monsHapus');
+    });
+});
+
+
+/**
+* Item(s) routes
+*/
+
+Route::get('/items/{id}', 'MonsterController@showItems');
+
+Route::prefix('item')->group(function() {
+	Route::get('/{id}', 'MonsterController@showItem');
+
+  	// admin route
+  	Route::middleware('admin')->group(function() {
+		Route::get('/{id}/edit', 'MonsterController@editItem');
+		Route::post('/{id}/edit', 'MonsterController@editItemPost');
+		Route::delete('/{id}/hapus', 'MonsterController@hapusItem');
+    });
+});
+
+
+/**
+* Contribution routes
+*/
 Route::middleware(['auth'])->group(function() {
 	Route::get('/contribution/show', 'ContributionController@show');
   	Route::post('/contribution/edit', 'ContributionController@edit');
@@ -167,23 +189,24 @@ Route::middleware(['admin'])->group(function(){
 
 /*
 *
-* Admin page
+* Admin routes
 */
-Route::get('/admin', 'AdminController@home')->middleware(['admin']);
+Route::prefix('admin')->middleware('admin')->group(function(){
+    Route::get('/', 'AdminController@home');
+    Route::get('/users', 'AdminController@users');
+    Route::get('/last-login', 'AdminController@lastLogin');
+    Route::get('/searches', 'AdminController@logSearches');
+    Route::put('/change-user', 'AdminController@changeUser');
+    Route::post('/tagforum', 'AdminController@tagForum');
+    Route::get('/tagedit/{i}', 'AdminController@fetchTag');
+    Route::post('/editforum', 'AdminController@editTag');
+    Route::post('/taghapus', 'AdminController@tagHapus');
 
-Route::get('/admin/users', 'AdminController@users')->middleware(['admin']);
-Route::get('/admin/last-login', 'AdminController@lastLogin')->middleware(['admin']);
-Route::get('/admin/searches', 'AdminController@logSearches')->middleware(['admin']);
-Route::put('/admin/change-user', 'AdminController@changeUser')->middleware('admin');
-Route::post('/admin/tagforum', 'AdminController@tagForum')->middleware('admin');
-Route::get('/admin/tagedit/{i}', 'AdminController@fetchTag')->middleware('admin');
-Route::post('/admin/editforum', 'AdminController@editTag')->middleware('admin');
-Route::post('/admin/taghapus', 'AdminController@tagHapus')->middleware('admin');
-
-Route::post('/admin/catscam', 'AdminController@addKategoriScam')->middleware('admin');
-Route::get('/admin/scamedit/{i}', 'AdminController@fetchScam')->middleware('admin');
-Route::post('/admin/editscam', 'AdminController@editScam')->middleware('admin');
-Route::post('/admin/scamhapus', 'AdminController@hapusScam')->middleware('admin');
+    Route::post('/catscam', 'AdminController@addKategoriScam');
+    Route::get('/scamedit/{i}', 'AdminController@fetchScam');
+    Route::post('/editscam', 'AdminController@editScam');
+    Route::post('/scamhapus', 'AdminController@hapusScam');
+});
 
 /**
 * Forum Routes
@@ -257,34 +280,45 @@ Route::delete('/shop/delete', 'ShopController@delete')->middleware('auth');
 
 /**
 *
-* Quiz Toram
+* Quiz routes
 */
-Route::get('/quiz', 'QuizController@show');
-Route::get('/quiz/score', 'QuizController@allScores');
-Route::get('/quiz/mulai', 'QuizController@mulaiQuiz')->middleware('auth');
-Route::get('/quiz/begin', 'QuizController@kerjakan')->middleware('auth');
+Route::prefix('quiz')->group(function() {
+	Route::get('/', 'QuizController@show');
+	Route::get('/score', 'QuizController@allScores');
+	Route::get('/buat', 'QuizController@tambah');
+	Route::post('/cek-kode', 'QuizController@cekKode');
+	Route::get('/kode/{code}', 'QuizController@lihatKode');
 
-Route::get('/quiz/i/{id}', 'QuizController@ajax')->middleware('auth');
-Route::post('/quiz/save', 'QuizController@saveAnswer')->middleware('auth');
-Route::get('/ajax/terjawab', 'QuizController@ajaxTerjawab')->middleware('auth');
-Route::get('/quiz/koreksi', 'QuizController@koreksi')->middleware('auth');
-Route::get('/quiz/profile', 'QuizController@myProfile')->middleware('auth');
-Route::get('/quiz/edit/{id}', 'QuizController@edit')->middleware('auth');
-Route::post('/quiz/edit/{id}', 'QuizController@editSubmit')->middleware('auth');
-Route::post('/quiz/destroy', 'QuizController@destroy')->middleware('auth');
+  	// must be login
+  	Route::middleware('auth')->group(function() {
+    	Route::get('/mulai', 'QuizController@mulaiQuiz');
+		Route::get('/begin', 'QuizController@kerjakan');
 
-Route::get('/quiz/admin', 'QuizController@admin')->middleware('auth');
+      	Route::get('/kode/{code}/mulai', 'QuizController@ambilQuiz');
+        Route::get('/code/begin', 'QuizController@kerjakanByCode');
+        Route::get('/code/koreksi', 'QuizController@koreksiByCode');
 
-Route::get('/quiz/buat', 'QuizController@tambah');
-Route::post('/quiz/buat', 'QuizController@tambahSubmit')->middleware('auth');
-// quiz with code
-Route::get('/quiz/buat-kode', 'QuizController@buatKode')->middleware('auth');
-Route::post('/quiz/buat-kode', 'QuizController@buatKodePost')->middleware('auth');
-Route::post('/quiz/cek-kode', 'QuizController@cekKode');
-Route::get('/quiz/kode/{code}', 'QuizController@lihatKode');
-Route::get('/quiz/kode/{code}/mulai', 'QuizController@ambilQuiz')->middleware('auth');
-Route::get('/quiz/code/begin', 'QuizController@kerjakanByCode')->middleware('auth');
-Route::get('/quiz/code/koreksi', 'QuizController@koreksiByCode')->middleware('auth');
+		Route::get('/i/{id}', 'QuizController@ajax');
+        Route::post('/save', 'QuizController@saveAnswer');
+        Route::get('/ajax/terjawab', 'QuizController@ajaxTerjawab');
+        Route::get('/koreksi', 'QuizController@koreksi');
+        Route::get('/profile', 'QuizController@myProfile');
+		Route::post('/buat', 'QuizController@tambahSubmit');
+        Route::get('/edit/{id}', 'QuizController@edit');
+        Route::post('/edit/{id}', 'QuizController@editSubmit');
+
+
+        Route::get('/buat-kode', 'QuizController@buatKode');
+        Route::post('/buat-kode', 'QuizController@buatKodePost');
+    });
+
+  	// admin
+  	Route::middleware('admin')->group(function() {
+      Route::post('/destroy', 'QuizController@destroy');
+	  Route::get('/admin', 'QuizController@admin');
+    });
+});
+
 
 /**
 *

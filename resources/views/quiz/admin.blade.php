@@ -1,11 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title','My quiz')
-
-@php
-$a = $quiz->take(1)->sortByDesc('created_at')->first();
-@endphp
-
+@section('title','Admin quiz')
 
 @section('content')
 <div class="my-5">
@@ -57,10 +52,6 @@ $a = $quiz->take(1)->sortByDesc('created_at')->first();
               </tbody>
             </table>
           </div>
-          <div class="card-body p-3" style="font-size:14px;font-weight:400">
-            <strong> Terakhir di submit: </strong><span class="text-muted"> {{ $a->created_at->diffForHumans() }}</span><br>
-             <strong> Oleh: </strong><span class="text-muted"> {{ $a->user->name }}</span><br>
-          </div>
 
         </div>
       </div>
@@ -106,8 +97,8 @@ $a = $quiz->take(1)->sortByDesc('created_at')->first();
              </div>
 
              <div class="form-group mt-5">
-               <a href="/quiz/edit/{{$q->id}}" class="btn btn-secondary">edit</a>
-               {!! form_open('/quiz/destroy', ['id'=>'hapus']) !!}
+
+               {!! form_open('/quiz/destroy', ['class'=>'hapus']) !!}
                @csrf
 
                <input type="hidden" value="{{$q->id}}" name="id" nyan="{{$q->id}}">
@@ -138,9 +129,18 @@ $a = $quiz->take(1)->sortByDesc('created_at')->first();
 
 @section('footer')
 
+ <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css" />
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/index.js"></script>
+    <script type="text/javascript">
+        loadProgressBar();
+    </script>
 <script>
-  $("#hapus").submit(function(e){
+  let hapusq = document.querySelectorAll('.hapus');
+
+  for(let hapus of hapusq){
+	hapus.addEventListener('submit', (e) => {
   	e.preventDefault();
     swal({
     	title: 'Ubah status quiz ini?',
@@ -148,28 +148,17 @@ $a = $quiz->take(1)->sortByDesc('created_at')->first();
       	icon: 'warning',
       	buttons: true,
     }).then((gas) => {
-    	if(gas)
-          {
+    	if(gas){
             swal('mengubah');
-            $.ajax({
-            	url: $(this).attr('action'),
-              	type:'post',
-              	data: $(this).serialize(),
-              	success:function(e){
-                  swal('diubah ketika refresh');
-
-                },
-              	error: function(r,t,y)
-              {
-                swal(r);
-              }
-            });
-          }
-      else
-        {
+            axios.post('/quiz/destroy', new FormData(e.target))
+            .then(res => {
+            	swal('Diubah ketika refresh');
+            }).catch(e => swal(e));
+        }else{
           swal('aman gan!');
         }
     });
   });
+  }
 </script>
 @endsection

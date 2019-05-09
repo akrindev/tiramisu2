@@ -4,7 +4,7 @@
   $(".dimmer").addClass('active');
     $("#kerjakan").load('/quiz/i/1',function(){
     	$(".dimmer").removeClass('active');
-      	$("#terjawab").load('/ajax/terjawab');
+      	$("#terjawab").load('/quiz/ajax/terjawab');
     });
 
   function gantiSoal(i)
@@ -54,7 +54,7 @@
 
     }).always(function(){
     	$("#btn-simpan").html("Simpan");
-      	$("#terjawab").load('/ajax/terjawab');
+      	$("#terjawab").load('/quiz/ajax/terjawab');
     });
 
   });
