@@ -49,6 +49,23 @@
               </div>
             @endif
              </div>
+
+            <!-- details -->
+
+            <details>
+              <summary class="text-danger">
+                <strong> Bisa di peroleh dari... </strong>
+              </summary>
+
+              <div class="my-2">
+                @forelse($item->monsters as $monster)
+                <i class="fe fe-github mr-2"></i><a href="/monster/{{ $monster->id }}" class="mr-1">{{ $monster->name }}</a> <small><a class="text-muted" href="/peta/{{ $monster->map->id }}"> [{{ $monster->map->name }}]</a></small> <br >
+                @empty
+                  -- Tidak di ketahui --
+                @endforelse
+              </div>
+            </details>
+
             </div>
         </div>
        @endforeach

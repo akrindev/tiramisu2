@@ -68,7 +68,10 @@ class MonsterController extends Controller
       	'q'			=> $q
     ]);
 
-    $drops = Drop::where('name','like','%'.$q.'%')
+    $drops = Drop::with(['monsters' => function($q){
+    	return $q->with('map');
+    }])
+      ->where('name','like','%'.$q.'%')
       			->orderBy('name')
       			->get();
 
@@ -273,7 +276,9 @@ class MonsterController extends Controller
   public function showItems($id)
   {
     $type = DropType::findOrFail($id);
-    $data = $type->drop()->orderByDesc('id')->paginate(25);
+    $data = $type->drop()->with(['monsters' => function($q){
+    	return $q->with('map');
+    }])->orderByDesc('id')->paginate(25);
 
     return view('monster.items', compact('type', 'data'));
   }
