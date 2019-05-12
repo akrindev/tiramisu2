@@ -15,6 +15,17 @@ Route::get('/', function () {
 });
 Route::view('/cb', 'cb');
 
+// dye routes
+Route::prefix('dye')->group(function() {
+	Route::get('/', 'DyeController@home');
+
+  	Route::middleware('admin')->group(function() {
+    	Route::get('store', 'DyeController@store');
+    	Route::post('store', 'DyeController@storeDye');
+      	Route::delete('delete', 'DyeController@delete');
+    });
+});
+
 Route::prefix('/cooking')->group(function () {
   Route::get('/', 'CookingController@index');
 
