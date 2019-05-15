@@ -14,7 +14,9 @@ class DyeController extends Controller
       $dyes = MonthlyDye::with([
         'monster', 'dye'
       ])->whereMonth('created_at', now()->month)
-        ->whereYear('created_at', now()->year)->get();
+        ->whereYear('created_at', now()->year)
+        ->get()
+        ->sortBy('monster.name');
 
       $dyes->map(function($item) {
       	$item->monster->name = explode('(', $item->monster->name)[0];
