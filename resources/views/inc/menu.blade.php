@@ -82,6 +82,7 @@
 
       <div class="d-block col-12 mb-5"></div>
 
+      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/dye">Dye Bulanan</a> </span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/peta">Peta</a> </span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/skill">Skill List</a></span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/refine">Refine Guide</a></span>
