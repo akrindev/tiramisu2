@@ -45,7 +45,10 @@ Warna senjata berubah-ubah pada tanggal pertama setiap bulannya.
           </thead>
           @forelse($dyes as $dye)
           <tr>
-            <td class="p-2"> {{ $dye->monster->name }} @auth @if(auth()->user()->isAdmin()) [<a href="#" class="dd" data-id="{{ $dye->id }}">hapus</a>] @endif @endauth</td>
+            <td class="p-2"> <div><a href="/monster/{{ $dye->monster->id }}">{{ $dye->monster->name }}</a></div>
+
+              @auth @if(auth()->user()->isAdmin()) <br>[<a href="#" class="dd text-danger" data-id="{{ $dye->id }}">hapus</a>] @endif @endauth
+              </td>
             <td class="p-2" {!! $dye->type == 'a' ? "style='color:white;text-shadow:0 0 8px black, 0 0 4px blue;text-align:center;background:#{$dye->dye->hex}'" : '' !!}> {{ $dye->type == 'a' ? $dye->dye->color : '' }}</td>
             <td class="p-2" {!! $dye->type == 'b' ? "style='color:white;text-shadow:0 0 8px black, 0 0 4px blue;text-align:center;background:#{$dye->dye->hex}'" : '' !!}> {{ $dye->type == 'b' ? $dye->dye->color : '' }}</td>
           	<td class="p-2" {!! $dye->type == 'c' ? "style='color:white;text-shadow:0 0 8px black, 0 0 4px blue;text-align:center;background:#{$dye->dye->hex}'" : '' !!}> {{ $dye->type == 'c' ? $dye->dye->color : '' }}</td>
