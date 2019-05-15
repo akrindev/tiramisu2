@@ -23,6 +23,7 @@ $let = 0;
         <div class="card-header">
           <h3 class="card-title"> Dye bulan {{ now()->formatLocalized('%B %Y') }} </h3>
         </div>
+        @includeWhen(!app()->isLocal(), 'inc.ads_article')
         <div class="card-body p-3" style="font-size:14px;font-weight:400">
           Kamu bisa mendapatkan senjata berwarna (Weapon dye) pada tingkat kesulitan Nightmare atau Ultimate mode.
 di mode Nightmare senjata tidak bisa di trade, sedangkan di mode Ultimate senjata sudah auto craft dari boss battle. shield dye juga drop di mode Nightmare atau Ultimate.
