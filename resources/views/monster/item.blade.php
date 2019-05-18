@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title', 'Toram ' . $item->name)
+@section('title', $item->name)
 @section('description', $item->name . ': ' . strip_tags(trim($item->note)) ?? '' )
 @section('image', !is_null($item->picture) ? asset($item->picture) : to_img())
 
@@ -8,7 +8,7 @@
 <div class="my-5">
   <div class="container">
     <div class="page-header">
-      <h1 class="page-title">Toram {{ $item->name }}</h1>
+      <h1 class="page-title">{{ $item->name }}</h1>
     </div>
 
     <div class="row">

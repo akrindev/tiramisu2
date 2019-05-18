@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title', 'Toram '. $data->name . ' (Lv '. $data->level .')')
+@section('title', $data->name . ' (Lv '. $data->level .')')
 @section('image', !is_null($data->picture) ? '/'.$data->picture : to_img())
 
 @section('content')

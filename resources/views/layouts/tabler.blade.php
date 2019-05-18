@@ -34,45 +34,45 @@
 
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 
-    <title>@yield('title') | Toram</title>
+    <title>@yield('title') | Toram Online</title>
 
-<!-- open graph -->
-<meta property="og:url" content="{{ url()->current() }}" />
-<meta property="og:type" content="article" />
-<meta content='Toram Online Indonesia' property='og:site_name'/>
-<meta property="og:title" content="@yield('title')" />
-<meta property="og:description" content="@yield('description')" />
-<meta property="og:image" content="@yield('image')" />
-<meta property="fb:app_id" content="2008283499456981"/>
+    <!-- open graph -->
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:type" content="article" />
+    <meta content='Toram Online Indonesia' property='og:site_name'/>
+    <meta property="og:title" content="@yield('title')" />
+    <meta property="og:description" content="@yield('description')" />
+    <meta property="og:image" content="@yield('image')" />
+    <meta property="fb:app_id" content="2008283499456981"/>
 
-<!-- // open graph -->
-<meta name="google-site-verification" content="da3qNV1VnD0nhZNfFMx3Ov_6dnyvYMlUT7OChWqSbmY" />
-<meta name="description" content="@yield('description')">
-<meta name='language' content='id_id'/>
-<meta name='robots' content='all,index,follow'/>
-<meta content='follow, all' name='alexabot'/>
-<meta content='id' name='language'/>
-<meta content='Indonesia' name='geo.placename'/>
-<meta content='global' name='target'/>
-<meta content='Indonesia' name='geo.country'/>
-<meta content='all' name='googlebot'/>
-<meta content='all' name='msnbot'/>
-<meta content='all' name='Googlebot-Image'/>
-<meta content='all' name='Slurp'/>
-<meta content='all' name='ZyBorg'/>
-<meta content='all' name='Scooter'/>
-<meta content='ALL' name='spiders'/>
-<meta content='general' name='rating'/>
-<meta content='all' name='WEBCRAWLERS'/>
+    <!-- // open graph -->
+    <meta name="google-site-verification" content="da3qNV1VnD0nhZNfFMx3Ov_6dnyvYMlUT7OChWqSbmY" />
+    <meta name="description" content="@yield('description')">
+    <meta name='language' content='id_ID'/>
+    <meta name='robots' content='all,index,follow'/>
+    <meta content='follow, all' name='alexabot'/>
+    <meta content='id' name='language'/>
+    <meta content='Indonesia' name='geo.placename'/>
+    <meta content='global' name='target'/>
+    <meta content='Indonesia' name='geo.country'/>
+    <meta content='all' name='googlebot'/>
+    <meta content='all' name='msnbot'/>
+    <meta content='all' name='Googlebot-Image'/>
+    <meta content='all' name='Slurp'/>
+    <meta content='all' name='ZyBorg'/>
+    <meta content='all' name='Scooter'/>
+    <meta content='ALL' name='spiders'/>
+    <meta content='general' name='rating'/>
+    <meta content='all' name='WEBCRAWLERS'/>
 
 
-<script type='application/ld+json'>
-{
-	 "@context": "http://schema.org",
-	 "@type": "WebSite",
-	 "url": "{{ url('/') }}"
- }
-</script>
+    <script type='application/ld+json'>
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "{{ url('/') }}"
+    }
+    </script>
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -81,21 +81,21 @@
     <!-- Dashboard Core -->
     <link href="/assets/css/app.min.css" rel="stylesheet" />
     <script src="/assets/js/jquery.min.js"></script>
-     <script src="/assets/js/core.js"></script>
+    <script src="/assets/js/core.js"></script>
 
 @auth
     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
-     <script src="/assets/js/fcm.js"></script>
+    <script src="/assets/js/fcm.js"></script>
 @endauth
 
     <script>
-if('serviceWorker' in navigator)
-{
-  navigator.serviceWorker.register('/sw.js')
-    .then(function() {
-    console.log('Service Worker Registered');
-  });
-}
+      if('serviceWorker' in navigator)
+      {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function() {
+          console.log('Service Worker Registered');
+        });
+      }
     </script>
 
     @yield('head')
@@ -105,7 +105,6 @@ if('serviceWorker' in navigator)
     @includeWhen(env('APP_ENV') === 'production', 'inc.ads')
   </head>
 
-
   <body class="">
     <div class="page">
       <div class="page-main">
@@ -113,7 +112,7 @@ if('serviceWorker' in navigator)
           <div class="container">
             <div class="d-flex">
               <a class="header-brand" href="/">
-                <img src="/img/potum.png" class="header-brand-img lazyload" alt="Toram-id.info logo"> Toram
+                <img src="/img/potum.png" class="header-brand-img lazyload" alt="Toram-id.info logo"> Toram Online
               </a>
               <div class="d-flex order-lg-2 ml-auto">
 @guest
