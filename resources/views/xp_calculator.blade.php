@@ -56,7 +56,7 @@
     </div>
 
     <div class="form-group form-group-sm col-md-4 col-xs-6">
-      <label>Level Persen sekarang (%) <small class="text-muted">(1-99%)</small> </label>
+      <label>Level Persen sekarang (%) <small class="text-muted">(0-100%)</small> </label>
       <input type="number" id="lvperc" class="form-control" value="1">
       <div class="help-block"></div>
     </div>

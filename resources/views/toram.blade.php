@@ -7,6 +7,19 @@
 
 @section('content')
 
+      @if(session('sukses'))
+                  <div class="card-alert alert alert-success mb-0">
+                    {{ session('sukses') }}
+                  </div>
+
+      @endif
+      @if(session('gagal'))
+                  <div class="card-alert alert alert-danger mb-0">
+                    {{ session('gagal') }}
+                  </div>
+
+      @endif
+
         <div class="my-8">
           <div class="container">
   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
@@ -22,21 +35,6 @@
          </div>
        </div>
 
-
-      @if(session('sukses'))
-                  <div class="card-alert alert alert-success mb-0">
-                    {{ session('sukses') }}
-                  </div>
-            <hr>
-      @endif
-
-
-      @if(session('gagal'))
-                  <div class="card-alert alert alert-danger mb-0">
-                    {{ session('gagal') }}
-                  </div>
-            <hr>
-      @endif
 
       </div>
     </div>
