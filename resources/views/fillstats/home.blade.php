@@ -1,8 +1,8 @@
 @extends('layouts.tabler')
 
 
-@section('title','Toram Fillstats Formula +13 +14 +15 +16 full list')
-@section('description','Toram Fillstats Formula full list, Armor, senjata +16, +15, +14, +13')
+@section('title','Toram Fillstats Formula +16 +17 +18 full list')
+@section('description','Toram Fillstats Formula full list, Armor, senjata +17, +18, dst')
 @section('image',to_img())
 
 @section('content')
@@ -25,7 +25,12 @@
           <small class="text-muted">Terdapat {{ $data->count() }} formula </small>
         </div>
        </div>
-
+      <div id="filload" class="col-12 text-center">
+        <span class="h1 text-center">
+      	<i class="fa fa-spinner fa-spin"></i> loading...
+        </span>
+      </div>
+      <div id="filler" class="d-none">
   @foreach($fills as $fl)
       <div class="col-12">
         <h1 class="page-title" id="{{ $fl->type == 1 ? 'armor':'weapon'  }}{{ "+$fl->plus" }}">
@@ -67,7 +72,17 @@
 
    @endforeach
     </div>
+    </div>
   </div>
 </div>
 
+@endsection
+
+@section('head')
+<script>
+  $('#filler').ready(function() {
+ 	$("#filload").remove();
+    $("#filler").removeClass('d-none');
+  });
+</script>
 @endsection
