@@ -29,6 +29,22 @@
         <span class="h1 text-center">
       	<i class="fa fa-spinner fa-spin"></i> loading...
         </span>
+        <small id="cd" class="text-muted d-block"></small>
+        <script>
+          var c = 20;
+          var s;
+
+          s = setInterval(function(){
+
+          $("#cd").html(c + ' detik');
+          c--;
+
+          if(c < 0) {
+            clearInterval(s);
+            $("#cd").html('internet terlalu lambat!<br>Tunggu... halaman akan segera dimuat!!')
+           }
+          }, 1000);
+        </script>
       </div>
       <div id="filler" class="d-none">
   @foreach($fills as $fl)
