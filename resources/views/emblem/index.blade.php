@@ -5,6 +5,18 @@
 @section('image', to_img())
 
 @section('content')
+
+    @if(session('sukses'))
+      <div class="card-alert alert alert-success mb-0">
+         {{ session('sukses') }}
+      </div>
+    @endif
+    @if(session('gagal'))
+      <div class="card-alert alert alert-danger mb-0">
+         {{ session('gagal') }}
+      </div>
+    @endif
+
 <div class="my-5">
   <div class="container">
   <div class="page-header">

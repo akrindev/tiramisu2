@@ -66,4 +66,12 @@ class EmblemController extends Controller
 
     return view('emblem.reward', compact('emblems', 'rewardName'));
   }
+
+  public function hapus($id)
+  {
+    $emblem = EmblemList::findOrFail($id);
+    $emblem->delete();
+
+    return redirect('/prestasi')->with('sukses', 'Data telah di hapus!');
+  }
 }

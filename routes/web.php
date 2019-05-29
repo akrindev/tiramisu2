@@ -362,6 +362,7 @@ Route::middleware('admin')->group(function() {
   Route::post('/prestasi/add', 'EmblemController@store');
   Route::get('/prestasi/{id}/edit', 'EmblemController@edit');
   Route::put('/prestasi/{id}/edit', 'EmblemController@editPost');
+  Route::delete('/prestasi/{id}/hapus', 'EmblemController@hapus');
 });
 
 Route::get('/prestasi', 'EmblemController@index');

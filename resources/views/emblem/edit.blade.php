@@ -49,9 +49,15 @@
           </div>
 
           <div class="form-group">
-            <button type="submit" class="btn btn-outline-primary" id="tambah">tambah</button>
+            <button type="submit" class="btn btn-outline-primary" id="tambah">Ubah</button> <button class="btn btn-outline-danger" id="hapus">Hapus</button>
           </div>
 
+        </form>
+
+
+        <form id="hapus-emblem" method="post" action="/prestasi/{{ $emb->id }}/hapus">
+          @csrf
+          @method('DELETE')
         </form>
 
       </div>
@@ -97,7 +103,9 @@
 <script>
 (function() {
   let form = document.getElementById('adit-emblem'),
-      btn = document.getElementById("tambah");
+      del = document.getElementById('hapus-emblem'),
+      btn = document.getElementById("tambah"),
+      hapus = document.getElementById('hapus');
 
   form.addEventListener('submit', (e) => {
   	e.preventDefault();
@@ -120,6 +128,22 @@
         }
       btn.classList.remove('btn-loading')
     }).catch(e => alert(e));
+  });
+
+  hapus.addEventListener('click', (e) => {
+  	e.preventDefault();
+
+    swal({
+    	title: 'Hapus data ini?',
+      	text: 'Data akan di hapus permanen!',
+      	icon: 'warning',
+      	buttons: true
+    }).then(r => {
+    	if(r) {
+          del.submit();
+        }
+    }).catch(e => alert(e));
+
   });
 })();
 </script>
