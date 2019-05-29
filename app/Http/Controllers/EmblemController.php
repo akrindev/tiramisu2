@@ -47,7 +47,7 @@ class EmblemController extends Controller
 
   public function index()
   {
-    $emblems = Emblem::get();
+    $emblems = Emblem::orderBy('id')->get();
 
     return view('emblem.index', compact('emblems'));
   }
