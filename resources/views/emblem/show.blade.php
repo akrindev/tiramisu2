@@ -47,7 +47,7 @@ Cara melihat prestasi. <br> "Menu" &gt; "Karakter" &gt; "Prestasi"
         </div>
         <div class="card-body p-3">
           <div class="mb-5">
-          <b>Tampilkan reward: </b> <a href="/prestasi/reward/orb">Orb</a>, <a href="/prestasi/reward/karcis kostum">Karcis Kostum</a>, <a href="/prestasi/reward/stat point">Stat Point</a>, <a href="/prestasi/reward/skill point">Skill Point</a>, <a href="/prestasi/reward/exp gain">EXP Gain</a>, <a href="/prestasi/reward/spina">Spina</a>
+          <b>Tampilkan reward: </b> <a href="/prestasi/reward/orb">Orb</a>, <a href="/prestasi/reward/karcis kostum">Karcis Kostum</a>, <a href="/prestasi/reward/stat point">Stat Point</a>, <a href="/prestasi/reward/skill point">Skill Point</a>, <a href="/prestasi/reward/exp gain">EXP Gain</a>, <a href="/prestasi/reward/spina">Spina</a>, <a href="/prestasi/reward/ruang tokoh">Ruang Tokoh</a>
           </div>
           @foreach((new App\Emblem)->orderBy('id')->get() as $emb)
           <div class="mb-1">
