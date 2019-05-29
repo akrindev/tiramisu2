@@ -1,19 +1,19 @@
 @extends('layouts.tabler')
 
-@section('title', 'Toram List Emblem / Prestasi: ' . $emblems->name)
-@section('description', 'List of emblems Toram Online, Daftar Prestasi main toram online')
+@section('title', 'Hadiah Prestasi: ' . $rewardName)
+@section('description', 'List of emblems Toram Online, Daftar Prestasi ' . $rewardName )
 @section('image', to_img())
 
 @section('content')
 <div class="my-5">
   <div class="container">
   <div class="page-header">
-    <h3 class="page-title">List Prestasi / Emblem: {{ $emblems->name }}</h3>
+    <h3 class="page-title">Hadiah Prestasi: <i>{{ $rewardName }}</i></h3>
   </div>
 
     <div class="row">
       <div class="col-md-8">
-      @forelse($emblems->child as $emblem)
+      @forelse($emblems as $emblem)
         <div class="card">
           <div class="card-body p-3">
           <img src="/img/prestasi.png" class="avatar avatar-sm"> <b class="text-primary h5 ml-2">{{ ucfirst($emblem->name) }}</b>
@@ -22,14 +22,14 @@
             @endif
             <br>
            <span> {{ $emblem->body }} </span> <br>
-           <b>Reward:</b> <i class="text-success"> {{ $emblem->reward }} </i>
-
+           <b>Reward:</b> <i class="text-success"> {{ $emblem->reward }} </i> <br>
+            <b>Kategori Prestasi: </b> <a href="/prestasi/{{ $emblem->emblem->id }}">{{ $emblem->emblem->name }}</a>
           </div>
         </div>
       @empty
         <div class="card">
           <div class="card-body">
-            -- Kosong --
+            -- Tidak di temukan --
           </div>
         </div>
       @endforelse

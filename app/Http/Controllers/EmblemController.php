@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Emblem;
 use App\EmblemList;
 
@@ -46,15 +47,23 @@ class EmblemController extends Controller
 
   public function index()
   {
-    $emblems = Emblem::all();
+    $emblems = Emblem::get();
 
     return view('emblem.index', compact('emblems'));
   }
 
   public function show($id)
   {
-    $emblems = Emblem::findOrFail($id);
+    $emblems = Emblem::with('child')->findOrFail($id);
 
     return view('emblem.show', compact('emblems'));
+  }
+
+  public function byReward($name)
+  {
+    $rewardName = Str::title($name);
+    $emblems = EmblemList::with('emblem')->where('reward', 'like', '%'.$name.'%')->get();
+
+    return view('emblem.reward', compact('emblems', 'rewardName'));
   }
 }

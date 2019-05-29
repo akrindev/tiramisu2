@@ -363,8 +363,11 @@ Route::middleware('admin')->group(function() {
   Route::get('/prestasi/{id}/edit', 'EmblemController@edit');
   Route::put('/prestasi/{id}/edit', 'EmblemController@editPost');
 });
+
 Route::get('/prestasi', 'EmblemController@index');
 Route::get('/prestasi/{id}', 'EmblemController@show');
+Route::get('/prestasi/reward/{name}', 'EmblemController@byReward');
+
 
 Route::prefix('webview')->group(function() {
   	Route::view('/eq', 'webview.monster.menu_eq');
