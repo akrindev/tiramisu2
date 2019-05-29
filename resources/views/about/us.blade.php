@@ -16,7 +16,7 @@
       <div class="col-md-8">
       <div class="card">
         <div class="card-body p-3" style="font-size:13px;font-weight:400">
-          {!! nl2br((new \Parsedown)->text(e($data->body))) !!}
+          @parsedown(e($data->body))
         </div>
       </div>
       </div>
