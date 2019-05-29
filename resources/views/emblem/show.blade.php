@@ -23,6 +23,10 @@
             <br>
            <span> {{ $emblem->body }} </span> <br>
            <b>Reward:</b> <i class="text-success"> {{ $emblem->reward }} </i>
+            @if(!is_null($emblem->update))
+            <br>
+            <b>Update: </b> {{ $emblem->update }}
+           @endif
 
            @auth
             @if(auth()->user()->isAdmin())

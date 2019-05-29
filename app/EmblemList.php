@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class EmblemList extends Model
 {
   protected $fillable = [
-  	'name', 'body', 'reward'
+  	'name', 'body', 'reward', 'update'
   ];
 
   public function emblem()

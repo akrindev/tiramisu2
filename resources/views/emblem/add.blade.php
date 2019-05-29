@@ -47,6 +47,12 @@
             <input type="text" name="reward" class="form-control" required>
           </div>
 
+
+          <div class="form-group">
+            <label class="form-label">Update</label>
+            <input type="date" name="update" class="form-control">
+          </div>
+
           <div class="form-group">
             <button type="submit" class="btn btn-outline-primary" id="tambah">tambah</button>
           </div>

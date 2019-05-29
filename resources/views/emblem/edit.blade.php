@@ -48,6 +48,12 @@
             <input type="text" name="reward" class="form-control" value="{{ $emb->reward }}" required>
           </div>
 
+
+          <div class="form-group">
+            <label class="form-label">Update</label>
+            <input type="date" name="update" class="form-control" value="{{ $emb->update }}">
+          </div>
+
           <div class="form-group">
             <button type="submit" class="btn btn-outline-primary" id="tambah">Ubah</button> <button class="btn btn-outline-danger" id="hapus">Hapus</button>
           </div>

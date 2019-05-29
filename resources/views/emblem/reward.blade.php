@@ -24,6 +24,10 @@
            <span> {{ $emblem->body }} </span> <br>
            <b>Reward:</b> <i class="text-success"> {{ $emblem->reward }} </i> <br>
             <b>Kategori Prestasi: </b> <a href="/prestasi/{{ $emblem->emblem->id }}">{{ $emblem->emblem->name }}</a>
+           @if(!is_null($emblem->update))
+            <br>
+            <b>Update: </b> {{ $emblem->update }}
+           @endif
 
            @auth
             @if(auth()->user()->isAdmin())

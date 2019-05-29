@@ -20,7 +20,8 @@ class EmblemController extends Controller
     $emblem->child()->create([
     	'name'	=> request('name'),
       	'body'	=> request('body'),
-      	'reward'=> request('reward')
+      	'reward'=> request('reward'),
+      	'update'=> request('update')
     ]);
 
     return response()->json(['success' => true]);
@@ -40,6 +41,7 @@ class EmblemController extends Controller
     $emb->name = request('name');
     $emb->body = request('body');
     $emb->reward = request('reward');
+    $emb->update = request('update');
     $emb->save();
 
     return response()->json(['success' => true, 'id' => $emb->emblem_id]);
