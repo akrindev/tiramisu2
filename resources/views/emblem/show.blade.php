@@ -24,6 +24,12 @@
            <span> {{ $emblem->body }} </span> <br>
            <b>Reward:</b> <i class="text-success"> {{ $emblem->reward }} </i>
 
+           @auth
+            @if(auth()->user()->isAdmin())
+            <br>
+            Dibuat/Diubah: <small class="text-muted">{{ $emblem->created_at ?? '-' }} / {{ $emblem->updated_at ?? '-' }} </small>
+            @endif
+           @endauth
           </div>
         </div>
       @empty

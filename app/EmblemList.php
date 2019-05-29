@@ -10,8 +10,6 @@ class EmblemList extends Model
   	'name', 'body', 'reward'
   ];
 
-  public $timestamps = false;
-
   public function emblem()
   {
     return $this->belongsTo(Emblem::class);
