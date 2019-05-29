@@ -8,7 +8,7 @@
 <div class="my-5">
   <div class="container">
   <div class="page-header">
-    <h3 class="page-title">Hadiah Prestasi: <i>{{ $rewardName }}</i></h3>
+    <h3 class="page-title">Hadiah Prestasi: <i>{{ $rewardName }} ({{ $emblems->count() }} prestasi)</i></h3>
   </div>
 
     <div class="row">
