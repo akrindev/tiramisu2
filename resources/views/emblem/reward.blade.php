@@ -26,7 +26,7 @@
             <b>Kategori Prestasi: </b> <a href="/prestasi/{{ $emblem->emblem->id }}">{{ $emblem->emblem->name }}</a>
            @if(!is_null($emblem->update))
             <br>
-            <b>Update: </b> {{ $emblem->update }}
+            <b>Update: </b> {{ \Carbon\Carbon::parse($emblem->update)->format("d M Y") }}
            @endif
 
            @auth
