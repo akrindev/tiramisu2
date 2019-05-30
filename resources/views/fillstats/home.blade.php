@@ -9,7 +9,7 @@
 <div class="my-3 my-md-5">
   <div class="container">
      @include('inc.cari')
-    <div class="row">
+    <div class="row" id="filler">
       <div class="col-12">
                 <div class="alert alert-info">
                   <b>New!!</b> Fill stats calculator <a href="/fill_stats/calculator">Klik disini</a>
@@ -46,7 +46,7 @@
           }, 1000);
         </script>
       </div>
-      <div id="filler" class="d-none">
+
   @foreach($fills as $fl)
       <div class="col-12">
         <h1 class="page-title" id="{{ $fl->type == 1 ? 'armor':'weapon'  }}{{ "+$fl->plus" }}">
@@ -88,7 +88,7 @@
 
    @endforeach
     </div>
-    </div>
+
   </div>
 </div>
 
@@ -98,7 +98,6 @@
 <script>
   $('#filler').ready(function() {
  	$("#filload").remove();
-    $("#filler").removeClass('d-none');
   });
 </script>
 @endsection
