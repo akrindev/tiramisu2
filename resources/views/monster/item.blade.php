@@ -55,7 +55,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="from-quest-tab" data-toggle="tab" href="#from-quest" role="tab" aria-controls="from-quest" aria-selected="false">Dari Quest
+              <a class="nav-link" id="from-quest-tab" data-toggle="tab" href="#from-quest" role="tab" aria-controls="from-quest" aria-selected="false">Dari quest
               @if ($item->fromQuest->count() > 0)
               <span class="nav-unread"></span>
               @endif
