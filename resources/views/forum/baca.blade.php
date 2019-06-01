@@ -2,7 +2,7 @@
 
 
 @section('title',$data->judul)
-@section('description',str_limit(strip_tags((new Parsedown)->text($data->body),140)))
+@section('description',str_limit(strip_tags(toHtml($data->body))))
 @section('image',to_img($data->body))
 
 @section('content')

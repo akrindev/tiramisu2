@@ -1,7 +1,7 @@
 @extends('layouts.tabler')
 
 @section('title', strip_tags($pos->body))
-@section('description', strip_tags($pos->body))
+@section('description', strip_tags(toHtml($pos->body)))
 @section('image',$pos->gambar)
 @section('content')
 <style>
