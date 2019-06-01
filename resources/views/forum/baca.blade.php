@@ -78,12 +78,15 @@ $tags = explode(',', $tags);
               @endforeach
             </div>
             <div class="body-text">
+		@if(strlen(strip_tags((toHtml($data->body)))) > 100)
+ 			@includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+        @else
+  			@includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+        @endif
 
- @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+            {{ toHtml($data->body) }}
 
-            @parsedown(e($data->body))
-
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+  			@includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 
            <div class="my-3">
              {!! form_open('/',["id"=>"likeme"]) !!}

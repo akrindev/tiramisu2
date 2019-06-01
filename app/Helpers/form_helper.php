@@ -1,5 +1,7 @@
 <?php
 
+use App\Helpers\ConverterText;
+
 
 if ( ! function_exists('waktu'))
 	{
@@ -466,4 +468,16 @@ if ( ! function_exists('parse_form_attributes'))
 	}
 
 	//--------------------------------------------------------------------
+}
+
+// convert to html
+if(! function_exists('toHtml'))
+{
+  function toHtml($text, $nl2br = false)
+  {
+    $converter = new ConverterText;
+    $output = $converter->text($text, $nl2br);
+
+    return $output;
+  }
 }

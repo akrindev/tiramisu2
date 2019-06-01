@@ -44,7 +44,7 @@
 
             @if(! is_null($item->note))
               <div class="col-md-9 my-1">
-                @parsedown(nl2br(e($item->note)))
+                {{ toHtml($item->note, true) }}
               </div>
             @endif
              </div>
