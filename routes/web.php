@@ -398,3 +398,18 @@ Route::prefix('webview')->group(function() {
 
     Route::get('/search', 'WebView\MonsterController@search');
 });
+
+
+// Mails
+Route::prefix('email')->middleware('admin')->group(function(){
+	Route::view('write', 'emails.write');
+  	// send email to specific user
+  	Route::post('send', 'SendMailController@mailToUser');
+ 	// send to all users
+  	Route::post('sendtoall', 'SendMailController@mailToAllUser');
+
+  	Route::get('user_emails', 'SendMailController@hasEmail');
+  	Route::view('history', 'emails.history');
+  	Route::get('baca/{id}', 'SendMailController@getLog');
+  	Route::get('log', 'SendMailController@logMail');
+});

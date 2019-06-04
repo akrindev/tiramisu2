@@ -27,6 +27,9 @@
         <a href="/edit-tentang" class="btn btn-sm mb-2">Edit About Us</a>
         <a href="/dye/store" class="btn btn-sm mb-2">Tambah info dye bulanan</a>
 
+        <a href="/email/write" class="btn btn-sm mb-2">Kirim pesan email</a>
+
+        <a href="/email/history" class="btn btn-sm mb-2">Baca email terkirim</a>
       </div>
     </div>
 
