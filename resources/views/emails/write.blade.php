@@ -46,7 +46,7 @@
                           </div>
                         </div>
                       </div>
-                      <textarea rows="10" name="body" class="form-control" required></textarea>
+                      <textarea rows="10" name="body" class="form-control" data-provide="markdown" required></textarea>
                       <div class="btn-list mt-4 text-right">
                         <button type="submit" class="btn btn-primary btn-space">Send message</button>
                       </div>
@@ -70,7 +70,7 @@
                           </div>
                         </div>
                       </div>
-                      <textarea rows="10" name="body" class="form-control" required></textarea>
+                      <textarea rows="10" name="body" class="form-control" data-provide="markdown" required></textarea>
                       <div class="btn-list mt-4 text-right">
                         <button type="submit" class="btn btn-primary btn-space">Send message</button>
                       </div>
@@ -88,6 +88,13 @@
 @section('head')
  <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css" />
 <script src="/assets/js/vendors/selectize.min.js"></script>
+<link href="/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
+<script src="/assets/js/bootstrap-markdown.js">
+</script>
+<script src="/assets/js/markdown.js">
+</script>
+<script src="/assets/js/to-markdown.js">
+</script>
 @endsection
 
 @section('footer')

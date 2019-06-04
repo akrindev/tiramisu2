@@ -15,7 +15,7 @@ class SendMailController extends Controller
       $mail = request()->validate([
       	'subject'	=> 'required|min:5',
         'body'		=> 'required|min:15',
-        'user_id'		=> 'required'
+        'user_id'	=> 'required'
       ]);
 
       $user = User::findOrFail($mail['user_id']);
@@ -42,10 +42,11 @@ class SendMailController extends Controller
 
       User::where('email', '!=', null)->chunk(200,  function($users) use ($mail) {
 
-        foreach($users as $user)
-      		dispatch(new \App\Jobs\SendEmail($user->email, $mail));
+        foreach($users as $user) {
+          dispatch(new \App\Jobs\SendEmail($user->email, $mail));
         }
-      );
+
+      });
 
       return back()->with('success', 'email sent with queue');
     }
