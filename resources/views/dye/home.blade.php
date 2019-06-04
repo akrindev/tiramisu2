@@ -1,8 +1,8 @@
 @extends('layouts.tabler')
 
 
-@section('title', 'Info Dye Bulanan')
-@section('description', 'Toram Online Dye Bulanan, akan selalu di update setiap bulan')
+@section('title', 'Info Dye Bulan ' . now()->formatLocalized('%B %Y'))
+@section('description', 'Toram Online Dye Bulanan, di update setiap bulan')
 
 @php
 
