@@ -30,6 +30,7 @@ class SendMailTo extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->msg['subject'])->markdown('emails.send-mail');
+        return $this->subject($this->msg['subject'])
+          ->markdown('emails.send-mail');
     }
 }
