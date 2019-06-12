@@ -23,7 +23,8 @@ if(Number(lvnow) > Number(target_level)) {
 
   var xp_needed = cm(Math.round(xp));
 
-  $(".last_xp").text(xp_needed).css({color:'green'});
+  $(".last_xp").text(xp_needed + ' exp').css({color:'green'});
+  $(".from_lvl").text(lvnow + ' - ' + target_level);
   $(".last_nc").text(lvnow < 50 ? 'min lv 50' : last_nc.toFixed(0)).css({color:'red'});
   $(".last_bnut").text(lvnow < 25 ? 'min lv 25' : last_bnut.toFixed(0)).css({color:'red'});
   $(".last_nwood").text(lvnow < 27 ? 'min lv 27' : last_nwood.toFixed(0)).css({color:'red'});

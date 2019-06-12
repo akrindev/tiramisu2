@@ -50,8 +50,9 @@ self.addEventListener('fetch', function(event) {
         // Try the cache
         caches.match(event.request).then(function(response) {
             return response || fetch(event.request);
-        }).catch(function() {
+        }).catch(function(e) {
             //Error stuff
-        })
+          	console.log(e);
+        });
     );
 });
