@@ -2,6 +2,7 @@
 
 @section('title', 'Tukeran buff masakan')
 @section('description', 'Saling tukar buff masakan dengan cara saling berteman')
+@section('image', 'https://i.ibb.co/8Dqtxvz/FB-IMG-15607680360251846-picsay.jpg')
 
 @section('content')
 <div class="my-5">
