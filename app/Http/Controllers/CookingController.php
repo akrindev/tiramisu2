@@ -77,6 +77,9 @@ class CookingController extends Controller
       case 6:
         $out = 14;
         break;
+      case 60:
+        $out = 140;
+        break;
       case 400:
         $out = 600;
         break;
