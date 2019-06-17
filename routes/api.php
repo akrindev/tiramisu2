@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+/*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -24,3 +24,4 @@ Route::get('/fill/{type}/{plus}', 'Api\FillController@show');
 Route::get('/map', 'Api\MonsterController@showMap');
 Route::get('/map/{id}', 'Api\MonsterController@showByMap');
 Route::get('/mons/{id}', 'Api\MonsterController@showMonsByMap');
+*/
