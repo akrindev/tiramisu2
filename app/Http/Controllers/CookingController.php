@@ -10,21 +10,23 @@ use Datatables;
 
 class CookingController extends Controller
 {
+  /*
   public function index()
   {
     $cooks = Cooking::orderBy('level')->get();
 
     return view('cooking.home', compact('cooks'));
   }
+  */
 
   public function buff()
   {
     return datatables()->of(User::select('id', 'name', 'ign', 'biodata', 'cooking_id', 'cooking_level')->where('visibility', 1)->with('cooking', 'contact')->orderBy('updated_at', 'desc'))
       ->addColumn('oleh', function ($oleh){
-        return "<div><strong class='mr-2 mb-2 text-center'>{$oleh->name}</strong><br><small class='text-muted'>ign: {$oleh->ign}</small></div>";
+        return "<div style='font-size:13px'><strong class='mr-2 mb-2 text-center'>{$oleh->name}</strong><br><small class='text-muted'>ign: {$oleh->ign}</small></div>";
       })
       ->addColumn('buff', function ($buff) {
-      	return "<div>{$buff->cooking->buff} {$buff->cooking->stat}</div><small class='text-muted'>level: {$buff->cooking_level}</small>";
+      	return "<div style='font-size:13px'>{$buff->cooking->buff} {$buff->cooking->stat}</div><small class='text-muted'>level: {$buff->cooking_level}</small>";
       })
       ->addColumn('hubungi', function ($user) {
         $line = $user->contact->line != null ?
@@ -42,6 +44,7 @@ class CookingController extends Controller
 
   }
 
+  /*
   public function store()
   {
       $file = request()->file('icon')->getRealPath();
@@ -64,7 +67,8 @@ class CookingController extends Controller
 
       return response()->json(['success' => true]);
   }
-
+  */
+  /*
   public function delete($id)
   {
     $c = Cooking::findOrFail($id);
@@ -72,4 +76,5 @@ class CookingController extends Controller
 
     return redirect('/cooking')->with('deleted', 'Data telah di hapus!!');
   }
+  */
 }

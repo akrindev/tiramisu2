@@ -88,7 +88,7 @@
       {
         targets: -1,
         render: function (data, type, row, meta) {
-          return `<div class="text-wrap wrap" style="word-wrap: break-word; white-space:normal; max-width: 100%">${data}</div>`
+          return `<div class="text-wrap wrap" style="word-wrap: break-word; white-space:normal; font-size:12.5px; min-width: 100%">${data}</div>`
         }
       }
     ]
