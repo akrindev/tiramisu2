@@ -150,4 +150,13 @@ class User extends Authenticatable
     {
       return $this->hasMany(ContributionDrop::class);
     }
+
+  	/**
+    * User hasOne Cooking
+    */
+  	public function cooking()
+    {
+      return $this->belongsTo(Cooking::class);
+    }
+
 }

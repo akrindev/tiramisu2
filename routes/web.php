@@ -28,6 +28,8 @@ Route::prefix('dye')->group(function() {
 
 Route::prefix('/cooking')->group(function () {
   Route::get('/', 'CookingController@index');
+  Route::view('/berteman', 'cooking.tukar');
+  Route::get('buff', 'CookingController@buff');
 
   Route::middleware('admin')->group(function() {
   	Route::view('/store', 'cooking.store');

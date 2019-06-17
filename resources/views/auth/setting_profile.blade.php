@@ -130,8 +130,41 @@
         </span>
         @endif
         </div>
+        <div class="form-group">
+          <label class="form-label"> Buff masakan </label>
+          <div class="row px-3">
+          <select class="form-control col-8 mr-1" name="cooking">
+            <option value="">-- Pilih buff masakan --</option>
+            @foreach(\App\Cooking::get() as $cook)
+            <option value="{{ $cook->id }}" {{ $data->cooking_id == $cook->id ? 'selected':'' }}> {{ $cook->buff }} </option>
+            @endforeach
+          </select>
+          <input type="number" name="cooklv" class="form-control col-3" min="1" max="10" value="{{ $data->cooking_level }}" placeholder="level">
+          </div>
+        </div>
 
-      <button type="submit" class="btn btn-primary">Publish</button>
+        <div class="form-group">
+          <label class="form-label">
+            Privasi
+          </label>
+          <div class="custom-switches-stacked">
+            <label class="custom-switch">
+              <input type="radio" name="visibility" value="0" class="custom-switch-input" {{ $data->visibility == 0 ? 'checked' : '' }}>
+              <span class="custom-switch-indicator"></span>
+              <span class="custom-switch-description">Tertutup</span>
+            </label>
+            <label class="custom-switch">
+              <input type="radio" name="visibility" value="1" class="custom-switch-input" {{ $data->visibility == 1 ? 'checked' : '' }}>
+              <span class="custom-switch-indicator"></span>
+              <span class="custom-switch-description">Publik</span>
+            </label>
+          </div>
+          <small class="help-block text-muted">
+          	Privasi ini hanya akan menampilkan list buff anda menjadi publik atau private. lihat di <a href="/cooking/berteman">Tukar buff</a>. Pastikan untuk mengisi data kontak anda agar mudah di hubungi.
+          </small>
+        </div>
+
+      <button type="submit" class="btn btn-outline-primary btn-pill">Simpan Perubahan</button>
       {!! form_close() !!}
 
 
