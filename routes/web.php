@@ -27,7 +27,7 @@ Route::prefix('dye')->group(function() {
 });
 
 Route::prefix('/cooking')->group(function () {
-  Route::get('/', 'CookingController@index');
+  Route::redirect('/', '/cooking/berteman');
   Route::view('/berteman', 'cooking.tukar');
   Route::get('buff', 'CookingController@buff');
 
