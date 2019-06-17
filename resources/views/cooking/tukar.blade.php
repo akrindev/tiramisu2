@@ -12,12 +12,15 @@
 
     <div class="row">
 
-     <div class="col-12">
+     <div class="col-md-8">
        <div class="card">
           <div class="card-header">
             <h3 class="card-title">
               <i class="fe fe-user"></i> Buff Masakan Member
             </h3>
+         </div>
+         <div class="my-2">
+           @includeWhen(! app()->isLocal(), 'inc.ads_mobile')
          </div>
          <div class="unit w-2-3">
          <table class="display" id="buff" style="width:100%">
@@ -33,6 +36,13 @@
          </table>
          </div>
        </div>
+      </div>
+
+      <div class="col-md-4">
+        @include('inc.menu')
+      </div>
+      <div class="col-md-8">
+        @includeWhen(! app()->isLocal(), 'inc.ads_article')
       </div>
     </div>
   </div>
