@@ -24,7 +24,7 @@ class CookingController extends Controller
   {
     return datatables()->of(User::select('id', 'name', 'ign', 'biodata', 'cooking_id', 'cooking_level')->where('visibility', 1)->with('cooking', 'contact')->orderBy('updated_at', 'desc'))
       ->addColumn('oleh', function ($oleh){
-        return "<div style='font-size:13px'><strong class='mr-2 mb-2 text-center'>{$oleh->name}</strong><br><small class='text-muted'>ign: {$oleh->ign}</small></div>";
+        return "<div style='font-size:13px'><strong class='mr-2 mb-2 text-center'>". str_limit($oleh->name, 13) ."</strong><br><small class='text-muted'>ign: {$oleh->ign}</small></div>";
       })
       ->addColumn('buff', function ($buff) {
       	return "<div style='font-size:13px'>{$this->getStatLv($buff->cooking->buff, $buff->cooking->stat, $buff->cooking_level)}</div><small class='text-muted'>level: {$buff->cooking_level}</small>";
