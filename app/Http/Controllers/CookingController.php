@@ -19,7 +19,7 @@ class CookingController extends Controller
 
   public function buff()
   {
-    return datatables()->of(User::select('id', 'name', 'ign', 'biodata', 'cooking_id')->where('visibility', 1)->with('cooking', 'contact')->orderBy('updated_at', 'desc'))
+    return datatables()->of(User::select('id', 'name', 'ign', 'biodata', 'cooking_id', 'cooking_level')->where('visibility', 1)->with('cooking', 'contact')->orderBy('updated_at', 'desc'))
       ->addColumn('oleh', function ($oleh){
         return "<div><strong class='mr-2 mb-2 text-center'>{$oleh->name}</strong><br><small class='text-muted'>ign: {$oleh->ign}</small></div>";
       })
