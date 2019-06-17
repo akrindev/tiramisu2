@@ -76,13 +76,15 @@
     responsive: true,
     processing: true,
     serverSide: true,
-    searching: true,
+    searching: false,
+    ordering: false,
     ajax: "{{ url('/cooking/buff') }}",
     columns: [
-      { data: 'oleh' , name: 'oleh' },
-      { data: 'buff', name: 'buff' },
+      { data: 'oleh' , name: 'name' },
+      { data: 'buff', name: 'cooking.buff' },
       { data: 'hubungi', name: 'hubungi' },
-      { data: 'bio',	name: 'bio'}
+      { data: 'bio',	name: 'bio'},
+
     ],
     columnDefs: [
       {
