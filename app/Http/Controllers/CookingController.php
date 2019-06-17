@@ -30,8 +30,12 @@ class CookingController extends Controller
       	return "<div style='font-size:13px'>{$this->getStatLv($buff->cooking->buff, $buff->cooking->stat, $buff->cooking_level)}</div><small class='text-muted'>level: {$buff->cooking_level}</small>";
       })
       ->addColumn('hubungi', function ($user) {
+        if(! $user->contact) {
+          return ' -- ';
+        }
+
         $line = $user->contact->line != null ?
-          '<a href="//line.me/ti/p/~'.$user->contact->line.'" class="btn btn-outline-success btn-sm mr-2"><i class="fa fa-commenting-o mr-1"></i> line</a>' : '';
+          '<a href="//line.me/ti/p/~'.$user->contact->line .'" class="btn btn-outline-success btn-sm mr-2"><i class="fa fa-commenting-o mr-1"></i> line</a>' : '';
         $wa =  $user->contact->whatsapp != null ?
           '<a href="//wa.me/'.$user->contact->whatsapp.'" class="btn btn-success btn-sm"><i class="fa fa-whatsapp mr-1"></i> whatsapp</a>' : '';
 
