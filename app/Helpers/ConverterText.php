@@ -15,7 +15,7 @@ class ConverterText
   // converted to
   private $out = [
   	'<details><summary class="text-danger">$1</summary>$2</details>',
-  	'<details><summary class="text-danger">$1</summary>$2</details>'
+  	'<details><summary><span class="btn btn-sm btn-outline-primary mr-2">spoiler</span> $1 </summary><p>$2</p></details>'
   ];
 
   /*

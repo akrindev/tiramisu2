@@ -21,6 +21,38 @@ $tags = explode(',', $tags);
     font-family:'Source Sans Pro';
     font-weight:400;
   }
+  summary{
+    padding:10px;
+    font-size:14px;
+    z-index:1;
+    border-bottom:1px solid silver;
+    box-shadow:0 0 30px -12px #000;
+    cursor:pointer
+  }
+  details > p{
+    margin:0 -3px 0;
+    padding:10px;
+    font-size:12.5px;
+    text-align:left;
+    z-index:3;
+    box-shadow:0 2px 15px -6px #222;
+  }
+
+  details[open] p{
+    animation:det .6s
+  }
+
+  @keyframes det{
+    0%{
+      opacity:0
+    }
+    50%{
+      opacity:0.5
+    }
+    100%{
+      opacity:1
+    }
+  }
 </style>
 <script type="application/ld+json">
 {
@@ -293,6 +325,11 @@ $tags = explode(',', $tags);
 <script src="/assets/js/forum.js">
 </script>
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+  $("details").on("click", function() {
+  	$("details[open]").not(this).removeAttr("open");
+  })
+</script>
 <script>
 
  @if(auth()->user()->role == 'admin')
