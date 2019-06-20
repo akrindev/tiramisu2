@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use Illuminate\Support\HtmlString;
+use ParsedownExtra;
 
 class ConverterText
 {
@@ -23,13 +24,16 @@ class ConverterText
   */
   public function text($text, $nl2br = false)
   {
-    $text = e($text);
+    //$text = e($text);
 
     if($nl2br) {
       $text = nl2br($text);
     }
 
-    $markdowned = parsedown($text);
+    $markdowned = (new ParsedownExtra)
+      ->setMarkupEscaped(true)
+      ->setBreaksEnabled(true)
+      ->text($text);
 
     $out = $this->parse($markdowned);
 

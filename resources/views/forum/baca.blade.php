@@ -14,13 +14,24 @@ $tags = explode(',', $tags);
 @endphp
 <style>
 
-  p.body-text, div.body-text {
+  .body-text p, div.body-text {
      -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size:13px;
     font-family:'Source Sans Pro';
     font-weight:400;
   }
+  .body-text > ol, .body-text > ul{
+    margin: 0 0 0 0px;
+    padding 0;
+    list-style-type: circle;
+  }
+  .body-text > ol > li, .body-text > ul > li{
+    position: relative;
+    margin: 0;
+    padding: 2px;
+  }
+
   summary{
     padding:10px;
     font-size:14px;
