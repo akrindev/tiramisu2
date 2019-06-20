@@ -1,6 +1,6 @@
 "use strict";
 
-const MAX_STEPS = 18; // max is fill +18
+const MAX_STEPS = 19; // max is fill +19
 const SLOTS = 6; // max number of slots is 6
 
 const OPTIONS = [
