@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ID">
   <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="Content-Language" content="id-ID" />
@@ -20,6 +20,7 @@
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/manifest.json">
+    <link rel="canonical" href="{{ url()->current() }}">
     <meta name="msapplication-TileColor" content="#fff">
     <meta name="theme-color" content="#0066ff">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
