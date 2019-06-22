@@ -36,7 +36,7 @@
 
             @if(! is_null($item->note))
               <div class="col-md-9 my-1">
-                {{ toHtml($item->note, true) }}
+                {{ toHtml($item->note) }}
               </div>
             @endif
              </div>

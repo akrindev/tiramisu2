@@ -22,16 +22,10 @@ class ConverterText
   /*
   * convert to html
   */
-  public function text($text, $nl2br = false)
+  public function text($text, $escape = false)
   {
-    //$text = e($text);
-
-    if($nl2br) {
-      $text = nl2br($text);
-    }
-
     $markdowned = (new ParsedownExtra)
-      ->setMarkupEscaped(true)
+      ->setMarkupEscaped($escape)
       ->setBreaksEnabled(true)
       ->text($text);
 

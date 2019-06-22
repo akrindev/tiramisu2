@@ -33,7 +33,7 @@
                 <img src="/{{$item->picture}}" class="rounded my-2">
                 @endif
                 <div class="my-2">
-                {{ toHtml($item->note, true) }}
+                {{ toHtml($item->note) }}
                 </div>
               </dd>
             </dl>
