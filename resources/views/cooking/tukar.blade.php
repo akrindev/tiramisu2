@@ -49,7 +49,7 @@
             </div>
           </div>
           <div class="table-responsive">
-          <table class="card-table table table-bordered table-striped table-sm table-hover" style="font-size:12px">
+          <table class="card-table table table-bordered table-striped table-sm table-hover text-nowrap" style="font-size:12px">
             <thead>
               <tr>
                 <th rowspan="2" class="text-center text-success"> Stat </th>
