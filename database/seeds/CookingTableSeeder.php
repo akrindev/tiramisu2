@@ -147,6 +147,12 @@ class CookingTableSeeder extends Seeder
         ],
         [
           'name'	=> null,
+          'buff'	=> 'EXP Gain +%',
+          'stat'	=> 1,
+          'pt'		=> null
+        ],
+        [
+          'name'	=> null,
           'buff'	=> 'Luka ke Angin +%',
           'stat'	=> 1,
           'pt'	=> null
