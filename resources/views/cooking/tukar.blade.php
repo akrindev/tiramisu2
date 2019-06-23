@@ -49,11 +49,11 @@
             </div>
           </div>
           <div class="table-responsive">
-          <table class="card-table table table-bordered table-striped">
+          <table class="card-table table table-bordered table-striped table-sm table-hover" style="font-size:12px">
             <thead>
               <tr>
-                <th rowspan="2" class="text-center"> Stat </th>
-                <th colspan="10" class="text-center"> Level </th>
+                <th rowspan="2" class="text-center text-success"> Stat </th>
+                <th colspan="10" class="text-center text-danger"> Level </th>
               </tr>
               <tr>
                 <th> 1 </th>
