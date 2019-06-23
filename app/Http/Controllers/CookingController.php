@@ -27,7 +27,7 @@ class CookingController extends Controller
         return "<div style='font-size:13px'><strong class='mr-2 mb-2 text-center'>". str_limit($oleh->name, 13) ."</strong><br><small class='text-muted'>ign: {$oleh->ign}</small></div>";
       })
       ->addColumn('buff', function ($buff) {
-      	return "<div style='font-size:13px'>{$this->getStatLv($buff->cooking->buff, $buff->cooking->stat, $buff->cooking_level)}</div><small class='text-muted'>level: {$buff->cooking_level}</small>";
+      	return "<div style='font-size:13px'>{$this->getStatLv($buff->cooking->buff, $buff->cooking->stat, $buff->cooking_level, true)}</div><small class='text-muted'>level: {$buff->cooking_level}</small>";
       })
       ->addColumn('hubungi', function ($user) {
         if(! $user->contact) {
@@ -49,7 +49,7 @@ class CookingController extends Controller
   }
 
 
-  private function getStatLv($buff, $stat, $lv) {
+  public function getStatLv($buff, $stat, $lv, $parse = false) {
     $out = 0;
     for($i = 1;$i <= $lv;$i++){
       if($i <= 5) {
@@ -59,7 +59,11 @@ class CookingController extends Controller
       }
     }
 
-    return $this->parse($buff, $out);
+    if($parse) {
+    	return $this->parse($buff, $out);
+    }
+
+    return $out;
   }
 
 
@@ -87,7 +91,7 @@ class CookingController extends Controller
         $out = 40;
         break;
       default:
-        $out = $stat;
+        $out = 2;
     }
 
     return $out;

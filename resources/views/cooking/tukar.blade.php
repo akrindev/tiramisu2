@@ -13,7 +13,7 @@
 
     <div class="row">
 
-     <div class="col-md-8">
+     <div class="col-12">
        <div class="card">
           <div class="card-header">
             <h3 class="card-title">
@@ -40,6 +40,48 @@
          </table>
          </div>
        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">
+            	Status Buff Masakan
+            </div>
+          </div>
+          <div class="table-responsive">
+          <table class="card-table table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th rowspan="2" class="text-center"> Stat </th>
+                <th colspan="10" class="text-center"> Level </th>
+              </tr>
+              <tr>
+                <th> 1 </th>
+                <th> 2 </th>
+                <th> 3 </th>
+                <th> 4 </th>
+                <th> 5 </th>
+                <th> 6 </th>
+                <th> 7 </th>
+                <th> 8 </th>
+                <th> 9 </th>
+                <th> 10 </th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach(\App\Cooking::get() as $cook)
+              <tr>
+                <td> {{ $cook->buff }} </td>
+                @for($i = 1; 10 >= $i;$i++)
+                <td> {{ (new \App\Http\Controllers\CookingController)->getStatLv($cook->buff, $cook->stat, $i) }} </td>
+                @endfor
+              </tr>
+              @endforeach
+
+            </tbody>
+          </table>
+          </div>
+        </div>
       </div>
 
       <div class="col-md-4">
