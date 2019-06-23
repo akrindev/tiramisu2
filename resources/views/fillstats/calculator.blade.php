@@ -54,6 +54,10 @@
               <a href="/fill_stats" class="btn btn-pill btn-outline-warning m-1"><i class="fe fe-settings"></i> Manual formula</a>
 
             </div>
+
+            <div class="mt-3">
+              <small class="text-muted">Credit: <a href="https://sparkychildcharlie.github.io/statting" rel="nofollow" target="_blank">Charlie Kobayashi</a></small>
+            </div>
           </div>
         </div>
       </div>
