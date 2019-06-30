@@ -119,9 +119,9 @@
 @guest
  				<div class="nav-item d-md-flex">
                   @if(app()->isLocal())
-                   <a href="{{ url('/') }}/logindev" class="btn btn-sm btn-outline-primary"><i class="fe fe-facebook"></i> Dev Login </a>
+                   <a href="{{ url('/') }}/logindev" class="btn btn-sm btn-primary" id="login-btn"><i class="fe fe-facebook"></i> Dev Login </a>
                   @else
-                   <a href="{{ url('/') }}/fb-login" class="btn btn-sm btn-outline-primary"><i class="fe fe-facebook"></i> Login</a>
+                   <a href="{{ url('/') }}/fb-login" class="btn btn-sm btn-primary" id="login-btn"><i class="fe fe-facebook"></i> Login</a>
                   @endif
                  </div>
 @else
