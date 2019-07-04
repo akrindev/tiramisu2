@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ID">
   <head>
+    <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -21,7 +22,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/manifest.json">
     <link rel="canonical" href="{{ url()->current() }}">
-    <meta name="msapplication-TileColor" content="#fff">
+    <meta name="msapplication-TileColor" content="#0066ff">
     <meta name="theme-color" content="#0066ff">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +36,7 @@
 
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 
-    <title>@yield('title') | Toram Online</title>
+    <title>@yield('title') | Toram Online Database Bahasa Indonesia</title>
 
     <!-- open graph -->
     <meta property="og:url" content="{{ url()->current() }}" />
@@ -71,7 +72,12 @@
     {
         "@context": "http://schema.org",
         "@type": "WebSite",
-        "url": "{{ url('/') }}"
+        "url": "{{ url('/') }}",
+          "potentialAction": {
+              "@type": "SearchAction",
+              "target": "{{ url('/') }}/search?q={q}",
+              "query-input": "required name=q"
+           }
     }
     </script>
 
@@ -106,7 +112,8 @@
     @includeWhen(env('APP_ENV') === 'production', 'inc.ads')
   </head>
 
-  <body class="">
+  <body itemscope itemtype="https://schema.org/WebSite">
+    <meta itemprop="url" content="{{ url('/') }}">
     <div class="page">
       <div class="page-main">
         <div class="header py-4">
