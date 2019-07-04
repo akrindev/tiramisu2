@@ -21,7 +21,7 @@
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/manifest.json">
-    <link rel="canonical" href="{{ url()->current() }}">
+    {{ canonical(url()->current()) }}
     <meta name="msapplication-TileColor" content="#0066ff">
     <meta name="theme-color" content="#0066ff">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
