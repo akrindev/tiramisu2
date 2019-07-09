@@ -38,7 +38,6 @@ Route::prefix('/cooking')->group(function () {
 });
 
 Route::get('/latest_search', 'SitemapController@show');
-Route::post('/send-token/fcm', 'UserController@sendToken');
 
 /**
 * Refine
@@ -76,19 +75,20 @@ Route::get('/logindev', 'Auth\LoginController@devLogin');
 Route::get('/fb-login', 'Auth\LoginController@redirect');
 Route::get('/facebook/callback', 'Auth\LoginController@callback');
 
-Route::get('/profile/notifikasi', 'UserController@notifikasi')->middleware('auth');
-
-Route::get('/profile', 'UserController@profileku')->middleware('auth');
-
 Route::get('/profile/{provider_id}', 'UserController@profile');
 
-Route::post('/save/contact', 'UserController@saveContact');
 /**
 *
 * Setting
 */
-Route::get('/setting/profile', 'UserController@settingProfile');
-Route::post('/setting/profile', 'UserController@settingProfileSubmit');
+Route::middleware('auth')->group(function() {
+  Route::get('/setting/profile', 'UserController@settingProfile');
+  Route::post('/setting/profile', 'UserController@settingProfileSubmit');
+  Route::get('/profile/notifikasi', 'UserController@notifikasi');
+  Route::get('/profile', 'UserController@profileku');
+  Route::post('/save/contact', 'UserController@saveContact');
+  Route::post('/send-token/fcm', 'UserController@sendToken');
+});
 
 // fill stats
 Route::get('/fill_stats', 'FillController@index');
