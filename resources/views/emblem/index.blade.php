@@ -4,6 +4,10 @@
 @section('description', 'List of emblems Toram Online, Daftar Prestasi Toram online')
 @section('image', to_img())
 
+@push('canonical')
+	@canonical
+@endpush
+
 @section('content')
 
     @if(session('sukses'))

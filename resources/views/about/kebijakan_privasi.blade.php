@@ -4,6 +4,10 @@
 @section('description','Kebijakan layanan penggunaan pada website toram-id.info')
 @section('image',to_img())
 
+@push('canonical')
+	@canonical
+@endpush
+
 @section('content')
 <div class="my-5 my-md-5">
   <div class="container">

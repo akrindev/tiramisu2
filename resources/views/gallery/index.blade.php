@@ -3,6 +3,11 @@
 @section('title','Toram Gallery')
 @section('description','Toram Online gallery, images, foto garam, cinta, hoax dan lainnya')
 
+
+@push('canonical')
+	@canonical
+@endpush
+
 @section('content')
 
 <style>

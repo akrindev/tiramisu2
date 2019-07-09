@@ -3,6 +3,11 @@
 @section('title', $data->name . ' (Lv '. $data->level .')')
 @section('image', !is_null($data->picture) ? '/'.$data->picture : to_img())
 
+
+@push('canonical')
+	@canonical
+@endpush
+
 @section('content')
 <div class="my-5">
   <div class="container">

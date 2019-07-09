@@ -4,6 +4,11 @@
 @section('description', 'Saling tukar buff masakan dengan cara saling berteman')
 @section('image', 'https://i.ibb.co/8Dqtxvz/FB-IMG-15607680360251846-picsay.jpg')
 
+
+@push('canonical')
+	@canonical
+@endpush
+
 @section('content')
 <div class="my-5">
   <div class="container">

@@ -4,6 +4,11 @@
 @section('description','Toram fill stats calculator +16 +17')
 @section('image',to_img())
 
+
+@push('canonical')
+	@canonical
+@endpush
+
 @section('content')
 <div class="my-5" onload="build_menu()">
 

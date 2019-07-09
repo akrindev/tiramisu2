@@ -4,6 +4,10 @@
 @section('description', $data->name . ' adalah peta yang berada di toram')
 @section('image', to_img())
 
+@push('canonical')
+	@canonical
+@endpush
+
 @section('content')
 <div class="my-5">
   <div class="container">

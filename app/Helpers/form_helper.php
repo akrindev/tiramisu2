@@ -1,9 +1,7 @@
 <?php
 
 use App\Helpers\ConverterText;
-use Illuminate\Support\Str;
 use Illuminate\Support\HtmlString;
-
 
 if ( ! function_exists('waktu'))
 	{
@@ -487,10 +485,8 @@ if(! function_exists('toHtml'))
 // canonical
 if(! function_exists('canonical'))
 {
-  function canonical($url)
+  function canonical()
   {
-    if(Str::contains($url, '?')) { // weird x.x
-      return new HtmlString('<link rel="canonical" href="'. url($url).'">');
-    }
+      return new HtmlString('<link rel="canonical" href="'. url()->current() .'">');
   }
 }

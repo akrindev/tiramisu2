@@ -4,6 +4,10 @@
 @section('description','Toram exp calculator, Nc, bnut, dan lainnya. kuy cek disini')
 @section('image',to_img())
 
+@push('canonical')
+	@canonical
+@endpush
+
 @section('content')
         <div class="my-3 my-md-5">
           <div class="container">

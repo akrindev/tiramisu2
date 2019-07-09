@@ -5,6 +5,11 @@
 @section('description','Toram Fillstats Formula full list, Armor, senjata +17, +18, dst')
 @section('image',to_img())
 
+
+@push('canonical')
+	@canonical
+@endpush
+
 @section('content')
 <div class="my-3 my-md-5">
   <div class="container">

@@ -4,6 +4,11 @@
 @section('title', 'Info Dye Bulan ' . now()->formatLocalized('%B %Y'))
 @section('description', 'Toram Online Dye Bulanan, di update setiap bulan')
 
+
+@push('canonical')
+	@canonical
+@endpush
+
 @php
 
 $let = 0;

@@ -3,6 +3,12 @@
 @section('title', strip_tags($pos->body))
 @section('description', strip_tags(toHtml($pos->body)))
 @section('image',$pos->gambar)
+
+
+@push('canonical')
+	@canonical
+@endpush
+
 @section('content')
 <style>
 

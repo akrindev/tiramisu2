@@ -4,6 +4,11 @@
 @section('description',$bgm->title.' Toram online background music list download or play online')
 @section('image','https://ytimg.googleusercontent.com/vi/'.$bgm->video_id.'/sddefault.jpg')
 
+
+@push('canonical')
+	@canonical
+@endpush
+
 @section('content')
 <div class="my-5">
   <div class="container">

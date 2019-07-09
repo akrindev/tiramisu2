@@ -4,6 +4,10 @@
 @section('description','Forum toram online indonesia, diskusi tentang toram online, curhat, kisah cinta di toram')
 @section('image',to_img())
 
+@push('canonical')
+	@canonical
+@endpush
+
 @section('content')
 
         <div class="my-3 my-md-5">

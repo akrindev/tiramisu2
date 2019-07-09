@@ -5,6 +5,10 @@
 @section('description','Toram database / drop list monster, Mini boss dan boss, toram map')
 @section('image',to_img())
 
+@push('canonical')
+	@canonical
+@endpush
+
 @section('content')
 <div class="my-3 my-md-5">
   <div class="container">
