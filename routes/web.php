@@ -114,10 +114,13 @@ Route::middleware(['admin'])->group(function() {
   	Route::delete('/skill-delete-comment', 'SkillController@deleteComment');
 });
 
+// Searching
+
+Route::get('/search', 'SearchController@search');
+
 /**
 * Monster routes
 */
-Route::get('/search', 'MonsterController@search');
 Route::get('/leveling', 'LevelingController@show');
 Route::get('/peta', 'MonsterController@index');
 Route::get('/peta/{id}', 'MonsterController@peta');

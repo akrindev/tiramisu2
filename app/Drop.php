@@ -5,10 +5,11 @@ namespace App;
 use Watson\Rememberable\Rememberable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use App\Traits\Searchable;
 
 class Drop extends Model
 {
-  	use Rememberable;
+  	use Rememberable, Searchable;
 
     protected $fillable = [
     	'name', 'sell', 'proses', 'note', 'picture'
