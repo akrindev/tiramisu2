@@ -44,7 +44,7 @@ class Drop extends Model
   	// get status by monster
   	public function getStatusMonsterAttribute()
     {
-      $description = explode('[', trim($this->attributes['note']));
+      $description = explode('[NPC', trim($this->attributes['note']));
 
       return ! blank($description[0]) ?
         $description[0] : null;
