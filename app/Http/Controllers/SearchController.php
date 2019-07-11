@@ -22,12 +22,29 @@ class SearchController extends Controller
       	'q'			=> $q
     ]);
 
-    $drops = Drop::with(['monsters' => function($q){
-    	return $q->with('map');
-    }])
-      ->search('name', $q)
-      			->orderBy('name')
-      			->get();
+    $drops = Drop::query();
+
+    $drops->when(request()->type == 'status_only', function ($query) use ($q) {
+    	return $query->search('note', $q);
+    }, function ($query) {
+    	return $query->with([
+      		'monsters' => function ($query) {
+    			return $query->with('map');
+      		}
+    	]);
+    });
+
+    $drops->when(request()->type == 'name_only', function ($query) use ($q) {
+    	return $query->search('name', $q);
+    }, function ($query) {
+        return $query->with([
+      		'monsters' => function ($query) {
+    			return $query->with('map');
+       		}
+    	]);
+    });
+
+    $drops = $drops->paginate();
 
     $monsters = Monster::search('name', $q)
       			->orderBy('name')

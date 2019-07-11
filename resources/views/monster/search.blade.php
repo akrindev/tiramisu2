@@ -216,6 +216,8 @@
             </div>
           </div>
         </div>
+
+        @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
        @endif
 
 
@@ -231,7 +233,12 @@
 
           </div>
         </div>
+
+        @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
        @endif
+
+        {{ $drops->appends(['q' => request('q'), 'type' => request('type') ])->links() }}
+
 
       </div>
 
