@@ -24,6 +24,7 @@ class SearchController extends Controller
 
     $drops = Drop::query();
 
+    // if type of search == status only
     $drops->when(request()->type == 'status_only', function ($query) use ($q) {
     	return $query->search('note', $q);
     }, function ($query) {
@@ -34,7 +35,8 @@ class SearchController extends Controller
     	]);
     });
 
-    $drops->when(request()->type == 'name_only', function ($query) use ($q) {
+    // if type of search == name only or type is empty, none
+    $drops->when(request()->type == 'name_only' || ! request()->type, function ($query) use ($q) {
     	return $query->search('name', $q);
     }, function ($query) {
         return $query->with([
