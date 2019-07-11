@@ -80,6 +80,8 @@
       <a href="/prestasi" class="d-block mb-1 col-12"> <img src="/img/prestasi.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Emblem / Prestasi</a>
       <a href="/cooking/berteman" class="d-block mb-1 col-12"> <img src="/img/cook-pt.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Buff Masakan Member</a>
 
+      <a href="/potensi/kalkulator" class="d-block mb-1 col-12"> <img src="/img/skill/smith/noviceanvil.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Potensi Kalkulator</a>
+
       <div class="d-block col-12 mb-5"></div>
 
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/dye">Dye Bulanan</a> </span>

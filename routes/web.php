@@ -69,6 +69,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/uploader', 'ForumController@uploader');
 
 Route::get('/exp', 'XpController@index');
+Route::view('/potensi/kalkulator', 'potensi_kalkulator');
 
 // LOGIN
 Route::get('/logindev', 'Auth\LoginController@devLogin');
