@@ -17,6 +17,7 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
         "parsedown/laravel": "^1.1",
+        "protoqol/prequel": "^0.6.2@beta",
         "watson/rememberable": "^2.0",
         "yajra/laravel-datatables-oracle": "^8.7.1"
     },
