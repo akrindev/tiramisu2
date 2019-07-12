@@ -8,7 +8,7 @@ class SkillList extends Model
 {
   public $timestamps = false;
   public $fillable = [
-  	'skill_id', 'name', 'r_name', 'type', 'element_id',
+  	'skill_id', 'name', 'type', 'element_id',
     'for', 'mp', 'range', 'level',
     'combo_awal', 'combo_tengah', 'description', 'picture'
   ];

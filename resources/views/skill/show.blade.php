@@ -85,7 +85,7 @@
         <div class="mt-5">
         <strong>Deskripsi:</strong> <br>
           <div class="text-muted">
-            @parsedown($skill->description)
+            {{ toHtml($skill->description, true) }}
           </div>
         </div>
       </div>

@@ -84,7 +84,7 @@
         <div class="mt-5">
         <strong>Deskripsi:</strong> <br>
           <div class="text-muted">
-            @parsedown($skill->description)
+            {{ toHtml($skill->description, true) }}
           </div>
         </div>
       </div>
@@ -98,7 +98,7 @@
             <small class="text-muted">{{ waktu($comment->created_at) }}</small>
             <hr class="my-2">
             <div class="body-text" style="font-size:14px">
-            @parsedown(e($comment->body))
+            {{ toHtml($comment->body, true) }}
 
             </div>
             @auth
