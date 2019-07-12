@@ -20,24 +20,24 @@ var app = new Vue({
   },
   watch: {
     str() {
-      this.pedang = this.bow = this.getPot(this.str)+this.getPot(this.dex)
+      this.pedang = this.bow = this.getPot(this.add(this.str, this.dex))
       this.pedangraya = this.getPot(this.str, true)
-      this.tombak = this.getPot(this.str) + this.getPot(this.agi)
+      this.tombak = this.getPot(this.add(this.str, this.agi))
     },
     dex() {
-      this.pedang = this.bow = this.getPot(this.str)+this.getPot(this.dex)
+      this.pedang = this.bow = this.getPot(this.add(this.str, this.dex))
       this.bowgun = this.getPot(this.dex, true)
-      this.katana = this.getPot(this.dex) + this.getPot(this.agi)
+      this.katana = this.getPot(this.add(this.dex, this.agi))
     },
     int() {
       this.tongkat = this.getPot(this.int, true)
-      this.md = this.getPot(this.agi) + this.getPot(this.int)
+      this.md = this.getPot(this.add(this.agi, this.int))
     },
     agi() {
-      this.katana = this.getPot(this.dex) + this.getPot(this.agi)
-      this.tombak = this.getPot(this.str) + this.getPot(this.agi)
+      this.katana = this.getPot(this.add(this.dex, this.agi))
+      this.tombak = this.getPot(this.add(this.str, this.agi))
       this.tinju = this.getPot(this.agi, true)
-      this.md = this.getPot(this.agi) + this.getPot(this.int)
+      this.md = this.getPot(this.add(this.agi, this.int))
     },
     vit() {
       this.zirah = this.getPot(this.vit, true)
@@ -49,10 +49,16 @@ var app = new Vue({
       stat = Number(stat)
 
       if(bonus) {
-        return Number(Math.floor(stat/20)*2)
+        return Number(Math.floor((stat/20)*2))
       }
 
       return Number(Math.floor(stat/20))
+    },
+    add(a, b) {
+      a = Number(a)
+      b = Number(b)
+      var c = a+b
+      return Number(c)
     }
   }
 });
