@@ -26,7 +26,7 @@ $tags = explode(',', $tags);
     font-family:'Source Sans Pro';
     font-weight:400;
   }
-  .body-text > ol, .body-text > ul{
+  .body-text > ul{
     margin: 0 0 0 0px;
     padding 0;
     list-style-type: circle;
@@ -126,7 +126,7 @@ $tags = explode(',', $tags);
               @endforeach
             </div>
             <div class="body-text">
-		@if(strlen(strip_tags((toHtml($data->body)))) > 100)
+		@if(strlen(strip_tags((toHtml($data->body)))) > 250)
  			@includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
         @else
   			@includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
@@ -186,7 +186,7 @@ $tags = explode(',', $tags);
 @if (count($comments))
 @foreach (collect($comments)->where('parent_id',null) as $comment)
    @php $i++; @endphp
-		<div class="card p-0">
+		<div class="card p-0" id="reply{{ $comment->id }}">
           <div class="card-body p-3">
             <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{$comment->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4 lazyload">
             <b><a href="/profile/{{$comment->user->provider_id }}" data-author="{{ $comment->user->name }}">  {{ $comment->user->name }}</a> </b> <br>
@@ -248,7 +248,7 @@ $tags = explode(',', $tags);
 
           @foreach ($comment->getReply as $reply)
 <hr class="my-1">
-          <div id="#reply{{$reply->id}}" class="p-2">
+          <div id="reply{{$reply->id}}" class="p-2">
             <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{$reply->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4 lazyload">
             <b><a href="/profile/{{$reply->user->provider_id }}" data-author="{{ $comment->user->name }}">  {{ $reply->user->name }}</a> </b> <small class="text-muted"> &nbsp; ({{ waktu($reply->created_at)}})</small><br>
             <div class="media-body body-text">
