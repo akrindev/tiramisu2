@@ -145,6 +145,7 @@ Route::prefix('monster')->group(function() {
 * Item(s) routes
 */
 
+Route::get('/items', 'MonsterController@showAllItems');
 Route::get('/items/{id}', 'MonsterController@showItems');
 
 Route::prefix('item')->group(function() {

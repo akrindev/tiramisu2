@@ -250,6 +250,17 @@ class MonsterController extends Controller
     return view('monster.items', compact('type', 'data'));
   }
 
+  public function showAllItems()
+  {
+    $type = (object) [ 'name' => 'Semua Items'];
+
+    $data = Drop::with(['monsters' => function($q){
+    	return $q->with('map');
+    }])->orderByDesc('id')->paginate(20);
+
+    return view('monster.items', compact('type', 'data'));
+  }
+
   public function storeMons()
   {
     if(request()->input())

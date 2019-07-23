@@ -53,6 +53,12 @@
       <a href="/items/6" class="d-block mb-1 col-6"> <img src="/img/drop/mana.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Mana</a>
     </div>
 
+    <div class="my-1 row gutters-xs">
+    <a href="/items" class="d-block mb-1 col-12">
+      <img src="/img/skill/alchemy/processmaterials.png"  class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Semua Items
+      </a>
+    </div>
+
     <hr class="my-1">
 
     <div class="my-1 row gutters-xs">
