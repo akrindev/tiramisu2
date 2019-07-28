@@ -80,7 +80,7 @@
     <h2>Hasil Akhir</h2>
   <b>Leveling:</b> <span class="from_lvl"></span><br><br>
     <b>Exp yang di butuhkan:</b> <span class="last_xp"></span><br /><br />
-    <b>Stock yang di butuhkan:</b>
+    <b>Stack yang di butuhkan:</b>
     <div class="container-fluid">
       <b>NC: </b>  <span class="last_nc"></span><br />
          <b>Bnut: </b>  <span class="last_bnut"></span><br />
