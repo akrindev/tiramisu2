@@ -20,16 +20,19 @@
       </div>
       <div class="col-md-8">
 
+
+      @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+
         <div class="card">
           {!! form_open('/leveling',['method'=>'get']) !!}
           <div class="card-body p-3">
            <div class="row">
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-6">
               <div class="form-group">
               <input type="number" name="level" placeholder="levelmu" class="form-control" value="{{ request('level') }}" required>
               </div>
             </div>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-6">
               <div class="form-group">
               <div class="input-group">
                 <input type="number" class="form-control text-right" placeholder="Bonus EXP Gain %" aria-label="Bonus EXP GAIN" name="bonusexp" value="{{ request('bonusexp') }}">
@@ -39,19 +42,59 @@
               </div>
              </div>
             </div>
+
+             <div class="col-sm-12 col-md-8">
+                <div class="form-group">
+                        <label class="form-label">Jarak Level</label>
+                  <div class="selectgroup w-100">
+                    <label class="selectgroup-item">
+                      <input type="radio" name="range" value="5" class="selectgroup-input" {{ request('range') == 5 ? 'checked' : '' }}>
+                      <span class="selectgroup-button">0-5</span>
+                    </label>
+
+                    <label class="selectgroup-item">
+                      <input type="radio" name="range" value="6" class="selectgroup-input" {{ request('range') == 6 ? 'checked' : '' }}>
+                        <span class="selectgroup-button">6</span>
+                    </label>
+
+                    <label class="selectgroup-item">
+                      <input type="radio" name="range" value="7" class="selectgroup-input" {{ request('range') == 7 ? 'checked' : '' }}>
+                        <span class="selectgroup-button">7</span>
+                      </label>
+
+                    <label class="selectgroup-item">
+                      <input type="radio" name="range" value="8" class="selectgroup-input" {{ request('range') == 8 ? 'checked' : '' }}>
+                        <span class="selectgroup-button">8</span>
+                    </label>
+
+                    <label class="selectgroup-item">
+                      <input type="radio" name="range" value="9" class="selectgroup-input" {{ request('range') == 9 ? 'checked' : '' }}>
+                        <span class="selectgroup-button">9</span>
+                    </label>
+                  </div>
+               </div>
+             </div>
+
             <div class="col-sm-12 col-md-4">
+
+               <label class="form-label sm-hidden">&nbsp;</label>
                <button class="btn btn-outline-primary btn-block" type="submit"> <i class="fe fe-search"></i> Cari </button>
             </div>
 
             <div class="col-12">
-
-              <small class="help-block text-muted"><b>Note</b> jarak 3x dari level monster</small>
+              <hr class="my-1">
+              <small class="help-block"><b>Note</b> jarak bonus dari level monster telah di <a href="http://id.toram.jp/information/detail/?information_id=4580" rel="nofollow">update pada maintenance kamis, 18 juli 2019</a>, antara +/-9</small>
              </div>
            </div>
           </div>
           {!! form_close() !!}
 
    @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+          <div class="p-3">
+            <b>Level:</b> {{ request('level') }} ke {{ request('level')+1 }}<br>
+            <b>Bonus Exp:</b> {{ request('bonusexp') }}%<br>
+            <b>Jarak:</b> {{ request('range') }}
+          </div>
           <span class="text-center d-block">Butuh <b class="text-primary"><u>{{ number_format($expNeed) }}</u></b> EXP</span>
           <hr class="my-2">
           <div class="card-body p-0">

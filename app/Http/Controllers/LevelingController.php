@@ -17,13 +17,16 @@ class LevelingController extends Controller
   {
     $lvl = (int) request()->input('level', 50);
     $bonusExp = (int) request()->input('bonusexp', 0);
-    $min = $lvl-3;
-    $max = $lvl+3;
+    $range = (int) request()->input('range', 5);
+
+    $min = $lvl-$range;
+    $max = $lvl+$range;
 
     $expNeed = $this->expNeed($lvl);
 
     $data = Monster::whereIn('type',[2,3])
         			->whereBetween('level', [$min,$max])
+      				->orderByDesc('type')
         			->orderBy('level')
         			->get();
 
@@ -73,16 +76,24 @@ class LevelingController extends Controller
 
     switch($diff){
       case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
         $multiplier = 11;
         break;
-      case 1:
+      case 6:
         $multiplier = 10;
         break;
-      case 2:
+      case 7:
         $multiplier = 9;
         break;
-      default:
+      case 8:
         $multiplier = 7;
+        break;
+      default:
+        $multiplier = 3;
     }
 
     $total = $mobsExp*$multiplier;
