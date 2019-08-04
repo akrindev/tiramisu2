@@ -54,6 +54,10 @@
 
   @foreach($fills as $fl)
       <div class="col-12">
+         @includeWhen(!app()->isLocal(), 'inc.ads_article')
+      </div>
+
+      <div class="col-12">
         <h1 class="page-title" id="{{ $fl->type == 1 ? 'armor':'weapon'  }}{{ "+$fl->plus" }}">
           {{ $fl->type == 1 ? 'Armor':'Weapon'  }}{{ " (+$fl->plus)" }}
         </h1>
@@ -83,11 +87,6 @@
 
                 </div>
               </div>
-           @if($loop->index % 7 === 0)
-              <div class="col-md-6 col-xl-4">
-                @includeWhen(!app()->isLocal(), 'inc.ads_mobile')
-              </div>
-           @endif
     	 @endif
 	@endforeach
 
