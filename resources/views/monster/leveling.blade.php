@@ -24,7 +24,7 @@
       @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
 
         <div class="card">
-          {!! form_open('/leveling',['method'=>'get']) !!}
+            <form action="/leveling" method="get" accept-charset="utf8">
           <div class="card-body p-3">
            <div class="row">
             <div class="col-sm-6 col-md-6">
@@ -87,7 +87,7 @@
              </div>
            </div>
           </div>
-          {!! form_close() !!}
+          </form>
 
    @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
           <div class="p-3">

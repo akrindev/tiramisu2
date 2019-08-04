@@ -1,5 +1,5 @@
 <div class="page-header">
-{!! form_open('/search',["method"=>"GET", "itemprop" => "potentialAction", "itemscope itemtype"=>"https://schema.org/SearchAction"]) !!}
+  <form action="/search" method="GET" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction" accept-charset="utf8">
 <meta itemprop="target" content="{{ url('/search') }}?q={q}">
 <div class="page-options d-flex">
     <div class="input-icon mr-1">
@@ -14,7 +14,8 @@
         <option value="status_only" {{ request()->type == 'status_only' ? 'selected' : '' }}>Status</option>
     </select>
    </div>
-{!! form_close() !!}
+  </form>
+
 
     <small class="text-muted">cari dalam bahasa indonesia</small>
 </div>
