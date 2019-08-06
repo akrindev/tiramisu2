@@ -52,10 +52,11 @@
         </script>
       </div>
 
-  @foreach($fills as $fl)
-      <div class="col-12">
+       <div class="col-12">
          @includeWhen(!app()->isLocal(), 'inc.ads_article')
       </div>
+
+  @foreach($fills as $fl)
 
       <div class="col-12">
         <h1 class="page-title" id="{{ $fl->type == 1 ? 'armor':'weapon'  }}{{ "+$fl->plus" }}">
