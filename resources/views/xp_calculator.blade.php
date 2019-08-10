@@ -67,9 +67,9 @@
     </div>
 
     <div class="form-group form-group-sm col-md-4 col-xs-6">
-      <label>Level Persen sekarang (%) <small class="text-muted">(0-100%)</small> </label>
+      <label>Level Persen sekarang (%) </label>
       <input type="number" id="lvperc" class="form-control" v-model="lvperc">
-      <div class="help-block"></div>
+      <div class="help-block"> <small class="text-muted">(0-100%)</small></div>
     </div>
 
     <div class="form-group form-group-sm col-md-4 col-xs-6">
