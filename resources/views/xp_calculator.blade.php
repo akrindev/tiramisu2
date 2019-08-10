@@ -2,7 +2,7 @@
 
 @section('title','Exp Calculator including Quest')
 @section('description','Kalkulasi jumlah exp yang di butuhkan dari Nc, bnut sampai Quest. kuy cek disini')
-@section('image',to_img())
+@section('image','https://i.ibb.co/k1zFdBv/Level-CAP.png')
 
 @push('canonical')
 	@canonical
@@ -26,7 +26,8 @@
                   </div>
                   <div class="card-alert alert alert-info">
                     <b>New!!</b> Fill stats calculator <a href="/fill_stats/calculator"> Click here </a><br>
-                    <b>Hot!!</b> Have you try? <a href="/leveling">Toram Leveling Finder</a>
+                    <b>Hot!!</b> Have you try? <a href="/leveling">Toram Leveling Finder</a> <br>
+                    <b><a href="/forum/toram-online-level-c-7726be94">LEVEL CAP UPDATE</a></b>
                   </div>
 
   <div class="card-body p-3">
