@@ -50,9 +50,9 @@ const app = new Vue({
       }
 
       // stack
-      this.lastNc = this.lvnow < 50 ? 'min lv 50' :  Math.ceil(this.lastExp/300000)
-      this.lastBnut = this.lvnow < 25 ? 'min lv 25' : Math.ceil(this.lastExp/18270)
-      this.lastNwood = this.lvnow < 27 ? 'min lv 27' :  Math.ceil(this.lastExp/10080)
+      this.lastNc = this.lvnow < 50 ? 'min lv 50' :  Math.ceil(this.lastExp/297000)
+      this.lastBnut = this.lvnow < 25 ? 'min lv 25' : Math.ceil(this.lastExp/14900)
+      this.lastNwood = this.lvnow < 27 ? 'min lv 27' :  Math.ceil(this.lastExp/8160)
 
       // total spina
       this.spinaNc = this.lvnow < 50 ? 'min lv 50' : Math.round(this.lastNc*this.hnc)
