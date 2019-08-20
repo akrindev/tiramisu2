@@ -1,5 +1,8 @@
+/**
+* potensi kalkulator
+* version v1.0
+*/
 
-// potensi kalkulator
 var app = new Vue({
   el: '#app',
   data: {
