@@ -1,7 +1,7 @@
 <?php
 
 use App\Helpers\ConverterText;
-
+use Illuminate\Support\HtmlString;
 
 if ( ! function_exists('waktu'))
 	{
@@ -479,5 +479,14 @@ if(! function_exists('toHtml'))
     $output = $converter->text($text, $nl2br);
 
     return $output;
+  }
+}
+
+// canonical
+if(! function_exists('canonical'))
+{
+  function canonical()
+  {
+      return new HtmlString('<link rel="canonical" href="'. url()->current() .'">');
   }
 }

@@ -4,6 +4,11 @@
 @section('description', 'List of emblems Toram Online, Daftar Prestasi main toram online')
 @section('image', to_img())
 
+
+@push('canonical')
+	@canonical
+@endpush
+
 @section('content')
 <div class="my-5">
   <div class="container">

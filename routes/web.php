@@ -10,9 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('toram');
-});
+Route::view('/', 'toram');
 Route::view('/cb', 'cb');
 
 // dye routes
@@ -27,7 +25,9 @@ Route::prefix('dye')->group(function() {
 });
 
 Route::prefix('/cooking')->group(function () {
-  Route::get('/', 'CookingController@index');
+  Route::redirect('/', '/cooking/berteman');
+  Route::view('/berteman', 'cooking.tukar');
+  Route::get('buff', 'CookingController@buff');
 
   Route::middleware('admin')->group(function() {
   	Route::view('/store', 'cooking.store');
@@ -38,7 +38,6 @@ Route::prefix('/cooking')->group(function () {
 });
 
 Route::get('/latest_search', 'SitemapController@show');
-Route::post('/send-token/fcm', 'UserController@sendToken');
 
 /**
 * Refine
@@ -70,25 +69,27 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/uploader', 'ForumController@uploader');
 
 Route::get('/exp', 'XpController@index');
+Route::view('/potensi/kalkulator', 'potensi_kalkulator');
 
 // LOGIN
 Route::get('/logindev', 'Auth\LoginController@devLogin');
 Route::get('/fb-login', 'Auth\LoginController@redirect');
 Route::get('/facebook/callback', 'Auth\LoginController@callback');
 
-Route::get('/profile/notifikasi', 'UserController@notifikasi')->middleware('auth');
-
-Route::get('/profile', 'UserController@profileku')->middleware('auth');
-
 Route::get('/profile/{provider_id}', 'UserController@profile');
 
-Route::post('/save/contact', 'UserController@saveContact');
 /**
 *
 * Setting
 */
-Route::get('/setting/profile', 'UserController@settingProfile');
-Route::post('/setting/profile', 'UserController@settingProfileSubmit');
+Route::middleware('auth')->group(function() {
+  Route::get('/setting/profile', 'UserController@settingProfile');
+  Route::post('/setting/profile', 'UserController@settingProfileSubmit');
+  Route::get('/profile/notifikasi', 'UserController@notifikasi');
+  Route::get('/profile', 'UserController@profileku');
+  Route::post('/save/contact', 'UserController@saveContact');
+  Route::post('/send-token/fcm', 'UserController@sendToken');
+});
 
 // fill stats
 Route::get('/fill_stats', 'FillController@index');
@@ -114,10 +115,13 @@ Route::middleware(['admin'])->group(function() {
   	Route::delete('/skill-delete-comment', 'SkillController@deleteComment');
 });
 
+// Searching
+
+Route::get('/search', 'SearchController@search');
+
 /**
 * Monster routes
 */
-Route::get('/search', 'MonsterController@search');
 Route::get('/leveling', 'LevelingController@show');
 Route::get('/peta', 'MonsterController@index');
 Route::get('/peta/{id}', 'MonsterController@peta');
@@ -141,6 +145,7 @@ Route::prefix('monster')->group(function() {
 * Item(s) routes
 */
 
+Route::get('/items', 'MonsterController@showAllItems');
 Route::get('/items/{id}', 'MonsterController@showItems');
 
 Route::prefix('item')->group(function() {

@@ -4,6 +4,11 @@
 @section('description','Toram fill stats calculator +16 +17')
 @section('image',to_img())
 
+
+@push('canonical')
+	@canonical
+@endpush
+
 @section('content')
 <div class="my-5" onload="build_menu()">
 
@@ -53,6 +58,10 @@
               <button class="btn btn-outline-danger m-1"  onclick="build_menu()"><i class="fe fe-refresh-ccw"></i> Reset</button>
               <a href="/fill_stats" class="btn btn-pill btn-outline-warning m-1"><i class="fe fe-settings"></i> Manual formula</a>
 
+            </div>
+
+            <div class="mt-3">
+              <small class="text-muted">Credit: <a href="https://sparkychildcharlie.github.io/statting" rel="nofollow" target="_blank">Charlie Kobayashi</a></small>
             </div>
           </div>
         </div>

@@ -4,10 +4,11 @@ namespace App;
 
 use Watson\Rememberable\Rememberable;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Searchable;
 
 class Monster extends Model
 {
-  	use Rememberable;
+  	use Rememberable, Searchable;
 
     protected $fillable = [
     	'map_id', 'element_id', 'name', 'level', 'type',

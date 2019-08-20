@@ -4,10 +4,12 @@ namespace App;
 
 use Watson\Rememberable\Rememberable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+use App\Traits\Searchable;
 
 class Drop extends Model
 {
-  	use Rememberable;
+  	use Rememberable, Searchable;
 
     protected $fillable = [
     	'name', 'sell', 'proses', 'note', 'picture'
@@ -37,5 +39,25 @@ class Drop extends Model
   	public function dropDone()
     {
       return $this->hasOne(DropDone::class, 'drop_id');
+    }
+
+  	// get status by monster
+  	public function getStatusMonsterAttribute()
+    {
+      $description = explode('[NPC', trim($this->attributes['note']));
+
+      return ! blank($description[0]) ?
+        $description[0] : null;
+    }
+
+  	public function getStatusNpcAttribute()
+    {
+      if(Str::contains($this->attributes['note'], '[NPC: Pandai Besi]')) {
+        $description = explode('[NPC: Pandai Besi]', trim($this->attributes['note']));
+
+        $description = explode('[/NPC]', $description[1]);
+
+        return head($description);
+      }
     }
 }

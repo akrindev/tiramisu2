@@ -107,5 +107,9 @@ $(document).ready(function() {
     });
   }
 
+  /** btn login function */
+  $("#login-btn").on("click", function(e) {
+    $("#login-btn").addClass("btn-loading disabled");
 
+  });
 });

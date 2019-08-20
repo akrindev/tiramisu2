@@ -3,18 +3,112 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Cooking;
+use App\User;
 use Image;
+use Datatables;
 
 class CookingController extends Controller
 {
+  /*
   public function index()
   {
     $cooks = Cooking::orderBy('level')->get();
 
     return view('cooking.home', compact('cooks'));
   }
+  */
 
+  public function buff()
+  {
+    return datatables()->of(User::with('cooking', 'contact')->select('id', 'name', 'ign', 'biodata', 'cooking_id', 'cooking_level')->where('visibility', 1)->orderBy('updated_at', 'desc'))
+      ->addColumn('oleh', function ($oleh){
+        return "<div style='font-size:13px'><strong class='mr-2 mb-2 text-center'>". str_limit($oleh->name, 13) ."</strong><br><small class='text-muted'>ign: {$oleh->ign}</small></div>";
+      })
+      ->addColumn('buff', function ($buff) {
+      	return "<div style='font-size:13px'>{$this->getStatLv($buff->cooking->buff, $buff->cooking->stat, $buff->cooking_level, true)}</div><small class='text-muted'>level: {$buff->cooking_level}</small>";
+      })
+      ->addColumn('hubungi', function ($user) {
+        if(! $user->contact) {
+          return ' -- ';
+        }
+
+        $line = $user->contact->line != null ?
+          '<a href="//line.me/ti/p/~'.$user->contact->line .'" class="btn btn-outline-success btn-sm mr-2"><i class="fa fa-commenting-o mr-1"></i> line</a>' : '';
+        $wa =  $user->contact->whatsapp != null ?
+          '<a href="//wa.me/'.$user->contact->whatsapp.'" class="btn btn-success btn-sm"><i class="fa fa-whatsapp mr-1"></i> whatsapp</a>' : '';
+
+        return $line . $wa;
+      })
+      ->addColumn('bio', function ($bio) {
+      	return $bio->biodata;
+      })
+      ->rawColumns(['oleh', 'buff', 'hubungi'])
+      ->make(true);
+  }
+
+
+  public function getStatLv($buff, $stat, $lv, $parse = false) {
+    $out = 0;
+    for($i = 1;$i <= $lv;$i++){
+      if($i <= 5) {
+        $out += $stat;
+      } else {
+        $out = $out+$this->getPoint($stat);
+      }
+    }
+
+    if($parse) {
+    	return $this->parse($buff, $out);
+    }
+
+    return $out;
+  }
+
+
+  private function getPoint($stat){
+
+    $out = $stat;
+
+    switch($stat) {
+      case 2:
+        $out = 4;
+        break;
+      case 4:
+        $out = 6;
+        break;
+      case 6:
+        $out = 14;
+        break;
+      case 60:
+        $out = 140;
+        break;
+      case 400:
+        $out = 600;
+        break;
+      case 20:
+        $out = 40;
+        break;
+      default:
+        $out = 2;
+    }
+
+    return $out;
+  }
+
+  private function parse($buff, $out)
+  {
+    if(Str::contains($buff, '%')) {
+      $replaced = Str::replaceLast('%', '', $buff);
+
+      return $replaced . ' ' . $out . '%';
+    }
+
+    return $buff . ' ' . $out;
+  }
+
+  /*
   public function store()
   {
       $file = request()->file('icon')->getRealPath();
@@ -37,7 +131,8 @@ class CookingController extends Controller
 
       return response()->json(['success' => true]);
   }
-
+  */
+  /*
   public function delete($id)
   {
     $c = Cooking::findOrFail($id);
@@ -45,4 +140,5 @@ class CookingController extends Controller
 
     return redirect('/cooking')->with('deleted', 'Data telah di hapus!!');
   }
+  */
 }

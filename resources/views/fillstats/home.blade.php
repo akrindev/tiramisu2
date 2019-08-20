@@ -1,9 +1,14 @@
 @extends('layouts.tabler')
 
 
-@section('title','Toram Fillstats Formula +16 +17 +18 full list')
+@section('title','Toram Fillstats Formula +18, +19 full list')
 @section('description','Toram Fillstats Formula full list, Armor, senjata +17, +18, dst')
 @section('image',to_img())
+
+
+@push('canonical')
+	@canonical
+@endpush
 
 @section('content')
 <div class="my-3 my-md-5">
@@ -47,7 +52,12 @@
         </script>
       </div>
 
+       <div class="col-12">
+         @includeWhen(!app()->isLocal(), 'inc.ads_article')
+      </div>
+
   @foreach($fills as $fl)
+
       <div class="col-12">
         <h1 class="page-title" id="{{ $fl->type == 1 ? 'armor':'weapon'  }}{{ "+$fl->plus" }}">
           {{ $fl->type == 1 ? 'Armor':'Weapon'  }}{{ " (+$fl->plus)" }}
@@ -78,11 +88,6 @@
 
                 </div>
               </div>
-           @if($loop->index % 7 === 0)
-              <div class="col-md-6 col-xl-4">
-                @includeWhen(!app()->isLocal(), 'inc.ads_mobile')
-              </div>
-           @endif
     	 @endif
 	@endforeach
 

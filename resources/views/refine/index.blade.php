@@ -5,6 +5,10 @@
 @section('image', '/img/refine.png')
 
 
+@push('canonical')
+	@canonical
+@endpush
+
 @section('content')
 <div class="my-5">
   <div class="container">

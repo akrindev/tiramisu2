@@ -53,6 +53,12 @@
       <a href="/items/6" class="d-block mb-1 col-6"> <img src="/img/drop/mana.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Mana</a>
     </div>
 
+    <div class="my-1 row gutters-xs">
+    <a href="/items" class="d-block mb-1 col-12">
+      <img src="/img/skill/alchemy/processmaterials.png"  class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Semua Items
+      </a>
+    </div>
+
     <hr class="my-1">
 
     <div class="my-1 row gutters-xs">
@@ -78,7 +84,9 @@
     <div class="my-1 row gutters-xs">
       <b class="d-block col-12 mb-2">Lainnya</b>
       <a href="/prestasi" class="d-block mb-1 col-12"> <img src="/img/prestasi.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Emblem / Prestasi</a>
-      <a href="/cooking" class="d-block mb-1 col-12"> <img src="/img/cook-pt.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Cooking</a>
+      <a href="/cooking/berteman" class="d-block mb-1 col-12"> <img src="/img/cook-pt.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Buff Masakan Member</a>
+
+      <a href="/potensi/kalkulator" class="d-block mb-1 col-12"> <img src="/img/skill/smith/noviceanvil.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Potensi Kalkulator</a>
 
       <div class="d-block col-12 mb-5"></div>
 

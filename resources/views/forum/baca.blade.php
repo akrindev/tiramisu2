@@ -5,6 +5,11 @@
 @section('description',str_limit(strip_tags(toHtml($data->body))))
 @section('image',to_img($data->body))
 
+
+@push('canonical')
+	@canonical
+@endpush
+
 @section('content')
 
 @php
@@ -14,12 +19,55 @@ $tags = explode(',', $tags);
 @endphp
 <style>
 
-  p.body-text, div.body-text {
+  .body-text p, div.body-text {
      -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size:13px;
     font-family:'Source Sans Pro';
     font-weight:400;
+  }
+  .body-text > ul{
+    margin: 0 0 0 0px;
+    padding 0;
+    list-style-type: circle;
+  }
+  .body-text > ol > li, .body-text > ul > li{
+    position: relative;
+    margin: 0;
+    padding: 2px;
+  }
+
+  summary{
+    padding:10px;
+    font-size:14px;
+    z-index:1;
+    border-bottom:1px solid silver;
+    box-shadow:0 0 30px -12px #000;
+    cursor:pointer
+  }
+  details > p{
+    margin:0 -3px 0;
+    padding:10px;
+    font-size:12.5px;
+    text-align:left;
+    z-index:3;
+    box-shadow:0 2px 15px -6px #222;
+  }
+
+  details[open] p{
+    animation:det .6s
+  }
+
+  @keyframes det{
+    0%{
+      opacity:0
+    }
+    50%{
+      opacity:0.5
+    }
+    100%{
+      opacity:1
+    }
   }
 </style>
 <script type="application/ld+json">
@@ -78,13 +126,13 @@ $tags = explode(',', $tags);
               @endforeach
             </div>
             <div class="body-text">
-		@if(strlen(strip_tags((toHtml($data->body)))) > 100)
+		@if(strlen(strip_tags((toHtml($data->body)))) > 250)
  			@includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
         @else
   			@includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
         @endif
 
-            {{ toHtml($data->body) }}
+            {{ toHtml($data->body, true) }}
 
   			@includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 
@@ -138,14 +186,14 @@ $tags = explode(',', $tags);
 @if (count($comments))
 @foreach (collect($comments)->where('parent_id',null) as $comment)
    @php $i++; @endphp
-		<div class="card p-0">
+		<div class="card p-0" id="reply{{ $comment->id }}">
           <div class="card-body p-3">
             <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{$comment->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4 lazyload">
             <b><a href="/profile/{{$comment->user->provider_id }}" data-author="{{ $comment->user->name }}">  {{ $comment->user->name }}</a> </b> <br>
             <small class="text-muted">{{ waktu($comment->created_at) }}</small>
             <hr class="my-2">
             <div class="body-text">
-            @parsedown(e($comment->body))
+            {{ toHtml($comment->body, true) }}
 
 
            <div class="my-3">
@@ -200,11 +248,11 @@ $tags = explode(',', $tags);
 
           @foreach ($comment->getReply as $reply)
 <hr class="my-1">
-          <div id="#reply{{$reply->id}}" class="p-2">
+          <div id="reply{{$reply->id}}" class="p-2">
             <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{$reply->user->provider_id}}/picture?type=normal" class="avatar avatar-md float-left mr-4 lazyload">
             <b><a href="/profile/{{$reply->user->provider_id }}" data-author="{{ $comment->user->name }}">  {{ $reply->user->name }}</a> </b> <small class="text-muted"> &nbsp; ({{ waktu($reply->created_at)}})</small><br>
             <div class="media-body body-text">
-            @parsedown(e($reply->body))
+            {{ toHtml($reply->body, true) }}
 
               <div class="my-2 small text-right">
 
@@ -293,6 +341,11 @@ $tags = explode(',', $tags);
 <script src="/assets/js/forum.js">
 </script>
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+  $("details").on("click", function() {
+  	$("details[open]").not(this).removeAttr("open");
+  })
+</script>
 <script>
 
  @if(auth()->user()->role == 'admin')

@@ -84,13 +84,19 @@ class GalleryController extends Controller
 
       if(request()->hasFile('gambar'))
       {
-        $gambar = request()->file('gambar');
+        $gambar = request()->file('gambar')->getRealPath();
 
         $name = substr(md5(now()),0,8).'.png';
 
-        Image::make($gambar->path())
-          ->insert(public_path().'/img/up-on.png')
-          ->save(public_path().'/uploads/'.$name);
+        $img = Image::make($gambar);
+        $img->text('toram-id.info',15,30, function($font) {
+          $font->file(3);
+          $font->size(34);
+          $font->color('#ffffff');
+          $font->align('left');
+        });
+
+        $img->save(public_path().'/uploads/'.$name);
 
         $up = app('cloudinary')->uploadImg(public_path().'/uploads/'.$name);
 

@@ -109,7 +109,6 @@ class SkillController extends Controller
 
     $skill->skill_id = request('skill');
     $skill->name = request('name');
-    $skill->r_name = request('r_name');
     $skill->type = implode(',',request('type'));
     $skill->mp   = request('mp');
     $skill->range = request('range');

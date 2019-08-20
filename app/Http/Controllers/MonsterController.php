@@ -54,39 +54,6 @@ class MonsterController extends Controller
     return view('monster.edit_map', compact('peta'));
   }
 
-  public function search()
-  {
-    $q = request()->q;
-
-    if(strlen($q) < 2)
-    {
-      return redirect('/')->with('gagal', 'Mencari harus memiliki 2 karakter atau lebih');
-    }
-
-    LogSearch::create([
-    	'user_id'	=> auth()->id() ?? null,
-      	'q'			=> $q
-    ]);
-
-    $drops = Drop::with(['monsters' => function($q){
-    	return $q->with('map');
-    }])
-      ->where('name','like','%'.$q.'%')
-      			->orderBy('name')
-      			->get();
-
-    $monsters = Monster::where('name','like','%'.$q.'%')
-      			->orderBy('name')
-      			->get();
-
-    $maps = Map::where('name', 'like', '%'.$q.'%')
-      			->orderBy('name')
-      			->get();
-
-    return view('monster.search',compact('drops', 'monsters', 'maps','q'));
-
-  }
-
   public function showMons($id)
   {
     $data = Monster::findOrFail($id);
@@ -279,6 +246,17 @@ class MonsterController extends Controller
     $data = $type->drop()->with(['monsters' => function($q){
     	return $q->with('map');
     }])->orderByDesc('id')->paginate(25);
+
+    return view('monster.items', compact('type', 'data'));
+  }
+
+  public function showAllItems()
+  {
+    $type = (object) [ 'name' => 'Semua Items'];
+
+    $data = Drop::with(['monsters' => function($q){
+    	return $q->with('map');
+    }])->orderByDesc('id')->paginate(20);
 
     return view('monster.items', compact('type', 'data'));
   }

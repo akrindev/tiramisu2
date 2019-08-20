@@ -70,10 +70,12 @@ class UserController extends Controller
     request()->validate([
     	'username'	=> 'required|alpha_num|max:10|unique:users,username,'.$user->id,
       	'ign'	=> 'required',
+      	'email'		=> 'email',
       	'biodata'	=> 'required|max:160',
-      	'alamat'	=>  'required|max:160',
-      	'birthday'	=> 'date|nullable'
-    ]);
+      	'alamat'	=> 'required|max:160',
+      	'cooking'	=> 'integer|min:1|max:38',
+      	'cooklv'	=> 'integer|min:1|max:10'
+     ]);
 
     $gender = request()->gender;
 
@@ -102,6 +104,13 @@ class UserController extends Controller
     $user->alamat = request()->alamat;
     $user->gender = $gen;
 
+    if(request('cooking') && request('cooklv') != null) {
+    	$user->cooking_id = request()->cooking;
+    	$user->cooking_level = request()->cooklv;
+    }
+
+    $user->visibility = request()->visibility;
+
     $user->save();
 
     return back()->with('sukses', 'Data telah di ubah!');
@@ -110,8 +119,7 @@ class UserController extends Controller
   	public function saveContact()
     {
       request()->validate([
-      	'line' => 'min:3',
-        'whatsapp' => 'min:10'
+        'whatsapp' => 'max:15'
       ]);
 
       Contact::updateOrCreate([

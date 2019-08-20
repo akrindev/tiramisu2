@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Searchable;
 
 class Map extends Model
 {
+    use Searchable;
+
     protected $fillable = [
     	'name'
     ];

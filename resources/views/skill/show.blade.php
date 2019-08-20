@@ -4,6 +4,10 @@
 @section('description', 'Informasi skill '. $name .' toram online full skill list')
 @section('image', to_img())
 
+@push('canonical')
+	@canonical
+@endpush
+
 @section('content')
 
 <div class="my-5">
@@ -81,7 +85,7 @@
         <div class="mt-5">
         <strong>Deskripsi:</strong> <br>
           <div class="text-muted">
-            @parsedown($skill->description)
+            {{ toHtml($skill->description, true) }}
           </div>
         </div>
       </div>

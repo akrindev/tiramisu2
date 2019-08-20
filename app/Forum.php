@@ -5,10 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use App\Traits\Searchable;
 
 class Forum extends Model
 {
-  use SoftDeletes, Notifiable;
+  use SoftDeletes, Notifiable, Searchable;
 
     protected $fillable = [
 		'user_id', 'judul', 'body' , 'pinned',
