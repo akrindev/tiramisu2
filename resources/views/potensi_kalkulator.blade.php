@@ -82,6 +82,11 @@
             </tr>
 
             <tr>
+              <th> Tinju </th>
+              <td> <input class="form-control col-4" type="number" id="tinju" v-model="tinju" disabled> </td>
+            </tr>
+
+            <tr>
               <th> Tombak </th>
               <td> <input class="form-control col-4" type="number" id="tombak" v-model="tombak" disabled> </td>
             </tr>

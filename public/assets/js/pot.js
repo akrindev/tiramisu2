@@ -1,6 +1,6 @@
 /**
 * potensi kalkulator
-* version v1.0
+* version v1.1
 */
 
 var app = new Vue({
@@ -10,42 +10,39 @@ var app = new Vue({
     int: 1,
     vit: 1,
     dex: 1,
-    agi: 1,
-    pedang: 1,
-    pedangraya: 1,
-    bow: 1,
-    bowgun: 1,
-    tongkat: 1,
-    md: 1,
-    tombak: 1,
-    katana: 1,
-    zirah: 1
+    agi: 1
   },
-  watch: {
-    str() {
-      this.pedang = this.bow = this.getPot(this.add(this.str, this.dex))
-      this.pedangraya = this.getPot(this.str, true)
-      this.tombak = this.getPot(this.add(this.str, this.agi))
+  computed: {
+    pedang: function() {
+      return this.getPot(this.add(this.str, this.dex))
     },
-    dex() {
-      this.pedang = this.bow = this.getPot(this.add(this.str, this.dex))
-      this.bowgun = this.getPot(this.dex, true)
-      this.katana = this.getPot(this.add(this.dex, this.agi))
+    pedangraya: function() {
+      return this.getPot(this.str, true)
     },
-    int() {
-      this.tongkat = this.getPot(this.int, true)
-      this.md = this.getPot(this.add(this.agi, this.int))
+    bow: function() {
+      return this.getPot(this.add(this.str, this.dex))
     },
-    agi() {
-      this.katana = this.getPot(this.add(this.dex, this.agi))
-      this.tombak = this.getPot(this.add(this.str, this.agi))
-      this.tinju = this.getPot(this.agi, true)
-      this.md = this.getPot(this.add(this.agi, this.int))
+    bowgun: function() {
+      return this.getPot(this.dex, true)
     },
-    vit() {
-      this.zirah = this.getPot(this.vit, true)
+    tongkat: function() {
+      return this.getPot(this.int, true)
+    },
+    md: function() {
+      return this.getPot(this.add(this.agi, this.int))
+    },
+    tinju: function() {
+      return this.getPot(this.agi, true)
+    },
+    tombak: function() {
+      return this.getPot(this.add(this.str, this.agi))
+    },
+    katana: function() {
+      return this.getPot(this.add(this.dex, this.agi))
+    },
+    zirah: function() {
+      return this.getPot(this.vit, true)
     }
-
   },
   methods: {
     getPot(stat, bonus = false) {
