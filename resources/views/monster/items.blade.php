@@ -24,7 +24,7 @@
 
        @forelse($data as $item)
 
-        @if($loop->index % 10 == 0)
+        @if(($loop->index + 1) % 10 == 0)
    			@includeWhen(env('APP_ENV') == 'production', 'inc.ads.infeed')
         @endif
 

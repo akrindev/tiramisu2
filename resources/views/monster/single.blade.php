@@ -35,7 +35,7 @@
         @endif
 
       @foreach ($data->monster as $mons)
-        @if($loop->index % 5 == 0)
+        @if(($loop->index + 1) % 5 == 0)
    			@includeWhen(env('APP_ENV') == 'production', 'inc.ads.infeed')
         @endif
         <div class="card">
