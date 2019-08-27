@@ -65,6 +65,11 @@
       </div>
 
    	@foreach($data as $pos)
+      @if($loop->first == 1)
+      <div class="col-md-6">
+         @includeWhen(!app()->isLocal(), 'inc.ads.infeedtext')
+      </div>
+      @endif
          @if($pos->type == $fl->type && $pos->plus == $fl->plus)
               <div class="col-md-6 col-xl-4">
                 <div class="card card-collapsed">
