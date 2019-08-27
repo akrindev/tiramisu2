@@ -23,6 +23,11 @@
    @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
 
        @forelse($data as $item)
+
+        @if($loop->index % 10 == 0)
+   			@includeWhen(env('APP_ENV') == 'production', 'inc.ads.infeed')
+        @endif
+
         <div class="card">
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
             <div>

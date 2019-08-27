@@ -11,7 +11,7 @@
 <div class="my-5">
   <div class="container">
     <div class="page-header">
-      <h1 class="page-title">Toram Monster Type {{ ucfirst($type) }}</h1>
+      <h1 class="page-title">Toram Monster {{ ucfirst($type) }}</h1>
     </div>
 
     <div class="row">
@@ -23,6 +23,9 @@
    @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
 
      @foreach ($data as $mons)
+        @if($loop->index % 10 == 0)
+   			@includeWhen(env('APP_ENV') == 'production', 'inc.ads.infeed')
+        @endif
         <div class="card">
           <div class="card-body p-3" style="font-size:13px;font-weight:400">
             <dl> <!-- dl start -->

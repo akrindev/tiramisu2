@@ -35,6 +35,9 @@
         @endif
 
       @foreach ($data->monster as $mons)
+        @if($loop->index % 5 == 0)
+   			@includeWhen(env('APP_ENV') == 'production', 'inc.ads.infeed')
+        @endif
         <div class="card">
           <div class="card-body p-3" style="font-size:13px;font-weight:400">
           <dl> <!-- dl start -->
