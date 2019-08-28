@@ -17,7 +17,7 @@
     @include('inc.cari')
 
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-4">
         <div class="card">
           <div class="card-header">
             <div class="card-title">
@@ -45,10 +45,150 @@
               <th> DEX </th>
               <td> <input class="form-control col-4" type="number" id="DEX" v-model="dex" > </td>
             </tr>
+
+            <tr>
+              <th> TECH </th>
+              <td> <input class="form-control col-4" type="number" id="TECH" v-model="tech" > </td>
+            </tr>
+
+            <tr>
+              <th> LUK </th>
+              <td> <input class="form-control col-4" type="number" id="luk" v-model="luk" > </td>
+            </tr>
           </table>
 
         </div>
         @includeWhen(!app()->isLocal(), 'inc.ads_article')
+      </div>
+      <div class="col-md-8">
+      	<div class="card">
+          <div class="card-header">
+            Status Lainnya
+          </div>
+          <div class="card-body p-3">
+            <div class="form-group">
+              <label class="form-label">Status Masakan</label>
+
+              <!-- status masakan -->
+              <div class="row">
+                <div class="col-6">
+                  <label>STR</label>
+                  <input class="form-control" v-model="foodSTR">
+                </div>
+
+                <div class="col-6">
+                  <label>DEX</label>
+                  <input class="form-control" v-model="foodDEX">
+                </div>
+              </div>
+
+              <hr class="my-2">
+
+              <!-- status perlengkapan -->
+
+              <label class="form-label">Status Perlengkapan (Weapon / Senjata)</label>
+
+              <div class="row">
+                <div class="col-6">
+                  <label>STR</label>
+                  <input class="form-control" v-model="weapSTRflat">
+                </div>
+
+                <div class="col-6">
+                  <label>STR (%)</label>
+                  <input class="form-control" v-model="weapSTRperc">
+                </div>
+
+                <div class="col-6">
+                  <label>DEX</label>
+                  <input class="form-control" v-model="weapDEXflat">
+                </div>
+
+                <div class="col-6">
+                  <label>DEX (%)</label>
+                  <input class="form-control" v-model="weapDEXperc">
+                </div>
+              </div>
+
+
+              <hr class="my-2">
+
+              <label class="form-label">Pelengkap Sub Senjata</label>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <select class="form-control" v-model="subWeap">
+                      <option value="0">Kosong</option>
+                      <option value="2">Army Knife (DEX+2)</option>             <option value="2">High-Quality Wood Arrow (DEX+2)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <hr class="my-2">
+
+              <label class="form-label">Status Perlengkapan (Armor / Zirah)</label>
+
+              <div class="row">
+                <div class="col-6">
+                  <label>STR</label>
+                  <input class="form-control" v-model="armSTRflat">
+                </div>
+
+                <div class="col-6">
+                  <label>STR (%)</label>
+                  <input class="form-control" v-model="armSTRperc">
+                </div>
+
+                <div class="col-6">
+                  <label>DEX</label>
+                  <input class="form-control" v-model="armDEXflat">
+                </div>
+
+                <div class="col-6">
+                  <label>DEX (%)</label>
+                  <input class="form-control" v-model="armDEXperc">
+                </div>
+              </div>
+
+              <hr class="my-2">
+
+              <label class="form-label">Pelengkap Tambahan</label>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <select class="form-control" v-model="additional">
+                      <option value="0">Kosong</option>
+                      <option value="5">Sanggul Chignon [Monster] (DEX+5)</option>
+                      <option value="6">Sanggul Chignon [NPC] (DEX+6)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- special -->
+
+              <hr class="my-2">
+
+              <label class="form-label">Pelengkap Spesial</label>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <select class="form-control" v-model="special">
+                      <option value="0">Kosong</option>
+                      <option value="5">Azimat Mahir IV [NPC] (DEX+8)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+
         <div class="card">
           <div class="card-header">
             <div class="card-title">
@@ -100,6 +240,37 @@
               <td> <input class="form-control col-4" type="number" id="zirah" v-model="zirah" disabled> </td>
             </tr>
           </table>
+
+          <hr class="my-3">
+
+          <div class="row">
+            <div class="col-md-6">
+          <div class="form-group p-3">
+            <label class="form-label">Total Status DEX (flat)</label>
+            <input class="form-control" v-model="totalDEX" disabled=disabled>
+          </div></div>
+            <div class="col-md-6">
+          <div class="form-group p-3">
+            <label class="form-label">Total Status DEX (%)</label>
+            <input class="form-control" v-model="totalDEXperc" disabled=disabled>
+          </div></div>
+          </div>
+
+
+          <hr class="my-3">
+
+          <div class="row">
+            <div class="col-md-6">
+          <div class="form-group p-3">
+            <label class="form-label">Total Status STR (flat)</label>
+            <input class="form-control" v-model="totalSTR" disabled=disabled>
+          </div></div>
+            <div class="col-md-6">
+          <div class="form-group p-3">
+            <label class="form-label">Total Status STR (%)</label>
+            <input class="form-control" v-model="totalSTRperc" disabled=disabled>
+          </div></div>
+          </div>
 
         </div>
       </div>

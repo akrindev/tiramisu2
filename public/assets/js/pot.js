@@ -1,6 +1,6 @@
 /**
 * potensi kalkulator
-* version v1.1
+* version v2.0
 */
 
 var app = new Vue({
@@ -10,7 +10,34 @@ var app = new Vue({
     int: 1,
     vit: 1,
     dex: 1,
-    agi: 1
+    agi: 1,
+    tech: 0,
+    luk: 0,
+
+    // FOOD
+    foodDEX: 0,
+    foodSTR: 0,
+
+    // status weapon
+    weapSTRflat: 0,
+    weapSTRperc: 0,
+    weapDEXflat: 0,
+    weapDEXperc: 0,
+
+    // subWeap
+    subWeap: 0,
+
+    // status zirah
+    armSTRflat: 0,
+    armSTRperc: 0,
+    armDEXflat: 0,
+    armDEXperc: 0,
+
+    // additional
+    additional: 0,
+
+    // special
+    special: 0,
   },
   computed: {
     pedang: function() {
@@ -42,6 +69,21 @@ var app = new Vue({
     },
     zirah: function() {
       return this.getPot(this.vit, true)
+    },
+
+    // total dex flat
+    totalDEX: function() {
+      return Number(this.dex)+Number(this.foodDEX)+Number(this.weapDEXflat)+Number(this.subWeap)+Number(this.armDEXflat)+Number(this.additional)+Number(this.special)
+    },
+    totalDEXperc: function() {
+      return Number(this.weapDEXperc)+Number(this.armDEXperc)
+    },
+
+    totalSTR: function() {
+      return Number(this.str)+Number(this.foodSTR)+Number(this.weapSTRflat)+Number(this.armSTRflat)
+    },
+    totalSTRperc: function () {
+      return Number(this.weapSTRperc)+Number(this.armSTRperc)
     }
   },
   methods: {
