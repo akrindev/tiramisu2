@@ -94,15 +94,22 @@
     <script src="/assets/js/fcm.js"></script>
 @endauth
 
-    <script>
-      if('serviceWorker' in navigator)
-      {
-        navigator.serviceWorker.register('/sw.js')
-          .then(function() {
-          console.log('Service Worker Registered');
-        });
-      }
-    </script>
+<script>
+  if('serviceWorker' in navigator)
+  {
+    navigator.serviceWorker.register('/sw.js')
+      .then(function() {
+      	console.log('Service Worker Registered');
+      });
+  }
+
+  window.addEventListener("load",function() {
+    setTimeout(function(){
+      // This hides the address bar:
+      window.scrollTo(0, 1);
+    }, 0);
+  });
+</script>
 
     @yield('head')
 

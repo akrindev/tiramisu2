@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title','Exp Calculator including Quest')
+@section('title','Exp Calculator (Quest Calculator)')
 @section('description','Kalkulasi jumlah exp yang di butuhkan dari Nc, bnut sampai Quest. kuy cek disini')
 @section('image','https://i.ibb.co/k1zFdBv/Level-CAP.png')
 
@@ -13,7 +13,7 @@
     <div class="container">
 
     <div class="page-header">
-      <h1 class="page-title"> Exp Calculator including Quest</h1>
+      <h1 class="page-title"> Exp Calculator (Quest Calculator)</h1>
     </div>
 
 
@@ -33,14 +33,13 @@
   <div class="card-body p-3">
   <div class="row">
 
-    <div class="h3 mb-5 col-12">Price (harga)</div>
-
+    <details class="h5 mb-5 col-12">
+      <summary class="text-danger">Price (harga) [show/hide] </summary>
     <div class="form-group form-group-sm col-md-4 col-xs-12">
       <label>Nightmare Cystal (Kristal teror)</label>
       <input type="number" id="nc" class="form-control" v-model="hnc">
       <div class="help-block">Harga NC per stk</div>
     </div>
-
 
     <div class="form-group form-group-sm col-md-4 col-xs-12">
       <label>Bitter Nut (Kacang Pahit)</label>
@@ -55,6 +54,7 @@
       <div class="help-block">Harga NWood perstk</div>
     </div>
 
+    </details>
 
 
   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
@@ -109,11 +109,11 @@
       <h6> Quest NPC: Arwah Peneliti </h6>
       <ol>
         <li>
-      <strong><a href="/npc/quest/1">Bebas Dari si Penggerogot!</a> </strong> <span class="text-danger">@{{ q1 }}</span></li>
-        <li><strong><a href="/npc/quest/2">Mencari Air Bersih</a></strong> <span class="text-danger">@{{ q2 }}</span></li>
-        <li><strong> <a href="/npc/quest/3">Buku Mestinya di Rak Buku</a> </strong> <span class="text-danger">@{{ q3 }}</span></li>
-        <li><strong> <a href="/npc/quest/4">Secercah Harapan</a> </strong> <span class="text-danger">@{{ q4 }}</span></li>
-           <li><strong> <a href="/npc/quest/5">Pengejaran si Biang Kerok!</a> </strong> <span class="text-danger">@{{ q5 }}</span></li>
+          <strong><a href="/npc/quest/1">Bebas Dari si Penggerogot!</a> <span class="text-muted">(150.000 EXP)</span> </strong> <span class="text-danger">@{{ q1 }}</span></li>
+        <li><strong><a href="/npc/quest/2">Mencari Air Bersih</a><span class="text-muted">(55.200 EXP)</span> </strong> <span class="text-danger">@{{ q2 }}</span></li>
+        <li><strong> <a href="/npc/quest/3">Buku Mestinya di Rak Buku</a> <span class="text-muted">(50.600 EXP)</span> </strong> <span class="text-danger">@{{ q3 }}</span></li>
+        <li><strong> <a href="/npc/quest/4">Secercah Harapan</a> <span class="text-muted">(62.800 EXP)</span> </strong> <span class="text-danger">@{{ q4 }}</span></li>
+           <li><strong> <a href="/npc/quest/5">Pengejaran si Biang Kerok!</a><span class="text-muted">(41.800 EXP)</span>  </strong> <span class="text-danger">@{{ q5 }}</span></li>
       </ol>
 
       <hr class="my-2">
@@ -122,9 +122,9 @@
       <h6> Quest NPC: Arwah Ningrat </h6>
       <ol>
         <li>
-      <strong><a href="/npc/quest/6">Kelinci di Alam Kegelapan?!</a> </strong> <span class="text-danger">@{{ q6 }}</span></li>
-        <li><strong><a href="/npc/quest/7">Hidup Nyaman Terus</a></strong> <span class="text-danger">@{{ q7 }}</span> </li>
-        <li><strong> <a href="/npc/quest/8">Si Aneh Imut</a> </strong> <span class="text-danger">@{{ q8 }}</span></li>
+      <strong><a href="/npc/quest/6">Kelinci di Alam Kegelapan?!</a> <span class="text-muted">(344.000 EXP)</span> </strong> <span class="text-danger">@{{ q6 }}</span></li>
+        <li><strong><a href="/npc/quest/7">Hidup Nyaman Terus</a><span class="text-muted">(175.000 EXP)</span> </strong> <span class="text-danger">@{{ q7 }}</span> </li>
+        <li><strong> <a href="/npc/quest/8">Si Aneh Imut</a> <span class="text-muted">(133.000 EXP)</span> </strong> <span class="text-danger">@{{ q8 }}</span></li>
       </ol>
 
     </div>
