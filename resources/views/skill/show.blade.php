@@ -24,7 +24,7 @@
   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
 
     @foreach($skills->child as $skill)
-      @if($loop->index % 5 == 0)
+      @if(($loop->index + 1) % 5 == 0)
        @includeWhen(!app()->isLocal(), 'inc.ads.infeed')
       @endif
       <div class="card">

@@ -96,8 +96,14 @@ $tags = explode(',', $tags);
    <a href="/forum" class="btn btn-sm mb-3 btn-outline-secondary btn-pill"> <i class="fe fe-chevrons-left"></i> Back to forum</a>
 
    <div class="mb-3">
+     <h3 class="mt0 mb-0"> {{ $data->judul }} </h3>
 
-            <h4 class="mt0 mb-0"> {{ $data->judul }} </h4>
+     @if(strlen(strip_tags((toHtml($data->body)))) > 320)
+ 	 	@includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+     @else
+  		@includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+     @endif
+
    </div>
 
         <div class="card p-0">
@@ -126,12 +132,6 @@ $tags = explode(',', $tags);
               @endforeach
             </div>
             <div class="body-text">
-		@if(strlen(strip_tags((toHtml($data->body)))) > 250)
- 			@includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
-        @else
-  			@includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
-        @endif
-
             {{ toHtml($data->body, true) }}
 
   			@includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
