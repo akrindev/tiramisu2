@@ -1,3 +1,4 @@
+<div class="mb-3">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- lefina -->
 <ins class="adsbygoogle"
@@ -9,3 +10,4 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+</div>
