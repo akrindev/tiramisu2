@@ -158,8 +158,6 @@
         </div>
        @endforeach
 
-        @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
-
      @endif
 
         @if($monsters->count() > 0)
