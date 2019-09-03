@@ -294,6 +294,7 @@
          </div>
       <footer class="footer">
         <div class="container">
+          @include('partnerSite.show')
           <div class="row align-items-center flex-row-reverse">
             <div class="col-auto ml-lg-auto">
               <div class="text-center">
