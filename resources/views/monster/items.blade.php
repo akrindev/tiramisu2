@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title', 'Toram drop list ' . $type->name)
+@section('title', 'Toram drop list ' . $type)
 @section('image', to_img())
 
 @push('canonical')
@@ -11,7 +11,7 @@
 <div class="my-5">
   <div class="container">
     <div class="page-header">
-      <h1 class="page-title">Toram {{ $type->name }}</h1>
+      <h1 class="page-title">Toram {{ $type }}</h1>
     </div>
 
     <div class="row">
@@ -48,16 +48,16 @@
                 <!-- Item status -->
           <ul class="nav nav-tabs justify-content-center" id="statusTab" role="tablist">
             <li class="nav-item">
-              <a class="nav-link {{ !is_null($item->status_monster) ? 'active' :  '' }}" id="status-monster-tab" data-toggle="tab" href="#status-monster{{ $loop->index }}" role="tab" aria-controls="status" aria-selected="true">
+              <a class="nav-link {{ !is_null($item->note['monster']) ? 'active' :  '' }}" id="status-monster-tab" data-toggle="tab" href="#status-monster{{ $loop->index }}" role="tab" aria-controls="status" aria-selected="true">
               Status
-              @if(!is_null($item->status_monster))
+              @if(!is_null($item->note['monster']))
               <span class="nav-unread"></span>
               @endif
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link{{ is_null($item->status_monster) && !is_null($item->status_npc) ? ' active' :  '' }}" id="status-npc-tab" data-toggle="tab" href="#status-npc{{ $loop->index }}" role="tab" aria-controls="status-npc" aria-selected="false">Status: NPC
-              @if(!is_null($item->status_npc))
+              <a class="nav-link{{ is_null($item->note['monster']) && !is_null($item->note['npc']) ? ' active' :  '' }}" id="status-npc-tab" data-toggle="tab" href="#status-npc{{ $loop->index }}" role="tab" aria-controls="status-npc" aria-selected="false">Status: NPC
+              @if(!is_null($item->note['npc']))
               <span class="nav-unread"></span>
               @endif
               </a>
@@ -73,23 +73,23 @@
           </ul>
 
           <div class="tab-content" id="statusTabContent">
-            <div class="tab-pane fade {{ !is_null($item->status_monster) ? 'show active' :  '' }}" id="status-monster{{ $loop->index }}" role="tabpanel" aria-labelledby="status-monster-tab">
+            <div class="tab-pane fade {{ !is_null($item->note['monster']) ? 'show active' :  '' }}" id="status-monster{{ $loop->index }}" role="tabpanel" aria-labelledby="status-monster-tab">
               <div class="my-5">
-              @if(!is_null($item->status_monster))
+              @if(!is_null($item->note['monster']))
                 <dl> <!-- dl start -->
-                  {{ toHtml($item->status_monster) }}
+                  {{ toHtml($item->note['monster']) }}
                 </dl>
               @else
                 <small class="text-muted">-- tidak ada --</small>
               @endif
               </div>
             </div>
-            <div class="tab-pane fade{{ is_null($item->status_monster) && !is_null($item->status_npc) ? ' show active' :  '' }}" id="status-npc{{ $loop->index }}" role="tabpanel" aria-labelledby="status-npc-tab">
+            <div class="tab-pane fade{{ is_null($item->note['monster']) && !is_null($item->note['npc']) ? ' show active' :  '' }}" id="status-npc{{ $loop->index }}" role="tabpanel" aria-labelledby="status-npc-tab">
 
               <div class="my-5">
-              @if(!is_null($item->status_npc))
+              @if(!is_null($item->note['npc']))
                 <dl> <!-- dl start -->
-                  {{ toHtml($item->status_npc) }}
+                  {{ toHtml($item->note['npc']) }}
                 </dl>
               @else
                 <small class="text-muted">-- tidak ada --</small>

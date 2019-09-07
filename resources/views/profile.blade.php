@@ -34,9 +34,9 @@ endif;
         <a href="/setting/profile" class="btn btn-link btn-sm">edit profile</a>
         <a href="/mygallery" class="btn btn-link btn-sm">My Gallery</a>
         <a href="/forum/baru" class="btn btn-link btn-sm">Tulis post</a>
-
+<!--
         <a href="/contribution/show" class="btn btn-link btn-sm">Kontribusi</a>
-
+-->
         @if(auth()->user()->isAdmin())
         <a href="/admin" class="btn btn-link btn-sm">Admin Dashboard</a>
         @endif

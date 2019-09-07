@@ -15,13 +15,15 @@
       <div class="col-md-12">
         <div class="alert alert-info"><b>Tips!</b> &nbsp; Tambahkan drop terlebih dahulu, setelah itu monster setelah monster tambah resep</div>
         <a href="/mons/store" class="btn btn-sm mb-2">Store monster</a>
-        <a href="/mons/drop/store" class="btn btn-sm mb-2">Store drop</a>
+        <a href="/item/drop/store" class="btn btn-sm mb-2">Store drop</a>
         <a href="/mons/store/resep" class="btn btn-sm mb-2">Store resep</a>
         <a href="/store/peta" class="btn btn-sm mb-2">Edit Peta</a>
 		  <a href="/fill_stats/add" class="btn btn-sm mb-2">Store fill stats formula</a>
         <a href="/npc/store" class="btn btn-sm mb-2">Edit Npc</a>
          <a href="/prestasi/add" class="btn btn-sm mb-2">Tambah Emblem</a>
+        <!--
         <a href="/contribution/show" class="btn btn-sm mb-2">Kontribusi</a>
+-->
         <a href="/skill" class="btn btn-sm mb-2">Skill</a>
         <a href="/quiz/admin" class="btn btn-sm mb-2">Moderasi Quiz </a>
         <a href="/edit-tentang" class="btn btn-sm mb-2">Edit About Us</a>

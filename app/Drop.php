@@ -11,6 +11,10 @@ class Drop extends Model
 {
   	use Rememberable, Searchable;
 
+  	protected $casts = [
+    	'note'	=> 'json'
+    ];
+
     protected $fillable = [
     	'name', 'sell', 'proses', 'note', 'picture'
     ];

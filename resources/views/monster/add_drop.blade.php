@@ -36,18 +36,23 @@
 
           <div class="form-group">
             <label class="form-label">NPC Selling price</label>
-            <input type="number" class="form-control" name="sell">
+            <input type="number" class="form-control" name="sell" placeholder="Boleh kosong">
           </div>
 
 
           <div class="form-group">
             <label class="form-label">Proses pts</label>
-            <input type="number" class="form-control" name="proses" >
+            <input type="number" class="form-control" name="proses" placeholder="Boleh kosong">
           </div>
 
           <div class="form-group">
-            <label class="form-label">Tambahan / Note / Status weapon / item <small class="text-muted">boleh kosong</small></label>
-            <textarea name="note" rows="5" class="form-control"></textarea>
+            <label class="form-label">Deskripsi item (MONSTER) <small class="text-muted">boleh kosong</small></label>
+            <textarea name="noteMonster" rows="5" class="form-control" placeholder="Status Monster . . ."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Deskripsi Status item (NPC) <small class="text-muted">boleh kosong</small></label>
+            <textarea name="noteNpc" rows="5" class="form-control" placeholder="Status Npc . . ."></textarea>
           </div>
 
 
@@ -117,7 +122,7 @@
 
     let data = new FormData(e.target);
 
-    axios.post('/mons/drop/store', data)
+    axios.post('/item/drop/store', data)
     .then((res) => {
     	if(res.data.success) {
           swal("Data drop telah di tambahkan", {

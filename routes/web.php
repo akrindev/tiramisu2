@@ -145,17 +145,18 @@ Route::prefix('monster')->group(function() {
 * Item(s) routes
 */
 
-Route::get('/items', 'MonsterController@showAllItems');
-Route::get('/items/{id}', 'MonsterController@showItems');
+Route::get('/items', 'ItemController@showAllItems');
+Route::get('/items/{id}', 'ItemController@showItems');
 
 Route::prefix('item')->group(function() {
-	Route::get('/{id}', 'MonsterController@showItem');
+	Route::get('/{id}', 'ItemController@showItem');
 
   	// admin route
   	Route::middleware('admin')->group(function() {
-		Route::get('/{id}/edit', 'MonsterController@editItem');
-		Route::post('/{id}/edit', 'MonsterController@editItemPost');
-		Route::delete('/{id}/hapus', 'MonsterController@hapusItem');
+      	Route::match(['get', 'post'], '/drop/store', 'ItemController@storeDrop');
+		Route::get('/{id}/edit', 'ItemController@editItem');
+		Route::put('/{id}/edit', 'ItemController@editItemPost');
+		Route::delete('/{id}/hapus', 'ItemController@hapusItem');
     });
 });
 
@@ -181,7 +182,6 @@ Route::match(['get', 'post'], '/mons/store/resep', 'MonsterController@storeResep
 Route::delete('/mons/hapus/resep/{id}', 'MonsterController@hapusResep')->middleware('admin');
 Route::get('/mons/data/drop', 'MonsterController@dataDrop')->middleware('admin');
 Route::post('/mons/store/mobs', 'MonsterController@storeMob')->middleware('admin');
-Route::match(['get', 'post'], '/mons/drop/store', 'MonsterController@storeDrop')->middleware('admin');
 Route::match(['get', 'post'], '/mons/store', 'MonsterController@storeMons')->middleware('admin');
 Route::match(['get', 'post'], '/store/peta', 'MonsterController@editMap')->middleware('admin');
 Route::post('/save/new-map', 'MonsterController@addMap')->middleware('admin');

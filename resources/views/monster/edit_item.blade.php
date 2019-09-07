@@ -1,5 +1,7 @@
 @extends('layouts.tabler')
 
+@section('title', $data->name)
+
 @section('content')
 <div class="divider"></div>
 <div class="my-3 my-md-5">
@@ -16,6 +18,7 @@
       <div class="card-body" style="font-size:13px;font-weight:400">
 
         {!! form_open_multipart('/item/'.$data->id.'/edit',["id"=>"tambah-drop"]) !!}
+        @method('PUT')
 
         <div class="form-group">
           <label class="form-label">Nama</label>
@@ -43,8 +46,14 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label">Tambahan / Note <small class="text-muted">boleh kosong</small></label>
-            <textarea name="note" rows="5" class="form-control">{{ $data->note }}</textarea>
+            <label class="form-label">Tambahan / Note (Monster) <small class="text-muted">boleh kosong</small></label>
+            <textarea name="noteMonster" rows="5" class="form-control" placeholder="Status Monster . . .">{{ $data->note['monster'] }}</textarea>
+          </div>
+
+
+          <div class="form-group">
+            <label class="form-label">Tambahan / Note (NPC) <small class="text-muted">boleh kosong</small></label>
+            <textarea name="noteNpc" rows="5" class="form-control" placeholder="Status NPC . . .">{{ $data->note['npc'] }}</textarea>
           </div>
 
 
