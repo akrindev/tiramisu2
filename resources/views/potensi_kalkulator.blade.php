@@ -57,6 +57,14 @@
             </tr>
           </table>
 
+          <div class="card-body p-3">
+            <h5> Level pandai besi player </h5>
+            <div class="form-group">
+              <label class="form-lavel">Level kemahiran tempa</label>
+            	<input class="form-control" type="number" v-model="lvKemahiranTempa">
+            </div>
+          </div>
+
         </div>
         @includeWhen(!app()->isLocal(), 'inc.ads_article')
       </div>
@@ -270,6 +278,13 @@
             <label class="form-label">Total Status STR (%)</label>
             <input class="form-control" v-model="totalSTRperc" disabled=disabled>
           </div></div>
+
+            <div class="col-6">
+              <div class="form-group p-3">
+                <strong>Kesulitan Pemain</strong>
+                <input disabled="disabled" class="form-control" v-model="kesulitanPemain">
+              </div>
+            </div>
           </div>
 
         </div>

@@ -1,6 +1,6 @@
 /**
 * potensi kalkulator
-* version v2.0
+* version v2.1
 */
 
 var app = new Vue({
@@ -38,6 +38,9 @@ var app = new Vue({
 
     // special
     special: 0,
+
+    // status pandai besi
+    lvKemahiranTempa: 0,
   },
   computed: {
     pedang: function() {
@@ -84,6 +87,16 @@ var app = new Vue({
     },
     totalSTRperc: function () {
       return Number(this.weapSTRperc)+Number(this.armSTRperc)
+    },
+
+    // status pandai besi player
+    kesulitanPemain: function() {
+      let dexflat = Number(this.dex)+Number(this.foodDEX)+Number(this.weapDEXflat)+Number(this.subWeap)+Number(this.armDEXflat)+Number(this.additional)+Number(this.special)
+      let dexperc = Number(this.weapDEXperc)+Number(this.armDEXperc)
+      let dex = Number(dexflat)*(Number(dexperc)/100)
+
+      let hasil = Number(this.tech/2)+Number(dex/6)+Number(this.lvKemahiranTempa)
+      return hasil.toFixed(2)
     }
   },
   methods: {
