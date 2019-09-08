@@ -9,8 +9,8 @@ const filesToCache = [
   '/assets/js/bootstrap-markdown.js',
   '/assets/js/markdown.js',
   '/img/potum.png',
-  '//unpkg.com/sweetalert/dist/sweetalert.min.js',
-  '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
+  'https://unpkg.com/sweetalert/dist/sweetalert.min.js',
+  'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
 ];
 
 self.addEventListener('install', function(event) {
@@ -27,11 +27,16 @@ self.addEventListener('activate',  function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
+  event.respondWith(caches.match(event.request));
+});
+
+self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
-      .then(function(res) {
-        //if (res) return res;
-        return fetch(event.request);
-      })
+    .then(response => {
+      return response || fetch(event.request)
+    }).catch(error => {
+
+    })
   );
 });

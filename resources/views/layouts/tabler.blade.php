@@ -7,19 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="Content-Language" content="id-ID" />
 
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
     <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <link rel="manifest" href="/manifest.json">
     <meta name="msapplication-TileColor" content="#0066ff">
     <meta name="theme-color" content="#0066ff">
@@ -29,7 +19,6 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
 
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="apple-mobile-web-app-title" content="toram-id">
     <meta name="application-name" content="toram-id.info">
 
@@ -80,7 +69,6 @@
     }
     </script>
 
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
@@ -110,7 +98,6 @@
     }, 0);
   });
 </script>
-
     @yield('head')
 
     @include('inc.sharethis')
@@ -268,10 +255,6 @@
                     <a href="/bgm" class="nav-link"><i class="fe fe-music"></i>Background music</a>
                   </li>
 
-                  <li class="nav-item">
-                    <a href="/scammer" class="nav-link"><i class="fe fe-user-x"></i>Penipuan</a>
-                  </li>
-
             <li class="nav-item dropdown">
                   <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-list"></i> Lainnya</a>
               <div class="dropdown-menu dropdown-menu-arrow">
@@ -304,7 +287,7 @@
               </div>
             </div>
             <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
-              Copyright © 2018 - {{ now()->year }} <a href="//id.toram.jp" rel="nofollow" target="_blank">Toram Online - ASOBIMO, INC</a>. Theme by <a href="https://codecalm.net" target="_blank">codecalm.net</a> All rights reserved.
+              Copyright &copy; 2018 - {{ now()->year }} <a href="//id.toram.jp" rel="nofollow" target="_blank">Toram Online - ASOBIMO, INC</a>. Theme by <a href="https://codecalm.net" target="_blank">codecalm.net</a> All rights reserved.
             </div>
 
             <div class="col-12 d-none d-md-block col-lg-auto mt-3 mt-lg-0 text-center">
@@ -314,7 +297,6 @@
         </div>
       </footer>
     </div>
-
     @yield('footer')
 
  <script src="/assets/js/lazy.js"></script>
