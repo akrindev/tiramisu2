@@ -83,14 +83,6 @@
 @endauth
 
 <script>
-  if('serviceWorker' in navigator)
-  {
-    navigator.serviceWorker.register('/sw.js')
-      .then(function() {
-      	console.log('Service Worker Registered');
-      });
-  }
-
   window.addEventListener("load",function() {
     setTimeout(function(){
       // This hides the address bar:
