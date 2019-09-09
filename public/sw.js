@@ -1,4 +1,4 @@
-const cacheVersion = 'toram-id-1';
+const cacheVersion = 'toram-id-2';
 
 const filesToCache = [
   '/assets/js/jquery.min.js',
@@ -34,9 +34,9 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
     .then(response => {
-      return response || fetch(event.request)
-    }).catch(error => {
+      if(response) return response;
 
+      return fetch(event.request);
     })
   );
 });
