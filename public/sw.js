@@ -1,4 +1,4 @@
-const cacheVersion = 'toram-id-2';
+const cacheVersion = 'toram-id-3';
 
 const filesToCache = [
   '/assets/js/jquery.min.js',
@@ -9,8 +9,8 @@ const filesToCache = [
   '/assets/js/bootstrap-markdown.js',
   '/assets/js/markdown.js',
   '/img/potum.png',
-  'https://unpkg.com/sweetalert/dist/sweetalert.min.js',
-  'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
+  '//unpkg.com/sweetalert/dist/sweetalert.min.js',
+  '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
 ];
 
 self.addEventListener('install', function(event) {
