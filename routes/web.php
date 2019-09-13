@@ -94,14 +94,17 @@ Route::middleware('auth')->group(function() {
 // fill stats
 Route::get('/fill_stats', 'FillController@index');
 Route::get('/fill_stats/calculator', 'FillController@calculator');
-Route::get('/fill_stats/add', 'FillController@add');
-Route::post('/fill_stats/add', 'FillController@addPost');
+// admin, fill stats
+Route::middleware('admin')->group(function(){
+  Route::get('/fill_stats/add', 'FillController@add');
+  Route::post('/fill_stats/add', 'FillController@addPost');
+  Route::get('/edit/{id}/fillstats', 'FillController@edit')->middleware('auth');
+  Route::post('/edit/{id}/fillstats', 'FillController@editPost');
+  Route::delete('/delete/fillstats', 'FillController@destroy');
+});
+
 Route::get('/fill_stats/{type}', 'FillController@single');
 Route::get('/fill_stats/{type}/{plus}', 'FillController@single');
-Route::get('/edit/{id}/fillstats', 'FillController@edit')->middleware('auth');
-Route::post('/edit/{id}/fillstats', 'FillController@editPost')->middleware('auth');
-Route::delete('/delete/fillstats', 'FillController@destroy')->middleware('auth');
-
 /**
 * skills
 */
@@ -212,6 +215,8 @@ Route::prefix('admin')->middleware('admin')->group(function(){
     Route::get('/users', 'AdminController@users');
     Route::get('/last-login', 'AdminController@lastLogin');
     Route::get('/searches', 'AdminController@logSearches');
+  	Route::get('/last_forum_posts', 'AdminController@lastThread');
+
     Route::put('/change-user', 'AdminController@changeUser');
     Route::post('/tagforum', 'AdminController@tagForum');
     Route::get('/tagedit/{i}', 'AdminController@fetchTag');

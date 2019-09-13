@@ -1,4 +1,4 @@
-@extends('layouts.tabler')
+@extends('layouts.sb-admin')
 
 @section('title', 'Kirim email')
 
@@ -10,25 +10,15 @@
 </div>
 @endif
 <div class="my-5">
-  <div class="container">
-    <div class="page-header">
-      <h1 class="page-title"> Log Kirim Email </h1>
-    </div>
-
+  <div class="container-fluid">
+<!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Baca email terkirim</h1>
+  </div>
     <div class="row">
-
-      <div class="col-12 mb-5">
-        <a href="/admin" class="btn btn-primary btn-pill"> kembali ke halaman admin</a>
-
-        <a href="/email/write" class="btn btn-primary btn-pill"> Tulis email</a>
-      </div>
      <div class="col-12">
-       <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">
-              <i class="fe fe-user"></i> Latest Mail
-            </h3>
-         </div>
+       <div class="card shadow">
+
          <div class="table-responsive">
          <table class="card-table table table-outline text-nowrap table-vcenter table-striped" id="mails" style="font-size:14px;font-weight:400">
            <thead>
@@ -70,7 +60,7 @@
 @endsection
 
 
-@section('head')
+@section('footer')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
 
  <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css" />
@@ -80,10 +70,6 @@
     <script type="text/javascript">
         loadProgressBar();
     </script>
-@endsection
-
-@section('footer')
-
 <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
 
 <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>

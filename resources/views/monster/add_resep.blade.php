@@ -1,11 +1,11 @@
-@extends('layouts.tabler')
+@extends('layouts.sb-admin')
 
 @section('content')
-<div class="my-5">
-  <div class="container">
-    <div class="page-header">
-      <h1 class="page-title">Tambah resep</h1>
-    </div>
+  <div class="container-fluid">
+    <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Tambah resep</h1>
+  </div>
 
 
     <div class="row">
@@ -24,12 +24,12 @@
 
             <div class="form-group">
               <div class="row gutters-xs">
-                <div class="col-8"><label class="form-label">Bahan</label></div>
+                <div class="col-7"><label class="form-label">Bahan</label></div>
                 <div class="col-4"><label class="form-label">Butuh</label></div>
 
                 <div id="resep" class="resep">
                @for($i=1; $i < 7; $i++)
-                  <select name="bahan[]" class="form-control custom-select bahan{{$i}} col-8 mr-4" style="display:inline-block"></select>
+                  <select name="bahan[]" class="form-control custom-select bahan{{$i}} col-7" style="display:inline-block"></select>
                   <input type="number" name="butuh[]" class="form-control col-3" style="display:inline-block">
                @endfor
                 </div>
@@ -85,17 +85,15 @@
       </div>
     </div>
   </div>
-</div>
 @endsection
 
 
-
-@section('head')
- <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css" />
-<script src="/assets/js/vendors/selectize.min.js"></script>
-@endsection
 
 @section('footer')
+ <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css" />
+<link rel="stylesheet" href="/assets/css/selectize.css">
+<script src="/assets/js/vendors/selectize.min.js"></script>
+
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/index.js"></script>

@@ -1,4 +1,4 @@
-@extends('layouts.tabler')
+@extends('layouts.sb-admin')
 
 @section('title', 'Kirim email')
 
@@ -9,18 +9,15 @@
   {{ session('success') }}
 </div>
 @endif
-<div class="my-5">
-  <div class="container">
-    <div class="page-header">
-      <h1 class="page-title"> Kirim Email </h1>
-    </div>
+  <div class="container-fluid">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Tulis Email</h1>
+  </div>
 
     <div class="row">
-      <div class="col-12 mb-5">
-        <a href="/admin" class="btn btn-primary btn-pill"> kembali ke halaman admin</a>
-      </div>
-      <div class="col-12">
-           <div class="card">
+      <div class="col-xl-6 mb-5">
+        <div class="card shadow">
                   <div class="card-header">
                     <h3 class="card-title">Kirim Email ke Member</h3>
                   </div>
@@ -54,8 +51,8 @@
                   </div>
                 </div>
       </div>
-      <div class="col-12">
-           <div class="card">
+      <div class="col-xl-6">
+           <div class="card shadow">
                   <div class="card-header">
                     <h3 class="card-title">Kirim Email ke Semua Member</h3>
                   </div>
@@ -81,13 +78,12 @@
     </div>
 
   </div>
-</div>
 @endsection
 
 
-@section('head')
+@section('footer')
+<link rel="stylesheet" href="/assets/css/selectize.css">
  <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css" />
-<script src="/assets/js/vendors/selectize.min.js"></script>
 <link href="/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
 <script src="/assets/js/bootstrap-markdown.js">
 </script>
@@ -95,9 +91,7 @@
 </script>
 <script src="/assets/js/to-markdown.js">
 </script>
-@endsection
-
-@section('footer')
+<script src="/assets/js/vendors/selectize.min.js"></script>
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/index.js"></script>

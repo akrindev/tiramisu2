@@ -1,22 +1,21 @@
-@extends('layouts.tabler')
+@extends('layouts.sb-admin')
 
 @section('title', 'Tambah data Emblem / Prestasi')
 @section('description', 'List of emblems Toram Online, Daftar Prestasi main toram online')
 @section('image', to_img())
 
 @section('content')
-<div class="my-5">
-  <div class="container">
-  <div class="page-header">
-    <h3 class="page-title">Tambah data prestasi</h3>
+  <div class="container-fluid">
+
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Tambah Info Dye</h1>
   </div>
 
   <div class="row">
     <div class="col-md-8">
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Tambah data</div>
-      </div>
+    <div class="card shadow">
+
       <div class="card-body p-3">
 
         <form id="add-emblem" method="post">
@@ -64,19 +63,16 @@
     </div>
   </div>
   </div>
-</div>
 @endsection
 
-@section('head')
+@section('footer')
  <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/selectize.css">
 <script src="/assets/js/vendors/selectize.min.js"></script>
 
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/index.js"></script>
-@endsection
-
-@section('footer')
 <script type="text/javascript">
   loadProgressBar();
 </script>

@@ -50,16 +50,12 @@ class FillController extends Controller
 
   	public function add()
     {
-      $this->needLogin();
-
-      return view('fillstats.add');
+      return view('fillstats.sb-admin.add');
     }
 
 
   function addPost(Request $request)
   {
-    $this->needLogin();
-
     $request->validate([
     	'type' => 'required',
       	'plus' => 'required',
@@ -75,28 +71,14 @@ class FillController extends Controller
 
   	public function edit($id)
     {
-      $this->needLogin();
+      $data = Fill_stat::findOrFail($id);
 
-      $item = Fill_stat::find($id);
-
-      if( ! $item)
-      {
-        return redirect('/')->with('gagal','gak di temukan');
-      }
-
-      return view('fillstats.edit')->with('data',$item);
+      return view('fillstats.edit', compact('data'));
     }
 
   	public function editPost(Request $request, $id)
     {
-      $this->needLogin();
-
-      $item = Fill_stat::find($id);
-
-      if( ! $item)
-      {
-        return redirect('/')->with('gagal','gak di temukan');
-      }
+      $item = Fill_stat::findOrFail($id);
 
       $request->validate([
     	'type' => 'required',
@@ -113,25 +95,9 @@ class FillController extends Controller
 
   	public function destroy()
     {
-      $this->needLogin();
-
-      $item = Fill_stat::find(request('id'));
-
-      if( ! $item)
-      {
-        abort(404);
-      }
-
+      $item = Fill_stat::findOrFail(request('id'));
       $item->delete();
 
       return redirect('/')->with('sukses', 'Data fill stats telah di hapus');
-    }
-
-    private function needLogin()
-    {
-      if(!Auth::check() && Auth::user()->role == 'member')
-      {
-        return redirect('/')->with('gagal','Tidak diijinkan');
-      }
     }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.tabler')
+@extends('layouts.sb-admin')
 
 
 @section('title','Edit fillstats')
@@ -6,12 +6,10 @@
 @section('image',to_img())
 
 @section('content')
-<div class="my-3 my-md-5">
-
-<div class="container">
+<div class="container-fluid">
 <div class='row'>
   <div class="col">
-    <div class="card">
+    <div class="card shadow">
 
       @if(session()->has('sukses'))
                   <div class="card-alert alert alert-success mb-0">
@@ -83,6 +81,4 @@
 
     </div>
   </div>
-</div>
-
 @endsection

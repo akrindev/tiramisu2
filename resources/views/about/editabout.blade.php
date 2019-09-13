@@ -1,4 +1,4 @@
-@extends('layouts.tabler')
+@extends('layouts.sb-admin')
 
 @section('title','Edit Tentang Kami')
 @section('description', $about->body)
@@ -7,13 +7,14 @@
 @section('content')
 <div class="my-5">
   <div class="container">
-    <div class="page-header">
-      <h3 class="page-title">Edit Tentang Kami</h3>
-    </div>
+<!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Edit Tentang kami</h1>
+  </div>
 
     <div class="row">
       <div class="col-md-8">
-        <div class="card">
+        <div class="card shadow">
           <div class="card-body p-3" style="font-size:13px;font-weight:400">
             {!! form_open('/', ['id' => 'form-about']) !!}
             @csrf
@@ -34,7 +35,7 @@
 </div>
 @endsection
 
-@section('head')
+@section('footer')
 
  <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css" />
 <link href="/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
@@ -51,9 +52,6 @@
     <script type="text/javascript">
         loadProgressBar();
     </script>
-@endsection
-
-@section('footer')
 <script>
 	let submit = document.getElementById('form-about'),
         btnSubmit = document.getElementById("btn-submit");

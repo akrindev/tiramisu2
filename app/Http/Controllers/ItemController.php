@@ -188,6 +188,6 @@ class ItemController extends Controller
       ]);
     }
 
-    return view('monster.add_drop');
+    return view('drop.sb-admin.add_drop');
   }
 }

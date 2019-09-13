@@ -49,9 +49,15 @@ class MonsterController extends Controller
       return response()->json(["success"=>true]);
     }
 
-    $peta = Map::get();
+    $peta = Map::orderByDesc('id')->get();
 
-    return view('monster.edit_map', compact('peta'));
+    /*
+    * tabler theme
+    *
+    * return view('monster.edit_map', compact('peta'));
+    */
+
+    return view('monster.peta.peta', compact('peta'));
   }
 
   public function showMons($id)
@@ -187,7 +193,7 @@ class MonsterController extends Controller
       return response()->json($drops);
     }
 
-  	return view('monster.add_mobs');
+  	return view('monster.sb-admin.add_monster');
   }
 
   public function storeMob()
