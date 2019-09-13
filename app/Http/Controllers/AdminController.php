@@ -15,13 +15,13 @@ class AdminController extends Controller
 {
   	public function home()
     {
-      $users = User::all();
-      $searches = LogSearch::all();
+      $users = User::count();
+      $searches = LogSearch::count();
       $images = Gallery::count();
-      $items = Drop::all();
-      $monsters = Monster::all();
-      $quizzes = Quiz::all();
-      $forums = Forum::all();
+      $items = Drop::count();
+      $monsters = Monster::count();
+      $quizzes = Quiz::count();
+      $forums = Forum::count();
 
       /*
       * Tabler theme

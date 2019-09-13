@@ -20,7 +20,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Users (Total)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $users->count() }}</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $users }}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-user fa-2x text-gray-300"></i>
@@ -37,7 +37,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Searches (Total)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($searches->count()) }}</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($searches) }}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-search fa-2x text-gray-300"></i>
@@ -75,7 +75,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Drop items</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $items->count() }}</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $items }}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-boxes fa-2x text-gray-300"></i>
@@ -92,7 +92,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Monsters</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $monsters->count() }}</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $monsters }}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-paw fa-2x text-gray-300"></i>
@@ -109,7 +109,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Quizzes</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $quizzes->count() }}</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $quizzes }}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-award fa-2x text-gray-300"></i>
@@ -126,7 +126,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Forum Threads</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $forums->count() }}</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $forums }}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-book fa-2x text-gray-300"></i>
