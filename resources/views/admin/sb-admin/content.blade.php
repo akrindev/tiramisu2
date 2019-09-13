@@ -150,7 +150,7 @@
                 </div>
 
          <div class="table-responsive">
-         <table class="card-table table table-outline text-nowrap table-vcenter table-striped" id="searches" style="font-size:14px;font-weight:400">
+         <table style="width:100%"  class="card-table table table-outline text-nowrap table-vcenter table-striped" id="searches" style="font-size:14px;font-weight:400">
            <thead>
              <tr>
              <th> Key </th>
@@ -174,7 +174,7 @@
                 </div>
 
    			      <div class="table-responsive">
-         <table class="card-table table table-striped" id="posts" style="font-size:14px;font-weight:400">
+         <table style="width:100%"  class="display" id="posts" style="font-size:14px;font-weight:400">
            <thead>
              <tr>
              <th> judul </th>
@@ -197,7 +197,7 @@
                 </div>
 
          <div class="table-responsive">
-         <table class="card-table table table-outline text-nowrap table-vcenter table-striped" id="users" style="font-size:14px;font-weight:400">
+         <table style="width:100%"  class="display" id="users" style="font-size:14px;font-weight:400">
            <thead>
              <tr>
                 <th class="text-center" style="width: 0.25rem !important;" data-pic></th>
@@ -216,6 +216,33 @@
          </div>
               </div>
             </div>
+
+            <!-- last login -->
+
+     <div class="col-lg-6 mb-4">
+       <div class="card shadow">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fe fe-user"></i> Last Login
+            </h3>
+         </div>
+         <div class="table-responsive">
+         <table style="width:100%"  class="display" id="lasts" style="font-size:14px;font-weight:400">
+           <thead>
+             <tr>
+                <th class="text-center w-1" style="width: 0.25rem !important;" data-pic></th>
+             <th> Name </th>
+             <th> IP </th>
+             <th> Browser  </th>
+             <th> Info </th>
+             <th> Date  </th>
+             </tr>
+           </thead>
+
+         </table>
+         </div>
+       </div>
+      </div>
           </div>
 
         </div>
@@ -223,22 +250,21 @@
 @endsection
 
 
-@section('head')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
-<link href="/assets/plugins/charts-c3/plugin.css" rel="stylesheet" />
-@endsection
-
 @section('footer')
-<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
 
-<script src="/assets/plugins/charts-c3/js/c3.min.js"></script>
-<script src="/assets/plugins/charts-c3/js/d3.v3.min.js"></script>
+<link rel="stylesheet" href="//cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
+
+<link rel="stylesheet" href="//datatables.net/media/css/site.css">
+<script src="//cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
+
+<link href="/assets/plugins/charts-c3/plugin.css" rel="stylesheet" />
 
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
   $(function() {
     $('#searches').DataTable({
+      responsive: true,
       processing: true,
       serverSide: true,
       ajax: "{{ url('/admin/searches') }}",
@@ -250,6 +276,7 @@
     });
 
      $('#posts').DataTable({
+      responsive: true,
       processing: true,
       serverSide: true,
       ajax: "{{ url('/admin/last_forum_posts') }}",
@@ -261,6 +288,7 @@
     });
 
     $('#users').DataTable({
+      responsive: true,
       processing: true,
       serverSide: true,
       ajax: "{{ url('/admin/users') }}",
@@ -274,6 +302,22 @@
         { data: 'gender', name: 'gender' },
         { data: 'created_at', name: 'created_at' },
         { data: 'action', name: 'action', orderable: false, searchable:false}
+      ]
+    });
+
+    $('#lasts').DataTable({
+      responsive: true,
+      processing: true,
+      serverSide: true,
+      searching:false,
+      ajax: "{{ url('/admin/last-login') }}",
+      columns: [
+        { data: 'pic' , name: 'pic', searchable:false, orderable: false},
+        { data: 'name', name: 'name' },
+        { data: 'ip', name: 'ip' },
+        { data: 'browser', name: 'browser' },
+        { data: 'extra', name: 'extra' },
+        { data: 'created_at', name: 'created_at' }
       ]
     });
   });
