@@ -69,7 +69,7 @@ class MonsterController extends Controller
 
   public function showMonsType($name)
   {
-    $type = $name;
+    $type = 'list ' . $name;
 
     switch($type)
     {
@@ -84,10 +84,20 @@ class MonsterController extends Controller
     }
 
     $data = Monster::whereType($tipe)
-      			->orderBy('name')
+      			->orderByDesc('id')
       			->paginate(20);
 
     return view('monster.type', compact('data','type'));
+  }
+
+  public function showAllMons()
+  {
+    $type = "Semua Monster";
+
+    $data = Monster::orderByDesc('id')
+      			->paginate(20);
+
+    return view('monster.type', compact('data', 'type'));
   }
 
   public function showMonsEl($type)
@@ -115,6 +125,8 @@ class MonsterController extends Controller
       default:
         $el = 7;
     }
+
+    $type = 'Unsur ' . $type;
 
     $data = Monster::whereElementId($el)
       				->orderBy('level')

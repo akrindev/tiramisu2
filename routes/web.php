@@ -129,6 +129,7 @@ Route::get('/leveling', 'LevelingController@show');
 Route::get('/peta', 'MonsterController@index');
 Route::get('/peta/{id}', 'MonsterController@peta');
 
+Route::get('/monsters', 'MonsterController@showAllMons');
 Route::prefix('monster')->group(function() {
 	Route::get('/', 'MonsterController@index');
 	Route::get('/{id}', 'MonsterController@showMons');

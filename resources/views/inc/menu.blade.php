@@ -63,7 +63,7 @@
 
     <div class="my-1 row gutters-xs">
       <b class="d-block col-12 mb-2">Monster Type</b>
-
+      <span class="d-block mb-1 col-6"><i class="fe fe-github mr-1"></i><a href="/monsters">Semua Monster</a></span>
       <span class="d-block mb-1 col-6"><i class="fe fe-github mr-1"></i><a href="/monster/type/normal">Normal Monster</a></span>
       <a href="/monster/type/mini_boss" class="d-block mb-1 col-6"> <img src="/img/f_boss.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Mini Boss</a>
       <a href="/monster/type/boss" class="d-block mb-1 col-6"> <img src="/img/boss.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Boss</a>
