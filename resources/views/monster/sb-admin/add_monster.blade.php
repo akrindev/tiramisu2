@@ -91,13 +91,13 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group d-block">
             <label class="form-label">Drop items</label>
             <select id="drop-item" class="form-control" multiple="multiple" name="drop[]" required>
             </select>
           </div>
 
-      <div class="form-group">
+      <div class="form-group d-block">
         <label class="form-label">Element</label>
 <div class="selectgroup selectgroup-pills">
   @foreach ((new App\Element)->get() as $el)
@@ -113,7 +113,7 @@
           <div class="form-group">
             <label class="form-label">Screenshot</label>
             <div id="preview"></div>
-            <input type="file" name="picture" class="form-control" accept="image/*">
+            <input type="file" name="picture" class="form-control-file" accept="image/*">
           </div>
 
 
@@ -134,7 +134,6 @@
  <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css" >
  <link rel="stylesheet" type="text/css" href="/assets/css/selectize.css">
   <style>
-
 .custom-switch-input {
   position: absolute;
   z-index: -1;
@@ -300,6 +299,11 @@
 .selectgroup-pills .selectgroup-button {
   border-radius: 50px !important;
 }
+
+select.form-control:not([size]):not([multiple]) {
+  height: 2.375rem;
+}
+
   </style>
 @endsection
 
