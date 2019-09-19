@@ -71,7 +71,7 @@ class MonsterController extends Controller
   {
     $type = 'list ' . $name;
 
-    switch($type)
+    switch($name)
     {
       case 'boss':
         $tipe = 3;
