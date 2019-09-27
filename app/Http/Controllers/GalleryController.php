@@ -81,7 +81,6 @@ class GalleryController extends Controller
 
       $body = e(request()->body);
 
-
       if(request()->hasFile('gambar'))
       {
         $gambar = request()->file('gambar')->getRealPath();

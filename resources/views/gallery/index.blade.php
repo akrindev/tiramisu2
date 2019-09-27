@@ -161,32 +161,6 @@ function fileReader(input) {
         loadProgressBar();
     </script>
 <script>
-let submit = document.getElementById('form-upload');
-
-  submit.addEventListener('submit', (e) => {
-  	e.preventDefault();
-    let btnUpload = document.getElementById("unggah");
-    let data = new FormData(e.target);
-    btnUpload.innerHTML = "<i class='fa fa-spinner fa-spin'></i> Mengunggah ";
-
-    axios.post('/gallery', data)
-     .then((res) => {
-      if(res.data.success){
-        swal('Gambar telah di unggah',{
-        	icon: 'success'
-        }).then(() => {
-        	window.location.reload();
-        });
-      }
-      btnUpload.innerHTML = "Unggah";
-
-    }).catch(err => alert(err));
-
-
-  });
-
-</script>
-<script>
 
    function dg(i)
   {

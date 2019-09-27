@@ -146,39 +146,12 @@ function fileReader(input) {
 
 
 @auth
-
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//unpkg.com/axios/dist/axios.min.js"></script><script src="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/index.js"></script>
 
     <script type="text/javascript">
         loadProgressBar();
     </script>
-<script>
-let submit = document.getElementById('form-upload');
-
-  submit.addEventListener('submit', (e) => {
-  	e.preventDefault();
-    let btnUpload = document.getElementById("unggah");
-    let data = new FormData(e.target);
-    btnUpload.innerHTML = "<i class='fa fa-spinner fa-spin'></i> Mengunggah ";
-
-    axios.post('/gallery', data)
-     .then((res) => {
-      if(res.data.success){
-        swal('Gambar telah di unggah',{
-        	icon: 'success'
-        }).then(() => {
-        	window.location.reload();
-        });
-      }
-      btnUpload.innerHTML = "Unggah";
-
-    }).catch(err => alert(err));
-
-
-  });
-
-</script>
 @if(auth()->user()->isAdmin())
 <script>
    function dg(i)
