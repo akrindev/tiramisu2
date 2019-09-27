@@ -27,6 +27,13 @@
               <a href="/gallery" class="btn btn-outline-secondary btn-pill btn-sm"><i class="fe fe-chevron-left"></i> Back to gallery</a>
             </div>
 
+
+            <div id="ad" class="row">
+              <div class="col-12">
+              @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+              </div>
+            </div>
+
             <div class="row row-cards">
 
               <div class="col-sm-12">

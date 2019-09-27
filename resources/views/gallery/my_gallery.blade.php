@@ -47,6 +47,13 @@
             </div>
 @endauth
 
+
+            <div id="ad" class="row">
+              <div class="col-12">
+              @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+              </div>
+            </div>
+
             <div class="row row-cards">
        @if ($data->count() > 0)
               @foreach ($data as $pos)
