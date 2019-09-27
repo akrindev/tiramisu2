@@ -71,6 +71,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
     <!-- Dashboard Core -->
     <link href="/assets/css/app.min.css" rel="stylesheet" />
@@ -105,7 +106,7 @@
           <div class="container">
             <div class="d-flex">
               <a class="header-brand" href="/">
-                <img src="/img/potum.png" class="header-brand-img lazyload" alt="Toram-id.info logo"> Toram Online
+                <img src="/img/potum.png" class="header-brand-img lazyload animated rotateIn" alt="Toram-id.info logo"> Toram Online
               </a>
               <div class="d-flex order-lg-2 ml-auto">
 @guest
