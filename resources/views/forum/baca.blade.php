@@ -22,7 +22,7 @@ $tags = explode(',', $tags);
   .body-text p, div.body-text {
      -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size:13px;
+    font-size:14px;
     font-family:'Source Sans Pro';
     font-weight:400;
   }
