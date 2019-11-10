@@ -34,14 +34,12 @@
             <div class="my-3">
         <br>
               <hr class="my-2">
-
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
-
               <div class="my-3">
 
 <div class="my-3">
 <h6>Download</h6>
-  <iframe src='//api.listenvid.com/?default/{{ $bgm->video_id }}/mp3' width='100%' height='100px' scrolling='no' style='border:none;'></iframe>
+
+<iframe style="width:100%;min-width:200px;max-width:350px;height:57px;border:0;overflow:hidden;" scrolling="no" src="//ytmp3.mobi/button-api/#{{ $bgm->video_id }}|mp3|1abc9c|fff"></iframe>
               </div>
                 <br><br>
                 <p>
