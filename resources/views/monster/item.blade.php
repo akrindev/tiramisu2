@@ -17,10 +17,7 @@
       </div>
 
       <div class="col-md-8">
-        @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
-      </div>
-
-      <div class="col-md-8">
+        @includeWhen(!app()->isLocal(), 'inc.ads_article')
 
         <div class="card">
           <div class="card-body p-3" style="font-size:13px;font-weight:400">

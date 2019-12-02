@@ -19,9 +19,9 @@
       <div class="col-md-8">
       @include('inc.cari')
       </div>
-      <div class="col-md-8">
 
-   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+      <div class="col-md-8">
+        @includeWhen(!app()->isLocal(), 'inc.ads_article')
 
         @if($data->npc->count() > 0)
         <div class="card">
