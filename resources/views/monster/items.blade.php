@@ -18,13 +18,13 @@
       <div class="col-md-8">
         @include('inc.cari')
       </div>
-      <div class="col-md-8">
 
-   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+      <div class="col-md-8">
+       @includeWhen(!app()->isLocal(), 'inc.ads_article')
 
        @forelse($data as $item)
 
-        @if(($loop->index + 1) % 10 == 0)
+        @if($loop->index == 10)
    			@includeWhen(env('APP_ENV') == 'production', 'inc.ads.infeed')
         @endif
 
@@ -40,7 +40,7 @@
             <div class="row">
             @if(! is_null($item->picture))
               <div class="col-md-3">
-              <img src="/img/ball-triangle.svg" data-src="//toram-id.info/{{ $item->picture }}" class="rounded my-2 d-block lazyload" width="170px" height="170px"> </div>
+              <img src="/img/ball-triangle.svg" data-src="//toram-id.info/{{ $item->picture }}" class="rounded my-2 d-block lazyload" width="180px" height="180px"> </div>
             @endif
 
             @if(! is_null($item->note))
@@ -152,6 +152,8 @@
        @endforelse
 
         {{ $data->links() }}
+
+        @includeWhen(!app()->isLocal(), 'inc.ads_article')
       </div>
 
       <div class="col-md-4">

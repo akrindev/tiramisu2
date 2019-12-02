@@ -15,13 +15,13 @@
     </div>
 
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-12">
       @include('inc.cari')
       </div>
+
       <div class="col-md-8">
 
-
-      @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+        @includeWhen(!app()->isLocal(), 'inc.ads_article')
 
         <div class="card">
             <form action="/leveling" method="get" accept-charset="utf8">
@@ -48,7 +48,7 @@
                         <label class="form-label">Jarak Level</label>
                   <div class="selectgroup w-100">
                     <label class="selectgroup-item">
-                      <input type="radio" name="range" value="5" class="selectgroup-input" {{ request('range') == 5 ? 'checked' : '' }}>
+                      <input type="radio" name="range" value="5" class="selectgroup-input" checked>
                       <span class="selectgroup-button">0-5</span>
                     </label>
 
@@ -198,7 +198,7 @@
    @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 
               List Leveling level
-                @foreach(range(1,190) as $lv)
+                @foreach(range(1,200) as $lv)
                   , <a href="/leveling?level={{ $lv }}"> {{ $lv }} </a>
                 @endforeach
               </div>

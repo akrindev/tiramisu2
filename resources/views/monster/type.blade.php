@@ -18,12 +18,13 @@
       <div class="col-md-8">
       @include('inc.cari')
       </div>
+
       <div class="col-md-8">
 
-   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+     @includeWhen(!app()->isLocal(), 'inc.ads_article')
 
      @foreach ($data as $mons)
-        @if(($loop->index + 1) % 10 == 0)
+        @if($loop->index == 10)
    			@includeWhen(env('APP_ENV') == 'production', 'inc.ads.infeed')
         @endif
         <div class="card">
@@ -79,6 +80,10 @@
         <div class="my-3">
         {{ $data->links() }}
         </div>
+
+      <div class="col-md-8">
+        @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+      </div>
 
       </div>
 

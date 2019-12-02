@@ -15,8 +15,13 @@
       <div class="col-md-8">
         @include('inc.cari')
       </div>
+
       <div class="col-md-8">
-   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+        @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+      </div>
+
+      <div class="col-md-8">
+
         <div class="card">
           <div class="card-body p-3" style="font-size:13px;font-weight:400">
 
@@ -204,6 +209,12 @@
         <div class="my-5">
         {{ $item->monsters()->paginate(20)->links() }}
         </div>
+
+      @if($item->monsters->count())
+      <div id="ads">
+        @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+      </div>
+      @endif
 
       </div>
 

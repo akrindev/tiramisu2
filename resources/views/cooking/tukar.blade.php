@@ -19,6 +19,8 @@
     <div class="row">
 
      <div class="col-12">
+        @includeWhen(!app()->isLocal(), 'inc.ads_article')
+
        <div class="card">
           <div class="card-header">
             <h3 class="card-title">
