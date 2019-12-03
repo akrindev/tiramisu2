@@ -228,6 +228,9 @@ Route::prefix('admin')->middleware('admin')->group(function(){
     Route::get('/scamedit/{i}', 'AdminController@fetchScam');
     Route::post('/editscam', 'AdminController@editScam');
     Route::post('/scamhapus', 'AdminController@hapusScam');
+
+  	Route::get('/setting', 'SettingController@badword');
+  	Route::post('/setting/badword', 'SettingController@updateBadword');
 });
 
 /**

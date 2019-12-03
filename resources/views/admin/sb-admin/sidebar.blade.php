@@ -108,7 +108,11 @@
         </div>
       </li>
 
-
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/setting">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Pengaturan</span></a>
+      </li>
 
       <li class="nav-item">
         <a class="nav-link" href="/edit-tentang">

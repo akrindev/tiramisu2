@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{Drop, Monster, Map, Forum, LogSearch};
+use App\{Drop, Monster, Map, Forum, LogSearch, Setting};
 
 class SearchController extends Controller
 {
@@ -11,10 +11,16 @@ class SearchController extends Controller
   public function search()
   {
     $q = request()->q;
+    $badword = Setting::first();
+    $badword = explode(',', $badword->body['badword']);
 
     if(strlen($q) < 2)
     {
       return redirect('/')->with('gagal', 'Mencari harus memiliki 2 karakter atau lebih');
+    }
+
+    if(in_array($q, $badword)) {
+      return redirect('/')->with('gagal', 'Memblokir kata tak pantas');
     }
 
     LogSearch::create([
