@@ -24,11 +24,13 @@
       </div>
 
       <div class="col-12">
+        @includeWhen(!app()->isLocal(), 'inc.ads_article')
+      </div>
+
+      <div class="col-12">
         <div class="alert alert-info">
         Untuk melihat fill stats formula <a href="/fill_stats">klik disini</a>
         </div>
-
-         @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
       </div>
 
       <div class="col-md-4">
@@ -99,22 +101,20 @@
       </div>
 
       <div class="col-md-8">
+        @includeWhen(!app()->isLocal(), 'inc.ads_mobile')
       	<div class="card">
           <div class="card-header">
             <h3 class="card-title"> Banyak di gunakan </h3>
           </div>
           <div class="card-body">
-
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
-
             <div id="stat_formulas"></div>
           </div>
         </div>
       </div>
 
-
-
-
+      <div class="col-12">
+        @includeWhen(!app()->isLocal(), 'inc.ads_article')
+      </div>
     </div>
   </div>
 </div>

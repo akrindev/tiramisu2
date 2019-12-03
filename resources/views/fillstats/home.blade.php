@@ -13,8 +13,17 @@
 @section('content')
 <div class="my-3 my-md-5">
   <div class="container">
+    <div class="page-header">
+      <h1 class="page-title"> Fill Stats Formula</h1>
+    </div>
      @include('inc.cari')
+
     <div class="row" id="filler">
+
+      <div class="col-12">
+        @includeWhen(!app()->isLocal(), 'inc.ads_article')
+      </div>
+
       <div class="col-12">
                 <div class="alert alert-info">
                   <b>New!!</b> Fill stats calculator <a href="/fill_stats/calculator">Klik disini</a>
@@ -52,10 +61,6 @@
         </script>
       </div>
 
-       <div class="col-12">
-         @includeWhen(!app()->isLocal(), 'inc.ads_article')
-      </div>
-
   @foreach($fills as $fl)
 
       <div class="col-12">
@@ -65,11 +70,7 @@
       </div>
 
    	@foreach($data as $pos)
-      @if($loop->first == 1)
-      <div class="col-md-6">
-         @includeWhen(!app()->isLocal(), 'inc.ads.infeedtext')
-      </div>
-      @endif
+
          @if($pos->type == $fl->type && $pos->plus == $fl->plus)
               <div class="col-md-6 col-xl-4">
                 <div class="card card-collapsed">
@@ -97,6 +98,10 @@
 	@endforeach
 
    @endforeach
+
+      <div class="col-12">
+        @includeWhen(!app()->isLocal(), 'inc.ads_article')
+      </div>
     </div>
 
   </div>
