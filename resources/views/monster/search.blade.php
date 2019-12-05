@@ -32,10 +32,13 @@
             Barangkali kamu mencari <b><a href="/leveling">Toram leveling finder</a></b>
             </div>
         </div>
+          @else
+
+          @includeWhen(!app()->isLocal(), 'inc.ads_article')
+
           @endif
 
      @if($drops->count() > 0)
-        @includeWhen(env('APP_ENV') == 'production', 'inc.ads.infeed')
        @foreach($drops as $item)
         <div class="card">
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
