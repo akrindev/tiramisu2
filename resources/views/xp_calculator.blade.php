@@ -16,8 +16,10 @@
       <h1 class="page-title"> Exp Calculator (Quest Calculator)</h1>
     </div>
 
+      <div class="row">
 
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+        <div class="col-12">
+          @includeWhen(!app()->isLocal(), 'inc.ads_article')
 
    @include('inc.cari')
               <div class="card" id="vue-root">
@@ -32,9 +34,7 @@
 
   <div class="card-body p-3">
   <div class="row">
-
-    <details class="h5 mb-5 col-12">
-      <summary class="text-danger">Price (harga) [show/hide] </summary>
+    <div class="h2 mb-5 col-12">Price / harga</div>
     <div class="form-group form-group-sm col-md-4 col-xs-12">
       <label>Nightmare Cystal (Kristal teror)</label>
       <input type="number" id="nc" class="form-control" v-model="hnc">
@@ -53,9 +53,6 @@
       <input type="number" id="nwood" class="form-control" v-model="hnwood">
       <div class="help-block">Harga NWood perstk</div>
     </div>
-
-    </details>
-
 
   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 
@@ -133,6 +130,10 @@
   </div>
 </div>
             </div>
+
+        </div>
+      </div>
+
           </div>
 </div>
 @endsection
