@@ -28,14 +28,17 @@
         @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
 
         @include('inc.cari')
+        <div>
+        	<h1 class="text-center">Selamat datang!</h1>
+          <div class="logo text-center mb-5">
+          	<img src="/img/logo.png" alt="toram-id.info logo" class="" style="height:50%;width:50%">
+          </div>
+			<div class="row">
 
-        <h1>Selamat datang!</h1>
-
-		<div class="row">
-
-         <div class="col-md-8 mb-5"> Jelajahi informasi Toram Online, senjata, armor, drop dan lainnya. <br>
+         <div class="col-md-8 mb-5 text-center"> Jelajahi informasi Toram Online, senjata, armor, drop dan lainnya. <br><br>
            <i class="small">Unofficial site Toram Online, Fansite Toram online. </i>
            <br>
+           <i class="small">Cute logo by <a href="https://facebook.com/rinando.rinando.39" rel="_nofollow">Nurina Laila</a> ^0^ </i> <br>
            <i class="small">In game screenshot is &copy; <u>ASOBIMO,Inc.</u></i>
           </div>
 
@@ -43,7 +46,7 @@
          @include('inc.menu')
          </div>
        </div>
-
+        </div>
       </div>
     </div>
 

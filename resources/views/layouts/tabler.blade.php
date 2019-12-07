@@ -106,7 +106,7 @@
           <div class="container">
             <div class="d-flex">
               <a class="header-brand" href="/">
-                <img src="/img/potum.png" class="header-brand-img lazyload animated rotateIn" alt="Toram-id.info logo"> Toram Online
+                <img src="/img/logo.png" class="header-brand-img lazyload animated rotateIn" alt="Toram-id.info logo"> Toram Online
               </a>
               <div class="d-flex order-lg-2 ml-auto">
 @guest
