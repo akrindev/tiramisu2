@@ -29,13 +29,15 @@
 
         @include('inc.cari')
         <div>
-        	<h1 class="text-center">Selamat datang!</h1>
-          <div class="logo text-center mb-5">
-          	<img src="/img/logo.png" alt="toram-id.info logo" class="" style="height:50%;width:50%">
-          </div>
 			<div class="row">
 
-         <div class="col-md-8 mb-5 text-center"> Jelajahi informasi Toram Online, senjata, armor, drop dan lainnya. <br><br>
+         <div class="col-md-8 mb-5 text-center">
+
+        	<h1 class="text-center">Selamat datang!</h1>
+          <div class="logo text-center mb-5">
+          	<img src="/img/logo.png" alt="toram-id.info logo" class="animated pulse infinite" style="height:50%;width:50%">
+          </div>
+           Jelajahi informasi Toram Online, senjata, armor, drop dan lainnya. <br><br>
            <i class="small">Unofficial site Toram Online, Fansite Toram online. </i>
            <br>
            <i class="small">Cute logo by <a href="https://facebook.com/rinando.rinando.39" rel="_nofollow">Nurina Laila</a> ^0^ </i> <br>
