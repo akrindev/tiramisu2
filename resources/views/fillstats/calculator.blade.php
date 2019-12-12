@@ -141,9 +141,9 @@
 
 @section('head')
 <script src="/assets/js/vendors/html2canvas.min.js"></script>
-<script src="/assets/js/fill.js?fill20v1"></script>
+<script src="/assets/js/fill.js?fill20v1_1"></script>
 
-<script src="/assets/js/formula.js?fill20v1"></script>
+<script src="/assets/js/formula.js?fill20v1_1"></script>
 <script>
 $("body").ready(function(){
 	build_menu();

@@ -1,7 +1,7 @@
 "use strict";
 
 const MAX_STEPS = 20; // max is fill +20
-const SLOTS = 6; // max number of slots is 6
+const SLOTS = 8; // max number of slots is 6
 
 const OPTIONS = [
     { "name": "STR", "mat": "Beast", "pot": 5, "cost": 25, "cat": "Enhance Stats", "type": "u" },
@@ -115,7 +115,7 @@ class SIMULATOR {
             data = OPTIONS.find(piece => piece.name === value_name);
         }
 
-        data.maxSteps = Math.floor(70 / data.pot);
+        data.maxSteps = Math.floor(100 / data.pot);
         if (data.name === 'Aggro %') data.maxSteps = 10;  // for some reason this only goes up to +10/-10 go figure.
         if (data.maxSteps >= MAX_STEPS) data.maxSteps = MAX_STEPS;
         else if (!data.maxSteps) data.maxSteps = 1;
@@ -580,7 +580,7 @@ function update_config(aspect) {
 
 function build_stat_dropdown() {
   let buffer = '';
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < SLOTS; i++) {
     buffer += Simulator.getDropdown(i) + ` <input class="col-3 form-control form-control-sm pl-1" disabled=disabled type="number" value='' id='slot${i}_value' oninput="update_stats(${i})"></input><br />`;
   }
   document.getElementById('stat_menu').innerHTML = buffer;
