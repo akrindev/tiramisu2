@@ -144,7 +144,7 @@ class Refine {
   }
 
   run() {
-    let final = (this.tingkatKesulitan() + 63 + 15) * 0.8
+    let final = (this.tingkatKesulitan() + 63 + 30) * 0.85
     this.success = Math.floor(final <= 0 ? 1 : final >= 100 ? 100 : final)
 
     return Math.floor(this.success)
@@ -154,10 +154,10 @@ function build_table() {
   let table = document.getElementById("t-ref");
 
   let buffer = `<div class="m-5"><h3>Refine success rate &amp; risk</div>
-        <table class="card-table table table-striped table-bordered text-nowrap">`;
+        <table class="card-table table table-striped table-bordered text-nowrap table-sm">`;
   buffer += '<thead class="thead-dark"> <th>ore &amp; ref </th>'
 
-  for(let x = 1; x <= 15; x++) {
+  for(let x = 1; x <= 14; x++) {
     let re = new Refine(x);
     buffer += `<th>+${re.nilaiRef()} to +${re.nilaiRef(true)} </th>`
   }
@@ -166,9 +166,9 @@ function build_table() {
 
   for(let item of BAHAN) {
     buffer += `<tr><td><b>${item.nama}</b></td>`;
-    for(let i = 1; i <=15; i++) {
+    for(let i = 1; i <=14; i++) {
      	let r = new Refine(i, item.nama)
-    	buffer += `<td class="table-${r.run() > 80 ? 'success' : r.run() < 30 ? 'danger' : 'primary'}">` + r.run() + '%' + `<br /> <small class="text-muted"><b>Risk: </b> ${r.risk()} </small>` + `</td>`;
+    	buffer += `<td class="table-${r.run() > 90 ? 'success' : r.run() < 10 ? 'danger' : 'primary'}">` + r.run() + '%' + `<br /> <small class="text-muted"><b>Risk: </b> ${r.risk()} </small>` + `</td>`;
   	}
    buffer += '<tr>'
   }

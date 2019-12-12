@@ -12,7 +12,7 @@
 <div class="my-5">
   <div class="container">
   <div class="page-header">
-    <h3 class="page-title">Toram simulasi refine</h3>
+    <h3 class="page-title">Toram simulasi refine tier 4</h3>
   </div>
 
     <div class="row">
