@@ -25,10 +25,15 @@
       </div>
 
       <div class="col-12">
-                <div class="alert alert-info">
-                  <b>New!!</b> Fill stats calculator <a href="/fill_stats/calculator">Klik disini</a>
-                </div>
-              </div>
+
+        <div class="alert alert-info">
+          <b>New!!</b> Fill stats calculator <a href="/fill_stats/calculator">Klik disini</a>
+        </div>
+        <div class="alert alert-info">
+          Stat plus di bawah +20 menggunakan tier 3 bs, sedangkan stat plus yang lebih dari +20 sudah menggunakan tier 4 bs.
+        </div>
+      </div>
+
       <div class="col-12 my-5">
  @foreach($fills as $fo)
          <a href="/fill_stats/{{ $fo->type == 1 ? 'Armor':'Weapon'  }}/{{ $fo->plus }}" class="btn btn-sm btn-pill btn-secondary" onclick="event.preventDefault();document.getElementById('{{ $fo->type == 1 ? 'armor':'weapon'  }}{{ "+$fo->plus" }}').scrollIntoView();">
