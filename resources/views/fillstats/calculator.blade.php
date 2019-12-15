@@ -31,6 +31,9 @@
         <div class="alert alert-info">
         Untuk melihat fill stats formula <a href="/fill_stats">klik disini</a>
         </div>
+        <div class="alert alert-warning">
+        	Algoritma simulasi ini tidak sepenuhnya efisien, setidaknya koreksi terlebih dahulu barangkali terjadi kesalahan atau bisa juga lihat fill stat formula.
+        </div>
       </div>
 
       <div class="col-md-4">

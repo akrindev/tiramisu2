@@ -116,7 +116,7 @@ class SIMULATOR {
         }
 
         data.maxSteps = Math.floor(100 / data.pot);
-        if (data.name === 'Aggro %') data.maxSteps = 15;  // for some reason this only goes up to +15/-15 go figure.
+        if (data.name === 'Aggro %' || data.name === 'MaxMP') data.maxSteps = 15;  // for some reason this only goes up to +15/-15 go figure.
         if (data.maxSteps >= MAX_STEPS) data.maxSteps = MAX_STEPS;
         else if (!data.maxSteps) data.maxSteps = 1;
         return data;
