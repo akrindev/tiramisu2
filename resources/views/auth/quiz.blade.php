@@ -151,7 +151,7 @@
               <b>Jawaban benar: {{ $q->correct }}</b><br>
               <small class="text-muted">
                 {{ $q->created_at->diffForHumans() }} .
-                {!! $q->approved == 1 ? '<span class="text-success">Diterima</span>':'<span class="text-danger">Ditolak</span>'!!}
+                {!! $q->approved == 1 ? '<span class="text-success">Diterima</span>':'<span class="text-warning">Ditinjau</span>'!!}
               </small>
               <br>
               <b>Dijawab sebanyak: </b> {{ $q->benar+$q->salah}}x<br>
@@ -163,10 +163,6 @@
 <div class="progress progress-xs">
                 <div class="progress-bar bg-danger" style="width: {{ $q->salah/(($q->benar+$q->salah) == 0 ? 1 : $q->benar+$q->salah)*100 }}%"></div>
              </div>
-
-             <div class="form-group mt-5">
-               <a href="/quiz/edit/{{$q->id}}" class="btn btn-secondary">edit</a>
-              </div>
             </div>
           </div>
         </div>

@@ -231,7 +231,8 @@ class QuizController extends Controller
         'answer_b'	=> request()->jawaban_b,
         'answer_c'	=> request()->jawaban_c,
         'answer_d'	=> request()->jawaban_d,
-        'correct'		=> request()->benar
+        'correct'	=> request()->benar,
+        'approved'	=> 0
       ]);
 
       if($quiz)
