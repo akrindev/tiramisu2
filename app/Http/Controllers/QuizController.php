@@ -437,7 +437,7 @@ class QuizController extends Controller
 
   	public function buatKode()
     {
-      $kuis = auth()->user()->quiz;
+      $kuis = Quiz::latest()->where('user_id', auth()->id())->get();
 
       return view('quiz.buatkode', compact('kuis'));
     }
