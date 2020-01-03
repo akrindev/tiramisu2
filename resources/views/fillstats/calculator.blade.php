@@ -55,6 +55,10 @@
 
             	</div>
             </div>
+            <div class="form-group">
+              <label class="form-label">Level prof bs</label>
+            	<input type="number" min=1 max=200 class="form-control" id="prof" value=1 oninput="update_prof_lv();">
+            </div>
 
             <div class="form-group">
               <button class="btn btn-outline-primary m-1" onclick="get_results()">Lihat!</button>
@@ -64,6 +68,7 @@
               <a href="/fill_stats" class="btn btn-pill btn-outline-warning m-1"><i class="fe fe-settings"></i> Manual formula</a>
 
             </div>
+
 
             <div class="mt-3">
               <small class="text-muted">Credit: <a href="https://sparkychildcharlie.github.io/statting" rel="nofollow" target="_blank">Charlie Kobayashi</a></small>

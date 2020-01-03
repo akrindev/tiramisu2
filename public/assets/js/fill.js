@@ -274,7 +274,12 @@ class FORMULA {
     }
 
     getMatCost(step, data) {
-        return data.cost * Math.pow(step, 2);
+        // reduce math cost
+        let num = parseInt(document.getElementById('prof').value);
+
+        let reducer = Math.floor(num/10) + Math.floor(num/50);
+        let reduce = Math.ceil((reducer/100) * data.cost * Math.pow(step, 2));
+        return data.cost * Math.pow(step, 2) - reduce;
     }
 
     statToArray(data) {
@@ -687,6 +692,18 @@ function sync_ui_with_sim () {
     document.getElementById('slot' + i).value = reverse_options_to_index(s.name);
     document.getElementById('slot' + i + '_value').value = s.value;
     document.getElementById('slot' + i + '_value').disabled = false;
+  }
+}
+
+function update_prof_lv() {
+  let input = document.getElementById('prof').value;
+
+  if(!isNaN(parseInt(input))) {
+    if(parseInt(input) < 1) {
+      document.getElementById('prof').value = 1;
+    } else if (parseInt(input) > 200) {
+      document.getElementById('prof').value = 200;
+    }
   }
 }
 
