@@ -247,11 +247,6 @@ class QuizController extends Controller
     {
       $quiz = Quiz::findOrFail($id);
 
-      if(auth()->id() != $quiz->user_id)
-      {
-        return redirect('/')->with('gagal','Akses ditolak');
-      }
-
       return view('quiz.edit',[
       	"data" => $quiz
       ]);
@@ -260,11 +255,6 @@ class QuizController extends Controller
   	public function editSubmit($id)
     {
       $quiz = Quiz::findOrFail($id);
-
-      if(auth()->id() != $quiz->user_id)
-      {
-        return redirect('/')->with('gagal','Akses ditolak');
-      }
 
       request()->validate([
 		'pertanyaan' => 'required',
@@ -286,10 +276,7 @@ class QuizController extends Controller
         'correct'	=> request()->benar
       ]);
 
-      if($updated)
-      {
-        return back()->with('sukses','Data berhasil di ubah yey *-*)/');
-      }
+      return redirect('/quiz/admin')->with('sukses','Data berhasil di ubah yey *-*)/');
     }
 
   	public function allScores()

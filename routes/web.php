@@ -329,9 +329,6 @@ Route::prefix('quiz')->group(function() {
         Route::get('/koreksi', 'QuizController@koreksi');
         Route::get('/profile', 'QuizController@myProfile');
 		Route::post('/buat', 'QuizController@tambahSubmit');
-        Route::get('/edit/{id}', 'QuizController@edit');
-        Route::post('/edit/{id}', 'QuizController@editSubmit');
-
 
         Route::get('/buat-kode', 'QuizController@buatKode');
         Route::post('/buat-kode', 'QuizController@buatKodePost');
@@ -339,6 +336,8 @@ Route::prefix('quiz')->group(function() {
 
   	// admin
   	Route::middleware('admin')->group(function() {
+      Route::get('/edit/{id}', 'QuizController@edit');
+      Route::post('/edit/{id}', 'QuizController@editSubmit');
       Route::post('/destroy', 'QuizController@destroy');
 	  Route::get('/admin', 'QuizController@admin');
     });

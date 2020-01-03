@@ -3,6 +3,13 @@
 @section('title','Admin quiz')
 
 @section('content')
+
+      @if (session()->has('sukses'))
+      <div class="card-alert alert alert-success">
+        {{ session('sukses' )}}
+      </div>
+      @endif
+
 <div class="my-5">
   <div class="container">
     <div class="page-header">
@@ -56,11 +63,6 @@
         </div>
       </div>
 
-      @if (session()->has('sukses'))
-      <div class="alert alert-success">
-        {{ session('sukses' )}}
-      </div>
-      @endif
 
 @if ($quizzes->count() > 0)
       @foreach ($quizzes as $q)
@@ -97,6 +99,7 @@
              </div>
 
              <div class="form-group mt-5">
+               <a href="/quiz/edit/{{ $q->id }}" class="btn btn-outline-primary btn-pill float-left">edit</a>
 
                {!! form_open('/quiz/destroy', ['class'=>'hapus']) !!}
                @csrf
