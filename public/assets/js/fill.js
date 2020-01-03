@@ -276,7 +276,7 @@ class FORMULA {
     getMatCost(step, data) {
         // reduce math cost
         let num = parseInt(document.getElementById('prof').value);
-
+        // add 1% per 10 lv, add 1% per 50 lv
         let reducer = Math.floor(num/10) + Math.floor(num/50);
         let reduce = Math.ceil((reducer/100) * data.cost * Math.pow(step, 2));
         return data.cost * Math.pow(step, 2) - reduce;
