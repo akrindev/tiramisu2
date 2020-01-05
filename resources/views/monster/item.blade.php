@@ -197,9 +197,6 @@
           </div>
 
         <!-- end tab -->
-
-     @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
-
           </div>
         </div>
 
