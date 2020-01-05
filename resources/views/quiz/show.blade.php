@@ -16,14 +16,14 @@
     <div class="row">
 
       <div class="col-md-8">
+
+        @includeWhen(!app()->isLocal(), 'inc.ads_article')
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">
               Quiz
             </h3>
           </div>
-
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
            Quiz berisi 10 soal diambil secara acak dari setiap quiz yang sudah di submit oleh member<br>
            Tidak ada batasan waktu ketika quiz sedang berlangsung. Quiz hanya untuk mengetes pengetahuanmu tentang toram.<br><br>
@@ -64,7 +64,7 @@
 
         </div>
 
-
+        @includeWhen(!app()->isLocal(), 'inc.ads_article')
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">
