@@ -537,7 +537,7 @@ class FORMULA {
         let prev_pot = this.steps[this.steps.length - 2] ? this.steps[this.steps.length - 2][1] : this.original_potential;
         let use_pot = this.recipe_pot > prev_pot ? this.recipe_pot : prev_pot;
 
-        this.success = 130 + (230 * this.potential) / use_pot;
+        this.success = 160 + (230 * this.potential) / use_pot;
 
         if (this.success > 100) this.success = 100;
         else if (this.success < 0) this.success = 0;
