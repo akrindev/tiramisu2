@@ -61,10 +61,10 @@
             <label class="form-label">Screenshot</label>
             <div id="preview">
               @if($data->picture)
-              <img src="{{$data->picture}}" alt="" class="rounded">
+              <img src="/{{$data->picture}}"/>
               @endif
             </div>
-            <input type="file" name="picture" class="form-control" accept="image/*">
+            <input type="file" name="picture" class="form-control" accept="image/*" id="picture">
           </div>
 
         <div class="form-group">
@@ -238,4 +238,23 @@
 
 })();
 </script>
+
+<script>
+function fileReader(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+
+            $('#preview').html('Preview: <img src="'+e.target.result+'" class="img-fluid"/>');
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
+<script>
+ $("#picture").change(function(){
+   fileReader(this);
+ })
+</script>
+
 @endsection

@@ -11,7 +11,7 @@
       <div class="col-md-8">
 
         <div class="card shadow">
-          <div class="card-alert alert alert-info">Jika data drop tidak di temukan, tambah data dropnya <a href="/mons/drop/store">disini</a>
+          <div class="card-alert alert alert-info">Jika data drop item tidak di temukan, tambah data dropnya <a href="/item/drop/store">disini</a>
           </div>
 
         <div class="card-body p-3" style="font-size:13px;font-weight:400">
@@ -112,8 +112,8 @@
 
           <div class="form-group">
             <label class="form-label">Screenshot</label>
-            <div id="preview"></div>
-            <input type="file" name="picture" class="form-control-file" accept="image/*">
+            <div id="preview" class="mb-5"></div>
+            <input type="file" name="picture" class="form-control" accept="image/*" id="picture">
           </div>
 
 
@@ -398,4 +398,23 @@ select.form-control:not([size]):not([multiple]) {
   });
 })();
 </script>
+
+<script>
+function fileReader(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+
+            $('#preview').html('Preview: <img src="'+e.target.result+'" class="img-fluid"/>');
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
+<script>
+ $("#picture").change(function(){
+   fileReader(this);
+ })
+</script>
+
 @endsection

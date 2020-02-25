@@ -113,8 +113,10 @@
 
           <div class="form-group">
             <label class="form-label">Screenshot</label>
-            <div id="preview"></div>
-            <input type="file" name="picture" class="form-control" accept="image/*">
+            <div id="preview" class="mb-5">
+            <img src="/{{ $data->picture }}"/>
+            </div>
+            <input type="file" name="picture" class="form-control" accept="image/*" id="picture">
           </div>
 
 
@@ -266,4 +268,23 @@
   });
 })();
 </script>
+
+<script>
+function fileReader(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+
+            $('#preview').html('Preview: <img src="'+e.target.result+'" class="img-fluid" id="prev"/>');
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
+<script>
+ $("#picture").change(function(){
+   fileReader(this);
+ })
+</script>
+
 @endsection
