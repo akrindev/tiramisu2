@@ -44,9 +44,8 @@ const app = new Vue({
   methods: {
     kalkulasi() {
 
-      if(this.lvnow > this.lvtarget) {
+      if(this.lvnow >= this.lvtarget) {
         alert('Nilai Level sekarang > level target')
-        return;
       }
 
       // stack
