@@ -27,14 +27,14 @@ class LevelingController extends Controller
     $data = Monster::whereIn('type',[2,3])
         			->whereBetween('level', [$min,$max])
       				->orderByDesc('type')
-        			->orderBy('level')
+      				->orderByDesc('xp')
         			->get();
 
     $data->map(function ($item) use ($lvl, $bonusExp) {
       if(!is_null($item->xp)){
         $exp = $this->exp($lvl, $item->level, $item->xp, $bonusExp);
 
-        $item->xp = number_format($exp);
+        $item->xp = $exp;
         $item->persen = $this->percentage($exp).'%';
         $item->defeat = ceil($this->exp/$exp);
 

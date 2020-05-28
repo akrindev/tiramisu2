@@ -91,7 +91,7 @@
 
    @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
           <div class="p-3">
-            <b>Level:</b> {{ request('level') }} ke {{ request('level')+1 }}<br>
+            <b>Level:</b> {{ request('level') }} ke {{ request('level', 49)+1 }}<br>
             <b>Bonus Exp:</b> {{ request('bonusexp') }}%<br>
             <b>Jarak:</b> {{ request('range') }}
           </div>
@@ -114,7 +114,7 @@
             <!-- leveling list -->
           <div class="tab-pane fade show active" id="leveling" role="tabpanel" aria-labelledby="leveling-tab">
 
-          <table class="card-table table table-striped table-hover" style="font-size:12px">
+          <table class="card-table table table-striped table-hover" style="font-size:15px">
             <tr>
               <td><div><b>Note!</b>  <br> <span class="text-danger">Boss</span>  <span class="text-success ml-5">Mini Boss</span> </div></td>
             </tr>
@@ -129,15 +129,11 @@
               </small>
             @if($mob->xp && $mob->persen)
               <br>
-              <small class="text-primary"><i class="fe fe-arrow-up-circle mr-1"></i> {{ $mob->xp }} exp ({{ $mob->persen }}) <i class="fe fe-refresh-cw mx-1"></i> {{ $mob->defeat }}x run</small>
+              <small class="text-primary"><i class="fe fe-arrow-up-circle mr-1"></i> {{ number_format($mob->xp) }} exp ({{ $mob->persen }}) <i class="fe fe-refresh-cw mx-1"></i> {{ $mob->defeat }}x run</small>
            @else
               <br>
               <small class="text-primary"><i class="fe fe-arrow-up-circle mr-1"></i> --unknown--</small>
            @endif
-            </td>
-            <td class="px-2 py-2">
-              <div>HP &amp; Unsur</div> <small class="text-muted"><i class="fe fe-thermometer mr-1"></i>{{ $mob->hp ?? 'unknown' }}</small> <br>
-              <small class="text-secondary"><i class="fe fe-alert-triangle mr-1"></i> {{ ucfirst($mob->element->name) }} </small>
             </td>
           </tr>
          @endforeach
@@ -198,7 +194,7 @@
    @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 
               List Leveling level
-                @foreach(range(1,200) as $lv)
+                @foreach(range(1,215) as $lv)
                   , <a href="/leveling?level={{ $lv }}"> {{ $lv }} </a>
                 @endforeach
               </div>
