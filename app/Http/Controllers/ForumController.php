@@ -79,7 +79,7 @@ class ForumController extends Controller
 
   public function bacaId($id)
   {
-    $baca = Forum::find($id);
+    $baca = Forum::findOrFail($id);
 
     return redirect('/forum/'. $baca->slug);
   }
