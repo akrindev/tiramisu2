@@ -77,6 +77,13 @@ class ForumController extends Controller
     ]);
   }
 
+  public function bacaId($id)
+  {
+    $baca = Forum::find($id);
+
+    return redirect('/forum/'. $baca->slug);
+  }
+
   public function comment($slug)
   {
     $forum = Forum::where('slug',$slug)->firstOrFail();

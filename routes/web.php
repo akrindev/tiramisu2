@@ -236,36 +236,45 @@ Route::prefix('admin')->middleware('admin')->group(function(){
 /**
 * Forum Routes
 */
-Route::get('/forum', 'ForumController@feed');
-Route::get('/forum/baru', 'ForumController@buat')->middleware('auth');
-Route::post('/forum/baru', 'ForumController@buatSubmit')->middleware('auth');
-Route::get('/forum/tag/{nya}', 'ForumController@byTag');
-Route::get('/forum/cari', 'ForumController@feed');
-Route::post('/forum/cari', 'ForumController@cari');
-Route::post('/forum/like', 'ForumController@postLike');
-Route::post('/forum/likereply', 'ForumController@postLikeReply');
 
-Route::get('/forum/{slug}', 'ForumController@baca');
-// komentar forum
-Route::post('/forum/{slug}', 'ForumController@comment')->middleware('auth');
-Route::post('/forum/{slug}/c', 'ForumController@commentReply')->middleware('auth');
+Route::prefix('forum')->group(function(){
+  Route::get('/', 'ForumController@feed');
+  Route::get('/tag/{nya}', 'ForumController@byTag');
+  Route::get('/cari', 'ForumController@feed');
+  Route::post('/cari', 'ForumController@cari');
 
-// forum function
+  // For auth user
+  Route::middleware('auth')->group(function() {
+    Route::get('/baru', 'ForumController@buat');
+	Route::post('/baru', 'ForumController@buatSubmit');
+	Route::post('/like', 'ForumController@postLike');
+	Route::post('/likereply', 'ForumController@postLikeReply');
 
-// admin can delete the pinned the thread
-Route::post('/forum/{slug}/pin', 'ForumController@pinned')->middleware('auth');
-// admin can delete thread
-Route::delete('/forum/{slug}/del', 'ForumController@delete')->middleware('auth');
+	// komentar forum
+	Route::post('/{slug}', 'ForumController@comment');
+	Route::post('/{slug}/c', 'ForumController@commentReply');
+	Route::delete('/{slug}/delete', 'ForumController@deleteByUser');
 
-Route::delete('/forum/{slug}/delete', 'ForumController@deleteByUser')->middleware('auth');
 
-// the user thread can edit his/her thread
-Route::get('/forum/{slug}/edit', 'ForumController@edit')->middleware('auth');
-Route::post('/forum/{slug}/edit', 'ForumController@editSubmit')->middleware('auth');
+	// the user thread can edit his/her thread
+	Route::get('/{slug}/edit', 'ForumController@edit');
+	Route::post('/{slug}/edit', 'ForumController@editSubmit');
 
-// admin can delete comment and replied comment
-Route::delete('/forum/delete-comment', 'ForumController@deleteComment')->middleware('auth');
+    // Admin routes
+  	Route::middleware('admin')->group(function(){
 
+		// admin can delete the pinned the thread
+		Route::post('/{slug}/pin', 'ForumController@pinned');
+		Route::delete('/{slug}/del', 'ForumController@delete');
+		Route::delete('/delete-comment', 'ForumController@deleteComment');
+    });
+  });
+
+  Route::get('/{slug}', 'ForumController@baca');
+});
+
+// short forum link
+Route::get('f/{id}', 'ForumController@bacaId');
 
 /**
 *

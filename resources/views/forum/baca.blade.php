@@ -134,6 +134,8 @@ $tags = explode(',', $tags);
             <div class="body-text">
             {{ toHtml($data->body, true) }}
 
+              <small class="text-muted">Short link: <i><u>https://toram-id.info/f/{{ $data->id }}</u></i></small>
+
   			@includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 
            <div class="my-3">
