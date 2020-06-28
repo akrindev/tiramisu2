@@ -14,28 +14,10 @@ Route::view('/', 'toram');
 Route::view('/cb', 'cb');
 
 // dye routes
-Route::prefix('dye')->group(function() {
-	Route::get('/', 'DyeController@home');
+Route::prefix('dye')->group(base_path('routes/dye.php'));
 
-  	Route::middleware('admin')->group(function() {
-    	Route::get('store', 'DyeController@store');
-    	Route::post('store', 'DyeController@storeDye');
-      	Route::delete('delete', 'DyeController@delete');
-    });
-});
-
-Route::prefix('/cooking')->group(function () {
-  Route::redirect('/', '/cooking/berteman');
-  Route::view('/berteman', 'cooking.tukar');
-  Route::get('buff', 'CookingController@buff');
-
-  Route::middleware('admin')->group(function() {
-  	Route::view('/store', 'cooking.store');
-    Route::post('/store', 'CookingController@store');
-
-    Route::delete('/delete/{id}', 'CookingController@delete');
-  });
-});
+// cooking routes
+Route::prefix('/cooking')->group(base_path('routes/cooking.php'));
 
 Route::get('/latest_search', 'SitemapController@show');
 
@@ -92,31 +74,12 @@ Route::middleware('auth')->group(function() {
 });
 
 // fill stats
-Route::get('/fill_stats', 'FillController@index');
-Route::get('/fill_stats/calculator', 'FillController@calculator');
-// admin, fill stats
-Route::middleware('admin')->group(function(){
-  Route::get('/fill_stats/add', 'FillController@add');
-  Route::post('/fill_stats/add', 'FillController@addPost');
-  Route::get('/edit/{id}/fillstats', 'FillController@edit')->middleware('auth');
-  Route::post('/edit/{id}/fillstats', 'FillController@editPost');
-  Route::delete('/delete/fillstats', 'FillController@destroy');
-});
+Route::prefix('fill_stats')->group(base_path('routes/fill.php'));
 
-Route::get('/fill_stats/{type}', 'FillController@single');
-Route::get('/fill_stats/{type}/{plus}', 'FillController@single');
 /**
 * skills
 */
-Route::get('/skill', 'SkillController@index');
-Route::get('/skill/{name}', 'SkillController@show');
-Route::get('/skill/{parent}/{child}', 'SkillController@single');
-Route::post('/skill/{parent}/{child}', 'SkillController@comment');
-Route::middleware(['admin'])->group(function() {
-	Route::get('/skill/e/{id}/edit', 'SkillController@edit');
-  	Route::post('/skill/e/{id}/save', 'SkillController@save');
-  	Route::delete('/skill-delete-comment', 'SkillController@deleteComment');
-});
+Route::prefix('skill')->group(base_path('routes/skill.php'));
 
 // Searching
 
@@ -130,19 +93,7 @@ Route::get('/peta', 'MonsterController@index');
 Route::get('/peta/{id}', 'MonsterController@peta');
 
 Route::get('/monsters', 'MonsterController@showAllMons');
-Route::prefix('monster')->group(function() {
-	Route::get('/', 'MonsterController@index');
-	Route::get('/{id}', 'MonsterController@showMons');
-	Route::get('/type/{name}', 'MonsterController@showMonsType');
-	Route::get('/unsur/{type}', 'MonsterController@showMonsEl');
-
-  	// admin route
-  	Route::middleware('admin')->group(function() {
-		Route::get('/{id}/edit', 'MonsterController@editMons');
-		Route::post('/{id}/edit', 'MonsterController@editMobPost');
-		Route::delete('/{id}/hapus', 'MonsterController@monsHapus');
-    });
-});
+Route::prefix('monster')->group(base_path('routes/monster.php'));
 
 
 /**
@@ -152,22 +103,12 @@ Route::prefix('monster')->group(function() {
 Route::get('/items', 'ItemController@showAllItems');
 Route::get('/items/{id}', 'ItemController@showItems');
 
-Route::prefix('item')->group(function() {
-	Route::get('/{id}', 'ItemController@showItem');
-
-  	// admin route
-  	Route::middleware('admin')->group(function() {
-      	Route::match(['get', 'post'], '/drop/store', 'ItemController@storeDrop');
-		Route::get('/{id}/edit', 'ItemController@editItem');
-		Route::put('/{id}/edit', 'ItemController@editItemPost');
-		Route::delete('/{id}/hapus', 'ItemController@hapusItem');
-    });
-});
+Route::prefix('item')->group(base_path('routes/item.php'));
 
 
 /**
 * Contribution routes
-*/
+*
 Route::middleware(['auth'])->group(function() {
 	Route::get('/contribution/show', 'ContributionController@show');
   	Route::post('/contribution/edit', 'ContributionController@edit');
@@ -179,6 +120,7 @@ Route::middleware(['auth'])->group(function() {
     	Route::post('/contribution/sudo', 'ContributionController@sudoModerasi');
     });
 });
+**/
 
 // CRUD
 Route::get('/mons/fetch/{id}', 'MonsterController@fetchI')->middleware('admin');
@@ -211,67 +153,13 @@ Route::middleware(['admin'])->group(function(){
 *
 * Admin routes
 */
-Route::prefix('admin')->middleware('admin')->group(function(){
-    Route::get('/', 'AdminController@home');
-    Route::get('/users', 'AdminController@users');
-    Route::get('/last-login', 'AdminController@lastLogin');
-    Route::get('/searches', 'AdminController@logSearches');
-  	Route::get('/last_forum_posts', 'AdminController@lastThread');
-
-    Route::put('/change-user', 'AdminController@changeUser');
-    Route::post('/tagforum', 'AdminController@tagForum');
-    Route::get('/tagedit/{i}', 'AdminController@fetchTag');
-    Route::post('/editforum', 'AdminController@editTag');
-    Route::post('/taghapus', 'AdminController@tagHapus');
-
-    Route::post('/catscam', 'AdminController@addKategoriScam');
-    Route::get('/scamedit/{i}', 'AdminController@fetchScam');
-    Route::post('/editscam', 'AdminController@editScam');
-    Route::post('/scamhapus', 'AdminController@hapusScam');
-
-  	Route::get('/setting', 'SettingController@badword');
-  	Route::post('/setting/badword', 'SettingController@updateBadword');
-});
+Route::prefix('admin')->middleware('admin')->group(base_path('routes/admin.php'));
 
 /**
 * Forum Routes
 */
 
-Route::prefix('forum')->group(function(){
-  Route::get('/', 'ForumController@feed');
-  Route::get('/tag/{nya}', 'ForumController@byTag');
-  Route::get('/cari', 'ForumController@feed');
-  Route::post('/cari', 'ForumController@cari');
-
-  // For auth user
-  Route::middleware('auth')->group(function() {
-    Route::get('/baru', 'ForumController@buat');
-	Route::post('/baru', 'ForumController@buatSubmit');
-	Route::post('/like', 'ForumController@postLike');
-	Route::post('/likereply', 'ForumController@postLikeReply');
-
-	// komentar forum
-	Route::post('/{slug}', 'ForumController@comment');
-	Route::post('/{slug}/c', 'ForumController@commentReply');
-	Route::delete('/{slug}/delete', 'ForumController@deleteByUser');
-
-
-	// the user thread can edit his/her thread
-	Route::get('/{slug}/edit', 'ForumController@edit');
-	Route::post('/{slug}/edit', 'ForumController@editSubmit');
-
-    // Admin routes
-  	Route::middleware('admin')->group(function(){
-
-		// admin can delete the pinned the thread
-		Route::post('/{slug}/pin', 'ForumController@pinned');
-		Route::delete('/{slug}/del', 'ForumController@delete');
-		Route::delete('/delete-comment', 'ForumController@deleteComment');
-    });
-  });
-
-  Route::get('/{slug}', 'ForumController@baca');
-});
+Route::prefix('forum')->group(base_path('routes/forum.php'));
 
 // short forum link
 Route::get('f/{id}', 'ForumController@bacaId');
@@ -281,27 +169,11 @@ Route::get('f/{id}', 'ForumController@bacaId');
 *
 * Gallery
 */
-Route::get('/gallery', 'GalleryController@index');
-Route::post('/gallery', 'GalleryController@upload')->middleware('auth');
-Route::get('/gallery/tag/{tag}', 'GalleryController@getByTag');
-Route::get('/gallery/by/{provider_id}', 'GalleryController@getUserGallery');
-
-Route::get('/gallery/{id}', 'GalleryController@single');
-Route::post('/gallery/{id}', 'GalleryController@comment');
-Route::get('/mygallery', 'GalleryController@myGallery')->middleware('auth');
-
-Route::get('/gallery/{id}/edit', 'GalleryController@edit')->middleware('auth');
-Route::post('/gallery/{id}/edit', 'GalleryController@editSubmit')->middleware('auth');
-
-Route::delete('/gallery/destroy', 'GalleryController@destroy')->middleware('auth');
-Route::delete('/gallery/destroy/comment', 'GalleryController@destroyComment')->middleware('auth');
-
+Route::prefix('gallery')->group(base_path('routes/gallery.php'));
 
 /**
-*
-*
 * Shop
-*/
+*
 Route::get('/shop', 'ShopController@discover');
 Route::get('/shop/show/{slug}', 'ShopController@show');
 Route::get('/shop/edit/{slug}', 'ShopController@edit')->middleware('auth');
@@ -310,53 +182,19 @@ Route::get('/shop/jual', 'ShopController@jual')->middleware('auth');
 Route::post('/shop/jual', 'ShopController@jualSubmit')->middleware('auth');
 Route::post('/ya/laku', 'ShopController@laku')->middleware('auth');
 Route::delete('/shop/delete', 'ShopController@delete')->middleware('auth');
-
+*/
 
 /**
 *
 * Quiz routes
 */
-Route::prefix('quiz')->group(function() {
-	Route::get('/', 'QuizController@show');
-	Route::get('/score', 'QuizController@allScores');
-	Route::get('/buat', 'QuizController@tambah');
-	Route::post('/cek-kode', 'QuizController@cekKode');
-	Route::get('/kode/{code}', 'QuizController@lihatKode');
-
-  	// must be login
-  	Route::middleware('auth')->group(function() {
-    	Route::get('/mulai', 'QuizController@mulaiQuiz');
-		Route::get('/begin', 'QuizController@kerjakan');
-
-      	Route::get('/kode/{code}/mulai', 'QuizController@ambilQuiz');
-        Route::get('/code/begin', 'QuizController@kerjakanByCode');
-        Route::get('/code/koreksi', 'QuizController@koreksiByCode');
-
-		Route::get('/i/{id}', 'QuizController@ajax');
-        Route::post('/save', 'QuizController@saveAnswer');
-        Route::get('/ajax/terjawab', 'QuizController@ajaxTerjawab');
-        Route::get('/koreksi', 'QuizController@koreksi');
-        Route::get('/profile', 'QuizController@myProfile');
-		Route::post('/buat', 'QuizController@tambahSubmit');
-
-        Route::get('/buat-kode', 'QuizController@buatKode');
-        Route::post('/buat-kode', 'QuizController@buatKodePost');
-    });
-
-  	// admin
-  	Route::middleware('admin')->group(function() {
-      Route::get('/edit/{id}', 'QuizController@edit');
-      Route::post('/edit/{id}', 'QuizController@editSubmit');
-      Route::post('/destroy', 'QuizController@destroy');
-	  Route::get('/admin', 'QuizController@admin');
-    });
-});
+Route::prefix('quiz')->group(base_path('routes/quiz.php'));
 
 
 /**
 *
 * Scammer route
-*/
+*
 Route::get('/scammer', 'ScammerController@show');
 Route::get('/scammer/cari', 'ScammerController@cari');
 Route::get('/scammer/kategori/{id}', 'ScammerController@kategori');
@@ -375,22 +213,12 @@ Route::post('/scammer/r/{slug}', 'ScammerController@comment')->middleware('auth'
 Route::post('/scammer/r/{slug}/c', 'ScammerController@commentReply')->middleware('auth');
 Route::delete('/scammer/delete-comment', 'ScammerController@deleteComment')->middleware('admin');
 
+*/
 
 /**
 * Emblem Route
 */
-Route::middleware('admin')->group(function() {
-  Route::view('/prestasi/add', 'emblem.add');
-  Route::post('/prestasi/add', 'EmblemController@store');
-  Route::get('/prestasi/{id}/edit', 'EmblemController@edit');
-  Route::put('/prestasi/{id}/edit', 'EmblemController@editPost');
-  Route::delete('/prestasi/{id}/hapus', 'EmblemController@hapus');
-});
-
-Route::get('/prestasi', 'EmblemController@index');
-Route::get('/prestasi/{id}', 'EmblemController@show');
-Route::get('/prestasi/reward/{name}', 'EmblemController@byReward');
-
+Route::prefix('prestasi')->group(base_path('routes/prestasi.php'));
 
 Route::prefix('webview')->group(function() {
   	Route::view('/eq', 'webview.monster.menu_eq');

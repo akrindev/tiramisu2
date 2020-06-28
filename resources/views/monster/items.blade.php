@@ -139,7 +139,7 @@
 
               <div class="my-2">
                 @forelse($item->monsters as $monster)
-                <i class="fe fe-github mr-2"></i><a href="/monster/{{ $monster->id }}" class="mr-1">{{ $monster->name }}</a> <small><a class="text-muted" href="/peta/{{ $monster->map->id }}"> [{{ $monster->map->name }}]</a></small> <br >
+                <i class="fe fe-github mr-2"></i><a href="/monster/{{ $monster->id }}" class="mr-1">{{ $monster->name }} (Lv {{ $monster->level }})</a> <small><a class="text-muted" href="/peta/{{ $monster->map->id }}"> [{{ $monster->map->name }}]</a></small> <br >
                 @empty
                   <i class="fe fe-eye mr-2"></i><a href="/item/{{ $item->id }}">Lihat... </a>
                 @endforelse
