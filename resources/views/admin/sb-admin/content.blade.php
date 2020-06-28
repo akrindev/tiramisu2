@@ -200,15 +200,15 @@
          <table style="width:100%"  class="display" id="users" style="font-size:14px;font-weight:400">
            <thead>
              <tr>
-                <th class="text-center" style="width: 0.25rem !important;" data-pic></th>
-             <th> Name </th>
-             <th> Kontak (line &amp; whatsapp) </th>
-             <th> Alamat  </th>
-             <th> IGN  </th>
-             <th> Biodata  </th>
-             <th> Gender </th>
-             <th> Joined </th>
-               <th> Action </th>
+                <th class="text-center" data-pic></th>
+             <th data-name> Name </th>
+             <th data-contact> Kontak (line &amp; whatsapp) </th>
+             <th data-alamat> Alamat  </th>
+             <th data-ign> IGN  </th>
+             <th data-biodata> Biodata  </th>
+             <th data-gender> Gender </th>
+             <th data-created_at> Joined </th>
+               <th data-action> Action </th>
              </tr>
            </thead>
 
@@ -230,12 +230,12 @@
          <table style="width:100%"  class="display" id="lasts" style="font-size:14px;font-weight:400">
            <thead>
              <tr>
-                <th class="text-center w-1" style="width: 0.25rem !important;" data-pic></th>
-             <th> Name </th>
-             <th> IP </th>
-             <th> Browser  </th>
-             <th> Info </th>
-             <th> Date  </th>
+                <th class="text-center"  data-pic></th>
+             <th data-name> Name </th>
+             <th data-ip> IP </th>
+             <th data-browser> Browser  </th>
+             <th data-extra> Info </th>
+             <th data-created_at> Date  </th>
              </tr>
            </thead>
 
