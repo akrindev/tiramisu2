@@ -12,7 +12,7 @@
 
           @foreach($child as $kid)
         <div class="mb-2">
-        <img src="{{ $kid->picture }}" alt="{{ $kid->name }}" class="avatar avatar-md mr-4"> <a href="/skill/{{ str_replace(' ', '-',$kid->name) }}"> {{ $kid->name }} </a> </div>
+        <img src="{{ $kid->picture }}" alt="{{ $kid->name }}" class="avatar avatar-md mr-4"> <a href="/skill/{{ $kid->id }}"> {{ $kid->name }} </a> </div>
 
 
           @endforeach

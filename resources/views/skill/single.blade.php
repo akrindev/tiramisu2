@@ -105,7 +105,7 @@
             <div class="form-group">
               @if(auth()->user()->isAdmin())
 
-              {!! form_open('/skill-delete-comment') !!}
+              {!! form_open('/skill/skill-delete-comment') !!}
               @csrf
               @method("DELETE")
               <input type="hidden" name="id" value="{{ $comment->id }}">

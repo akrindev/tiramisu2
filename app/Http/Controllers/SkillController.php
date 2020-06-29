@@ -48,17 +48,21 @@ class SkillController extends Controller
     return view('skill.single', compact('skill', 'name'));
   }
 
-  public function comment($parent, $child)
+  public function singleChild($id)
+  {
+    $skill = SkillList::findOrFail($id);
+    $name = $skill->name;
+
+    return view('skill.single', compact('skill', 'name'));
+  }
+
+  public function comment($id)
   {
     request()->validate([
     	'body'	=> 'required|min:15'
     ]);
 
-    $parent = str_replace('-', ' ', $parent);
-    $name = trim(str_replace('-', ' ', $child));
-
-    $skillparent = Skill::whereName($parent)->firstOrFail();
-    $skill = $skillparent->child()->whereName($name)->firstOrFail();
+    $skill = SkillList::findOrFail($id);
 
     $skill->comment()->create([
     	'user_id'	=> auth()->user()->id,
@@ -78,7 +82,7 @@ class SkillController extends Controller
          	'title' => 'Seseorang juga berkomentar di '. $skill->name,
            	'body' => explode(' ',auth()->user()->name)[0] . ' juga berkomentar di '. $skill->name,
            	'icon'	=> 'https://graph.facebook.com/'.auth()->user()->provider_id.'/picture?type=normal',
-              	'click_action' => url('/skill/'.str_replace(' ', '-', $parent).'/'.str_replace(' ', '-', $name))
+              	'click_action' => url('/skill/child/'.$id)
          ])
          ->send();
     }
