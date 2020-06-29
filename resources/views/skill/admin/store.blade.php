@@ -21,7 +21,7 @@
       <div class="form-group">
         <label class="form-label">Icon</label>
         <div id="preview"></div>
-        <input type="file" class="form-control" accept="image/*" name="icon" id="picture">
+        <input type="file" class="form-control" accept="image/*" name="icon" id="picture" required>
       </div>
 
       <div class="form-group">

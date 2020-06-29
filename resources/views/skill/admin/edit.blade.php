@@ -23,7 +23,7 @@
            @csrf
         <div class="form-group">
             <label class="form-label">Nama Skill</label>
-            <input type="text" name="name" id="name" class="form-control">
+            <input type="text" name="name" id="name" class="form-control" required>
         </div>
 
             <div class="form-group">

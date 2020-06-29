@@ -93,17 +93,16 @@ $tags = explode(',', $tags);
 	<div class="row">
 	 <div class="col-md-8">
 
-   <a href="/forum" class="btn btn-sm mb-3 btn-outline-secondary btn-pill"> <i class="fe fe-chevrons-left"></i> Back to forum</a>
-
-   <div class="mb-3">
-     <h3 class="mt0 mb-0"> {{ $data->judul }} </h3>
-
      @if(strlen(strip_tags((toHtml($data->body)))) > 320)
  	 	@includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
      @else
   		@includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
      @endif
 
+   <a href="/forum" class="btn btn-sm mb-3 btn-outline-secondary btn-pill"> <i class="fe fe-chevrons-left"></i> Back to forum</a>
+
+   <div class="mb-3">
+     <h3 class="mt0 mb-0"> {{ $data->judul }} </h3>
    </div>
 
         <div class="card p-0">
@@ -135,8 +134,6 @@ $tags = explode(',', $tags);
             {{ toHtml($data->body, true) }}
 
               <small class="text-muted">Short link: <i><u>https://toram-id.info/f/{{ $data->id }}</u></i></small>
-
-  			@includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 
            <div class="my-3">
              {!! form_open('/',["id"=>"likeme"]) !!}
@@ -184,6 +181,9 @@ $tags = explode(',', $tags);
             </div>
           </div>
         </div>
+
+  		@includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+
    @php $i = 0; @endphp
 @if (count($comments))
 @foreach (collect($comments)->where('parent_id',null) as $comment)
