@@ -13,17 +13,18 @@
 
 
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
     <div class="card">
       <div class="card-body p-3">
 
-     {!! form_open('/skill/e/'.$skill->id.'/save') !!}
+     {!! form_open_multipart('/skill/e/'.$skill->id.'/save') !!}
      @csrf
         <input type="hidden" name="id" value="{{ $skill->id }}">
 
       <div class="form-group">
         <label class="form-label">Icon</label>
-        <img src="{{ $skill->picture }}" alt="" class="avatar avatar-md d-block">
+        <img src="{{ $skill->picture }}" alt="" class="avatar avatar-md d-block mb-5">
+        <input type="file" class="form-control" accept="image/*" name="icon">
       </div>
 
       <div class="form-group">
@@ -44,7 +45,7 @@
      <div class="form-group">
        <label class="form-label">Skill level</label>
        <div class="selectgroup selectgroup-pills">
-         @for($i = 1; 4 >= $i; $i++)
+         @for($i = 1; 6 >= $i; $i++)
          <label class="selectgroup-item">
          <input name="level" type="radio" class="selectgroup-input" value="{{ $i }}" {{ $skill->level == $i ? 'checked' : '' }}>
            <span class="selectgroup-button">{{ $i }}</span>
@@ -223,9 +224,16 @@
         </div>
 
         <div class="form-group">
-        <button type="submit" class="btn btn-outline-primary btn-pill"> <i class="fe fe-edit"></i> simpan perubahan </button>
+          <span class="btn btn-outline-danger btn-pill mr-5" id="delete">Hapus skill</span>
+        <button type="submit" class="btn btn-outline-primary btn-pill">Simpan perubahan </button>
         </div>
 
+     {!! form_close() !!}
+
+     {!! form_open('/admin/skill/child/delete', ['id' => 'hps']) !!}
+        @csrf
+        @method('DELETE')
+        <input type="hidden" name="id" value="{{ $skill->id }}">
      {!! form_close() !!}
       </div>
     </div>
@@ -251,6 +259,21 @@
 @endsection
 
 @section('footer')
+
+<script>
+let del = document.getElementById('delete');
+
+  del.addEventListener('click', (e) => {
+  	let ask = confirm('Yakin mau hapus skill ini? data akan di hapus secara permanen!!');
+
+    if(ask) {
+      document.getElementById('hps').submit();
+    }
+
+    return false;
+  });
+
+</script>
 
 <script>
 $('#select-type').selectize({

@@ -20,3 +20,13 @@ Route::post('/scamhapus', 'AdminController@hapusScam');
 
 Route::get('/setting', 'SettingController@badword');
 Route::post('/setting/badword', 'SettingController@updateBadword');
+
+
+// skill
+Route::get('/skill', 'SkillController@showEdit');
+Route::post('/skill/store', 'SkillController@store');
+Route::get('/skill/store/child', 'SkillController@storeChild');
+Route::post('/skill/store/child', 'SkillController@storeChildPost');
+Route::post('/skill/save', 'SkillController@skillSave');
+Route::get('/skill/child', 'SkillController@showChild');
+Route::delete('/skill/child/delete', 'SkillController@deleteChild');

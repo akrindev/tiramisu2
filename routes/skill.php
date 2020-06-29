@@ -3,7 +3,8 @@
 // Skills routes
 
 Route::get('/', 'SkillController@index');
-Route::get('/{name}', 'SkillController@show');
+Route::get('/{name}', 'SkillController@show')->where('name', '[a-zA-Z\-]+');
+Route::get('/{id}', 'SkillController@showId')->where('id', '[0-9]+');
 Route::get('/{parent}/{child}', 'SkillController@single');
 
 Route::middleware('auth')->group(function() {
@@ -11,6 +12,7 @@ Route::middleware('auth')->group(function() {
 });
 
 Route::middleware(['admin'])->group(function() {
+
 	Route::get('/e/{id}/edit', 'SkillController@edit');
   	Route::post('/e/{id}/save', 'SkillController@save');
   	Route::delete('/skill-delete-comment', 'SkillController@deleteComment');

@@ -7,6 +7,7 @@ use App\{
   Skill, SkillList, SkillComment
 };
 use App\Notifications\SkillReplied;
+use Image;
 
 class SkillController extends Controller
 {
@@ -22,6 +23,14 @@ class SkillController extends Controller
     $name = str_replace('-', ' ', $name);
 
     $skills = Skill::whereName($name)->firstOrFail();
+
+    return view('skill.show', compact('skills', 'name'));
+  }
+
+  public function showId($id)
+  {
+    $skills = Skill::findOrFail($id);
+    $name = $skills->name;
 
     return view('skill.show', compact('skills', 'name'));
   }
@@ -119,7 +128,120 @@ class SkillController extends Controller
     $skill->element_id	= request('element');
     $skill->description	= request('body');
 
-    if($skill->save())
-      return redirect('/skill/'.str_replace(' ','-',$skill->skill->name))->with('sukses', 'data berhasil di ubah');
+    if(request()->hasFile('icon')) {
+      $icon = request()->file('icon')->getRealPath();
+
+      $path = '/img/skill/thumb/'. str_slug(request()->name) . '.png';
+
+      $img = Image::make($icon);
+      $img->save(public_path($path));
+
+      $skill->picture = $path;
+    }
+
+    $skill->save();
+
+    return redirect('/skill/'. request()->skill)->with('sukses', 'data berhasil di ubah');
+  }
+
+
+  public function showEdit()
+  {
+    $skills = Skill::get();
+
+    return view('skill.admin.edit', compact('skills'));
+  }
+
+  public function showChild()
+  {
+    return view('skill.admin.store');
+  }
+
+  public function store()
+  {
+    if(request()->hasFile('icon')) {
+      $icon = request()->file('icon')->getRealPath();
+
+      $path = '/img/skill/thumb/'. str_slug(request()->name) . '.png';
+
+      $img = Image::make($icon);
+      $img->save(public_path($path));
+
+      $skill = Skill::create([
+    	'name'	=> request()->name,
+      	'type'	=> request()->type,
+      	'picture'	=> $path
+      ]);
+    }
+
+    return back()->with('sukses', 'skill telah di tambahkan');
+  }
+
+  public function skillSave()
+  {
+    $id = request('id');
+
+    $skill = Skill::findOrFail($id);
+    $skill->name = request()->name;
+    $skill->type = request()->type;
+
+    if(request()->hasFile('icon')) {
+      $icon = request()->file('icon')->getRealPath();
+
+      $path = '/img/skill/thumb/'. str_slug(request()->name). rand(00,99) . '.png';
+
+      $img = Image::make($icon);
+      $img->save(public_path($path));
+
+      $skill->picture = $path;
+    }
+
+    $skill->save();
+
+    return back()->with('sukses', 'Data telah di ubah');
+  }
+
+  public function storeChild()
+  {
+    return view('skill.admin.store');
+  }
+
+  public function storeChildPost()
+  {
+    if(request()->hasFile('icon')) {
+      $icon = request()->file('icon')->getRealPath();
+
+      $path = "/img/skill/thumb/" . str_slug(request()->name) . rand(00,99) . '.png';
+
+      $img = Image::make($icon);
+      $img->save(public_path($path));
+
+      $skill = SkillList::create([
+        'name'	=> request()->name,
+      	'skill_id'	=> request()->skill,
+        'type'		=> implode(',',request('type')),
+        'mp'		=> request()->mp,
+        'range'		=> request()->range,
+        'for'		=> implode(',', request('for')),
+        'level'		=> request()->level,
+        'combo_awal'	=> request()->combo_awal,
+        'combo_tengah'	=> request()->combo_tengah,
+        'element_id'	=> request()->element,
+        'description'	=> request()->body,
+        'picture'		=> $path
+      ]);
+    }
+
+    return back()->with('sukses', 'Data skill telah di tambahkan');
+  }
+
+  public function deleteChild()
+  {
+    $id = request("id");
+
+    $skill = SkillList::findOrFail($id);
+    $skill->delete();
+
+    return redirect('/skill');
   }
 }
