@@ -38,30 +38,41 @@ $tags = explode(',', $tags);
   }
 
   summary{
-    padding:10px;
+    padding:-8px;
     font-size:14px;
     z-index:1;
-    border-bottom:1px solid silver;
-    box-shadow:0 0 30px -12px #000;
-    cursor:pointer
+    cursor:pointer;
+    font-weight:bold
   }
-  details > p{
-    margin:0 -3px 0;
-    padding:10px;
+  details{
+    border:1px solid #467fcf;
+    margin:0;
     font-size:12.5px;
     text-align:left;
     z-index:3;
-    box-shadow:0 2px 15px -6px #222;
+    padding:8px;
+    border-radius:5px;
   }
 
-  details[open] p{
+  details > table {
+    margin-top:5px;
+  }
+  details > table > tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+
+  details > table > tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+
+
+  details[open]{
     animation:det .6s
   }
 
   @keyframes det{
     0%{
       opacity:0
-    }
     50%{
       opacity:0.5
     }

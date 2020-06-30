@@ -31,7 +31,7 @@
               {!! form_close() !!}
             </div>
 
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
 
                 <div class="card">
                   <div class="p-0 m-0">
