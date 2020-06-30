@@ -89,7 +89,7 @@
 
     @foreach(collect($skills->child)->sortBy('level') as $skill)
 
-      <div class="card">
+      <div class="card" id="child-{{ $skill->id }}">
       <div class="card-body text-wrap p-3" style="font-size:14px;font-weight:400">
 
         <img src="{{ $skill->picture }}" alt="{{ $skill->name }}" class="avatar avatar-md float-left mr-4 avatar-blue"> <a href="/skill/child/{{ $skill->id }}"> <b> {{ $skill->name }} </b></a><br>
