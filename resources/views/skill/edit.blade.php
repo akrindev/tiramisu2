@@ -24,7 +24,7 @@
       <div class="form-group">
         <label class="form-label">Icon</label>
         <img src="{{ $skill->picture }}" alt="" class="avatar avatar-md d-block mb-5">
-        <input type="file" class="form-control" accept="image/*" name="icon" required>
+        <input type="file" class="form-control" accept="image/*" name="icon">
       </div>
 
       <div class="form-group">
