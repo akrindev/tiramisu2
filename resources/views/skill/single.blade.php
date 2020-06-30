@@ -24,7 +24,7 @@
   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
 
       <div class="card">
-      <div class="card-body p-3" style="font-size:14px;font-weight:400">
+      <div class="card-body text-wrap p-3" style="font-size:14px;font-weight:400">
 
         <img src="{{ $skill->picture }}" alt="{{ $skill->name }}" class="avatar avatar-md float-left mr-4 avatar-blue"> <a href="/skill/{{ str_replace(' ', '-',$name) }}/{{ $skill->name }}"> <b>  {{ is_null($skill->r_name) ? $skill->name : $skill->r_name }} </b></a><br>
         <small class="text-muted">
@@ -83,7 +83,7 @@
 
         <div class="mt-5">
         <strong>Deskripsi:</strong> <br>
-          <div class="text-muted">
+          <div class="body-text">
             {{ toHtml($skill->description, true) }}
           </div>
         </div>
@@ -128,4 +128,9 @@
   </div>
 </div>
 
+@endsection
+
+@section('head')
+
+<link href="/assets/css/read.css" rel="stylesheet">
 @endsection

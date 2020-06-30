@@ -17,70 +17,6 @@ $commentss = $comments;
 $tags = $data->tags;
 $tags = explode(',', $tags);
 @endphp
-<style>
-
-  .body-text p, div.body-text {
-     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-size:14px;
-    font-family:'Source Sans Pro';
-    font-weight:400;
-  }
-  .body-text > ul{
-    margin: 0 0 0 0px;
-    padding 0;
-    list-style-type: circle;
-  }
-  .body-text > ol > li, .body-text > ul > li{
-    position: relative;
-    margin: 0;
-    padding: 2px;
-  }
-
-  summary{
-    padding:-8px;
-    font-size:14px;
-    z-index:1;
-    cursor:pointer;
-    font-weight:bold
-  }
-  details{
-    border:1px solid #467fcf;
-    margin:0;
-    font-size:12.5px;
-    text-align:left;
-    z-index:3;
-    padding:8px;
-    border-radius:5px;
-  }
-
-  details > table {
-    margin-top:5px;
-  }
-  details > table > tbody tr:nth-of-type(odd) {
-    background-color: rgba(0, 0, 0, 0.02);
-  }
-
-  details > table > tbody tr:hover {
-    background-color: rgba(0, 0, 0, 0.04);
-  }
-
-
-  details[open]{
-    animation:det .6s
-  }
-
-  @keyframes det{
-    0%{
-      opacity:0
-    50%{
-      opacity:0.5
-    }
-    100%{
-      opacity:1
-    }
-  }
-</style>
 <script type="application/ld+json">
 {
   "@context":"http://schema.org",
@@ -340,6 +276,9 @@ $tags = explode(',', $tags);
 
 @endsection
 
+@section('head')
+<link href="/assets/css/read.css" rel="stylesheet">
+@endsection
 
 @section('footer')
 @auth
