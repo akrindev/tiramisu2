@@ -19,6 +19,17 @@
 
 
   <div class="row">
+    @if(!is_null($skills->description))
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body text-wrap p-3" style="font-size:14px;font-weight:400">
+          <div class="body-text">
+            {{ toHtml($skills->description, true) }}
+          </div>
+        </div>
+      </div>
+    </div>
+    @endif
     <div class="col-md-8">
 
   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')

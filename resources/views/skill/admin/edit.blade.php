@@ -60,6 +60,11 @@
             <input type="file" name="icon" id="picture" class="form-control" accept="image/*">
         </div>
 
+           <div class="form-group">
+             <label class="form-label">Description</label>
+             <textarea name="body" data-provide="markdown" rows="10" class="form-control"></textarea>
+           </div>
+
         <div class="form-group">
           <button id="save" class="btn btn-primary">Save Skill</button>
         </div>
@@ -75,7 +80,7 @@
 
           @foreach($child as $kid)
         <div class="mb-2">
-        <img src="{{ $kid->picture }}" alt="{{ $kid->name }}" class="avatar avatar-md mr-4" style="width:30px;height:30px;border-radius:50%" id="icon{{ $kid->id }}"> <a href="/skill/{{ $kid->id }}" id="skill{{ $kid->id }}"> {{ $kid->name }} </a> [<a href="#" class="text-muted editSkill" data="{{ $kid->id }}" data-type="{{ $kid->type }}">edit</a>] </div>
+        <img src="{{ $kid->picture }}" alt="{{ $kid->name }}" class="avatar avatar-md mr-4" style="width:30px;height:30px;border-radius:50%" id="icon{{ $kid->id }}"> <a href="/skill/{{ $kid->id }}" id="skill{{ $kid->id }}"> {{ $kid->name }} </a> [<a href="#" class="text-muted editSkill" data="{{ $kid->id }}" data-type="{{ $kid->type }}" data-body="{{ $kid->description }}">edit</a>] </div>
 
 
           @endforeach
@@ -141,6 +146,12 @@
             <input type="file" name="icon" id="spicture" class="form-control" accept="image/*">
         </div>
 
+
+           <div class="form-group">
+             <label class="form-label">Description</label>
+             <textarea name="body" data-provide="markdown" id="sbody" rows="10" class="form-control"></textarea>
+           </div>
+
       </div>
 
       <!-- Modal footer -->
@@ -158,6 +169,8 @@
 @endsection
 
 @section('head')
+
+<link href="/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
  <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css" />
  <link rel="stylesheet" type="text/css" href="/assets/css/selectize.css" />
 
@@ -332,6 +345,13 @@
 @endsection
 
 @section('footer')
+
+<script src="/assets/js/bootstrap-markdown.js">
+</script>
+<script src="/assets/js/markdown.js">
+</script>
+<script src="/assets/js/to-markdown.js">
+</script>
 <script src="/assets/js/vendors/selectize.min.js"></script>
 
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -369,11 +389,13 @@ $(".editSkill").click(function(e) {
   	var type = $(this).data('type');
   	var name = $("#skill" + id).text();
   	var icon = $("#icon" + id).attr('src');
+    var body = $(this).data('body');
 
   	$("#mape").val(id);
   	$("#sname").val(name);
   	$("#stype[value="+ type +"]").prop('checked', 'checked');
   	$("#spreview").html('<img style="width:30px;height:30px;border-radius:50%;margin-bottom:5px" src="'+icon+'"/>');
+  	$("#sbody").val(body);
   	$("#exampleModal").modal('show');
 });
 </script>

@@ -174,6 +174,7 @@ class SkillController extends Controller
       $skill = Skill::create([
     	'name'	=> request()->name,
       	'type'	=> request()->type,
+        'description'	=> request()->body,
       	'picture'	=> $path
       ]);
     }
@@ -188,6 +189,7 @@ class SkillController extends Controller
     $skill = Skill::findOrFail($id);
     $skill->name = request()->name;
     $skill->type = request()->type;
+    $skill->description = request()->body;
 
     if(request()->hasFile('icon')) {
       $icon = request()->file('icon')->getRealPath();

@@ -8,7 +8,7 @@ class Skill extends Model
 {
   public $timestamps = false;
   public $fillable = [
-  	'name', 'type', 'picture'
+  	'name', 'type', 'picture', 'description'
   ];
 
   public function child()
