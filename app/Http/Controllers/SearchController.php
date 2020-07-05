@@ -54,7 +54,7 @@ class SearchController extends Controller
     	]);
     });
 
-    $drops = $drops->orderBy('id')->paginate();
+    $drops = $drops->orderBy('drop_type_id')->paginate();
 
     $monsters = Monster::search('name', $q)
       			->orderBy('name')
