@@ -1,10 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap');
 
   .body-text p, div.body-text {
      -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size:14px;
-    font-family:'Source Sans Pro';
-    font-weight:400;
+    font-family: 'Roboto', 'Source Sans Pro';
   }
   .body-text > ul{
     margin: 0 0 0 0px;
@@ -34,14 +34,14 @@
     border-radius:5px;
   }
 
-  details > table {
+  .body-text > table, details > table {
     margin-top:5px;
   }
-  details > table > tbody tr:nth-of-type(odd) {
+  .body-text > table > tbody tr:nth-of-type(odd), details > table > tbody tr:nth-of-type(odd) {
     background-color: rgba(0, 0, 0, 0.02);
   }
 
-  details > table > tbody tr:hover {
+  .body-text > table > tbody tr:hover, details > table > tbody tr:hover {
     background-color: rgba(0, 0, 0, 0.04);
   }
 
