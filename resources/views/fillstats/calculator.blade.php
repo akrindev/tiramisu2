@@ -148,6 +148,7 @@
 @endsection
 
 @section('head')
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/assets/js/vendors/html2canvas.min.js"></script>
 <script src="/assets/js/fill.js?fill20v1_5"></script>
 

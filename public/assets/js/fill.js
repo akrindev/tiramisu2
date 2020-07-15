@@ -598,6 +598,7 @@ function build_menu(initialize) {
 }
 
 function get_results(custom_pot) {
+  return swal('Under Development','','info');
   Simulator.run(custom_pot);
   let result_keys = Object.keys(Simulator.results).reverse();
   let buffer = []
