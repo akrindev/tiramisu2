@@ -35,3 +35,4 @@ Route::middleware('admin')->group(function(){
 });
 
 Route::get('/{slug}', 'ForumController@baca');
+Route::get('/kategori/{slug}', 'ForumController@category');

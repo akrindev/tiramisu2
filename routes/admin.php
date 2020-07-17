@@ -30,3 +30,8 @@ Route::post('/skill/store/child', 'SkillController@storeChildPost');
 Route::post('/skill/save', 'SkillController@skillSave');
 Route::get('/skill/child', 'SkillController@showChild');
 Route::delete('/skill/child/delete', 'SkillController@deleteChild');
+
+//forum
+Route::get('/forum/kategori', 'ForumController@editKategori');
+Route::post('/forum/kategori', 'ForumController@storeKategori');
+Route::post('/forum/kategori/save', 'ForumController@postEditKategori');

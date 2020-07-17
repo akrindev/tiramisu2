@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Notifications\ThreadReplied;
 use Auth;
+use App\Tag;
 use App\Forum;
 use App\ForumsDesc;
+use App\ForumCategory;
 use Cookie;
 use Image;
 
@@ -18,12 +20,19 @@ class ForumController extends Controller
       ->latest()
       ->paginate(20);
 
-    return view('forum.feed')->with('data',$forums);
+    $title = 'Forum Toram Online Indonesia';
+    $f_title = 'Recent Discussions';
+    $categories = ForumCategory::get();
+
+    return view('forum.feed')->with(compact('forums', 'categories', 'title', 'f_title'));
   }
 
   public function buat()
   {
-    return view('forum.buat');
+    $tags = Tag::get();
+    $categories = ForumCategory::get();
+
+    return view('forum.buat', compact('tags', 'categories'));
   }
 
   public function buatSubmit()
@@ -46,25 +55,25 @@ class ForumController extends Controller
       if($i == 4) break;
     }
 
+    $category = ForumCategory::find(request('kategori', 1));
+
     $forum = Forum::create([
     	'user_id' => Auth::user()->id,
       	'judul'	=> request('judul'),
       	'slug' => $slug,
       	'body'	=> request('deskripsi'),
       	'tags'	=> implode(',',$secondTags),
-      	'color'	=> request('color') ?? 'yellow'
+      	'color'	=> request('color') ?? 'yellow',
+      	'forum_category_id'	=> $category->id
     ]);
 
-    if($forum)
-    {
-      return redirect('/forum/'.$slug)->with('sukses','Thread berhasil dibuat');
-    }
 
+    return redirect('/forum/'.$slug)->with('sukses','Thread berhasil dibuat');
   }
 
   public function baca($slug)
   {
-    $baca = Forum::where('slug',$slug)->firstOrFail();
+    $baca = Forum::with(['category'])->where('slug',$slug)->firstOrFail();
 
     $comments = $baca->comment;
 
@@ -182,15 +191,16 @@ class ForumController extends Controller
 
   public function edit($slug)
   {
-    $thread = Forum::where('slug',$slug)->firstOrFail();
+    $data = Forum::where('slug',$slug)->firstOrFail();
 
-    if(Auth::user()->id != $thread->user_id)
+    if(Auth::user()->id != $data->user_id)
     {
       return redirect('/')->with('gagal','Tidak punya hak akses ini!!');
     }
 
+    $categories = ForumCategory::get();
 
-    return view('forum.edit',['data' => $thread]);
+    return view('forum.edit',compact('data', 'categories'));
   }
 
   public function editSubmit($slug)
@@ -219,15 +229,51 @@ class ForumController extends Controller
       if($i == 4) break;
     }
 
-    if($thread->update([
+    $category = ForumCategory::find(request('kategori'));
+
+    $thread->update([
       	'judul'	=> request('judul'),
       	'body'	=> request('deskripsi'),
       	'tags'	=> implode(',',$secondTags),
-      	'color'	=> request('color') ?? 'yellow'
-    ]))
-    {
-      return redirect('/forum/'.$thread->slug)->with('sukses', 'Thread Updated!!');
-    }
+      	'color'	=> request('color') ?? 'yellow',
+      	'forum_category_id'	=> $category->id
+    ]);
+
+    return redirect('/forum/'.$thread->slug)->with('sukses', 'Thread Updated!!');
+
+  }
+
+  public function editKategori()
+  {
+    $categories = ForumCategory::get();
+
+    return view('forum.admin.storeKategori', compact('categories'));
+  }
+
+  public function storeKategori()
+  {
+    request()->validate([
+    	'name'	=> 'required',
+    ]);
+
+    ForumCategory::create([
+    	'name'	=> request()->name,
+      	'slug'	=> str_slug(request('slug', request()->name))
+    ]);
+
+    return back()->with('success', 'Kategori baru telah di tambahkan');
+  }
+
+  public function postEditKategori()
+  {
+    $kategori = ForumCategory::findOrFail(request()->id);
+
+    $kategori->name = request()->name;
+    $kategori->slug = request('slug', request()->name);
+
+    $kategori->save();
+
+    return back()->with('success', 'Kategori berhasil di edit');
   }
 
   /**
@@ -236,13 +282,25 @@ class ForumController extends Controller
   */
   public function byTag($nya)
   {
-    $forum = Forum::where('tags','like','%'. $nya .'%')
+    $forums = Forum::where('tags','like','%'. $nya .'%')
+      ->latest()
       ->paginate(20);
 
+    $title = 'Tag Forum : ' . $nya;
+    $categories = ForumCategory::get();
 
-    return view('forum.feed',[
-    	'data' => $forum
-    ]);
+    return view('forum.feed', compact('forums', 'categories', 'title'));
+  }
+
+  public function category($slug)
+  {
+    $category = ForumCategory::whereSlug($slug)->firstOrFail();
+    $forums = $category->forum()->latest()->paginate(20);
+
+    $title = $category->name;
+    $categories = ForumCategory::get();
+
+    return view('forum.feed', compact('forums', 'categories', 'title'));
   }
 
   /**

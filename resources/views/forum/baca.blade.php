@@ -9,7 +9,6 @@
 @push('canonical')
 	@canonical
 @endpush
-
 @section('content')
 
 @php
@@ -72,6 +71,7 @@ $tags = explode(',', $tags);
             @endif
 
             <hr class="my-2">
+            <i class="fe fe-folder mr-1"></i> <a href="/forum/kategori/{{ $data->category->slug }}"> {{ $data->category->name }} </a>
             <div class="my-1">
               @foreach ($tags as $tag => $n)
               <a class="tag" href="/forum/tag/{{ $n }}"> {{ $n }} </a>

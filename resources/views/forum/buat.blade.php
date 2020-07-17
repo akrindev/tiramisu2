@@ -1,10 +1,6 @@
 @extends('layouts.tabler')
 
 @php
-use Illuminate\Support\Facades\DB;
-
-$tags = DB::table('tags')->get();
-
 $colors = ['blue','green','orange','red','yellow','teal','purple','dark','pink'];
 
 @endphp
@@ -73,6 +69,29 @@ $colors = ['blue','green','orange','red','yellow','teal','purple','dark','pink']
         @if($errors->has('tags'))
         <span class="invalid-feedback">
   			{{$errors->first('tags')}}
+        </span>
+        @endif
+
+        <div class="help-block text-muted">
+          <small>Minimal 1 max 4 tags!</small>
+        </div>
+        </div>
+
+      <div class="form-group">
+        <label class="form-label">Kategori</label>
+
+            <div class="selectgroup selectgroup-pills {{  $errors->has('kategori') ? 'is-invalid': '' }}">
+          @foreach ($categories as $cat)
+                          <label class="selectgroup-item">
+                            <input type="radio" name="kategori" value="{{ $cat->id }}" class="selectgroup-input" {{ $cat->id == 1 ? 'checked':'' }}>
+                            <span class="selectgroup-button">{{ $cat->name }}</span>
+                          </label>
+          @endforeach
+        </div>
+
+        @if($errors->has('categories'))
+        <span class="invalid-feedback">
+  			{{$errors->first('categories')}}
         </span>
         @endif
 

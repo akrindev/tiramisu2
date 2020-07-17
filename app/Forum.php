@@ -13,12 +13,22 @@ class Forum extends Model
 
     protected $fillable = [
 		'user_id', 'judul', 'body' , 'pinned',
-      	'slug', 'tags', 'views', 'color'
+      	'slug', 'tags', 'views', 'color',
+      	'forum_category_id'
     ];
 
   public function user()
   {
     return $this->belongsTo(User::class);
+  }
+
+  public function category()
+  {
+    return $this->belongsTo(ForumCategory::class, 'forum_category_id')
+      ->withDefault([
+        	'name'	=> 'Diskusi Umum',
+          	'slug'	=> 'diskusi-umum'
+        ]);
   }
 
   public function comment()

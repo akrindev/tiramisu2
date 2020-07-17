@@ -82,6 +82,30 @@ $colors = ['blue','green','orange','red','yellow','teal','purple','dark','pink']
           <small>Minimal 1 max 4 tags!</small>
         </div>
         </div>
+
+
+      <div class="form-group">
+        <label class="form-label">Kategori</label>
+
+            <div class="selectgroup selectgroup-pills {{  $errors->has('kategori') ? 'is-invalid': '' }}">
+          @foreach ($categories as $cat)
+                          <label class="selectgroup-item">
+                            <input type="radio" name="kategori" value={{ $cat->id }} class="selectgroup-input" {{ $cat->id == $data->forum_category_id ? 'checked':'' }}>
+                            <span class="selectgroup-button">{{ $cat->name }}</span>
+                          </label>
+          @endforeach
+        </div>
+
+        @if($errors->has('categories'))
+        <span class="invalid-feedback">
+  			{{$errors->first('categories')}}
+        </span>
+        @endif
+
+        <div class="help-block text-muted">
+          <small>Minimal 1 max 4 tags!</small>
+        </div>
+        </div>
   <div class="form-group">
                           <label class="form-label">Pilih warna</label>
                           <div class="row gutters-xs">

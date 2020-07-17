@@ -26,6 +26,12 @@
       </li>
 
       <li class="nav-item">
+        <a class="nav-link" href="/admin/forum/kategori">
+          <i class="fas fa-fw fa-users"></i>
+          <span>Kategori Forum</span></a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link" href="/item/drop/store">
           <i class="fas fa-fw fa-box-open"></i>
           <span>Tambah Drop</span></a>
