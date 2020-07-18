@@ -125,6 +125,7 @@
           	form.reset();
  var control = $select[0].selectize;
  control.clear();
+            $("#preview").html('');
           });
         } else {
           swal("Data drop sudah ada",{

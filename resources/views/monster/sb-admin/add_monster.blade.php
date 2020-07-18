@@ -112,7 +112,7 @@
 
           <div class="form-group">
             <label class="form-label">Screenshot</label>
-            <div id="preview" class="mb-5"></div>
+            <div id="preview"></div>
             <input type="file" name="picture" class="form-control" accept="image/*" id="picture">
           </div>
 
@@ -372,7 +372,6 @@ select.form-control:not([size]):not([multiple]) {
     </script>
 
 <script>
-(function(){
   let form = document.getElementById("mons-catcher");
   let simpan = document.getElementById("simpan");
 
@@ -389,14 +388,15 @@ select.form-control:not([size]):not([multiple]) {
           swal("Data monster ditambah", {
           	icon: 'success'
           }).then(() => {
-    		simpan.innerHTML = 'Simpan';
           	form.reset();
             form.clear();
           });
+
+    		simpan.innerHTML = 'Simpan';
+            $("#preview").html('');
         }
     }).catch((err) => alert(err));
   });
-})();
 </script>
 
 <script>
@@ -405,7 +405,7 @@ function fileReader(input) {
         var reader = new FileReader();
         reader.onload = function (e) {
 
-            $('#preview').html('Preview: <img src="'+e.target.result+'" class="img-fluid"/>');
+            $('#preview').html('Preview: <img src="'+e.target.result+'" class="img-fluid mb-5"/>');
         }
         reader.readAsDataURL(input.files[0]);
     }
