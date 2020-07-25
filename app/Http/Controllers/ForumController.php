@@ -16,15 +16,15 @@ class ForumController extends Controller
 {
   public function feed()
   {
-    $forums = Forum::orderByDesc('pinned')
+    $forums = Forum::with(['user', 'comment'])->orderByDesc('pinned')
       ->latest()
       ->paginate(20);
 
     $title = 'Forum Toram Online Indonesia';
     $f_title = 'Recent Discussions';
-    $categories = ForumCategory::get();
+    $categories = ForumCategory::with('forum')->get();
 
-    return view('forum.feed')->with(compact('forums', 'categories', 'title', 'f_title'));
+    return view('forum.feed', compact('forums', 'categories', 'title', 'f_title'));
   }
 
   public function buat()
@@ -73,7 +73,14 @@ class ForumController extends Controller
 
   public function baca($slug)
   {
-    $baca = Forum::with(['category'])->where('slug',$slug)->firstOrFail();
+    $baca = Forum::with([
+        'user',
+        'comment' => function($query) {
+            $query->with(['user', 'likes', 'getReply']);
+        },
+        'category'
+        ])
+        ->where('slug',$slug)->firstOrFail();
 
     $comments = $baca->comment;
 
@@ -310,11 +317,14 @@ class ForumController extends Controller
   public function cari()
   {
     $key = request('key');
-    $forum = Forum::where('judul','like','%'.$key.'%')->latest()->paginate(20);
+    $forums = Forum::where('judul','like','%'.$key.'%')->latest()->paginate(20);
 
-    return view('forum.feed',[
-    	'data'	=>	$forum
-    ]);
+    $categories = ForumCategory::with('forum')->get();
+
+    $title = 'Forum Toram Online Indonesia';
+    $f_title = 'Pencarian: ' . $key;
+
+    return view('forum.feed', compact('forums', 'title', 'f_title', 'categories'));
   }
   /**
   *
