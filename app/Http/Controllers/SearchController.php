@@ -34,31 +34,37 @@ class SearchController extends Controller
 
     // if type of search == status only
     $drops->when(request()->type == 'status_only', function ($query) use ($q) {
-    	return $query->search('note', $q);
+        $query->search('note', $q);
     }, function ($query) {
-    	return $query->with([
+        $query->with([
       		'monsters' => function ($query) {
-    			return $query->with('map');
-      		}
+    		    $query->with(['map', 'element']);
+              },
+              'dropType'
     	]);
     });
 
     // if type of search == name only or type is empty, none
     $drops->when(request()->type == 'name_only' || ! request()->type, function ($query) use ($q) {
-    	return $query->search('name', $q);
+        $query->search('name', $q);
     }, function ($query) {
-        return $query->with([
+        $query->with([
       		'monsters' => function ($query) {
-    			return $query->with('map');
-       		}
+    		    $query->with('map');
+               },
+               'dropType'
     	]);
     });
 
-    $drops = $drops->orderBy('drop_type_id')->paginate();
+    $drops = $drops->orderBy('drop_type_id')->paginate(30);
 
-    $monsters = Monster::search('name', $q)
-      			->orderBy('name')
-      			->get();
+    $monsters = Monster::with([
+        'drops'=> function($query) {
+            $query->with('dropType');
+        },
+        'map',
+        'element'
+    ])->search('name', $q)->orderBy('name')->get();
 
     $maps = Map::search('name', $q)
       			->orderBy('name')

@@ -22,7 +22,19 @@ class MonsterController extends Controller
 
   public function peta($id)
   {
-    $data = Map::findOrFail($id);
+    $data = Map::with([
+        'monster' => function($query) {
+            $query->with([
+                'drops' => function($q) {
+                    $q->with('dropType');
+                },
+                'map',
+                'element'
+            ]);
+        },
+        'npc'
+    ])
+            ->findOrFail($id);
 
     return view('monster.single', compact('data'));
   }
@@ -62,7 +74,14 @@ class MonsterController extends Controller
 
   public function showMons($id)
   {
-    $data = Monster::findOrFail($id);
+    $data = Monster::with([
+                'drops' => function($query) {
+                    $query->with('dropType');
+                },
+                'map',
+                'element'
+            ])
+            ->findOrFail($id);
 
     return view('monster.mobs', compact('data'));
   }
@@ -83,9 +102,13 @@ class MonsterController extends Controller
         $tipe = 1;
     }
 
-    $data = Monster::whereType($tipe)
-      			->orderByDesc('id')
-      			->paginate(20);
+    $data = Monster::with([
+        'drops' => function($query) {
+            $query->with('dropType');
+        },
+        'map',
+        'element'
+    ])->whereType($tipe)->orderByDesc('id')->paginate(20);
 
     return view('monster.type', compact('data','type'));
   }
@@ -94,8 +117,13 @@ class MonsterController extends Controller
   {
     $type = "Semua Monster";
 
-    $data = Monster::orderByDesc('id')
-      			->paginate(20);
+    $data = Monster::with([
+        'drops' => function($query) {
+            $query->with('dropType');
+        },
+        'map',
+        'element'
+    ])->orderByDesc('id')->paginate(20);
 
     return view('monster.type', compact('data', 'type'));
   }
@@ -128,9 +156,13 @@ class MonsterController extends Controller
 
     $type = 'Unsur ' . $type;
 
-    $data = Monster::whereElementId($el)
-      				->orderBy('level')
-      				->paginate(20);
+    $data = Monster::with([
+        'drops' => function($query) {
+            $query->with('dropType');
+        },
+        'map',
+        'element'
+    ])->whereElementId($el)->orderBy('level')->paginate(20);
 
     return view('monster.type',compact('data','type'));
   }

@@ -16,8 +16,15 @@ class ItemController extends Controller
   {
     $item = Drop::with([
     	'monsters'	=>	function($query) {
-          return $query->paginate(20);
-        }
+            $query->with([
+                'drops' => function($q) {
+                    $q->with('dropType');
+                },
+                'map',
+                'element'
+            ])->paginate(20);
+        },
+        'dropType'
     ])->findOrFail($id);
 
     return view('monster.item', compact('item'));
@@ -98,8 +105,10 @@ class ItemController extends Controller
   {
     $data = Drop::whereDropTypeId($id)->with([
     	'monsters' => function ($query) {
-          return $query->with('map');
-        }
+            $query->with('map');
+        },
+        'dropType',
+        'resep'
     ])->orderByDesc('id')->paginate(20);
 
     if(!$data->count()) {
@@ -119,9 +128,12 @@ class ItemController extends Controller
     $type = 'Semua Items';
 
     $data = Drop::with([
-      'monsters' => function($q){
-    	return $q->with('map');
-    }])->orderByDesc('id')->paginate(20);
+            'monsters' => function($q){
+                $q->with('map');
+            },
+            'dropType',
+            'resep'
+        ])->orderByDesc('id')->paginate(20);
 
     return view('monster.items', compact('type', 'data'));
   }
