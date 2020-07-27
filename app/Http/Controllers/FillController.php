@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Fill_stat;
+use App\FillStat;
 use DB;
 use Auth;
 
@@ -17,10 +17,10 @@ class FillController extends Controller
 
     public function index()
     {
-      $data = Fill_stat::get()->sortBy('plus')
+      $data = FillStat::get()->sortBy('plus')
         					  ->sortBy('type');
 
-      $fills = Fill_stat::select(['type','plus'])->distinct()->get()
+      $fills = FillStat::select(['type','plus'])->distinct()->get()
         ->sortBy('plus')
         ->sortBy('type');
 
@@ -34,9 +34,9 @@ class FillController extends Controller
       $tipe = $type == 'Armor' ? 1 : 2;
 
       if($plus == false){
-          $data = Fill_stat::where('type',$tipe)->get();
+          $data = FillStat::where('type',$tipe)->get();
       } else {
-          $data = Fill_stat::where('type',$tipe)->get();
+          $data = FillStat::where('type',$tipe)->get();
       }
 
       $data = collect($data)->sortBy('type')->sortBy('plus');
@@ -63,7 +63,7 @@ class FillController extends Controller
       	'steps' => 'required'
     ]);
 
-    if(Fill_stat::create($request->except('_token')))
+    if(FillStat::create($request->except('_token')))
     {
       return redirect()->back()->with('sukses','data telah di tambahkan');
     }
@@ -71,14 +71,14 @@ class FillController extends Controller
 
   	public function edit($id)
     {
-      $data = Fill_stat::findOrFail($id);
+      $data = FillStat::findOrFail($id);
 
       return view('fillstats.edit', compact('data'));
     }
 
   	public function editPost(Request $request, $id)
     {
-      $item = Fill_stat::findOrFail($id);
+      $item = FillStat::findOrFail($id);
 
       $request->validate([
     	'type' => 'required',
@@ -95,7 +95,7 @@ class FillController extends Controller
 
   	public function destroy()
     {
-      $item = Fill_stat::findOrFail(request('id'));
+      $item = FillStat::findOrFail(request('id'));
       $item->delete();
 
       return redirect('/')->with('sukses', 'Data fill stats telah di hapus');

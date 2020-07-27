@@ -48,7 +48,8 @@ class LoginController extends Controller
 
   	public function redirect()
     {
-      return Socialite::driver('facebook')->redirect();
+      return Socialite::driver('facebook')
+        ->usingGraphVersion('v7.0')->redirect();
     }
 
   	public function callback()
