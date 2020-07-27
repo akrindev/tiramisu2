@@ -2,14 +2,13 @@
 
 namespace App;
 
-use Watson\Rememberable\Rememberable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use App\Traits\Searchable;
 
 class Drop extends Model
 {
-  	use Rememberable, Searchable;
+  	use Searchable;
 
   	protected $casts = [
     	'note'	=> 'json'

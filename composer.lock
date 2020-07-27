@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d0bd46ec308370a2b8a6cd3adde8c5d8",
+    "content-hash": "75ae26e18e49e476d0bb188bf0f25f88",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1959,52 +1959,6 @@
             "time": "2018-01-09T22:08:08+00:00"
         },
         {
-            "name": "protoqol/prequel",
-            "version": "0.6.2-beta",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Protoqol/Prequel.git",
-                "reference": "aa73641d4f6d13b329f08285f5895ecb95b71fa9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Protoqol/Prequel/zipball/aa73641d4f6d13b329f08285f5895ecb95b71fa9",
-                "reference": "aa73641d4f6d13b329f08285f5895ecb95b71fa9",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "^5.7"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^3.8"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Protoqol\\Prequel\\PrequelServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Protoqol\\Prequel\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Quinten Justus Schorsij",
-                    "email": "qschorsij@outlook.com"
-                }
-            ],
-            "description": "Clear and concise database management.",
-            "time": "2019-07-07T15:08:46+00:00"
-        },
-        {
             "name": "psr/container",
             "version": "1.0.0",
             "source": {
@@ -3383,54 +3337,6 @@
             "time": "2018-07-29T20:33:41+00:00"
         },
         {
-            "name": "watson/rememberable",
-            "version": "2.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dwightwatson/rememberable.git",
-                "reference": "8718614835370f67f58d86387a26bfc315fa9a8b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dwightwatson/rememberable/zipball/8718614835370f67f58d86387a26bfc315fa9a8b",
-                "reference": "8718614835370f67f58d86387a26bfc315fa9a8b",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/database": "~5.0",
-                "illuminate/support": "~5.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "0.9.*",
-                "phpunit/phpunit": "4.2.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Watson\\Rememberable\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dwight Watson",
-                    "email": "dwight@studiousapp.com"
-                }
-            ],
-            "description": "Query caching for Laravel 5",
-            "keywords": [
-                "caching",
-                "eloquent",
-                "laravel",
-                "remember"
-            ],
-            "time": "2017-12-21T01:09:18+00:00"
-        },
-        {
             "name": "yajra/laravel-datatables-oracle",
             "version": "v8.9.2",
             "source": {
@@ -3891,6 +3797,7 @@
                 "bcmath",
                 "math"
             ],
+            "abandoned": "brick/math",
             "time": "2017-02-16T16:54:46+00:00"
         },
         {
@@ -5313,9 +5220,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "protoqol/prequel": 10
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
