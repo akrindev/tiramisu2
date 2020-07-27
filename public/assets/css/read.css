@@ -6,15 +6,20 @@
     font-size:14px;
     font-family: 'Roboto', 'Source Sans Pro';
   }
-  .body-text > ul{
-    margin: 0 0 0 0px;
+  .body-text ul{
+    margin: 0 0;
     padding 0;
     list-style-type: circle;
   }
+
+.body-text ul, .body-text ol {
+    padding-inline-start: 20px;
+}
+
   .body-text > ol > li, .body-text > ul > li{
     position: relative;
     margin: 0;
-    padding: 2px;
+    padding: 2px 0;
   }
 
   summary{
