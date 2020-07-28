@@ -32,7 +32,7 @@ endif;
         </p>
 
         <a href="/setting/profile" class="btn btn-link btn-sm">edit profile</a>
-        <a href="/mygallery" class="btn btn-link btn-sm">My Gallery</a>
+        <a href="{{ route('mygallery') }}" class="btn btn-link btn-sm">My Gallery</a>
         <a href="/forum/baru" class="btn btn-link btn-sm">Tulis post</a>
         <a href="/quiz/profile" class="btn btn-link btn-sm">My Quiz</a>
 
@@ -91,55 +91,6 @@ endif;
               </tr>
             </tbody>
           </table>
-
-    @if( ! is_null(auth()->user()->quizScore))
-          <hr class="m-0 p-0">
-
-           <div class="card-header mt-0">
-            <h4 class="card-title">Aktifitas Quiz</h4>
-          </div>
-          <div class="table-responsive">
-          <table class="table card-table table-striped text-nowrap table-vcenter">
-            <thead>
-              <tr>
-         <!-- help me :'(
-			<th> Peringkat</th>
-		-->
-                <th class="text-green"> Benar </th>
-                <th class="text-danger"> Salah </th>
-                <th class="text-primary"> Point </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-green"> {{ auth()->user()->quizScore->benar }}
-                <div class="progress progress-xs">
-                <div class="progress-bar bg-green" style="width: {{ auth()->user()->quizScore->benar/(auth()->user()->quizScore->benar+auth()->user()->quizScore->salah)*100 }}%"></div>
-             </div>
-                </td>
-                <td class="text-danger"> {{ auth()->user()->quizScore->salah }}
-                <div class="progress progress-xs">
-                <div class="progress-bar bg-danger" style="width: {{ auth()->user()->quizScore->salah/(auth()->user()->quizScore->benar+auth()->user()->quizScore->salah)*100 }}%"></div>
-             </div>
-                </td>
-                <td class="text-primary"> <div>{{ auth()->user()->quizScore->point }}</div>
-                  <small class="text-muted">terakhir: {{ auth()->user()->quizScore->updated_at->diffForHumans() }}</small>
-                  <small class="text-muted"></small>
-                <div class="progress progress-xs">
-                <div class="progress-bar bg-primary" style="width: {{ auth()->user()->quizScore->point/(auth()->user()->quizScore->benar+auth()->user()->quizScore->salah)*100 }}%"></div>
-             </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          </div>
-
-    @endif
-
-          <div class="card-body p-3">
-
-            <a href="/quiz/profile" class="btn btn-outline-primary float-right">Dashboard quiz</a>
-          </div>
         </div>
       </div>
 

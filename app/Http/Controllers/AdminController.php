@@ -9,7 +9,6 @@ use App\{
   Drop, Monster
 };
 
-use Datatables;
 
 class AdminController extends Controller
 {
@@ -74,7 +73,7 @@ class AdminController extends Controller
         	return "<div><div style='width:2rem;height:2rem;border-radius:50%;display:inline-block;background-image: url(https://graph.facebook.com/$user->provider_id/picture?type=normal)' class='avatar m-1 ml-1 float-left'></div></div> ";
         })
         ->addColumn('contact', function($user){
-        	return "<div>  {$user->contact['line']} <br>  {$user->contact['whatsapp']} </div>";
+        	return "<div>  {optional($user->contact)['line']} <br>  {optional($user->contact)['whatsapp']} </div>";
         })
         ->editColumn('name', function($user){
         	return "<div><strong class='mr-2 mb-2 text-center'>$user->name</strong><br><small class='text-muted'>@$user->username</small></div>";

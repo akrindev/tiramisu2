@@ -60,7 +60,7 @@
                           <span class="custom-switch-indicator"></span>
                           <span class="custom-switch-description">pilih</span>
                         </label></div>
-        @parsedown($quiz->question) <br><br>
+        {{ toHtml($quiz->question) }} <br><br>
           <strong>a:</strong> {{ $quiz->answer_a }} <br>
           <strong>b:</strong> {{ $quiz->answer_b }} <br>
           <strong>c:</strong> {{ $quiz->answer_c }} <br>

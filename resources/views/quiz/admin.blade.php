@@ -69,15 +69,15 @@
       <div class="col-md-6" class="nyan-{{$q->id}}">
         <div class="card">
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
-            <b>Q:</b> @parsedown(e($q->question))
+            <b>Q:</b> {{ toHtml($q->question) }}
             <hr class="my-2">
-            <div {{ $q->correct == 'a' ? 'class="text-success"':''}}> <b>A:</b> @parsedown(e($q->answer_a)) </div>
+            <div {{ $q->correct == 'a' ? 'class="text-success"':''}}> <b>A:</b> {{ toHtml($q->answer_a) }}</div>
 
-            <div {{ $q->correct == 'b' ? 'class="text-success"':''}}> <b>B:</b> @parsedown(e($q->answer_b)) </div>
+            <div {{ $q->correct == 'b' ? 'class="text-success"':''}}> <b>B:</b> {{ toHtml($q->answer_b) }}</div>
 
-            <div {{ $q->correct == 'c' ? 'class="text-success"':''}}><b>C:</b> @parsedown(e($q->answer_c)) </div>
+            <div {{ $q->correct == 'c' ? 'class="text-success"':''}}><b>C:</b> {{ toHtml($q->answer_c) }}</div>
 
-            <div {{ $q->correct == 'd' ? 'class="text-success"':''}}><b>D:</b> @parsedown(e($q->answer_d)) </div>
+            <div {{ $q->correct == 'd' ? 'class="text-success"':''}}><b>D:</b> {{ toHtml($q->answer_d) }}</div>
 
             <div>
               <hr class="my-1">

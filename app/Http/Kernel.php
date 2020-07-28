@@ -14,7 +14,8 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        \Fruitcake\Cors\HandleCors::class,
+      \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
@@ -45,7 +46,6 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
-          	'cors',
         ],
     ];
 
@@ -68,6 +68,5 @@ class Kernel extends HttpKernel
       //my middleware
 
         'admin' => \App\Http\Middleware\RedirectIfNotAdmin::class,
-      	'cors' => \Barryvdh\Cors\HandleCors::class,
     ];
 }
