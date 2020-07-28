@@ -19,12 +19,16 @@
     <div class="row">
       <div class="col-md-8">
       <div class="card">
-        <div class="card-body p-3" style="font-size:13px;font-weight:400">
-          @parsedown(e($data->body))
+        <div class="card-body body-text p-3">
+          {{ toHtml($data->body) }}
         </div>
       </div>
       </div>
     </div>
   </div>
 </div>
+@endsection
+
+@section('head')
+<link href="/assets/css/read.css" rel="stylesheet"/>
 @endsection
