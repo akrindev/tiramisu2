@@ -42,6 +42,9 @@ class AdminController extends Controller
         ->editColumn('user_id', function ($user) {
         	return $user->user->name ?? 'unknown';
         })
+        ->editColumn('created_at',function($user){
+        	return waktu($user->created_at);
+        })
         ->make(true);
     }
 
@@ -58,6 +61,10 @@ class AdminController extends Controller
         		return $user->user->name ?? 'unknown';
         })
         	->rawColumns(['judul'])
+
+        ->editColumn('created_at',function($user){
+        	return waktu($user->created_at);
+        })
         	->make(true);
     }
 

@@ -59,7 +59,7 @@
                         <small class="text-muted">
    @php $nama = explode(' ',$pos->user->name); @endphp
 
-                        <i class="fe fe-user"></i> {{ $nama[0] }} &nbsp; <i class="fe fe-clock"></i> {{ time_ago($pos->created_at) }}
+                        <i class="fe fe-user"></i> {{ $nama[0] }} &nbsp; <i class="fe fe-clock"></i> {{ $pos->created_at->diffForHumans() }}
 
                           &nbsp; <i class="fe fe-eye"></i> {{ $pos->views }} &nbsp; <i class="fe fe-message-square mr-1"></i> {{ $pos->comment->count() }}
                           <br />
