@@ -295,7 +295,6 @@
  <script src="/assets/js/lazy.js"></script>
  <script src="/assets/js/vendors/bootstrap.bundle.min.js"></script>
 
-
 @if(env('APP_ENV') === 'production')
 <!-- Google Analytics -->
 <script>

@@ -89,11 +89,10 @@
           </div>
           </form>
 
-   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
           <div class="p-3">
             <b>Level:</b> {{ request('level') }} ke {{ request('level', 49)+1 }}<br>
-            <b>Bonus Exp:</b> {{ request('bonusexp') }}%<br>
-            <b>Jarak:</b> {{ request('range') }}
+            <b>Bonus Exp:</b> {{ request('bonusexp', 0) }}%<br>
+            <b>Jarak:</b> {{ request('range', 5) }}
           </div>
           <span class="text-center d-block">Butuh <b class="text-primary"><u>{{ number_format($expNeed) }}</u></b> EXP</span>
           <hr class="my-2">

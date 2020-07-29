@@ -31,7 +31,6 @@
            <strong>Tips!</strong> Saling berbagi buff masakan dengan cara berteman. buff kamu akan tampil disini dengan cara <a href="/setting/profile">edit profile</a>mu dan atur buff masakanmu lalu set privasi ke publik, jangan lupa isi kontak agar mudah di hubungi.
          </div>
          <div class="my-2">
-           @includeWhen(! app()->isLocal(), 'inc.ads_mobile')
          </div>
          <div class="unit w-2-3">
          <table class="display" id="buff" style="width:100%">
