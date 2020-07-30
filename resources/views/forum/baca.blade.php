@@ -37,7 +37,7 @@ $tags = explode(',', $tags);
           <div class="container">
 
 	<div class="row">
-	 <div class="col-md-8">
+	 <div class="col-md-8 animated slideInUp">
 
      @if(strlen(strip_tags((toHtml($data->body)))) > 320)
  	 	@includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
@@ -249,7 +249,7 @@ $tags = explode(',', $tags);
 
   </div>
 
-     <div class="col-md-4">
+     <div class="col-md-4 animated slideInRight">
 
                 <!-- tags -->
 

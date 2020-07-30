@@ -79,7 +79,8 @@
     <script src="/assets/js/core.js"></script>
 
 @auth
-    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-messaging.js"></script>
     <script src="/assets/js/fcm.js"></script>
 @endauth
 

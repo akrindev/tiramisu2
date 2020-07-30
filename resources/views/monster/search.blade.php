@@ -14,7 +14,7 @@
       <div class="col-md-8">
       @include('inc.cari')
       </div>
-      <div class="col-md-8">
+      <div class="col-md-8 animated slideInUp">
         @if(strpos(strtolower($q), 'dye') !== false)
         <div class="card">
           <div class="card-body p-3" style="font-size:15px;font-weight:400">
@@ -245,7 +245,7 @@
 
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4 animated slideInRight">
       @include('inc.menu')
       </div>
     </div>
