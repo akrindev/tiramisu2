@@ -31,7 +31,7 @@ jika refine weapon maka weapon tersebut mendapat bonus ATK. <br>
 jika refine armor maka armor tersebut mendapat bonus 1% reduce damage untuk setiap +1. <br>
 dari beberapa info, refine armor tidak menambah DEF dan MDEF
 <br><br>
-          <a href="/img/refine.png"><img src="/img/refine.png" alt="toram refine success rate table" class="img"></a>
+          <img src="https://lh3.googleusercontent.com/kg8jqdnq4i2m2Rs9RyDapxlM6zlCkixgDG2ieux3YUb3jlp5-hEfywV-uJ4Wz2w_zlT9nxtTLOCW_pFAe6-pqB3Hdyk-iTxw3LeMelUdxwgg9E6cljG8Mq6RRUW_1pkGdvpfr0jDgw" width="false" height="EfywV-uJ4Wz2w_zlT9nxtTLOCW_pFAe6" />
 <br><br>
 <b>Formula bonus weapon ATK</b>
 <pre><code>X = nilai refine (1,2,3 ... E,D,C)
@@ -63,9 +63,10 @@ disini akan merangkum tentang refine dari skill smith (skill pandai besi).
 -- Tempa perlengkapan Lv10 <br>
 -- Tempaan sedang Lv10 <br>
 -- Tempaan tinggi Lv10 <br>
+-- Tempaan Mahir Lv10
 <br>
 <h3>Resiko kegagalan</h3>
- <table class="table table-striped">
+ <table class="table table-sm table-striped">
  <tr>
    <th>Risiko</th>
    <th>Rate gagal</th>
@@ -128,17 +129,20 @@ disini akan merangkum tentang refine dari skill smith (skill pandai besi).
 </tr>
  </table>
 <br><br>
-<h3>Tingkat kesulitan refine</h3>
+<h3>Tingkat Kesulitan Refine</h3>
 Sukses rate dari refine bergantung pada nilai dari refine dan bahan yang di gunakan.
 <br><br>
-tingkat kesulitan refine ditentukan sebagai berikut berikut
-<pre><code>tingkat_kesulitan_refine = nilai_refine*3 - nilai_bahan_yang_digunakan</code></pre>
+Tingkat kesulitan refine ditentukan sebagai berikut berikut
+<pre>
+<code>tingkat_kesulitan_refine = nilai_refine*3 - nilai_bahan_yang_digunakan</code>
+</pre>
           <br><br>
 
   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+          <br><br>
 
 <h3>Nilai bahan yang di gunakan</h3>
- <table class="table table-striped">
+ <table class="table table-sm table-striped">
 <thead>
 <tr>
 <th>bahan</th>
@@ -199,14 +203,16 @@ tingkat kesulitan refine ditentukan sebagai berikut berikut
 <br><br>
 contoh weapon dengan refine 8, menggunakan hematite dimana hematite mempunyai nilai 1
 <br><br>
-tingkat kesulitan refine = 8 x 3 - 1 = 23
+ <pre><code>
+tingkat kesulitan refine = 8 x 3 - 1 = 23</code>
+</pre>
 <br><br>
 jika menggunakan Mythril dimana nilai mythril adalah 8
 <br><br>
 tingkat kesultian refine = 8 x 3 - 8 = 16
 <br><br>
 sedang kan base sukses rate sebagai berikut: <br><br>
-   <table class="table table-striped">
+   <table class="table table-sm table-striped">
 <thead>
 <tr>
 <th>tingkat kesultian</th>
@@ -310,19 +316,19 @@ sedang kan base sukses rate sebagai berikut: <br><br>
 <br><br>
 karena disini kondisi penjelasan TEC diisi 255 dan all skill tempa lv 10 maka
 <br><br>
-          <pre><code>final sukses rate = (base sukses rate + 63.75 + 15 ) * 0.8</code></pre>
+          <pre><code>final sukses rate = (base sukses rate + 63.75 + 30 ) * 85%</code></pre>
 <br><br>
 <b>Note:</b> <br>
-<b>Y</b> = Lv skill tempa sedang(Lv10 = +5) + Lv skill tempa tinggi(Lv10 = +10) = +15 <br>
-<b>X</b> = base 0.5 + skill tempa Lv10(0.2) + skill tempa sedang Lv10(0.05) + skill tempa tinggi Lv10(0.05) = 0.8
+<b>Y</b> = Lv skill tempa sedang(Lv10 = +5) + Lv skill tempa tinggi(Lv10 = +10) + lv skill tempa mahir (lv10 = +15) = +30 <br>
+<b>X</b> = base 50% + skill tempa Lv10(20%) + skill tempa sedang Lv10(5%) + skill tempa tinggi Lv10(5%) + wkill tempa mahir Lv10(5%) = 85%
 <br><br>
 
   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
-
-sukses rate yang sudah kita hitung sebelumnya adalah 16, sedangkan base sukses dari 16 adalah -10 maka <br><br>
-<pre><code>final sukses rate = (-10 + 63.75 +15) * 0.8
-final sukses rate = 68.75*0.8
-final sukses rate = 55 %
+<br><br/>
+Sukses rate yang sudah kita hitung sebelumnya adalah 16, sedangkan base sukses dari 16 adalah -10 maka <br><br>
+<pre><code>final sukses rate = (-10 + 63.75 +30) * 85%
+final sukses rate = 83.75*85%
+final sukses rate = 71 %
 </code></pre> <br><br>
 
 ingat jika hasilnya negatif (-) karena tingkat sukses paling rendah adalah 1% maka final sukses rate 1%.
