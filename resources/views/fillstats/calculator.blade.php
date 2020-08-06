@@ -1,7 +1,7 @@
 @extends('layouts.tabler')
 
-@section('title','Toram fill stats Calculator')
-@section('description','Toram fill stats calculator +19 +20')
+@section('title','Toram fill Stat Simulator')
+@section('description','Toram fill stats Skill level 4 Simulator calculator +20  +21')
 @section('image',to_img())
 
 
@@ -10,12 +10,12 @@
 @endpush
 
 @section('content')
-<div class="my-5" onload="build_menu()">
+<div class="my-5">
 
   <div class="container">
 
     <div class="page-header">
-      <h1 class="page-title"> Fill Calculator</h1>
+      <h1 class="page-title"> Fill Stat Simulator</h1>
     </div>
 
     <div class="row">
