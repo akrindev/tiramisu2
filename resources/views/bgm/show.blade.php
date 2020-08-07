@@ -23,7 +23,7 @@
               Reload jika terjadi error
             </div>
 
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+  @includeUnless(app()->isLocal(), 'inc.ads_mobile')
 
             @foreach ($musics as $bgm)
             <i class="fe fe-headphones"></i> <a href="/bgm/{{ $bgm->slug }}"> {{ $bgm->title }} </a><br />

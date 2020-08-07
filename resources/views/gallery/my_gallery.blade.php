@@ -50,7 +50,7 @@
 
             <div id="ad" class="row">
               <div class="col-12">
-              @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+
               </div>
             </div>
 

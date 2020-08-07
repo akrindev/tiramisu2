@@ -61,6 +61,8 @@ class QuizController extends Controller
         die('Miaww senpai chann *-*)/');
       }
 
+      session(request()->except('_token'));
+
       $id = ($id > 10) ? 1 : $id;
 
       return view('quiz.ajax',[

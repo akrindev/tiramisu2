@@ -27,14 +27,14 @@
                     <input type="text" id="peta-kunci" class="form-control form-control-md" placeholder="Nama peta . . .">
                   </div>
 
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+  @includeUnless(app()->isLocal(), 'inc.ads_mobile')
 
       @foreach ($data as $pos)
                     <b class="kunci" style="display:block"><i class="fe fe-github mr-2"></i>
                       <a href="/peta/{{$pos->id}}" class="key">{{$pos->name}}</a> </b>
      @endforeach
 
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+  @includeUnless(app()->isLocal(), 'inc.ads_mobile')
                   <div>
                     </div>
                   </div>

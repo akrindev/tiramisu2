@@ -92,14 +92,15 @@
 
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/dye">Dye Bulanan</a> </span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/gallery">Gallery</a> </span>
+      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/Forum">Forum</a> </span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/peta">Peta</a> </span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/skill">Skill List</a></span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/refine">Refine Guide</a></span>
-      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/refine/simulasi">Refine simulator</a></span>
+      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/refine/simulasi">Refine Simulator</a></span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/cb">Papan Market Calculator</a></span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/leveling">Leveling List</a></span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/fill_stats">Fill stats formula</a></span>
-      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/fill_stats/calculator">Fill stat calculator</a></span>
+      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/fill_stats/calculator">Fill Stat Simulator</a></span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/exp">Exp Calculator</a></span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/npc">NPC List</a></span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/quiz">QUIZ</a></span>
@@ -107,6 +108,6 @@
 
     <hr class="my-1">
 
-    @includeWhen(env('APP_ENV') == 'production', 'inc.ads_matched')
+    @includeUnless(app()->isLocal(), 'inc.ads_matched')
   </div>
 </div>

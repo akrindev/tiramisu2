@@ -24,7 +24,7 @@
           </div>
 
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
-            Quiz telah di ambil <span class="text-success">10</span>
+            <span class="text-success">10</span> Quiz telah di ambil
 
             <br><br>
 

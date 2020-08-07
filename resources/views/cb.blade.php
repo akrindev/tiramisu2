@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title', 'Toram Consignment Board calculator')
+@section('title', 'Toram Papan Market calculator')
 @section('description', 'Kalkulasi penjualan di papan toram')
 
 @push('canonical')

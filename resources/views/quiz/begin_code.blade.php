@@ -19,6 +19,9 @@
         <div class="alert alert-primary">
           Klik <b>Simpan</b> sebelum melanjutkan ke soal berikutnya
         </div>
+
+        @includeWhen(app()->isLocal(), 'inc.ads_mobile')
+
         <div class="card">
 
           <div class="card-header">

@@ -21,7 +21,7 @@
 
       <div class="col-md-8">
 
-        @includeWhen(!app()->isLocal(), 'inc.ads_article')
+        @includeUnless(app()->isLocal(), 'inc.ads_article')
 
         <div class="card">
             <form action="/leveling" method="get" accept-charset="utf8">
@@ -88,15 +88,24 @@
            </div>
           </div>
           </form>
+        </div>
 
-          <div class="p-3">
+        @includeUnless(app()->isLocal(), 'inc.ads_article')
+
+        <div class="card mt-5">
+
+          <div class="card-body p-3">
             <b>Level:</b> {{ request('level') }} ke {{ request('level', 49)+1 }}<br>
             <b>Bonus Exp:</b> {{ request('bonusexp', 0) }}%<br>
             <b>Jarak:</b> {{ request('range', 5) }}
-          </div>
+
+
           <span class="text-center d-block">Butuh <b class="text-primary"><u>{{ number_format($expNeed) }}</u></b> EXP</span>
+
+
+          </div>
           <hr class="my-2">
-          <div class="card-body p-0">
+          <div class="card-table">
           <ul class="nav nav-tabs justify-content-center m-0" id="myTab" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" id="leveling-tab" data-toggle="tab" href="#leveling" role="tab" aria-controls="leveling" aria-selected="true">

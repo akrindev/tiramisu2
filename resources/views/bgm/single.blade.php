@@ -28,7 +28,7 @@
           </div>
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
 
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+  @includeUnless(app()->isLocal(), 'inc.ads_mobile')
 
             <img src="https://ytimg.googleusercontent.com/vi/{{ $bgm->video_id }}/sddefault.jpg" class="img img-fluid">
             <div class="my-3">

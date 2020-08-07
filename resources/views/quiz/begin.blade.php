@@ -19,7 +19,7 @@
         <div class="alert alert-primary">
           Klik <b>Simpan</b> sebelum melanjutkan ke soal berikutnya
         </div>
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+  @includeUnless(app()->isLocal(), 'inc.ads_mobile')
         <div class="card">
 
           <div class="card-header">

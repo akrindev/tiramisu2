@@ -25,7 +25,7 @@ $let = 0;
     <div class="row">
 
       <div class="col-md-8">
-        @includeWhen(!app()->isLocal(), 'inc.ads_article')
+        @includeUnless(app()->isLocal(), 'inc.ads_article')
       <div class="card">
         <div class="card-header">
           <h3 class="card-title"> Dye bulan {{ now()->formatLocalized('%B %Y') }} </h3>
@@ -38,8 +38,18 @@ Perolehan type dye bergantung pada senjata yg dipakai regumu. Jika 4 member regu
 
 Warna senjata berubah-ubah pada tanggal pertama setiap bulannya.
         </div>
-        <h5 class="text-center"> Dye bulan {{ now()->formatLocalized('%B %Y') }} </h5>
-        <table class="card-table table table-striped" style="font-size:13px">
+      </div>
+
+        @includeUnless(app()->isLocal(), 'inc.ads_article')
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Dye bulan {{ now()->formatLocalized('%B %Y') }}</h3>
+          </div>
+
+          <div class="card-table">
+          <table class="card-table table table-striped" style="font-size:14px">
+            @if($dyes->count())
           <caption class="p-3">  Dye bulan {{ now()->formatLocalized('%B %Y') }} </caption>
           <thead>
             <tr>
@@ -49,6 +59,7 @@ Warna senjata berubah-ubah pada tanggal pertama setiap bulannya.
               <th> C </th>
             </tr>
           </thead>
+            @endif
           @forelse($dyes as $dye)
           <tr>
             <td class="p-2"> <div><b><a href="/monster/{{ $dye->monster->id }}" style="color:black">{{ $dye->monster->name }}</a></b></div>
@@ -60,10 +71,11 @@ Warna senjata berubah-ubah pada tanggal pertama setiap bulannya.
           	<td class="p-2" {!! $dye->type == 'c' ? "style='color:white;text-shadow:0 0 8px black, 0 0 4px blue;text-align:center;background:#{$dye->dye->hex}'" : '' !!}> {{ $dye->type == 'c' ? $dye->dye->color : '' }}</td>
           </tr>
           @empty
-          <tr> Wait for update</tr>
+            <tr class="p-5 font-weight-bold"><td> Wait for update</td></tr>
           @endforelse
         </table>
-      </div>
+          </div>
+        </div>
       </div>
 
       <div class="col-md-4">

@@ -31,7 +31,7 @@
               {!! form_close() !!}
             </div>
 
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+  @includeUnless(app()->isLocal(), 'inc.ads_article')
 
                 <div class="card mb-3">
                   <div class="p-3">

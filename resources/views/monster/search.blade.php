@@ -39,6 +39,9 @@
           @endif
 
      @if($drops->count() > 0)
+
+        @includeUnless(app()->isLocal(), 'inc.ads.article')
+
        @foreach($drops as $item)
         <div class="card">
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
@@ -164,7 +167,6 @@
      @endif
 
         @if($monsters->count() > 0)
-        @includeWhen(env('APP_ENV') == 'production', 'inc.ads.infeed')
           @foreach ($monsters as $mons)
         <div class="card">
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
@@ -220,7 +222,7 @@
           </div>
         </div>
 
-        @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+        @includeUnless(app()->isLocal(), 'inc.ads_mobile')
        @endif
 
 
@@ -237,7 +239,7 @@
           </div>
         </div>
 
-        @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+        @includeUnless(app()->isLocal(), 'inc.ads_mobile')
        @endif
 
         {{ $drops->appends(['q' => request('q'), 'type' => request('type') ])->links() }}

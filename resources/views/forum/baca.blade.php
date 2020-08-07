@@ -40,9 +40,9 @@ $tags = explode(',', $tags);
 	 <div class="col-md-8">
 
      @if(strlen(strip_tags((toHtml($data->body)))) > 320)
- 	 	@includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+ 	 	@includeUnless(app()->isLocal(), 'inc.ads_article')
      @else
-  		@includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+  		@includeUnless(app()->isLocal(), 'inc.ads_mobile')
      @endif
 
    <a href="/forum" class="btn btn-sm mb-3 btn-outline-secondary btn-pill"> <i class="fe fe-chevrons-left"></i> Back to forum</a>
@@ -129,7 +129,7 @@ $tags = explode(',', $tags);
           </div>
         </div>
 
-  		@includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+  		@includeUnless(app()->isLocal(), 'inc.ads_mobile')
 
    @php $i = 0; @endphp
 @if (count($comments))

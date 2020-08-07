@@ -24,7 +24,7 @@
       </div>
 
       <div class="col-12">
-        @includeWhen(!app()->isLocal(), 'inc.ads_article')
+        @includeUnless(app()->isLocal(), 'inc.ads_article')
       </div>
 
       <div class="col-12">
@@ -42,6 +42,9 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title"> Resep status </h3>
+          </div>
+          <div class="card-alert alert alert-info">
+            <b>Updated</b> Skill tree level 4
           </div>
 
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
@@ -129,7 +132,7 @@
     <!-- ads -->
     <div class="row">
       <div class="col-12">
-        @includeWhen(!app()->isLocal(), 'inc.ads_article')</div>
+        @includeUnless(app()->isLocal(), 'inc.ads_article')</div>
     </div>
 
   </div>

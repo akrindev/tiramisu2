@@ -19,7 +19,7 @@
       <div class="col-md-8">
       <div class="card">
         <div class="card-body p-3">
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+  @includeUnless(app()->isLocal(), 'inc.ads_mobile')
         <div class=row>
         <div class="form-group col-md-6">
           <label class="form-label">Weapon</label>
@@ -103,7 +103,7 @@
           <h3 class="card-title">Refine</h3>
         </div>
         <div class="card-body p-3">
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+  @includeUnless(app()->isLocal(), 'inc.ads_mobile')
         - <a href="/refine">Tentang Refine</a> <br>
         - <a href="/refine/simulasi">Simulasi Refine</a>
         </div>

@@ -17,7 +17,7 @@
 
       <div class="col-md-8">
 
-        @includeWhen(!app()->isLocal(), 'inc.ads_article')
+        @includeUnless(app()->isLocal(), 'inc.ads_article')
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">
@@ -64,7 +64,7 @@
 
         </div>
 
-        @includeWhen(!app()->isLocal(), 'inc.ads_article')
+        @includeUnless(app()->isLocal(), 'inc.ads_article')
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">

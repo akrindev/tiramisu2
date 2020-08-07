@@ -20,12 +20,12 @@
       </div>
 
       <div class="col-md-8">
-       @includeWhen(!app()->isLocal(), 'inc.ads_article')
+       @includeUnless(app()->isLocal(), 'inc.ads_article')
 
        @forelse($data as $item)
 
         @if($loop->index == 10)
-   			@includeWhen(env('APP_ENV') == 'production', 'inc.ads.infeed')
+   			@includeUnless(app()->isLocal(), 'inc.ads.infeed')
         @endif
 
         <div class="card">
@@ -153,7 +153,7 @@
 
         {{ $data->links() }}
 
-        @includeWhen(!app()->isLocal(), 'inc.ads_article')
+        @includeUnless(app()->isLocal(), 'inc.ads_article')
       </div>
 
       <div class="col-md-4">

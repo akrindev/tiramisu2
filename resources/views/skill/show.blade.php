@@ -32,7 +32,7 @@
     @endif
     <div class="col-md-8">
 
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+  @includeUnless(app()->isLocal(), 'inc.ads_article')
 
     @foreach(collect($skills->child)->sortBy('level') as $skill)
 

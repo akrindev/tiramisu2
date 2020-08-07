@@ -22,7 +22,7 @@
       <div class="card">
         <div class="card-body p-3">
 
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+  @includeUnless(app()->isLocal(), 'inc.ads_mobile')
 
           <h3>Tentang Refine</h3>
           Gunanya refine yaitu untuk meningkatkan atk / resis perlengkapan. bonus dari refine bergantung pada apa yang kita refine. <br><br>
@@ -50,7 +50,7 @@ N = 307.5 &lt;-- bonus ATK</code></pre> <br>
 <br>
 <br>
 
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+  @includeUnless(app()->isLocal(), 'inc.ads_article')
 
         <h3>Succes rate refine</h3>
 
@@ -138,7 +138,7 @@ Tingkat kesulitan refine ditentukan sebagai berikut berikut
 </pre>
           <br><br>
 
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+  @includeUnless(app()->isLocal(), 'inc.ads_article')
           <br><br>
 
 <h3>Nilai bahan yang di gunakan</h3>
@@ -323,7 +323,7 @@ karena disini kondisi penjelasan TEC diisi 255 dan all skill tempa lv 10 maka
 <b>X</b> = base 50% + skill tempa Lv10(20%) + skill tempa sedang Lv10(5%) + skill tempa tinggi Lv10(5%) + wkill tempa mahir Lv10(5%) = 85%
 <br><br>
 
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+  @includeUnless(app()->isLocal(), 'inc.ads_article')
 <br><br/>
 Sukses rate yang sudah kita hitung sebelumnya adalah 16, sedangkan base sukses dari 16 adalah -10 maka <br><br>
 <pre><code>final sukses rate = (-10 + 63.75 +30) * 85%
@@ -343,7 +343,7 @@ penurunan pada 2 slot bisa turun 3 nilai. <br>
 rate penurunan bisa di kurangi dengan stats LUK dan item lainnya. contoh item yang bisa mengurangi rate penurunan adl andeg(anti degration) mengurangi rate penurunan sebesar 75%. ini cuma mengurangi rate penurunan nilai refine, tidak menambah keberhasilan refine.
 
 
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+  @includeUnless(app()->isLocal(), 'inc.ads_mobile')
         </div>
       </div>
       </div>
@@ -353,7 +353,7 @@ rate penurunan bisa di kurangi dengan stats LUK dan item lainnya. contoh item ya
           <h3 class="card-title">Refine</h3>
         </div>
         <div class="card-body p-3">
-  @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
+  @includeUnless(app()->isLocal(), 'inc.ads_mobile')
         - <a href="/refine">Tentang Refine</a> <br>
         - <a href="/refine/simulasi">Simulasi Refine</a>
         </div>

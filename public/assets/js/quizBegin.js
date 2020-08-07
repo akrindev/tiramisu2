@@ -13,6 +13,8 @@
   $(".dimmer").addClass('active');
     $("#kerjakan").load('/quiz/i/'+i,function(){
     	$(".dimmer").removeClass('active');
+
+      	$("#terjawab").load('/quiz/ajax/terjawab');
     });
   }
 
@@ -49,7 +51,7 @@
         $("#btn-simpan").html('<i class="fa fa-spinner fa-spin"></i> Menyimpan');
       },
       success: function(){
-        swal('ok');
+        swal('Jawaban disimpan', '', 'success');
       }
 
     }).always(function(){

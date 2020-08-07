@@ -96,7 +96,7 @@
 
     @include('inc.sharethis')
 
-    @includeWhen(env('APP_ENV') === 'production', 'inc.ads')
+    @includeUnless(app()->isLocal(), 'inc.ads')
   </head>
 
   <body itemscope itemtype="https://schema.org/WebSite">
@@ -296,7 +296,7 @@
  <script src="/assets/js/lazy.js"></script>
  <script src="/assets/js/vendors/bootstrap.bundle.min.js"></script>
 
-@if(env('APP_ENV') === 'production')
+@if(!app()->isLocal())
 <!-- Google Analytics -->
 <script>
 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

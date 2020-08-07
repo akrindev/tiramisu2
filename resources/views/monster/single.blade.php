@@ -21,7 +21,7 @@
       </div>
 
       <div class="col-md-8">
-        @includeWhen(!app()->isLocal(), 'inc.ads_article')
+        @includeUnless(app()->isLocal(), 'inc.ads_article')
 
         @if($data->npc->count() > 0)
         <div class="card">
@@ -36,7 +36,7 @@
 
       @foreach ($data->monster as $mons)
         @if(($loop->index + 1) % 5 == 0)
-   			@includeWhen(env('APP_ENV') == 'production', 'inc.ads.infeed')
+   			@includeUnless(app()->isLocal(), 'inc.ads.infeed')
         @endif
         <div class="card">
           <div class="card-body p-3" style="font-size:13px;font-weight:400">

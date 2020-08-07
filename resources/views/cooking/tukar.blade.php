@@ -19,7 +19,7 @@
     <div class="row">
 
      <div class="col-12">
-        @includeWhen(!app()->isLocal(), 'inc.ads_article')
+        @includeUnless(app()->isLocal(), 'inc.ads_article')
 
        <div class="card">
           <div class="card-header">
@@ -94,7 +94,7 @@
         @include('inc.menu')
       </div>
       <div class="col-md-8">
-        @includeWhen(! app()->isLocal(), 'inc.ads_article')
+        @includeUnless(app()->isLocal(), 'inc.ads_article')
       </div>
     </div>
   </div>
