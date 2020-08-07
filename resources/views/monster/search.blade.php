@@ -39,9 +39,6 @@
           @endif
 
      @if($drops->count() > 0)
-
-        @includeUnless(app()->isLocal(), 'inc.ads_article')
-
        @foreach($drops as $item)
         <div class="card">
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
@@ -167,6 +164,9 @@
      @endif
 
         @if($monsters->count() > 0)
+
+        @includeUnless(app()->isLocal(), 'inc.ads_article')
+
           @foreach ($monsters as $mons)
         <div class="card">
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
