@@ -40,7 +40,7 @@
 
      @if($drops->count() > 0)
 
-        @includeUnless(app()->isLocal(), 'inc.ads.article')
+        @includeUnless(app()->isLocal(), 'inc.ads_article')
 
        @foreach($drops as $item)
         <div class="card">
