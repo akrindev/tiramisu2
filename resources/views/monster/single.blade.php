@@ -25,7 +25,7 @@
 
         @if($data->npc->count() > 0)
         <div class="card">
-          <div class="card-body p-3" style="font-size:13px;font-weight:400">
+          <div class="card-body p-3" style="font-size:14px;font-weight:400">
             <strong class="h6">NPC</strong> <br>
              @foreach($data->npc as $npc)
            - <b>NPC:</b> <a href="/npc/npc-{{ $npc->id }}"> {{ $npc->name }} </a> <br />

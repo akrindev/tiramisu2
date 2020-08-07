@@ -28,7 +28,7 @@
    			@includeWhen(env('APP_ENV') == 'production', 'inc.ads.infeed')
         @endif
         <div class="card">
-          <div class="card-body p-3" style="font-size:13px;font-weight:400">
+          <div class="card-body p-3" style="font-size:14px;font-weight:400">
             <dl> <!-- dl start -->
 
            <div class="mb-5">
