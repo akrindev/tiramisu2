@@ -19,7 +19,7 @@
         @include('inc.cari')
       </div>
 
-      <div class="col-md-8 animated slideInUp">
+      <div class="col-md-8">
        @includeWhen(!app()->isLocal(), 'inc.ads_article')
 
        @forelse($data as $item)
@@ -156,7 +156,7 @@
         @includeWhen(!app()->isLocal(), 'inc.ads_article')
       </div>
 
-      <div class="col-md-4 animated slideInRight">
+      <div class="col-md-4">
       @include('inc.menu')
       </div>
     </div>

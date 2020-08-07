@@ -16,7 +16,7 @@
         @include('inc.cari')
       </div>
 
-      <div class="col-md-8 animated slideInUp">
+      <div class="col-md-8">
         @includeWhen(!app()->isLocal(), 'inc.ads_article')
 
         <div class="card">
