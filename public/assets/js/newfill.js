@@ -631,6 +631,7 @@ class Stat {
     }
 
     updatePotentialSuccessDisplay() {
+        Cloud.setSuccessRate(this.getSuccessRate());
         document.getElementById('potential_display').innerHTML = `<b>Potential: ${this.future_pot} / ${this.pot}</b>`;
         document.getElementById('success_rate_display').innerHTML = `<span class="${this.getSuccessRate() < 100 ? 'text-danger' : ''}">Success Rate: ${this.getSuccessRate()}%</span>`;
         document.getElementById('confirm_button').disabled = this.pot === this.future_pot
@@ -657,6 +658,8 @@ class Stat {
             if(!slot.stat_name) continue;
             final += slot.stepToText();
         }
+
+        Cloud.setFinal(final)
 
         display += `<div class="px-3 pt-2"><b class="${this.getSuccessRate() === 100 ? 'text-success' : 'text-danger'}">Success Rate: ${this.getSuccessRate()}% </b> </div>`;
 
@@ -790,6 +793,8 @@ class Stat {
         this.updateFormulaDisplay();
         this.updateMaterialCosts();
         this.updatePotentialSuccessDisplay();
+
+        App.saveToStorage();
     }
 
     redo() {
@@ -817,6 +822,8 @@ class Stat {
         this.updateFormulaDisplay();
         this.updateMaterialCosts();
         this.updatePotentialSuccessDisplay();
+
+        App.saveToStorage();
     }
 
 
@@ -1014,7 +1021,9 @@ class MainApp {
         */
         let data = this.stats.grabSnapshot();
 
-        console.log(JSON.stringify(data))
+        Cloud.setDisplay(data)
+
+        //console.log(JSON.stringify(data))
      //   localStorage.setItem('instance_data', JSON.stringify(data_to_store));
     }
 

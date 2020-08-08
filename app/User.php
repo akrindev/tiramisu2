@@ -159,4 +159,13 @@ class User extends Authenticatable
       return $this->belongsTo(Cooking::class);
     }
 
+    /*
+    *
+    * user has many saved formula
+    */
+    public function formulas()
+    {
+        return $this->hasMany(Formula::class);
+    }
+
 }

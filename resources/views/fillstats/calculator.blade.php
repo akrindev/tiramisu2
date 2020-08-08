@@ -93,13 +93,32 @@
           </div>
         </div>
       </div>
-        <div class="col-md-4 mb-5">
+        <div class="col-md-4 mb-5" id="wk">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">WorkSpace</h3>
                 </div>
                 <div class="card-body p-3">
                     <div id="navigation_bar"></div>
+                    Save your formula to server <br />
+                    <div class="form-group">
+                        <label class="form-label">Note</label>
+                        <textarea class="form-control form-control-sm" id="note" maxlength="40" placeholder="title max 40 charachter"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" id="save" onClick="Cloud.send()">Save</button>
+                    </div>
+
+                    <hr class="my-2">
+                    @auth
+                    	@foreach(auth()->user()->formulas as $formula)
+                    <i class="fe fe-chevron-right mr-1"></i> {{ $formula->note }} (<span class="text-primary">show</span>) <br />
+                    	@endforeach
+                    @else
+
+                    	Login untuk melihat formula yang telah kamu simpan
+                    @endauth
                 </div>
             </div>
         </div>
@@ -121,6 +140,7 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Formula</h3>
+              <div class="card-options"> <button class="btn btn-sm btn-outline-primary" onclick="document.getElementById('wk').scrollIntoView()">save</button> </div>
           </div>
           <div class="card-body p-0" id="formula_display" style="font-size:14px">
           </div>
