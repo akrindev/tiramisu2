@@ -47,13 +47,13 @@
 
           <div class="form-group">
             <label class="form-label">Tambahan / Note (Monster) <small class="text-muted">boleh kosong</small></label>
-            <textarea name="noteMonster" rows="5" class="form-control" placeholder="Status Monster . . .">{{ $data->note['monster'] }}</textarea>
+            <textarea name="noteMonster" rows="5" class="form-control" placeholder="Status Monster . . .">{{ optional($data->note)['monster'] }}</textarea>
           </div>
 
 
           <div class="form-group">
             <label class="form-label">Tambahan / Note (NPC) <small class="text-muted">boleh kosong</small></label>
-            <textarea name="noteNpc" rows="5" class="form-control" placeholder="Status NPC . . .">{{ $data->note['npc'] }}</textarea>
+            <textarea name="noteNpc" rows="5" class="form-control" placeholder="Status NPC . . .">{{ optional($data->note)['npc'] }}</textarea>
           </div>
 
 
