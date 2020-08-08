@@ -10,7 +10,7 @@
 @endpush
 
 @section('content')
-<div class="my-5">
+<div class="my-5" onload="App.loadFromStorage()">
 
   <div class="container">
 
@@ -80,7 +80,7 @@
             </div>
 
             <div class="form-group">
-              <button class="btn btn-outline-primary btn-pill m-1" onclick="start_stat()">Start!</button>
+              <button class="btn btn-outline-primary btn-pill m-1" onclick="App.spawn();setTimeout(() => { document.getElementById('workspace').scrollIntoView() }, 400)">Start!</button>
 
               <a href="/fill_stats" class="btn btn-pill btn-outline-warning m-1"><i class="fe fe-settings"></i> Manual formula</a>
 
@@ -93,6 +93,16 @@
           </div>
         </div>
       </div>
+        <div class="col-md-4 mb-5">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">WorkSpace</h3>
+                </div>
+                <div class="card-body p-3">
+                    <div id="navigation_bar"></div>
+                </div>
+            </div>
+        </div>
       <div class="w-100"></div>
       <div class="col-md-5 mb-5 hidden">
         <div class="card">
@@ -112,7 +122,7 @@
           <div class="card-header">
             <h3 class="card-title">Formula</h3>
           </div>
-          <div class="card-body p-3" id="formula_display">
+          <div class="card-body p-0" id="formula_display" style="font-size:14px">
           </div>
         </div>
       </div>
@@ -122,7 +132,7 @@
           <div class="card-header">
             <h3 class="card-title">Material Used</h3>
           </div>
-          <div class="card-body p-3" id="material_display">
+          <div class="card-body p-0" id="material_display">
           </div>
         </div>
       </div>
@@ -137,25 +147,7 @@
 
   </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="saveImgModal" tabindex="-1" role="dialog" aria-labelledby="saveImgModalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="saveImgModalTitle">Save As Image</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        </button>
-      </div>
-      <div class="modal-body">
-        <img src="" id="imgsaved">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <a class="btn btn-primary" id="dl-image">Download</a>
-      </div>
-    </div>
-  </div>
-</div>
+
 @endsection
 
 @section('head')
@@ -183,9 +175,9 @@
 @endsection
 
 @section('footer')
-
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="/assets/js/vendors/html2canvas.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="/assets/js/saveFormula.js"></script>
 <script src="/assets/js/newfill.js"></script>
 
 @endsection
