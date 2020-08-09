@@ -22,7 +22,7 @@
                             <th width="35%"> Highest Mats </th>
                             <td> {{ $formula->highest_mats }} </td>
                         </tr>
-                        <tr class="{{ $formula->success_rate === 100 ? 'text-success' : 'text-danger'}}">
+                        <tr class="{{ $formula->success_rate < 100 ? 'text-danger' : 'text-success'}}">
                             <th width="35%"> Success Rate </th>
                             <td> {{ $formula->success_rate }}%</td>
                         </tr>

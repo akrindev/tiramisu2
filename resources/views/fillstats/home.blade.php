@@ -22,6 +22,10 @@
           Simulasi Fill Stats <a href="/fill_stats/calculator">Updated</a>
       </div>
 
+      <div class="mb-2">
+      	@includeUnless(app()->isLocal(), 'inc.ads_article')
+      </div>
+
       	@livewire('formula')
 
 

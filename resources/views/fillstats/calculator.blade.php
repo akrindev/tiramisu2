@@ -82,7 +82,7 @@
             <div class="form-group">
               <button class="btn btn-outline-primary btn-pill m-1" onclick="App.spawn();setTimeout(() => { document.getElementById('workspace').scrollIntoView() }, 400)">Start!</button>
 
-              <a href="/fill_stats" class="btn btn-pill btn-outline-warning m-1"><i class="fe fe-settings"></i> Manual formula</a>
+              <a href="/fill_stats" class="btn btn-pill btn-outline-warning m-1"><i class="fe fe-folder"></i> Explore Formula</a>
 
             </div>
 
@@ -103,12 +103,13 @@
                     Save your formula to server <br />
                     <div class="form-group">
                         <label class="form-label">Note</label>
-                        <textarea class="form-control form-control-sm" id="note" maxlength="40" placeholder="title max 40 charachter"></textarea>
+                        <input type="text" class="form-control" id="note" maxlength="40" placeholder="title max 40 charachter">
                     </div>
-
+                    @if(!session()->has('data'))
                     <div class="form-group">
-                        <button class="btn btn-outline-primary btn-pill" id="save" onClick="Cloud.send()">Save</button>
+                        <button class="btn btn-primary btn-pill" id="save" onClick="Cloud.send()">Save</button>
                     </div>
+                    @endif
 
                     <hr class="my-2">
 
@@ -144,7 +145,7 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Formula</h3>
-              <div class="card-options"> <button class="btn btn-sm btn-outline-primary" onclick="document.getElementById('wk').scrollIntoView()">save</button> </div>
+              <div class="card-options"> <button class="btn btn-sm btn-outline-primary" onclick="document.getElementById('wk').scrollIntoView();document.getElementById('note').focus()">save</button> </div>
           </div>
           <div class="card-body p-0" id="formula_display" style="font-size:14px">
           </div>

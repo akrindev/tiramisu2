@@ -357,7 +357,7 @@ class Slot {
         this.applyColouration();
     }
 
-    stepToText() {
+    stepToText(save = false) {
         let positive = this.futureStat > 0 ? '+' : ''
         let text = this.stat_name
 
@@ -369,7 +369,7 @@ class Slot {
             text = `${text} ${positive}${this.futureStat}`
         }
 
-        text = `<span class="d-inline-block ${this.futureStat < 0 ? 'text-danger' : ''} mr-1"> ${text} </span>`
+        text = `<span class="${save ? 'd-block' : 'd-inline-block'} ${this.futureStat < 0 ? 'text-danger' : ''} mr-1"> ${text} </span>`
 
         return text
     }
@@ -653,13 +653,15 @@ class Stat {
     updateFormulaDisplay() {
         let display = this.steps.getDisplay();
         let final = ''
+        let finalSave = ''
 
         for(let slot of this.slots) {
             if(!slot.stat_name) continue;
             final += slot.stepToText();
+            finalSave += slot.stepToText(true)
         }
 
-        Cloud.setFinal(final)
+        Cloud.setFinal(finalSave)
 
         display += `<div class="px-3 pt-2"><b class="${this.getSuccessRate() === 100 ? 'text-success' : 'text-danger'}">Success Rate: ${this.getSuccessRate()}% </b> </div>`;
 
