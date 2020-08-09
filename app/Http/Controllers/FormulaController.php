@@ -22,6 +22,7 @@ class FormulaController extends Controller
             'note'		=> request()->note,
             'final_step'=> request()->final,
             'body'		=> request()->body,
+            'type'		=> request()->type,
             'starting_pot'	=> request()->starting_pot,
             'highest_mats'	=> request()->highest_mats,
             'success_rate'	=> request()->success_rate

@@ -52,12 +52,12 @@
               <label class="form-label">Type</label>
               <div class="selectgroup w-100">
                  <label class="selectgroup-item">
-                     <input onclick="document.querySelector('#recipe_pot').value = 46" type="radio" value="w" class="selectgroup-input" checked="false" name="weap_arm" id="weap_arm">
+                     <input onclick="document.querySelector('#recipe_pot').value = 46" type="radio" value="w" class="selectgroup-input" checked="true" name="weap_arm" id="weap_arm">
                             <span class="selectgroup-button selectgroup-button-icon">Weapon</span>
                  </label>
 
                  <label class="selectgroup-item">
-                     <input onclick="document.querySelector('#recipe_pot').value = 44" type="radio" value="a" checked="true" class="selectgroup-input" name="weap_arm" id="weap_arm">
+                     <input onclick="document.querySelector('#recipe_pot').value = 44" type="radio" value="a" checked="false" class="selectgroup-input" name="weap_arm" id="weap_arm">
                             <span class="selectgroup-button selectgroup-button-icon">Armor</span>
                  </label>
               </div>
@@ -112,11 +112,11 @@
 
                     <hr class="my-2">
 
-			<div class="dimmer active">
+			<div class="dimmer">
   				<div class="loader"></div>
   				<div class="dimmer-content">
                     <div id="saved-formula" class="o-auto">
-                    	Login untuk melihat formula yang telah kamu simpan
+                        <a href="/fb-login">Login</a> untuk melihat formula yang telah kamu simpan <br />
                     </div>
   				</div>
 			</div>
@@ -204,4 +204,13 @@
 <script src="/assets/js/saveFormula.js"></script>
 <script src="/assets/js/newfill.js"></script>
 
+@if(session()->has('data'))
+<script>
+	App.getFromCloud({{ session('data') }});
+
+    @auth
+	Cloud.loadSavedFormula();
+    @endauth
+</script>
+@endif
 @endsection

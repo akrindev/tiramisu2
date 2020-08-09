@@ -115,5 +115,3 @@ class Storage {
 }
 
 const Cloud = new Storage();
-
-Cloud.loadSavedFormula();
