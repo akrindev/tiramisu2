@@ -6,6 +6,9 @@
 Route::get('/', 'FillController@index');
 Route::get('/calculator', 'FillController@calculator');
 Route::post('/save', 'FormulaController@store');
+Route::get('/load', 'FormulaController@loadSaved');
+Route::get('/get/{id}', 'FormulaController@getFormula');
+
 // admin, fill stats
 Route::middleware('admin')->group(function(){
   Route::get('/add', 'FillController@add');

@@ -107,18 +107,22 @@
                     </div>
 
                     <div class="form-group">
-                        <button class="btn btn-primary" id="save" onClick="Cloud.send()">Save</button>
+                        <button class="btn btn-outline-primary btn-pill" id="save" onClick="Cloud.send()">Save</button>
                     </div>
 
                     <hr class="my-2">
-                    @auth
-                    	@foreach(auth()->user()->formulas as $formula)
-                    <i class="fe fe-chevron-right mr-1"></i> {{ $formula->note }} (<span class="text-primary">show</span>) <br />
-                    	@endforeach
-                    @else
 
+			<div class="dimmer active">
+  				<div class="loader"></div>
+  				<div class="dimmer-content">
+                    <div id="saved-formula" class="o-auto">
                     	Login untuk melihat formula yang telah kamu simpan
-                    @endauth
+                    </div>
+  				</div>
+			</div>
+
+
+
                 </div>
             </div>
         </div>
@@ -136,7 +140,7 @@
         </div>
       </div>
 
-      <div class="col-md-4 mb-5 hidden">
+      <div class="col-md-4 mb-5 hidden" id="show-formula">
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Formula</h3>

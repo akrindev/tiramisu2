@@ -51,7 +51,7 @@ class Storage {
         let btn = document.getElementById("save")
         btn.classList.add(...this.loading)
 
-        if(this.display !== null) {
+        if(this.max_step === 0) {
             swal("Failed", "Kamu belum membuat perubahan", "error")
 
             btn.classList.remove(...this.loading)
@@ -63,6 +63,8 @@ class Storage {
 
     saveToCloud() {
         let btn = document.getElementById("save")
+        let text = document.getElementById("note")
+
         axios({
         	method: 'POST',
             url: '/fill_stats/save',
@@ -84,8 +86,34 @@ class Storage {
         }).catch(e => alert(e))
         .finally((e) => {
         	btn.classList.remove(...this.loading)
+
+            btn.hidden = true
+            text.disabled = true
+
+            this.loadSavedFormula()
         })
+    }
+
+    loadSavedFormula() {
+        let workspace = document.getElementById("saved-formula")
+        let dimmer = document.querySelector(".dimmer")
+        let buffer = ''
+
+        dimmer.classList.add('active')
+
+        axios.get('/fill_stats/load')
+        .then(response => {
+
+            for(let show of response.data) {
+                buffer += `<i class="fe fe-chevron-right"></i> ${show.note} (<span class="text-primary cursor-pointer" style="cursor:pointer" onclick="App.getFromCloud(${show.id})"> show </span>) <br /> <small class="text-muted"> ${show.created} </small><br />`
+            }
+            workspace.innerHTML = buffer
+
+            dimmer.classList.remove('active')
+        }).catch(e => alert(e))
     }
 }
 
 const Cloud = new Storage();
+
+Cloud.loadSavedFormula();

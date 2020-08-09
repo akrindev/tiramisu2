@@ -665,8 +665,6 @@ class Stat {
 
         let buffer = `<div class="px-3 pt-3"><b>Type:</b> <b class="${this.type === 'w' ? 'text-success' : 'text-primary'}">${this.type === 'w' ? 'Weapon' : 'Armor'}</b> <br /> <b>Starting Potential:</b> ${this.starting_pot}</div><div class="d-block px-3 mb-2"><b>Final Stats: </b><br /> <div style="background-color:#f5f9ff;padding:2px 4px;border:1px solid #ddd;border-radius:3px">${final} </div></div> ${display}`;
 
-        Cloud.setDisplay(buffer)
-
         document.getElementById('formula_display').innerHTML = buffer
 
         document.getElementById('redo_button').disabled = !this.steps.redo_queue.length;
@@ -1118,6 +1116,39 @@ class MainApp {
 
     getCurrent() {
         return this.stats;
+    }
+
+    getFromCloud(id) {
+
+        let data = {}
+        let dimmer = document.querySelector(".dimmer")
+        let show = document.getElementById("show-formula")
+
+        dimmer.classList.add('active')
+
+        axios.get(`/fill_stats/get/${id}`)
+        .then((response) => {
+        	data = JSON.parse(JSON.stringify(response.data))
+
+            this.stats = deep_clone(data)
+
+            this.spawn().autoLoad(data)
+
+            let current = this.getCurrent()
+
+        	current.updateFormulaDisplay();
+        	current.updateMaterialCosts();
+        	current.updatePotentialSuccessDisplay();
+
+        	for (let slot of current.slots) {
+            	slot.syncDisplayWithValues();
+        	}
+
+            show.scrollIntoView()
+        }).catch(e => alert(e))
+        .finally(e => {
+        	dimmer.classList.remove('active')
+        });
     }
 
     setCurrent(value) {

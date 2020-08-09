@@ -29,4 +29,25 @@ class FormulaController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function getFormula($id)
+    {
+        $formula = Formula::find($id)->body;
+
+        return response()->json($formula);
+    }
+
+    public function loadSaved()
+    {
+        $formulas = Formula::select('id', 'note', 'created_at')
+            ->whereUserId(auth()->id())
+            ->latest()
+            ->get();
+
+        $formulas->map(function($formula) {
+        	$formula->created = $formula->created_at->format('d-M-Y H:i:s');
+        });
+
+        return $formulas;
+    }
 }
