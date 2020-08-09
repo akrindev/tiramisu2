@@ -3,12 +3,12 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Livewire\withPagination;
+use Livewire\WithPagination;
 use App\Formula as WorkSpace;
 
 class Formula extends Component
 {
-    use withPagination;
+    use WithPagination;
 
     public function render()
     {
