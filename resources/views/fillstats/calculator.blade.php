@@ -207,10 +207,12 @@
 @if(session()->has('data'))
 <script>
 	App.getFromCloud({{ session('data') }});
-
-    @auth
-	Cloud.loadSavedFormula();
-    @endauth
 </script>
 @endif
+
+@auth
+<script>
+	Cloud.loadSavedFormula();
+ </script>
+@endauth
 @endsection
