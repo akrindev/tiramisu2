@@ -37,8 +37,7 @@
     </div>
 
     <div class="row equal justify-content-center">
-
-      <div class="col-md-6 mb-5">
+      <div class="col-md-6 mb-5" {{ session()->has('data') ? 'style="display:none"' : '' }}>
         <div class="card">
           <div class="card-header">
             <h3 class="card-title"> Resep status </h3>
@@ -93,6 +92,7 @@
           </div>
         </div>
       </div>
+
         <div class="col-md-4 mb-5" id="wk">
             <div class="card">
                 <div class="card-header">
@@ -116,8 +116,8 @@
 			<div class="dimmer">
   				<div class="loader"></div>
   				<div class="dimmer-content">
-                    <div id="saved-formula" class="o-auto">
-                        <a href="/fb-login">Login</a> untuk melihat formula yang telah kamu simpan <br />
+                    <div id="saved-formula" class="o-auto" style="height:330px">
+                        Save public atau <a href="/fb-login">Login</a> untuk melihat formula yang telah kamu simpan <br />
                     </div>
   				</div>
 			</div>
