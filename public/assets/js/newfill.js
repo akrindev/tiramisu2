@@ -684,7 +684,7 @@ class Stat {
 
         const confirm = `<button onclick="App.getCurrent().confirm()" id='confirm_button' class="btn btn-outline-primary btn-pill" disabled>Confirm</button>`;
         const repeat = `<button id="repeat_button" onclick="App.getCurrent().repeat()" class="btn btn-outline-warning btn-pill" disabled>Repeat</button>`;
-        const undo = `<button onclick="App.getCurrent().undo()" class="btn btn-outline-success btn-pill" id="undo_button" disabled>Undo</button>`;
+        const undo = `<button onclick="App.getCurrent().confirm();App.getCurrent().undo()" class="btn btn-outline-success btn-pill" id="undo_button" disabled>Undo</button>`;
         const redo = `<button onclick="App.getCurrent().redo()" disabled id="redo_button" class="btn btn-outline-secondary btn-pill">Redo</button>`;
 
         const display = `<div class="col-12 text-center mb-2 text-weight-bold" id="potential_display">Potential: ${potential} </div> ${buffer} <div class="col-12 mt-2"><strong class="text-center" id="success_rate_display">Success Rate: ${success_rate}% </div><br/>${confirm} ${repeat} ${undo} ${redo}</div>`
