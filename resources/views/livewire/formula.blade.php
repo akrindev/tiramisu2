@@ -1,5 +1,5 @@
 <div>
-    <h4 class="text-muted text-center"> Results {{ $formulas->count() }}  formula(s) </h4>
+    <h4 class="text-muted text-center"> Results {{ App\Formula::count() }}  formula(s) </h4>
 <div class="row">
     @foreach($formulas as $formula)
     <div class="col-md-4">
