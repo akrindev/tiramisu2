@@ -48,7 +48,7 @@
                         		@break
                         @endswitch
 
-                        <a href="/avatar/{{ $list->id }}"> {{ $list->title }} </a></h4>
+                        <a href="/avatar/{{ $list->avatars[0]->id }}"> {{ $list->title }} </a></h4>
                       <div>
                       <span>@switch($list->rate)
                           		@case(1)
