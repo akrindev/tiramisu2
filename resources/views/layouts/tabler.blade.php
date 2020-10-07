@@ -217,7 +217,7 @@
 
 
                   <li class="nav-item dropdown">
-                    <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-folder"></i>Alat / Tools</a>
+                    <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-folder"></i>Tools</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
 
                       <a href="/fill_stats" class="dropdown-item">Fill stats formula</a>
@@ -243,6 +243,11 @@
 
                   <li class="nav-item">
                     <a href="/gallery" class="nav-link"><i class="fe fe-image"></i> Gallery</a>
+                  </li>
+
+
+                  <li class="nav-item">
+                    <a href="/avatar" class="nav-link"><i class="fe fe-shopping-bag"></i> Avatar</a>
                   </li>
 
                   <li class="nav-item">

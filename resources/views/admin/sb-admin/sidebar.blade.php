@@ -94,15 +94,30 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#npc" aria-expanded="true" aria-controls="npc">
           <i class="fas fa-fw fa-user-shield"></i>
           <span>NPC</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="npc" class="collapse" aria-labelledby="npc" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Non Player Character:</h6>
             <a class="collapse-item" href="/npc/store">Tambah NPC</a>
             <a class="collapse-item" href="/npc/store/quest">Tambah Quest</a>
+          </div>
+        </div>
+      </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#avatar" aria-expanded="true" aria-controls="avatar">
+          <i class="fas fa-fw fa-shopping-cart"></i>
+          <span>Avatar</span>
+        </a>
+        <div id="avatar" class="collapse" aria-labelledby="avatar" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Data avatar</h6>
+            <a class="collapse-item" href="/avatar/store">Tambah Avatar</a>
+            <a class="collapse-item" href="/avatar/list/store">Tambah Avatar List</a>
           </div>
         </div>
       </li>
@@ -112,6 +127,7 @@
           <i class="fas fa-fw fa-award"></i>
           <span>Tambah Emblem</span></a>
       </li>
+
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">

@@ -16,6 +16,9 @@ Route::view('/cb', 'cb');
 // dye routes
 Route::prefix('dye')->group(base_path('routes/dye.php'));
 
+// avatar
+Route::prefix('avatar')->group(base_path('routes/avatar.php'));
+
 // cooking routes
 Route::prefix('/cooking')->group(base_path('routes/cooking.php'));
 
