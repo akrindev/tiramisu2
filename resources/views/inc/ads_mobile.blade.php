@@ -1,10 +1,11 @@
-<div class="row container-fluid">
-<!-- mobile easy -->
-<ins class="adsbygoogle mb-5 text-center"
-     style="display:block;width:320px;height:50px"
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Mobile version -->
+<ins class="adsbygoogle mb-5"
+     style="display:block"
      data-ad-client="ca-pub-3650356173552443"
-     data-ad-slot="3422876827"></ins>
+     data-ad-slot="8584995088"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
 <script>
-(adsbygoogle = window.adsbygoogle || []).push({});
+     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-</div>

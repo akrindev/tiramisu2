@@ -40,7 +40,7 @@ Warna senjata berubah-ubah pada tanggal pertama setiap bulannya.
         </div>
       </div>
 
-        @includeUnless(app()->isLocal(), 'inc.ads_article')
+        @includeUnless(app()->isLocal(), 'inc.ads_mobile')
 
         <div class="card">
           <div class="card-header">

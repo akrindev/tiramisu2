@@ -37,7 +37,7 @@
     </div>
 
     <div class="row equal justify-content-center">
-      <div class="col-md-6 mb-5" {{ session()->has('data') ? 'style="display:none"' : '' }}>
+      <div class="col-md-5 mb-5" {{ session()->has('data') ? 'style="display:none"' : '' }}>
         <div class="card">
           <div class="card-header">
             <h3 class="card-title"> Resep status </h3>
@@ -127,6 +127,11 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-3 mb-5" id="ads">
+        	@includeUnless(app()->isLocal(), 'inc.ads_article')
+        </div>
+
       <div class="w-100"></div>
       <div class="col-md-5 mb-5 hidden">
         <div class="card">
@@ -167,7 +172,7 @@
     <!-- ads -->
     <div class="row">
       <div class="col-12">
-        @includeUnless(app()->isLocal(), 'inc.ads_article')</div>
+        @includeUnless(app()->isLocal(), 'inc.ads_mobile')</div>
     </div>
 
   </div>

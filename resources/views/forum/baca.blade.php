@@ -39,16 +39,16 @@ $tags = explode(',', $tags);
 	<div class="row">
 	 <div class="col-md-8">
 
+   <a href="/forum" class="btn btn-sm mb-3 btn-outline-secondary btn-pill"> <i class="fe fe-chevrons-left"></i> Back to forum</a>
+
+   <div class="mb-3">
+     <h3 class="mt-0 mb-5"> {{ $data->judul }} </h3>
+
      @if(strlen(strip_tags((toHtml($data->body)))) > 320)
  	 	@includeUnless(app()->isLocal(), 'inc.ads_article')
      @else
   		@includeUnless(app()->isLocal(), 'inc.ads_mobile')
      @endif
-
-   <a href="/forum" class="btn btn-sm mb-3 btn-outline-secondary btn-pill"> <i class="fe fe-chevrons-left"></i> Back to forum</a>
-
-   <div class="mb-3">
-     <h3 class="mt0 mb-0"> {{ $data->judul }} </h3>
    </div>
 
         <div class="card p-0">

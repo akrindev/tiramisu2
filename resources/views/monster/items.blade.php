@@ -153,7 +153,7 @@
 
         {{ $data->links() }}
 
-        @includeUnless(app()->isLocal(), 'inc.ads_article')
+        @includeUnless(app()->isLocal(), 'inc.ads_mobile')
       </div>
 
       <div class="col-md-4">
