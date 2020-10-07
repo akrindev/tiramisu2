@@ -26,7 +26,7 @@ class AvatarController extends Controller
     // admin
     public function getListAvatarJson()
     {
-        $lists = AvatarList::where('title', 'like', '%'. request()->q .'%')->paginate(15);
+        $lists = AvatarList::where('title', 'like', '%'. request()->q .'%')->paginate(20);
 
         return $lists;
     }
@@ -45,9 +45,9 @@ class AvatarController extends Controller
 
         $make = Image::make($file);
 
-        $make->text('toram-id.info',15,30, function($font) {
-        	$font->file(3);
-            $font->size(34);
+        $make->text('toram-id.info',15,25, function($font) {
+        	$font->file(public_path('/assets/fonts/roboto.ttf'));
+            $font->size(20);
             $font->color('#ffffff');
             $font->align('left');
             $font->valign('bottom');
@@ -59,7 +59,7 @@ class AvatarController extends Controller
 
         $avatar = Avatar::create([
         	'title'		=> request('title'),
-            'title_en'	=> request('title_en'),
+            'title_en'	=> request('title_en') ?? request('title'),
             'cover'		=> $location
         ]);
 
@@ -81,8 +81,8 @@ class AvatarController extends Controller
 
         $make = Image::make($file);
 
-        $make->text('toram-id.info',15,30, function($font) {
-        	$font->file(3);
+        $make->text('toram-id.info', 20, 50, function($font) {
+        	$font->file(public_path('/assets/fonts/roboto.ttf'));
             $font->size(34);
             $font->color('#ffffff');
             $font->align('left');
@@ -93,7 +93,7 @@ class AvatarController extends Controller
 
         $avatar = AvatarList::create([
         	'title'		=> request('title'),
-            'title_en'	=> request('title_en'),
+            'title_en'	=> request('title_en') ?? request('title'),
             'rate'		=> request('rate'),
             'value'		=> request('value'),
             'type'		=> request('type'),
@@ -126,9 +126,9 @@ class AvatarController extends Controller
 
             $make = Image::make($file);
 
-            $make->text('toram-id.info',15,30, function($font) {
-                $font->file(3);
-                $font->size(34);
+            $make->text('toram-id.info',15,25, function($font) {
+                $font->file(public_path('/assets/fonts/roboto.ttf'));
+                $font->size(20);
                 $font->color('#ffffff');
                 $font->align('left');
                 $font->valign('bottom');
@@ -141,7 +141,7 @@ class AvatarController extends Controller
 
         $avatar->update([
         	'title'		=> request('title'),
-            'title_en'	=> request('title_en'),
+            'title_en'	=> request('title_en') ?? request('title'),
             'cover'		=> $location ?? $avatar->cover
         ]);
 
@@ -171,8 +171,8 @@ class AvatarController extends Controller
 
             $make = Image::make($file);
 
-            $make->text('toram-id.info',15,30, function($font) {
-                $font->file(3);
+            $make->text('toram-id.info', 20, 50, function($font) {
+                $font->file(public_path('/assets/fonts/roboto.ttf'));
                 $font->size(34);
                 $font->color('#ffffff');
                 $font->align('left');
@@ -186,7 +186,7 @@ class AvatarController extends Controller
 
         $avatar->update([
         	'title'		=> request('title'),
-            'title_en'	=> request('title_en'),
+            'title_en'	=> request('title_en') ?? request('title'),
             'rate'		=> request('rate'),
             'value'		=> request('value'),
             'type'		=> request('type')

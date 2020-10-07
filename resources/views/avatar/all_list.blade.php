@@ -48,7 +48,7 @@
                         		@break
                         @endswitch
 
-                        <a href="/avatar/{{ $list->avatars[0]->id }}"> {{ $list->title }} </a></h4>
+                        <a href="/avatar/{{ $list->avatars[0]->id  ?? ''}}"> {{ $list->title }} </a></h4>
                       <div>
                       <span>@switch($list->rate)
                           		@case(1)
@@ -69,7 +69,7 @@
                             @endswitch
 
                           </span><span class="ml-2">{{ $list->value }}%</span></div>
-                     <div><a href="/avatar/{{ $list->avatars[0]->id }}"> {{ $list->avatars[0]->title }} </a></div>
+                     <div><a href="/avatar/{{ $list->avatars[0]->id ?? '' }}"> {{ $list->avatars[0]->title ?? '' }} </a></div>
                       @if(auth()->check() && auth()->user()->isAdmin())
                       <a href="/avatar/edit/list/{{ $list->id }}">edit</a>
                       @endif
