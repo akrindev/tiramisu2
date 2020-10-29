@@ -5,14 +5,14 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\Searchable;
 
+use App;
+
 class Monster extends Model
 {
   	use Searchable;
 
-    protected $fillable = [
-    	'map_id', 'element_id', 'name', 'level', 'type',
-      	'hp', 'pet', 'picture', 'xp'
-    ];
+    protected $guarded = [];
+
   	public $timestamps = false;
 
   	public function drops()
@@ -36,5 +36,14 @@ class Monster extends Model
   	public function getHpAttribute($value)
     {
       return is_null($value) ? null : number_format($value);
+    }
+
+    public function getNameAttribute()
+    {
+        if(App::isLocale('en')) {
+            return $this->attributes['name_en'];
+        }
+
+        return $this->attributes['name'];
     }
 }

@@ -24,6 +24,13 @@
             <input type="text" class="form-control" name="nama" required>
           </div>
 
+
+
+          <div class="form-group">
+            <label class="form-label">Name English *optional</label>
+            <input type="text" class="form-control" name="name_en">
+          </div>
+
       <div class="form-group">
         <label class="form-label">Type</label>
 <div class="selectgroup selectgroup-pills">

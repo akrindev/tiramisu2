@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Pagination\Paginator;
 
+use App;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
         {
      		\URL::forceScheme('https');
         }
+
+        App::setLocale('id');
 
         Blade::directive('canonical', function($exp) {
         	return "<?php echo canonical()->toHtml(); ?>";

@@ -10,7 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::view('/', 'toram');
+
+/*
+| -- English Route
+|---
+*/
+Route::prefix('en')->middleware('locale:en')->group(base_path('routes/en.php'));
+
+
 Route::view('/cb', 'cb');
 
 // dye routes

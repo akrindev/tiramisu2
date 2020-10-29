@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App;
 use App\Dye;
 use App\Monster;
 use App\MonthlyDye;
@@ -11,21 +12,7 @@ class DyeController extends Controller
 {
     public function home()
     {
-      $dyes = MonthlyDye::with([
-        'monster', 'dye'
-      ])->whereMonth('created_at', now()->month)
-        ->whereYear('created_at', now()->year)
-        ->get()
-        ->sortBy('monster.name');
-
-      $dyes->map(function($item) {
-      	$item->monster->name = explode('(', $item->monster->name)[0];
-
-        return $item;
-      });
-
-
-      return view('dye.home', compact('dyes'));
+      return view('dye.home');
     }
 
   	public function store()

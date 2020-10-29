@@ -1,19 +1,13 @@
 @extends('layouts.tabler')
 
 
-@section('title', 'Info Dye Bulan ' . now()->formatLocalized('%B %Y'))
-@section('description', 'Toram Online Dye Bulanan, di update setiap bulan')
+@section('title', 'Info Dye ' . now()->formatLocalized('%B %Y'))
+@section('description', 'Toram Online Monthly Dye (Dye Bulanan)')
 
 
 @push('canonical')
 	@canonical
 @endpush
-
-@php
-
-$let = 0;
-
-@endphp
 
 @section('content')
 <div class="my-5">
@@ -26,56 +20,7 @@ $let = 0;
 
       <div class="col-md-8">
         @includeUnless(app()->isLocal(), 'inc.ads_article')
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title"> Dye bulan {{ now()->formatLocalized('%B %Y') }} </h3>
-        </div>
-        <div class="card-body p-3" style="font-size:14px;font-weight:400">
-          Kamu bisa mendapatkan senjata berwarna (Weapon dye) pada tingkat kesulitan Nightmare atau Ultimate mode.
-di mode Nightmare senjata tidak bisa di trade, sedangkan di mode Ultimate senjata sudah auto craft dari boss battle. shield dye juga drop di mode Nightmare atau Ultimate.
-<br> <br>
-Perolehan type dye bergantung pada senjata yg dipakai regumu. Jika 4 member regumu memakai senjata berbeda 1h, 2h, staff, katana. maka dye yang di dapat juga 1h, 2h, staff, katana. tetapi jika regumu memakai 1h semua, dye yg di dapat juga hanya 1h saja. di sarankan untuk memakai senjata yang berbeda beda agar type senjata dye yang di peroleh juga berbeda.<br><br>
-
-Warna senjata berubah-ubah pada tanggal pertama setiap bulannya.
-        </div>
-      </div>
-
-        @includeUnless(app()->isLocal(), 'inc.ads_mobile')
-
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Dye bulan {{ now()->formatLocalized('%B %Y') }}</h3>
-          </div>
-
-          <div class="card-table">
-          <table class="card-table table table-striped" style="font-size:14px">
-            @if($dyes->count())
-          <caption class="p-3">  Dye bulan {{ now()->formatLocalized('%B %Y') }} </caption>
-          <thead>
-            <tr>
-              <th> Nama Boss </th>
-              <th> A </th>
-              <th> B </th>
-              <th> C </th>
-            </tr>
-          </thead>
-            @endif
-          @forelse($dyes as $dye)
-          <tr>
-            <td class="p-2"> <div><b><a href="/monster/{{ $dye->monster->id }}" style="color:black">{{ $dye->monster->name }}</a></b></div>
-
-              @auth @if(auth()->user()->isAdmin())[<a href="#" class="dd text-danger" data-id="{{ $dye->id }}">hapus</a>] @endif @endauth
-              </td>
-            <td class="p-2" {!! $dye->type == 'a' ? "style='color:white;text-shadow:0 0 8px black, 0 0 4px blue;text-align:center;background:#{$dye->dye->hex}'" : '' !!}> {{ $dye->type == 'a' ? $dye->dye->color : '' }}</td>
-            <td class="p-2" {!! $dye->type == 'b' ? "style='color:white;text-shadow:0 0 8px black, 0 0 4px blue;text-align:center;background:#{$dye->dye->hex}'" : '' !!}> {{ $dye->type == 'b' ? $dye->dye->color : '' }}</td>
-          	<td class="p-2" {!! $dye->type == 'c' ? "style='color:white;text-shadow:0 0 8px black, 0 0 4px blue;text-align:center;background:#{$dye->dye->hex}'" : '' !!}> {{ $dye->type == 'c' ? $dye->dye->color : '' }}</td>
-          </tr>
-          @empty
-            <tr class="p-5 font-weight-bold"><td> Wait for update</td></tr>
-          @endforelse
-        </table>
-          </div>
-        </div>
+        <livewire:dye/>
       </div>
 
       <div class="col-md-4">
@@ -141,4 +86,13 @@ Warna senjata berubah-ubah pada tanggal pertama setiap bulannya.
 </script>
 @endif
 @endauth
+@endsection
+
+
+@section('head')
+	@livewireStyles
+@endsection
+
+@section('footer')
+	@livewireScripts
 @endsection

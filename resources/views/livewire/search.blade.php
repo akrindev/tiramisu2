@@ -1,38 +1,48 @@
-@extends('layouts.tabler')
+<div class="col-md-8">
 
-@section('title', 'Toram drop list ' . __($type))
-@section('image', to_img())
-
-@push('canonical')
-	@canonical
-@endpush
-
-@section('content')
-<div class="my-5">
-  <div class="container">
-    <div class="page-header">
-      <h1 class="page-title">Toram {{ __($type) }}</h1>
+    <div class="card">
+        <div class="card-body p-3">
+            <div class="selectgroup w-100">
+                <label class="selectgroup-item">
+                    <input type="radio" name="value" value="id" class="selectgroup-input" checked="" wire:click="switchLocalization('id')">
+                    <span class="selectgroup-button">Indonesia</span>
+                </label>
+                <label class="selectgroup-item">
+                    <input type="radio" name="value" value="en" class="selectgroup-input" wire:click="switchLocalization('en')">
+                    <span class="selectgroup-button">English</span>
+                </label>
+            </div>
+        </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-8 -mb-5">
-        @include('inc.cari')
-      </div>
-
-      <div class="col-md-8">
-       @includeUnless(app()->isLocal(), 'inc.ads_article')
-
-       @forelse($data as $item)
-
-        @if($loop->index == 10)
-   			@includeUnless(app()->isLocal(), 'inc.ads.infeed')
+        @if(strpos(strtolower($q), 'dye') !== false)
+        <div class="card">
+          <div class="card-body p-3" style="font-size:15px;font-weight:400">
+            Barangkali kamu mencari <b><a href="/dye">Info dye bulan {{ now()->formatLocalized('%B %Y') }}</a></b>
+            </div>
+        </div>
         @endif
 
+          @if(count($forums) == 0 && count($drops) == 0 && count($monsters) == 0 && count($maps) == 0)
+        <div class="card">
+          <div class="card-body p-3" style="font-size:15px;font-weight:400">
+            <b>Pencarian <u>{{ $q }}</u> tidak di temukan.</b>
+            <div class="my-3"></div>
+
+            Barangkali kamu mencari <b><a href="/leveling">Toram leveling finder</a></b>
+            </div>
+        </div>
+          @else
+
+          @includeWhen(!app()->isLocal(), 'inc.ads_article')
+
+          @endif
+
+       @forelse($drops as $item)
         <div class="card">
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
-            <div>
               <img src="{{ $item->dropType->url }}" alt="{{ $item->dropType->name }}" class="avatar avatar-sm mr-1" style="max-width:21px;max-height:21px">
-              <b class="h6"><a class="text-primary" href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/item/{{ $item->id }}">{{ $item->name }}</a></b>
+              <b class="h6"><a class="text-primary" href="/item/{{ $item->id }}">{{ $item->name }}</a></b>
            @if (auth()->check() && auth()->user()->isAdmin())
               <a href="/item/{{ $item->id }}/edit" class="btn btn-sm btn-outline-secondary">edit</a>
            @endif
@@ -40,7 +50,7 @@
             <div class="row">
             @if(! is_null($item->picture))
               <div class="col-md-3">
-              <img src="/img/ball-triangle.svg" data-src="//toram-id.info/{{ $item->picture }}" class="rounded my-2 d-block lazyload" width="180px" height="180px"> </div>
+              <img src="/img/ball-triangle.svg" data-src="/{{ $item->picture }}" class="rounded my-2 d-block lazyload" width="170px" height="170px"> </div>
             @endif
 
             @if(! is_null($item->note))
@@ -130,37 +140,109 @@
             @endif
              </div>
 
-            </div>
+            <!-- details -->
 
             <details>
               <summary class="text-danger">
-                <strong> {{ __('Bisa di peroleh dari') }}... </strong>
+                <strong>{{ __('Bisa di peroleh dari') }}... </strong>
               </summary>
 
               <div class="my-2">
                 @forelse($item->monsters as $monster)
                 <i class="fe fe-github mr-2"></i><a href="/monster/{{ $monster->id }}" class="mr-1">{{ $monster->name }} (Lv {{ $monster->level }})</a> <small><a class="text-muted" href="/peta/{{ $monster->map->id }}"> [{{ $monster->map->name }}]</a></small> <br >
                 @empty
-                  <i class="fe fe-eye mr-2"></i><a href="/item/{{ $item->id }}">{{ __('Lihat') }}... </a>
+                  <i class="fe fe-eye mr-2"></i><a href="/item/{{ $item->id }}">{{ __('Lihat') }} ... </a>
                 @endforelse
               </div>
             </details>
-          </div>
+
+            </div>
         </div>
-       @empty
-            <div class="h5">Tidak di temukan</div>
+        @empty
+
        @endforelse
 
-        {{ $data->links() }}
+
+        @includeUnless(app()->isLocal(), 'inc.ads_article')
+
+          @forelse ($monsters as $mons)
+        <div class="card">
+          <div class="card-body p-3" style="font-size:14px;font-weight:400">
+
+          <dl> <!-- dl start -->
+          <div class="">
+           <dt class="mb-1">
+           <b class="h6"> <a class="text-primary" href="/monster/{{ $mons->id }}">{{ $mons->name }} (Lv {{ $mons->level }}) </a>
+          @switch($mons->type)
+             @case(2)
+               <img src="/img/f_boss.png" alt="mini boss" style="display:inline;max-width:120px;max-height:15px;">
+               @break
+             @case(3)
+               <img src="/img/boss.png" class="boss" style="display:inline;max-width:120px;max-height:15px;">
+          @endswitch
+            </b>
+           </dt>
+            <dd>
+            <div class="row">
+               @if ($mons->picture != null)
+               <div class="col-md-3"><img src="/{{ $mons->picture }}" alt="{{ $mons->name }}" class="rounded my-2 d-block" width="170px" height="170px"></div>
+               @endif
+
+               <div class="col-md-9">
+               <b>Unsur:</b> <span> {{ ucfirst($mons->element->name) }}</span> <br>
+               <b>HP:</b> <span class="text-muted"> {{ $mons->hp ?? '-- unknown --' }} </span>
+
+              @if($mons->type == 3 || $mons->type == 2)
+                 <br>
+                <b>Leveling:</b> {{ $mons->level-3 }} <span class="text-muted">s/d</span> {{ $mons->level+3 }}
+              @endif
+                 <br>
+               <b>Peta: </b> <a href="/peta/{{ $mons->map->id }}">{{ $mons->map->name }}</a>
+               </div>
+            </div>
+            </dd>
+            </div>
+          </dl> <!-- // dl end -->
+          </div>
+        </div>
+          @empty
+          @endforelse
+
+
+                @if(count($maps))
+        <div class="card">
+          <div class="card-body p-3" style="font-size:14px;font-weight:400">
+            <div>
+              <strong class="h4">Peta</strong> <br>
+              @foreach($maps as $map)
+             <i class="fe fe-github mr-2"></i> <a href="/peta/{{ $map->id }}">{{ $map->name }}</a> <br>
+              @endforeach
+            </div>
+          </div>
+        </div>
+                @endif
 
         @includeUnless(app()->isLocal(), 'inc.ads_mobile')
-      </div>
 
-      <div class="col-md-4">
-      @include('inc.menu')
-      </div>
-    </div>
-  </div>
 
-</div>
-@endsection
+       @if(count($forums))
+        <div class="card">
+          <div class="card-body p-3" style="font-size:14px;font-weight:400">
+            <div>
+              <strong class="h4">Forum Artikel</strong> <br>
+
+              @foreach($forums as $forum)
+             <i class="fe fe-chevron-right mr-2"></i> <a href="/forum/{{ $forum->slug }}">{{ $forum->judul }}</a> <br>
+              @endforeach
+            </div>
+
+          </div>
+        </div>
+
+        @includeUnless(app()->isLocal(), 'inc.ads_mobile')
+       @endif
+
+        {{-- $drops->appends(['q' => request('q'), 'type' => request('type') ])->links() --}}
+
+
+      </div>

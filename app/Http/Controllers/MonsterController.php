@@ -203,6 +203,7 @@ class MonsterController extends Controller
 
 
     $mons->name	= request()->nama;
+    $mons->name_en	= request()->name_en ?? request()->nama;
     $mons->map_id	= request()->map;
     $mons->element_id	= request()->element;
     $mons->level	= request()->level;
@@ -244,6 +245,7 @@ class MonsterController extends Controller
   {
     $mons = Monster::create([
     	'name'	=> request()->nama,
+    	'name_en'	=> request()->name_en ?? request()->nama,
       	'map_id'	=> request()->map,
       	'element_id'	=> request()->element,
       	'level'	=> request()->level,

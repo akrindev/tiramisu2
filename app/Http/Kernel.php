@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
       //my middleware
 
         'admin' => \App\Http\Middleware\RedirectIfNotAdmin::class,
+        'locale' => \App\Http\Middleware\Locale::class,
     ];
 }

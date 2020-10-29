@@ -25,6 +25,11 @@
           <input type="text" name="name" class="form-control" value="{{ $data->name }}" required>
         </div>
 
+          <div class="form-group">
+          <label class="form-label">Name English *optional</label>
+          <input type="text" name="name_en" class="form-control" value="{{ $data->name_en }}">
+        </div>
+
         <div class="form-group">
           <label class="form-label">Type</label>
           <select name="type" id="select-type" class="form-control custom-select" required>

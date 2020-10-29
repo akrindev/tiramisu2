@@ -68,6 +68,7 @@ class ItemController extends Controller
       }
 
       $item->name		= request()->name;
+      $item->name_en	= request('name_en') ?? request('name');
       $item->drop_type_id = request()->type;
       $item->proses	= request()->proses;
       $item->sell		= request()->sell;
@@ -189,6 +190,7 @@ class ItemController extends Controller
 
       $dropType->drop()->create([
       	'name'		=> request()->name,
+        'name_en'	=> request()->name_en ?? request()->name,
         'proses'	=> request()->proses,
         'sell'		=> request()->sell,
         'note'		=> $note,

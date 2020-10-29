@@ -24,6 +24,11 @@
             <input type="text" class="form-control" name="nama" value="{{ $data->name }}" required>
           </div>
 
+          <div class="form-group">
+            <label class="form-label">Name English</label>
+            <input type="text" class="form-control" name="name_en" value="{{ $data->name_en }}" required>
+          </div>
+
       <div class="form-group">
         <label class="form-label">Type</label>
 <div class="selectgroup selectgroup-pills">
