@@ -19,12 +19,8 @@ class Dye extends Component
 
         $dyes->map(function($item) {
 
-            if(App::isLocale('en')) {
-                $item->monster->name = $item->monster->name_en;
-            }
-
             $item->monster->name = explode('(', $item->monster->name)[0];
-
+            $item->monster->name_en = explode('(', $item->monster->name_en)[0];
             return $item;
         });
 

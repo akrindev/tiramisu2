@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\Searchable;
 
+use App;
+
 class Map extends Model
 {
     use Searchable;

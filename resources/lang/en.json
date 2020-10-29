@@ -11,6 +11,7 @@
   "Panah": "Arrow",
   "Belati": "Dagger",
   "Tameng": "Shield",
+  "Perisai": "Shield",
   "Perkakas Tambahan": "Additional Gear",
   "Perkakas Spesial": "Special Gear",
   "Zirah": "Armor",
@@ -34,6 +35,11 @@
   "Cahaya": "Light",
   "Gelap": "Dark",
 
+  "Unsur": "Element",
+  "Peta": "Map",
   "Lihat": "Show",
-  "Bisa di peroleh dari": "You can get it from"
+  "Dengan": "With",
+  "Bisa di peroleh dari": "You can get it from",
+  "Pencarian Terakhir": "Latest Search",
+  "Selamat Datang": "Welcome"
 }

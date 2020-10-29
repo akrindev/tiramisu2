@@ -31,7 +31,7 @@
 
       @foreach ($data as $pos)
                     <b class="kunci" style="display:block"><i class="fe fe-github mr-2"></i>
-                      <a href="/peta/{{$pos->id}}" class="key">{{$pos->name}}</a> </b>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/peta/{{$pos->id}}" class="key">{{$pos->name}}</a> </b>
      @endforeach
 
   @includeUnless(app()->isLocal(), 'inc.ads_mobile')

@@ -43,7 +43,7 @@
           <dl> <!-- dl start -->
            <div class="mb-5">
            <dt class="mb-1">
-           <b class="h6"> <a class="text-primary" href="/monster/{{$mons->id}}">{{ $mons->name }} (Lv {{$mons->level}}) </a>
+           <b class="h6"> <a class="text-primary" href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/monster/{{$mons->id}}">{{ $mons->name }} (Lv {{$mons->level}}) </a>
           @switch($mons->type)
              @case(2)
                <img src="/img/f_boss.png" alt="mini boss" style="display:inline;max-width:120px;max-height:15px;">
@@ -59,13 +59,13 @@
                @endif
              <div class="col-md-8">
                <dd>
-              <b>Unsur:</b>  <span class="">{{ ucfirst($mons->element->name) }}</span> <br>
-               <b>Peta:</b> <a href="/peta/{{ $mons->map->id }}"> {{ $mons->map->name }}</a>
+              <b>{{ __('Unsur') }}:</b>  <span class="">{{ __(ucfirst($mons->element->name)) }}</span> <br>
+               <b>{{ __('Peta') }}:</b> <a href="/peta/{{ $mons->map->id }}"> {{ $mons->map->name }}</a>
              </dd>
             @if($mons->drops->count() > 0)
              <b>Drop:</b><br>
              @foreach ($mons->drops as $drop)
-             <a href="/item/{{$drop->id}}"> <img src="{{$drop->dropType->url}}" class="avatar avatar-sm"> {{$drop->name}} </a>
+             <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/item/{{$drop->id}}"> <img src="{{$drop->dropType->url}}" class="avatar avatar-sm"> {{$drop->name}} </a>
              @if ($drop->proses && $drop->sell)
              <small class="text-muted">({{ $drop->proses ?? '-' }}pts / {{ $drop->sell ?? '-' }}s)</small>
              @endif

@@ -42,7 +42,8 @@ class MonsterController extends Controller
   public function addMap()
   {
     Map::create([
-    	'name'	=> request()->name
+    	'name'	=> request()->name,
+        'name_en'	=> request()->name_en ?? request()->name,
     ]);
 
     return response()->json(["success" => true]);
@@ -56,6 +57,7 @@ class MonsterController extends Controller
 
       $map = Map::findOrFail($id);
       $map->name = request()->nama;
+      $map->name_en = request()->nama_en ?? request()->nama;
       $map->save();
 
       return response()->json(["success"=>true]);
@@ -153,8 +155,6 @@ class MonsterController extends Controller
       default:
         $el = 7;
     }
-
-    $type = 'Unsur ' . $type;
 
     $data = Monster::with([
         'drops' => function($query) {

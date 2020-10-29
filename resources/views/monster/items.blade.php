@@ -77,7 +77,7 @@
               <div class="my-5">
               @if(!is_null($item->note['monster']))
                 <dl> <!-- dl start -->
-                  {{ toHtml($item->note['monster']) }}
+                  {{ translate(toHtml($item->note['monster'])) }}
                 </dl>
               @else
                 <small class="text-muted">-- tidak ada --</small>
@@ -89,7 +89,7 @@
               <div class="my-5">
               @if(!is_null($item->note['npc']))
                 <dl> <!-- dl start -->
-                  {{ toHtml($item->note['npc']) }}
+                  {{ translate(toHtml($item->note['npc'])) }}
                 </dl>
               @else
                 <small class="text-muted">-- tidak ada --</small>
@@ -139,7 +139,7 @@
 
               <div class="my-2">
                 @forelse($item->monsters as $monster)
-                <i class="fe fe-github mr-2"></i><a href="/monster/{{ $monster->id }}" class="mr-1">{{ $monster->name }} (Lv {{ $monster->level }})</a> <small><a class="text-muted" href="/peta/{{ $monster->map->id }}"> [{{ $monster->map->name }}]</a></small> <br >
+                <i class="fe fe-github mr-2"></i><a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/monster/{{ $monster->id }}" class="mr-1">{{ $monster->name }} (Lv {{ $monster->level }})</a> <small><a class="text-muted" href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/peta/{{ $monster->map->id }}"> [{{ $monster->map->name }}]</a></small> <br >
                 @empty
                   <i class="fe fe-eye mr-2"></i><a href="/item/{{ $item->id }}">{{ __('Lihat') }}... </a>
                 @endforelse

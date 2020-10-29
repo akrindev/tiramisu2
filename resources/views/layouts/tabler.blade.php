@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ID">
+<html lang="{{ app()->getLocale() }}">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -24,7 +24,7 @@
 
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 
-    <title>@yield('title') | Toram Online Database Bahasa Indonesia</title>
+    <title>@yield('title') | Toram Online Database & Wiki</title>
 
     <!-- open graph -->
     <meta property="og:url" content="{{ url()->current() }}" />
@@ -179,37 +179,37 @@
                     <a href="/" class="nav-link"><i class="fe fe-home"></i> Home</a>
                   </li>
                   <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Perlengkapan</a>
+                    <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> {{ __('Perlengkapan') }}</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
 
-                      <a href="/items/26" class="dropdown-item ">Pedang 1 Tangan</a>
-                      <a href="/items/27" class="dropdown-item ">Pedang 2 Tangan</a>
-                      <a href="/items/28" class="dropdown-item ">Tinju</a>
-                      <a href="/items/29" class="dropdown-item ">Tombak</a>
-                      <a href="/items/13" class="dropdown-item ">Pesawat Sihir</a>
-                      <a href="/items/30" class="dropdown-item ">Tongkat</a>
-                      <a href="/items/14" class="dropdown-item ">Busur</a>
-                      <a href="/items/15" class="dropdown-item ">Bowgun</a>
-                      <a href="/items/25" class="dropdown-item ">Katana</a>
-                      <a href="/items/31" class="dropdown-item ">Zirah</a>
-                      <a href="/items/33" class="dropdown-item ">Perkakas Tambahan</a>
-                      <a href="/items/32" class="dropdown-item ">Perkakas Spesial</a>
-                      <a href="/items/43" class="dropdown-item ">Tameng</a>
-                      <a href="/items/44" class="dropdown-item ">Pisau</a>
-                      <a href="/items/46" class="dropdown-item ">Panah</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/26" class="dropdown-item ">{{ __('Pedang 1 Tangan') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/27" class="dropdown-item ">{{ __('Pedang 2 Tangan') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/28" class="dropdown-item ">{{ __('Tinju') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/29" class="dropdown-item ">{{ __('Tombak') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/13" class="dropdown-item ">{{ __('Pesawat Sihir') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/30" class="dropdown-item ">{{ __('Tongkat') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/14" class="dropdown-item ">{{ __('Busur') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/15" class="dropdown-item ">{{ __('Bowgun') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/25" class="dropdown-item ">{{ __('Katana') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/31" class="dropdown-item ">{{ __('Zirah') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/33" class="dropdown-item ">{{ __('Perkakas Tambahan') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/32" class="dropdown-item ">{{ __('Perkakas Spesial') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/43" class="dropdown-item ">{{ __('Tameng') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/44" class="dropdown-item ">{{ __('Belati') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/46" class="dropdown-item ">{{ __('Panah') }}</a>
 
                     </div>
                   </li>
                   <li class="nav-item dropdown">
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-star"></i> Crysta</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
-                      <a href="/items/34" class="dropdown-item ">Crysta Umum</a>
-                      <a href="/items/35" class="dropdown-item ">Crysta Senjata</a>
-                      <a href="/items/36" class="dropdown-item ">Crysta Zirah</a>
-                      <a href="/items/37" class="dropdown-item ">Crysta Perkakas Spesial</a>
-                      <a href="/items/38" class="dropdown-item ">Crysta Perkakas Tambahan</a>
-                      <a href="/items/39" class="dropdown-item ">Crysta Penguat</a>
-                      <a href="/items/41" class="dropdown-item ">Permata</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/34" class="dropdown-item ">{{ __('Crysta Normal') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/35" class="dropdown-item ">{{ __('Crysta Senjata') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/36" class="dropdown-item ">{{ __('Crysta Zirah') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/37" class="dropdown-item ">{{ __('Crysta Perkakas Spesial') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/38" class="dropdown-item ">{{ __('Crysta Perkakas Tambahan') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/39" class="dropdown-item ">{{ __('Crysta Penguat') }}</a>
+                      <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/items/41" class="dropdown-item ">{{ __('Permata') }}</a>
 
                     </div>
                   </li>

@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title', 'Toram Monster: ' . ucfirst($type))
+@section('title', 'Toram Monster: ' . __('Unsur') . ' ' . __(ucfirst($type)))
 @section('image', to_img())
 
 @push('canonical')
@@ -11,7 +11,7 @@
 <div class="my-5">
   <div class="container">
     <div class="page-header">
-      <h1 class="page-title">Toram Monster: {{ ucfirst($type) }}</h1>
+      <h1 class="page-title">Toram Monster: {{ __('Unsur') }} {{ __(ucfirst($type)) }}</h1>
     </div>
 
     <div class="row">
@@ -35,7 +35,7 @@
 
            <div class="mb-5">
            <dt class="mb-1">
-           <b class="h6"> <a class="text-primary" href="/monster/{{$mons->id}}">{{ $mons->name }} (Lv {{$mons->level}}) </a>
+           <b class="h6"> <a class="text-primary" href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/monster/{{$mons->id}}">{{ $mons->name }} (Lv {{$mons->level}}) </a>
           @switch($mons->type)
              @case(2)
                <img src="/img/f_boss.png" alt="mini boss" style="display:inline;max-width:120px;max-height:15px;">
@@ -51,7 +51,7 @@
               <img src="/img/ball-triangle.svg" data-src="/{{ $mons->picture }}" class="rounded my-2 d-block lazyload" width="170px" height="170px"></div>
             @endif
                <div class="col-md-9">
-              <b>Unsur:</b>  <span class="">{{ ucfirst($mons->element->name) }}</span> <br>
+              <b>{{ __('Unsur') }}:</b>  <span class="">{{ __(ucfirst($mons->element->name)) }}</span> <br>
               <b>HP:</b> <span class="text-muted"> {{ $mons->hp ?? '-- unknown--' }} </span> <br>
                <b>XP:</b> <span class="text-muted"> {{ $mons->xp ?? '-- unknown --' }} </span>
             @if ($mons->type == 3 || $mons->type == 2)
@@ -59,12 +59,12 @@
                <b>Leveling:</b> {{ $mons->level-3 }} <span class="text-muted">s/d</span> {{ $mons->level+3 }}
             @endif
                <br>
-               <b>Peta:</b> <a href="/peta/{{ $mons->map->id }}"> {{ $mons->map->name }}</a>
+               <b>{{ __('Peta') }}:</b> <a href="/peta/{{ $mons->map->id }}"> {{ $mons->map->name }}</a>
             @if($mons->drops->count() > 0)
                  <div class="my-2"></div>
              <b>Drop:</b><br>
              @foreach ($mons->drops as $drop)
-             <a href="/item/{{$drop->id}}"> <img src="{{$drop->dropType->url}}" class="avatar avatar-sm"> {{$drop->name}} </a>
+             <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/item/{{$drop->id}}"> <img src="{{$drop->dropType->url}}" class="avatar avatar-sm"> {{$drop->name}} </a>
              @if ($drop->proses && $drop->sell)
              <small class="text-muted">({{ $drop->proses ?? '-' }}pts / {{ $drop->sell ?? '-' }}s)</small>
              @endif

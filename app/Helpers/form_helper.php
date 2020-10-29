@@ -1,6 +1,7 @@
 <?php
 
 use App\Helpers\ConverterText;
+use App\Helpers\TranslateText;
 use Illuminate\Support\HtmlString;
 
 if ( ! function_exists('waktu'))
@@ -482,6 +483,17 @@ if(! function_exists('toHtml'))
   }
 }
 
+// translate description item
+if(! function_exists('translate'))
+{
+    function translate($text, $reverse = false)
+    {
+        $translator = new TranslateText;
+        $output = $translator->translate($text, $reverse);
+
+        return $output;
+    }
+}
 // canonical
 if(! function_exists('canonical'))
 {

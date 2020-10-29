@@ -40,6 +40,11 @@ class Search extends Component
             ->when($type == 'name', function ($query) use ($q) {
         		return $query->orWhere('name_en', 'like', '%'.$q.'%');
         	})
+            ->when($type == 'note', function ($query) use ($q) {
+                $term = translate($q, true);
+
+            	return $query->orWhere('note', 'like', '%'.$term.'%');
+            })
            ->with([
                'monsters' => function ($query) {
                    $query->with(['map', 'element']);

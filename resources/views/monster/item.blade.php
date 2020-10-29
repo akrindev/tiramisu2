@@ -20,7 +20,7 @@
         @includeUnless(app()->isLocal(), 'inc.ads_article')
 
         <div class="card">
-          <div class="card-body p-3" style="font-size:13px;font-weight:400">
+          <div class="card-body p-3" style="font-size:14px;font-weight:400">
 
             <dl>
               <dt>
@@ -68,7 +68,7 @@
               <div class="my-5">
               @if(!is_null(optional($item->note)['monster']))
                 <dl> <!-- dl start -->
-                  {{ toHtml(optional($item->note)['monster']) }}
+                  {{ translate(toHtml(optional($item->note)['monster'])) }}
                 </dl>
               @else
                 <small class="text-muted">-- tidak ada --</small>
@@ -80,7 +80,7 @@
               <div class="my-5">
               @if(!is_null(optional($item->note)['npc']))
                 <dl> <!-- dl start -->
-                  {{ toHtml(optional($item->note)['npc']) }}
+                  {{ translate(toHtml(optional($item->note)['npc'])) }}
                 </dl>
               @else
                 <small class="text-muted">-- tidak ada --</small>
@@ -162,12 +162,12 @@
                    @if ($mons->picture != null)
                    <img src="/{{ $mons->picture }}" alt="{{ $mons->name }}" class="rounded my-2 d-block" width="150px" height="150px">
                    @endif
-                  <b>Unsur:</b> <span> {{$mons->element->name}}</span> <br>
-                   <b>Peta:</b> <a href="/peta/{{ $mons->map->id }}">{{ $mons->map->name }} </a>
+                  <b>{{ __('Unsur') }}:</b> <span> {{ __(ucfirst($mons->element->name)) }}</span> <br>
+                   <b>{{ __('Peta') }}:</b> <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/peta/{{ $mons->map->id }}">{{ $mons->map->name }} </a>
                  </dd>
                  <b>Drop:</b><br>
                  @foreach ($mons->drops as $drop)
-                 <a href="/item/{{ $drop->id }}"> <img src="{{ $drop->dropType->url }}" class="avatar avatar-sm"> {{ $drop->name }} </a>
+                 <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/item/{{ $drop->id }}"> <img src="{{ $drop->dropType->url }}" class="avatar avatar-sm"> {{ $drop->name }} </a>
                  @if ($drop->proses && $drop->sell)
                  <small class="text-muted">({{ $drop->proses ?? '-' }}pts / {{ $drop->sell ?? '-' }}s)</small>
                  @endif

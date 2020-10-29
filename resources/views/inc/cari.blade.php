@@ -6,7 +6,7 @@
       <span class="input-icon-addon">
         <i class="fe fe-search"></i>
       </span>
-      <input itemprop="query-input" type="search" name="q" class="form-control w-10" placeholder="Nama item, perlengkapan, monster, forum dll . . ." value="{{ request()->q ?? '' }}" pattern=".{3,}" title="3 karakter atau lebih" required>
+      <input itemprop="query-input" type="search" name="q" class="form-control w-10" placeholder="Search here . . ." value="{{ request()->q ?? '' }}" pattern=".{3,}" title="3 karakter atau lebih" required>
     </div>
 
       <select class="form-control custom-select w-auto" name="type">
@@ -15,7 +15,4 @@
     </select>
    </div>
   </form>
-
-
-    <small class="text-muted">cari dalam bahasa indonesia</small>
 </div>

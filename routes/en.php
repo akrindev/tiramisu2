@@ -27,3 +27,11 @@ Route::prefix('monster')->group(function() {
     Route::get('/type/{name}', 'MonsterController@showMonsType');
     Route::get('/unsur/{type}', 'MonsterController@showMonsEl');
 });
+
+// map
+
+Route::get('/peta', 'MonsterController@index');
+Route::get('/peta/{id}', 'MonsterController@peta');
+
+
+Route::get('/latest_search', 'SitemapController@show');
