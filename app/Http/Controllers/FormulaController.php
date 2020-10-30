@@ -31,6 +31,13 @@ class FormulaController extends Controller
         return response()->json(['success' => true]);
     }
 
+    public function showFormula($id)
+    {
+        $formula = Formula::findOrFail($id);
+
+        return view('fillstats.show', compact('formula'));
+    }
+
     public function getFormula($id)
     {
         $formula = Formula::find($id)->body;
@@ -43,6 +50,7 @@ class FormulaController extends Controller
         $formulas = Formula::select('id', 'note', 'created_at')
             ->whereUserId(auth()->id())
             ->latest()
+            ->take(50)
             ->get();
 
         $formulas->map(function($formula) {

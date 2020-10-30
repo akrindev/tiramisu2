@@ -10,18 +10,34 @@ class Formula extends Component
 {
     use WithPagination;
 
+    public $type;
+
+    protected $paginationTheme = 'bootstrap';
+
+    public function mount()
+    {
+        $this->type = 'all';
+    }
+
     public function render()
     {
+        $type = $this->type;
+
         $formulas = WorkSpace::exclude('body')
+            ->when($this->type != 'all', function ($query) use ($type) {
+            	return $query->whereType($type);
+            })
             ->latest()->paginate(21);
 
         return view('livewire.formula', compact('formulas'));
     }
 
-    public function show($id)
+    public function formulaType($type)
     {
-        request()->session()->flash('data', $id);
+        $this->resetPage();
 
-        return redirect('/fill_stats/calculator');
+        if(in_array($type, ['all', 'a', 'w'])) {
+            $this->type = $type;
+        }
     }
 }

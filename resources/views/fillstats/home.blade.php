@@ -22,10 +22,14 @@
           Simulasi Fill Stats <a href="/fill_stats/calculator">Updated</a>
       </div>
 
-      	@livewire('formula')
+       <div class="my-2">
+      	@includeUnless(app()->isLocal(), 'inc.ads_article')
+      </div>
+
+      	<livewire:formula />
 
        <div class="mt-2">
-      	@includeUnless(app()->isLocal(), 'inc.ads_article')
+      	@includeUnless(app()->isLocal(), 'inc.ads_mobile')
       </div>
 
 

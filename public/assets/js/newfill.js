@@ -1163,25 +1163,38 @@ class MainApp {
         .then((response) => {
         	data = JSON.parse(JSON.stringify(response.data))
 
-            this.stats = deep_clone(data)
-
-            this.spawn().autoLoad(data)
-
-            let current = this.getCurrent()
-
-        	current.updateFormulaDisplay();
-        	current.updateMaterialCosts();
-        	current.updatePotentialSuccessDisplay();
-
-        	for (let slot of current.slots) {
-            	slot.syncDisplayWithValues();
-        	}
+            this.prepare(data)
 
             show.scrollIntoView()
         }).catch(e => alert(e))
         .finally(e => {
         	dimmer.classList.remove('active')
         });
+    }
+
+    loadFromJson(data) {
+        let show = document.getElementById("show-formula")
+
+        data = JSON.parse(JSON.stringify(data))
+
+        this.prepare(data)
+
+        show.scrollIntoView()
+    }
+
+    prepare(data) {
+        this.stats = deep_clone(data)
+
+        this.spawn().autoLoad(data)
+
+        let current = this.getCurrent()
+        current.updateFormulaDisplay();
+        current.updateMaterialCosts();
+        current.updatePotentialSuccessDisplay();
+
+        for (let slot of current.slots) {
+          	slot.syncDisplayWithValues();
+        }
     }
 
     setCurrent(value) {
