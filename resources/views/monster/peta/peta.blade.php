@@ -13,6 +13,7 @@
 
             @foreach($peta as $p)
             <i class="fas fa-map mr-1"></i> <a href="/peta/{{$p->id}}" id="map{{$p->id}}">{{ $p->name }}</a> [<a href="#" class="text-muted editMap" data="{{$p->id}}">edit</a>] @if($loop->first) <span class="text-danger">New!!!</span> @endif <br>
+              <small class="text-muted" id="mapu{{$p->id}}"> {{ $p->name_en }} </small> <br/>
             @endforeach
 
           </div>
@@ -28,7 +29,7 @@
 
       {!! form_open('/store-peta',['id'=>'catch-peta']) !!}
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit data peta</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         </button>
       </div>
@@ -39,6 +40,9 @@
         <div class="form-group">
           <label class="form-label">Name</label>
           <input type="text" id="input-map" class="form-control" name="nama" required>
+        </div><div class="form-group">
+          <label class="form-label">Name en *optional</label>
+          <input type="text" id="input-map-en" class="form-control" name="name_en">
         </div>
       </div>
 
@@ -73,6 +77,10 @@
           <label class="form-label">Name</label>
           <input type="text" id="input-map" class="form-control" name="name" required>
         </div>
+          <div class="form-group">
+          <label class="form-label">Name en *optional</label>
+          <input type="text" id="input-map-en" class="form-control" name="name_en" >
+        </div>
       </div>
 
       <!-- Modal footer -->
@@ -105,8 +113,10 @@ $('.editMap').click(function(e) {
 
   var u = $(this).attr('data');
   var name = $("#map"+u).text();
+  var nameEn = $("#mapu"+u).text();
 
   $('#input-map').val(name);
+  $('#input-map-en').val(nameEn);
   $("#mape").val(u);
   $("#exampleModal").modal('show');
 
@@ -139,11 +149,15 @@ $('#addMap').click(function(e) {
           }).then(() => {
             const theID = jQuery("#mape").val();
             const theNama = jQuery("#input-map").val();
+            const theNameEn = jQuery("#input-map-en").val();
 
             jQuery("#exampleModal").modal('hide');
             form.reset();
             jQuery("#map"+theID)
               .text(theNama);
+
+            jQuery("#mapu"+theID)
+              .text(theNameEn);
           });
         }
 

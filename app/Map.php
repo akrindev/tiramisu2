@@ -14,6 +14,7 @@ class Map extends Model
     protected $fillable = [
     	'name', 'name_en'
     ];
+
   	public $timestamps = false;
 
   	public function monster()

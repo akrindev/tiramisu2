@@ -57,7 +57,7 @@ class MonsterController extends Controller
 
       $map = Map::findOrFail($id);
       $map->name = request()->nama;
-      $map->name_en = request()->nama_en ?? request()->nama;
+      $map->name_en = request()->name_en ?? request()->nama;
       $map->save();
 
       return response()->json(["success"=>true]);
