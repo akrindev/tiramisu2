@@ -122,30 +122,11 @@
             <!-- leveling list -->
           <div class="tab-pane fade show active" id="leveling" role="tabpanel" aria-labelledby="leveling-tab">
 
-          <table class="card-table table table-striped table-hover" style="font-size:15px">
-            <tr>
-              <td><div><b>Note!</b>  <br> <span class="text-danger">Boss</span>  <span class="text-success ml-5">Mini Boss</span> </div></td>
-            </tr>
-
-         @foreach ($data as $mob)
-          <tr class="{{ $mob->type == 2 ? 'text-success':'text-danger' }}">
-            <td class="px-2 py-2"><div> <a class="{{ $mob->type == 2 ? 'text-success':'text-danger' }}" href="/monster/{{ $mob->id }}"> {{ $mob->name }} (Lv {{ $mob->level }}) </a></div>
-             <small class="text-muted">
-               <a href="/peta/{{ $mob->map_id }}" class="text-muted">
-               {{ $mob->map->name }}
-               </a>
-              </small>
-            @if($mob->xp && $mob->persen)
-              <br>
-              <small class="text-primary"><i class="fe fe-arrow-up-circle mr-1"></i> {{ number_format($mob->xp) }} exp ({{ $mob->persen }}) <i class="fe fe-refresh-cw mx-1"></i> {{ $mob->defeat }}x run</small>
-           @else
-              <br>
-              <small class="text-primary"><i class="fe fe-arrow-up-circle mr-1"></i> --unknown--</small>
-           @endif
-            </td>
-          </tr>
-         @endforeach
-          </table>
+              <livewire:leveling
+                                 :level="request('level', 60)"
+                                 :bonusexp="request('bonusexp', 0)"
+                                 :range="request('range', 5)"
+                                 />
             </div>
             <!-- info exp gain -->
             <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
@@ -222,4 +203,12 @@
     </div>
   </div>
 </div>
+@endsection
+
+@section('head')
+	@livewireStyles
+@endsection
+
+@section('footer')
+	@livewireScripts
 @endsection
