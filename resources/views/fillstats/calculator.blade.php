@@ -183,6 +183,9 @@
 @section('head')
 
 <style>
+    html {
+        scroll-behavior: smooth;
+    }
   @media (min-width: 768px) {
   .equal {
     display: -webkit-box;

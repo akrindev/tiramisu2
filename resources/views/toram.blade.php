@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title','Toram Online Database Bahasa Indonesia')
+@section('title','Toram Online Wiki')
 @section('description','Toram Online Database Bahasa Indonesia. Jelajahi data monster, equip, crysta, tools dan berita toram lainnya disini')
 @section('image',to_img())
 
@@ -25,7 +25,7 @@
 	<div class="my-5">
       <div class="container">
 
-        @includeWhen(env('APP_ENV') == 'production', 'inc.ads_article')
+        @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 
         @include('inc.cari')
         <div>
