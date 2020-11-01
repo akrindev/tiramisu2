@@ -197,18 +197,16 @@
           </div>
 
         <!-- end tab -->
+
+
+        @includeUnless(app()->isLocal(), 'inc.ads_mobile')
+
           </div>
         </div>
 
         <div class="my-5">
         {{ $item->monsters()->paginate(20)->links() }}
         </div>
-
-      @if($item->monsters->count())
-      <div id="ads">
-        @includeUnless(app()->isLocal(), 'inc.ads_mobile')
-      </div>
-      @endif
 
       </div>
 
