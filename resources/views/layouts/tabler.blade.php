@@ -101,8 +101,6 @@
 </script>
     @yield('head')
 
-    @include('inc.sharethis')
-
     @includeUnless(app()->isLocal(), 'inc.ads')
   </head>
 
