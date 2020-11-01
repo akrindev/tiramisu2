@@ -56,7 +56,7 @@
 
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/dye">Dye Bulanan (Monthly Dye)</a> </span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/gallery">Gallery</a> </span>
-      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/Forum">Forum</a> </span>
+      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/forum">Forum</a> </span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/peta">Peta (Map)</a> </span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/skill">Skill List</a></span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/refine">Refine Guide</a></span>
