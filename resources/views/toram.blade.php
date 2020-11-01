@@ -25,13 +25,12 @@
 	<div class="my-5">
       <div class="container">
 
-        @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
-
         @include('inc.cari')
         <div>
 			<div class="row">
 
          <div class="col-md-8 mb-5 text-center">
+        @includeUnless(app()->isLocal(), 'inc.ads_article')
 
         	<h1 class="text-center">{{ __('Selamat Datang') }}!</h1>
           <div class="logo text-center mb-5">

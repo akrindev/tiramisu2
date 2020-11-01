@@ -110,7 +110,7 @@ class ItemController extends Controller
         },
         'dropType',
         'resep'
-    ])->orderByDesc('id')->paginate(20);
+    ])->orderByDesc('id')->paginate(15);
 
     if(!$data->count()) {
       return abort(404);
@@ -134,7 +134,7 @@ class ItemController extends Controller
             },
             'dropType',
             'resep'
-        ])->orderByDesc('id')->paginate(20);
+        ])->orderByDesc('id')->paginate(15);
 
     return view('monster.items', compact('type', 'data'));
   }

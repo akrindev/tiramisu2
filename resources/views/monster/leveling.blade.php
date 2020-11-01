@@ -90,8 +90,6 @@
           </form>
         </div>
 
-        @includeUnless(app()->isLocal(), 'inc.ads_mobile')
-
         <div class="card mt-5">
 
           <div class="card-body p-3">
@@ -194,7 +192,6 @@
 
         </div>
 
-        @includeWhen(!app()->isLocal(), 'inc.ads_article')
       </div>
 
       <div class="col-md-4">

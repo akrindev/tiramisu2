@@ -80,6 +80,12 @@ $tags = explode(',', $tags);
             <div class="body-text">
             {{ toHtml($data->body, true) }}
 
+                <div class="my-5">
+
+  		@includeUnless(app()->isLocal(), 'inc.ads_mobile')
+
+                </div>
+
               <small class="text-muted">Short link: <i><u>https://toram-id.info/f/{{ $data->id }}</u></i></small>
 
            <div class="my-3">
@@ -128,8 +134,6 @@ $tags = explode(',', $tags);
             </div>
           </div>
         </div>
-
-  		@includeUnless(app()->isLocal(), 'inc.ads_mobile')
 
    @php $i = 0; @endphp
 @if (count($comments))
