@@ -1,12 +1,12 @@
-const cacheVersion = 'toram-id';
+const cacheName = 'toram-id';
 
 const filesToCache = [
   '/',
+  '/assets/css/app.min.css',
+  '/assets/js/vendors/bootstrap.bundle.min.js',
   '/assets/js/jquery.min.js',
   '/assets/js/core.js',
-  '/assets/js/vendors/bootstrap.bundle.min.js',
   '/assets/css/dashboard.css',
-  '/assets/css/app.min.css',
   '/assets/js/bootstrap-markdown.js',
   '/assets/js/markdown.js',
   '/img/logo.png',
@@ -14,49 +14,25 @@ const filesToCache = [
   '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
 ];
 
-self.addEventListener('install', function(event) {
-  event.waitUntil(
-    caches.open(cacheVersion)
-      .then(function(cache) {
-        return cache.addAll(filesToCache)
-      })
-  )
+self.addEventListener('install', e => {
+  e.waitUntil(
+    caches.open(cacheName).then(cache => {
+      return cache.addAll(filesToCache)
+          .then(() => self.skipWaiting());
+    })
+  );
 });
 
-self.addEventListener('activate',  function(event) {
+self.addEventListener('activate', event => {
   event.waitUntil(self.clients.claim());
 });
 
-/*
-
-self.addEventListener('fetch', function(event) {
-  event.respondWith(caches.match(event.request));
-});
-
-/*
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request)
-    .then(response => {
-      if(response) return response;
-
-      return fetch(event.request);
+    caches.open(cacheName)
+      .then(cache => cache.match(event.request, {ignoreSearch: true}))
+      .then(response => {
+      return response || fetch(event.request);
     })
   );
-});*/
-
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-    .then(response => {
-      if(response) return response
-
-        fetch(event.request).then((response) => {
-            return caches.open(cacheVersion).then((cache) => {
-              cache.put(event.request, response.clone());
-              return response;
-            });
-      })
-    })
-  )
 });
