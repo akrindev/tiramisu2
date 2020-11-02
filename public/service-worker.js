@@ -26,17 +26,34 @@ self.addEventListener('activate',  function(event) {
   event.waitUntil(self.clients.claim());
 });
 
+self.addEventListener('fetch', function(event) {
+  event.respondWith(caches.match(event.request));
+});
+
+/*
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+    .then(response => {
+      if(response) return response;
+
+      return fetch(event.request);
+    })
+  );
+});*/
 
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
     .then(response => {
-      if(response) return response || fetch(event.request).then((response) => {
-        return caches.open(cacheVersion).then((cache) => {
-          cache.put(event.request, response.clone());
-          return response;
-        });
-      });
-    });
-  );
+      if(response) return response
+
+        fetch(event.request).then((response) => {
+            return caches.open(cacheVersion).then((cache) => {
+              cache.put(event.request, response.clone());
+              return response;
+            });
+      })
+    })
+  )
 });
