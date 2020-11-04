@@ -49,6 +49,20 @@ class Storage {
 
     send() {
         let btn = document.getElementById("save")
+        let recipe_pot = document.getElementById("recipe_pot").value
+        let starting_pot = document.getElementById('starting_pot').value
+
+        if(parseInt(recipe_pot) > 150 || parseInt(starting_pot) > 150) {
+            swal("Failed", "Invalid pot", "error")
+
+            return;
+        }
+
+        if(this.success_rate == 0) {
+            swal("Error", "Success rate 0", "error")
+            return;
+        }
+
         btn.classList.add(...this.loading)
 
         if(this.max_step === 0) {

@@ -210,7 +210,7 @@
 @section('footer')
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="/assets/js/saveFormula.js"></script>
+<script src="/assets/js/saveFormula.js?v1"></script>
 <script src="/assets/js/newfill.js"></script>
 
 @if(session()->has('data'))
