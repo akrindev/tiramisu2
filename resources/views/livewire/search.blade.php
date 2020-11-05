@@ -42,7 +42,7 @@
         <div class="card">
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
               <img src="{{ $item->dropType->url }}" alt="{{ $item->dropType->name }}" class="avatar avatar-sm mr-1" style="max-width:21px;max-height:21px">
-              <b class="h6"><a class="text-primary" href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/item/{{ $item->id }}">{{ $item->name }}</a></b>
+              <b class="h6"><a class="text-primary" href="{{ request()->segment(1) == 'en' || app()->isLocale('en') ? '/en' : '' }}/item/{{ $item->id }}">{{ $item->name }}</a></b>
            @if (auth()->check() && auth()->user()->isAdmin())
               <a href="/item/{{ $item->id }}/edit" class="btn btn-sm btn-outline-secondary">edit</a>
            @endif
@@ -149,7 +149,7 @@
 
               <div class="my-2">
                 @forelse($item->monsters as $monster)
-                <i class="fe fe-github mr-2"></i><a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/monster/{{ $monster->id }}" class="mr-1">{{ $monster->name }} (Lv {{ $monster->level }})</a> <small><a class="text-muted" href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/peta/{{ $monster->map->id }}"> [{{ $monster->map->name }}]</a></small> <br >
+                <i class="fe fe-github mr-2"></i><a href="{{ request()->segment(1) == 'en' || app()->isLocale('en') ? '/en' : '' }}/monster/{{ $monster->id }}" class="mr-1">{{ $monster->name }} (Lv {{ $monster->level }})</a> <small><a class="text-muted" href="{{ request()->segment(1) == 'en' || app()->isLocale('en') ? '/en' : '' }}/peta/{{ $monster->map->id }}"> [{{ $monster->map->name }}]</a></small> <br >
                 @empty
                   <i class="fe fe-eye mr-2"></i><a href="/item/{{ $item->id }}">{{ __('Lihat') }} ... </a>
                 @endforelse
@@ -172,7 +172,7 @@
           <dl> <!-- dl start -->
           <div class="">
            <dt class="mb-1">
-           <b class="h6"> <a class="text-primary" href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/monster/{{ $mons->id }}">{{ $mons->name }} (Lv {{ $mons->level }}) </a>
+           <b class="h6"> <a class="text-primary" href="{{ request()->segment(1) == 'en' || app()->isLocale('en') ? '/en' : '' }}/monster/{{ $mons->id }}">{{ $mons->name }} (Lv {{ $mons->level }}) </a>
           @switch($mons->type)
              @case(2)
                <img src="/img/f_boss.png" alt="mini boss" style="display:inline;max-width:120px;max-height:15px;">
@@ -197,7 +197,7 @@
                 <b>Leveling:</b> {{ $mons->level-3 }} <span class="text-muted">s/d</span> {{ $mons->level+3 }}
               @endif
                  <br>
-               <b>{{ __('Peta') }}: </b> <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/peta/{{ $mons->map->id }}">{{ $mons->map->name }}</a>
+               <b>{{ __('Peta') }}: </b> <a href="{{ request()->segment(1) == 'en' || app()->isLocale('en') ? '/en' : '' }}/peta/{{ $mons->map->id }}">{{ $mons->map->name }}</a>
                </div>
             </div>
             </dd>
@@ -215,7 +215,7 @@
             <div>
               <strong class="h4">{{ __('Peta') }}</strong> <br>
               @foreach($maps as $map)
-             <i class="fe fe-github mr-2"></i> <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/peta/{{ $map->id }}">{{ $map->name }}</a> <br>
+             <i class="fe fe-github mr-2"></i> <a href="{{ request()->segment(1) == 'en' || app()->isLocale('en') ? '/en' : '' }}/peta/{{ $map->id }}">{{ $map->name }}</a> <br>
               @endforeach
             </div>
           </div>
