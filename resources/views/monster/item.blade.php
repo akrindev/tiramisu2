@@ -68,7 +68,7 @@
               <div class="my-5">
               @if(!is_null(optional($item->note)['monster']))
                 <dl> <!-- dl start -->
-                  {{ translate(toHtml(optional($item->note)['monster'])) }}
+                  {{ toHtml(translate(optional($item->note)['monster'])) }}
                 </dl>
               @else
                 <small class="text-muted">-- tidak ada --</small>
@@ -80,7 +80,7 @@
               <div class="my-5">
               @if(!is_null(optional($item->note)['npc']))
                 <dl> <!-- dl start -->
-                  {{ translate(toHtml(optional($item->note)['npc'])) }}
+                  {{ toHtml(translate(optional($item->note)['npc'])) }}
                 </dl>
               @else
                 <small class="text-muted">-- tidak ada --</small>

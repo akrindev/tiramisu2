@@ -120,11 +120,14 @@ class TranslateText
       "VIT" => "VIT",
       "Revive Time" => "Waktu Bangkit",
       "Weapon ATK" => "Weapon ATK",
-      "Untradable" => "Nonbarter"
+      "Untradable" => "Nonbarter",
+      "With"	=> "Dengan"
 ];
 
     public function translate($text, $reverse = false)
     {
+        $text = $this->manipulate($text);
+
         if(App::isLocale('en')) {
             $text = $this->replace($text);
         }
@@ -154,5 +157,22 @@ class TranslateText
         }
 
         return $text;
+    }
+
+    private function manipulate($text)
+    {
+        $lines = preg_split('/\n/', $text);
+
+        $newLine = [];
+
+        foreach($lines as $line) {
+            if(Str::contains($line, '-')) {
+                $newLine[] = "<span class='text-danger'>${line}</span>";
+            } else {
+                $newLine[] = $line;
+            }
+        }
+
+        return implode($newLine);
     }
 }
