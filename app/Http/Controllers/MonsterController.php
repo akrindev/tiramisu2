@@ -96,12 +96,15 @@ class MonsterController extends Controller
     {
       case 'boss':
         $tipe = 3;
+        $type = 'Type Boss';
         break;
       case 'mini_boss':
         $tipe = 2;
+        $type = 'Mini Boss';
         break;
       default:
         $tipe = 1;
+        $type = 'Monster Normal';
     }
 
     $data = Monster::with([
@@ -162,7 +165,9 @@ class MonsterController extends Controller
         },
         'map',
         'element'
-    ])->whereElementId($el)->orderBy('level')->paginate(20);
+    ])->whereElementId($el)->orderBy('level')->paginate(15);
+
+    $type = __('Unsur') . ' ' . ucfirst($type);
 
     return view('monster.type',compact('data','type'));
   }

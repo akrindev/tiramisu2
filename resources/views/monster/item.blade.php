@@ -31,9 +31,35 @@
                 <br>
               </dt>
               <dd>
-                @if(!is_null($item->picture))
-                <img src="/{{$item->picture}}" class="rounded my-2">
-                @endif
+
+@if(! is_null($item->picture) && ! is_null($item->fullimage))
+<div class="col-12">
+<div id="carousel-controls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="d-block w-100 lazyload" src="/img/ball-triangle.svg" data-src="/{{ $item->picture}}" data-holder-rendered="true">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100 lazyload" src="/img/ball-triangle.svg" data-src="/{{ $item->fullimage }}" data-holder-rendered="true">
+        </div>
+    </div>
+                      <a class="carousel-control-prev" href="#carousel-controls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="carousel-control-next" href="#carousel-controls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </div>
+</div>
+@endif
+
+@if(! is_null($item->picture) && is_null($item->fullimage))
+<div class="col-12">
+    <img src="/img/ball-triangle.svg" data-src="/{{ $item->picture }}" class="rounded my-2 d-block lazyload" width="85%" height="85%">
+</div>
+@endif
                 <div class="my-2">
 
          <!-- Item status -->

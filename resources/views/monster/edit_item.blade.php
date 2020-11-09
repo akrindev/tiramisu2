@@ -18,7 +18,6 @@
       <div class="card-body" style="font-size:13px;font-weight:400">
 
         {!! form_open_multipart('/item/'.$data->id.'/edit',["id"=>"tambah-drop"]) !!}
-        @method('PUT')
 
         <div class="form-group">
           <label class="form-label">Nama</label>
@@ -70,6 +69,15 @@
               @endif
             </div>
             <input type="file" name="picture" class="form-control" accept="image/*" id="picture">
+          </div>
+
+
+          <div class="form-group">
+            <label class="form-label">Screenshot full image for armor</label>
+            <div id="preview2">@if($data->fullimage)
+              <img src="/{{$data->fullimage}}"/>
+              @endif</div>
+            <input type="file" name="fullimage" class="form-control" accept="image/*" id="fullimage">
           </div>
 
         <div class="form-group">
@@ -245,12 +253,12 @@
 </script>
 
 <script>
-function fileReader(input) {
+function fileReader(input, el) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
 
-            $('#preview').html('Preview: <img src="'+e.target.result+'" class="img-fluid"/>');
+            $(el).html('Preview: <img src="'+e.target.result+'" class="img-fluid"/>');
         }
         reader.readAsDataURL(input.files[0]);
     }
@@ -258,7 +266,11 @@ function fileReader(input) {
 </script>
 <script>
  $("#picture").change(function(){
-   fileReader(this);
+   fileReader(this, "#preview");
+ })
+
+ $("#fullimage").change(function(){
+   fileReader(this, '#preview2');
  })
 </script>
 

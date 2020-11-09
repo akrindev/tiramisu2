@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Drop;
 use App\DropType;
-use Image;
+use App\Helpers\SaveAsImage as Image;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -53,18 +53,20 @@ class ItemController extends Controller
 
         $nama = 'imgs/mobs/'.str_slug(strtolower(request('name'))).'-'.rand(00000,99999).'.png';
 
-        $make = Image::make($file);
-        $make->text('toram-id.info',15,30, function($font)
-            {
-                $font->file(3);
-                $font->size(34);
-                $font->color('#ffffff');
-                $font->align('left');
-                $font->valign('bottom');
-            });
-        $make->save(public_path($nama));
+        $save = (new Image)->file($file)->name($nama)->save();
 
-        $item->picture	= $nama;
+        $item->picture = $nama;
+      }
+
+      if(request()->hasFile('fullimage'))
+      {
+        $file = request()->file('fullimage')->getRealPath();
+
+        $fullimage = 'imgs/mobs/'.str_slug(strtolower(request('name'))).'-'.rand(00000,99999).'.png';
+
+        $save = (new Image)->file($file)->name($fullimage)->save();
+
+        $item->fullimage = $fullimage;
       }
 
       $item->name		= request()->name;
@@ -166,17 +168,16 @@ class ItemController extends Controller
 
         $nama = 'imgs/mobs/'.str_slug(strtolower(request('name'))).'-'.rand(00000,99999).'.png';
 
-        $make = Image::make($file);
+        $save = (new Image)->file($file)->name($nama)->save();
+      }
 
-        $make->text(' toram-id.info',15,30, function($font) {
-          $font->file(3);
-          $font->size(34);
-          $font->color('#ffffff');
-          $font->align('left');
-          $font->valign('bottom');
-        });
+      if(request()->hasFile('fullimage'))
+      {
+        $file = request()->file('fullimage')->getRealPath();
 
-        $make->save(public_path($nama));
+        $fullimage = 'imgs/mobs/'.str_slug(strtolower(request('name'))).'-'.rand(00000,99999).'.png';
+
+        $save = (new Image)->file($file)->name($fullimage)->save();
       }
 
       $note = null;
@@ -194,7 +195,8 @@ class ItemController extends Controller
         'proses'	=> request()->proses,
         'sell'		=> request()->sell,
         'note'		=> $note,
-        'picture'	=> $nama ?? null
+        'picture'	=> $nama ?? null,
+        'fullimage'	=> $fullimage ?? null
       ]);
 
       return response()->json([
