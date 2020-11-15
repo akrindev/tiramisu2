@@ -110,18 +110,26 @@ class Storage {
 
     loadSavedFormula() {
         let workspace = document.getElementById("saved-formula")
+        let love = document.getElementById("love-formula")
         let dimmer = document.querySelector(".dimmer")
-        let buffer = ''
+        let buffer = '',
+        b = '<hr class="my-1"/><b class="text-red">My loved formula</b> <br />'
 
         dimmer.classList.add('active')
 
         axios.get('/fill_stats/load')
         .then(response => {
 
-            for(let show of response.data) {
+            for(let show of response.data.saved) {
                 buffer += `<i class="fe fe-chevron-right"></i> ${show.note} (<span class="text-primary cursor-pointer" style="cursor:pointer" onclick="App.getFromCloud(${show.id})"> show </span>) <br /> <small class="text-muted"> ${show.created} </small><br />`
             }
             workspace.innerHTML = buffer
+
+            for(let show of response.data.loved) {
+                b += `<i class="fe fe-chevron-right"></i> ${show.note} (<span class="text-primary cursor-pointer" style="cursor:pointer" onclick="App.getFromCloud(${show.id})"> show </span>)<br />`
+            }
+
+            love.innerHTML = b
 
             dimmer.classList.remove('active')
         }).catch(e => alert(e))

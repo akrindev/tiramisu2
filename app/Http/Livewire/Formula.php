@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
+
 use App\Formula as WorkSpace;
 
 class Formula extends Component
@@ -23,13 +24,20 @@ class Formula extends Component
     {
         $type = $this->type;
 
-        $formulas = WorkSpace::exclude('body')
+        $formulas = WorkSpace::with('users')->exclude('body')
             ->when($this->type != 'all', function ($query) use ($type) {
             	return $query->whereType($type);
             })
             ->latest()->paginate(21);
 
         return view('livewire.formula', compact('formulas'));
+    }
+
+    public function save($id)
+    {
+        $formula = WorkSpace::find($id);
+        
+        auth()->user()->savedFormulas()->attach($formula);
     }
 
     public function formulaType($type)

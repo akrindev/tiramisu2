@@ -60,7 +60,21 @@
 
                 <div class="mt-2">
                     <small class="text-muted float-left"><b>Created: </b> {{ $formula->created_at->format('d-M-Y H:i') }} </small>
-                    <a href="/fill_stats/show/{{ $formula->id }}" class="float-right btn btn-sm btn-pill btn-outline-primary">Show</a>
+                    @auth
+                    @if ($formula->users->count() && in_array(auth()->id(), $formula->users->pluck('id')->toArray()))
+                    <span class="float-right btn btn-pill btn-sm btn-outline-secondary"> 
+                        {{ $formula->users->count() }}
+                        {{ Illuminate\Support\Str::plural('love', $formula->users->count()) }}
+                    </span>
+                    @else
+                    <span wire:click="save({{ $formula->id }})" class="float-right btn btn-pill btn-sm btn-outline-danger"> 
+                        {{ $formula->users->count() > 0 ? $formula->users->count() : '' }}
+                        {{ Illuminate\Support\Str::plural('love', $formula->users->count()) }}
+
+                    </span>
+                    @endif
+                    @endauth
+                    <a href="/fill_stats/show/{{ $formula->id }}" class="mx-1 float-right btn btn-sm btn-pill btn-outline-primary">Show</a>
                 </div>
             </div>
         </div>

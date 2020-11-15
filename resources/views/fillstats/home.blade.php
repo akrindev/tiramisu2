@@ -1,8 +1,8 @@
 @extends('layouts.tabler')
 
 
-@section('title','Toram Fillstats Formula +18, +19, +20 full list')
-@section('description','Toram Fillstats Formula full list, Armor, senjata +18, +19, +20 dst')
+@section('title','Toram Fillstats Formula +20, +21 full list')
+@section('description','Toram Fillstats Formula full list, Armor, senjata +20, +21 dst')
 @section('image',to_img())
 
 
@@ -19,7 +19,10 @@
      @include('inc.cari')
 
       <div class="alert alert-info">
-          Simulasi Fill Stats <a href="/fill_stats/calculator">Updated</a>
+          Simulasi Fill Stats <a href="/fill_stats/calculator">Updated</a> <br />
+
+          <strong>NEW!!</strong> <br />
+          if you login, you can give love and automaticaly save the formula
       </div>
 
        <div class="my-2">

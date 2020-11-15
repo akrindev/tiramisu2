@@ -116,8 +116,10 @@
 			<div class="dimmer">
   				<div class="loader"></div>
   				<div class="dimmer-content">
-                    <div id="saved-formula" class="o-auto" style="height:330px">
+                    <div id="saved-formula" class="o-auto" style="height: 160px">
                         Save public atau <a href="/fb-login">Login</a> untuk melihat formula yang telah kamu simpan <br />
+                    </div>
+                    <div id="love-formula" class="o-auto" style="height: 165px"> empty
                     </div>
   				</div>
 			</div>
@@ -213,11 +215,6 @@
 <script src="/assets/js/saveFormula.js?v1"></script>
 <script src="/assets/js/newfill.js"></script>
 
-@if(session()->has('data'))
-<script>
-	App.getFromCloud({{ session('data') }});
-</script>
-@endif
 
 @auth
 <script>

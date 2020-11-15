@@ -77,6 +77,7 @@ class User extends Authenticatable
     }
 
 
+
   	public function contact()
     {
       return $this->hasOne(Contact::class);
@@ -168,4 +169,9 @@ class User extends Authenticatable
         return $this->hasMany(Formula::class);
     }
 
+    // user saved formula
+    public function savedFormulas()
+    {
+      return $this->belongsToMany(Formula::class, 'user_formula', 'user_id', 'formula_id');
+    }
 }

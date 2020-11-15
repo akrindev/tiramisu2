@@ -16,6 +16,11 @@ class Formula extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(Formula::class, 'user_formula', 'formula_id', 'user_id');
+    }
+
     /**
      * Scope a query to only exclude specific Columns
      *
