@@ -35,6 +35,7 @@ endif;
         <a href="{{ route('mygallery') }}" class="btn btn-link btn-sm">My Gallery</a>
         <a href="/forum/baru" class="btn btn-link btn-sm">Tulis post</a>
         <a href="/quiz/profile" class="btn btn-link btn-sm">My Quiz</a>
+        <a href="/fill_stats/myformula" class="btn btn-link btn-sm">My Formula</a>
 
         @if(auth()->user()->isAdmin())
         <a href="/admin" class="btn btn-link btn-sm">Admin Dashboard</a>

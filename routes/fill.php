@@ -10,6 +10,9 @@ Route::get('/load', 'FormulaController@loadSaved');
 Route::get('/get/{id}', 'FormulaController@getFormula');
 Route::get('/show/{id}', 'FormulaController@showFormula');
 
+Route::group(['middleware' => ['auth']], function () {
+    Route::view('/myformula', 'fillstats.my-formula');
+});
 
 
 // admin, fill stats
