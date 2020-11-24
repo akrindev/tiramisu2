@@ -24,7 +24,7 @@
         </div>
     </div>
     @foreach($formulas as $formula)
-    <div class="col-md-4">
+<div class="col-md-4" wire:key="{{ $formula->id }}">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">{{ $formula->note }} </h3>
@@ -66,11 +66,13 @@
                         {{ Illuminate\Support\Str::plural('love', $formula->users->count()) }}
                     </span>
                     @else
-                    <span @auth wire:click="save({{ $formula->id }})" @endauth class="float-right btn btn-pill btn-sm btn-outline-danger">
+                    <button @auth wire:click="save({{ $formula->id }})" @endauth 
+                        wire:loading.class="btn-loading"
+                        class="float-right btn btn-pill btn-sm btn-outline-danger">
                         {{ $formula->users->count() > 0 ? $formula->users->count() : '' }}
                         {{ Illuminate\Support\Str::plural('love', $formula->users->count()) }}
 
-                    </span>
+                    </button>
                     @endif
                     <a href="/fill_stats/show/{{ $formula->id }}" class="mx-1 float-right btn btn-sm btn-pill btn-outline-primary">Show</a>
                 </div>
