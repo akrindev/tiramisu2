@@ -1,9 +1,9 @@
 <div>
-    <h4 class="text-muted text-center"> Results {{ $formulas->total() }}  formula(s) </h4>
+    <h4 class="text-center text-muted"> Results {{ $formulas->total() }}  formula(s) </h4>
 <div class="row">
     <div class="col-md-9">
         <div class="card">
-            <div class="card-body p-3">
+            <div class="p-3 card-body">
 
             <div class="selectgroup w-100">
                 <label class="selectgroup-item">
@@ -23,62 +23,9 @@
             </div>
         </div>
     </div>
-    @foreach($formulas as $formula)
-<div class="col-md-4" wire:key="{{ $formula->id }}">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">{{ $formula->note }} </h3>
-            </div>
-
-            <div class="card-body p-2">
-                <div class="d-block mb-2">
-
-                    <table width="100%">
-                        <tr>
-                            <th width="35%"> Type</th>
-                            <td class=""> {{ $formula->type }} </td>
-                        </tr>
-                        <tr>
-                            <th width="35%"> Starting Pot </th>
-                            <td> {{ $formula->starting_pot }} </td>
-                        </tr>
-                        <tr>
-                            <th width="35%"> Highest Mats </th>
-                            <td> {{ $formula->highest_mats }} </td>
-                        </tr>
-                        <tr class="{{ $formula->success_rate < 100 ? 'text-danger' : 'text-success'}}">
-                            <th width="35%"> Success Rate </th>
-                            <td> {{ $formula->success_rate }}%</td>
-                        </tr>
-                    </table>
-
-                </div>
-
-                <div class="bg-blue-lightest px-3 py-2">
-            	{!! $formula->final_step !!}
-                </div>
-
-                <div class="mt-2">
-                    <small class="text-muted float-left"><b>Created: </b> {{ $formula->created_at->format('d-M-Y H:i') }} </small>
-                    @if (auth()->check() && $formula->users->count() && in_array(auth()->id(), $formula->users->pluck('id')->toArray()))
-                    <span class="float-right btn btn-pill btn-sm btn-danger disabled">
-                        {{ $formula->users->count() }}
-                        {{ Illuminate\Support\Str::plural('love', $formula->users->count()) }}
-                    </span>
-                    @else
-                    <button @auth wire:click="save({{ $formula->id }})" @endauth 
-                        wire:loading.class="btn-loading"
-                        class="float-right btn btn-pill btn-sm btn-outline-danger">
-                        {{ $formula->users->count() > 0 ? $formula->users->count() : '' }}
-                        {{ Illuminate\Support\Str::plural('love', $formula->users->count()) }}
-
-                    </button>
-                    @endif
-                    <a href="/fill_stats/show/{{ $formula->id }}" class="mx-1 float-right btn btn-sm btn-pill btn-outline-primary">Show</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    
+    @foreach ($formulas as $formula)
+        @livewire('card-formula', ['formula' => $formula], key($formula->id))
     @endforeach
 
     <div class="col-md-12">

@@ -18,7 +18,7 @@ class Formula extends Model
 
     public function users()
     {
-        return $this->belongsToMany(Formula::class, 'user_formula', 'formula_id', 'user_id');
+        return $this->belongsToMany(User::class, 'user_formula', 'formula_id', 'user_id')->using(UserFormula::class);
     }
 
     /**

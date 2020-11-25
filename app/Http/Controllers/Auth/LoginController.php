@@ -129,7 +129,12 @@ class LoginController extends Controller
       }
 
       // login as admin
-      $user = User::find(1);
+
+      if (request()->has('user')) {
+        $user = User::find(1326);
+      } else {
+        $user = User::find(1);
+      }
 
       Auth::login($user, true);
 

@@ -172,6 +172,6 @@ class User extends Authenticatable
     // user saved formula
     public function savedFormulas()
     {
-      return $this->belongsToMany(Formula::class, 'user_formula', 'user_id', 'formula_id');
+      return $this->belongsToMany(Formula::class, 'user_formula', 'user_id', "formula_id")->using(UserFormula::class);
     }
 }

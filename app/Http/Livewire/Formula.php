@@ -33,13 +33,6 @@ class Formula extends Component
         return view('livewire.formula', compact('formulas'));
     }
 
-    public function save($id)
-    {
-        $formula = WorkSpace::find($id);
-        
-        auth()->user()->savedFormulas()->attach($formula);
-    }
-
     public function formulaType($type)
     {
         $this->resetPage();

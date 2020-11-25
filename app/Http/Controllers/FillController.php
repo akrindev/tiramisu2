@@ -17,14 +17,7 @@ class FillController extends Controller
 
     public function index()
     {
-      $data = FillStat::get()->sortBy('plus')
-        					  ->sortBy('type');
-
-      $fills = FillStat::select(['type','plus'])->distinct()->get()
-        ->sortBy('plus')
-        ->sortBy('type');
-
-      return view('fillstats.home', compact('data','fills'));
+      return view('fillstats.home');
     }
 
 
