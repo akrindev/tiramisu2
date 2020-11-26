@@ -164,6 +164,10 @@
           </small>
         </div>
 
+        <div class="form-group">
+          Since: <span class="text-muted"> {{ $data->created_at->format('d-M-Y H:i:s')}} ({{$data->created_at->diffForHumans() }}) </span>
+        </div>
+
       <button type="submit" class="btn btn-outline-primary btn-pill">Simpan Perubahan</button>
       {!! form_close() !!}
 
@@ -209,6 +213,16 @@
         </small> <br>
         @endif
         <small class="text-muted">Di awali dengan kode negara</small>
+      </div>
+
+      <div class="form-group">
+        <label for="facebook" class="form-label">Facebook</label>
+      <input type="text" class="form-control" name="facebook" placeholder="https://facebook/.com/username" value="{{ $data->contact->facebook ?? '' }}">
+      </div>
+
+      <div class="form-group">
+        <label for="twitter" class="form-label">Twitter</label>
+        <input type="text" class="form-control" name="twitter" placeholder="https://twitter.com/username" value="{{ $data->contact->twitter ?? '' }}">
       </div>
 
       <button class="btn btn-pill btn-outline-primary" type="submit">Submit</button>

@@ -52,9 +52,13 @@ class FoodMember extends Component
               $line = $food->contact->line != null ?
                 '<a href="//line.me/ti/p/~'.$food->contact->line .'" class="mr-2 btn btn-outline-success btn-sm"><i class="mr-1 fa fa-commenting-o"></i> line</a>' : '';
               $wa =  $food->contact->whatsapp != null ?
-                '<a href="//wa.me/'.$food->contact->whatsapp.'" class="btn btn-success btn-sm"><i class="mr-1 fa fa-whatsapp"></i> whatsapp</a>' : '';
+                '<a href="//wa.me/'.$food->contact->whatsapp.'" class="mr-2 btn btn-success btn-sm"><i class="mr-1 fa fa-whatsapp"></i> whatsapp</a>' : '';
+              $fb = $food->contact->facebook != null ?
+              '<a href="'. $food->contact->facebook .'" class="mr-2 btn btn-primary btn-sm"><i class="mr-1 fa fa-facebook"></i> facebook</a>' : '';
+              $tw = $food->contact->twitter != null ?
+              '<a href="'. $food->contact->twitter .'"class="btn btn-outline-primary btn-sm"><i class="mr-1 fa fa-twitter"></i> twitter</a>' : '';
 
-            $food->hubungi =  new HtmlString($wa . $line);
+            $food->hubungi =  new HtmlString($wa . $line .$fb . $tw);
 
             return $food;
         });

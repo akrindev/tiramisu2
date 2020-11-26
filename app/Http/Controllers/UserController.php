@@ -71,7 +71,7 @@ class UserController extends Controller
     	'username'	=> 'required|alpha_num|max:10|unique:users,username,'.$user->id,
       	'ign'	=> 'required',
       	'email'		=> 'email',
-      	'biodata'	=> 'required|max:160',
+      	'biodata'	=> 'required|max:180',
       	'alamat'	=> 'required|max:160',
       	'cooking'	=> 'integer|min:1|max:38',
       	'cooklv'	=> 'integer|min:1|max:10'
@@ -126,7 +126,9 @@ class UserController extends Controller
       	'user_id' => auth()->id()
       ], [
       	'line'	=> request('line'),
-        'whatsapp'	=> request('whatsapp')
+        'whatsapp'	=> request('whatsapp'),
+        'facebook'  => request('facebook'),
+        'twitter' => request('twitter')
       ]);
 
       return back()->with('c-sukses', 'data telah di simpan!!');

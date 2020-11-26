@@ -15,7 +15,7 @@
         <div class="col-md-4" wire:key="{{ $food->buff }}">
             <div class="card">
                 <div class="p-3 card-body">
-                    <table width="100%">
+                    <table style="border-collapse: collapse;" width="100%">
                         <tr>
                             <th width="20%">By</th>
                             <td> {{ $food->name }} </td>
@@ -46,5 +46,11 @@
     <div class="col-12">
         {{ $foods->onEachSide(3)->links() }}
     </div>
-
+<style>
+th, td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #dddddd;
+}
+</style>
 </div>
