@@ -28,13 +28,13 @@ class MyFormula extends Component
         $type = $this->type;
 
         if($this->ctype == 's') {
-            $formulas = WorkSpace::whereUserId(auth()->id())->exclude('body')
+            $formulas = WorkSpace::with('users')->whereUserId(auth()->id())->exclude('body')
                 ->when($this->type != 'all', function ($query) use ($type) {
                     return $query->whereType($type);
                 })
                 ->latest()->paginate(21);
         } else {
-            $formulas = auth()->user()->savedFormulas()
+            $formulas = auth()->user()->savedFormulas()->with('users')
                 ->when($this->type != 'all', function ($query) use ($type) {
                     return $query->whereType($type);
                 })
