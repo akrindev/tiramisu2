@@ -21,6 +21,11 @@ class FoodMember extends Component
     {
         // $this->foods = $this->showFoods();
     }
+
+    public function updatingBuff()
+    {
+        $this->resetPage();
+    }
     
     public function render()
     {
