@@ -110,7 +110,7 @@
                         <button class="btn btn-primary btn-pill" id="save" onClick="Cloud.send()">Save</button>
 
                         @auth
-                         <a href='/fill_stats/myformula' class="btn btn-pill btn-outline-primary animated infinite pulse ml-2 text-primary">show all my formula</a>   
+                         <a href='/fill_stats/myformula' class="btn btn-pill btn-outline-primary animated infinite pulse ml-2 text-primary">show all my formula</a>
                         @endauth
                     </div>
                     @endif
@@ -216,8 +216,8 @@
 @section('footer')
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="/assets/js/saveFormula.js?v1"></script>
-<script src="/assets/js/newfill.js"></script>
+<script src="/assets/js/saveFormula.js?v2"></script>
+<script src="/assets/js/newfill.js?v2"></script>
 
 
 @auth
