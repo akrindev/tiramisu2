@@ -1,8 +1,8 @@
 @extends('layouts.tabler')
 
 
-@section('title','Toram Fillstats Formula +20, +21 full list')
-@section('description','Toram Fillstats Formula full list, Armor, senjata +20, +21 dst')
+@section('title','Fill Stats Formula List')
+@section('description','Toram Fillstats Formula full list, Armor, senjata')
 @section('image',to_img())
 
 

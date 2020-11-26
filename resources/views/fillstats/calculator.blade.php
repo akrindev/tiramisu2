@@ -1,7 +1,7 @@
 @extends('layouts.tabler')
 
-@section('title','Toram fill Stat Simulator')
-@section('description','Toram fill stats Skill level 4 Simulator calculator +20  +21')
+@section('title','Fill Stat Simulator')
+@section('description','Toram fill Stats Skill level 4 Simulator')
 @section('image',to_img())
 
 
