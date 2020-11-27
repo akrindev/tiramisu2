@@ -26,11 +26,11 @@ class FoodMember extends Component
     {
         $this->resetPage();
     }
-    
+
     public function render()
     {
         $foods = $this->showFoods();
-        
+
         return view('livewire.food-member', \compact('foods'));
     }
 
@@ -38,22 +38,23 @@ class FoodMember extends Component
     {
         $buff = $this->buff == "all" ? "*" : \App\Cooking::findOrFail($this->buff)->id;
 
-        $foods = User::with('cooking', 'contact')
-             ->select('id', 'name', 'ign', 'biodata', 'cooking_id', 'cooking_level')
+        $foods = User::with('cooking', 'secondCooking','contact')
+             ->select('id', 'name', 'ign', 'biodata', 'cooking_id', 'cooking_level', 'second_cooking_id', 'second_cooking_level')
              ->where('visibility', 1)
              ->when($buff != '*', function ($q) use ($buff) {
-                return $q->where('cooking_id', $buff);
+                return $q->where('cooking_id', $buff)->orWhere('second_cooking_id', $buff);
             })
-            ->orderBy('updated_at', 'desc')->paginate(12);            
-            
+            ->orderBy('updated_at', 'desc')->paginate(12);
+
         $foods->map(function ($food) {
             $food->buff = $this->getStatLv($food->cooking->buff, $food->cooking->stat, $food->cooking_level, true);
+            $food->second_buff = $food->secondCooking == null ? "-- unknown --" : $this->getStatLv($food->secondCooking->buff, $food->secondCooking->stat, $food->second_cooking_level, true);
 
             if(! $food->contact) {
-                $food->hubungi =  "-- unknown --"; 
+                $food->hubungi =  "-- unknown --";
                 return $food;
               }
-      
+
               $line = $food->contact->line != null ?
                 '<a href="//line.me/ti/p/~'.$food->contact->line .'" class="mr-2 btn btn-outline-success btn-sm"><i class="mr-1 fa fa-commenting-o"></i> line</a>' : '';
               $wa =  $food->contact->whatsapp != null ?
@@ -80,19 +81,19 @@ class FoodMember extends Component
             $out = $out+$this->getPoint($stat);
           }
         }
-    
+
         if($parse) {
             return $this->parse($buff, $out);
         }
-    
+
         return $out;
       }
-    
-    
+
+
       private function getPoint($stat){
-    
+
         $out = $stat;
-    
+
         switch($stat) {
           case 2:
             $out = 4;
@@ -115,18 +116,18 @@ class FoodMember extends Component
           default:
             $out = 2;
         }
-    
+
         return $out;
       }
-    
+
       private function parse($buff, $out)
       {
         if(Str::contains($buff, '%')) {
           $replaced = Str::replaceLast('%', '', $buff);
-    
+
           return $replaced . ' ' . $out . '%';
         }
-    
+
         return $buff . ' ' . $out;
       }
 }

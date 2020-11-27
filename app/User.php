@@ -160,6 +160,11 @@ class User extends Authenticatable
       return $this->belongsTo(Cooking::class);
     }
 
+    public function secondCooking()
+    {
+      return $this->belongsTo(Cooking::class, 'second_cooking_id');
+    }
+
     /*
     *
     * user has many saved formula

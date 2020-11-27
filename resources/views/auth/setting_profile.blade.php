@@ -143,6 +143,20 @@
           </div>
         </div>
 
+
+        <div class="form-group">
+          <label class="form-label"> Buff masakan kedua (second)</label>
+          <div class="row px-3">
+          <select class="form-control col-8 mr-1" name="second_cooking">
+            <option value="">-- Pilih buff masakan --</option>
+            @foreach(\App\Cooking::get() as $cook)
+            <option value="{{ $cook->id }}" {{ $data->second_cooking_id == $cook->id ? 'selected':'' }}> {{ $cook->buff }} </option>
+            @endforeach
+          </select>
+          <input type="number" name="second_cooklv" class="form-control col-3" min="1" max="10" value="{{ $data->second_cooking_level }}" placeholder="level">
+          </div>
+        </div>
+
         <div class="form-group">
           <label class="form-label">
             Privasi

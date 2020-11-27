@@ -74,7 +74,9 @@ class UserController extends Controller
       	'biodata'	=> 'required|max:180',
       	'alamat'	=> 'required|max:160',
       	'cooking'	=> 'integer|min:1|max:38',
-      	'cooklv'	=> 'integer|min:1|max:10'
+      	'cooklv'	=> 'integer|min:1|max:10',
+      	'second_cooking'	=> 'integer|min:1|max:38',
+      	'second_cooklv'	=> 'integer|min:1|max:10'
      ]);
 
     $gender = request()->gender;
@@ -107,6 +109,11 @@ class UserController extends Controller
     if(request('cooking') && request('cooklv') != null) {
     	$user->cooking_id = request()->cooking;
     	$user->cooking_level = request()->cooklv;
+    }
+
+    if(request('second_cooking') && request('second_cooklv') != null) {
+    	$user->second_cooking_id = request()->second_cooking;
+    	$user->second_cooking_level = request()->second_cooklv;
     }
 
     $user->visibility = request()->visibility;

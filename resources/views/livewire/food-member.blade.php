@@ -10,7 +10,13 @@
             </select>
         </div>
     </div>
-    <div class="col-12"></div>
+
+    <div class="col-12">
+        <div wire:loading class="p-3">
+        	Processing . . .
+        </div>
+    </div>
+
     @foreach ($foods as $food)
         @livewire('food-card', ['food' => $food], key($food->id))
     @endforeach

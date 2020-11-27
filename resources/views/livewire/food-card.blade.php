@@ -15,6 +15,10 @@
                     <td> {{ $food->buff }} (Lv {{ $food->cooking_level}}) </td>
                 </tr>
                 <tr>
+                    <th width="20%">Second Food</th>
+                    <td> {{ $food->second_buff }} {{ $food->second_cooking_level != null ? "(Lv {$food->second_cooking_level})" : '' }} </td>
+                </tr>
+                <tr>
                     <th width="20%">Contact</th>
                     <td> {{ $food->hubungi }} </td>
                 </tr>
