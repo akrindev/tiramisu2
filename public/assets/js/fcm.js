@@ -1,7 +1,7 @@
 
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyDt-sH2PdR2HrgJbvaU1iWhgLiToxM4XCc",
+    apiKey: "AIzaSyDbaaSyge0NHNBfjevIKjheZIzXZUvYrd0",
     authDomain: "toram-indo.firebaseapp.com",
     databaseURL: "https://toram-indo.firebaseio.com",
     projectId: "toram-indo",
