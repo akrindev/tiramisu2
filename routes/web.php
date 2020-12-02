@@ -22,6 +22,9 @@ Route::prefix('en')->middleware('locale:en')->group(base_path('routes/en.php'));
 
 Route::view('/cb', 'cb');
 
+// main quest simulator
+Route::view('mq_exp', 'mq_exp');
+
 // dye routes
 Route::prefix('dye')->group(base_path('routes/dye.php'));
 

@@ -185,7 +185,7 @@
 @endsection
 
 @section('head')
-`@livewireStyles
+  @livewireStyles
 <style>
   @media (min-width: 768px) {
   .equal {
