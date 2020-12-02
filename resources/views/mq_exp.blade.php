@@ -20,11 +20,11 @@
 
         <div class="col-md-8">
           @includeWhen(!app()->isLocal(), 'inc.ads_article')
-            
+
           <!-- card -->
           <div class="my-3">
               <div class="card">
-                  <div class="card-body p3">
+                  <div class="card-body p-2">
                     <table>
                       <tbody>
                         <tr>
@@ -32,7 +32,7 @@
                           <td> <select name="locale" id="locale" class="form-control" onchange="App.setLocale()">
                             <option value="1">Bahasa Indonesia</option>
                             <option value="2">English</option>
-                            </select> 
+                            </select>
                           </td>
                         </tr>
                         <tr>
