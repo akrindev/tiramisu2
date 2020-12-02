@@ -744,15 +744,16 @@ class Main {
 
   levelUp() {
 
-    let level = parseInt(document.getElementById('level').value);
-    let percent = parseInt(document.getElementById('percent').value);
+    let level = parseInt(document.getElementById('level').value) || 1;
+    let percent = parseInt(document.getElementById('percent').value) || 0;
     //exp
     let future = this.future
 
     // console.log("level " + level + " percent " + percent + " future " + future)
 
     let exp = Math.floor((level / 2) * (level * level * level * 0.0500000007450581) + level * 2);
-    let left = (100 - Number(percent)) / 100 * exp;
+    let left = Math.floor((100 - Number(percent)) / 100 * exp);
+    //console.log(left)
     // lets level up our characters
     let need = 0;
 
@@ -766,16 +767,16 @@ class Main {
         need = exp;
         //  console.log(need)  console.log("level " + level)
       }
+      
+     // console.log(future, need)
+      need = future
 
-      need -= future
-
-      future -= need;
-      left = Math.floor(100 - (need / exp * 100));
+      future -= need
     }
 
     this.future = 0
     this.level = level
-    this.percent = left
+    this.percent = Math.floor(need / exp * 100);
 
     this.getResult()
   }
