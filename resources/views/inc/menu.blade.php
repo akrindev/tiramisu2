@@ -66,6 +66,7 @@
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/fill_stats">Fill stats formula</a></span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/fill_stats/calculator">Fill Stat Simulator</a></span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/exp">Exp Calculator</a></span>
+      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/mq_exp">Main Quest Exp Calculator (MQ)</a></span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/npc">NPC List</a></span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/quiz">QUIZ</a></span>
     </div>

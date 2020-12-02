@@ -229,6 +229,7 @@
                       <a href="/fill_stats/calculator" class="dropdown-item ">Fill stats Calculator</a>
                       <a href="/leveling" class="dropdown-item">Leveling Finder</a>
                       <a href="/exp" class="dropdown-item">Exp Calculator</a>
+                      <a href="/mq_exp" class="dropdown-item">Main Quest (MQ) Exp Calculator</a>
                       <a href="/potensi/kalkulator" class="dropdown-item"> Potensi Kalkulator </a>
                       <a href="/refine/simulasi" class="dropdown-item">Simulasi Refine</a>
                       <a href="/cb" class="dropdown-item">Papan Market Calculator</a>
