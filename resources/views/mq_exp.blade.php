@@ -77,6 +77,9 @@
     width: 100%;
     border-collapse: collapse
   }
+  th {
+    white-space: nowrap;
+  }
   th, td {
     padding: 12px;
     border: 1px solid #ddd
