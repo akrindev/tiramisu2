@@ -1,7 +1,7 @@
 @extends('layouts.tabler')
 
 @section('title','Main Quest Exp Calculator (MQ Calculator)')
-@section('description','Kalkulasi jumlah exp yang di butuhkan dari Nc, bnut sampai Quest. kuy cek disini')
+@section('description','Kalkulasi jumlah exp yang di dapat dari MQ untuk menghitung kenaikan level')
 @section('image','https://i.ibb.co/k1zFdBv/Level-CAP.png')
 
 @push('canonical')
