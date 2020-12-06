@@ -1,7 +1,7 @@
 <div class="my-3">
-     <div class="card text-center px-2">
-          <span class="text-center text-muted py-2">ADVERTISEMENT</span>
-    
+     <div class="card text-center p-2">
+          <!--<span class="text-center text-muted py-2">ADVERTISEMENT</span>-->
+
           <div class="ads">
                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                <!-- lefina -->
@@ -15,8 +15,8 @@
                     (adsbygoogle = window.adsbygoogle || []).push({});
                </script>
                </div>
-          
-          <span class="text-center text-muted py-2">ADVERTISEMENT</span>
-          
+
+        <!--  <span class="text-center text-muted py-2">ADVERTISEMENT</span> -->
+
      </div>
 </div>

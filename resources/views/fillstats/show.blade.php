@@ -32,12 +32,22 @@
         Untuk melihat fill stats formula <a href="/fill_stats">klik disini</a>
         </div>
 
+
+        <div class="alert alert-danger">
+        	Before using this statting simulator, make sure that you learn these statting skills (3 skills on the bottom) and level up to max level
+
+          <img src="https://lh3.googleusercontent.com/0vK72CbQLCkstI9OuN9hcxbFG5s8vHKt5hAZSwzz0oSkcF58BaFNS4PI9m2C3uxsjXHg-vz_D5fbbxYgK5T3aAvRsZPG0qJFKOnt47pUiyHfVaZ6fhSMlFmRr7KUuUHSKFFXb7AFOQ" class="my-2 d-block" />
+          and <b>Max</b> your <b>TECH</b> stats to 255 point.
+
+<img src="https://lh3.googleusercontent.com/LLhAS04wxga6HuLB6Q5pYZvgYdjURvQMLBYvgSYhOWKa5Z6cPiSZ5cDU6PWlmH1Gg68F-e91a0-JN46wruAPAoHPiiKKqo9IRuJsS5BzlBGCyeRJ5Z8c89H8zGbmwUZkuKYP2eW9AA=w1920-h1080" class="my-2 d-block">
+        </div>
+
       </div>
 
     </div>
 
     <div class="row equal">
-      
+
       @livewire('card-formula', ['formula' => $formula])
 
       <div class="col-md-4 mb-5" style="display:none">

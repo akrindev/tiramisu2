@@ -27,7 +27,7 @@
                   <h3 class="card-title">Toram Exp calculator termasuk quest</h3>
                   </div>
                   <div class="card-alert alert alert-info">
-                    <b>New!!</b> Fill stats calculator <a href="/fill_stats/calculator"> Click here </a><br>
+                    <b>New!!</b> Main Quest (MQ) Calculator <a href="/mq_exp"> Click here </a><br>
                     <b>Hot!!</b> Have you try? <a href="/leveling">Toram Leveling Finder</a> <br>
                     <b><a href="/forum/toram-online-level-c-7726be94">LEVEL CAP UPDATE</a></b>
                   </div>

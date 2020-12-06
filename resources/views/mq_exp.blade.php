@@ -21,6 +21,12 @@
         <div class="col-md-8">
           @includeWhen(!app()->isLocal(), 'inc.ads_article')
 
+          <div class="my-3">
+            <div class="alert alert-info">
+              <strong> Try</strong><br /> <a href="/exp"> Exp Calculator </a>
+            </div>
+          </div>
+
           <!-- card -->
           <div class="my-3">
               <div class="card">
