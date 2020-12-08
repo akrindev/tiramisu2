@@ -24,6 +24,7 @@ class SearchForm extends Component
     public function mount($q)
     {
         $this->q = $q;
+        $this->type = 'name_only';
     }
 
     public function render()

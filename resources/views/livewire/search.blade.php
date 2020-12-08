@@ -34,8 +34,6 @@
         </div>
           @else
 
-          @includeWhen(!app()->isLocal(), 'inc.ads_article')
-
           @endif
 
        @forelse($drops as $item)
@@ -53,6 +51,14 @@
 
           @empty
           @endforelse
+
+
+          <div class="row">
+       @forelse ($formulas as $formula)
+         @livewire('card-formula', ['formula' => $formula], key($formula->id))
+         @empty
+         @endforelse
+        </div>
 
 
                 @if(count($maps))
@@ -84,10 +90,7 @@
 
           </div>
         </div>
-
-        @includeUnless(app()->isLocal(), 'inc.ads_mobile')
        @endif
-
         {{-- $drops->appends(['q' => request('q'), 'type' => request('type') ])->links() --}}
 
 

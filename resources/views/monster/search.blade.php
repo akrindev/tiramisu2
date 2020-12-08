@@ -11,6 +11,12 @@
     </div>
 
     <div class="row">
+      
+      <div class="col-12">
+
+        @includeWhen(!app()->isLocal(), 'inc.ads_article')
+
+      </div>
 
     	<livewire:search-form :q="$q"/>
         <livewire:search :q="$q" />

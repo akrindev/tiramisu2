@@ -6,7 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 
 use App;
-use App\{Drop, Monster, Map, Forum};
+use App\{Drop, Monster, Map, Forum, Formula};
 
 class Search extends Component
 {
@@ -75,7 +75,11 @@ class Search extends Component
                     ->orderBy('judul')
                     ->get();
 
-        return view('livewire.search', compact('drops', 'monsters', 'maps', 'forums'));
+        $formulas =Formula::search('note', $q)
+                    ->latest()->take(10)
+                    ->get();
+
+        return view('livewire.search', compact('drops', 'monsters', 'maps', 'forums', 'formulas'));
     }
 
     public function getResult($q)

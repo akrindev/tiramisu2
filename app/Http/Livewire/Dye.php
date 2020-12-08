@@ -11,7 +11,9 @@ class Dye extends Component
     public function render()
     {
         $dyes = MonthlyDye::with([
-            'monster', 'dye'
+            'monster' => function($query) {
+                $query->with('map');
+            }, 'dye'
         ])->whereMonth('created_at', now()->month)
             ->whereYear('created_at', now()->year)
             ->get()

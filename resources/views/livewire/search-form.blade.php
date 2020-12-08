@@ -12,8 +12,8 @@
     </div>
 
       <select class="form-control custom-select w-auto" name="type" wire:model="type">
-        <option value="name_only" {{ request()->type == 'name_only' ? 'selected' : '' }}>Nama</option>
-        <option value="status_only" {{ request()->type == 'status_only' ? 'selected' : '' }}>Status</option>
+        <option value="name_only">Nama</option>
+        <option value="status_only">Status</option>
     </select>
    </div>
   </form>

@@ -43,7 +43,11 @@
             @endif
           @forelse($dyes as $dye)
           <tr>
-            <td class="p-2"> <div><b><a href="/monster/{{ $dye->monster->id }}" style="color:black">{{ $dye->monster->name }}</a></b></div>
+            <td class="p-2"> <div><b><a href="/monster/{{ $dye->monster->id }}" style="color:black">{{ $dye->monster->name }}</a></b> <br/>
+              <small class="text-muted">
+                {{ $dye->monster->map->name }}
+              </small>
+            </div>
 
               @auth @if(auth()->user()->isAdmin())[<a href="#" class="dd text-danger" data-id="{{ $dye->id }}">hapus</a>] @endif @endauth
               </td>
