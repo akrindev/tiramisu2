@@ -4,9 +4,8 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-
 use App;
-use App\{Drop, Monster, Map, Forum, Formula};
+use App\{Drop, Monster, Map, Forum, Formula, LogSearch};
 
 class Search extends Component
 {
@@ -32,8 +31,13 @@ class Search extends Component
     {
         $q = $this->q;
 
-        $type = request('type') == 'status_only' || $this->type == 'status_only' ? 'note' : 'name';
+        LogSearch::create([
+            'user_id'	=> auth()->id() ?? null,
+            'q'			=> $q
+        ]);
 
+        $type = $this->type == 'status_only' ? 'note' : 'name';
+        
         $this->setLocale($this->locale);
 
         $drops = Drop::search($type, $q)
@@ -84,7 +88,8 @@ class Search extends Component
 
     public function getResult($q)
     {
-        $this->q = $q;
+        $this->q = $q[0];
+        $this->type = $q[1];
     }
 
     public function switchLocalization($locale)

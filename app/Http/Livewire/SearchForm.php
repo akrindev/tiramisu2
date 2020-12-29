@@ -4,8 +4,6 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-use App\LogSearch;
-
 class SearchForm extends Component
 {
     public $q;
@@ -36,12 +34,7 @@ class SearchForm extends Component
     {
         $this->validate();
 
-        LogSearch::create([
-            'user_id'	=> auth()->id() ?? null,
-            'q'			=> $this->q
-        ]);
-
-        $this->emit('getResult', $this->q);
+        $this->emit('getResult', [$this->q, $this->type]);
     }
 
     public function hydrate()
