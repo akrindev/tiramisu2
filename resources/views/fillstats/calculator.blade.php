@@ -10,7 +10,7 @@
 @endpush
 
 @section('content')
-<div class="my-5" onload="App.loadFromStorage()">
+<div class="my-5" onload="App.loadSetting(); App.loadFromStorage()">
 
   <div class="container">
 
@@ -27,7 +27,7 @@
         @includeUnless(app()->isLocal(), 'inc.ads_article')
       </div>
 
-      <div class="col-12 mb-5">
+      <div class="mb-5 col-12">
         <div class="alert alert-info">
         Untuk melihat fill stats formula <a href="/fill_stats">klik disini</a>
         </div>
@@ -46,7 +46,7 @@
     </div>
 
     <div class="row equal justify-content-center">
-      <div class="col-md-5 mb-5" {{ session()->has('data') ? 'style="display:none"' : '' }}>
+      <div class="mb-5 col-md-5" {{ session()->has('data') ? 'style="display:none"' : '' }}>
         <div class="card">
           <div class="card-header">
             <h3 class="card-title"> Resep status </h3>
@@ -55,7 +55,7 @@
             <b>Updated</b> Skill tree level 4
           </div>
 
-          <div class="card-body p-3" style="font-size:14px;font-weight:400">
+          <div class="p-3 card-body" style="font-size:14px;font-weight:400">
             <div class="form-group">
               <label class="form-label">Type</label>
               <div class="selectgroup w-100">
@@ -83,14 +83,19 @@
             </div>
 
             <div class="form-group">
-              <label class="form-label">Level prof bs</label>
-            	<input type="number" min=1 max=200 class="form-control" id="prof" value=1 oninput="update_prof_lv();">
+              <details>
+                <summary>extras</summary>
+                <label for="tec">TECH</label>
+                <input type="number" name="tec" id="tec" min=0 max=255  class='form-control' value=255>
+                <label for="proficiency">Proficiency</label>
+                <input type="number" name="proficiency" id="proficiency" min=0 max=250 class='form-control' value=0>
+              </details>
             </div>
 
             <div class="form-group">
-              <button class="btn btn-outline-primary btn-pill m-1" onclick="App.spawn();setTimeout(() => { document.getElementById('workspace').scrollIntoView() }, 400)">Start!</button>
+              <button class="m-1 btn btn-outline-primary btn-pill" onclick="App.spawn();setTimeout(() => { document.getElementById('workspace').scrollIntoView() }, 400)">Start!</button>
 
-              <a href="/fill_stats" class="btn btn-pill btn-outline-warning m-1"><i class="fe fe-folder"></i> Explore Formula</a>
+              <a href="/fill_stats" class="m-1 btn btn-pill btn-outline-warning"><i class="fe fe-folder"></i> Explore Formula</a>
 
             </div>
 
@@ -102,12 +107,13 @@
         </div>
       </div>
 
-        <div class="col-md-4 mb-5" id="wk">
+        <div class="mb-5 col-md-4" id="wk">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">WorkSpace</h3>
                 </div>
-                <div class="card-body p-3">
+                <div class="p-3 card-body">
+                  <div id="stat-details"></div>
                     <div id="navigation_bar"></div>
                     Save your formula to server <br />
                     <div class="form-group">
@@ -119,7 +125,7 @@
                         <button class="btn btn-primary btn-pill" id="save" onClick="Cloud.send()">Save</button>
 
                         @auth
-                         <a href='/fill_stats/myformula' class="btn btn-pill btn-outline-primary animated infinite pulse ml-2 text-primary">show all my formula</a>
+                         <a href='/fill_stats/myformula' class="ml-2 btn btn-pill btn-outline-primary animated infinite pulse text-primary">show all my formula</a>
                         @endauth
                     </div>
                     @endif
@@ -143,41 +149,41 @@
             </div>
         </div>
 
-        <div class="col-md-3 mb-5" id="ads">
+        <div class="mb-5 col-md-3" id="ads">
         	@includeUnless(app()->isLocal(), 'inc.ads_article')
         </div>
 
       <div class="w-100"></div>
-      <div class="col-md-5 mb-5 hidden">
+      <div class="hidden mb-5 col-md-5">
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Status</h3>
           </div>
-          <div class="card-body p-3">
+          <div class="p-3 card-body">
             <div class="form-group">
-              <div class="row gutter-xs p-3" id="workspace"></div>
+              <div class="p-3 row gutter-xs" id="workspace"></div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="col-md-4 mb-5 hidden" id="show-formula">
+      <div class="hidden mb-5 col-md-4" id="show-formula">
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Formula</h3>
               <div class="card-options"> <button class="btn btn-sm btn-outline-primary" onclick="document.getElementById('wk').scrollIntoView();document.getElementById('note').focus()">save</button> </div>
           </div>
-          <div class="card-body p-0" id="formula_display" style="font-size:14px">
+          <div class="p-0 card-body" id="formula_display" style="font-size:14px">
           </div>
         </div>
       </div>
 
-      <div class="col-md-3 mb-5 hidden">
+      <div class="hidden mb-5 col-md-3">
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Material Used</h3>
           </div>
-          <div class="card-body p-0" id="material_display">
+          <div class="p-0 card-body" id="material_display">
           </div>
         </div>
       </div>
@@ -226,7 +232,8 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/assets/js/saveFormula.js?v2"></script>
-<script src="/assets/js/newfill.js?v2"></script>
+<script src="/assets/js/newfill.js?v3"></script>
+<script src="/assets/js/math.js"></script>
 
 
 @auth
