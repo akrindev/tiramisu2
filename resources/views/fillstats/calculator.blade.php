@@ -10,7 +10,7 @@
 @endpush
 
 @section('content')
-<div class="my-5" onload="App.loadSetting(); App.loadFromStorage()">
+<div class="my-5" onload="App.loadSettings(); App.loadFromStorage()">
 
   <div class="container">
 
@@ -52,7 +52,8 @@
             <h3 class="card-title"> Resep status </h3>
           </div>
           <div class="card-alert alert alert-info">
-            <b>Updated</b> Skill tree level 4
+            <b>Updated</b> Skill tree level 4 <br>
+            <small>latest simulator update: <i> 29 december 2020</i> </small>
           </div>
 
           <div class="p-3 card-body" style="font-size:14px;font-weight:400">
