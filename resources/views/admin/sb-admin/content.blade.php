@@ -135,13 +135,33 @@
                 </div>
               </div>
             </div>
+
+            <!-- formula count -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Formula</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $formulas }}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-book fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- Content Row -->
           <div class="row">
 
             <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
+
+            <!-- latest search -->
+            <livewire:admin.latest-search />
+            {{-- <div class="col-lg-6 mb-4">
 
               <!-- pencarian terakhir -->
               <div class="card shadow mb-4">
@@ -162,10 +182,10 @@
          </table>
          </div>
               </div>
-            </div>
+            </div> --}}
 
             <!-- last threads Column -->
-            <div class="col-lg-6 mb-4">
+            <div class="col-12 mb-4">
 
               <!-- last forum post terakhir -->
               <div class="card shadow mb-4">
@@ -188,7 +208,7 @@
               </div>
             </div>
             <!-- users Column -->
-            <div class="col-lg-6 mb-4">
+            <div class="col-12 mb-4">
 
               <!-- users terakhir -->
               <div class="card shadow mb-4">
@@ -219,7 +239,7 @@
 
             <!-- last login -->
 
-     <div class="col-lg-6 mb-4">
+     <div class="col-12 mb-4">
        <div class="card shadow">
           <div class="card-header">
             <h3 class="card-title">
@@ -249,9 +269,11 @@
         <!-- /.container-fluid -->
 @endsection
 
-
+@section('head')
+    @livewireStyles
+@endsection
 @section('footer')
-
+  @livewireScripts
 <link rel="stylesheet" href="//cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
 
 <link rel="stylesheet" href="//datatables.net/media/css/site.css">
@@ -263,17 +285,6 @@
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
   $(function() {
-    $('#searches').DataTable({
-      responsive: true,
-      processing: true,
-      serverSide: true,
-      ajax: "{{ url('/admin/searches') }}",
-      columns: [
-        { data: 'q' , name: 'q'},
-        { data: 'user_id', name: 'user_id' },
-        { data: 'created_at', name: 'created_at' }
-      ]
-    });
 
      $('#posts').DataTable({
       responsive: true,

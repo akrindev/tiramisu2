@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\{
   User, Forum, Quiz,
   Gallery, LogSearch, HistoryLogin,
-  Drop, Monster
+  Drop, Monster, Formula
 };
 
 
@@ -21,6 +21,7 @@ class AdminController extends Controller
       $monsters = Monster::count();
       $quizzes = Quiz::count();
       $forums = Forum::count();
+      $formulas = Formula::count();
 
       /*
       * Tabler theme
@@ -30,22 +31,7 @@ class AdminController extends Controller
       *));
       */
 
-      return view('admin.sb-admin.content', compact('users', 'searches', 'images', 'items', 'monsters', 'quizzes', 'forums'));
-    }
-
-  	/*
-    * last search
-    */
-  	public function logSearches()
-    {
-      return datatables()->of(LogSearch::orderBy('created_at', 'desc'))
-        ->editColumn('user_id', function ($user) {
-        	return $user->user->name ?? 'unknown';
-        })
-        ->editColumn('created_at',function($user){
-        	return waktu($user->created_at);
-        })
-        ->make(true);
+      return view('admin.sb-admin.content', compact('users', 'searches', 'images', 'items', 'monsters', 'quizzes', 'forums', 'formulas'));
     }
 
   	/*
@@ -97,7 +83,7 @@ class AdminController extends Controller
     {
       return datatables()->of(HistoryLogin::orderByDesc('created_at'))
         ->addColumn('pic', function($history){
-        	return "<div><div style='background-image: url(https://graph.facebook.com/{$history->user->provider_id}/picture?type=normal)' class='avatar m-1 ml-1 float-left'></div></div> ";
+        	return "<div><div style='width:2rem;height:2rem;border-radius:50%;display:inline-block;background-image: url(https://graph.facebook.com/".$history->user->provider_id."/picture?type=normal)' class='avatar m-1 ml-1 float-left'></div></div> ";
         })
         ->editColumn('name', function($history){
         	return "<div><strong class='mr-2 mb-2 text-center'>{$history->user->name}</strong><br><small class='text-muted'>@{$history->user->username}</small></div>";
