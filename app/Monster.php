@@ -13,6 +13,8 @@ class Monster extends Model
 
     protected $guarded = [];
 
+    protected $with = ['map'];
+
   	public $timestamps = false;
 
   	public function drops()

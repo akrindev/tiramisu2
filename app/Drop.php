@@ -16,6 +16,11 @@ class Drop extends Model
     	'note'	=> 'json'
     ];
 
+    protected $with = [
+        'dropType',
+        'monsters'
+    ];
+
     protected $guarded = [];
 
   	public $timestamps = false;

@@ -32,9 +32,17 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/item/drop/store">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-box-open"></i>
-          <span>Tambah Drop</span></a>
+          <span>Drop Item</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Drop:</h6>
+            <a class="collapse-item" href="/item/drop/store">Tambah Drop</a>
+            <a class="collapse-item" href="/item/drop/see">Edit Drop</a>
+          </div>
+        </div>
       </li>
 
 

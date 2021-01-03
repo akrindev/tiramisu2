@@ -206,4 +206,9 @@ class ItemController extends Controller
 
     return view('drop.sb-admin.add_drop');
   }
+
+  public function see()
+  {
+      return view('drop.sb-admin.see');
+  }
 }
