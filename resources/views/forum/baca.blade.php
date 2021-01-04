@@ -44,11 +44,8 @@ $tags = explode(',', $tags);
    <div class="mb-3">
      <h3 class="mt-0 mb-5"> {{ $data->judul }} </h3>
 
-     @if(strlen(strip_tags((toHtml($data->body)))) > 320)
- 	 	@includeUnless(app()->isLocal(), 'inc.ads_article')
-     @else
-  		@includeUnless(app()->isLocal(), 'inc.ads_mobile')
-     @endif
+ 	  @includeUnless(app()->isLocal(), 'inc.ads_article')
+
    </div>
 
         <div class="card p-0">
@@ -79,12 +76,6 @@ $tags = explode(',', $tags);
             </div>
             <div class="body-text">
             {{ toHtml($data->body, true) }}
-
-                <div class="my-5">
-
-  		@includeUnless(app()->isLocal(), 'inc.ads_mobile')
-
-                </div>
 
               <small class="text-muted">Short link: <i><u>https://toram-id.info/f/{{ $data->id }}</u></i></small>
 
@@ -133,6 +124,11 @@ $tags = explode(',', $tags);
 @endauth
             </div>
           </div>
+        </div>
+
+
+        <div class="my-5">
+            @includeUnless(app()->isLocal(), 'inc.ads_mobile')
         </div>
 
    @php $i = 0; @endphp
@@ -271,6 +267,8 @@ $tags = explode(',', $tags);
 
                 </div>
                 <!-- // tags -->
+
+                @include('inc.menu')
 
               </div>
 

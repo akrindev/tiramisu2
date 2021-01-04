@@ -1,7 +1,7 @@
 @extends('layouts.tabler')
 
 @section('title', $title)
-@section('description','Forum toram online indonesia, diskusi tentang toram online, curhat, kisah cinta di toram')
+@section('description','Forum toram online indonesia, diskusi tentang toram online, informasi menarik dan lainnya.')
 @section('image',to_img())
 
 @push('canonical')
@@ -14,8 +14,6 @@
           <div class="container">
             <div class="row">
               <div class="col-md-8">
-
-                <a href="/forum/baru" class="float-right btn btn-outline-primary btn-pill mb-3"> <i class="fe fe-edit-2"></i> Buat thread</a>
 
             <div id="cari-kan">
               {!! form_open('/forum/cari') !!}
@@ -46,18 +44,27 @@
                   </div>
                 </div>
 
+
+                <a href="/forum/baru" class="d-block btn btn-outline-primary mb-3"> <i class="fe fe-edit-2"></i> Buat thread</a>
+
                 <h3 class="text-muted">{{ $f_title ?? $title }} </h3>
                 <div class="card">
                   <div class="p-0 m-0">
                     <table class="table card-table table-striped">
                     @forelse ($forums as $pos)
+
                       <tr>
                         <td width=85% class="px-2 py-2">
+                            @if (to_img($pos->body, false))
+                            <div class="d-block mb-1">
+                                <img src="{{ to_img($pos->body) }}" style="height: 125px; width: 100%; object-fit: cover"/>
+                            </div>
+                            @endif
                           <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{ $pos->user->provider_id }}/picture?type=normal" class="avatar float-left mr-4 lazyload">
                           {!! $pos->pinned == 1 ? '<i class="fa fa-paperclip"></i>':'' !!}
-                          <a href="/forum/{{ $pos->slug }}"><b> {{ str_limit($pos->judul,65) }} </b></a> <br>
+                          <a href="/forum/{{ $pos->slug }}"><b> {{ str_limit($pos->judul, 80) }} </b></a> <br>
                         <small class="text-muted">
-   @php $nama = explode(' ',$pos->user->name); @endphp
+                        @php $nama = explode(' ',$pos->user->name); @endphp
 
                         <i class="fe fe-user"></i> {{ $nama[0] }} &nbsp; <i class="fe fe-clock"></i> {{ $pos->created_at->diffForHumans() }}
 
@@ -108,6 +115,8 @@ $i = $color[$rand[0]];
 
                 </div>
                 <!-- // tags -->
+
+                @include('inc.menu')
 
               </div>
             </div>
