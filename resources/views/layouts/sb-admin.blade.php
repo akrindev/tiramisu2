@@ -96,6 +96,8 @@
 
   <script src="/assets/js/sb-admin-2.min.js"></script>
 
+    <script src="/assets/js/lazy.js"></script>
+
   @yield('footer')
 </body>
 

@@ -5,6 +5,8 @@
         <img src="{{ $item->dropType->url }}" alt="{{ $item->dropType->name }}" class="avatar avatar-sm mr-1" style="max-width:21px;max-height:21px">
         <b class="h6"><a class="text-primary" href="{{ request()->segment(1) == 'en' || app()->isLocale('en') ? '/en' : '' }}/item/{{ $item->id }}">{{ $item->name }} ({{ $item->name_en }})</a></b>
 
+        <button class="float-right btn btn-secondary" wire:click='edit'> edit </button>
+        <div class="float-right ml-2" wire:loading wire:target='edit'> wait...</div>
       <div class="row">
 
 

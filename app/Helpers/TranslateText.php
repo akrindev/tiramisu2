@@ -169,10 +169,10 @@ class TranslateText
             if(Str::contains($line, '-')) {
                 $newLine[] = "<span class='text-danger'>${line}</span>";
             } else {
-                $newLine[] = $line;
+                $newLine[] = trim($line);
             }
         }
 
-        return implode($newLine);
+        return implode(PHP_EOL, $newLine);
     }
 }

@@ -6,11 +6,22 @@
 
       <div class="row">
         {{-- edit form   --}}
-        <div class="col-12"></div>
+        <div class="col-12 {{ !$show ? '' : 'd-none' }}">
+            <livewire:admin.drop-edit/>
+        </div>
 
         {{-- showing item --}}
-        <div class="col-12">
+        <div class="col-12 {{ $show ? '' : 'd-none' }}">
+
             <div class="row">
+
+            @if (session()->has('saved'))
+                <div class="col-12">
+                    <div class="alert alert-success">
+                        {{ session('saved') }}
+                    </div>
+                </div>
+            @endif
                 <div class="col-md-5">
                     <div class="form-group">
                         <select name="type" wire:model="type" id="" class="form-control form-select">
@@ -34,9 +45,11 @@
                    </div>
                </div>
 
-               @foreach ($items as $item)
-                   @livewire('admin.drop-show', ['item' => $item], key($item->id))
-               @endforeach
+               @if (count($items) > 0)
+                @foreach ($items as $item)
+                    @livewire('admin.drop-show', ['item' => $item], key($item->id))
+                @endforeach
+               @endif
 
                <div wire:loading>
                    <div class="col-12">
@@ -44,7 +57,7 @@
                    </div>
                </div>
 
-            {{ $items->links() }}
+            {{  count($items) > 0 ? $items->links() : '' }}
             </div>
         </div>
     </div>
