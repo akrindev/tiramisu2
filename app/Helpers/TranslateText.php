@@ -167,6 +167,7 @@ class TranslateText
 
         foreach($lines as $line) {
             if(Str::contains($line, '-')) {
+                $line = trim($line);
                 $newLine[] = "<span class='text-danger'>${line}</span>";
             } else {
                 $newLine[] = trim($line);
