@@ -23,10 +23,22 @@
             </div>
         </div>
     </div>
-    
+
+    <div wire:loading class="col-md-3">
+        <div>
+            <div class="alert alert-success">Loading . . .</div>
+        </div>
+    </div>
+
     @foreach ($formulas as $formula)
         @livewire('card-formula', ['formula' => $formula], key($formula->id))
     @endforeach
+
+    <div wire:loading class="col-md-3">
+        <div>
+            <div class="alert alert-success">Loading . . .</div>
+        </div>
+    </div>
 
     <div class="col-md-12">
     	{{ $formulas->onEachSide(1)->links() }}
