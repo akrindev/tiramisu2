@@ -1,8 +1,8 @@
 <div class="col-12 my-3">
 <div class="card">
-    <div class="card-body p-3" style="font-size:14px;font-weight:400">
+    <div class="card-body p-2" style="font-size:14px;font-weight:400">
       <div>
-        <img src="{{ $item->dropType->url }}" alt="{{ $item->dropType->name }}" class="avatar avatar-sm mr-1" style="max-width:21px;max-height:21px">
+        <img src="{{ $item->dropType->url }}" alt="{{ $item->dropType->name }}" class="avatar avatar-sm mr-1" style="width:21px; height:21px; border-radius: 50%">
         <b class="h6"><a class="text-primary" href="{{ request()->segment(1) == 'en' || app()->isLocale('en') ? '/en' : '' }}/item/{{ $item->id }}">{{ $item->name }} ({{ $item->name_en }})</a></b>
 
         <button class="float-right btn btn-secondary" wire:click='edit'> edit </button>
@@ -15,10 +15,10 @@
 <div id="carousel-controls" class="carousel slide" data-ride="carousel">
 <div class="carousel-inner">
   <div class="carousel-item active">
-      <img class="d-block w-100 lazyload" src="/img/ball-triangle.svg" data-src="/{{ $item->picture}}" data-holder-rendered="true" width="190px" height="190px">
+      <img class="d-block lazyload" src="/img/ball-triangle.svg" data-src="/{{ $item->picture}}" data-holder-rendered="true" width="210px" height="210px">
   </div>
   <div class="carousel-item">
-      <img class="d-block w-100 lazyload" src="/img/ball-triangle.svg" data-src="/{{ $item->fullimage }}" data-holder-rendered="true" width="190px" height="190px">
+      <img class="d-block lazyload" src="/img/ball-triangle.svg" data-src="/{{ $item->fullimage }}" data-holder-rendered="true" width="210px" height="210px">
   </div>
 </div>
                 <a class="carousel-control-prev" href="#carousel-controls" role="button" data-slide="prev">
@@ -35,7 +35,7 @@
 
 @if(! is_null($item->picture) && is_null($item->fullimage))
 <div class="col-md-4 my-2">
-<img src="/img/ball-triangle.svg" data-src="/{{ $item->picture }}" class="rounded my-2 d-block lazyload" width="190px" height="190px">
+<img src="/img/ball-triangle.svg" data-src="/{{ $item->picture }}" class="rounded my-2 d-block lazyload" width="210px" height="210px">
 </div>
 @endif
 

@@ -28,6 +28,7 @@ class DropAdd extends Component
     {
       $this->tipe= 1;
     }
+
     public function render()
     {
         return view('livewire.admin.drop-add');

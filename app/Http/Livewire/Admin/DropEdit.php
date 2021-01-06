@@ -109,7 +109,7 @@ class DropEdit extends Component
         $item->save();
 
         $this->emitUp('saved', 1);
-        $this->emitSelf('saved', 1);
+        $this->emit('saved', 1);
         $this->resetForm();
     }
 
@@ -133,5 +133,7 @@ class DropEdit extends Component
         $this->npc = null;
         $this->picture = null;
         $this->fullimage = null;
+        $this->newPicture = null;
+        $this->newFullimage = null;
     }
 }

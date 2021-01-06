@@ -135,7 +135,11 @@
         Livewire.on('saved', f => {
                 $('#preview').html('');
                 $('#preview2').html('');
-            });
+
+                let form = document.getElementById("edit-drop");
+
+                form.reset();
+        });
 
         Livewire.on('getData', d => {
             s.setValue(d.drop_type_id);
