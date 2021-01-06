@@ -57,8 +57,21 @@
                         <td width=85% class="px-2 py-2">
                             @if (to_img($pos->body, false))
                             <div class="d-block mb-1">
-                                <img src="{{ to_img($pos->body) }}" style="height: 125px; width: 100%; object-fit: cover"/>
+                                <img class="thumb" src="{{ to_img($pos->body) }}"/>
                             </div>
+                            <style>
+                                .thumb {
+                                    max-height: 155px;
+                                    width: 100%;
+                                    object-fit: cover
+                                }
+
+                                @media (min-width: 576px) {
+                                    .thumb {
+                                        max-height: 205px
+                                    }
+                                }
+                            </style>
                             @endif
                           <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{ $pos->user->provider_id }}/picture?type=normal" class="avatar float-left mr-4 lazyload">
                           {!! $pos->pinned == 1 ? '<i class="fa fa-paperclip"></i>':'' !!}
