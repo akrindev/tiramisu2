@@ -21,8 +21,10 @@
 
     <meta name="apple-mobile-web-app-title" content="toram-id">
     <meta name="application-name" content="toram-id.info">
-
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 
     <title>@yield('title') | Toram Online Database & Wiki</title>
 
@@ -36,24 +38,18 @@
     <meta property="fb:app_id" content="2008283499456981"/>
 
     <!-- // open graph -->
+
+    {{-- tw card --}}
+    <meta name="twitter:image:src" content="@yield('image')">
+    <meta name="twitter:site" content="@toramidinfo">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="@yield('title')">
+    <meta name="twitter:description" content="@yield('description')">
+    {{-- tw --}}
+
     <meta name="google-site-verification" content="da3qNV1VnD0nhZNfFMx3Ov_6dnyvYMlUT7OChWqSbmY" />
     <meta name="description" content="@yield('description')">
-    <meta name='language' content='id_ID'/>
-    <meta name='robots' content='all,index,follow'/>
-    <meta content='follow, all' name='alexabot'/>
-    <meta content='id' name='language'/>
-    <meta content='Indonesia' name='geo.placename'/>
-    <meta content='global' name='target'/>
-    <meta content='Indonesia' name='geo.country'/>
-    <meta content='all' name='googlebot'/>
-    <meta content='all' name='msnbot'/>
-    <meta content='all' name='Googlebot-Image'/>
-    <meta content='all' name='Slurp'/>
-    <meta content='all' name='ZyBorg'/>
-    <meta content='all' name='Scooter'/>
-    <meta content='ALL' name='spiders'/>
-    <meta content='general' name='rating'/>
-    <meta content='all' name='WEBCRAWLERS'/>
+
 @stack('canonical')
 
     <script type='application/ld+json'>
