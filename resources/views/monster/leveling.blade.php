@@ -181,7 +181,7 @@
    @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
 
               List Leveling level
-                @foreach(range(1,215) as $lv)
+                @foreach(range(1,230) as $lv)
                   , <a href="/leveling?level={{ $lv }}"> {{ $lv }} </a>
                 @endforeach
               </div>
