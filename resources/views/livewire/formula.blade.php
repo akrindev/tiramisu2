@@ -1,5 +1,5 @@
 <div>
-    <h4 class="text-center text-muted"> Results {{ $formulas->total() }}  formula(s) </h4>
+    <h4 class="text-center text-muted">Found {{ $formulas->total() }} Results</h4>
 <div class="row">
     <div class="col-md-9">
         <div class="card">
@@ -25,9 +25,7 @@
     </div>
 
     <div wire:loading class="col-md-3">
-        <div>
-            <div class="alert alert-success">Loading . . .</div>
-        </div>
+        <div class="alert alert-success">Loading . . .</div>
     </div>
 
     @foreach ($formulas as $formula)
@@ -35,9 +33,7 @@
     @endforeach
 
     <div wire:loading class="col-md-3">
-        <div>
-            <div class="alert alert-success">Loading . . .</div>
-        </div>
+        <div class="alert alert-success">Loading . . .</div>
     </div>
 
     <div class="col-md-12">
