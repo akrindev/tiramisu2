@@ -283,7 +283,7 @@
               Copyright &copy; 2018 - {{ now()->year }} <a href="//id.toram.jp" rel="nofollow" target="_blank">Toram Online - ASOBIMO, INC</a>. Theme by <a href="https://codecalm.net" target="_blank">codecalm.net</a> All rights reserved.
             </div>
 
-            <div class="col-12 d-none d-md-block col-lg-auto mt-3 mt-lg-0 text-center">
+            <div class="col-12 d-block col-lg-auto mt-3 mt-lg-0 text-center">
               <b>{ }</b> with <b class="text-danger">&hearts;</b> in <b>Pekalongan, Indonesia</b>
             </div>
           </div>
