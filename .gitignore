@@ -1,6 +1,6 @@
 /node_modules
 /public/hot
-public/img/*
+#public/img/*
 public/imgs/*
 /public/storage
 /storage/*.key
