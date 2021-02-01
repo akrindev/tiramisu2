@@ -47,6 +47,12 @@
 
 
       <li class="nav-item">
+        <a class="nav-link" href="/admin/registled">
+          <i class="fas fa-fw fa-gem"></i>
+          <span>Registlet</span></a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link" href="/mons/store/resep">
           <i class="fas fa-fw fa-boxes"></i>
           <span>Tambah Resep</span></a>
