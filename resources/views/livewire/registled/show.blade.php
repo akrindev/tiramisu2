@@ -2,10 +2,11 @@
 	@foreach($registleds as $registled)
 	<div class="card">
 		<div class="card-body text-wrap p-2" style="font-size: 14px; font-weight: 400">
-
+@if(auth()->check() && auth()->user()->isAdmin())
 			<div class="float-right">
 				<a href="/item/{{ $registled->id }}/edit">edit</a>
 			</div>
+			@endif
 
 			<div class="d-block mb-1">
 			<img class="avatar avatar-sm mr-3 float-left" src="{{ $registled->dropType->url }}" /> <a href="/item/{{ $registled->id }}"> {{ $registled->name }}</a> <div class="flag flag-id ml-2"></div>
