@@ -35,6 +35,11 @@ class Drop extends Model
       return $this->belongsToMany(Monster::class, 'monster_drop');
     }
 
+	public function registled()
+	{
+		return $this->hasOne(Registled::class);
+	}
+
   	public function resep()
     {
       return $this->hasMany(Resep::class);

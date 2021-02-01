@@ -20,6 +20,10 @@ Route::view('/', 'toram');
 Route::prefix('en')->middleware('locale:en')->group(base_path('routes/en.php'));
 
 
+// Registled
+Route::view('/registlet', 'registled.show');
+
+
 Route::view('/cb', 'cb');
 
 // main quest simulator

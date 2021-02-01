@@ -35,3 +35,10 @@ Route::delete('/skill/child/delete', 'SkillController@deleteChild');
 Route::get('/forum/kategori', 'ForumController@editKategori');
 Route::post('/forum/kategori', 'ForumController@storeKategori');
 Route::post('/forum/kategori/save', 'ForumController@postEditKategori');
+
+
+
+
+// registled
+
+Route::view('/registled', 'registled.admin.edit');
