@@ -15,7 +15,7 @@ class Show extends Component
 
     public function render()
     {
-		$registleds = Drop::with('registled')->whereDropTypeId(64)->paginate(15);
+		$registleds = Drop::with('registled')->whereDropTypeId(64)->paginate(30);
 
         return view('livewire.registled.show', compact('registleds'));
     }

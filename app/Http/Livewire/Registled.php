@@ -14,7 +14,7 @@ class Registled extends Component
 
     public function render()
     {
-		$drops = Drop::with('dropType')->where('drop_type_id', 64)->paginate();
+		$drops = Drop::with('dropType')->where('drop_type_id', 64)->paginate(50);
 
         return view('livewire.registled', compact('drops'));
     }
