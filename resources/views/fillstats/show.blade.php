@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title','Toram fill ' . $formula->note)
+@section('title', $formula->note)
 @section('description', strip_tags($formula->final_step))
 @section('image',to_img())
 

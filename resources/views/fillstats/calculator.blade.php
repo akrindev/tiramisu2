@@ -164,6 +164,10 @@
             <div class="form-group">
               <div class="p-3 row gutter-xs" id="workspace"></div>
             </div>
+
+			<div class="mt-2 d-block">
+        		@includeUnless(app()->isLocal(), 'inc.ads_mobile')
+			</div>
           </div>
         </div>
       </div>
@@ -176,6 +180,7 @@
           </div>
           <div class="p-0 card-body" id="formula_display" style="font-size:14px">
           </div>
+
         </div>
       </div>
 

@@ -48,6 +48,7 @@
 
     <meta name="google-site-verification" content="da3qNV1VnD0nhZNfFMx3Ov_6dnyvYMlUT7OChWqSbmY" />
     <meta name="description" content="@yield('description')">
+	<meta name="keywords" content="Toram Id, Toram Online Wiki, Toram Online Database, Drop list, Monster list, Fill Stat formula, Fill stat simulator, calculator, forum, Toram Online Indonesia, MMORPG Android and iOS game" />
 
 @stack('canonical')
 
@@ -74,8 +75,8 @@
     <script src="/assets/js/core.js"></script>
 
 @auth
-    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-messaging.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/6.2.0/firebase-messaging.js"></script>
     <script src="/assets/js/fcm.js?v1"></script>
 @endauth
 

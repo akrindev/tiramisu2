@@ -14,6 +14,9 @@
 	  <div class="row">
 
 		  <div class="col-md-8">
+			<div class="mt-2 d-block">
+        		@includeUnless(app()->isLocal(), 'inc.ads_article')
+			</div>
 
 			  <livewire:registled.show />
 
