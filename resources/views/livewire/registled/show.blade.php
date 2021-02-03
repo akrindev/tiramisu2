@@ -1,5 +1,10 @@
 <div>
-	@foreach($registleds as $registled)
+
+	<div class="form-group">
+		<input type="text" class="form-control" wire:model.debounce.500ms="query" placeholder="search name or description" />
+		<div wire:loading class="text-success"> searching . . . </div>
+	</div>
+	@forelse($registleds as $registled)
 	<div class="card">
 		<div class="card-body text-wrap p-2" style="font-size: 14px; font-weight: 400">
 @if(auth()->check() && auth()->user()->isAdmin())
@@ -26,7 +31,7 @@
 
 				<div class="col-6 col-md-5">
 					<label class="form-label">Recommended Level</label>
-					@if($registled->registled)
+					@if($registled->registled->recommended_lv ?? false)
 					@foreach(array_keys($registled->registled->recommended_lv) as $lv)
 
 					<span class="tag tag-sm">{{ $lv }}</span>
@@ -37,7 +42,7 @@
 				</div>
 
 				<div class="col-12 col-md-4">
-					@if($registled->registled)
+					@if($registled->registled->chest ?? false)
 					<label class="form-label">Chest</label>
 					@forelse(array_keys($registled->registled->box) as $box)
 					<span class="image">
@@ -58,7 +63,11 @@
 			</div>
 		</div>
 	</div>
-	@endforeach
+	@empty
+	<div class="card">
+		<div class="card-body">Not Found</div>
+	</div>
+	@endforelse
 
 	{{ $registleds->onEachSide(1)->links() }}
 </div>
