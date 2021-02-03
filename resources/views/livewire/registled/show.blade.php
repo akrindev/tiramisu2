@@ -21,7 +21,7 @@
 			<div class="row">
 				<div class="col-6 col-md-3">
 					<label class="form-label">Max Level</label>
-					<span> {{ $registled->registled->max_level ?? 1 }}</span>
+					<span> {{ $registled->registled->max_level ?? '~ unknown ~' }}</span>
 				</div>
 
 				<div class="col-6 col-md-5">

@@ -13,7 +13,7 @@
 
 			<div class="form-group">
 				<label class="form-label">Max Level</label>
-				<input type="number" class="form-control" wire:model="maxlv" />
+				<input type="number" class="form-control col-3" placeholder="max level" wire:model="maxlv" />
 			</div>
 
 			<div class="form-group">

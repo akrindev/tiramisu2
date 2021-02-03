@@ -23,7 +23,7 @@ class RegistledCard extends Component
 		$this->drop = $drop;
 		$this->rLv = $drop->registled->recommended_lv ?? [];
 		$this->chest = $drop->registled->box ?? [];
-		$this->maxlv = $drop->registled->max_level ?? 1;
+		$this->maxlv = $drop->registled->max_level ?? null;
 	}
 
 	public function updatedChest()
@@ -49,7 +49,7 @@ class RegistledCard extends Component
 		Registled::updateOrCreate([
 			'drop_id'	=>	$this->drop->id
 		], [
-			'max_level'	=> empty($this->maxlv) ? 1 : $this->maxlv
+			'max_level'	=> empty($this->maxlv) ? null : $this->maxlv
 		]);
 	}
 
