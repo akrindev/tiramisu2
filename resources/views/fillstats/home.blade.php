@@ -18,17 +18,16 @@
     </div>
      @include('inc.cari')
 
+	  <div class="my-2">
+      	@includeUnless(app()->isLocal(), 'inc.ads_article')
+      </div>
+
       <div class="alert alert-info">
           Simulasi Fill Stats <a href="/fill_stats/calculator">Updated</a> <hr class="my-2"/>
 
           <strong>NEW!!</strong> <br />
           Please Login, so you can give love and automaticaly save the formula
       </div>
-
-       <div class="my-2">
-      	@includeUnless(app()->isLocal(), 'inc.ads_article')
-      </div>
-
 
         <div class="alert alert-danger">
         	Before using this statting simulator, make sure that you learn these statting skills (3 skills on the bottom) and level up to max level

@@ -64,8 +64,8 @@ const OPTIONS = [
 
     { "name": "ASPD", "mat": "Cloth", "pot": 1, "cost": "1.49", "cat": "Enhance Speed", "type": "u", bonus: 16 },
     { "name": "ASPD %", "mat": "Cloth", "pot": 1, "cost": 5, "cat": "Enhance Speed", "type": "u" },
-    { "name": "CSPD", "mat": "Medicine", "pot": 1, "cost": "1.49", "cat": "Enhance Speed", "type": "u" },
-    { "name": "CSPD %", "mat": "Medicine", "pot": 1, "cost": 5, "cat": "Enhance Speed", "type": "u", bonus: 16 },
+    { "name": "CSPD", "mat": "Medicine", "pot": 1, "cost": "1.49", "cat": "Enhance Speed", "type": "u", bonus: 16 },
+    { "name": "CSPD %", "mat": "Medicine", "pot": 1, "cost": 5, "cat": "Enhance Speed", "type": "u" },
 
     { "name": "Critical Rate", "mat": "Mana", "pot": 1, "cost": 5, "cat": "Enhance Critical", "type": "u", bonus: 1 , max_only: true },
     { "name": "Critical Rate %", "mat": "Mana", "pot": 1, "cost": 5, "cat": "Enhance Critical", "type": "u", bonus: 1 , max_only: true },
@@ -407,7 +407,7 @@ class Slot {
         const step_max = 100 / this.stat_data.pot;
         const change_per_step = this.stat_data.step || 1;
         const max_normal_value = this.max ? this.max * change_per_step : step_max > MAX_STEPS ? MAX_STEPS * change_per_step : step_max * change_per_step;
-        
+
         if (value < max_normal_value) {
             value = value * (this.stat_data.step || 1);
         } else {
@@ -725,7 +725,7 @@ class Stat {
         Cloud.setFinal(finalSave)
         // if (typeof this.finished === 'number') {
             display += `<br /> <span class="mx-3 ${this.getSuccessRate() < 100 ? "text-danger" : "text-success"}"> Success Rate: ${this.getSuccessRate()}%</span>`;
-            
+
             // display += `<br /><span style="color: blue; font-size: 10px">Mats: ${Object.keys(this.mats).filter(mat => this.mats[mat]).map(mat => `${this.mats[mat]} ${mat}`).join(' / ')} (Max: ${this.max_mats})</span>`;
         // }
 
@@ -737,7 +737,7 @@ class Stat {
         document.getElementById('undo_button').disabled = !this.steps.formula.length;
         document.getElementById('repeat_button').disabled = !this.steps.formula.length;
     }
-    
+
     getSettingsDisplay(wrapperfront = '', wrapperback = '') {
         let settings = [];
         if (this.tec !== 255) settings.push(this.tec + ' TEC');
@@ -746,7 +746,7 @@ class Stat {
 
         return `${wrapperfront}(${settings.join(' / ')})${wrapperback}`;
     }
-    
+
     updateSettingsDisplay() {
         document.getElementById('stat-details').innerHTML = this.getSettingsDisplay();
     }
@@ -764,7 +764,7 @@ class Stat {
         const undo = `<button onclick="App.getCurrent().confirm();App.getCurrent().undo()" class="btn btn-outline-success btn-pill" id="undo_button" disabled>Undo</button>`;
         const redo = `<button onclick="App.getCurrent().redo()" disabled id="redo_button" class="btn btn-outline-secondary btn-pill">Redo</button>`;
 
-        const display = `<div class="col-12 text-center mb-2 text-weight-bold" id="potential_display">Potential: ${potential} </div> ${buffer} <div class="col-12 mt-2"><strong class="text-center" id="success_rate_display">Success Rate: ${success_rate}% </div><br/>${confirm} ${repeat} ${undo} ${redo}</div>`
+        const display = `<div class="col-12 text-center mb-2 text-weight-bold" id="potential_display">Potential: ${potential} </div> ${buffer} <div class="col-12 p-0 mt-2"><strong class="text-center" id="success_rate_display">Success Rate: ${success_rate}% </strong><br/>${confirm} ${repeat} ${undo} ${redo}</div>`
 
         document.getElementById('workspace').innerHTML = display;
         this.updateMaterialCosts();
@@ -774,7 +774,7 @@ class Stat {
 
     removeEmptySlots() {
         for (const slot of this.slots) {
-            
+
             if (slot.new_stat && !slot.futureSteps) {
                 slot.rawOverride([slot.slot_num, 0, 0]);
             }
@@ -1086,7 +1086,7 @@ class Formula {
     getDisplay() {
         const fill = this.condensed_formula.map((step, index) => `<tr><td>${index + 1}</td> <td>${step.text}</td><td>${step.repeat > 1 ? ` x${step.repeat}` : 'x1'} <br/> <small class="text-muted">(${step.pot_after}pot)</small></td></tr>`).join(' ');
 
-        const display = `<table class="card-table table table-sm table-hover table-striped"><thead><tr><th width="15%">Step</th><th>Change</th><th>repeat</th></tr></thead><tbody> ${fill} </tbody></table>`
+        const display = `<table class="card-table table table-sm table-hover table-striped"><thead><tr><th width="10%">Step</th><th>Change</th><th>repeat</th></tr></thead><tbody> ${fill} </tbody></table>`
         return display
     }
 
@@ -1217,9 +1217,9 @@ class MainApp {
          // customize
          const tec = document.getElementById('tec').value;
          const proficiency = document.getElementById('proficiency').value;
- 
+
          this.saveSettings({tec, proficiency});
- 
+
         const details = {
             weap_arm,
             starting_pot,

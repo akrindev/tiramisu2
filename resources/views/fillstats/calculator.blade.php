@@ -53,7 +53,7 @@
           </div>
           <div class="card-alert alert alert-info">
             <b>Updated</b> Skill tree level 4 <br>
-            <small>latest simulator update: <i> 29 december 2020</i> </small>
+            <small>latest simulator update: <i> 4 February 2021</i> </small>
           </div>
 
           <div class="p-3 card-body" style="font-size:14px;font-weight:400">
@@ -155,14 +155,16 @@
         </div>
 
       <div class="w-100"></div>
-      <div class="hidden mb-5 col-md-5">
+      <div class="mb-5 col-md-5">
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Status</h3>
           </div>
           <div class="p-3 card-body">
             <div class="form-group">
-              <div class="p-3 row gutter-xs" id="workspace"></div>
+              <div class="p-3 row gutter-xs" id="workspace">
+				stats will appear here.
+				</div>
             </div>
 
 			<div class="mt-2 d-block">
@@ -194,12 +196,6 @@
         </div>
       </div>
 
-    </div>
-
-    <!-- ads -->
-    <div class="row">
-      <div class="col-12">
-        @includeUnless(app()->isLocal(), 'inc.ads_mobile')</div>
     </div>
 
   </div>
@@ -238,7 +234,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/assets/js/saveFormula.js?v2"></script>
-<script src="/assets/js/newfill.js?v3"></script>
+<script src="/assets/js/newfill.js?v4"></script>
 <script src="/assets/js/math.js"></script>
 
 
