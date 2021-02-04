@@ -21,7 +21,7 @@ class SearchController extends Controller
       return redirect('/')->with('gagal', 'Mencari harus memiliki 2 karakter atau lebih');
     }
 
-    if(in_array($q, $badword)) {
+    if(in_array(strtolower($q), $badword)) {
       return redirect('/')->with('gagal', 'Memblokir kata tak pantas');
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Setting;
 
 class SearchForm extends Component
 {
@@ -27,6 +28,8 @@ class SearchForm extends Component
 
     public function render()
     {
+		$this->noBadwords();
+
         return view('livewire.search-form');
     }
 
@@ -36,6 +39,17 @@ class SearchForm extends Component
 
         $this->emit('getResult', [$this->q, $this->type]);
     }
+
+	public function noBadwords()
+	{
+    	$badwords = Setting::first();
+    	$badwords = explode(',', $badwords->body['badword']);
+
+		if(in_array(strtolower($this->q), $badwords)) {
+			session()->flash('gagal', 'terdapat kata tak pantas!');
+			return redirect()->to('/');
+		}
+	}
 
     public function hydrate()
     {
