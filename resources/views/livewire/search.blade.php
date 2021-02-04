@@ -23,7 +23,7 @@
         </div>
         @endif
 
-          @if(count($forums) == 0 && count($drops) == 0 && count($monsters) == 0 && count($maps) == 0)
+          @if(count($forums) == 0 && count($drops) == 0 && count($monsters) == 0 && count($maps) == 0 && count($formulas) == 0)
         <div class="card">
           <div class="card-body p-3" style="font-size:15px;font-weight:400">
             <b>Pencarian <u>{{ $q }}</u> tidak di temukan.</b>
@@ -37,8 +37,11 @@
           @endif
 
        @forelse($drops as $item)
+			@if($loop->first)
+	        	@includeUnless(app()->isLocal(), 'inc.ads_mobile')
+			@endif
 
-    @include('inc.drop.item', $item)
+    		@include('inc.drop.item', $item)
 
         @empty
 
@@ -47,18 +50,10 @@
 
           @forelse ($monsters as $mons)
 
-          @include('inc.drop.monster', $mons)
+          	@include('inc.drop.monster', $mons)
 
           @empty
           @endforelse
-
-
-          <div class="row">
-       @forelse ($formulas as $formula)
-         @livewire('card-formula', ['formula' => $formula], key($formula->id))
-         @empty
-         @endforelse
-        </div>
 
 
                 @if(count($maps))
@@ -74,9 +69,6 @@
         </div>
                 @endif
 
-        @includeUnless(app()->isLocal(), 'inc.ads_mobile')
-
-
        @if(count($forums))
         <div class="card">
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
@@ -91,6 +83,15 @@
           </div>
         </div>
        @endif
+
+
+    <div class="row">
+       @forelse ($formulas as $formula)
+         @livewire('card-formula', ['formula' => $formula], key($formula->id))
+         @empty
+       @endforelse
+	</div>
+
         {{-- $drops->appends(['q' => request('q'), 'type' => request('type') ])->links() --}}
 
 

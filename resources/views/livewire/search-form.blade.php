@@ -8,15 +8,16 @@
       <span class="input-icon-addon">
         <i class="fe fe-search"></i>
       </span>
-      <input wire:model="q" itemprop="query-input" type="search" name="q" class="form-control w-10 @error('q') is-invalid @enderror"placeholder="Search here . . ." value="{{ request()->q ?? '' }}" pattern=".{2,}" title="3 karakter atau lebih" required>
+      <input wire:model.defer="q" itemprop="query-input" type="search" name="q" class="form-control w-10 @error('q') is-invalid @enderror"placeholder="Search here . . ." value="{{ request()->q ?? '' }}" pattern=".{2,}" title="3 karakter atau lebih" required>
     </div>
 
-      <select class="form-control custom-select w-auto" name="type" wire:model="type">
+      <select class="form-control custom-select w-auto" name="type" wire:model.defer="type">
         <option value="name_only">Nama</option>
         <option value="status_only">Status</option>
     </select>
    </div>
   </form>
+			<div wire:loading class="text-success"> searching . . . </div>
             @error('q')
     <small class="text-danger" id="q-error"> {{ $message }} </small>
             @enderror
