@@ -37,7 +37,7 @@ class Search extends Component
         ]);
 
         $type = $this->type == 'status_only' ? 'note' : 'name';
-        
+
         $this->setLocale($this->locale);
 
         $drops = Drop::search($type, $q)
@@ -56,7 +56,7 @@ class Search extends Component
                'dropType'
         	])
             ->orderBy('drop_type_id')
-            ->paginate(30);
+            ->paginate(50);
 
         $monsters = Monster::search('name', $q)
             ->when($type == 'name', function ($query) use ($q) {
@@ -80,7 +80,7 @@ class Search extends Component
                     ->get();
 
         $formulas =Formula::search('note', $q)
-                    ->latest()->take(10)
+                    ->latest()->take(50)
                     ->get();
 
         return view('livewire.search', compact('drops', 'monsters', 'maps', 'forums', 'formulas'));

@@ -4,10 +4,10 @@
                 <div class="card-header">
                     <h3 class="card-title">{{ $formula->note }} </h3>
                 </div>
-    
+
                 <div class="p-2 card-body">
                     <div class="mb-2 d-block">
-    
+
                         <table width="100%">
                             <tr>
                                 <th width="35%"> Type</th>
@@ -26,29 +26,29 @@
                                 <td> {{ $formula->success_rate }}%</td>
                             </tr>
                         </table>
-    
+
                     </div>
-    
+
                     <div class="px-3 py-2 bg-blue-lightest">
                     {!! $formula->final_step !!}
                     </div>
-    
+
                     <div class="mt-2">
                         <small class="float-left text-muted"><b>Created: </b> {{ $formula->created_at->format('d-M-Y H:i') }} </small>
-                        
-                        <button 
+
+                        <button
                             @if (auth()->check() && in_array(auth()->id(), $formula->users->pluck('id')->toArray()))
                                 class="float-right btn btn-sm btn-pill btn-danger disabled" disabled
                             @else
-                                wire:click="save({{ $formula->id }})" 
+                                wire:click="save({{ $formula->id }})"
                                 wire:loading.class="btn-loading"
                                 class="float-right btn btn-sm btn-pill btn-danger"
                             @endif >
                             {{ $formula->users->count() > 0 ? $formula->users->count() : '' }}
                             {{ Illuminate\Support\Str::plural('love', $formula->users->count()) }}
                         </button>
-    
-                        <a href="/fill_stats/show/{{ $formula->id }}" class="float-right mx-1 btn btn-sm btn-pill btn-outline-primary">Show</a>
+
+                        <a wire:click.prevent="show({{ $formula->id }})" wire:loading.class="btn-loading" href="#" class="float-right mx-1 btn btn-sm btn-pill btn-outline-primary">Show</a>
                     </div>
                 </div>
             </div>

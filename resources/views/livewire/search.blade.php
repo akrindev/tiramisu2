@@ -37,9 +37,6 @@
           @endif
 
        @forelse($drops as $item)
-			@if($loop->first)
-	        	@includeUnless(app()->isLocal(), 'inc.ads_mobile')
-			@endif
 
     		@include('inc.drop.item', $item)
 

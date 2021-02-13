@@ -15,6 +15,14 @@ class CardFormula extends Component
         $this->formula = $formula;
     }
 
+	public function show($id)
+	{
+		$data = WorkSpace::findOrFail($id);
+
+		session()->flash('data', $data);
+		return redirect('/fill_stats/calculator');
+	}
+
     public function save($id)
     {
         $formula = WorkSpace::findOrFail($id);

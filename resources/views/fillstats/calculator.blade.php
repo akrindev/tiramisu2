@@ -46,7 +46,7 @@
     </div>
 
     <div class="row equal justify-content-center">
-      <div class="mb-5 col-md-5" {{ session()->has('data') ? 'style="display:none"' : '' }}>
+      <div class="mb-5 col-md-5 {{ session()->has('data') ?  '' : '' }}">
         <div class="card">
           <div class="card-header">
             <h3 class="card-title"> Resep status </h3>
@@ -151,7 +151,7 @@
         </div>
 
         <div class="mb-5 col-md-3" id="ads">
-        	@includeUnless(app()->isLocal(), 'inc.ads_article')
+        		@includeUnless(app()->isLocal(), 'inc.ads_article')
         </div>
 
       <div class="w-100"></div>
@@ -243,4 +243,12 @@
 	Cloud.loadSavedFormula();
  </script>
 @endauth
+
+@if(session()->has('data'))
+
+<script>
+    let data = {!! json_encode(session('data')->body, JSON_PRETTY_PRINT) !!}
+	App.loadFromJson(data);
+</script>
+@endif
 @endsection
