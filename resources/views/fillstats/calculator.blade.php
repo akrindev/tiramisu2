@@ -108,6 +108,7 @@
         </div>
       </div>
 
+		@if(!session()->has('data'))
         <div class="mb-5 col-md-4" id="wk">
             <div class="card">
                 <div class="card-header">
@@ -149,6 +150,11 @@
                 </div>
             </div>
         </div>
+		@else
+		<input type="hidden" id="stat-details"/>
+		<input type="hidden" id="navigation_bar"/>
+			@livewire('card-formula', ['formula' => session('data')], key(session('data')->id))
+		@endif
 
         <div class="mb-5 col-md-3" id="ads">
         		@includeUnless(app()->isLocal(), 'inc.ads_article')
@@ -204,6 +210,7 @@
 @endsection
 
 @section('head')
+<link rel="preload" href="https://unpkg.com/axios/dist/axios.min.js" as="script" />
 
 <style>
     html {
@@ -237,18 +244,18 @@
 <script src="/assets/js/newfill.js?v4"></script>
 <script src="/assets/js/math.js"></script>
 
-
-@auth
-<script>
-	Cloud.loadSavedFormula();
- </script>
-@endauth
-
 @if(session()->has('data'))
 
 <script>
     let data = {!! json_encode(session('data')->body, JSON_PRETTY_PRINT) !!}
 	App.loadFromJson(data);
 </script>
+
+@else
+	@auth
+	 <script>
+		Cloud.loadSavedFormula();
+	 </script>
+	@endauth
 @endif
 @endsection

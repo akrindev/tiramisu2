@@ -48,7 +48,7 @@
                             {{ Illuminate\Support\Str::plural('love', $formula->users->count()) }}
                         </button>
 
-                        <a wire:click.prevent="show({{ $formula->id }})" wire:loading.class="btn-loading" href="#" class="float-right mx-1 btn btn-sm btn-pill btn-outline-primary">Show</a>
+                        <a wire:click.prevent="show({{ $formula->id }})" wire:loading.class="btn-loading" href="/fill_stats/show/{{ $formula->id }}" class="float-right mx-1 btn btn-sm btn-pill btn-outline-primary">Show</a>
                     </div>
                 </div>
             </div>
