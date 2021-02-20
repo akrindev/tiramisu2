@@ -655,6 +655,22 @@ const MQ = [
     "episodeid": "Keberadaan Para Biarawan yang Hilang",
     "episodeen": "The Whereabouts of the Missing Monks",
     "exp": 30200000
+  }, {
+    "chapter": 10,
+    "chapterid": "Kapal Dewa yang Hilang",
+    "chapteren": "The Lost God's Ship",
+    "episode": 83,
+    "episodeid": "Sang Dewi Keadilan dan Penghuni Ilegal",
+    "episodeen": "The Goddess of Justice and the Squatters",
+    "exp": 31600000
+  }, {
+    "chapter": 10,
+    "chapterid": "Kapal Dewa yang Hilang",
+    "chapteren": "The Lost God's Ship",
+    "episode": 84,
+    "episodeid": "Navigasi Bahtera",
+    "episodeen": "Navigator of the Ark",
+    "exp": 33100000
   }
 ];
 
@@ -662,7 +678,7 @@ class Main {
 
   constructor() {
     this.bab_start = 1
-    this.bab_end = 82
+    this.bab_end = MQ.length
     this.level = 1
     this.percent = 1
     this.future = 0
@@ -734,7 +750,7 @@ class Main {
         // sum each mq exp
         this.future += mq.exp
 
-        if (mq.episode == end.episode) 
+        if (mq.episode == end.episode)
           break;
         }
       }
@@ -767,7 +783,7 @@ class Main {
         need = exp;
         //  console.log(need)  console.log("level " + level)
       }
-      
+
      // console.log(future, need)
       need = future
 

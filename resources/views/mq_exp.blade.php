@@ -43,11 +43,11 @@
                         </tr>
                         <tr>
                           <th>Your Level</th>
-                          <td> <input type="number" class="form-control" id="level" value="100" min=1 max=250 oninput="App.calculate()"/> </td>
+                          <td> <input type="number" class="form-control" id="level" value="50" min=1 max=250 oninput="App.calculate()"/> </td>
                         </tr>
                         <tr>
                           <th>Your Level %</th>
-                          <td> <input type="number" class="form-control" id="percent" value="69" min=0 max=100 oninput="App.calculate()"/> </td>
+                          <td> <input type="number" class="form-control" id="percent" value="1" min=0 max=100 oninput="App.calculate()"/> </td>
                         </tr>
                         <tr>
                           <th>MQ Episode (start)</th>
