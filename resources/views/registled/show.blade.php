@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title', 'Registlet Gem Case')
+@section('title', 'Registlet Gem Case buff and effects list')
 @section('description', 'List of Registlet Gem Case atau Kartrid Permata')
 
 @section('content')
