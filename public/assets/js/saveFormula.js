@@ -123,6 +123,8 @@ class Storage {
             for(let show of response.data.saved) {
                 buffer += `<i class="fe fe-chevron-right"></i> ${show.note} (<span class="text-primary cursor-pointer" style="cursor:pointer" onclick="App.getFromCloud(${show.id})"> show </span>) <br /> <small class="text-muted"> ${show.created} </small><br />`
             }
+
+			buffer += `<a href="/fill_stats" class="d-block">load more...</a>`
             workspace.innerHTML = buffer
 
             for(let show of response.data.loved) {

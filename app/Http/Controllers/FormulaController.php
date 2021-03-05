@@ -47,6 +47,16 @@ class FormulaController extends Controller
 
     public function loadSaved()
     {
+		if(!auth()->check()) {
+			$formula = Formula::select('id', 'note', 'created_at')->latest()->take(10)->get();
+
+			$formula->map(function($formula) {
+        		$formula->created = $formula->created_at->format('d-M-Y H:i:s');
+        	});
+
+			return ['saved' => $formula, 'loved' => []];
+		}
+
         $formulas['saved'] = Formula::select('id', 'note', 'created_at')
             ->whereUserId(auth()->id())
             ->latest()
