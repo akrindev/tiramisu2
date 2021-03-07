@@ -180,27 +180,28 @@
         </div>
       </div>
 
-      <div class="hidden mb-5 col-md-4" id="show-formula">
+      <div class="hidden mb-5 col-md-7" id="show-formula">
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Formula</h3>
               <div class="card-options"> <button class="btn btn-sm btn-outline-primary" onclick="document.getElementById('wk').scrollIntoView();document.getElementById('note').focus()">save</button> </div>
           </div>
-          <div class="p-0 card-body" id="formula_display" style="font-size:14px">
+          <div class="row">
+
+              <div class="p-3 col-md-6 card-body" id="formula_display" style="font-size:14px"></div>
+              <div class="p-3 col-md-6 card-body" id="material_display"></div>
           </div>
 
         </div>
       </div>
 
-      <div class="hidden mb-5 col-md-3">
+      {{-- <div class="hidden mb-5 col-md-3">
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Material Used</h3>
           </div>
-          <div class="p-0 card-body" id="material_display">
-          </div>
         </div>
-      </div>
+      </div> --}}
 
     </div>
 

@@ -701,7 +701,9 @@ class Stat {
     }
 
     updateMaterialCosts() {
-        let buffer = `<table class="card-table table table-hover table-striped"><tr><th style="width: 40%; text-align: left">Material</th><th style="text-align: left">Cost</th></tr>`
+
+        let buffer = `<div class='d-block mt-5 ml-5'><h1>Material</h1></div>`
+        buffer += `<table class="card-table table table-hover table-striped"><tr><th style="width: 40%; text-align: left">Material</th><th style="text-align: left">Cost</th></tr>`
         for (let mat in this.mats) {
             buffer += `<tr class="${this.mats[mat] < 1 ? 'text-muted' : ''}"><td>${mat}</td><td>${this.mats[mat]}</td></tr>`;
         }
@@ -731,7 +733,7 @@ class Stat {
             // display += `<br /><span style="color: blue; font-size: 10px">Mats: ${Object.keys(this.mats).filter(mat => this.mats[mat]).map(mat => `${this.mats[mat]} ${mat}`).join(' / ')} (Max: ${this.max_mats})</span>`;
         // }
 
-        let buffer = `<div class="px-3 pt-3"><b>Type:</b> <b class="${this.type === 'w' ? 'text-success' : 'text-primary'}">${this.type === 'w' ? 'Weapon' : 'Armor'}</b> <br /> <b>Starting Potential:</b> ${this.starting_pot}</div><div class="d-block px-3 mb-2"><b>Final Stats: </b><br /> <div style="background-color:#f5f9ff;padding:2px 4px;border:1px solid #ddd;border-radius:3px">${final} </div></div> ${this.getSettingsDisplay('<span style="color: green; font-size: 8px">', '</span>')}<br />${display}`;
+        let buffer = `<div class="px-3 pt-3"><b>Type:</b> <b class="${this.type === 'w' ? 'text-success' : 'text-primary'}">${this.type === 'w' ? 'Weapon' : 'Armor'}</b> <br /> <b>Starting Potential:</b> ${this.starting_pot}</div><div class="d-block px-3 mb-2"><b>Final Stats: </b><br /> <div style="background-color:#f5f9ff;padding:2px 4px;border:1px solid #ddd;border-radius:3px">${final} </div></div> ${this.getSettingsDisplay('<span class="ml-4" style="color: green; font-size: 8px">', '</span>')}<br />${display}`;
 
         document.getElementById('formula_display').innerHTML = buffer
 
