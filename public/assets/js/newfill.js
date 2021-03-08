@@ -502,7 +502,7 @@ class Slot {
         // trim anything below the standard minimum
         if (all[0] < -max_normal_steps) {
             let extras = Math.abs(all[0]) - max_normal_steps;
-            console.log('trim bottom', extras);
+           // console.log('trim bottom', extras);
             diff -= extras;
             bonus_diff += extras;
         }
@@ -510,7 +510,7 @@ class Slot {
         // trim anything above the standard maximum
         if (all[1] > max_normal_steps) {
             let extras = all[1] - max_normal_steps;
-            console.log('trim top', extras);
+          //  console.log('trim top', extras);
 
             diff -= extras;
             bonus_diff += extras;
@@ -733,7 +733,7 @@ class Stat {
             // display += `<br /><span style="color: blue; font-size: 10px">Mats: ${Object.keys(this.mats).filter(mat => this.mats[mat]).map(mat => `${this.mats[mat]} ${mat}`).join(' / ')} (Max: ${this.max_mats})</span>`;
         // }
 
-        let buffer = `<div class="px-3 pt-3"><b>Type:</b> <b class="${this.type === 'w' ? 'text-success' : 'text-primary'}">${this.type === 'w' ? 'Weapon' : 'Armor'}</b> <br /> <b>Starting Potential:</b> ${this.starting_pot}</div><div class="d-block px-3 mb-2"><b>Final Stats: </b><br /> <div style="background-color:#f5f9ff;padding:2px 4px;border:1px solid #ddd;border-radius:3px">${final} </div></div> ${this.getSettingsDisplay('<span class="ml-4" style="color: green; font-size: 8px">', '</span>')}<br />${display}`;
+        let buffer = `<div class="px-3 pt-3"><b>Type:</b> <b class="${this.type === 'w' ? 'text-success' : 'text-primary'}">${this.type === 'w' ? 'Weapon' : 'Armor'}</b> <br /> <b>Starting Potential:</b> ${this.starting_pot}</div><div class="d-block px-3 mb-2"><b>Final Stats: </b><br /> <div style="background-color:#f5f9ff;padding:2px 4px;border:1px solid #ddd;border-radius:3px">${final} </div></div> ${this.getSettingsDisplay('<span class="ml-4 text-success">', '</span>')}<br />${display}`;
 
         document.getElementById('formula_display').innerHTML = buffer
 
@@ -1078,17 +1078,32 @@ class Formula {
         for (let step of this.formula) {
             if (last_change.text && last_change.text === step.text) {
                 let target_step = this.condensed_formula[this.condensed_formula.length - 1];
+
+				for(let [mat, cost] of Object.entries(step.step_mats)) {
+					target_step.step_mats[mat] += step.step_mats[mat]
+				}
+
                 target_step.repeat++;
                 target_step.pot_after = step.pot_after;
             } else {
                 this.condensed_formula.push(deep_clone(step));
                 last_change = step;
-            }
+			}
         }
     }
 
     getDisplay() {
-        const fill = this.condensed_formula.map((step, index) => `<tr><td>${index + 1}</td> <td>${step.text}</td><td>${step.repeat > 1 ? ` x${step.repeat}` : 'x1'} <br/> <small class="text-muted">(${step.pot_after}pot)</small></td></tr>`).join(' ');
+
+		const mats = {
+			Metal: 'logam',
+			Cloth: 'kain',
+			Beast: 'fauna',
+			Wood: 'kayu',
+			Medicine: 'obat',
+			Mana: 'mana'
+		}
+
+        const fill = this.condensed_formula.map((step, index) => `<tr><td>${index + 1}</td> <td>${step.text} ${Object.entries(step.step_mats).filter(([k, v]) => v).map(([k, i]) => `<span class="text-primary"><img src="/img/drop/${mats[k]}.png" class="avatar avatar-sm mr-1" style="max-width:18px;max-height:18px"/>: ${i}${step.repeat > 1 ? ' (total)' : ''}</span>`).join(', ')} </td><td>${step.repeat > 1 ? ` x${step.repeat}` : 'x1'} <br/> <small class="text-muted">(${step.pot_after}pot)</small></td></tr>`).join(' ');
 
         const display = `<table class="card-table table table-sm table-hover table-striped"><thead><tr><th width="10%">Step</th><th>Change</th><th>repeat</th></tr></thead><tbody> ${fill} </tbody></table>`
         return display

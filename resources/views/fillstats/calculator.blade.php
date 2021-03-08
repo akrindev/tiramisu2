@@ -186,10 +186,10 @@
             <h3 class="card-title">Formula</h3>
               <div class="card-options"> <button class="btn btn-sm btn-outline-primary" onclick="document.getElementById('wk').scrollIntoView();document.getElementById('note').focus()">save</button> </div>
           </div>
-          <div class="row">
+          <div class="row p-3">
 
-              <div class="p-3 col-md-6 card-body" id="formula_display" style="font-size:14px"></div>
-              <div class="p-3 col-md-6 card-body" id="material_display"></div>
+              <div class="col-md-6 card-body p-0 pb-5" id="formula_display" style="font-size:14px"></div>
+              <div class="col-md-6 card-body p-0" id="material_display"></div>
           </div>
 
         </div>
@@ -212,7 +212,6 @@
 
 @section('head')
 <link rel="preload" href="https://unpkg.com/axios/dist/axios.min.js" as="script" />
-
 <style>
     html {
         scroll-behavior: smooth;
@@ -242,7 +241,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/assets/js/saveFormula.js?v3"></script>
-<script src="/assets/js/newfill.js?v5"></script>
+<script src="/assets/js/newfill.js?v6"></script>
 <script src="/assets/js/math.js"></script>
 
 @if(session()->has('data'))
