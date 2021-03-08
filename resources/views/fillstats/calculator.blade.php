@@ -53,7 +53,7 @@
           </div>
           <div class="card-alert alert alert-info">
             <b>Updated</b> Skill tree level 4 <br>
-            <small>Latest Simulator updated: <i> 4 March 2021</i> </small>
+            <small>Latest Simulator updated: <i> 8 March 2021</i> </small>
           </div>
 
           <div class="p-3 card-body" style="font-size:14px;font-weight:400">
