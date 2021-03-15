@@ -100,7 +100,7 @@
         <div class="header py-4">
           <div class="container">
             <div class="d-flex">
-              <a class="header-brand" href="/">
+              <a class="header-brand" href="/{{ request()->segment(1) === 'en' || app()->isLocale('en') ? 'en' : '' }}">
                 <img src="/img/logo.png" class="header-brand-img lazyload animated rotateIn" alt="Toram-id.info logo"> Toram Online
               </a>
               <div class="d-flex order-lg-2 ml-auto">
