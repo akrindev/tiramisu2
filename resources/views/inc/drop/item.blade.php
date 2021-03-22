@@ -1,13 +1,19 @@
 <div class="card">
-          <div class="card-body p-3" style="font-size:14px;font-weight:400">
-            <div>
-              <img src="{{ $item->dropType->url }}" alt="{{ $item->dropType->name }}" class="avatar avatar-sm mr-1" style="max-width:21px;max-height:21px">
-              <b class="h6"><a class="text-primary" href="{{ request()->segment(1) == 'en' || app()->isLocale('en') ? '/en' : '' }}/item/{{ $item->id }}">{{ $item->name }}</a></b>
+    <div class="card-body p-3" style="font-size:14px;font-weight:400">
+        <div>
+            <img src="{{ $item->dropType->url }}" alt="{{ $item->dropType->name }}" class="avatar avatar-sm mr-1" style="max-width:21px;max-height:21px">
+
+            <b class="h6">
+                <a class="text-primary" href="{{ request()->segment(1) == 'en' || app()->isLocale('en') ? '/en' : '' }}/item/{{ $item->id }}">{{ $item->name }}</a>
+            </b>
+
            @if (auth()->check() && auth()->user()->isAdmin())
               <a href="/item/{{ $item->id }}/edit" class="btn btn-sm btn-outline-secondary">edit</a>
            @endif
 
-            <div class="row">
+           <a href="/temp/drop/edit/{{ $item->id }}" class="float-right small text-muted">[<i class="">sarankan pengeditan</i>]</a>
+
+        <div class="row">
 
 
 @if(! is_null($item->picture) && ! is_null($item->fullimage))
@@ -15,34 +21,34 @@
 <div id="carousel-controls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="my-2 d-block lazyload" src="/img/ball-triangle.svg" data-src="/{{ $item->picture}}" data-holder-rendered="true" width="200px" height="200px">
+            <img class="my-2 d-block lazyload" src="/img/ball-triangle.svg" data-src="/{{ $item->picture}}" alt="{{ request()->segment(1) != 'en' ? $item->name : $item->name_en }}" data-holder-rendered="true" width="200px" height="200px">
         </div>
         <div class="carousel-item">
-            <img class="my-2 d-block lazyload" src="/img/ball-triangle.svg" data-src="/{{ $item->fullimage }}" data-holder-rendered="true" width="200px" height="200px">
+            <img class="my-2 d-block lazyload" src="/img/ball-triangle.svg" data-src="/{{ $item->fullimage }}" alt="{{ request()->segment(1) != 'en' ? $item->name : $item->name_en }}" data-holder-rendered="true" width="200px" height="200px">
         </div>
     </div>
-                      <a class="carousel-control-prev" href="#carousel-controls" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                      </a>
-                      <a class="carousel-control-next" href="#carousel-controls" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                      </a>
-                    </div>
+            <a class="carousel-control-prev" href="#carousel-controls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-controls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+            </a>
+    </div>
 </div>
 @endif
 
 @if(! is_null($item->picture) && is_null($item->fullimage))
 <div class="col-md-4 my-2">
-    <img src="/img/ball-triangle.svg" data-src="/{{ $item->picture }}" class="rounded my-2 d-block lazyload" width="200px" height="200px">
+    <img src="/img/ball-triangle.svg" data-src="/{{ $item->picture }}" alt="{{ request()->segment(1) != 'en' ? $item->name : $item->name_en }}" class="rounded my-2 d-block lazyload" width="200px" height="200px">
 </div>
 @endif
 
-            @if(! is_null($item->note))
-              <div class="col-md-8 my-1">
+        @if(! is_null($item->note))
+        <div class="col-md-8 my-1">
                 <!-- Item status -->
-          <ul class="nav nav-tabs justify-content-center" id="statusTab" role="tablist">
+            <ul class="nav nav-tabs justify-content-center" id="statusTab" role="tablist">
             <li class="nav-item">
               <a class="nav-link {{ !is_null($item->note['monster']) ? 'active' :  '' }}" id="status-monster-tab" data-toggle="tab" href="#status-monster{{ $loop->index }}" role="tab" aria-controls="status" aria-selected="true">
               Status
@@ -96,28 +102,9 @@
 
             <div class="tab-pane fade" id="mats{{ $loop->index }}" role="tabpanel" aria-labelledby="mats-tab">
 
-
-             <div class="mt-5">
-        @if($item->resep->count() > 0)
-              <strong>Resep</strong><br>
-                @foreach($item->resep as $resep)
-                  <b>Fee:</b> {{ $resep->fee ?? '-' }}s <span class="ml-5"></span>
-                  <b>Level:</b> {{ $resep->level ?? '-' }} <br>
-                  <b>Diff:</b> {{ $resep->diff ?? '-' }} <span class="ml-5"></span>
-                  <b>Set:</b> {{ $resep->set ?? '-'}}pcs <br>
-                 <b>Base pot:</b> {{ $resep->pot }} <span class="ml-5"></span>
-                 <b>Base atk/def:</b> {{ $resep->base }}
-               <div class="mt-5"></div>
-               <b>Bahan:</b> <br><br>
-                    @foreach (explode(',',$resep->material) as $mat)
-             <img src="{{ App\Drop::find($mat)->dropType->url }}" class="avatar avatar-sm" style="max-width:16px;max-height:16px"> <a href="/item/{{ App\Drop::find($mat)->id }}"> {{ App\Drop::find($mat)->name }}</a> x{{ explode(',',$resep->jumlah)[$loop->index] }}<br>
-
-                    @endforeach
-                  @endforeach
-         @else
-            <small class="text-muted">-- Tidak ada --</small>
-         @endif
-                </div>
+            <div class="mt-5">
+                <small class="text-muted">-- Tidak ada --</small>
+            </div>
 
             </div>
           </div>

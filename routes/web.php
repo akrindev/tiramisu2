@@ -190,6 +190,10 @@ Route::get('f/{id}', 'ForumController@bacaId');
 */
 Route::prefix('gallery')->group(base_path('routes/gallery.php'));
 
+// temp routes
+Route::prefix('temp')->group(base_path('routes/temp.php'));
+
+
 /**
 * Shop
 *

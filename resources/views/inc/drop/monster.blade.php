@@ -1,6 +1,7 @@
 <div class="card">
     <div class="card-body p-3" style="font-size:14px;font-weight:400">
-            <dl> <!-- dl start -->
+        <a href="/temp/monster/edit/{{ $mons->id }}" class="small text-muted float-right">[<i>sarankan pengeditan</i>]</a>
+        <dl> <!-- dl start -->
 
            <div class="mb-5">
            <dt class="mb-1">

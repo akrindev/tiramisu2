@@ -1,5 +1,31 @@
 <div class="row">
-    <div class="col-md-6 mb-5">
+  <div class="col-md-6 mb-5">
+    <strong class='d-block'>Top Contributors</strong>
+    <div class="my-1">
+      <div class="row gutters-xs">
+        @for ($i = 1; $i <= 10; $i++)
+         <div class="d-block col-6">{{ $i }} syakirin </div>   
+        @endfor
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 mb-5">
+    <strong>Bagaimana cara berkontribusi?</strong>
+    <div class="d-block">
+      - kamu dapat menambahkan item dan monster yang belum ada di situs ini. <br>
+      - kamu juga dapat mengeditnya jika deskripsi atau namanya kurang tepat. <br>
+      - kamu tidak perlu login untuk bisa berkontribusi, namun kami kami sarankan untuk login karena jika kamu berada dalam 10 top kontributor maka kamu bisa akses situs ini tanpa iklan.
+    </div>
+
+    <div class="d-block my-1 mt-5">
+      Yuk <a href="/temp/drop/create" class="text-primary">tambah data item (drop)</a> atau <a href="/temp/monster/create" class="text-primary">tambah data monster</a>
+    </div>
+  </div>
+
+  <hr class="my-1">
+
+  <div class="col-md-6 mb-5">
 		<div class="mb-4 text-center d-flex justify-content-center">
 			<a href="/" class="mr-5 d-flex align-items-center"><i class="flag flag-id mr-2" style="width:1rem;height:0.8rem"></i>Indonesia</a> <a href="/en" class="d-flex align-items-center"><i class="flag flag-us mr-2" style="width:1rem;height:0.8rem"></i>English</a>
 		</div>
