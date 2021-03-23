@@ -5,9 +5,44 @@
 @section('content')
 <div class="my-5">
   <div class="container">
+      <div class="page-header">
+          <h3 class="page-title">Edit data monster</h3>
+      </div>
 
     <div class="row">
-      <div class="col-md-8">
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body body-text p-3">
+                    <h4 class="text-danger">Peraturan sebelum mengubah data monster</h4>
+                    <hr class="my-1">
+                    - Pastikan data monster yang ingin di ubah sesuai dengan data yang ada di dalam game. <br>
+                    - Masukkan nama monster sesuai dengan nama yang ada di dalam game. <br>
+                    - Nama dalam bahasa indonesia tidak boleh kosong. <br>
+                    - Nama dalam bahasa inggris boleh di kosongkan jika tidak tahu bahasa inggrisnya. <br>
+                    - Jika kamu tahu nama monster hanya dalam bahasa inggrisnya saja, maka masukkan nama dalam bahasa inggris ke dalam kolom bahasa indonesia. <br>
+                    - Pilihlah type monster sesuai jenis monster yang ada di dalam game. <i class="text-muted">normal monster, boss, mini boss.</i> <br>
+                    - Apakah bisa di jadikan pet? jika tidak tahu tidak perlu di centang. <br>
+                    - Pilih map mana monster tersebut muncul. <br>
+                    - Level monster wajib di isi. <br>
+                    - HP monster tidak wajib untuk diisi kecuali kamu tahu HP monster tersebut. <br>
+                    - EXP monster tidak wajib untuk diisi kecuali kamu tahu EXP monster tersebut. <br>
+                    - Sebelum memasukkan drop items, pastikan item sudah tersedia terlebih dahulu. Jika tidak ada <a href="/temp/drop/create">tambahkan drop item terlebih dahulu</a>. <br>
+                    - Tidak perlu memasukkan gambar monster jika kamu belum mengambil screenshot gambar monster. Namun lebih baik terdapat gambar monster. <br>
+                    - Jika terdapat gambar monster, potonglah terlebih dahulu dengan rasio 1:1 (persegi) <br>
+                    - Tim kami akan mereview ulang semua data yang telah di tambahkan maupun yang di ubah.
+                    <br><br>
+
+                    <strong>
+                        Terima Kasih telah ikut berkontribusi di situs ini
+                    </strong>
+
+                </div>
+            </div>
+        </div>
+
+
+      <div class="col-md-6">
 
         <div class="card">
             <div class="card-header p-3">
@@ -241,7 +276,7 @@
           swal("Data monster di edit dan menunggu review", {
           	icon: 'success'
           }).then(() => {
-          	window.location.href = '/monster/{{$monster->id}}';
+          	window.close()
           });
         }
     }).catch((err) => alert(err)).finally(() => {

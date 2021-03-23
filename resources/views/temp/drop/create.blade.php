@@ -27,7 +27,8 @@
                     - Jika kamu tahu kedua status deskripsi, masukkan semua deskripsi status. <br>
                     - Jika item tidak memiliki deskripsi, kosongkan semua deskripsi status dan hanya mengisi nama dan tipe saja. <i class="text-muted">contoh: jenis item logam, kain, fauna, etc.</i> <br>
                     - Jika terdapat gambar, potonglah gambar terlebih dahulu dengan ratio 1:1 (persegi). item yang di pakai dalam gambar harus hanya 1 item yang sesuai dan tidak mengenakan perlengkapan lain. background gambar lebih baik berwarna hitam. <br>
-                    - Tidak perlu memasukkan gambar jika item tidak memiliki gambar atau jika kamu belum mengambil screenshot gambar.
+                    - Tidak perlu memasukkan gambar jika item tidak memiliki gambar atau jika kamu belum mengambil screenshot gambar. <br>
+                    - Tim kami akan mereview ulang semua data yang telah di tambahkan maupun yang di ubah.
                     <br><br>
 
                     <strong>

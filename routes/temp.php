@@ -20,3 +20,7 @@ Route::get('/monster/edit/{id}', 'TempMonsterController@edit');
 
 
 
+// ------------------------------ //
+Route::middleware('admin')->group(function() {
+    Route::view('review', 'temp.admin.review');
+});

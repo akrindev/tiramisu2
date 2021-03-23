@@ -24,10 +24,10 @@
             </select>
           </div>
 
-            <div class="form-group">
-              <label class="form-label">Tambahan / Note (Monster) <small class="text-muted">boleh kosong</small></label>
-              <textarea name="monster" wire:model.defer='monster' rows="5" class="form-control" placeholder="Status Monster . . ."></textarea>
-            </div>
+        <div class="form-group">
+            <label class="form-label">Tambahan / Note (Monster) <small class="text-muted">boleh kosong</small></label>
+            <textarea name="monster" wire:model.defer='monster' rows="5" class="form-control" placeholder="Status Monster . . ."></textarea>
+        </div>
 
 
             <div class="form-group">

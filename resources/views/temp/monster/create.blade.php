@@ -29,7 +29,8 @@
                     - EXP monster tidak wajib untuk diisi kecuali kamu tahu EXP monster tersebut. <br>
                     - Sebelum memasukkan drop items, pastikan item sudah tersedia terlebih dahulu. Jika tidak ada <a href="/temp/drop/create">tambahkan drop item terlebih dahulu</a>. <br>
                     - Tidak perlu memasukkan gambar monster jika kamu belum mengambil screenshot gambar monster. Namun lebih baik terdapat gambar monster. <br>
-                    - Jika terdapat gambar monster, potonglah terlebih dahulu dengan rasio 1:1 (persegi)
+                    - Jika terdapat gambar monster, potonglah terlebih dahulu dengan rasio 1:1 (persegi) <br>
+                    - Tim kami akan mereview ulang semua data yang telah di tambahkan maupun yang di ubah.
                     <br><br>
 
                     <strong>

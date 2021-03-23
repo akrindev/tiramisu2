@@ -22,6 +22,8 @@
         <div class="card">
           <div class="card-body p-3" style="font-size:14px;font-weight:400">
 
+            <a href="/temp/drop/edit/{{ $item->id }}" rel="nofollow" target="_blank" class="float-right small text-muted"><span data-nosnippet> [<i class="">sarankan pengeditan</i>]</span></a>
+
             <dl>
               <dt>
               <b class="h5"> <img src="{{$item->dropType->url}}" class="avatar avatar-sm mr-2"> <a href="/item/{{$item->id}}" class="text-primary">{{ $item->name }}</a></b>
@@ -37,10 +39,10 @@
 <div id="carousel-controls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100 lazyload" src="/img/ball-triangle.svg" data-src="/{{ $item->picture}}" data-holder-rendered="true">
+            <img class="d-block w-100 lazyload" src="/img/ball-triangle.svg" data-src="/{{ $item->picture}}" data-holder-rendered="true" alt="{{ $item->name }}">
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100 lazyload" src="/img/ball-triangle.svg" data-src="/{{ $item->fullimage }}" data-holder-rendered="true">
+            <img class="d-block w-100 lazyload" src="/img/ball-triangle.svg" data-src="/{{ $item->fullimage }}" data-holder-rendered="true" alt="{{ $item->name }}">
         </div>
     </div>
                       <a class="carousel-control-prev" href="#carousel-controls" role="button" data-slide="prev">
@@ -57,7 +59,7 @@
 
 @if(! is_null($item->picture) && is_null($item->fullimage))
 <div class="col-12">
-    <img src="/img/ball-triangle.svg" data-src="/{{ $item->picture }}" class="rounded my-2 d-block lazyload" width="85%" height="85%">
+    <img src="/img/ball-triangle.svg" data-src="/{{ $item->picture }}" class="rounded my-2 d-block lazyload" width="85%" height="85%" alt="{{ $item->name }}">
 </div>
 @endif
                 <div class="my-2">
@@ -119,26 +121,8 @@
 
 
              <div class="mt-5">
-        @if($item->resep->count() > 0)
-              <strong>Resep</strong><br>
-                @foreach($item->resep as $resep)
-                  <b>Fee:</b> {{ $resep->fee ?? '-' }}s <span class="ml-5"></span>
-                  <b>Level:</b> {{ $resep->level ?? '-' }} <br>
-                  <b>Diff:</b> {{ $resep->diff ?? '-' }} <span class="ml-5"></span>
-                  <b>Set:</b> {{ $resep->set ?? '-'}}pcs <br>
-                 <b>Base pot:</b> {{ $resep->pot }} <span class="ml-5"></span>
-                 <b>Base atk/def:</b> {{ $resep->base }}
-               <div class="mt-5"></div>
-               <b>Bahan:</b> <br><br>
-                    @foreach (explode(',',$resep->material) as $mat)
-             <img src="{{ App\Drop::find($mat)->dropType->url }}" class="avatar avatar-sm" style="max-width:16px;max-height:16px"> <a href="/item/{{ App\Drop::find($mat)->id }}"> {{ App\Drop::find($mat)->name }}</a> x{{ explode(',',$resep->jumlah)[$loop->index] }}<br>
-
-                    @endforeach
-                  @endforeach
-         @else
-            <small class="text-muted">-- Tidak ada --</small>
-         @endif
-                </div>
+                <small class="text-muted">-- Tidak ada --</small>
+             </div>
 
             </div>
           </div>

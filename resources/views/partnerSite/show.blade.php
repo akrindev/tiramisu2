@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-md-6 mb-5">
-    <strong class='d-block'>Top Contributors</strong>
+    <strong class='d-block'>10 Top Contributors <span class="ml-2 text-danger">&hearts;</span> </strong>
     <div class="my-1">
       <div class="row gutters-xs">
-        @for ($i = 1; $i <= 10; $i++)
-         <div class="d-block col-6">{{ $i }} syakirin </div>   
-        @endfor
+        @foreach ((new App\Contribution)->with('user')->orderByDesc('point')->take(10)->get() as $contributor)
+         <div class="d-block col-6">{{ $loop->index+1 }}. {{ $contributor->user->name }} (<span class="text-primary">{{ $contributor->point }}</span>) </div>
+        @endforeach
       </div>
     </div>
   </div>

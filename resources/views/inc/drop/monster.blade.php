@@ -1,6 +1,7 @@
 <div class="card">
     <div class="card-body p-3" style="font-size:14px;font-weight:400">
-        <a href="/temp/monster/edit/{{ $mons->id }}" class="small text-muted float-right">[<i>sarankan pengeditan</i>]</a>
+        <a rel="nofollow" target="_blank" href="/temp/monster/edit/{{ $mons->id }}" class="small text-muted float-right"> <span data-nosnippet>[<i>sarankan pengeditan</i>]</span></a>
+
         <dl> <!-- dl start -->
 
            <div class="mb-5">
@@ -21,7 +22,7 @@
          <div class="row">
             @if(! is_null($mons->picture))
              <div class="col-md-3">
-              <img src="/img/ball-triangle.svg" data-src="/{{ $mons->picture }}" class="rounded my-2 d-block lazyload" width="170px" height="170px"></div>
+              <img src="/img/ball-triangle.svg" data-src="/{{ $mons->picture }}" class="rounded my-2 d-block lazyload" width="170px" height="170px"  alt="{{ $mons->name }}"></div>
             @endif
                <div class="col-md-9">
               <b>{{ __('Unsur') }}:</b>  <span class="">{{ __(ucfirst($mons->element->name)) }}</span> <br>

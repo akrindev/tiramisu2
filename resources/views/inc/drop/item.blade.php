@@ -11,7 +11,7 @@
               <a href="/item/{{ $item->id }}/edit" class="btn btn-sm btn-outline-secondary">edit</a>
            @endif
 
-           <a href="/temp/drop/edit/{{ $item->id }}" class="float-right small text-muted">[<i class="">sarankan pengeditan</i>]</a>
+           <a rel="nofollow" target="_blank" href="/temp/drop/edit/{{ $item->id }}" class="float-right small text-muted"><span data-nosnippet>[<i class="">sarankan pengeditan</i>]</span></a>
 
         <div class="row">
 
