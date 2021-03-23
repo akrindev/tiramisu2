@@ -33,7 +33,7 @@
      @endforeach
 
         <div class="my-3">
-        {{ $data->links() }}
+        {{ $data->onEachSide(2)->links() }}
         </div>
 
       <div class="col-md-8">
