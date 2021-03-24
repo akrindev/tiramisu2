@@ -733,7 +733,7 @@ class Stat {
             // display += `<br /><span style="color: blue; font-size: 10px">Mats: ${Object.keys(this.mats).filter(mat => this.mats[mat]).map(mat => `${this.mats[mat]} ${mat}`).join(' / ')} (Max: ${this.max_mats})</span>`;
         // }
 
-        let buffer = `<div class="px-3 pt-3"><b>Type:</b> <b class="${this.type === 'w' ? 'text-success' : 'text-primary'}">${this.type === 'w' ? 'Weapon' : 'Armor'}</b> <br /> <b>Starting Potential:</b> ${this.starting_pot}</div><div class="d-block px-3 mb-2"><b>Final Stats: </b><br /> <div style="background-color:#f5f9ff;padding:2px 4px;border:1px solid #ddd;border-radius:3px">${final} </div></div> ${this.getSettingsDisplay('<span class="ml-4 text-success">', '</span>')}<br />${display}`;
+        let buffer = `<div class="px-3 pt-3"><b>Type:</b> <b class="${this.type === 'w' ? 'text-success' : 'text-primary'}">${this.type === 'w' ? 'Weapon' : 'Armor'}</b> <br /> <b>Recipe Potential:</b> ${this.recipe_pot} <br /> <b>Starting Potential:</b> ${this.starting_pot}</div><div class="d-block px-3 mb-2"><b>Final Stats: </b><br /> <div style="background-color:#f5f9ff;padding:2px 4px;border:1px solid #ddd;border-radius:3px">${final} </div></div> ${this.getSettingsDisplay('<span class="ml-4 text-success">', '</span>')}<br />${display}`;
 
         document.getElementById('formula_display').innerHTML = buffer
 

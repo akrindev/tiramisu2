@@ -77,6 +77,42 @@
               <input type="number" value="44" class="form-control" id="recipe_pot">
             </div>
 
+			  <div class="form-group">
+			  	<details>
+					<summary>cs base pot</summary>
+
+					<pre>//----- Armor -----//
+- Adventure Grab		(15)
+  [baju Pengelana]
+
+- Forest Wolf Garb		(19)
+  [baju an**ng hutan]
+
+- Jeremiah Mail			(36)
+  [zirah Jeremiah]
+
+- Lil Empress Garb		(38)
+  [Baju Kaisar Wanita]
+
+- Heaven Feather Garb	(41)
+  [Jubah Bulu Surgawi]
+
+- Bark Mail				(44)
+  [Zirah Pepagan]
+
+//----- Weapon -----//
+
+- 5th Anniv Weapon VII	(46)
+  [All type weapon]
+
+- Vulture Shooter		(45)
+  [Busur Vulture]
+
+- Vulture Blade			(45)
+  [Pedang Vulture]</pre>
+
+              </details>
+			  </div>
 
             <div class="form-group">
               <label class="form-label">Starting Pot</label>
@@ -241,7 +277,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/assets/js/saveFormula.js?v3"></script>
-<script src="/assets/js/newfill.js?v6"></script>
+<script src="/assets/js/newfill.js?v7"></script>
 <script src="/assets/js/math.js"></script>
 
 @if(session()->has('data'))
