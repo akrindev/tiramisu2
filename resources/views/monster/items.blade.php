@@ -25,7 +25,7 @@
        @forelse($data as $item)
 
         @if($loop->index == 10)
-   			@includeUnless(app()->isLocal(), 'inc.ads.infeed')
+   			@includeUnless(app()->isLocal(), 'inc.ads_article')
         @endif
 
           @include('inc.drop.item', $item)

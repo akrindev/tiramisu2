@@ -26,7 +26,7 @@
      @foreach ($data as $mons)
 
         @if($loop->index == 10)
-   			@includeUnless(app()->isLocal(), 'inc.ads.infeed')
+   			@includeUnless(app()->isLocal(), 'inc.ads_article')
         @endif
 
           @include('inc.drop.monster', $mons)
@@ -37,7 +37,7 @@
         </div>
 
       <div class="col-md-8">
-        @includeUnless(app()->isLocal(), 'inc.ads_article')
+        @includeUnless(app()->isLocal(), 'inc.ads_mobile')
       </div>
 
       </div>

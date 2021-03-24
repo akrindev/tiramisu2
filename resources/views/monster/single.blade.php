@@ -36,7 +36,7 @@
 
       @foreach ($data->monster as $mons)
         @if(($loop->index + 1) % 5 == 0)
-   			@includeUnless(app()->isLocal(), 'inc.ads.infeed')
+   			@includeUnless(app()->isLocal(), 'inc.ads_article')
         @endif
           @include('inc.drop.monster', $mons)
       @endforeach
