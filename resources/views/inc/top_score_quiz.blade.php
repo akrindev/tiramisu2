@@ -1,5 +1,5 @@
 @php
-$scores = App\QuizScore::orderBy('point','desc')->orderBy('benar','desc')->paginate(20);
+$scores = App\QuizScore::with('user')->orderBy('point','desc')->orderBy('benar','desc')->paginate(20);
 
 $i=1;
 @endphp

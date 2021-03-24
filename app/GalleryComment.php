@@ -14,4 +14,9 @@ class GalleryComment extends Model
     {
       return $this->belongsTo(User::class);
     }
+
+    public function gallery()
+    {
+        return $this->belongsTo(Gallery::class);
+    }
 }

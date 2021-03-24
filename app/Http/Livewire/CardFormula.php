@@ -20,7 +20,7 @@ class CardFormula extends Component
 		$data = WorkSpace::findOrFail($id);
 
 		session()->flash('data', $data);
-		return redirect('/fill_stats/calculator');
+		return redirect('/fill_stats/simulator');
 	}
 
     public function save($id)

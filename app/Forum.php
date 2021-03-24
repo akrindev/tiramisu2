@@ -54,6 +54,4 @@ class Forum extends Model
   {
     return $like->where('user_id',$this->id);
   }
-
-
 }

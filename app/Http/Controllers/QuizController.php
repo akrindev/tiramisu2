@@ -283,7 +283,7 @@ class QuizController extends Controller
 
   	public function allScores()
     {
-      $scores = QuizScore::orderBy('point','desc')->orderBy('benar','desc')->paginate(50);
+      $scores = QuizScore::with('user')->orderBy('point','desc')->orderBy('benar','desc')->paginate(50);
 
       return view('quiz.all_score',[
       	'scores' => $scores

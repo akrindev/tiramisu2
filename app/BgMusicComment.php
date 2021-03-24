@@ -10,4 +10,9 @@ class BgMusicComment extends Model
     {
       return $this->belongsTo(User::class);
     }
+
+    public function bgMusic()
+    {
+        return $this->belongsTo(BgMusic::class);
+    }
 }

@@ -4,7 +4,8 @@
 
 
 Route::get('/', 'FillController@index');
-Route::get('/calculator', 'FillController@calculator');
+Route::redirect('/calculator', '/fill_stats/simulator', 301);
+Route::get('/simulator', 'FillController@calculator');
 Route::post('/save', 'FormulaController@store');
 Route::get('/load', 'FormulaController@loadSaved');
 Route::get('/get/{id}', 'FormulaController@getFormula');

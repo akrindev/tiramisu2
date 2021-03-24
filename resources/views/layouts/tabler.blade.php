@@ -215,7 +215,7 @@
                     <div class="dropdown-menu dropdown-menu-arrow">
 
                       <a href="/fill_stats" class="dropdown-item">Fill stats formula</a>
-                      <a href="/fill_stats/calculator" class="dropdown-item ">Fill stats Calculator</a>
+                      <a href="/fill_stats/simulator" class="dropdown-item ">Fill Stats Simulator</a>
                       <a href="/leveling" class="dropdown-item">Leveling Finder</a>
                       <a href="/exp" class="dropdown-item">Exp Calculator</a>
                       <a href="/mq_exp" class="dropdown-item">Main Quest (MQ) Exp Calculator</a>

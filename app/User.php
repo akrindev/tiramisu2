@@ -90,11 +90,6 @@ class User extends Authenticatable
       return $this->hasOne(Contact::class);
     }
 
-  	public function shop()
-    {
-      return $this->hasMany(Shop::class);
-    }
-
   	public function quiz()
     {
       return $this->hasMany(Quiz::class);
@@ -139,11 +134,6 @@ class User extends Authenticatable
   	public function gallery()
     {
       return $this->hasMany(Gallery::class);
-    }
-
-  	public function scammers()
-    {
-      return $this->hasMany(Scammer::class);
     }
 
   	/**
