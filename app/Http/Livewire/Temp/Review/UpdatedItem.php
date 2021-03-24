@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Temp\Review;
 
 use Livewire\Component;
 use Livewire\WithPagination;
+
 use App\TempDrop;
 
 class UpdatedItem extends Component
@@ -14,9 +15,11 @@ class UpdatedItem extends Component
         'done'
     ];
 
-    public function done()
+    public function done($value)
     {
-        session()->flash('success', 'item telah di edit');
+        $message = $value == 'updated' ? 'item telah di edit' : 'item di tolak';
+
+        session()->flash('success', $message);
     }
 
     public function render()
@@ -25,7 +28,6 @@ class UpdatedItem extends Component
                         ->whereNotNull('drop_id')
                         ->whereApproved(0)
                         ->paginate();
-
 
         return view('livewire.temp.review.updated-item', [ 'items' => $items ]);
     }

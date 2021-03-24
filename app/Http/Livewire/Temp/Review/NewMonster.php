@@ -6,6 +6,8 @@ use Livewire\Component;
 use Livewire\WithPagination;
 
 use App\TempMonster;
+use App\Map;
+use App\Element;
 
 class NewMonster extends Component
 {
@@ -15,17 +17,26 @@ class NewMonster extends Component
         'done'
     ];
 
-    public function done()
+    public function done($value)
     {
-        session()->flash('success', 'Data monster di tambahkan');
+        $message = $value == 'added' ? 'Data monster di tambahkan' : 'Data monster di tolak';
+
+        session()->flash('success', $message);
     }
 
     public function render()
     {
-        $monsters = TempMonster::with(['drops', 'element'])->latest()->whereNull('monster_id')
+        $maps = Map::get();
+        $elements = Element::get();
+        $monsters = TempMonster::with(['drops', 'element'])->latest()
+                        ->whereNull('monster_id')
                         ->whereApproved(0)
                         ->paginate();
 
-        return view('livewire.temp.review.new-monster', [ 'monsters' => $monsters ]);
+        return view('livewire.temp.review.new-monster', [
+            'monsters' => $monsters,
+            'maps'      => $maps,
+            'elements'  => $elements
+        ]);
     }
 }

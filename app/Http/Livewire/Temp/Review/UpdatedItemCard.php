@@ -40,7 +40,7 @@ class UpdatedItemCard extends Component
         $renameFull = Str::slug($this->name.\str_random(5)) . '.png';
 
         $temp = TempDrop::findOrFail($this->item->id);
-        $drop = new Drop;
+        $drop = Drop::findOrFail($temp->drop->id);
         $drop->name = $this->name;
         $drop->name_en = $this->name_en;
         $drop->drop_type_id = $this->item->drop_type_id;
@@ -53,7 +53,7 @@ class UpdatedItemCard extends Component
             ];
         }
 
-        if($this->withpic) {
+        if($this->withpic === 'true') {
 
             if($this->picture) {
 
@@ -83,7 +83,24 @@ class UpdatedItemCard extends Component
             $user->save();
         }
 
-        $this->emitUp('done');
+        $this->emitUp('done', 'updated');
+    }
+
+    public function declined()
+    {
+        $temp = TempDrop::findOrFail($this->item->id);
+        $temp->approved = 2;
+
+        if(! $temp->user_id && $temp->picture) {
+
+            (new Filesystem)->delete(\public_path($temp->picture));
+
+            $temp->picture = null;
+        }
+
+        $temp->save();
+
+        $this->emitUp('done', 'declined');
     }
 
     public function render()

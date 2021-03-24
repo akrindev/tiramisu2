@@ -3,6 +3,11 @@
         <form enctype="multipart/form-data" wire:submit.prevent="accept" method="post">
 
             <div class="form-group">
+                <label class="form-label d-block">Di tambahkan oleh</label>
+                <span>{{ $monster->user->name ?? 'guest' }}</span>
+            </div>
+
+            <div class="form-group">
               <label class="form-label">Name (indo) <i class="text-danger">*</i></label>
               <input type="text" class="form-control" name="name" placeholder="Nama monster dalam bahasa indonesia" wire:model.defer='name' required>
             </div>
@@ -36,7 +41,7 @@
               <label class="form-label">Map <i class="text-danger">*</i></label>
               <select name="map" id="map" class="form-control custom-select" required>
                 <option value="">~ Select map ~</option>
-              @foreach ((new App\Map)->get() as $map)
+              @foreach ($maps as $map)
                 <option value="{{ $map->id }}" {{ $mapid == $map->id ? 'selected' : ''}}> {{ $map->name }} </option>
               @endforeach
               </select>
@@ -85,7 +90,7 @@
             <div class="form-group">
                 <label class="form-label">Element <i class="text-danger">*</i></label>
                 <div class="selectgroup selectgroup-pills">
-                @foreach ((new App\Element)->get() as $el)
+                @foreach ($elements as $el)
                     <label class="selectgroup-item">
                         <input type="radio" name="element" class="selectgroup-input" value="{{ $el->id }}" {{ $element == $el->id ? 'checked':'' }}>
                         <span class="selectgroup-button">{{ $el->name }}</span>
@@ -99,7 +104,7 @@
             <div class="form-group">
               <label class="form-label">Screenshot <i class="text-muted">(optional)</i></label>
               <div id="preview">
-                      <img src="/{{ $picture }}" alt="">
+                      <img src="{{ $picture }}" style="width:100%" alt="">
                     </div>
                 </div>
             @endif
@@ -108,6 +113,8 @@
               <button class="btn btn-outline-primary btn-pill" type="submit" id="simpan">Terima +1 point</button>
 
               <span wire:click.prevent="declined" class="btn btn-outline-danger btn-pills">Tolak</span>
+
+              <span wire:loading wire:target='declined'> Wait ...</span>
             </div>
 
         </form>

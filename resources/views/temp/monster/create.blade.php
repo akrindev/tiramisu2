@@ -157,7 +157,7 @@
             <div class="form-group">
               <label class="form-label">Screenshot <i class="text-muted">(optional)</i></label>
               <div id="preview"></div>
-              <input type="file" name="picture" class="form-control" accept="image/*">
+              <input type="file" name="picture" class="form-control" accept="image/*" id="picture">
             </div>
 
             <div class="form-group">
@@ -285,7 +285,7 @@
       axios.post('/temp/monster/store', data)
       .then((res) => {
 
-          if(res.data.success) {
+        if(res.data.success) {
             swal("Data monster ditambah", {
                 icon: 'success'
             }).then((res) => {
@@ -294,7 +294,7 @@
             });
         }
 
-    }).catch((err) => alert(err)).finally(() => {
+    }).catch((err) => swal(err.message, { icon: 'error' })).finally(() => {
         simpan.innerHTML = 'Simpan';
       });
     });

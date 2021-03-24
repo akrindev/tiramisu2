@@ -12,9 +12,13 @@ class Forum extends Model
   use SoftDeletes, Notifiable, Searchable;
 
     protected $fillable = [
-		'user_id', 'judul', 'body' , 'pinned',
-      	'slug', 'tags', 'views', 'color',
-      	'forum_category_id'
+        'user_id', 'judul', 'body' , 'pinned',
+        'slug', 'tags', 'views', 'color',
+        'forum_category_id'
+    ];
+
+    protected $with = [
+        'category', 'user', 'comment', 'likes'
     ];
 
   public function user()

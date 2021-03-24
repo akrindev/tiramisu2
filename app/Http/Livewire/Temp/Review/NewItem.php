@@ -15,9 +15,11 @@ class NewItem extends Component
         'done'
     ];
 
-    public function done()
+    public function done($value)
     {
-        session()->flash('success', 'item telah di tambahkan');
+        $message = $value == 'added' ? 'item telah di tambahkan' : 'item di tolak';
+
+        session()->flash('success', $message);
     }
 
     public function render()
@@ -26,6 +28,6 @@ class NewItem extends Component
                     ->whereApproved(0)
                     ->paginate();
 
-        return view('livewire.temp.review.new-item', [ 'items' => $items]);
+        return view('livewire.temp.review.new-item', [ 'items' => $items ]);
     }
 }

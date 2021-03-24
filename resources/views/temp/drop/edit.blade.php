@@ -187,7 +187,7 @@
           });
         }
 
-    }).catch((err) => alert(err)).finally(() => {
+    }).catch((err) => swal(err.message, { icon: 'error' })).finally(() => {
         simpan.innerHTML = 'Simpan';
     });
   });

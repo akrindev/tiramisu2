@@ -56,7 +56,7 @@
                     @if ($item->drop->picture)
 
                         <label class='form-label'>before</label>
-                        <img src="{{ $item->drop->picture }}" style="max-width: 100%" class="d-block"/>
+                        <img src="/{{ $item->drop->picture }}" style="max-width: 100%" class="d-block"/>
                     @endif
                 </div>
             </div>
@@ -73,7 +73,7 @@
                     @if ($item->drop->fullimage)
 
                         <label class='form-label'>before</label>
-                        <img src="{{ $item->drop->fullimage }}" style="max-width: 100%" class="d-block"/>
+                        <img src="/{{ $item->drop->fullimage }}" style="max-width: 100%" class="d-block"/>
                     @endif
                 </div>
             </div>
@@ -95,7 +95,9 @@
           <div class="form-group">
             <button class="btn btn-outline-primary btn-pill" type="submit" id="simpan">Terima +1 point</button>
 
-            <button class="btn btn-outline-danger btn-pill" wire:click.prevent='cancel'>Tolak</button>
+            <button class="btn btn-outline-danger btn-pill" wire:click.prevent='declined'>Tolak</button>
+
+            <span wire:loading wire:target='declined'>wait . . .</span>
           </div>
 
         </form>

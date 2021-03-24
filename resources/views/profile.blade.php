@@ -1,16 +1,7 @@
 @extends('layouts.tabler')
-@php
-$res = 0;
-
-if(auth()->user()->thread->count() > 0):
-	foreach (auth()->user()->thread as $t):
-		$res += $t->comment->count();
-	endforeach;
-endif;
-@endphp
 
 @section('title','Profileku')
-@section('description',$profile->biodata)
+@section('description', $profile->biodata)
 @section('image','https://graph.facebook.com/'.$profile->provider_id.'/picture?type=normal')
 
 
@@ -40,6 +31,11 @@ endif;
         @if(auth()->user()->isAdmin())
         <a href="/admin" class="btn btn-link btn-sm">Admin Dashboard</a>
         @endif
+
+        <hr class="my-2">
+        <div class="d-block">
+            <span>Contribution point: </span> <span class="text-primary">{{ auth()->user()->contribution->point ?? 0 }}</span>
+        </div>
       </div>
 
       <div class="col-md-8">
@@ -54,7 +50,6 @@ endif;
               <tr>
                 <th> posts</th>
                 <th> Menjawab </th>
-                <th> Terjawab </th>
                 <th> views </th>
                 <th class="text-red"> <i class="fe fe-heart"></i> Loves</th>
               </tr>
@@ -63,7 +58,6 @@ endif;
               <tr>
                 <td> {{ auth()->user()->thread->count() }} </td>
                 <td> {{ auth()->user()->comment->count() }} </td>
-                <td> {{ $res }} </td>
                 <td> {{ $profile->thread->sum('views') }} </td>
                 <td>   {{ auth()->user()->myLovedThread->count() }} <small class="text-muted"> <i class="fe fe-heart text-red"></i> Given</small> <br />
 
@@ -127,23 +121,6 @@ endif;
       </div>
    @endif
 
-@if(auth()->user()->scammers->count() > 0)
-    <div class="col-md-4">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">Scammer post</h3>
-      </div>
-
-      <div class="card-body p-3" style="font-size:13px;font-weight:400;">
-        @foreach(auth()->user()->scammers as $scam)
-        <i class="fe fe-inbox"></i> <a href="/scammer/r/{{$scam->slug}}">{{ $scam->judul }}</a> <small class="text-muted">( <i class="fe fe-message-square"></i> {{ $scam->comment->count() }} )</small> <br>
-        @endforeach
-      </div>
-    </div>
-   </div>
-@endif
-
-
   <div class="col-md-8">
     <div class="card">
       <div class="card-header">
@@ -169,45 +146,6 @@ endif;
 @endif
     </div>
       </div>
-
-
-    @if($profile->shop->count() > 0)
-
-      <div class="col-md-12">
-          <div class="row">
-
-    @foreach ($profile->shop as $shop)
-       <div class="col-md-6">
-         <div class="card">
-           @if(session()->has('sukses-laku-'.$shop->id))
-           <div class="card-alert alert alert-success">
-             {{ session('sukses-laku-'.$shop->id)}}
-           </div>
-           @endif
-          <img class="card-img-top" style="max-height:300px" src="{{$shop->gambar}}">
-           <div class="card-body">
-             <b>Kamu menjual: </b> <a href="/shop/show/{{$shop->slug}}">{{$shop->nama_barang}}</a><br>
-             <b> Seharga: </b> {{ number_format($shop->harga) }} Spina <br>
-             <b> Pada: </b> {{ waktu($shop->created_at) }}<br>
-             <b> Status: </b> <small class="text-{{ $shop->laku == 0 ? 'danger': 'success'}}">{{ $shop->laku == 0 ? 'Belum laku': 'Laku'}}</small><br>
-             <b> Dilihat sebanyak: </b> {{ $shop->views}}x<br>
-             <a href="/shop/edit/{{$shop->slug}}">edit</a>
-             <hr class="my-1">
-             <b> Apakah sudah laku? </b><br>
-             {!! form_open('/ya/laku') !!}
-             @csrf
-             <input type="hidden" name="id" value="{{$shop->id}}">
-             <input type="hidden" name="laku" value="{{ $shop->laku == 1 ? '0':'1'}}">
-             <button type="submit" class="btn btn-outline-{{$shop->laku == 0 ? 'success':'danger'}} btn-sm btn-pill">{{$shop->laku == 0 ? 'Ya laku':'Belum laku'}}</button>
-             {!! form_close() !!}
-           </div>
-         </div>
-       </div>
-    @endforeach
-         </div>
-      </div>
-    @endif
-
 
     </div>
 

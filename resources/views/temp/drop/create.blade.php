@@ -193,13 +193,13 @@
             var control = $select[0].selectize;
             control.clear();
           });
-        } else {
-          swal("terjadi kesalahan",{
-          	icon: 'error'
-          });
         }
 
-    }).catch((err) => alert(err))
+    }).catch((err) => {
+        swal(err.message, {
+            icon: 'error'
+        });
+    })
     .finally(() => {
         simpan.innerHTML = 'Simpan';
         document.getElementById('preview').innerHTML = ''

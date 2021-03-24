@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Temp\Review;
 
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -12,6 +13,8 @@ use App\User;
 class NewMonsterCard extends Component
 {
     public $monster;
+    public $maps;
+    public $elements;
 
     public $name;
     public $name_en;
@@ -25,9 +28,11 @@ class NewMonsterCard extends Component
     public $element;
     public $picture;
 
-    public function mount($monster)
+    public function mount($monster, $maps, $elements)
     {
         $this->monster = $monster;
+        $this->maps = $maps;
+        $this->elements = $elements;
         $this->name     = $monster->name;
         $this->name_en  = $monster->name_en;
         $this->type     = $monster->type;
@@ -75,14 +80,27 @@ class NewMonsterCard extends Component
             $user->save();
         }
 
-        $this->emitUp('done');
+        $this->emitUp('done', 'added');
     }
 
     public function declined()
     {
         $temp = TempMonster::findOrFail($this->monster->id);
         $temp->approved = 2;
+
+        // jika guest yang memasukan data
+        // dan terdapat foto
+        // hapus fotonya
+        if(! $temp->user_id && $temp->picture) {
+
+            (new Filesystem)->delete(\public_path($temp->picture));
+
+            $temp->picture = null;
+        }
+
         $temp->save();
+
+        $this->emitUp('done', 'declined');
     }
 
     public function render()

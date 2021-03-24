@@ -17,7 +17,8 @@ class TempMonsterController extends Controller
             'name'  => 'required',
             'type'  => 'required',
             'map'   => 'required',
-            'level' => 'required'
+            'level' => 'required',
+            'picture' => 'image|max:500'
         ]);
 
         $temp = TempMonster::create([
@@ -77,7 +78,8 @@ class TempMonsterController extends Controller
             'name'  => 'required',
             'type'  => 'required',
             'map'   => 'required',
-            'level' => 'required'
+            'level' => 'required',
+            'picture'  => 'image|max:500'
         ]);
 
         // cek apakah data monster tersedia

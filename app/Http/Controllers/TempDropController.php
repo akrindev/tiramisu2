@@ -22,7 +22,9 @@ class TempDropController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'type' => 'required'
+            'type' => 'required',
+            'picture' => 'image|max:500',
+            'fullimage' => 'image|max:500'
         ]);
 
         // cek apakah terdapat gambar
@@ -89,7 +91,9 @@ class TempDropController extends Controller
         // validasi request
         $request->validate([
             'name' => 'required',
-            'type' => 'required'
+            'type' => 'required',
+            'picture' => 'image|max:500',
+            'fullimage' => 'image|max:500'
         ]);
 
         // cek apakah terdapat gambar

@@ -53,16 +53,24 @@ class NewItemCard extends Component
             ];
         }
 
-        if($this->withpic) {
-            (new Filesystem)->move(\public_path($this->picture), \public_path('imgs/mobs/'.$rename));
-            (new Filesystem)->move(\public_path($this->fullimage), \public_path('imgs/mobs/'.$renameFull));
+        if($this->withpic === 'true') {
 
-            $drop->picture = 'imgs/mobs/'.$rename;
-            $drop->fullimage = 'imgs/mobs/'.$renameFull;
+            if($this->picture) {
 
-            //update juga data temp
-            $temp->picture = 'imgs/mobs/'.$rename;
-            $temp->fullimage = 'imgs/mobs/'.$renameFull;
+                (new Filesystem)->move(\public_path($this->picture), \public_path('imgs/mobs/'.$rename));
+
+                $drop->picture = 'imgs/mobs/'.$rename;
+                $temp->picture = 'imgs/mobs/'.$rename;
+            }
+
+            if($this->fullimage) {
+
+                (new Filesystem)->move(\public_path($this->fullimage), \public_path('imgs/mobs/'.$renameFull));
+
+                $drop->fullimage = 'imgs/mobs/'.$renameFull;
+                $temp->fullimage = 'imgs/mobs/'.$renameFull;
+            }
+
         }
 
         $drop->save();
@@ -76,7 +84,24 @@ class NewItemCard extends Component
             $user->save();
         }
 
-        $this->emitUp('done');
+        $this->emitUp('done', 'added');
+    }
+
+    public function declined()
+    {
+        $temp = TempDrop::findOrFail($this->item->id);
+        $temp->approved = 2;
+
+        if(! $temp->user_id && $temp->picture) {
+
+            (new Filesystem)->delete(\public_path($temp->picture));
+
+            $temp->picture = null;
+        }
+
+        $temp->save();
+
+        $this->emitUp('done', 'declined');
     }
 
     public function render()

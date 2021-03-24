@@ -74,7 +74,9 @@
           <div class="form-group">
             <button class="btn btn-outline-primary btn-pill" type="submit" id="simpan">Terima +1 point</button>
 
-            <button class="btn btn-outline-danger btn-pill" wire:click.prevent='cancel'>Tolak</button>
+            <button class="btn btn-outline-danger btn-pill" wire:click.prevent='declined'>Tolak</button>
+
+            <span wire:loading wire:target='declined'>wait . . .</span>
           </div>
 
         </form>

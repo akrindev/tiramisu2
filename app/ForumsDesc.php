@@ -13,6 +13,10 @@ class ForumsDesc extends Model
       'user_id', 'forum_id', 'body', 'parent_id'
     ];
 
+    protected $with = [
+        'user', 'likes', 'getReply'
+    ];
+
   	public function user()
     {
       return $this->belongsTo(User::class);
