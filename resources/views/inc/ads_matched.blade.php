@@ -1,3 +1,5 @@
+@if (!(new \App\User)->isTopContributor())
+
 <div class="my-5 container-fluid">
     <!-- Matched Pom -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -9,3 +11,4 @@
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
+@endif

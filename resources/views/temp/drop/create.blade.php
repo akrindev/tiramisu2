@@ -27,6 +27,7 @@
                     - Jika kamu tahu kedua status deskripsi, masukkan semua deskripsi status. <br>
                     - Jika item tidak memiliki deskripsi, kosongkan semua deskripsi status dan hanya mengisi nama dan tipe saja. <i class="text-muted">contoh: jenis item logam, kain, fauna, etc.</i> <br>
                     - Jika terdapat gambar, potonglah gambar terlebih dahulu dengan ratio 1:1 (persegi). item yang di pakai dalam gambar harus hanya 1 item yang sesuai dan tidak mengenakan perlengkapan lain. background gambar lebih baik berwarna hitam. <br>
+                    - Gambar berukuran max <strong>500 KB</strong> <br>
                     - Tidak perlu memasukkan gambar jika item tidak memiliki gambar atau jika kamu belum mengambil screenshot gambar. <br>
                     - Tim kami akan mereview ulang semua data yang telah di tambahkan maupun yang di ubah.
                     <br><br>
@@ -73,24 +74,49 @@
             <div class="form-group">
               <label class="form-label">Deskripsi item (MONSTER) <small class="text-muted">(optional)</small></label>
               <textarea name="noteMonster" rows="5" class="form-control" placeholder="Deskipsi status dari monster"></textarea>
+
+              <details style="border: 1px solid #eee;padding:3px;margin-top:3px">
+                  <summary>contoh</summary>
+
+                  <textarea class="form-control" rows="5" disabled>Base ATK: 132 (70%)
+Nonbarter
+
+Unsur Air
+MATK +6%
+MaxMP +400
+Resistensi Status Buruk +5%</textarea>
+              </details>
             </div>
 
             <div class="form-group">
               <label class="form-label">Deskripsi Status item (NPC) <small class="text-muted">(optional)</small></label>
               <textarea name="noteNpc" rows="5" class="form-control" placeholder="Deskripsi status dari npc"></textarea>
-            </div>
 
+              <details style="border: 1px solid #eee;padding:3px;margin-top:3px">
+                  <summary>contoh</summary>
+
+                  <textarea class="form-control" rows="5" disabled>Base ATK: 132 (70%)
+Nonbarter
+
+Unsur Air
+MATK +6%
+MaxMP +400
+Resistensi Status Buruk +5%</textarea>
+              </details>
+            </div>
 
             <div class="form-group">
               <label class="form-label">Screenshot  <i class="text-muted">(optional)</i></label>
               <div id="preview"></div>
               <input type="file" id="picture" name="picture" class="form-control" accept="image/*">
+              <small class="text-muted">max 500KB</small>
             </div>
 
             <div class="form-group">
               <label class="form-label">Screenshot (full armor light, normal, heavy)  <i class="text-muted">(optional)</i></label>
               <div id="preview2"></div>
               <input type="file" id="fullimage" name="fullimage" class="form-control" accept="image/*">
+              <small class="text-muted">max 500KB</small>
             </div>
 
           <div class="form-group">
@@ -192,6 +218,9 @@
           	form.reset();
             var control = $select[0].selectize;
             control.clear();
+
+            document.getElementById('preview').innerHTML = ''
+            document.getElementById('preview2').innerHTML = ''
           });
         }
 
@@ -202,8 +231,6 @@
     })
     .finally(() => {
         simpan.innerHTML = 'Simpan';
-        document.getElementById('preview').innerHTML = ''
-        document.getElementById('preview2').innerHTML = ''
     })
     ;
   });

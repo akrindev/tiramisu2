@@ -1,3 +1,5 @@
+@if (!(new \App\User)->isTopContributor())
+
 <div class="my-3">
      <div class="card text-center p-2">
           <!--<span class="text-center text-muted py-2">ADVERTISEMENT</span>-->
@@ -20,3 +22,4 @@
 
      </div>
 </div>
+@endif

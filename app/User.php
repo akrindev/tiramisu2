@@ -34,6 +34,13 @@ class User extends Authenticatable
       return $this->role == 'admin' ? true : false;
     }
 
+    public function isTopContributor()
+    {
+        $topContributor = Contribution::orderByDesc('point')->take(10)->pluck('user_id')->toArray();
+
+        return auth()->check() && ($this->isAdmin() || \in_array(auth()->id(), $topContributor));
+    }
+
   	public function fcm()
     {
       return $this->hasOne(Fcm::class);
