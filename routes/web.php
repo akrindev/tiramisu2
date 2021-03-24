@@ -193,50 +193,11 @@ Route::prefix('gallery')->group(base_path('routes/gallery.php'));
 // temp routes
 Route::prefix('temp')->group(base_path('routes/temp.php'));
 
-
-/**
-* Shop
-*
-Route::get('/shop', 'ShopController@discover');
-Route::get('/shop/show/{slug}', 'ShopController@show');
-Route::get('/shop/edit/{slug}', 'ShopController@edit')->middleware('auth');
-Route::post('/shop/edit/{slug}', 'ShopController@editSubmit')->middleware('auth');
-Route::get('/shop/jual', 'ShopController@jual')->middleware('auth');
-Route::post('/shop/jual', 'ShopController@jualSubmit')->middleware('auth');
-Route::post('/ya/laku', 'ShopController@laku')->middleware('auth');
-Route::delete('/shop/delete', 'ShopController@delete')->middleware('auth');
-*/
-
 /**
 *
 * Quiz routes
 */
 Route::prefix('quiz')->group(base_path('routes/quiz.php'));
-
-
-/**
-*
-* Scammer route
-*
-Route::get('/scammer', 'ScammerController@show');
-Route::get('/scammer/cari', 'ScammerController@cari');
-Route::get('/scammer/kategori/{id}', 'ScammerController@kategori');
-Route::get('/scammer/{slug}/edit', 'ScammerController@edit')->middleware('auth');
-Route::post('/scammer/{slug}/edit', 'ScammerController@editPost')->middleware('auth');
-
-Route::post('/scammer/img', 'ScammerController@editImg')->middleware('auth');
-Route::delete('/scammer/delete', 'ScammerController@scammerDelete')->middleware('auth');
-Route::delete('/scammer/delete-by-admin', 'ScammerController@deleteByAdmin')->middleware('admin');
-
-Route::get('/scammer/tambah', 'ScammerController@add')->middleware('auth');
-Route::post('/scammer/tambah', 'ScammerController@addPost')->middleware('auth');
-//Read
-Route::get('/scammer/r/{slug}', 'ScammerController@read');
-Route::post('/scammer/r/{slug}', 'ScammerController@comment')->middleware('auth');
-Route::post('/scammer/r/{slug}/c', 'ScammerController@commentReply')->middleware('auth');
-Route::delete('/scammer/delete-comment', 'ScammerController@deleteComment')->middleware('admin');
-
-*/
 
 /**
 * Emblem Route

@@ -27,6 +27,7 @@
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
         "barryvdh/laravel-ide-helper": "^2.9",
+        "beyondcode/laravel-er-diagram-generator": "^1.5",
         "facade/ignition": "^2.3.6",
         "fzaninotto/faker": "^1.9.1",
         "laravel/telescope": "^4.0",
