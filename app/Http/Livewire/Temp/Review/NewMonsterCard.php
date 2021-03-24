@@ -9,6 +9,7 @@ use Livewire\Component;
 use App\Monster;
 use App\TempMonster;
 use App\User;
+use App\Contribution;
 
 class NewMonsterCard extends Component
 {
@@ -75,9 +76,9 @@ class NewMonsterCard extends Component
         $temp->save();
 
         if(! is_null($this->monster->user_id)) {
-            $user = User::findOrFail($this->monster->user_id);
-            $user->contribution->increment('point');
-            $user->save();
+            tap(Contribution::updateOrCreate([ 'user_id' => $this->monster->user_id ]), function ($contribution) {
+				$contribution->increment('point');
+			});
         }
 
         $this->emitUp('done', 'added');

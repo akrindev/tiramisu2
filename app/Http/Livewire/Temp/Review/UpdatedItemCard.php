@@ -9,6 +9,7 @@ use Livewire\Component;
 use App\User;
 use App\Drop;
 use App\TempDrop;
+use App\Contribution;
 
 class UpdatedItemCard extends Component
 {
@@ -78,9 +79,9 @@ class UpdatedItemCard extends Component
         $temp->save();
 
         if(! \is_null($this->item->user_id)) {
-            $user = User::findOrFail($this->item->user_id);
-            $user->contribution->increment('point');
-            $user->save();
+            tap(Contribution::updateOrCreate([ 'user_id' => $this->item->user_id ]), function ($contribution) {
+				$contribution->increment('point');
+			});
         }
 
         $this->emitUp('done', 'updated');
