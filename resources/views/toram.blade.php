@@ -41,6 +41,7 @@
            <br>
            <i class="small">Cute logo by <a href="https://facebook.com/rinando.rinando.39" rel="_nofollow">Nurina Laila</a> ^0^ </i> <br>
            <i class="small">In game screenshot is &copy; <u>ASOBIMO,Inc.</u></i>
+        @includeUnless(app()->isLocal(), 'inc.ads_mobile')
           </div>
 
          <div class="col-md-4">

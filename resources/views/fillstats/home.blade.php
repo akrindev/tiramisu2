@@ -13,14 +13,11 @@
 @section('content')
 <div class="my-3 my-md-5">
   <div class="container">
+      	@includeUnless(app()->isLocal(), 'inc.ads_article')
     <div class="page-header">
       <h1 class="page-title"> Fill Stats Formula</h1>
     </div>
      @include('inc.cari')
-
-	  <div class="my-2">
-      	@includeUnless(app()->isLocal(), 'inc.ads_article')
-      </div>
 
       <div class="alert alert-info">
           Simulasi Fill Stats <a href="/fill_stats/calculator">Updated</a> <hr class="my-2"/>
@@ -38,11 +35,15 @@
 <img src="https://lh3.googleusercontent.com/LLhAS04wxga6HuLB6Q5pYZvgYdjURvQMLBYvgSYhOWKa5Z6cPiSZ5cDU6PWlmH1Gg68F-e91a0-JN46wruAPAoHPiiKKqo9IRuJsS5BzlBGCyeRJ5Z8c89H8zGbmwUZkuKYP2eW9AA=w1920-h1080" class="my-2 d-block">
         </div>
 
+       <div class="my-2">
+      	@includeUnless(app()->isLocal(), 'inc.ads_mobile')
+       </div>
+
       	<livewire:formula />
 
        <div class="mt-2">
       	@includeUnless(app()->isLocal(), 'inc.ads_mobile')
-      </div>
+       </div>
 
 
 

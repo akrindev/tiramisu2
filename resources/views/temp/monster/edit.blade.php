@@ -21,6 +21,7 @@
                     - Nama dalam bahasa indonesia tidak boleh kosong. <br>
                     - Nama dalam bahasa inggris boleh di kosongkan jika tidak tahu bahasa inggrisnya. <br>
                     - Jika kamu tahu nama monster hanya dalam bahasa inggrisnya saja, maka masukkan nama dalam bahasa inggris ke dalam kolom bahasa indonesia. <br>
+					- Jika terdapat difficulty monster, tulislah difficulty di dalam tanda kurung. <i class="text-muted">contoh: Guignol (Easy), Guignol (Normal), etc.</i> <br>
                     - Pilihlah type monster sesuai jenis monster yang ada di dalam game. <i class="text-muted">normal monster, boss, mini boss.</i> <br>
                     - Apakah bisa di jadikan pet? jika tidak tahu tidak perlu di centang. <br>
                     - Pilih map mana monster tersebut muncul. <br>

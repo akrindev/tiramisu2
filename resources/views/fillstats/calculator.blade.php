@@ -14,6 +14,8 @@
 
   <div class="container">
 
+     @includeUnless(app()->isLocal(), 'inc.ads_article')
+
     <div class="page-header">
       <h1 class="page-title"> Fill Stat Simulator</h1>
     </div>
@@ -21,10 +23,6 @@
     <div class="row">
       <div class="col-12">
       @include('inc.cari')
-      </div>
-
-      <div class="col-12">
-        @includeUnless(app()->isLocal(), 'inc.ads_article')
       </div>
 
       <div class="mb-5 col-12">
@@ -139,6 +137,9 @@
 
             <div class="mt-3">
               <small class="text-muted">Credit: <a href="https://sparkychildcharlie.github.io/statting_simulator" rel="nofollow" target="_blank">Charlie Kobayashi</a></small>
+				<div class="my-1">
+					@includeUnless(app()->isLocal(), 'inc.ads_mobile')
+				</div>
             </div>
           </div>
         </div>
