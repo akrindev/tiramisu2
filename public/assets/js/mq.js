@@ -671,6 +671,14 @@ const MQ = [
     "episodeid": "Navigasi Bahtera",
     "episodeen": "Navigator of the Ark",
     "exp": 33100000
+  }, {
+    "chapter": 10,
+    "chapterid": "Kapal Dewa yang Hilang",
+    "chapteren": "The Lost God's Ship",
+    "episode": 85,
+    "episodeid": "Penyihir di Dalam Rimba",
+    "episodeen": "The Witch in the Woods",
+    "exp": 34600000
   }
 ];
 
