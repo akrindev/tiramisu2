@@ -20,7 +20,7 @@
      @include('inc.cari')
 
       <div class="alert alert-info">
-          Simulasi Fill Stats <a href="/fill_stats/calculator">Updated</a> <hr class="my-2"/>
+          Simulasi Fill Stats <a href="/fill_stats/simulator">Updated</a> <hr class="my-2"/>
 
           <strong>NEW!!</strong> <br />
           Please Login, so you can give love and automaticaly save the formula
