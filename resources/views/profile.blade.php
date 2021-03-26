@@ -34,7 +34,7 @@
 
         <hr class="my-2">
         <div class="d-block">
-            <span>Contribution point: </span> <span class="text-primary">{{ auth()->user()->contribution->point ?? 0 }}</span>
+            <span>Contribution point: </span> <span class="text-primary">{{ $profile->contribution->point ?? 0 }}</span>
         </div>
       </div>
 
@@ -56,10 +56,10 @@
             </thead>
             <tbody>
               <tr>
-                <td> {{ auth()->user()->thread->count() }} </td>
-                <td> {{ auth()->user()->comment->count() }} </td>
-                <td> {{ $profile->thread->sum('views') }} </td>
-                <td>   {{ auth()->user()->myLovedThread->count() }} <small class="text-muted"> <i class="fe fe-heart text-red"></i> Given</small> <br />
+                <td> {{ $profile->thread()->count() }} </td>
+                <td> {{ $profile->comment()->count() }} </td>
+                <td> {{ $profile->thread()->sum('views') }} </td>
+                <td>   {{ $profile->myLovedThread()->count() }} <small class="text-muted"> <i class="fe fe-heart text-red"></i> Given</small> <br />
 
                 </td>
               </tr>
@@ -80,9 +80,9 @@
             </thead>
             <tbody>
               <tr>
-                <td> {{ auth()->user()->gallery->count() }} </td>
-                <td> {{ auth()->user()->gallerycomment->count() }} </td>
-                <td> {{ $profile->gallery->sum('views') }}
+                <td> {{ $profile->gallery()->count() }} </td>
+                <td> {{ $profile->gallerycomment()->count() }} </td>
+                <td> {{ $profile->gallery()->sum('views') }}
               </tr>
             </tbody>
           </table>
