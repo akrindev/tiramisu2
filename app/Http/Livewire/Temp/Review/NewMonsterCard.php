@@ -63,6 +63,8 @@ class NewMonsterCard extends Component
             'pet'	=> $this->pet ? 'y' : 'n'
         ]);
 
+		$monster->drops()->attach($this->drops);
+
         $rename = Str::slug($this->name).\str_random(5).'png';
 
         if ($this->picture) {
