@@ -31,10 +31,15 @@ class Search extends Component
     {
         $q = $this->q;
 
-        LogSearch::create([
-            'user_id'	=> auth()->id() ?? null,
-            'q'			=> $q
-        ]);
+		// dont write log if it bot
+		if(! $this->isBot()) {
+
+			LogSearch::create([
+				'user_id'	=> auth()->id() ?? null,
+				'q'			=> $q
+			]);
+
+		}
 
         $type = $this->type == 'status_only' ? 'note' : 'name';
 
@@ -103,4 +108,12 @@ class Search extends Component
             App::setLocale($locale);
         }
     }
+
+	// check if it a bot
+	private function isBot()
+	{
+		if(preg_match('/mediapartners|googlebot|bingbot|bot/i', request()->server('HTTP_USER_AGENT'))) {
+			return true;
+		}
+	}
 }

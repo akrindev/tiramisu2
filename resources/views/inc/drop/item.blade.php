@@ -67,9 +67,7 @@
 
             <li class="nav-item">
               <a class="nav-link" id="mats-tab" data-toggle="tab" href="#mats{{ $loop->index }}" role="tab" aria-controls="mats" aria-selected="false">Craft: Player
-              @if($item->resep->count() > 0)
-              <span class="nav-unread"></span>
-              @endif
+              <!-- <span class="nav-unread"></span> -->
               </a>
             </li>
           </ul>
