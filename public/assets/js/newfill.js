@@ -107,7 +107,7 @@ const OPTIONS = [
 function translate(value) {
     const raw = localStorage.getItem('toram-language')
 
-    const {language} = JSON.parse(raw)
+    const {language} = JSON.parse(raw) || "id"
 
     if (language == 'en') return value
 
