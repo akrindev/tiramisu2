@@ -44,7 +44,6 @@ const OPTIONS = [
     { "name": "MDEF %", "mat": "Metal", "pot": 10, "cost": 50, "cat": "Enhance Defense", "type": "a" },
     { "name": "Physical Resistance %", "mat": "Metal", "pot": 10, "cost": 50, "cat": "Enhance Defense", "type": "a" },
     { "name": "Magical Resistance %", "mat": "Wood", "pot": 10, "cost": 50, "cat": "Enhance Defense", "type": "a" },
-    { "name": "Magical Resistance %", "mat": "Wood", "pot": 10, "cost": 50, "cat": "Enhance Defense", "type": "a" },
 
     { "name": "Reduce Dmg (Foe Epicenter) %", "mat": "Metal", "pot": 6, "cost": 15, "cat": "Enhance Defense", "type": "a", nonega: true, max: BONUS_STEPS },
     { "name": "Reduce Dmg (Player Epicenter) %", "mat": "Metal", "pot": 6, "cost": 15, "cat": "Enhance Defense", "type": "a", nonega: true, max: BONUS_STEPS },
@@ -104,6 +103,48 @@ const OPTIONS = [
     { "name": "Light Element (matching)", "mat": "Mana", "pot": 10, "cost": 150, "cat": "Awaken Elements", "type": "e", max: 1, nonega: true },
     { "name": "Dark Element (matching)", "mat": "Mana", "pot": 10, "cost": 150, "cat": "Awaken Elements", "type": "e", max: 1, nonega: true },
 ];
+
+function translate(value) {
+    const raw = localStorage.getItem('toram-language')
+
+    const {language} = JSON.parse(raw)
+
+    if (language == 'en') return value
+
+    const langs = [
+        { name: 'ASPD', name_id: "Kecepatan Serangan" },
+        { name: 'CSPD', name_id: "Kecepatan Merapal" },
+        { name: 'Physical Resistance', name_id: "Kekebalan Fisik" },
+        { name: 'Magical Resistance', name_id: "Kekebalan Sihir" },
+        { name: 'Wind Element', name_id: "Unsur Angin" },
+        { name: 'Earth Element', name_id: "Unsur Bumi" },
+        { name: 'Fire Element', name_id: "Unsur Api" },
+        { name: 'Water Element', name_id: "Unsur Air" },
+        { name: 'Dark Element', name_id: "Unsur Gelap" },
+        { name: 'Light Element', name_id: "Unsur Cahaya" },
+        { name: 'stronger against Fire', name_id: "luka ke Api" },
+        { name: 'stronger against Wind', name_id: "luka ke Angin" },
+        { name: 'stronger against Water', name_id: "luka ke Air" },
+        { name: 'stronger against Earth', name_id: "luka ke Bumi" },
+        { name: 'stronger against Light', name_id: "luka ke Cahaya" },
+        { name: 'stronger against Dark', name_id: "luka ke Gelap" },
+        { name: 'Fire resistance', name_id: "kebal Api" },
+        { name: 'Wind resistance', name_id: "kebal Angin" },
+        { name: 'Water resistance', name_id: "kebal Air" },
+        { name: 'Earth resistance', name_id: "kebal Bumi" },
+        { name: 'Light resistance', name_id: "kebal Cahaya" },
+        { name: 'Dark resistance', name_id: "kebal Gelap" },
+        { name: 'Ailment Resistance', name_id: "Resistensi Status Buruk" }
+    ]
+
+    for (let lang of langs) {
+        let regex = new RegExp(`(${lang.name})`, 'g')
+
+        if (regex.test(value)) value = value.replace(regex, lang.name_id)
+    }
+
+    return value
+}
 
 function toram_round(value) {
     if (value > 1) return Math.floor(value);
@@ -190,7 +231,7 @@ class Slot {
             }
 
             cat_id++;
-            buffer += `<option value="${cat_id}">${data.name}</option>`;
+            buffer += `<option value="${cat_id}">${translate(data.name)}</option>`;
         }
 
         buffer += '</select>';
@@ -372,7 +413,7 @@ class Slot {
 
     stepToText(save = false) {
         let positive = this.futureStat > 0 ? '+' : ''
-        let text = this.stat_name
+        let text = save ? this.stat_name : translate(this.stat_name)
 
         if(!text) return text
 
@@ -1103,7 +1144,7 @@ class Formula {
 			Mana: 'mana'
 		}
 
-        const fill = this.condensed_formula.map((step, index) => `<tr><td>${index + 1}</td> <td>${step.text} ${Object.entries(step.step_mats).filter(([k, v]) => v).map(([k, i]) => `<span class="text-primary"><img src="/img/drop/${mats[k]}.png" class="avatar avatar-sm mr-1" style="max-width:18px;max-height:18px"/>: ${i}${step.repeat > 1 ? ' (total)' : ''}</span>`).join(', ')} </td><td>${step.repeat > 1 ? ` x${step.repeat}` : 'x1'} <br/> <small class="text-muted">(${step.pot_after}pot)</small></td></tr>`).join(' ');
+        const fill = this.condensed_formula.map((step, index) => `<tr><td>${index + 1}</td> <td>${translate(step.text)} ${Object.entries(step.step_mats).filter(([k, v]) => v).map(([k, i]) => `<span class="text-primary"><img src="/img/drop/${mats[k]}.png" class="avatar avatar-sm mr-1" style="max-width:18px;max-height:18px"/>: ${i}${step.repeat > 1 ? ' (total)' : ''}</span>`).join(', ')} </td><td>${step.repeat > 1 ? ` x${step.repeat}` : 'x1'} <br/> <small class="text-muted">(${step.pot_after}pot)</small></td></tr>`).join(' ');
 
         const display = `<table class="card-table table table-sm table-hover table-striped"><thead><tr><th width="10%">Step</th><th>Change</th><th>repeat</th></tr></thead><tbody> ${fill} </tbody></table>`
         return display
@@ -1128,6 +1169,23 @@ class MainApp {
         this.stats = {};
 
         this.current = null;
+    }
+
+    saveLanguage(settings) {
+        localStorage.setItem('toram_language', JSON.stringify(settings));
+    }
+
+    loadLanguage() {
+        let raw = localStorage.getItem('toram_language');
+
+        let data;
+        try {
+            data = JSON.parse(raw);
+        } catch (e) {}
+
+        if (!data) return;
+
+        document.getElementById('language').value = data.language || "en";
     }
 
     saveSettings(settings) {
@@ -1236,8 +1294,10 @@ class MainApp {
          // customize
          const tec = document.getElementById('tec').value;
          const proficiency = document.getElementById('proficiency').value;
+         const language = document.getElementById('language').value;
 
          this.saveSettings({tec, proficiency});
+         this.saveLanguage({language});
 
         const details = {
             weap_arm,

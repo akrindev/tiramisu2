@@ -41,6 +41,11 @@ class Formula extends Component
         return view('livewire.formula', compact('formulas'));
     }
 
+    public function updatedSearch($value)
+    {
+        $this->resetPage();
+    }
+
     public function formulaType($type)
     {
         $this->resetPage();
