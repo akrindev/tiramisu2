@@ -13,6 +13,10 @@ class Formula extends Component
 
     public $type;
 
+	public $search;
+
+	protected $queryString = ['search'];
+
     protected $paginationTheme = 'bootstrap';
 
     public function mount()
@@ -23,11 +27,15 @@ class Formula extends Component
     public function render()
     {
         $type = $this->type;
+		$search = $this->search;
 
         $formulas = WorkSpace::with('users')->exclude('body')
             ->when($this->type != 'all', function ($query) use ($type) {
             	return $query->whereType($type);
             })
+			->when($this->search != null, function ($query) use ($search) {
+				return $query->where('note', 'like', '%'.$search.'%');
+			})
             ->latest()->paginate(21);
 
         return view('livewire.formula', compact('formulas'));

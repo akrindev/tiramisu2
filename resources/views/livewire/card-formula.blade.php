@@ -1,7 +1,7 @@
 
     <div class="col-md-4">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header p-2">
                     <h3 class="card-title">{{ $formula->note }} </h3>
                 </div>
 

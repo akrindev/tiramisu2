@@ -20,6 +20,10 @@
                 </label>
             </div>
 
+			<div class="form-group">
+				<label class="form-label"> Search </label>
+				<input type="search" wire:model.debounce.750ms="search" placeholder="title to search" class="form-control"/>
+			</div>
             </div>
         </div>
     </div>
