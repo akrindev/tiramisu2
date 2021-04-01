@@ -27,9 +27,11 @@ class CardFormula extends Component
     {
         $formula = WorkSpace::findOrFail($id);
 
-        if(! $formula->users()->find(auth()->id())) {
+        if(auth()->check () && ! $formula->users()->find(auth()->id())) {
             $formula->users()->attach(auth()->id());
-        }
+        } else {
+			session()->flash('fail', 'you are not login!!');
+		}
 
         $this->formula = $formula;
     }

@@ -5,6 +5,10 @@
                     <h3 class="card-title">{{ $formula->note }} </h3>
                 </div>
 
+				@if(session()->has('fail'))
+				<div class="card-alert alert alert-danger"> {{ session('fail') }} </div>
+				@endif
+
                 <div class="p-2 card-body">
                     <div class="mb-2 d-block">
 
