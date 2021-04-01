@@ -44,6 +44,7 @@ const OPTIONS = [
     { "name": "MDEF %", "mat": "Metal", "pot": 10, "cost": 50, "cat": "Enhance Defense", "type": "a" },
     { "name": "Physical Resistance %", "mat": "Metal", "pot": 10, "cost": 50, "cat": "Enhance Defense", "type": "a" },
     { "name": "Magical Resistance %", "mat": "Wood", "pot": 10, "cost": 50, "cat": "Enhance Defense", "type": "a" },
+    { "name": "Magical Resistance %", "mat": "Wood", "pot": 10, "cost": 50, "cat": "Enhance Defense", "type": "a" },
 
     { "name": "Reduce Dmg (Foe Epicenter) %", "mat": "Metal", "pot": 6, "cost": 15, "cat": "Enhance Defense", "type": "a", nonega: true, max: BONUS_STEPS },
     { "name": "Reduce Dmg (Player Epicenter) %", "mat": "Metal", "pot": 6, "cost": 15, "cat": "Enhance Defense", "type": "a", nonega: true, max: BONUS_STEPS },
@@ -140,7 +141,11 @@ function translate(value) {
     for (let lang of langs) {
         let regex = new RegExp(`(${lang.name})`, 'g')
 
-        if (regex.test(value)) value = value.replace(regex, lang.name_id)
+        if (regex.test(value)) {
+			value = value.replace(regex, lang.name_id)
+
+			return value
+		}
     }
 
     return value
