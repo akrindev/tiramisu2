@@ -1,12 +1,13 @@
   // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDbaaSyge0NHNBfjevIKjheZIzXZUvYrd0",
-    authDomain: "toram-indo.firebaseapp.com",
-    databaseURL: "https://toram-indo.firebaseio.com",
-    projectId: "toram-indo",
-    storageBucket: "toram-indo.appspot.com",
-    messagingSenderId: "411334943013"
-  }
+const config = {
+  apiKey: "AIzaSyDbaaSyge0NHNBfjevIKjheZIzXZUvYrd0",
+  authDomain: "toram-indo.firebaseapp.com",
+  databaseURL: "https://toram-indo.firebaseio.com",
+  projectId: "toram-indo",
+  storageBucket: "toram-indo.appspot.com",
+  messagingSenderId: "411334943013",
+  appId: "1:411334943013:web:25c74676029bd3c354facc"
+};
 
   firebase.initializeApp(config);
 
