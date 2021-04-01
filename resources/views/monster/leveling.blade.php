@@ -1,9 +1,9 @@
 @extends('layouts.tabler')
 
 @if(request()->has('level'))
-  @section('title', 'Toram list leveling level '. $lvl)
+  @section('title', 'Toram Online list leveling level '. $lvl)
 @else
-  @section('title', 'Toram leveling List')
+  @section('title', 'Toram Online leveling List')
 @endif
 @section('image', to_img())
 
@@ -182,10 +182,8 @@
 
               <div class="my-5">
 
-   @includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
-
               List Leveling level
-                @foreach(range(1,230) as $lv)
+                @foreach(range(1,240) as $lv)
                   , <a href="/leveling?level={{ $lv }}"> {{ $lv }} </a>
                 @endforeach
               </div>
@@ -196,6 +194,7 @@
 
         </div>
 
+   		@includeWhen(env('APP_ENV') == 'production', 'inc.ads_mobile')
       </div>
 
       <div class="col-md-4">

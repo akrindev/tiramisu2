@@ -1,6 +1,7 @@
 @extends('layouts.tabler')
 
-@section('title', 'Toram drop list ' . __(ucfirst($type)))
+@section('title', 'Toram Online drop list ' . __(ucfirst($type)))
+@section('description', 'Toram Online drop list ' . __(ucfirst($type) . ' cari tau gambar dan status drop list items'))
 @section('image', to_img())
 
 @push('canonical')
@@ -10,8 +11,9 @@
 @section('content')
 <div class="my-5">
   <div class="container">
+       @includeUnless(app()->isLocal(), 'inc.ads_article')
     <div class="page-header">
-      <h1 class="page-title">Toram {{ __(ucfirst($type)) }}</h1>
+      <h1 class="page-title">{{ __(ucfirst($type)) }}</h1>
     </div>
 
     <div class="row">
@@ -20,11 +22,10 @@
       </div>
 
       <div class="col-md-8">
-       @includeUnless(app()->isLocal(), 'inc.ads_article')
 
        @forelse($data as $item)
 
-        @if($loop->index == 10)
+        @if(($loop->index+1)%5 == 0)
    			@includeUnless(app()->isLocal(), 'inc.ads_article')
         @endif
 

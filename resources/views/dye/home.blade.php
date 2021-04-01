@@ -21,6 +21,7 @@
       <div class="col-md-8">
         @includeUnless(app()->isLocal(), 'inc.ads_article')
         <livewire:dye/>
+        @includeUnless(app()->isLocal(), 'inc.ads_article')
       </div>
 
       <div class="col-md-4">
