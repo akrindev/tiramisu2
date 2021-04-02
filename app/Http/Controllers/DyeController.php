@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App;
 use App\Dye;
 use App\Monster;
@@ -17,14 +18,24 @@ class DyeController extends Controller
 
   	public function store()
     {
-      $monsters = Monster::where('name', 'like', '%(Ultimate)%')->orderBy('name')->get();
+      $monsters = Monster::whereType(3)
+		  ->where(function($query) {
+			  $diffs = ['(Easy)', '(Normal)', '(Hard)', '(Nightmare)'];
+
+			  foreach ($diffs as $diff) {
+			  	$query->where('name', 'NOT LIKE', "%{$diff}%");
+			  }
+		  })
+		  ->orderBy('name')->get();
       $dyes = Dye::get();
 
-      $monsters->map(function($item) {
-      	$item->name = explode('(', $item->name)[0];
+      $monsters
+		  ->map(function($item) {
 
-        return $item;
-      });
+      	  	  $item->name = Str::contains($item->name, '(Ultimate)') ? explode('(', $item->name)[0] : $item->name;
+
+        	  return $item;
+      	  });
 
       return view('dye.store', compact('monsters', 'dyes'));
     }
