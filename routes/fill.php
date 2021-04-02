@@ -3,8 +3,10 @@
 // Fill stats Routes
 
 
-Route::get('/', 'FillController@index');
+Route::redirect('/', '/fill_stats/formula', 301);
 Route::redirect('/calculator', '/fill_stats/simulator', 301);
+
+Route::get('/formula', 'FillController@index');
 Route::get('/simulator', 'FillController@calculator');
 Route::post('/save', 'FormulaController@store');
 Route::get('/load', 'FormulaController@loadSaved');

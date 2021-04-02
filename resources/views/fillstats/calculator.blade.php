@@ -27,7 +27,7 @@
 
       <div class="mb-5 col-12">
         <div class="alert alert-info">
-        Untuk melihat fill stats formula <a href="/fill_stats">klik disini</a>
+        Untuk melihat fill stats formula <a href="/fill_stats/formula">klik disini</a>
         </div>
 
         <div class="alert alert-danger">
@@ -138,7 +138,7 @@
             <div class="form-group">
               <button class="m-1 btn btn-outline-primary btn-pill" onclick="App.spawn();setTimeout(() => { document.getElementById('workspace').scrollIntoView() }, 400)">Start!</button>
 
-              <a href="/fill_stats" class="m-1 btn btn-pill btn-outline-warning"><i class="fe fe-folder"></i> Explore Formula</a>
+              <a href="/fill_stats/formula" class="m-1 btn btn-pill btn-outline-warning"><i class="fe fe-folder"></i> Explore Formula</a>
 
             </div>
 

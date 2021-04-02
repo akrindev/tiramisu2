@@ -214,7 +214,7 @@
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-folder"></i>Tools</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
 
-                      <a href="/fill_stats" class="dropdown-item">Fill stats formula</a>
+                      <a href="/fill_stats/formula" class="dropdown-item">Fill Stats Formula</a>
                       <a href="/fill_stats/simulator" class="dropdown-item ">Fill Stats Simulator</a>
                       <a href="/leveling" class="dropdown-item">Leveling Finder</a>
                       <a href="/exp" class="dropdown-item">Exp Calculator</a>
