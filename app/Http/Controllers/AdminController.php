@@ -63,7 +63,7 @@ class AdminController extends Controller
           '<a href="#" data-id="'.$user->id.'" class="btn btn-sm btn-outline-success change">active</a>';
         })
         ->addColumn('pic', function($user){
-        	return "<div><div style='width:2rem;height:2rem;border-radius:50%;display:inline-block;background-image: url(https://graph.facebook.com/$user->provider_id/picture?type=normal)' class='avatar m-1 ml-1 float-left'></div></div> ";
+        	return "<div><div style='width:2rem;height:2rem;border-radius:50%;display:inline-block;background-image: url({$user->getAvatar()})' class='avatar m-1 ml-1 float-left'></div></div> ";
         })
         ->addColumn('contact', function($user){
         	return "<div>  " . optional($user->contact)['line'] .
@@ -83,7 +83,7 @@ class AdminController extends Controller
     {
       return datatables()->of(HistoryLogin::orderByDesc('created_at'))
         ->addColumn('pic', function($history){
-        	return "<div><div style='width:2rem;height:2rem;border-radius:50%;display:inline-block;background-image: url(https://graph.facebook.com/".$history->user->provider_id."/picture?type=normal)' class='avatar m-1 ml-1 float-left'></div></div> ";
+        	return "<div><div style='width:2rem;height:2rem;border-radius:50%;display:inline-block;background-image: url({$history->user->getAvatar()})' class='avatar m-1 ml-1 float-left'></div></div> ";
         })
         ->editColumn('name', function($history){
         	return "<div><strong class='mr-2 mb-2 text-center'>{$history->user->name}</strong><br><small class='text-muted'>@{$history->user->username}</small></div>";

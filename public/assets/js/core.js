@@ -109,7 +109,14 @@ $(document).ready(function() {
 
   /** btn login function */
   $("#login-btn").on("click", function(e) {
-    $("#login-btn").addClass("btn-loading disabled");
+	  e.stopPropagation();
+      $("#login-btn").addClass("btn-loading disabled").attr("disabled", true);
+
+  });
+
+  $("#login-btn-tw").on("click", function(e) {
+	  e.stopPropagation();
+      $("#login-btn-tw").addClass("btn-loading disabled bg-primary").attr("disabled", true);
 
   });
 });

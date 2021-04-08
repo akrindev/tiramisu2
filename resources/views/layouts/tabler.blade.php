@@ -72,7 +72,7 @@
     <!-- Dashboard Core -->
     <link href="/assets/css/app.min.css?v=1" rel="stylesheet" />
     <script src="/assets/js/jquery.min.js"></script>
-    <script src="/assets/js/core.js"></script>
+    <script src="/assets/js/core.js?1"></script>
 
 @auth
     <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
@@ -105,19 +105,13 @@
               </a>
               <div class="d-flex order-lg-2 ml-auto">
 @guest
- 				<div class="nav-item d-md-flex">
-                  @if(app()->isLocal())
-                   <a href="{{ url('/') }}/logindev" class="btn btn-sm btn-primary" id="login-btn"><i class="fe fe-facebook"></i> Dev Login </a>
-                  @else
-                   <a href="{{ url('/') }}/fb-login" class="btn btn-sm btn-primary" id="login-btn"><i class="fe fe-facebook"></i> Login</a>
-                  @endif
-                 </div>
+ 				@include('inc.login')
 @else
                <div class="nav-item d-md-flex">
 @include('inc.bell')
                 <div class="dropdown">
                   <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                    <span class="avatar" style="background-image: url(https://graph.facebook.com/{{ Auth::user()->provider_id }}/picture?type=normal"></span>
+                    <span class="avatar" style="background-image: url({{ Auth::user()->getAvatar() }})"></span>
                     <span class="ml-2 d-none d-lg-block">
                       <span class="text-default">{{ Auth::user()->name }}</span>
                     </span>

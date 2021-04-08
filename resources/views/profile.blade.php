@@ -11,7 +11,7 @@
 
     <div class="row">
       <div class="col-md-4 mb-5">
-        <img src="https://graph.facebook.com/{{$profile->provider_id}}/picture?type=normal" class="img img-fluid mr-3 float-left">
+        <img src="{{ $profile->getAvatar() }}" class="img img-fluid mr-3 float-left">
         <b> {{ $profile->name }} </b>
         <span class="text-muted"> ({{ $profile->username }}) </span>
         <br>

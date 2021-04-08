@@ -1,7 +1,7 @@
 @extends('layouts.tabler')
 
-@section('title','Toram Quiz')
-@section('description','Toram Quiz, Asah otak seberapa dalam kamu tau tentang dunia pertoraman, kuy cek!')
+@section('title','Toram Online Quiz')
+@section('description','Toram Online Quiz, Asah otak seberapa dalam kamu tau tentang dunia pertoraman, kuy cek!')
 @section('image',to_img())
 
 @section('content')

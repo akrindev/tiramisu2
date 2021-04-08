@@ -52,73 +52,110 @@ class LoginController extends Controller
         ->usingGraphVersion('v7.0')->redirect();
     }
 
+	/*
+	* redirect OAuth twitter
+	*/
+	public function redirectTwitter()
+	{
+		return Socialite::driver('twitter')->redirect();
+	}
+
+	/*
+	* twitter callback
+	*/
+	public function callbackTwitter()
+	{
+		$twitter = Socialite::driver('twitter')->user();
+
+		$user = $this->findOrCreate('twitter_id', $twitter);
+
+		return $this->accessProfile($user);
+	}
+
   	public function callback()
     {
-      $facebook = Socialite::driver('facebook')->user();
+        $facebook = Socialite::driver('facebook')->user();
 
-      $user = $this->findOrCreate($facebook);
+        $user = $this->findOrCreate('provider_id', $facebook);
 
-      if($user->banned == 1)
-      {
-        return redirect('/')->with('gagal', 'Akun di banned!! hubungi admin untuk menindak lanjuti');
-      }
-
-      Auth::login($user, true);
-
-      $user->historyLogin()->create([
-      	'ip'	=> request()->ip(),
-        'browser'	=> request()->userAgent(),
-        'extra'		=> 'Logged In!!'
-      ]);
-
-      return redirect($this->redirectTo);
-
+		return $this->accessProfile($user);
     }
 
-  	public function findOrCreate($facebook)
+  	public function findOrCreate($auth, $social)
     {
-      $user = User::where('provider_id',$facebook->getId())->first();
+        $user = $this->findSocialId($auth, $social);
 
-      $raw = $facebook->getRaw();
+		if(!$user) {
+			$user = $this->createNewUser($auth, $social);
+		}
 
-      $uname = $facebook->getName();
+        return $user;
+    }
 
-      $uname = explode(' ',$uname);
-      $name = str_slug($uname[0]).rand(000,999);
 
-      $gender = $raw['gender'] ?? 'hode';
+	protected function findSocialId($auth, $social)
+	{
+		$user = User::where($auth, $social->getId())->first();
 
-      switch($gender)
-      {
-        case 'male':
-          $gender = 'cowok';
-          break;
-        case 'female':
-          $gender = 'cewek';
-          break;
-        default:
-          $gender = 'hode';
-          break;
-      }
+		return $user;
+	}
 
-      if( ! $user)
-      {
+	protected function createNewUser($auth, $social)
+	{
+        $raw = $social->getRaw();
+
+        $uname = $social->getName();
+
+        $uname = explode(' ',$uname);
+        $name = str_slug($uname[0]).rand(000,999);
+
+        $gender = $raw['gender'] ?? 'hode';
+
+        switch($gender)
+        {
+          case 'male':
+            $gender = 'cowok';
+            break;
+          case 'female':
+            $gender = 'cewek';
+            break;
+          default:
+            $gender = 'hode';
+        }
+
         $user = new User;
-        $user->provider_id = $facebook->getId();
-        $user->name = $facebook->getName();
-        $user->email = $facebook->getEmail();
+        $user->{$auth} = $social->getId();
+        $user->name = $social->getName();
+        $user->email = $social->getEmail();
         $user->biodata = 'Saya pemain Toram!';
         $user->ign = '-';
         $user->username = $name;
         $user->gender = $gender;
         $user->alamat = 'Bumi, Indonesia';
         $user->link = $raw['link'] ?? '-';
+		$user->avatar = $social->getAvatar();
         $user->save();
-      }
 
-      return $user;
-    }
+		return $user;
+	}
 
+    public function accessProfile($user)
+	{
+        if($user->banned == 1)
+        {
+            return redirect('/')->with('gagal', 'Akun di banned!! hubungi admin untuk menindak lanjuti');
+        }
+
+        Auth::login($user, true);
+
+        $user->historyLogin()->create([
+        	'ip'	=> request()->ip(),
+            'browser'	=> request()->userAgent(),
+            'extra'		=> 'Logged In!!'
+        ]);
+
+        return redirect($this->redirectTo);
+	}
 
   	public function devLogin()
     {

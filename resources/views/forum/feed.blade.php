@@ -73,7 +73,7 @@
                                 }
                             </style>
                             @endif
-                          <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="https://graph.facebook.com/{{ $pos->user->provider_id }}/picture?type=normal" class="avatar float-left mr-4 lazyload">
+                          <img src="https://d33wubrfki0l68.cloudfront.net/33da70e44301595ca96031b373a20ec38b20dceb/befb8/img/placeholder-sqr.svg" data-src="{{ $pos->user->getAvatar() }}" class="avatar float-left mr-4 lazyload">
                           {!! $pos->pinned == 1 ? '<i class="fa fa-paperclip"></i>':'' !!}
                           <a href="/forum/{{ $pos->slug }}"><b> {{ str_limit($pos->judul, 80) }} </b></a> <br>
                         <small class="text-muted">

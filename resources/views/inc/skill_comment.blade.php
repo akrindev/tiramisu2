@@ -8,7 +8,7 @@
           </div>
         @endif
           <div class="card-body p-3">
-            <img src="https://graph.facebook.com/{{ auth()->user()->provider_id }}/picture?type=normal" class="avatar avatar-md float-left mr-4">
+            <img src="{{ auth()->user()->getAvatar() }}" class="avatar avatar-md float-left mr-4">
             <b> {{ auth()->user()->name }} </b><br/> &nbsp;
             <hr class="my-2">
 

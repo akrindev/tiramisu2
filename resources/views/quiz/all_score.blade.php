@@ -41,7 +41,7 @@ $page = request()->page > 1 ? (request()->page-1)*50+1 : 1;
 @foreach ($scores as $score)
    <tr>
      <td class="text-center mr-1 ml-1">
-      <div style="background-image: url(https://graph.facebook.com/{{$score->user->provider_id}}/picture?type=normal)" class="avatar d-block"></div></td>
+      <div style="background-image: url({{ $score->user->getAvatar() }})" class="avatar d-block"></div></td>
      <td>
        <div> {{ str_limit($score->user->name,20) }}</div>
        <div class="small text-muted">Peringkat {{ $page }} </div>

@@ -11,14 +11,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'provider_id', 'username', 'link','biodata','ign'
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -40,6 +33,15 @@ class User extends Authenticatable
 
         return auth()->check() && ($this->isAdmin() || \in_array(auth()->id(), $topContributor));
     }
+
+	public function getAvatar()
+	{
+		if(!is_null($this->attributes['provider_id'])) {
+			return "https://graph.facebook.com/{$this->attributes['provider_id']}/picture?type=normal";
+		}
+
+		return $this->attributes['avatar'];
+	}
 
   	public function fcm()
     {
