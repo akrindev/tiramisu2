@@ -77,7 +77,7 @@ $tags = explode(',', $tags);
             <div class="body-text">
             {{ toHtml($data->body, true) }}
 
-              <small class="text-muted">Short link: <i><u>https://toram-id.info/f/{{ $data->id }}</u></i></small>
+              <small class="text-muted">Short link: <i><u id="srt">https://toram-id.info/f/{{ $data->id }}</u></i> <i class="ml-1 fe fe-copy" style="cursor:pointer;" onClick="copyToClipboard('srt');"></i></small>
 
            <div class="my-3">
              {!! form_open('/',["id"=>"likeme"]) !!}
@@ -283,6 +283,29 @@ $tags = explode(',', $tags);
 @endsection
 
 @section('footer')
+<script>
+function copyToClipboard(elementId) {
+
+  // Create a "hidden" input
+  var aux = document.createElement("input");
+
+  // Assign it the value of the specified element
+  aux.setAttribute("value", document.getElementById(elementId).innerHTML);
+
+  // Append it to the body
+  document.body.appendChild(aux);
+
+  // Highlight its content
+  aux.select();
+
+  // Copy the highlighted text
+  document.execCommand("copy");
+
+  // Remove it from the body
+  document.body.removeChild(aux);
+  alert('copied!');
+}
+</script>
 @auth
 <link href="/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
 <script src="/assets/js/bootstrap-markdown.js">
@@ -292,7 +315,7 @@ $tags = explode(',', $tags);
 <script src="/assets/js/to-markdown.js">
 </script>
 
-<script src="/assets/js/forum.js">
+<script src="/assets/js/forum.js?1">
 </script>
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
