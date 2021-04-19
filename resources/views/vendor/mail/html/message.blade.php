@@ -22,6 +22,8 @@
 @slot('footer')
 @component('mail::footer')
 © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
+	<br/>
+	<small>you can unsubcribe this on profile setting</small>
 @endcomponent
 @endslot
 @endcomponent
