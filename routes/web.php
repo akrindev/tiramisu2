@@ -88,7 +88,7 @@ Route::get('/profile/{provider_id}', 'UserController@profile');
 */
 Route::middleware('auth')->group(function() {
   Route::get('/setting/profile', 'UserController@settingProfile');
-  Route::post('/setting/profile', 'UserController@settingProfileSubmit');
+  Route::put('/setting/profile', 'UserController@settingProfileSubmit');
   Route::get('/profile/notifikasi', 'UserController@notifikasi');
   Route::get('/profile', 'UserController@profileku');
   Route::post('/save/contact', 'UserController@saveContact');

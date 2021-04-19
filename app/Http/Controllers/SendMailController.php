@@ -31,24 +31,26 @@ class SendMailController extends Controller
 
   	public function mailToAllUser()
     {
-      $mail = request()->validate([
-      	'subject'	=> 'required|min:5',
-        'body'		=> 'required|min:15',
-      ]);
+         $mail = request()->validate([
+      	    'subject'	=> 'required|min:5',
+            'body'		=> 'required|min:15',
+        ]);
 
-      set_time_limit(0);
+        set_time_limit(0);
 
-      SendMail::create($mail);
+        SendMail::create($mail);
 
-      User::where('email', '!=', null)->chunk(200,  function($users) use ($mail) {
+        $users = User::select(['email', 'subscribe'])->where('email', '!=', null)
+						->where('subscribe', '!=', 0)->get();
+
+        $delay = 2;
 
         foreach($users as $user) {
-          dispatch(new \App\Jobs\SendEmail($user->email, $mail));
+            dispatch(new \App\Jobs\SendEmail($user->email, $mail))->delay(now()->addMinutes($delay));
+            $delay += 2;
         }
 
-      });
-
-      return back()->with('success', 'email sent with queue');
+        return back()->with('success', 'email sent with queue');
     }
 
   	public function logMail()

@@ -136,10 +136,10 @@
           <select class="form-control col-8 mr-1" name="cooking">
             <option value="">-- Pilih buff masakan --</option>
             @foreach(\App\Cooking::get() as $cook)
-            <option value="{{ $cook->id }}" {{ $data->cooking_id == $cook->id ? 'selected':'' }}> {{ $cook->buff }} </option>
+            <option value={{ $cook->id }} {{ $data->cooking_id == $cook->id ? 'selected':'' }}> {{ $cook->buff }} </option>
             @endforeach
           </select>
-          <input type="number" name="cooklv" class="form-control col-3" min="1" max="10" value="{{ $data->cooking_level }}" placeholder="level">
+          <input type="number" name="cooklv" class="form-control col-3" min=1 max=10 value={{ $data->cooking_level }} placeholder="level">
           </div>
         </div>
 
@@ -150,10 +150,10 @@
           <select class="form-control col-8 mr-1" name="second_cooking">
             <option value="">-- Pilih buff masakan --</option>
             @foreach(\App\Cooking::get() as $cook)
-            <option value="{{ $cook->id }}" {{ $data->second_cooking_id == $cook->id ? 'selected':'' }}> {{ $cook->buff }} </option>
+            <option value={{ $cook->id }} {{ $data->second_cooking_id == $cook->id ? 'selected':'' }}> {{ $cook->buff }} </option>
             @endforeach
           </select>
-          <input type="number" name="second_cooklv" class="form-control col-3" min="1" max="10" value="{{ $data->second_cooking_level }}" placeholder="level">
+          <input type="number" name="second_cooklv" class="form-control col-3" min=1 max=10 value={{ $data->second_cooking_level }} placeholder="level">
           </div>
         </div>
 
@@ -178,14 +178,31 @@
           </small>
         </div>
 
+
+        <div class="form-group">
+          <label class="form-label">
+            Email Notification
+          </label>
+          <div class="custom-switches-stacked">
+            <label class="custom-switch">
+              <input type="radio" name="subscribe" value="0" class="custom-switch-input" {{ $data->subscribe == 0 ? 'checked' : '' }}>
+              <span class="custom-switch-indicator"></span>
+              <span class="custom-switch-description">No</span>
+            </label>
+            <label class="custom-switch">
+              <input type="radio" name="subscribe" value="1" class="custom-switch-input" {{ $data->subscribe == 1 ? 'checked' : '' }}>
+              <span class="custom-switch-indicator"></span>
+              <span class="custom-switch-description">Yes</span>
+            </label>
+          </div>
+        </div>
+
         <div class="form-group">
           Since: <span class="text-muted"> {{ $data->created_at->format('d-M-Y H:i:s')}} ({{$data->created_at->diffForHumans() }}) </span>
         </div>
-
+@method('PUT')
       <button type="submit" class="btn btn-outline-primary btn-pill">Simpan Perubahan</button>
       {!! form_close() !!}
-
-
 
     </div>
   </div>
