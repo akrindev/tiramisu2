@@ -73,10 +73,10 @@ class UserController extends Controller
       	'email'		=> 'email',
       	'biodata'	=> 'required|max:180',
       	'alamat'	=> 'required|max:160',
-      	'cooking'	=> 'nullable|integer|min:0|max:38',
-      	'cooklv'	=> 'nullable|integer|min:0|max:10',
-      	'second_cooking'	=> 'nullable|integer|min:0|max:38',
-      	'second_cooklv'	=> 'nullable|integer|min:0|max:10'
+      	'cooking'	=> 'nullable|integer|max:38',
+      	'cooklv'	=> 'nullable|integer|max:10',
+      	'second_cooking'	=> 'nullable|integer|max:38',
+      	'second_cooklv'	=> 'nullable|integer|max:10'
      ]);
 
     $gender = request()->gender;

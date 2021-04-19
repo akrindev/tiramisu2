@@ -133,13 +133,13 @@
         <div class="form-group">
           <label class="form-label"> Buff masakan </label>
           <div class="row px-3">
-          <select class="form-control col-8 mr-1" name="cooking">
+          <select class="form-control col-8 mr-1" name="cooking" id='cooking1'>
             <option value="">-- Pilih buff masakan --</option>
             @foreach(\App\Cooking::get() as $cook)
             <option value={{ $cook->id }} {{ $data->cooking_id == $cook->id ? 'selected':'' }}> {{ $cook->buff }} </option>
             @endforeach
           </select>
-          <input type="number" name="cooklv" class="form-control col-3" min=1 max=10 value={{ $data->cooking_level }} placeholder="level">
+          <input type="number" name="cooklv" class="form-control col-3" min=1 max=10 value={{ $data->cooking_level }} placeholder="level" id='cookingval1'>
           </div>
         </div>
 
@@ -147,13 +147,13 @@
         <div class="form-group">
           <label class="form-label"> Buff masakan kedua (second)</label>
           <div class="row px-3">
-          <select class="form-control col-8 mr-1" name="second_cooking">
+          <select class="form-control col-8 mr-1" name="second_cooking" id='cooking2'>
             <option value="">-- Pilih buff masakan --</option>
             @foreach(\App\Cooking::get() as $cook)
             <option value={{ $cook->id }} {{ $data->second_cooking_id == $cook->id ? 'selected':'' }}> {{ $cook->buff }} </option>
             @endforeach
           </select>
-          <input type="number" name="second_cooklv" class="form-control col-3" min=1 max=10 value={{ $data->second_cooking_level }} placeholder="level">
+          <input type="number" name="second_cooklv" class="form-control col-3" min=1 max=10 value={{ $data->second_cooking_level }} placeholder="level" id='cookingval2'>
           </div>
         </div>
 
@@ -265,5 +265,42 @@
     </div>
   </div>
 </div>
+
+@endsection
+
+@section('footer')
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cooking1 = document.getElementById('cooking1')
+        const cooking2 = document.getElementById('cooking2')
+        const cookingval1 = document.getElementById('cookingval1')
+        const cookingval2 = document.getElementById('cookingval2')
+
+        if(!cooking1.value) {
+          cookingval1.disabled = true
+        }
+
+        if(!cooking2.value) {
+          cookingval2.disabled = true
+        }
+
+        cooking1.addEventListener('change', (e) => {
+            if(e.target.value) {
+              cookingval1.disabled = false
+              return
+            }
+              cookingval1.disabled = true
+        })
+
+        cooking2.addEventListener('change', (e) => {
+            if(e.target.value) {
+              cookingval2.disabled = false
+              return
+            }
+              cookingval2.disabled = true
+        })
+
+    })
+</script>
 
 @endsection

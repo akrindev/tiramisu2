@@ -41,6 +41,7 @@ class FoodMember extends Component
         $foods = User::with('cooking', 'secondCooking','contact')
              ->select('id', 'name', 'ign', 'biodata', 'cooking_id', 'cooking_level', 'second_cooking_id', 'second_cooking_level')
              ->where('visibility', 1)
+             ->whereNotNull('cooking_id')
              ->when($buff != '*', function ($q) use ($buff) {
                 return $q->where('cooking_id', $buff)->orWhere('second_cooking_id', $buff);
             })
