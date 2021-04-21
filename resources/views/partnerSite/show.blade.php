@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-6 mb-5">
-    <strong class='d-block'>10 Top Contributors <span class="ml-2 text-danger">&hearts;</span> </strong>
+    <strong class='d-block'>10 Top Contributors <span class="ml-2 text-danger animated pulse infinite">&hearts;</span> </strong>
     <style>
     .collection-top-contri > .p {
         column-count: 2; -moz-column-count: 2; -webkit-column-count: 2;
@@ -26,7 +26,7 @@
     <div class="d-block">
       - kamu dapat menambahkan item dan monster yang belum ada di situs ini. <br>
       - kamu juga dapat mengeditnya jika deskripsi atau namanya kurang tepat. <br>
-      - kamu tidak perlu login untuk bisa berkontribusi, namun kami kami sarankan untuk login karena jika kamu berada dalam 10 top kontributor maka kamu bisa akses ke situs ini tanpa iklan.
+      - kamu tidak perlu login untuk bisa berkontribusi, namun kami sarankan untuk login karena jika kamu berada dalam 10 top kontributor maka kamu dapat mengakses ke situs ini tanpa iklan.
     </div>
 
     <div class="d-block my-1 mt-5">

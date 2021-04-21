@@ -16,7 +16,7 @@ $colors = ['blue','green','orange','red','yellow','teal','purple','dark','pink']
 
 <div class="container">
 <div class='row'>
-  <div class="col-12">
+  <div class="col-8">
     <div class="card">
 
       <div class="card-header">
@@ -122,7 +122,7 @@ $colors = ['blue','green','orange','red','yellow','teal','purple','dark','pink']
   </div>
 </div>
 
-  <div class="col-12">
+  <div class="col-4">
     <div class="card">
       <div class="card-header">
         <h3 class="card-title"> Image uploader </h3>
@@ -148,7 +148,7 @@ $colors = ['blue','green','orange','red','yellow','teal','purple','dark','pink']
 
         <div class="form-group">
           <label class="form-result">Result</label>
-          <input type="text" class="form-control" id="result" value="">
+          <input type="text" class="form-control" id="result" value="" disabled>
           <small class="text-muted dsc"></small>
         </div>
       </div>

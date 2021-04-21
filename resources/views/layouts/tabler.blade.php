@@ -259,6 +259,17 @@
           </div>
         </div>
 
+        @auth
+        <div class="alert alert-info pl-15">
+            <div class="container">
+                Hello, <strong> {{ Auth::user()->name }}</strong>. Punya ide untuk berbagi tutorial Toram Online?<br>
+                Yuk bagiin tutorial atau cerita Toram Onlinemu <br>
+
+                <a href="/forum/baru" class="mt-3 btn btn-sm btn-primary">Tulis ah!</a>
+            </div>
+        </div>
+        @endauth
+
 
   @yield('content')
 
@@ -280,7 +291,7 @@
             </div>
 
             <div class="col-12 d-block col-lg-auto mt-3 mt-lg-0 text-center">
-              <b>{ }</b> with <b class="text-danger">&hearts;</b> in <b>Pekalongan, Indonesia</b>
+              <b>{ }</b> with <b class="text-danger animated pulse infinite">&hearts;</b> in <b>Pekalongan, Indonesia</b>
             </div>
           </div>
         </div>
