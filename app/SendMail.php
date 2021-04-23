@@ -17,6 +17,6 @@ class SendMail extends Model
 
   	public function getBodyAttribute($value)
     {
-      return toHtml($value);
+      return e(toHtml($value));
     }
 }

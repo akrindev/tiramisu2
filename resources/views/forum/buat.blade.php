@@ -16,7 +16,7 @@ $colors = ['blue','green','orange','red','yellow','teal','purple','dark','pink']
 
 <div class="container">
 <div class='row'>
-  <div class="col-8">
+  <div class="col-md-8">
     <div class="card">
 
       <div class="card-header">
@@ -122,7 +122,7 @@ $colors = ['blue','green','orange','red','yellow','teal','purple','dark','pink']
   </div>
 </div>
 
-  <div class="col-4">
+  <div class="col-md-4">
     <div class="card">
       <div class="card-header">
         <h3 class="card-title"> Image uploader </h3>

@@ -59,17 +59,24 @@ class SendMailController extends Controller
         ->editColumn('user_id', function ($user) {
         	return $user->user->name ?? 'All Member';
         })
+        ->editColumn('subject', function ($s) {
+            return str_limit($s->subject);
+        })
+        ->editColumn('created_at', function ($date){
+            return $date->created_at->format('d M Y');
+        })
         ->addColumn('action', function ($user) {
         	return "<button class='btn btn-primary' onclick='baca({$user->id})'>baca</button>";
         })
+        ->rawColumns(['created_at', 'action'])
         ->make(true);
     }
 
   	public function getLog($id)
     {
-      $mail = SendMail::find($id);
+        $mail = SendMail::find($id);
 
-      return $mail;
+        return response()->json($mail, 200);
     }
 
   	public function hasEmail()

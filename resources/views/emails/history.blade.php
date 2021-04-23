@@ -1,6 +1,6 @@
 @extends('layouts.sb-admin')
 
-@section('title', 'Kirim email')
+@section('title', 'Baca email terKirim')
 
 
 @section('content')
@@ -48,7 +48,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         </button>
       </div>
-      <div class="modal-body" id="mail-body">
+      <div class="modal-body p-3" id="mail-body">
 
       </div>
       <div class="modal-footer">

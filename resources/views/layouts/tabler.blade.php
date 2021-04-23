@@ -260,7 +260,7 @@
         </div>
 
         @auth
-        <div class="alert alert-info pl-15">
+        <div class="alert alert-info">
             <div class="container">
                 Hello, <strong> {{ Auth::user()->name }}</strong>. Punya ide untuk berbagi tutorial Toram Online?<br>
                 Yuk bagiin tutorial atau cerita Toram Onlinemu <br>
