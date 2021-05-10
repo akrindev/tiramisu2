@@ -15,19 +15,23 @@ class ItemController extends Controller
   public function showItem($id)
   {
     $item = Drop::with([
-    	'monsters'	=>	function($query) {
-            $query->with([
-                'drops' => function($q) {
-                    $q->with('dropType');
-                },
-                'map',
-                'element'
-            ])->paginate(20);
-        },
-        'dropType'
+      'monsters' => function ($query) {
+        return $query->with([
+          'map',
+          'element',
+          'drops'
+        ]);
+      },
+      'dropType'
     ])->findOrFail($id);
 
-    return view('monster.item', compact('item'));
+    $relateds = Drop::whereDropTypeId($item->drop_type_id)
+                    ->where('id', '!=', $item->id) // bukan data item itu sendiri
+                    ->inRandomOrder()
+                    ->take(10)
+                    ->get();
+
+    return view('monster.item', compact('item', 'relateds'));
   }
 
   /*

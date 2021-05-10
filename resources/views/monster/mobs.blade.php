@@ -21,9 +21,28 @@
       </div>
       <div class="col-md-8">
 
-   @includeUnless(app()->isLocal(), 'inc.ads_article')
+          @includeUnless(app()->isLocal(), 'inc.ads_article')
 
           @include('inc.drop.monster', $mons = $data)
+
+          <div class="card">
+              <div class="card-header p-3">
+                  <h2 class="card-title">Related Monsters</h2>
+              </div>
+
+              <div class="card-body p-3">
+                  @foreach ($relateds as $related)
+                      <a class="text-primary" href="{{ request()->segment(1) == 'en' || app()->isLocale('en') ? '/en' : '' }}/monster/{{$related->id}}">{{ $related->name }} (Lv {{$related->level}}) </a>
+                    @switch($related->type)
+                        @case(2)
+                            <img src="/img/f_boss.png" alt="mini boss" style="display:inline;max-width:120px;max-height:15px;">
+                            @break
+                        @case(3)
+                            <img src="/img/boss.png" class="boss" style="display:inline;max-width:120px;max-height:15px;">
+                    @endswitch <br>
+                  @endforeach
+              </div>
+          </div>
       </div>
 
       <div class="col-md-4">

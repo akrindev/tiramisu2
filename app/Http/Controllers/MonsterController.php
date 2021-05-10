@@ -85,7 +85,12 @@ class MonsterController extends Controller
             ])
             ->findOrFail($id);
 
-    return view('monster.mobs', compact('data'));
+    $relateds = Monster::whereMapId($data->map_id)
+                        ->where('id', '!=', $data->id) // bukan data monster itu sendiri
+                        ->inRandomOrder()
+                        ->take(10)->get();
+
+    return view('monster.mobs', compact('data', 'relateds'));
   }
 
   public function showMonsType($name)

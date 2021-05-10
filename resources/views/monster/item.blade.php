@@ -26,7 +26,7 @@
 
             <dl>
               <dt>
-              <b class="h5"> <img src="{{$item->dropType->url}}" class="avatar avatar-sm mr-2"> <a href="/item/{{$item->id}}" class="text-primary">{{ $item->name }}</a></b>
+              <b class="h5"> <img src="{{$item->dropType->url}}" class="avatar avatar-sm mr-2"> <a href="{{ app()->isLocale('en') ? '/en' : '' }}/item/{{$item->id}}" class="text-primary">{{ $item->name }}</a></b>
                 @if (auth()->check() && auth()->user()->isAdmin())
               <a href="/item/{{ $item->id }}/edit" class="btn btn-sm btn-outline-secondary">edit</a>
            @endif
@@ -217,6 +217,22 @@
         <div class="my-5">
         {{ $item->monsters()->paginate(20)->links() }}
         </div>
+
+        @if ($relateds->count() > 0)
+
+        <div class="card">
+            <div class="card-header p-3">
+                <h2 class="card-title">Related Items</h2>
+            </div>
+
+            <div class="card-body p-3">
+                @foreach ($relateds as $related)
+                    <img src="{{$related->dropType->url}}" class="avatar avatar-sm mr-2"> <a href="{{ app()->isLocale('en') ? '/en' : '' }}/item/{{$related->id}}" class="text-primary">{{ $related->name }}</a> <br>
+                @endforeach
+            </div>
+        </div>
+
+        @endif
 
       </div>
 
