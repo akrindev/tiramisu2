@@ -6,6 +6,7 @@ use App\Drop;
 use App\DropType;
 use App\Helpers\SaveAsImage as Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ItemController extends Controller
 {
@@ -25,13 +26,40 @@ class ItemController extends Controller
       'dropType'
     ])->findOrFail($id);
 
-    $relateds = Drop::whereDropTypeId($item->drop_type_id)
-                    ->where('id', '!=', $item->id) // bukan data item itu sendiri
-                    ->inRandomOrder()
-                    ->take(10)
-                    ->get();
+    if(Str::contains($item->name, ' ') || Str::contains($item->name_en, ' ')) {
+        $words = array_merge(explode(' ', $item->name_en), explode(' ', $item->name));
+        $words = array_unique($words);
+        $dropid = $item->drop_type_id;
+
+        $relateds = Drop::where('id', '!=', $item->id) // bukan data item itu sendiri
+        ->whereDropTypeId($dropid)
+        ->where(function ($query) use ($words, $dropid) {
+
+            foreach ($words as $word) {
+                $query->orWhere('name', 'like', '%'. $word .'%')
+                      ->orWhere('name_en', 'like', '%'. $word .'%');
+            }
+        })->inRandomOrder()->take(10)->get();
+
+        // jika tidak ada similiar items, yuk tampilin random items dengan type yang sama
+        if(!$relateds->count()) {
+            $relateds = $this->getRandomRelated($item->drop_type_id, $item->id);
+        }
+    } else {
+        $relateds = $this->getRandomRelated($item->drop_type_id, $item->id);
+    }
+
 
     return view('monster.item', compact('item', 'relateds'));
+  }
+
+  private function getRandomRelated($type, $id)
+  {
+      return Drop::whereDropTypeId($type)
+                        ->where('id', '!=', $id) // bukan data item itu sendiri
+                        ->inRandomOrder()
+                        ->take(10)
+                        ->get();
   }
 
   /*
