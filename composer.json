@@ -5,7 +5,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^7.3.0",
+        "php": "^7.3.0|^8.0.6",
         "cloudinary/cloudinary_php": "^1.10",
         "doctrine/dbal": "^2.9",
         "erusev/parsedown-extra": "^0.8.1",
@@ -27,7 +27,6 @@
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
         "barryvdh/laravel-ide-helper": "^2.9",
-        "beyondcode/laravel-er-diagram-generator": "^1.5",
         "facade/ignition": "^2.3.6",
         "fzaninotto/faker": "^1.9.1",
         "laravel/telescope": "^4.0",
