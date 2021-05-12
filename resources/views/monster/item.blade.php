@@ -67,7 +67,7 @@
          <!-- Item status -->
           <ul class="nav nav-tabs justify-content-center" id="statusTab" role="tablist">
             <li class="nav-item">
-              <a class="nav-link {{ !is_null(optional($item->note)['monster']) ? 'active' :  '' }}" id="status-monster-tab" data-toggle="tab" href="#status-monster" role="tab" aria-controls="status" aria-selected="{{ !is_null(optional($item->note)['monster']) ? 'true' : 'false' }}">
+              <a class="nav-link {{ !is_null(optional($item->note)['monster']) || is_null(optional($item->note)['npc']) ? 'active' :  '' }}" id="status-monster-tab" data-toggle="tab" href="#status-monster" role="tab" aria-controls="status" aria-selected="{{ !is_null(optional($item->note)['monster']) ? 'true' : 'false' }}">
               Status
               @if(!is_null(optional($item->note)['monster']))
               <span class="nav-unread"></span>
@@ -92,14 +92,14 @@
           </ul>
 
           <div class="tab-content" id="statusTabContent">
-            <div class="tab-pane fade {{ !is_null(optional($item->note)['monster']) ? 'show active' :  '' }}" id="status-monster" role="tabpanel" aria-labelledby="status-monster-tab">
+            <div class="tab-pane fade {{ !is_null(optional($item->note)['monster']) || is_null(optional($item->note)['npc']) ? 'show active' :  '' }}" id="status-monster" role="tabpanel" aria-labelledby="status-monster-tab">
               <div class="my-5">
               @if(!is_null(optional($item->note)['monster']))
                 <dl> <!-- dl start -->
                   {{ toHtml(translate(optional($item->note)['monster'])) }}
                 </dl>
               @else
-                <small class="text-muted">-- tidak ada --</small>
+                <small class="text-muted">-- an item --</small>
               @endif
               </div>
             </div>
@@ -111,7 +111,7 @@
                   {{ toHtml(translate(optional($item->note)['npc'])) }}
                 </dl>
               @else
-                <small class="text-muted">-- tidak ada --</small>
+                <small class="text-muted">-- an item --</small>
               @endif
               </div>
 
@@ -129,29 +129,20 @@
                 </div>
               </dd>
             </dl>
-         <!-- using tab -->
-          <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="drop-tab" data-toggle="tab" href="#drop" role="tab" aria-controls="drop" aria-selected="true">
-                Drop dari
-              @if($item->monsters->count() > 0)
-              <span class="nav-unread"></span>
-              @endif
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="from-quest-tab" data-toggle="tab" href="#from-quest" role="tab" aria-controls="from-quest" aria-selected="false">Dari quest
-              @if ($item->fromQuest->count() > 0)
-              <span class="nav-unread"></span>
-              @endif
-              </a>
-            </li>
-          </ul>
 
 
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="drop" role="tabpanel" aria-labelledby="drop-tab">
-              <div class="my-5">
+        </div>
+    </div>
+
+    @includeUnless(app()->isLocal(), 'inc.ads_mobile')
+
+         <div class="card">
+             <div class="card-header p-3">
+                 <h2 class="card-title">Drop Dari</h2>
+             </div>
+
+             <div class="card-body p-3">
+                 <div>
               @if($item->monsters->count() > 0)
                 <dl> <!-- dl start -->
               @foreach ($item->monsters as $mons)
@@ -170,18 +161,18 @@
                </dt>
                  <dd>
                    @if ($mons->picture != null)
-                   <img src="/{{ $mons->picture }}" alt="{{ $mons->name }}" class="rounded my-2 d-block" width="150px" height="150px">
+                    <img src="/{{ $mons->picture }}" alt="{{ $mons->name }}" class="rounded my-2 d-block" width="150px" height="150px">
                    @endif
                   <b>{{ __('Unsur') }}:</b> <span> {{ __(ucfirst($mons->element->name)) }}</span> <br>
                    <b>{{ __('Peta') }}:</b> <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/peta/{{ $mons->map->id }}">{{ $mons->map->name }} </a>
                  </dd>
                  <b>Drop:</b><br>
                  @foreach ($mons->drops as $drop)
-                 <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/item/{{ $drop->id }}"> <img src="{{ $drop->dropType->url }}" class="avatar avatar-sm"> {{ $drop->name }} </a>
-                 @if ($drop->proses && $drop->sell)
-                 <small class="text-muted">({{ $drop->proses ?? '-' }}pts / {{ $drop->sell ?? '-' }}s)</small>
-                 @endif
-                 <br>
+                    <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/item/{{ $drop->id }}"> <img src="{{ $drop->dropType->url }}" class="avatar avatar-sm"> {{ $drop->name }} </a>
+                    @if ($drop->proses && $drop->sell)
+                    <small class="text-muted">({{ $drop->proses ?? '-' }}pts / {{ $drop->sell ?? '-' }}s)</small>
+                    @endif
+                    <br>
                  @endforeach
                 </div>
               @endforeach
@@ -190,29 +181,8 @@
                 <small class="text-muted">-- tidak ada --</small>
               @endif
               </div>
-            </div>
-            <div class="tab-pane fade" id="from-quest" role="tabpanel" aria-labelledby="from-quest-tab">
-              <div class="mt-5">
-                @if ($item->fromQuest->count() > 0)
-                  <b>Quest:</b> <br />
-                  @foreach ($item->fromQuest as $quest)
-                    - <a href="/npc/quest/{{ $quest->quest->id }}">{{ $quest->quest->name }}</a><br />
-                  @endforeach
-                @else
-                   <small class="text-muted">-- Tidak ada --</small>
-                @endif
-              </div>
-
-            </div>
-          </div>
-
-        <!-- end tab -->
-
-
-        @includeUnless(app()->isLocal(), 'inc.ads_mobile')
-
-          </div>
-        </div>
+             </div>
+         </div>
 
         <div class="my-5">
         {{ $item->monsters()->paginate(20)->links() }}
