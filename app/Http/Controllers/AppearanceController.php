@@ -11,8 +11,7 @@ class AppearanceController extends Controller
     protected $items = [
         26, 27, 28, 29,
         13, 14, 30, 15,
-        25, 31, 32, 33,
-        43
+        25, 31, 33, 43
     ];
 
     public function show()
@@ -21,7 +20,7 @@ class AppearanceController extends Controller
                 ->whereIn('drop_type_id', $this->items)
                 ->whereNotNull('picture')
                 ->orderByDesc('id')
-                ->paginate(22);
+                ->paginate();
 
         return view('appearance.show', compact('apps'));
     }
