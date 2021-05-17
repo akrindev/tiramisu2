@@ -52,7 +52,7 @@
 
       <a href="/potensi/kalkulator" class="d-block mb-1 col-12"> <img src="/img/skill/smith/noviceanvil.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Potensi Simulator</a>
       <a href="/avatar" class="d-block mb-1 col-12"> <img src="/img/ava_top.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Avatar Showcase</a>
-      <a href="{{ app()->isLocal('en') ? '/en' : '' }}/appearance" class="d-block mb-1 col-12"> <img src="/img/ava_top.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">App Showcase (Appearance)</a>
+      <a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance" class="d-block mb-1 col-12"> <img src="/img/ava_top.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">App Showcase (Appearance)</a>
 
       <div class="d-block col-12 mb-5"></div>
 

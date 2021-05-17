@@ -20,32 +20,32 @@
     <div class="card-body p-3">
         <strong class="d-block mb-2">Appearance Showcase </strong>
     <div class=" row gutters-xs">
-      <a href="{{ app()->isLocal('en') ? '/en' : '' }}/appearance/26" class="d-block mb-1 col-6 col-md-4">
+      <a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance/26" class="d-block mb-1 col-6 col-md-4">
               <img src="/img/drop/pedang.jpg" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px"> {{ __('Pedang 1 Tangan') }}</a>
-      <a href="{{ app()->isLocal('en') ? '/en' : '' }}/appearance/27" class="d-block mb-1 col-6 col-md-4">
+      <a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance/27" class="d-block mb-1 col-6 col-md-4">
               <img src="/img/drop/pedang_raya.jpg" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">
         {{ __('Pedang 2 Tangan') }}</a>
-      <a href="{{ app()->isLocal('en') ? '/en' : '' }}/appearance/28" class="d-block mb-1 col-6 col-md-4">
+      <a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance/28" class="d-block mb-1 col-6 col-md-4">
               <img src="/img/drop/tinju.jpg" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">{{ __('Tinju') }}</a>
-      <a href="{{ app()->isLocal('en') ? '/en' : '' }}/appearance/29" class="d-block mb-1 col-6 col-md-4">
+      <a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance/29" class="d-block mb-1 col-6 col-md-4">
               <img src="/img/drop/tombak.jpg" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">{{ __('Tombak') }}</a>
-      <a href="{{ app()->isLocal('en') ? '/en' : '' }}/appearance/13" class="d-block mb-1 col-6 col-md-4">
+      <a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance/13" class="d-block mb-1 col-6 col-md-4">
               <img src="/img/drop/alat_sihir.jpg" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">{{ __('Pesawat Sihir') }}</a>
-      <a href="{{ app()->isLocal('en') ? '/en' : '' }}/appearance/30" class="d-block mb-1 col-6 col-md-4">
+      <a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance/30" class="d-block mb-1 col-6 col-md-4">
               <img src="/img/drop/tongkat.jpg" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">{{ __('Tongkat') }}</a>
-      <a href="{{ app()->isLocal('en') ? '/en' : '' }}/appearance/14" class="d-block mb-1 col-6 col-md-4">
+      <a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance/14" class="d-block mb-1 col-6 col-md-4">
               <img src="/img/drop/bow.jpg" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">{{ __('Busur') }}</a>
-      <a href="{{ app()->isLocal('en') ? '/en' : '' }}/appearance/15" class="d-block mb-1 col-6 col-md-4">
+      <a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance/15" class="d-block mb-1 col-6 col-md-4">
               <img src="/img/drop/bowgun.jpg" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">{{ __('Bowgun') }}</a>
-      <a href="{{ app()->isLocal('en') ? '/en' : '' }}/appearance/25" class="d-block mb-1 col-6 col-md-4">
+      <a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance/25" class="d-block mb-1 col-6 col-md-4">
               <img src="/img/drop/katana.jpg" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">{{ __('Katana') }}</a>
-      <a href="{{ app()->isLocal('en') ? '/en' : '' }}/appearance/31" class="d-block mb-1 col-6 col-md-4">
+      <a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance/31" class="d-block mb-1 col-6 col-md-4">
               <img src="/img/drop/zirah.jpg" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">{{ __('Zirah') }}</a>
-      <a href="{{ app()->isLocal('en') ? '/en' : '' }}/appearance/33" class="d-block mb-1 col-6 col-md-4">
+      <a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance/33" class="d-block mb-1 col-6 col-md-4">
               <img src="/img/drop/pelengkap.jpg" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">{{ __('Perkakas Tambahan') }}</a>
-      <a href="{{ app()->isLocal('en') ? '/en' : '' }}/appearance/32" class="d-block mb-1 col-6 col-md-4">
+      <a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance/32" class="d-block mb-1 col-6 col-md-4">
               <img src="/img/drop/tambahan.jpg" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">{{ __('Perkakas Spesial') }}</a>
-      <a href="{{ app()->isLocal('en') ? '/en' : '' }}/appearance/43" class="d-block mb-1 col-6 col-md-4">
+      <a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance/43" class="d-block mb-1 col-6 col-md-4">
               <img src="/img/drop/tameng.jpg" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">{{ __('Tameng') }}</a>
     </div>
 </div>
