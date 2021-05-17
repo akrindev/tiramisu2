@@ -9,6 +9,13 @@
 Route::view('/', 'toram');
 Route::get('/search', 'SearchController@search');
 
+/**
+* Appearance
+*/
+Route::prefix('appearance')->group(function() {
+    Route::get('/', 'AppearanceController@show');
+    Route::get('/{type}', 'AppearanceController@type');
+});
 
 // items english
 

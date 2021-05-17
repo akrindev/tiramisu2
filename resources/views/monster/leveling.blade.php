@@ -35,7 +35,7 @@
             <div class="col-sm-6 col-md-6">
               <div class="form-group">
               <div class="input-group">
-                <input type="number" class="form-control text-right" placeholder="Bonus EXP Gain %" aria-label="Bonus EXP GAIN" name="bonusexp" min="0" max="100000" value="{{ request('bonusexp') }}">
+                <input type="number" class="form-control text-right" placeholder="Bonus EXP Gain %" aria-label="Bonus EXP GAIN" name="bonusexp" min="0" max="1000000" value="{{ request('bonusexp') }}">
                  <span class="input-group-append">
                             <span class="input-group-text">%</span>
                           </span>

@@ -129,20 +129,12 @@ Route::prefix('item')->group(base_path('routes/item.php'));
 
 
 /**
-* Contribution routes
-*
-Route::middleware(['auth'])->group(function() {
-	Route::get('/contribution/show', 'ContributionController@show');
-  	Route::post('/contribution/edit', 'ContributionController@edit');
-  	Route::get('/contribution/fetch/{id}', 'ContributionController@fetch');
-  	Route::get('/contribution/submit', 'ContributionController@mySubmition');
-
-  	Route::middleware(['admin'])->group(function() {
-    	Route::get('/contribution/sudo', 'ContributionController@moderasi');
-    	Route::post('/contribution/sudo', 'ContributionController@sudoModerasi');
-    });
+* Appearance
+*/
+Route::prefix('appearance')->group(function() {
+    Route::get('/', 'AppearanceController@show');
+    Route::get('/{type}', 'AppearanceController@type');
 });
-**/
 
 // CRUD
 Route::get('/mons/fetch/{id}', 'MonsterController@fetchI')->middleware('admin');
