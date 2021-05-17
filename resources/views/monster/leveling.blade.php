@@ -29,13 +29,13 @@
            <div class="row">
             <div class="col-sm-6 col-md-6">
               <div class="form-group">
-              <input type="number" name="level" placeholder="levelmu" class="form-control" value="{{ request('level') }}" required>
+              <input type="number" name="level" placeholder="levelmu" class="form-control" value="{{ request('level') }}" min="1" max="300" required>
               </div>
             </div>
             <div class="col-sm-6 col-md-6">
               <div class="form-group">
               <div class="input-group">
-                <input type="number" class="form-control text-right" placeholder="Bonus EXP Gain %" aria-label="Bonus EXP GAIN" name="bonusexp" value="{{ request('bonusexp') }}">
+                <input type="number" class="form-control text-right" placeholder="Bonus EXP Gain %" aria-label="Bonus EXP GAIN" name="bonusexp" min="0" max="100000" value="{{ request('bonusexp') }}">
                  <span class="input-group-append">
                             <span class="input-group-text">%</span>
                           </span>
@@ -49,7 +49,7 @@
                   <div class="selectgroup w-100">
                     <label class="selectgroup-item">
                       <input type="radio" name="range" value="5" class="selectgroup-input" checked>
-                      <span class="selectgroup-button">0-5</span>
+                      <span class="selectgroup-button">5</span>
                     </label>
 
                     <label class="selectgroup-item">
