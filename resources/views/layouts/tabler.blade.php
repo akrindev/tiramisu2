@@ -249,6 +249,7 @@
                 <a href="/prestasi" class="dropdown-item">Emblem / Prestasi</a>
                 <a href="/cooking" class="dropdown-item">Cooking / Masakan</a>
                 <a href="/dye" class="dropdown-item">Dye Bulanan</a>
+				<a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance" class="dropdown-item">App Showcase (Appearance)</a>
 				<a href="/registlet" class="dropdown-item">Registlet Gem Case List</a>
               </div>
                   </li>
