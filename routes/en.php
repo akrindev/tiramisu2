@@ -22,6 +22,7 @@ Route::prefix('appearance')->group(function() {
 Route::get('/items', 'ItemController@showAllItems');
 Route::get('/items/{id}', 'ItemController@showItems');
 
+Route::get('/', 'ItemController@showThem');
 Route::get('/item/{id}', 'ItemController@showItem');
 
 

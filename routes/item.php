@@ -1,6 +1,7 @@
 <?php
 
 // Item routes
+Route::get('/', 'ItemController@showThem');
 Route::get('/{id}', 'ItemController@showItem');
 
 // admin route

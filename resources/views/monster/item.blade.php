@@ -26,7 +26,7 @@
 
             <dl>
               <dt>
-              <b class="h5"> <img src="{{$item->dropType->url}}" class="avatar avatar-sm mr-2"> <a href="{{ app()->isLocale('en') ? '/en' : '' }}/item/{{$item->id}}" class="text-primary">{{ $item->name }}</a></b>
+              <b class="h5"> <img src="{{ $item->dropType->url }}" class="avatar avatar-sm mr-2"> <a href="{{ app()->isLocale('en') ? '/en' : '' }}/item?name={{ $item->name }}&did={{ $item->dropType->id }}" class="text-primary">{{ $item->name }}</a></b>
                 @if (auth()->check() && auth()->user()->isAdmin())
               <a href="/item/{{ $item->id }}/edit" class="btn btn-sm btn-outline-secondary">edit</a>
            @endif
@@ -84,9 +84,9 @@
 
             <li class="nav-item">
               <a class="nav-link" id="mats-tab" data-toggle="tab" href="#mats" role="tab" aria-controls="mats" aria-selected="false">Craft: Player
-              @if($item->resep->count() > 0)
+              {{-- @if($item->resep->count() > 0)
               <span class="nav-unread"></span>
-              @endif
+              @endif --}}
               </a>
             </li>
           </ul>
@@ -166,7 +166,9 @@
                   <b>{{ __('Unsur') }}:</b> <span> {{ __(ucfirst($mons->element->name)) }}</span> <br>
                    <b>{{ __('Peta') }}:</b> <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/peta/{{ $mons->map->id }}">{{ $mons->map->name }} </a>
                  </dd>
-                 <b>Drop:</b><br>
+
+                 <details>
+                     <summary class="text-danger">Drop [show/hide]</summary>
                  @foreach ($mons->drops as $drop)
                     <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/item/{{ $drop->id }}"> <img src="{{ $drop->dropType->url }}" class="avatar avatar-sm"> {{ $drop->name }} </a>
                     @if ($drop->proses && $drop->sell)
@@ -174,6 +176,7 @@
                     @endif
                     <br>
                  @endforeach
+                 </details>
                 </div>
               @endforeach
           </dl>
@@ -183,10 +186,10 @@
               </div>
              </div>
          </div>
-
+{{--
         <div class="my-5">
-        {{ $item->monsters()->paginate(20)->links() }}
-        </div>
+        {{ $item->monsters()->links() }}
+        </div> --}}
 
         @if ($relateds->count() > 0)
 

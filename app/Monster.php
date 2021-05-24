@@ -13,7 +13,7 @@ class Monster extends Model
 
     protected $guarded = [];
 
-    protected $with = ['map'];
+    protected $with = ['map', 'element'];
 
   	public $timestamps = false;
 
