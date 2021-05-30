@@ -2,9 +2,13 @@
 
 
 return [
-	'info' => 'Kamu bisa mendapatkan senjata berwarna (Weapon dye) pada tingkat kesulitan Nightmare atau Ultimate mode. di mode Nightmare senjata tidak bisa di trade, sedangkan di mode Ultimate senjata sudah auto craft dari boss battle. shield dye juga drop di mode Nightmare atau Ultimate.
+	'info' => '**Monthly Dye (Pewarna Bulanan)** adalah sebuah fitur dimana anda bisa mendapatkan item drop **"⚔ senjata dan 🛡 perisai berwarna"** dengan mengalahkan Bos Monster, pada tingkat kesulitan (difficulty) Nightmare & Ultimate Mode. Setiap bulan pada **tanggal pertama** (tanggal ke-1) "senjata dan persiai berwarna" selalu **berubah-ubah** atau diatur ulang di setiap **👾 Bos Monster**.
 
-Perolehan type dye bergantung pada senjata yg dipakai regumu. Jika 4 member regumu memakai senjata berbeda 1h, 2h, staff, katana. maka dye yang di dapat juga 1h, 2h, staff, katana. tetapi jika regumu memakai 1h semua, dye yg di dapat juga hanya 1h saja. di sarankan untuk memakai senjata yang berbeda beda agar type senjata dye yang di peroleh juga berbeda.
+Pada Mode **Nightmare** senjata & perisai ❌ **tidak bisa dibarter (trade)**, sedangkan pada Mode **Ultimate** senjata & perisai ✔ **bisa dibarter (trade)**. Jadi jika ingin mendapatkan senjata dan perisai berwarna yang bisa dibarter (trade) pilihlah Mode Ultimate.
 
-Warna senjata berubah-ubah pada tanggal pertama setiap bulannya.'
+Perolehan senjata berwarna **bergantung** pada senjata yang dipakai oleh seluruh **anggota regumu (party member).** Jika semua anggota regumu memakai senjata berbeda, Misalnya: Pedang 1 Tangan, Pedang 2 Tangan, Tongkat, dan Katana. Maka pewarna (dye) yang didapat juga Pedang 1 Tangan, Pedang 2 Tangan, Tongkat, dan Katana. Tetapi jika **"semua anggota regumu"** hanya memakai senjata **Pedang 1 Tangan**, pewarna (dye) yang dapat diperoleh juga **"hanya Pedang 1 Tangan"** saja.
+
+Jadi disarankan untuk memakai senjata yang berbeda-beda agar jenis senjata berwarna yang diperoleh juga berbeda.
+
+**📔 Catatan:** Senjata & Perisai Berwarna berubah-ubah pada tanggal pertama setiap bulannya (setiap tanggal 1).'
 ];

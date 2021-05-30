@@ -3,8 +3,37 @@
         <div class="card-header">
           <h3 class="card-title"> Dye {{ now()->formatLocalized('%B %Y') }} </h3>
         </div>
-        <div class="card-body p-3" style="font-size:15px">
-            {!! nl2br(__('dye.info')) !!}
+        <div class="card-body p-0" style="font-size:15px">
+
+            <ul class="nav nav-tabs justify-content-center m-0" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="indo-tab" data-toggle="tab" href="#indo" role="tab" aria-controls="indo" aria-selected="true">
+               Indonesian</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="en-tab" data-toggle="tab" href="#en" role="tab" aria-controls="en" aria-selected="false">English
+              <span class="nav-unread"></span>
+              </a>
+            </li>
+          </ul>
+
+
+          <div class="tab-content" id="myTabContent">
+            <!-- leveling list -->
+          <div class="tab-pane fade show active" id="indo" role="tabpanel" aria-labelledby="indo-tab">
+
+			  <div class="p-3" style="font-size:14px;font-weight:400">
+				{{ toHtml(__('dye.info', [], 'id')) }}
+			  </div>
+            </div>
+            <!-- info exp gain -->
+            <div class="tab-pane fade" id="en" role="tabpanel" aria-labelledby="en-tab">
+            <div class="p-3" style="font-size:14px;font-weight:400">
+				{{ toHtml(__('dye.info', [], 'en')) }}
+             </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
