@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'info' => '** Monthly Dye ** is a feature where you can get item drop ** "⚔ weapon and 🛡 colored shield" ** by defeating Boss Monsters, on difficulty (difficulty) Nightmare & Ultimate Mode.  Every month on ** first date ** (1st day) "colored weapons and persiai" always ** change ** or reset every ** 👾 Boss Monster **.
+    'info' => '** Monthly Dye ** is a feature where you can get item drop ** "⚔ weapon and 🛡 colored shield" ** by defeating Boss Monsters, on difficulty Nightmare & Ultimate Mode.  Every month on ** first date ** (1st day) "colored weapons and shields" always ** change ** or reset every ** 👾 Boss Monster **.
 
  In ** Nightmare Mode ** weapons & shields ❌ ** cannot be bartered (trade) **, while in ** Ultimate Mode ** weapons & shields ✔ ** can be bartered (trade) **.  So if you want to get colored weapons and shields that you can trade, choose Ultimate Mode.
 
