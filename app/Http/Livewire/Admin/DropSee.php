@@ -12,8 +12,6 @@ class DropSee extends Component
 {
     use WithPagination;
 
-    public $show = true;
-
     public $type = 0;
 
     public $search;
@@ -29,34 +27,18 @@ class DropSee extends Component
         $data = Drop::findOrFail($id)->toArray();
 
         $this->emit('getData', $data);
-
-        $this->show = false;
     }
 
-    public function onCancel($value)
+    public function saved($value = true)
     {
-        $this->show = true;
-    }
-
-    public function saved($value)
-    {
-        $this->show = true;
-
         session()->flash('saved', 'Item drop berhasil di update!');
-    }
-
-    public function deleted($value)
-    {
-        $this->show = true;
-
-        session()->flash('saved', 'Item drop berhasil di hapus!');
     }
 
     public function render()
     {
-        $items = $this->show ? $this->showDrops() : [];
-
-        return view('livewire.admin.drop-see', compact('items'));
+        return view('livewire.admin.drop-see', [
+            'items' => $this->showDrops()
+        ]);
     }
 
     public function showDrops()
@@ -68,8 +50,6 @@ class DropSee extends Component
             ->orWhere('name_en', 'like', '%' . $this->search . '%');
         })
         ->orderByDesc('id')->paginate(10);
-
-        $items->map(fn ($item) => $item);
 
         return $items;
     }

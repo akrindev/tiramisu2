@@ -8,7 +8,7 @@
             </b>
 
            @if (auth()->check() && auth()->user()->isAdmin())
-              <a href="/item/{{ $item->id }}/edit" class="btn btn-sm btn-outline-secondary">edit</a>
+              <a href="/item/{{ $item->id }}/edit" class="btn btn-sm btn-outline-secondary" onclick="event.preventDefault(); var y = window.open('/item/{{ $item->id }}/edit', '_blank'); y.onbeforeunload = () => alert('berhasil di edit, refresh untuk melihat perubahan');">edit</a>
            @endif
 
            <a rel="nofollow" target="_blank" href="/temp/drop/edit/{{ $item->id }}" class="float-right small text-muted"><span data-nosnippet>[<i class="">sarankan pengeditan</i>]</span></a>
@@ -111,6 +111,10 @@
             @endif
              </div>
 
+            </div>
+
+            <div class="my-3" data-nosnippet>
+                {!! !is_null($item->released) ? "<strong>released date:</strong> $item->released" : '' !!}
             </div>
 
             <details>

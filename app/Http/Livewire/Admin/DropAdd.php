@@ -21,6 +21,7 @@ class DropAdd extends Component
     public $npc;
     public $picture;
     public $fullimage;
+    public $released;
 
     protected $listeners = ['changeTipe'];
 
@@ -86,7 +87,8 @@ class DropAdd extends Component
         'sell'		=> null,
         'note'		=> $note,
         'picture'	=> $nama ?? null,
-        'fullimage'	=> $fullimage ?? null
+        'fullimage'	=> $fullimage ?? null,
+        'released'  => $this->released
       ]);
 
       $this->resetForm();
@@ -102,5 +104,6 @@ class DropAdd extends Component
       $this->npc = null;
       $this->picture = null;
       $this->fullimage = null;
+      $this->released = null;
     }
 }

@@ -5,13 +5,9 @@
       </div>
 
       <div class="row">
-        {{-- edit form   --}}
-        <div class="col-12 {{ !$show ? '' : 'd-none' }}">
-            <livewire:admin.drop-edit/>
-        </div>
 
         {{-- showing item --}}
-        <div class="col-12 {{ $show ? '' : 'd-none' }}">
+        <div class="col-12">
 
             <div class="row">
 
@@ -47,7 +43,7 @@
 
                @if (count($items) > 0)
                 @foreach ($items as $item)
-                    @livewire('admin.drop-show', ['item' => $item], key($item->id))
+                    @livewire('admin.drop-show', ['item' => $item], key($item->id.time()))
                 @endforeach
                @endif
 

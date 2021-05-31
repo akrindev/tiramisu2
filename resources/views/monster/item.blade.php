@@ -127,14 +127,17 @@
             </div>
           </div>
                 </div>
+
+
+            <div class="my-3" data-nosnippet>
+                {!! !is_null($item->released) ? "<strong>released date:</strong> $item->released" : '' !!}
+            </div>
               </dd>
             </dl>
 
 
         </div>
     </div>
-
-    @includeUnless(app()->isLocal(), 'inc.ads_mobile')
 
          <div class="card">
              <div class="card-header p-3">
@@ -191,6 +194,10 @@
         {{ $item->monsters()->links() }}
         </div> --}}
 
+
+    @includeUnless(app()->isLocal(), 'inc.ads_mobile')
+
+
         @if ($relateds->count() > 0)
 
         <div class="card">
@@ -198,10 +205,14 @@
                 <h2 class="card-title">Related Items</h2>
             </div>
 
-            <div class="card-body p-3">
-                @foreach ($relateds as $related)
-                    <img src="{{$related->dropType->url}}" class="avatar avatar-sm mr-2"> <a href="{{ app()->isLocale('en') ? '/en' : '' }}/item/{{$related->id}}" class="text-primary">{{ $related->name }}</a> <br>
-                @endforeach
+            <div class="card-body p-0">
+                <ul class="list-group">
+                    @foreach ($relateds as $related)
+                    <li class="list-group-item p-1">
+                        <img src="{{$related->dropType->url}}" class="avatar avatar-sm mr-2"> <a href="{{ app()->isLocale('en') ? '/en' : '' }}/item/{{$related->id}}" class="text-primary">{{ $related->name }}</a>
+                    </li>
+                    @endforeach
+                </ul>
             </div>
         </div>
 

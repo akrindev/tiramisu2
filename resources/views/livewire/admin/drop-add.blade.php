@@ -68,6 +68,13 @@
               <input type="file" wire:model="fullimage" name="fullimage" class="form-control" accept="image/*" id="fullimage">
             </div>
 
+
+          <div class="form-group">
+              <label class="form-label">Released Date</label>
+              <input type="date" wire:model.defer="released" class="form-control" id="">
+          </div>
+
+
           <div class="form-group">
             <button class="btn btn-outline-primary btn-pill" type="submit" id="simpan">Simpan</button>
           </div>

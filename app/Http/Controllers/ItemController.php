@@ -136,6 +136,7 @@ class ItemController extends Controller
         $item->drop_type_id = request()->type;
         $item->proses	= request()->proses;
         $item->sell		= request()->sell;
+        $item->released = request()->released;
 
         if(! is_null(request()->noteMonster) || ! is_null(request()->noteNpc)) {
             $item->note = [

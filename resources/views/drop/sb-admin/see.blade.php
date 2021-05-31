@@ -20,4 +20,9 @@
     <script type="text/javascript">
         loadProgressBar();
     </script>
+    <script>
+        function refresh() {
+            Livewire.emit('saved');
+        }
+    </script>
 @endsection

@@ -80,6 +80,11 @@
             <input type="file" name="fullimage" class="form-control" accept="image/*" id="fullimage">
           </div>
 
+          <div class="form-group">
+              <label class="form-label">Released Date</label>
+              <input type="date" name="released" class="form-control" id="">
+          </div>
+
         <div class="form-group">
           <button class="btn btn-outline-primary btn-pill" type="submit" id="simpan">Simpan</button> <span class="btn btn-outline-danger ml-3 btn-pill" id="hapus">hapus</span>
         </div>
@@ -96,43 +101,6 @@
     </div>
 
   </div>
-
-  @if($data->resep->count() > 0)
-  <div class="col-md-4">
-    <div class="card">
-      <div class="card-body p-3">
-     <strong>Resep</strong><br>
-     @foreach ($data->resep as $resep)
-        <div class="mb-2"></div>
-
-
-  {!! form_open('/mons/hapus/resep/'.$resep->id, ["id"=>"form-hapus-resep"]) !!}
-
-  <button id="hapus-resep" class="btn btn-sm btn-danger" type="submit">hapus dan buat ulang resep</button>
-   @csrf
-    @method('DELETE')
-  {!! form_close() !!}
-
-       @foreach (explode(',',$resep->material) as $mat)
-
-          @php $x = $loop->index;
-               $y = $x@endphp
-        @if(is_null(App\Drop::find($mat)))
-          @php $x = $loop->index+1;
-               $y = $loop->index-1;
-          @endphp
-        @else
-         Bahan {{ $y === 0 ? 1:$y }}:
-           <img src="{{ App\Drop::find($mat)->dropType->url }}" class="avatar avatar-sm" style="max-width:16px;max-height:16px">
-        <a href="/item/{{ App\Drop::find($mat)->id }}"> {{ App\Drop::find($mat)->name }}</a> x{{ explode(',',$resep->jumlah)[$x] }}<br>
-        @endif
-      @endforeach
-     @endforeach
-      </div>
-    </div>
-  </div>
- @endif
-
 
     </div>
   </div>
@@ -193,7 +161,7 @@
           swal("Data drop berhasil di edit", {
           	icon: 'success'
           }).then(() => {
-          	window.location.href = '/item/'+res.data.redirect
+          	window.close();
           });
         }
 
