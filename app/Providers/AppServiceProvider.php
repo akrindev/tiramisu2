@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Str;
 
 use App;
 
@@ -26,7 +27,9 @@ class AppServiceProvider extends ServiceProvider
      		\URL::forceScheme('https');
         }
 
-        App::setLocale('id');
+		$locale = Str::contains(request()->getHttpHost(), 'en') ? 'en' : 'id';
+
+        App::setLocale($locale);
 
         Blade::directive('canonical', function($exp) {
         	return "<?php echo canonical()->toHtml(); ?>";
