@@ -43,6 +43,7 @@ adalah situs fansite dari game online MMO
 - [x] Submit Quiz
 - [x] Make Quiz with code
 - [x] Contribution Point
+- [x] Admin can manage all of the features on Dashboard
 
 ## Todo
 - [ ] Make Guild
