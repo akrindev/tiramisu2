@@ -13,7 +13,7 @@ class Guild extends Model
 
     public function users()
     {
-        return $this->belongToMany(User::class, 'user_guild');
+        return $this->belongsToMany(User::class, 'user_guild');
     }
 
     public function manager()
