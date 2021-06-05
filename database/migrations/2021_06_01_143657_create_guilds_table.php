@@ -17,8 +17,9 @@ class CreateGuildsTable extends Migration
             $table->id();
             $table->integer('manager_id');
             $table->string('name');
-            $table->text('description')->nullable();
             $table->string('logo');
+            $table->text('description')->nullable();
+            $table->integer('level');
             $table->timestamps();
         });
 

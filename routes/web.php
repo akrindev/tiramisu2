@@ -212,3 +212,5 @@ Route::prefix('email')->middleware('admin')->group(function(){
   	Route::get('baca/{id}', 'SendMailController@getLog');
   	Route::get('log', 'SendMailController@logMail');
 });
+
+Route::resource('guilds', 'GuildController');

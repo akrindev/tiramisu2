@@ -178,4 +178,10 @@ class User extends Authenticatable
     {
       return $this->belongsToMany(Formula::class, 'user_formula', 'user_id', "formula_id")->using(UserFormula::class);
     }
+
+    // guild
+    public function guilds()
+    {
+        return $this->belongsToMany(Guild::class, 'user_guild');
+    }
 }
