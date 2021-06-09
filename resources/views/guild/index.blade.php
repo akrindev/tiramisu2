@@ -49,7 +49,7 @@
                                     <img src="{{ $guild->logo }}" alt="{{ $guild->name }}" class="thumb">
                                 </div>
                                 <div>
-                                    <strong class="d-block" style="font-size: 18px">{{ $guild->name }}</strong>
+                                    <strong class="d-block" style="font-size: 18px"><a href="/guilds/{{ $guild->id }}">{{ $guild->name }}</a></strong>
                                     <small class="text-muted"><strong>Owner: </strong>{{ $guild->manager->ign }} - Level: {{ $guild->level }}</small>
                                 </div>
                             </td>

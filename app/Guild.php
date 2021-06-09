@@ -17,7 +17,9 @@ class Guild extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_guild')->withPivot(['role', 'accept']);
+        return $this->belongsToMany(User::class, 'user_guild')
+                    ->using(UserGuild::class)
+                    ->withPivot(['role', 'accept', 'manager_id']);
     }
 
     public function manager()

@@ -26,7 +26,7 @@ class CreateGuildsTable extends Migration
         Schema::create('user_guild', function (Blueprint $table) {
             $table->integer('user_id');
             $table->integer('guild_id');
-            $table->enum('role', ['ketua', 'wakil', 'inviter']);
+            $table->enum('role', ['ketua', 'wakil', 'inviter', 'member']);
             $table->integer('manager_id')->nullable();
             $table->tinyInteger('accept')->default(0);
             $table->timestamps();

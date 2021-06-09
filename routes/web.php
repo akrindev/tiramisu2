@@ -214,3 +214,5 @@ Route::prefix('email')->middleware('admin')->group(function(){
 });
 
 Route::resource('guilds', 'GuildController');
+Route::post('guilds/{id}', 'GuildController@addMember');
+Route::delete('guilds/{id}/r', 'GuildController@removeMember')->name('guilds.remove.member');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -61,7 +62,11 @@ class GuildController extends Controller
 
         $guild = Guild::create($data + ['manager_id' => auth()->id()]);
 
-        $guild->users()->attach($request->user(), ['role' => 'ketua', 'manager_id' => auth()->id()]);
+        $guild->users()->attach($request->user(), [
+            'role' => 'ketua',
+            'manager_id' => auth()->id(),
+            'accept'    => 1
+        ]);
 
         session()->flash('success', 'Guild baru telah di buat');
 
@@ -76,7 +81,11 @@ class GuildController extends Controller
      */
     public function show($id)
     {
-        $guild = Guild::findOrFail($id);
+        $guild = Guild::with([
+            'users' => function ($query) {
+                $query->with('cooking', 'secondCooking');
+            }
+        ])->findOrFail($id);
 
         return view('guild.show', compact('guild'));
     }
@@ -89,9 +98,60 @@ class GuildController extends Controller
      */
     public function edit($id)
     {
-        //
+        $guild = Guild::findOrFail($id);
+
+        $this->authorize('update', $guild);
+
+        return view('guild.edit', compact('guild'));
     }
 
+    /**
+    * Add memer to guild
+    */
+    public function addMember(Guild $id)
+    {
+        $this->authorize('add-member', $id);
+
+        $data = \request()->validate([
+            'name' => ['required', 'exists:users,username'],
+            'role'  => ['required', 'in:ketua,wakil,inviter,member']
+        ], [
+            'name.exists'   => 'username tidak di temukan'
+        ]);
+
+        $user = \App\User::where('username', '=', $data['name'])->first();
+
+        $s = auth()->user()->guilds()->wherePivot('user_id', '=', $user->id)
+                ->wherePivot('user_id', '!=', auth()->id())
+                ->wherePivot('accept', '=', 0)
+                ->first();
+
+        if(! $s) {
+            $id->users()->attach($user->id, [
+                'role'  => $data['role'],
+                'manager_id' => auth()->id(),
+                'accept' => 0
+            ]);
+
+            session()->flash('success', 'Undangan guild telah di kirimkan, dan menunggu user untuk menerima undangan guild anda');
+        } else {
+            session()->flash('failed', 'username pernah di tambahkan');
+        }
+
+        return \back();
+    }
+    /**
+    * remove member
+    */
+    public function removeMember($id)
+    {
+        $guild = Guild::findOrFail($id);
+        $guild->users()->detach(request()->memid);
+
+        session()->flash('success', 'member di hapus');
+
+        return \back();
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -101,7 +161,35 @@ class GuildController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $guild = Guild::findOrFail($id);
+
+        $this->authorize('update', $guild);
+
+        $data = $request->validate([
+            'name' => ['required', 'max:16'],
+            'description' => ['required'],
+            'logo' => ['image', 'max:1024'],
+            'level' => ['required', 'integer', 'min:1', 'max:49']
+        ]);
+
+        if($request->hasFile('logo')) {
+
+            $file = $request->file('logo')->getRealPath();
+
+            $name = '/img/guild/'. Str::slug($request->name) . '-' .time(). '.png';
+
+            (new Image)->file($file)->name($name)->save();
+            (new Filesystem)->delete(public_path($guild->logo));
+
+            $data['logo'] = $name;
+        }
+
+
+        $guild->update($data + ['manager_id' => auth()->id()]);
+
+        session()->flash('success', 'Guild telah di edit');
+
+        return \redirect('guilds/'. $guild->id);
     }
 
     /**
@@ -112,6 +200,11 @@ class GuildController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $guild = Guild::findOrFail($id);
+        $guild->delete();
+
+        session()->flash('success', 'guild berhasil di bubarkan');
+
+        return redirect()->intended('guilds');
     }
 }

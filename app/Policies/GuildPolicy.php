@@ -69,6 +69,14 @@ class GuildPolicy
     }
 
     /**
+    * Wakil can add member
+    */
+    public function addMember(User $user, Guild $guild)
+    {
+        return $user->id === $guild->manager_id;
+    }
+
+    /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\User  $user
