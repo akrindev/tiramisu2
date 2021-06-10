@@ -53,7 +53,7 @@ class GuildPolicy
      */
     public function update(User $user, Guild $guild)
     {
-        return $user->id === $guild->manager_id || $user->guilds()->canManageGuild();
+        return $user->id === $guild->manager_id || $guild->canManageGuild($user->id);
     }
 
     /**
@@ -65,13 +65,29 @@ class GuildPolicy
      */
     public function delete(User $user, Guild $guild)
     {
-        return $user->id === $guild->manager_id || $user->guilds()->canManageGuild();
+        return $user->id === $guild->manager_id || $guild->canManageGuild($user->id);
     }
 
     /**
     * Wakil can add member
     */
     public function addMember(User $user, Guild $guild)
+    {
+        return $user->id === $guild->manager_id || $guild->canManageGuild($user->id);
+    }
+
+    /**
+    * Wakil can add member
+    */
+    public function removeMember(User $user, Guild $guild)
+    {
+        return $user->id === $guild->manager_id || $guild->canManageGuild($user->id);
+    }
+
+    /**
+    * Ketua dapat memindahtangankan ketua
+    */
+    public function gantiKetua(User $user, Guild $guild)
     {
         return $user->id === $guild->manager_id;
     }

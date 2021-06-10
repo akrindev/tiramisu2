@@ -58,6 +58,7 @@
                             <td>{{ toHtml($guild->description) }}</td>
                         </tr>
                         </table>
+                        @can('update', $guild)
 
                         <div class="mt-5 px-5">
                             <form action="{{ route('guilds.destroy', $guild->id) }}" method="post" onsubmit="return confirm('guild tidak akan kembali setelah di bubarkan');">
@@ -71,6 +72,7 @@
                             </form>
 
                         </div>
+                        @endcan
                     </div>
 
                     @can('add-member', $guild)
@@ -90,10 +92,9 @@
                             <div class="form-group">
                                 <label class="form-label">Jabatan</label>
                                 <select name="role" id="" class="form-control form-select @error('role') is-invalid @enderror">
-                                    <option value="ketua">Ketua</option>
                                     <option value="wakil">Wakil Ketua</option>
-                                    <option value="Inviter">Inviter</option>
-                                    <option value="Member">Member</option>
+                                    <option value="inviter">Inviter</option>
+                                    <option value="member">Member</option>
                                 </select>
                                 @error('role')
                                     <span class="invalid-feedback">{{ $message }}</span>
@@ -122,7 +123,9 @@
                                         <th>Nama</th>
                                         <th>Jabatan</th>
                                         <th>Cooking</th>
+                                        @can('update', $guild)
                                         <th>Action</th>
+                                        @endcan
                                 </tr>
                             </thead>
                             <tbody>
@@ -154,20 +157,20 @@
                                             </span>
                                         </div>
                                     </td>
+                                    @can('update', $guild)
                                     <td>
                                         <div>
-                                            @if (auth()->id() != $member->pivot->user_id)
                                             <form action="{{ route('guilds.remove.member', $guild->id) }}" method="POST" onsubmit="return confirm('yakin mau hapus member ini?')">
                                                 @csrf
                                                 @method('delete')
-                                                <input type="hidden" name="memid" value="{{ $member->user_id }}">
+                                                <input type="hidden" name="memid" value="{{ $member->id }}">
                                                 <div class="form-group">
                                                     <button class="btn btn-outline-danger btn-sm">hapus</button>
                                                 </div>
                                             </form>
-                                            @endif
                                         </div>
                                     </td>
+                                    @endcan
                                 </tr>
                             @endforeach
                             </tbody>

@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title', 'Tambah uild')
+@section('title', 'Edit Guild')
 
 @section('content')
     <div class="my-5">

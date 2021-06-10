@@ -44,7 +44,7 @@
                         <table class="card-table table">
                         @forelse ($guilds as $guild)
                         <tr>
-                            <td>
+                            <td class="p-3">
                                 <div class="d-block mb-1">
                                     <img src="{{ $guild->logo }}" alt="{{ $guild->name }}" class="thumb">
                                 </div>

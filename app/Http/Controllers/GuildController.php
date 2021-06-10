@@ -32,6 +32,8 @@ class GuildController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Guild::class);
+
         return view('guild.create');
     }
 
@@ -46,7 +48,7 @@ class GuildController extends Controller
         $this->authorize('create', Guild::class);
 
         $data = $request->validate([
-            'name' => ['required', 'max:16'],
+            'name' => ['required', 'max:16', 'unique:guilds,name'],
             'description' => ['required'],
             'logo' => ['required', 'image', 'max:1024'],
             'level' => ['required', 'integer', 'min:1', 'max:49']
@@ -83,7 +85,7 @@ class GuildController extends Controller
     {
         $guild = Guild::with([
             'users' => function ($query) {
-                $query->with('cooking', 'secondCooking');
+                return $query->with(['cooking', 'secondCooking']);
             }
         ])->findOrFail($id);
 
@@ -114,7 +116,7 @@ class GuildController extends Controller
 
         $data = \request()->validate([
             'name' => ['required', 'exists:users,username'],
-            'role'  => ['required', 'in:ketua,wakil,inviter,member']
+            'role'  => ['required', 'in:wakil,inviter,member']
         ], [
             'name.exists'   => 'username tidak di temukan'
         ]);
@@ -145,13 +147,71 @@ class GuildController extends Controller
     */
     public function removeMember($id)
     {
+        request()->validate([
+            'memid' => ['required']
+        ]);
+
         $guild = Guild::findOrFail($id);
+
+        $this->authorize('remove-member', $guild);
+
         $guild->users()->detach(request()->memid);
 
         session()->flash('success', 'member di hapus');
 
         return \back();
     }
+
+    // make as ketua guild
+    public function pindahKetuaSerikat($id)
+    {
+        request()->validate([
+            'memid' => ['required']
+        ]);
+
+        $guild = Guild::findOrFail($id);
+        $user = User::findOrFail(request()->memid);
+
+        $this->authorize('ganti-ketua', $guild);
+
+        $avail = $guild->users()->wherePivot('user_id', $user->id)
+                    ->wherePivot('accept', 0)
+                    ->first();
+
+        if($avail){
+            session()->flash('failed', 'belum menjadi member serikat');
+
+            return back();
+        }
+
+        $guild->users()->updateExistingPivot(auth()->id(), ['role' => 'wakil']);
+        $guild->users()->updateExistingPivot($user->id, ['role' => 'ketua']);
+        $guild->update([
+            'manager_id'    => $user->id
+        ]);
+
+        session()->flash('success', 'Ketua guild telah di ganti');
+
+        return redirect('guilds/'. $guild->id);
+    }
+
+    // acceptable guild invitation
+    public function accepting($id)
+    {
+        $guild = Guild::with('users')->findOrFail($id);
+
+        $user = $guild->users()->wherePivot('user_id', auth()->id())
+                    ->wherePivot('user_id', auth()->id())->first();
+
+        if(\request()->has('y')) {
+            $guild->users()->updateExistingPivot($user->id, ['accept' => 1]);
+        } else {
+            $guild->users()->detach($user->id);
+        }
+
+        return redirect('guilds/' . $guild->id);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -201,6 +261,7 @@ class GuildController extends Controller
     public function destroy($id)
     {
         $guild = Guild::findOrFail($id);
+        $guild->users()->detach();
         $guild->delete();
 
         session()->flash('success', 'guild berhasil di bubarkan');

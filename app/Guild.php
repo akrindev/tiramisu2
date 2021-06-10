@@ -12,7 +12,7 @@ class Guild extends Model
     protected $guarded = [];
 
     protected $with = [
-        'manager'
+        'manager', 'users'
     ];
 
     public function users()
@@ -27,8 +27,14 @@ class Guild extends Model
         return $this->belongsTo(User::class, 'manager_id');
     }
 
-    public function canManageGuild()
+    public function canManageGuild($id)
     {
-        //
+        $role = $this->users()->wherePivot('user_id', $id)->first();
+
+        if(! $role) {
+            return false;
+        }
+
+        return \in_array($role->pivot->role, ['wakil', 'ketua']);
     }
 }

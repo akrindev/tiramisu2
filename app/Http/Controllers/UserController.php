@@ -18,10 +18,10 @@ class UserController extends Controller
     **/
  	public function profileku()
     {
-      $threads = Auth::user()->thread()->latest()->paginate(10);
+        $threads = Auth::user()->thread()->latest()->paginate(10);
 
-      return view('profile')->with('profile',Auth::user())
-        ->with('threads',$threads);
+        return view('profile')->with('profile', Auth::user())
+        ->with('threads', $threads);
     }
 
   	public function profile($provider_id)
