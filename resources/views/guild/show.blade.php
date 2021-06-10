@@ -151,7 +151,10 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <img width="20px" height="20px" src="/img/guild_{{ $member->pivot->role }}.png"/> {{ $member->pivot->role }} {!! !$member->pivot->accept ? "<span class='badge badge-warning'>waiting</span>" : '' !!} <br>
+											@if($member->pivot->role != 'member')
+                                            <img width="20px" height="20px" src="/img/guild_{{ $member->pivot->role }}.png"/>
+											@endif
+											{{ $member->pivot->role }} {!! !$member->pivot->accept ? "<span class='badge badge-warning'>waiting</span>" : '' !!} <br>
                                             <span class="text-muted">
                                                 <strong>Inviter:</strong>
                                                 {{ optional($member->pivot->manager)->name }}
