@@ -251,6 +251,7 @@
                 <a href="/dye" class="dropdown-item">Dye Bulanan</a>
 				<a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance" class="dropdown-item">App Showcase (Appearance)</a>
 				<a href="/registlet" class="dropdown-item">Registlet Gem Case List</a>
+				<a href="/guilds" class="dropdown-item">Guild List</a>
               </div>
                   </li>
 

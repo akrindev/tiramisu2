@@ -44,6 +44,10 @@
                 <strong>{{ $guild->manager->name }}</strong> mengundang anda untuk bergabung ke <strong>Guild <a href="/guilds/{{ $guild->id }}">{{ $guild->name }}</a></strong> | <a href="{{ route('guilds.accept', $guild->id) }}?y">terima</a> / <a href="{{ route('guilds.accept', $guild->id) }}?n">tolak</a>
             @endforeach
         </div>
+        @else
+        <div class="d-block my-3">
+            you are not in <a href="/guilds">guild</a> yet.
+        </div>
         @endif
       </div>
 

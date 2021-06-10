@@ -78,8 +78,11 @@
                     @can('add-member', $guild)
 
                     <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">tambah member</h2>
+                        </div>
                         <div class="card-body">
-                            <form action="/guilds/{{ $guild->id }}" method="post">
+                            <form action="{{ route('guilds.member', $guild->id) }}" method="post">
                             <div class="form-group">
                                 <label class="form-label">Username</label>
                                 <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="username" required>
@@ -159,6 +162,8 @@
                                     </td>
                                     @can('update', $guild)
                                     <td>
+                                        @if ($guild->manager_id != $member->pivot->user_id)
+
                                         <div>
                                             <form action="{{ route('guilds.remove.member', $guild->id) }}" method="POST" onsubmit="return confirm('yakin mau hapus member ini?')">
                                                 @csrf
@@ -168,7 +173,19 @@
                                                     <button class="btn btn-outline-danger btn-sm">hapus</button>
                                                 </div>
                                             </form>
+
+                                            @if ($member->pivot->accept)
+
+                                            <form action="{{ route('guilds.ketua', $guild->id) }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="memid" value="{{ $member->id }}">
+                                            <div class="form-group">
+                                                <button class="btn btn-sm btn-outline-primary">jadikan ketua</button>
+                                            </div>
+                                            </form>
+                                            @endif
                                         </div>
+                                        @endif
                                     </td>
                                     @endcan
                                 </tr>

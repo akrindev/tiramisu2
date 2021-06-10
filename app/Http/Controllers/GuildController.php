@@ -10,6 +10,7 @@ use \File;
 use App\Helpers\SaveAsImage as Image;
 
 use App\Guild;
+use App\User;
 
 class GuildController extends Controller
 {
@@ -110,15 +111,17 @@ class GuildController extends Controller
     /**
     * Add memer to guild
     */
-    public function addMember(Guild $id)
+    public function addMember($id)
     {
-        $this->authorize('add-member', $id);
+        $guild = Guild::findOrFail($id);
+        $this->authorize('add-member', $guild);
 
         $data = \request()->validate([
             'name' => ['required', 'exists:users,username'],
             'role'  => ['required', 'in:wakil,inviter,member']
         ], [
-            'name.exists'   => 'username tidak di temukan'
+            'name.exists'   => 'username tidak di temukan',
+            'role.in'   => 'role tidak valid'
         ]);
 
         $user = \App\User::where('username', '=', $data['name'])->first();
@@ -129,7 +132,7 @@ class GuildController extends Controller
                 ->first();
 
         if(! $s) {
-            $id->users()->attach($user->id, [
+            $guild->users()->attach($user->id, [
                 'role'  => $data['role'],
                 'manager_id' => auth()->id(),
                 'accept' => 0
@@ -186,9 +189,9 @@ class GuildController extends Controller
 
         $guild->users()->updateExistingPivot(auth()->id(), ['role' => 'wakil']);
         $guild->users()->updateExistingPivot($user->id, ['role' => 'ketua']);
-        $guild->update([
+        $guild->forceFill([
             'manager_id'    => $user->id
-        ]);
+        ])->save();
 
         session()->flash('success', 'Ketua guild telah di ganti');
 
