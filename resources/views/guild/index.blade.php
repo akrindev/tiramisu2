@@ -15,18 +15,20 @@
     <div class="my-5">
         <div class="container">
             <div class="page-header">
-                <h1 class="page-title">Guild</h1>
+                <h1 class="page-title">Guild List</h1>
             </div>
 
 
             <div class="row">
                 <div class="col-md-8">
+                    @auth
                     <div class="my-3">
                         <a href="/guilds/create" class="btn btn-outline-primary d-block">
                             <i class="fe fe-plus"></i>
                             Tambah Guild
                         </a>
                     </div>
+                    @endauth
                     <style>
                                 .thumb {
                                     max-height: 155px;

@@ -27,7 +27,7 @@ class Guild extends Model
         return $this->belongsTo(User::class, 'manager_id');
     }
 
-    public function canManageGuild($id)
+    public function canManageGuild($id, $opt = null)
     {
         $role = $this->users()->wherePivot('user_id', $id)->first();
 
@@ -35,6 +35,13 @@ class Guild extends Model
             return false;
         }
 
-        return \in_array($role->pivot->role, ['wakil', 'ketua']);
+        $roles = ['wakil', 'ketua'];
+
+        if (! is_null($opt)) {
+            \array_push($roles, $opt);
+        }
+
+
+        return \in_array($role->pivot->role, $roles);
     }
 }

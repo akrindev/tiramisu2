@@ -73,7 +73,7 @@ class GuildPolicy
     */
     public function addMember(User $user, Guild $guild)
     {
-        return $user->id === $guild->manager_id || $guild->canManageGuild($user->id);
+        return $user->id === $guild->manager_id || $guild->canManageGuild($user->id, 'inviter');
     }
 
     /**

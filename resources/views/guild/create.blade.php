@@ -22,17 +22,32 @@
 
                                     <div class="form-group">
                                         <label class="form-label">Nama Guild</label>
-                                        <input type="text" class="form-control" name='name' placeholder="Nama guild" max="16" required>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name='name' placeholder="Nama guild" min="2" max="16" value="{{ old('name') }}" required>
+                                        @error('name')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group">
                                         <label class="form-label">Deskripsi</label>
-                                        <textarea name="description" rows="5" class="form-control" placeholder="Informasi Guild" required></textarea>
+                                        <textarea name="description" rows="5" class="form-control @error('description') is-invalid @enderror" placeholder="Informasi Guild" required>{{ old('description') }}</textarea>
+                                        @error('description')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group">
                                         <label class="form-label">Logo</label>
-                                        <input type="file" name="logo" id="logo" class="form-control" required>
+                                        <input type="file" name="logo" id="logo" class="form-control @error('logo') is-invalid @enderror" accept="image/*" required>
+                                        @error('logo')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group">

@@ -145,7 +145,7 @@
                                         <div>
                                             {{ $member->pivot->role }} {!! !$member->pivot->accept ? "<span class='badge badge-warning'>waiting</span>" : '' !!} <br>
                                             <span class="text-muted">
-                                                <strong>Invited by:</strong>
+                                                <strong>Inviter:</strong>
                                                 {{ optional($member->pivot->manager)->name }}
                                             </span>
                                         </div>

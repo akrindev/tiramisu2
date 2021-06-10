@@ -201,10 +201,10 @@ class GuildController extends Controller
     // acceptable guild invitation
     public function accepting($id)
     {
-        $guild = Guild::with('users')->findOrFail($id);
+        $guild = Guild::findOrFail($id);
 
         $user = $guild->users()->wherePivot('user_id', auth()->id())
-                    ->wherePivot('user_id', auth()->id())->first();
+                            ->first();
 
         if(\request()->has('y')) {
             $guild->users()->updateExistingPivot($user->id, ['accept' => 1]);
@@ -248,7 +248,7 @@ class GuildController extends Controller
         }
 
 
-        $guild->update($data + ['manager_id' => auth()->id()]);
+        $guild->update($data);
 
         session()->flash('success', 'Guild telah di edit');
 
