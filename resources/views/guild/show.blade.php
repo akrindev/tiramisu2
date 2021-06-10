@@ -174,7 +174,7 @@
                                                 </div>
                                             </form>
 
-                                            @if ($member->pivot->accept)
+                                            @if ($member->pivot->accept && $guild->manager_id == auth()->id())
 
                                             <form action="{{ route('guilds.ketua', $guild->id) }}" method="post">
                                                 @csrf

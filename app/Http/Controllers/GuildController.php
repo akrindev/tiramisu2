@@ -187,8 +187,8 @@ class GuildController extends Controller
             return back();
         }
 
-        $guild->users()->updateExistingPivot(auth()->id(), ['role' => 'wakil']);
-        $guild->users()->updateExistingPivot($user->id, ['role' => 'ketua']);
+        $user->guilds()->updateExistingPivot($user->id, ['role' => 'wakil']);
+        $user->guilds()->updateExistingPivot(auth()->id(), ['role' => 'ketua']);
         $guild->forceFill([
             'manager_id'    => $user->id
         ])->save();

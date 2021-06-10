@@ -39,8 +39,16 @@
         @if ($profile->guilds->count())
 
         <div class="d-block my-3">
+          <strong>Guild</strong> <br>
+          @foreach ($profile->guilds()->wherePivot('accept', 1)->get() as $guild)
+              <strong class="d-block"><a href="/guilds/{{ $guild->id }}">{{ $guild->name }}</a></strong>
+          @endforeach
+
+        </div>
+
+        <div class="d-block my-3">
             <strong>Guild invitation</strong> <br>
-            @foreach ($profile->guilds as $guild)
+            @foreach ($profile->guilds()->wherePivot('accept', 0)->get() as $guild)
                 <strong>{{ $guild->manager->name }}</strong> mengundang anda untuk bergabung ke <strong>Guild <a href="/guilds/{{ $guild->id }}">{{ $guild->name }}</a></strong> | <a href="{{ route('guilds.accept', $guild->id) }}?y">terima</a> / <a href="{{ route('guilds.accept', $guild->id) }}?n">tolak</a>
             @endforeach
         </div>
