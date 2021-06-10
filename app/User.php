@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Forum;
 use App\ForumsDesc;
@@ -177,5 +178,13 @@ class User extends Authenticatable
     public function savedFormulas()
     {
       return $this->belongsToMany(Formula::class, 'user_formula', 'user_id', "formula_id")->using(UserFormula::class);
+    }
+
+    // guild
+    public function guilds()
+    {
+        return $this->belongsToMany(Guild::class, 'user_guild')
+                    ->using(UserGuild::class)
+                    ->withPivot(['role', 'accept', 'manager_id']);
     }
 }

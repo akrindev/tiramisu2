@@ -36,6 +36,19 @@
         <div class="d-block">
             <span>Contribution point: </span> <span class="text-primary">{{ $profile->contribution->point ?? 0 }}</span>
         </div>
+        @if ($profile->guilds->count())
+
+        <div class="d-block my-3">
+            <strong>Guild invitation</strong> <br>
+            @foreach ($profile->guilds as $guild)
+                <strong>{{ $guild->manager->name }}</strong> mengundang anda untuk bergabung ke <strong>Guild <a href="/guilds/{{ $guild->id }}">{{ $guild->name }}</a></strong> | <a href="{{ route('guilds.accept', $guild->id) }}?y">terima</a> / <a href="{{ route('guilds.accept', $guild->id) }}?n">tolak</a>
+            @endforeach
+        </div>
+        @else
+        <div class="d-block my-3">
+            you are not in <a href="/guilds">guild</a> yet.
+        </div>
+        @endif
       </div>
 
       <div class="col-md-8">

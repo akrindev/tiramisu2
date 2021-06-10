@@ -212,3 +212,12 @@ Route::prefix('email')->middleware('admin')->group(function(){
   	Route::get('baca/{id}', 'SendMailController@getLog');
   	Route::get('log', 'SendMailController@logMail');
 });
+
+Route::resource('guilds', 'GuildController');
+
+Route::middleware('auth')->group(function () {
+    Route::post('guilds/{id}/p', 'GuildController@addMember')->name('guilds.member');
+    Route::post('guilds/{id}', 'GuildController@pindahKetuaSerikat')->name('guilds.ketua');
+    Route::delete('guilds/{id}/r', 'GuildController@removeMember')->name('guilds.remove.member');
+    Route::get('guilds/{id}/a', 'GuildController@accepting')->name('guilds.accept');
+});

@@ -61,6 +61,7 @@
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/forum">Forum</a> </span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/peta">Peta (Map)</a> </span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/skill">Skill List</a></span>
+      <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/guilds">Guild List</a></span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/refine">Refine Guide</a></span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/refine/simulasi">Refine Simulator</a></span>
       <span class="d-block mb-1 col-6"><i class="fe fe-chevrons-right mr-1"></i><a href="/cb">Papan Market Calculator</a></span>
