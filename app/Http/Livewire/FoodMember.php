@@ -8,6 +8,8 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\User;
 
+use App\Helpers\Food;
+
 class FoodMember extends Component
 {
     use WithPagination;
@@ -48,8 +50,8 @@ class FoodMember extends Component
             ->orderBy('updated_at', 'desc')->paginate(12);
 
         $foods->map(function ($food) {
-            $food->buff = $this->getStatLv($food->cooking->buff, $food->cooking->stat, $food->cooking_level, true);
-            $food->second_buff = $food->secondCooking == null ? "-- unknown --" : $this->getStatLv($food->secondCooking->buff, $food->secondCooking->stat, $food->second_cooking_level, true);
+            $food->buff = (new Food)->getStatLv($food->cooking->buff, $food->cooking->stat, $food->cooking_level, true);
+            $food->second_buff = $food->secondCooking == null ? "-- unknown --" : (new Food)->getStatLv($food->secondCooking->buff, $food->secondCooking->stat, $food->second_cooking_level, true);
 
             if(! $food->contact) {
                 $food->hubungi =  "-- unknown --";
@@ -72,63 +74,4 @@ class FoodMember extends Component
 
         return $foods;
     }
-
-    public function getStatLv($buff, $stat, $lv, $parse = false) {
-        $out = 0;
-        for($i = 1;$i <= $lv;$i++){
-          if($i <= 5) {
-            $out += $stat;
-          } else {
-            $out = $out+$this->getPoint($stat);
-          }
-        }
-
-        if($parse) {
-            return $this->parse($buff, $out);
-        }
-
-        return $out;
-      }
-
-
-      private function getPoint($stat){
-
-        $out = $stat;
-
-        switch($stat) {
-          case 2:
-            $out = 4;
-            break;
-          case 4:
-            $out = 6;
-            break;
-          case 6:
-            $out = 14;
-            break;
-          case 60:
-            $out = 140;
-            break;
-          case 400:
-            $out = 600;
-            break;
-          case 20:
-            $out = 40;
-            break;
-          default:
-            $out = 2;
-        }
-
-        return $out;
-      }
-
-      private function parse($buff, $out)
-      {
-        if(Str::contains($buff, '%')) {
-          $replaced = Str::replaceLast('%', '', $buff);
-
-          return $replaced . ' ' . $out . '%';
-        }
-
-        return $buff . ' ' . $out;
-      }
 }
