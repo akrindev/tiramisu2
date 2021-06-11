@@ -87,7 +87,7 @@ class GuildController extends Controller
     {
         $guild = Guild::with([
             'users' => function ($query) {
-                return $query->with(['cooking', 'secondCooking']);
+                return $query->with(['cooking', 'secondCooking', 'contribution']);
             }
         ])->findOrFail($id);
 

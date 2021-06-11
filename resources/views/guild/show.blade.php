@@ -126,6 +126,7 @@
                                         <th>Nama</th>
                                         <th>Jabatan</th>
                                         <th>Cooking</th>
+                                        <th>Contribution</th>
                                         @can('update', $guild)
                                         <th>Action</th>
                                         @endcan
@@ -133,7 +134,7 @@
                             </thead>
                             <tbody>
 
-                            @foreach ($guild->users as $member)
+                            @foreach (collect($guild->users)->sortByDesc('contribution') as $member)
                                 <tr>
                                     <td>
                                         <div>
@@ -161,6 +162,11 @@
                                                  {{ (new \App\Helpers\Food)->getStatLv($member->secondCooking->buff, $member->secondCooking->stat, $member->second_cooking_level, true) ?? ''}}
                                             </span>
                                             @endif
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="text-primary">
+                                            {{ optional($member->contribution)->point }}
                                         </div>
                                     </td>
                                     @can('update', $guild)
