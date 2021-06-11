@@ -44,18 +44,23 @@
                     <div class="card">
                         <table class="card-table table">
                         <tr>
-                            <td>
+                            <td class="p-3">
                                 <div class="d-block mb-1">
                                     <img src="{{ $guild->logo }}" alt="{{ $guild->name }}" class="thumb">
                                 </div>
                                 <div>
+									<img src="/img/guild.jpg" class="avatar avatar-md float-left mr-4"/>
                                     <strong class="d-block" style="font-size: 18px"><a href="/guilds/{{ $guild->id }}">{{ $guild->name }}</a></strong>
                                     <small class="text-muted"><strong>Owner: </strong>{{ $guild->manager->ign }} - Level: {{ $guild->level }}</small>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td>{{ toHtml($guild->description) }}</td>
+                            <td class="p-3">
+								<div>
+									{{ toHtml($guild->description, true) }}
+								</div>
+						</td>
                         </tr>
                         </table>
                         @can('update', $guild)
@@ -95,8 +100,10 @@
                             <div class="form-group">
                                 <label class="form-label">Jabatan</label>
                                 <select name="role" id="" class="form-control form-select @error('role') is-invalid @enderror">
+									@can('update', $guild)
                                     <option value="wakil">Wakil Ketua</option>
                                     <option value="inviter">Inviter</option>
+									@endcan
                                     <option value="member">Member</option>
                                 </select>
                                 @error('role')
@@ -120,7 +127,8 @@
                         <div class="card-header">
                             <h2 class="card-title">Members</h2>
                         </div>
-                        <table class="card-table table">
+						<div class="table-responsive">
+                        <table class="card-table table responsive table-striped text-nowrap">
                             <thead>
                                 <tr>
                                         <th>Nama</th>
@@ -144,7 +152,10 @@
                                     </td>
                                     <td>
                                         <div>
-                                            {{ $member->pivot->role }} {!! !$member->pivot->accept ? "<span class='badge badge-warning'>waiting</span>" : '' !!} <br>
+											@if($member->pivot->role != 'member')
+                                            <img width="20px" height="20px" src="/img/guild_{{ $member->pivot->role }}.png"/>
+											@endif
+											{{ $member->pivot->role }} {!! !$member->pivot->accept ? "<span class='badge badge-warning'>waiting</span>" : '' !!} <br>
                                             <span class="text-muted">
                                                 <strong>Inviter:</strong>
                                                 {{ optional($member->pivot->manager)->name }}
@@ -201,6 +212,7 @@
                             @endforeach
                             </tbody>
                         </table>
+						</div>
                     </div>
                 </div>
             </div>
