@@ -44,9 +44,12 @@ adalah situs fansite dari game online MMO
 - [x] Make Quiz with code
 - [x] Contribution Point
 - [x] Admin can manage all of the features on Dashboard
+- [x] User can make guild
+- [x] Guild  user has many roles
+- [x] User can manage member on their guild
 
 ## Todo
-- [ ] Make Guild
+- [x] Make Guild
 - [ ] Recipes
 - [ ] and more
 
