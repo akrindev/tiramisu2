@@ -238,7 +238,7 @@ class GuildController extends Controller
         $this->authorize('update', $guild);
 
         $data = $request->validate([
-            'name' => ['required', 'max:16'],
+            'name' => ['required', 'max:16', 'unique:guilds,name,'.$guild->id],
             'description' => ['required'],
             'logo' => ['image', 'max:1024'],
             'level' => ['required', 'integer', 'min:1', 'max:49']
