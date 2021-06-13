@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 use \File;
 use App\Helpers\SaveAsImage as Image;
@@ -238,7 +239,11 @@ class GuildController extends Controller
         $this->authorize('update', $guild);
 
         $data = $request->validate([
-            'name' => ['required', 'max:16', 'unique:guilds,name,'.$guild->id],
+            'name' => [
+                Rule::requiredIf($guild->isManager()),
+                'max:16',
+                'unique:guilds,name,'.$guild->id
+            ],
             'description' => ['required'],
             'logo' => ['image', 'max:1024'],
             'level' => ['required', 'integer', 'min:1', 'max:49']

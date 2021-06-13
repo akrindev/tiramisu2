@@ -21,14 +21,23 @@
                                     @csrf
                                     @method('put')
 
+                                    @can('manager', $guild)
+
                                     <div class="form-group">
                                         <label class="form-label">Nama Guild</label>
-                                        <input type="text" class="form-control" name='name' placeholder="Nama guild" max="16" value="{{ $guild->name }}" required>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name='name' placeholder="Nama guild" max="16" value="{{ $guild->name }}" required>
+                                        @error('name')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
                                     </div>
+                                    @endcan
 
                                     <div class="form-group">
                                         <label class="form-label">Deskripsi</label>
-                                        <textarea name="description" rows="5" class="form-control" placeholder="Informasi Guild" required>{{ $guild->description }}</textarea>
+                                        <textarea name="description" rows="5" class="form-control @error('description') is-invalid @enderror" placeholder="Informasi Guild" required>{{ $guild->description }}</textarea>
+                                        @error('description')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group">

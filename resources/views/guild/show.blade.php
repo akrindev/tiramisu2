@@ -65,21 +65,20 @@
                         </tr>
                         </table>
                         <div class="mt-5 px-5">
+                            @can('update', $guild)
+                            <form action="{{ route('guilds.destroy', $guild->id) }}" method="post" onsubmit="return confirm('guild tidak akan kembali setelah di bubarkan');">
                             <div class="form-group">
-                                @can('manager', $guild)
 
-                                <form action="{{ route('guilds.destroy', $guild->id) }}" method="post" onsubmit="return confirm('guild tidak akan kembali setelah di bubarkan');">
+                                    @can('manager', $guild)
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-outline-danger ">bubarkan guild</button>
+                                    @endcan
 
-                                </form>
-                                @endcan
-                        @can('update', $guild)
-
-                                <a href="{{ route('guilds.edit', $guild->id) }}" class="float-right btn btn-outline-primary mb-3">edit</a>
-                         @endcan
-                            </div>
+                                    <a href="{{ route('guilds.edit', $guild->id) }}" class="float-right btn btn-outline-primary mb-3">edit</a>
+                                </div>
+                            </form>
+                            @endcan
 
                         </div>
                     </div>
