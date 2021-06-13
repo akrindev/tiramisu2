@@ -44,4 +44,9 @@ class Guild extends Model
 
         return \in_array($role->pivot->role, $roles);
     }
+
+    public function isManager()
+    {
+        return auth()->id() == $this->manager_id;
+    }
 }

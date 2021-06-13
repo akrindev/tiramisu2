@@ -89,7 +89,7 @@ class GuildPolicy
     */
     public function manager(User $user, Guild $guild)
     {
-        return $user->id === $guild->manager_id;
+        return $user->id === $guild->manager_id || $guild->isManager();
     }
 
     /**
