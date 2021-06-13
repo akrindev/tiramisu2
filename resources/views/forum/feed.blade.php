@@ -21,7 +21,7 @@
               <div class="form-group">
                 <div class="input-group">
                 <input type="search" name="key" class="form-control" placeholder="cari di forum ..." required pattern="{2,}">    <span class="input-group-append">
-                              <button class="btn btn-outline-primary" type="button"><i class="fe fe-search"></i> Cari!</button>
+                              <button class="btn btn-outline-primary" type="submit"><i class="fe fe-search"></i> Cari!</button>
                             </span>
                 </div>
               </div>
