@@ -51,7 +51,7 @@
                                 <div>
 									<img src="/img/guild.jpg" class="avatar avatar-md float-left mr-4"/>
                                     <strong class="d-block" style="font-size: 18px"><a href="/guilds/{{ $guild->id }}">{{ $guild->name }}</a></strong>
-                                    <small class="text-muted"><strong>Owner: </strong>{{ $guild->manager->ign }} | Level: {{ $guild->level }} </small>
+                                    <small class="text-muted"><strong>Owner: </strong>{{ $guild->manager->ign }} | <strong>Level:</strong> {{ $guild->level }} | <strong>Total Contribution: </strong>  <span class="text-primary">{{ $guild->users->sum('contribution.point') }}</span></small>
                                 </div>
                             </td>
                         </tr>

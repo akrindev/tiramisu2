@@ -21,6 +21,18 @@
 
             <div class="row">
                 <div class="col-md-8">
+
+<form action="#" method="get">
+
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" name="search" class="form-control" placeholder="cari guild. . ." required pattern="{2,}">    <span class="input-group-append">
+                <button class="btn btn-outline-primary" type="button"><i class="fe fe-search"></i> Cari!</button>
+            </span>
+        </div>
+    </div>
+</form>
+
                     @auth
                     <div class="my-3">
                         <a href="/guilds/create" class="btn btn-outline-primary d-block">
@@ -52,7 +64,7 @@
                                 </div>
                                 <div>
                                     <strong class="d-block" style="font-size: 18px"><a href="/guilds/{{ $guild->id }}">{{ $guild->name }}</a></strong>
-                                    <small class="text-muted"><strong>Owner: </strong>{{ $guild->manager->ign }} - Level: {{ $guild->level }}</small>
+                                    <small class="text-muted"><strong>Owner: </strong>{{ $guild->manager->ign }} | <strong>Level:</strong> {{ $guild->level }} | <strong>Total Contribution: </strong> {{ $guild->users->sum('contribution.point') }} </small>
                                 </div>
                             </td>
                         </tr>

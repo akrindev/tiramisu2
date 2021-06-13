@@ -22,7 +22,15 @@ class GuildController extends Controller
      */
     public function index()
     {
-        $guilds = Guild::latest()->paginate();
+        $guilds = Guild::with([
+            'users' => function ($query) {
+                $query->with('contribution');
+            }
+        ])
+        ->when(request()->has('search'), function ($query) {
+            $query->where('name', 'like', '%' . request()->search . '%');
+        })
+        ->latest()->paginate();
 
         return view('guild.index', compact('guilds'));
     }
