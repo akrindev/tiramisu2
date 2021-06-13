@@ -87,7 +87,7 @@ class GuildPolicy
     /**
     * Ketua dapat memindahtangankan ketua
     */
-    public function gantiKetua(User $user, Guild $guild)
+    public function manager(User $user, Guild $guild)
     {
         return $user->id === $guild->manager_id;
     }

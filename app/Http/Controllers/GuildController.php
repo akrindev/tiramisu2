@@ -176,7 +176,7 @@ class GuildController extends Controller
         $guild = Guild::findOrFail($id);
         $user = User::findOrFail(request()->memid);
 
-        $this->authorize('ganti-ketua', $guild);
+        $this->authorize('manager', $guild);
 
         $avail = $guild->users()->wherePivot('user_id', $user->id)
                     ->wherePivot('accept', 0)
@@ -188,8 +188,8 @@ class GuildController extends Controller
             return back();
         }
 
-        $user->guilds()->updateExistingPivot($user->id, ['role' => 'wakil']);
-        $user->guilds()->updateExistingPivot(auth()->id(), ['role' => 'ketua']);
+        auth()->user()->guilds()->updateExistingPivot($guild->id, ['role' => 'wakil']);
+        $user->guilds()->updateExistingPivot($guild->id, ['role' => 'ketua']);
         $guild->forceFill([
             'manager_id'    => $user->id
         ])->save();

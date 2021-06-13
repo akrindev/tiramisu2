@@ -51,7 +51,7 @@
                                 <div>
 									<img src="/img/guild.jpg" class="avatar avatar-md float-left mr-4"/>
                                     <strong class="d-block" style="font-size: 18px"><a href="/guilds/{{ $guild->id }}">{{ $guild->name }}</a></strong>
-                                    <small class="text-muted"><strong>Owner: </strong>{{ $guild->manager->ign }} - Level: {{ $guild->level }}</small>
+                                    <small class="text-muted"><strong>Owner: </strong>{{ $guild->manager->ign }} | Level: {{ $guild->level }} </small>
                                 </div>
                             </td>
                         </tr>
@@ -63,21 +63,24 @@
 						</td>
                         </tr>
                         </table>
+                        <div class="mt-5 px-5">
+                            <div class="form-group">
+                                @can('manager', $guild)
+
+                                <form action="{{ route('guilds.destroy', $guild->id) }}" method="post" onsubmit="return confirm('guild tidak akan kembali setelah di bubarkan');">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-outline-danger ">bubarkan guild</button>
+
+                                </form>
+                                @endcan
                         @can('update', $guild)
 
-                        <div class="mt-5 px-5">
-                            <form action="{{ route('guilds.destroy', $guild->id) }}" method="post" onsubmit="return confirm('guild tidak akan kembali setelah di bubarkan');">
-                            @csrf
-                            @method('delete')
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-outline-danger ">bubarkan guild</button>
-
-                                <a href="{{ route('guilds.edit', $guild->id) }}" class="float-right btn btn-outline-primary">edit</a>
+                                <a href="{{ route('guilds.edit', $guild->id) }}" class="float-right btn btn-outline-primary mb-3">edit</a>
+                         @endcan
                             </div>
-                            </form>
 
                         </div>
-                        @endcan
                     </div>
 
                     @can('add-member', $guild)
@@ -132,7 +135,6 @@
                             <thead>
                                 <tr>
                                         <th>Nama</th>
-                                        <th>Jabatan</th>
                                         <th>Cooking</th>
                                         <th>Contribution</th>
                                         @can('update', $guild)
@@ -146,20 +148,11 @@
                                 <tr>
                                     <td>
                                         <div>
-                                            {{ $member->name }} <br>
-                                            <span class="text-muted">{{ $member->ign }}</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-											@if($member->pivot->role != 'member')
+                                            @if($member->pivot->role != 'member')
                                             <img width="20px" height="20px" src="/img/guild_{{ $member->pivot->role }}.png"/>
 											@endif
-											{{ $member->pivot->role }} {!! !$member->pivot->accept ? "<span class='badge badge-warning'>waiting</span>" : '' !!} <br>
-                                            <span class="text-muted">
-                                                <strong>Inviter:</strong>
-                                                {{ optional($member->pivot->manager)->name }}
-                                            </span>
+											 {{ $member->ign }} {!! !$member->pivot->accept ? "<span class='badge badge-warning'>waiting</span>" : '' !!} <br>
+                                            <span class="text-muted">{{ $member->name }}</span>
                                         </div>
                                     </td>
                                     <td>
