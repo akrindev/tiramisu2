@@ -273,6 +273,8 @@ class GuildController extends Controller
     public function destroy($id)
     {
         $guild = Guild::findOrFail($id);
+
+        $this->authorize('manager', $guild);
         $guild->users()->detach();
         $guild->delete();
 
