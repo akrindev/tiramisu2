@@ -161,7 +161,7 @@
 
                                             <span class="text-muted">
                                                 {{ (new \App\Helpers\Food)->getStatLv($member->cooking->buff, $member->cooking->stat, $member->cooking_level, true) }}
-                                            </span> <br>
+                                            </span> <span>(Lv {{ $member->cooking_level }})</span> <br>
 
                                             @endif
 
@@ -169,7 +169,7 @@
 
                                             <span class="text-muted">
                                                  {{ (new \App\Helpers\Food)->getStatLv($member->secondCooking->buff, $member->secondCooking->stat, $member->second_cooking_level, true) }}
-                                            </span>
+                                            </span> <span>(Lv {{ $member->second_cooking_level }})</span>
                                             @endif
                                         </div>
                                     </td>
