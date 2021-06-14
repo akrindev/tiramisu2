@@ -49,7 +49,7 @@
         <div class="d-block my-3">
             <strong>Guild invitation</strong> <br>
             @foreach ($profile->guilds()->wherePivot('accept', 0)->get() as $guild)
-                <strong>{{ $guild->manager->name }}</strong> mengundang anda untuk bergabung ke <strong>Guild <a href="/guilds/{{ $guild->id }}">{{ $guild->name }}</a></strong> | <a href="{{ route('guilds.accept', $guild->id) }}?y">terima</a> / <a href="{{ route('guilds.accept', $guild->id) }}?n">tolak</a>
+                <strong>{{ $guild->manager->name }}</strong> mengundang anda untuk bergabung ke <strong>Guild <a href="/guilds/{{ $guild->id }}">{{ $guild->name }}</a></strong> | <a href="{{ route('guilds.accept', $guild->id) }}?y" class="text-success">terima</a> / <a href="{{ route('guilds.accept', $guild->id) }}?n" class="text-danger">tolak</a>
             @endforeach
         </div>
         @else
