@@ -157,13 +157,18 @@
                                     </td>
                                     <td>
                                         <div>
-                                            @if ($member->cooking)
+                                            @if (!empty($member->cooking))
 
                                             <span class="text-muted">
-                                                {{ (new \App\Helpers\Food)->getStatLv(optional($member->cooking)->buff, $member->cooking->stat, $member->cooking_level, true) ?? '' }}
+                                                {{ (new \App\Helpers\Food)->getStatLv($member->cooking->buff, $member->cooking->stat, $member->cooking_level, true) }}
                                             </span> <br>
+
+                                            @endif
+
+                                            @if (!empty($member->secondCooking))
+
                                             <span class="text-muted">
-                                                 {{ (new \App\Helpers\Food)->getStatLv(optional($member->secondCooking)->buff, $member->secondCooking->stat, $member->second_cooking_level, true) ?? ''}}
+                                                 {{ (new \App\Helpers\Food)->getStatLv($member->secondCooking->buff, $member->secondCooking->stat, $member->second_cooking_level, true) }}
                                             </span>
                                             @endif
                                         </div>
