@@ -128,7 +128,7 @@
                 <div class="col-md-7">
                     <div class="card">
                         <div class="card-header">
-                            <h2 class="card-title">Members</h2>
+                            <h2 class="card-title">Anggota Guild</h2>
                         </div>
 						<div class="table-responsive">
                         <table class="card-table table responsive table-striped text-nowrap">

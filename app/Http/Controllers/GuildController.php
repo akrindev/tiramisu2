@@ -136,12 +136,12 @@ class GuildController extends Controller
 
         $user = \App\User::where('username', '=', $data['name'])->first();
 
-        $s = auth()->user()->guilds()->wherePivot('user_id', '=', $user->id)
-                ->wherePivot('user_id', '!=', auth()->id())
-                ->wherePivot('accept', '=', 0)
+        $has = $guild->users()->wherePivot('user_id', $user->id)
+                // ->wherePivot('user_id', '!=', auth()->id())
+                // ->wherePivot('accept', '=', 0)
                 ->first();
 
-        if(! $s) {
+        if(! $has) {
             $guild->users()->attach($user->id, [
                 'role'  => $data['role'],
                 'manager_id' => auth()->id(),
