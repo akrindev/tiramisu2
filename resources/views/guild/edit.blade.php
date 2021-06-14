@@ -34,7 +34,7 @@
 
                                     <div class="form-group">
                                         <label class="form-label">Deskripsi</label>
-                                        <textarea name="description" rows="5" class="form-control @error('description') is-invalid @enderror" placeholder="Informasi Guild" data-provide="markdown" required>{{ $guild->description }}</textarea>
+                                        <textarea name="description" rows="5" class="form-control @error('description') is-invalid @enderror" placeholder="Informasi Guild" data-provide="markdown" role="textbox" contenteditable="true" required>{{ $guild->description }}</textarea>
                                         @error('description')
                                             <span class="invalid-feedback">{{ $message }}</span>
                                         @enderror

@@ -1466,7 +1466,7 @@
     disabledButtons: [], // Default disabled buttons
     footer: '',
     fullscreen: {
-      enable: false,
+      enable: true,
       icons: {
         fullscreenOn: {
           name: "fullscreenOn",
