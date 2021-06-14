@@ -63,6 +63,8 @@ class GuildController extends Controller
             'description' => ['required'],
             'logo' => ['required', 'image', 'max:1024'],
             'level' => ['required', 'integer', 'min:1', 'max:49']
+        ], [
+            'name.unique'   => 'Nama guild ini sudah digunakan'
         ]);
 
         $file = $request->file('logo')->getRealPath();
@@ -247,6 +249,8 @@ class GuildController extends Controller
             'description' => ['required'],
             'logo' => ['image', 'max:1024'],
             'level' => ['required', 'integer', 'min:1', 'max:49']
+        ], [
+            'name.unique'   => 'Nama guild ini sudah digunakan'
         ]);
 
         if($request->hasFile('logo')) {
