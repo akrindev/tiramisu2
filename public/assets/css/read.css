@@ -1,67 +1,73 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap");
 
-  .body-text p, div.body-text {
-     -webkit-font-smoothing: antialiased;
+.body-text p,
+div.body-text {
+    -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size:14px;
-    font-family: 'Roboto', 'Source Sans Pro';
-  }
-  .body-text ul{
+    font-size: 14px;
+    font-family: "Roboto", "Source Sans Pro";
+}
+.body-text ul {
     margin: 0 0;
-    padding 0;
+    padding: 0;
     list-style-type: circle;
-  }
+}
 
-.body-text ul, .body-text ol {
+.body-text ul,
+.body-text ol {
     padding-inline-start: 20px;
 }
 
-  .body-text > ol > li, .body-text > ul > li{
+.body-text > ol > li,
+.body-text > ul > li {
     position: relative;
     margin: 0;
     padding: 2px 0;
-  }
+}
 
-  summary{
-    padding:-8px;
-    font-size:14px;
-    z-index:1;
-    cursor:pointer;
-    font-weight:bold
-  }
-  details{
-    border:1px solid #467fcf;
-    margin:0;
-    font-size:12.px;
-    text-align:left;
-    z-index:3;
-    padding:8px;
-    border-radius:5px;
-  }
+summary {
+    padding: -8px;
+    font-size: 14px;
+    z-index: 1;
+    cursor: pointer;
+    font-weight: bold;
+}
+details {
+    border: 1px solid #467fcf;
+    margin: 0;
+    font-size: 12px;
+    text-align: left;
+    z-index: 3;
+    padding: 8px;
+    border-radius: 5px;
+}
 
-  .body-text > table, details > table {
-    margin-top:5px;
-  }
-  .body-text > table > tbody tr:nth-of-type(odd), details > table > tbody tr:nth-of-type(odd) {
+.body-text > table,
+details > table {
+    margin-top: 5px;
+}
+.body-text > table > tbody tr:nth-of-type(odd),
+details > table > tbody tr:nth-of-type(odd) {
     background-color: rgba(0, 0, 0, 0.02);
-  }
+}
 
-  .body-text > table > tbody tr:hover, details > table > tbody tr:hover {
+.body-text > table > tbody tr:hover,
+details > table > tbody tr:hover {
     background-color: rgba(0, 0, 0, 0.04);
-  }
+}
 
+details[open] {
+    animation: det 0.6s;
+}
 
-  details[open]{
-    animation:det .6s
-  }
-
-  @keyframes det{
-    0%{
-      opacity:0
-    50%{
-      opacity:0.5
+@keyframes det {
+    0% {
+        opacity: 0;
     }
-    100%{
-      opacity:1
+    50% {
+        opacity: 0.5;
     }
-  }
+    100% {
+        opacity: 1;
+    }
+}

@@ -34,7 +34,7 @@
 
                                     <div class="form-group">
                                         <label class="form-label">Deskripsi</label>
-                                        <textarea name="description" rows="5" class="form-control @error('description') is-invalid @enderror" placeholder="Informasi Guild" required>{{ $guild->description }}</textarea>
+                                        <textarea name="description" rows="5" class="form-control @error('description') is-invalid @enderror" placeholder="Informasi Guild" data-provide="markdown" required>{{ $guild->description }}</textarea>
                                         @error('description')
                                             <span class="invalid-feedback">{{ $message }}</span>
                                         @enderror
@@ -68,4 +68,16 @@
             </div>
         </div>
     </div>
+@endsection
+
+
+@section('head')
+
+<link href="/assets/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
+<script src="/assets/js/bootstrap-markdown.js">
+</script>
+<script src="/assets/js/markdown.js">
+</script>
+<script src="/assets/js/to-markdown.js">
+</script>
 @endsection

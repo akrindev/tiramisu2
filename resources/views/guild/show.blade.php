@@ -32,12 +32,12 @@
                                 .thumb {
                                     max-height: 155px;
                                     width: 100%;
-                                    object-fit: cover
+                                    object-fit: cover;
                                 }
 
                                 @media (min-width: 576px) {
                                     .thumb {
-                                        max-height: 255px
+                                        max-height: 255px;
                                     }
                                 }
                             </style>
@@ -58,7 +58,7 @@
                         </tr>
                         <tr>
                             <td class="p-3">
-								<div>
+								<div class="text-wrap">
 									{{ toHtml($guild->description, true) }}
 								</div>
 						</td>
@@ -87,7 +87,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h2 class="card-title">tambah member</h2>
+                            <h2 class="card-title">Tambah Anggota</h2>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('guilds.member', $guild->id) }}" method="post">
@@ -105,7 +105,7 @@
                                 <select name="role" id="" class="form-control form-select @error('role') is-invalid @enderror">
 									@can('update', $guild)
                                     <option value="wakil">Wakil Ketua</option>
-                                    <option value="inviter">Inviter</option>
+                                    <option value="inviter">Pengundang</option>
 									@endcan
                                     <option value="member">Member</option>
                                 </select>

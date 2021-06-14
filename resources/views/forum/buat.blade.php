@@ -163,7 +163,7 @@ $colors = ['blue','green','orange','red','yellow','teal','purple','dark','pink']
 
 @section('head')
 
-<link href="/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
 <script src="/assets/js/bootstrap-markdown.js">
 </script>
 <script src="/assets/js/markdown.js">

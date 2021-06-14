@@ -307,7 +307,7 @@ function copyToClipboard(elementId) {
 }
 </script>
 @auth
-<link href="/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
 <script src="/assets/js/bootstrap-markdown.js">
 </script>
 <script src="/assets/js/markdown.js">
