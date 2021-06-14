@@ -131,29 +131,39 @@
         @endif
         </div>
         <div class="form-group">
+          <div class="row gutters-xs">
+              <div class='col-8'>
           <label class="form-label"> Buff masakan </label>
-          <div class="row px-3">
-          <select class="form-control col-8 mr-1" name="cooking" id='cooking1'>
+          <select class="form-control" name="cooking" id='cooking1'>
             <option value="">-- Pilih buff masakan --</option>
             @foreach(\App\Cooking::get() as $cook)
             <option value={{ $cook->id }} {{ $data->cooking_id == $cook->id ? 'selected':'' }}> {{ $cook->buff }} </option>
             @endforeach
           </select>
-          <input type="number" name="cooklv" class="form-control col-3" min=1 max=10 value={{ $data->cooking_level }} placeholder="level" id='cookingval1'>
+              </div>
+          <div class='col-3'>
+              <label class="form-label">Level</label>
+          <input type="number" name="cooklv" class="form-control" min=1 max=10 value={{ $data->cooking_level }} placeholder="level" id='cookingval1'>
+          </div>
           </div>
         </div>
 
 
         <div class="form-group">
+          <div class="row gutters-xs">
+              <div class='col-8'>
           <label class="form-label"> Buff masakan kedua (second)</label>
-          <div class="row px-3">
-          <select class="form-control col-8 mr-1" name="second_cooking" id='cooking2'>
+          <select class="form-control" name="second_cooking" id='cooking2'>
             <option value="">-- Pilih buff masakan --</option>
             @foreach(\App\Cooking::get() as $cook)
             <option value={{ $cook->id }} {{ $data->second_cooking_id == $cook->id ? 'selected':'' }}> {{ $cook->buff }} </option>
             @endforeach
           </select>
-          <input type="number" name="second_cooklv" class="form-control col-3" min=1 max=10 value={{ $data->second_cooking_level }} placeholder="level" id='cookingval2'>
+              </div>
+          <div class='col-3'>
+              <label class="form-label">Level</label>
+          <input type="number" name="second_cooklv" class="form-control" min=1 max=10 value={{ $data->second_cooking_level }} placeholder="level" id='cookingval2'>
+          </div>
           </div>
         </div>
 

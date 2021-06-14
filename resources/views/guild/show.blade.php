@@ -216,4 +216,14 @@
             </div>
         </div>
     </div>
-@endsection
+    @endsection
+
+    @section('head')
+<style>
+.text-wrap {
+   overflow-wrap: break-word;
+   display: inline-block;
+   word-break: break-word;
+}
+</style>
+   @endsection
