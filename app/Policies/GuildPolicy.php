@@ -69,27 +69,35 @@ class GuildPolicy
     }
 
     /**
-    * Wakil can add member
-    */
+     * Wakil can add member
+     */
     public function addMember(User $user, Guild $guild)
     {
         return $user->id === $guild->manager_id || $guild->canManageGuild($user->id, 'inviter');
     }
 
     /**
-    * Wakil can add member
-    */
+     * Wakil can add member
+     */
     public function removeMember(User $user, Guild $guild)
     {
         return $user->id === $guild->manager_id || $guild->canManageGuild($user->id);
     }
 
     /**
-    * Ketua dapat memindahtangankan ketua
-    */
+     * Ketua dapat memindahtangankan ketua
+     */
     public function manager(User $user, Guild $guild)
     {
         return $user->id === $guild->manager_id || $guild->isManager();
+    }
+
+    /**
+     * admin can delete guild or its manager
+     */
+    public function deleteGuild(User $user, Guild $guild)
+    {
+        return $user->id === $guild->manager_id || $guild->isManager() || $user->isAdmin();
     }
 
     /**

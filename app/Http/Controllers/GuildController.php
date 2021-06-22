@@ -28,10 +28,10 @@ class GuildController extends Controller
                 $query->with('contribution');
             }
         ])
-        ->when(request()->has('search'), function ($query) {
-            $query->where('name', 'like', '%' . request()->search . '%');
-        })
-        ->latest()->paginate();
+            ->when(request()->has('search'), function ($query) {
+                $query->where('name', 'like', '%' . request()->search . '%');
+            })
+            ->latest()->paginate();
 
         return view('guild.index', compact('guilds'));
     }
@@ -69,7 +69,7 @@ class GuildController extends Controller
 
         $file = $request->file('logo')->getRealPath();
 
-        $name = '/img/guild/'. Str::slug($request->name) . '-' .time(). '.png';
+        $name = '/img/guild/' . Str::slug($request->name) . '-' . time() . '.png';
 
         (new Image)->file($file)->name($name)->save();
 
@@ -121,8 +121,8 @@ class GuildController extends Controller
     }
 
     /**
-    * Add memer to guild
-    */
+     * Add memer to guild
+     */
     public function addMember($id)
     {
         $guild = Guild::findOrFail($id);
@@ -139,11 +139,11 @@ class GuildController extends Controller
         $user = \App\User::where('username', '=', $data['name'])->first();
 
         $has = $guild->users()->wherePivot('user_id', $user->id)
-                // ->wherePivot('user_id', '!=', auth()->id())
-                // ->wherePivot('accept', '=', 0)
-                ->first();
+            // ->wherePivot('user_id', '!=', auth()->id())
+            // ->wherePivot('accept', '=', 0)
+            ->first();
 
-        if(! $has) {
+        if (!$has) {
             $guild->users()->attach($user->id, [
                 'role'  => $data['role'],
                 'manager_id' => auth()->id(),
@@ -158,8 +158,8 @@ class GuildController extends Controller
         return \back();
     }
     /**
-    * remove member
-    */
+     * remove member
+     */
     public function removeMember($id)
     {
         request()->validate([
@@ -190,10 +190,10 @@ class GuildController extends Controller
         $this->authorize('manager', $guild);
 
         $avail = $guild->users()->wherePivot('user_id', $user->id)
-                    ->wherePivot('accept', 0)
-                    ->first();
+            ->wherePivot('accept', 0)
+            ->first();
 
-        if($avail){
+        if ($avail) {
             session()->flash('failed', 'belum menjadi member serikat');
 
             return back();
@@ -207,7 +207,7 @@ class GuildController extends Controller
 
         session()->flash('success', 'Ketua guild telah di ganti');
 
-        return redirect('guilds/'. $guild->id);
+        return redirect('guilds/' . $guild->id);
     }
 
     // acceptable guild invitation
@@ -216,9 +216,9 @@ class GuildController extends Controller
         $guild = Guild::findOrFail($id);
 
         $user = $guild->users()->wherePivot('user_id', auth()->id())
-                            ->first();
+            ->first();
 
-        if(\request()->has('y')) {
+        if (\request()->has('y')) {
             $guild->users()->updateExistingPivot($user->id, ['accept' => 1]);
         } else {
             $guild->users()->detach($user->id);
@@ -244,7 +244,7 @@ class GuildController extends Controller
             'name' => [
                 Rule::requiredIf($guild->isManager()),
                 'max:16',
-                'unique:guilds,name,'.$guild->id
+                'unique:guilds,name,' . $guild->id
             ],
             'description' => ['required'],
             'logo' => ['image', 'max:1024'],
@@ -253,11 +253,11 @@ class GuildController extends Controller
             'name.unique'   => 'Nama guild ini sudah digunakan'
         ]);
 
-        if($request->hasFile('logo')) {
+        if ($request->hasFile('logo')) {
 
             $file = $request->file('logo')->getRealPath();
 
-            $name = '/img/guild/'. Str::slug($request->name) . '-' .time(). '.png';
+            $name = '/img/guild/' . Str::slug($request->name) . '-' . time() . '.png';
 
             (new Image)->file($file)->name($name)->save();
             (new Filesystem)->delete(public_path($guild->logo));
@@ -270,7 +270,7 @@ class GuildController extends Controller
 
         session()->flash('success', 'Guild telah di edit');
 
-        return \redirect('guilds/'. $guild->id);
+        return \redirect('guilds/' . $guild->id);
     }
 
     /**
@@ -283,7 +283,7 @@ class GuildController extends Controller
     {
         $guild = Guild::findOrFail($id);
 
-        $this->authorize('manager', $guild);
+        $this->authorize('delete-guild', $guild);
         $guild->users()->detach();
         $guild->delete();
 

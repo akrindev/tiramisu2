@@ -65,6 +65,13 @@
                                 <div>
                                     <strong class="d-block" style="font-size: 18px"><a href="/guilds/{{ $guild->id }}">{{ $guild->name }}</a></strong>
                                     <small class="text-muted"><strong>Owner: </strong>{{ $guild->manager->ign }} | <strong>Level:</strong> {{ $guild->level }} | <strong>Total Contribution: </strong> {{ $guild->users->sum('contribution.point') }} </small>
+                                    @if(auth()->user()->isAdmin())
+                                        <form action="{{ route('guilds.destroy', $guild->id) }}" method="post" onsubmit="return confirm('guild tidak akan kembali setelah di bubarkan');">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">hapus</button>
+                                        </form>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
