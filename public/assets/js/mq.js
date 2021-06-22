@@ -686,7 +686,7 @@ const MQ = [
     "episode": 86,
     "episodeid": "Duel di Nov Diela",
     "episodeen": "The Duel in Nov Diela",
-    "exp": 36000000
+    "exp": 36200000
   }
 ];
 
