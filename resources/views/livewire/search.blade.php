@@ -24,6 +24,7 @@
         @endif
 
           @if(count($forums) == 0 && count($drops) == 0 && count($monsters) == 0 && count($maps) == 0 && count($formulas) == 0)
+          @include('inc.ads_article')
         <div class="card">
           <div class="card-body p-3" style="font-size:15px;font-weight:400">
             <b>Pencarian <u>{{ $q }}</u> tidak di temukan.</b>

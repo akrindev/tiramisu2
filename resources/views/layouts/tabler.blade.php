@@ -25,7 +25,7 @@
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 
-    <title>@yield('title') | Toram Online Database & Wiki</title>
+    <title>@yield('title') | RPG Toram Online Database & Wiki</title>
 
     <!-- open graph -->
     <meta property="og:url" content="{{ url()->current() }}" />

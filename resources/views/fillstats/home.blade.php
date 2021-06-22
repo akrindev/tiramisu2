@@ -27,7 +27,7 @@
       </div>
 
         <div class="alert alert-danger">
-        	Before using this statting simulator, make sure that you learn these statting skills (3 skills on the bottom) and level up to max level
+        	Before using this statting simulator, ensure that you learn these statting skills (3 skills on the bottom) and level up to max level
 
           <img src="https://lh3.googleusercontent.com/0vK72CbQLCkstI9OuN9hcxbFG5s8vHKt5hAZSwzz0oSkcF58BaFNS4PI9m2C3uxsjXHg-vz_D5fbbxYgK5T3aAvRsZPG0qJFKOnt47pUiyHfVaZ6fhSMlFmRr7KUuUHSKFFXb7AFOQ" class="my-2 d-block" />
           and <b>Max</b> your <b>TECH</b> stats to 255 point.
@@ -36,7 +36,7 @@
         </div>
 
        <div class="my-2">
-      	@includeUnless(app()->isLocal(), 'inc.ads_mobile')
+      	@includeUnless(app()->isLocal(), 'inc.ads_article')
        </div>
 
       	<livewire:formula />
@@ -44,8 +44,6 @@
        <div class="mt-2">
       	@includeUnless(app()->isLocal(), 'inc.ads_mobile')
        </div>
-
-
 
   </div>
 </div>

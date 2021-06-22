@@ -1,6 +1,9 @@
 @extends('layouts.tabler')
 
 @section('title', $guild->name . ' Guild')
+@section('description', strip_tags(toHtml($guild->description, true)))
+@section('image', asset($guild->logo))
+
 
 @section('content')
 
