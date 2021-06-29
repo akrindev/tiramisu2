@@ -1,7 +1,7 @@
 @extends('layouts.tabler')
 
 @section('title','Fill Stat Simulator')
-@section('description','Toram fill Stats Skill level 4 Simulator')
+@section('description','Toram Online Fill Stats Skill level 4 Simulator')
 @section('image',to_img())
 
 
@@ -31,7 +31,7 @@
         </div>
 
         <div class="alert alert-danger">
-        	Before using this statting simulator, make sure that you learn these statting skills (3 skills on the bottom) and level up to max level
+        	Before using this statting simulator, ensure that you learn these statting skills (3 skills on the bottom) and level up to max level
 
           <img src="https://lh3.googleusercontent.com/0vK72CbQLCkstI9OuN9hcxbFG5s8vHKt5hAZSwzz0oSkcF58BaFNS4PI9m2C3uxsjXHg-vz_D5fbbxYgK5T3aAvRsZPG0qJFKOnt47pUiyHfVaZ6fhSMlFmRr7KUuUHSKFFXb7AFOQ" class="my-2 d-block" />
           and <b>Max</b> your <b>TECH</b> stats to 255 point.
@@ -51,7 +51,7 @@
           </div>
           <div class="card-alert alert alert-info">
             <b>Updated</b> Skill tree level 4 <br>
-            <small>Latest Simulator updated: <i> 1 April 2021</i> </small>
+            <small>Latest Simulator updated: <i> 29 Juni 2021</i> cap 230 </small>
           </div>
 
           <div class="p-3 card-body" style="font-size:14px;font-weight:400">
@@ -286,7 +286,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/assets/js/saveFormula.js?v3"></script>
-<script src="/assets/js/newfill.js?v12"></script>
+<script src="/assets/js/newfill.js?v13"></script>
 <script src="/assets/js/math.js"></script>
 
 @if(session()->has('data'))
