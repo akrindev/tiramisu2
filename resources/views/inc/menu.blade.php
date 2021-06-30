@@ -46,13 +46,13 @@
 
     <div class="my-1 row gutters-xs">
       <b class="d-block col-12 mb-2">Lainnya</b>
-      <a href="/registlet" class="d-block mb-1 col-12"> <img src="/img/drop/dust.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Registlet Gem Case List</a>
-      <a href="/prestasi" class="d-block mb-1 col-12"> <img src="/img/prestasi.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Emblem / Prestasi</a>
-      <a href="/cooking/berteman" class="d-block mb-1 col-12"> <img src="/img/cook-pt.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Buff Food Member</a>
+      <a href="/registlet" class="d-block mb-1 col-12"> <img alt="icons" src="/img/drop/dust.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Registlet Gem Case List</a>
+      <a href="/prestasi" class="d-block mb-1 col-12"> <img alt="icons" src="/img/prestasi.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Emblem / Prestasi</a>
+      <a href="/cooking/berteman" class="d-block mb-1 col-12"> <img alt="icons" src="/img/cook-pt.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Buff Food Member</a>
 
-      <a href="/potensi/kalkulator" class="d-block mb-1 col-12"> <img src="/img/skill/smith/noviceanvil.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Potensi Simulator</a>
-      <a href="/avatar" class="d-block mb-1 col-12"> <img src="/img/ava_top.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Avatar Showcase</a>
-      <a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance" class="d-block mb-1 col-12"> <img src="/img/ava_top.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">App Showcase (Appearance)</a>
+      <a href="/potensi/kalkulator" class="d-block mb-1 col-12"> <img alt="icons" src="/img/skill/smith/noviceanvil.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Potensi Simulator</a>
+      <a href="/avatar" class="d-block mb-1 col-12"> <img alt="icons" src="/img/ava_top.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">Avatar Showcase</a>
+      <a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance" class="d-block mb-1 col-12"> <img alt="icons" src="/img/ava_top.png" class="avatar avatar-sm mr-1" style="max-width:20px;max-height:19px">App Showcase (Appearance)</a>
 
       <div class="d-block col-12 mb-5"></div>
 
