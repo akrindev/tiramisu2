@@ -30,7 +30,7 @@
     <!-- open graph -->
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:type" content="article" />
-    <meta content='Toram Online Indonesia' property='og:site_name'/>
+    <meta content='RPG Toram Online Indonesia' property='og:site_name'/>
     <meta property="og:title" content="@yield('title')" />
     <meta property="og:description" content="@yield('description')" />
     <meta property="og:image" content="@yield('image')" />
