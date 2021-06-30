@@ -687,7 +687,25 @@ const MQ = [
     "episodeid": "Duel di Nov Diela",
     "episodeen": "The Duel in Nov Diela",
     "exp": 36200000
-  }
+  },
+  //   chap 11
+  {
+    "chapter": 11,
+    "chapterid": "Off to Toram",
+    "chapteren": "Off to Toram",
+    "episode": 87,
+    "episodeid": "Penerbangan Bahtera",
+    "episodeen": "Flying the Ark",
+    "exp": 37800000
+  },{
+    "chapter": 11,
+    "chapterid": "Off to Toram",
+    "chapteren": "Off to Toram",
+    "episode": 88,
+    "episodeid": "Daratan yang Tak Dikenal",
+    "episodeen": "Land of the Unknown",
+    "exp": 49000000
+  },
 ];
 
 class Main {
