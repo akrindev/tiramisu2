@@ -117,6 +117,8 @@ function translate(value) {
         { name: 'CSPD', name_id: "Kecepatan Merapal" },
         { name: 'Physical Resistance', name_id: "Kekebalan Fisik" },
         { name: 'Magical Resistance', name_id: "Kekebalan Sihir" },
+        { name: 'Physical Pierce', name_id: "Penetrasi Fisik" },
+        { name: 'Magical Pierce', name_id: "Penetrasi Sihir" },
         { name: 'Wind Element', name_id: "Unsur Angin" },
         { name: 'Earth Element', name_id: "Unsur Bumi" },
         { name: 'Fire Element', name_id: "Unsur Api" },
