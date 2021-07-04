@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +24,8 @@ Route::prefix('en')->middleware('locale:en')->group(base_path('routes/en.php'));
 // Registled
 Route::view('/registlet', 'registled.show');
 
+// secrets message
+Route::get('/secrets/{user:username}', 'SecretMessageController@show');
 
 Route::view('/cb', 'cb');
 
@@ -41,28 +44,28 @@ Route::prefix('/cooking')->group(base_path('routes/cooking.php'));
 Route::get('/latest_search', 'SitemapController@show');
 
 /**
-* Refine
-*/
+ * Refine
+ */
 Route::view('/refine', 'refine.index');
 Route::view('/refine/simulasi', 'refine.simulasi');
 
 
 /**
-*
-* Background Music
-*/
+ *
+ * Background Music
+ */
 Route::get('/bgm', 'BgmController@show');
 Route::get('/bgm/{slug}', 'BgmController@single');
 Route::post('/bgm/{slug}', 'BgmController@postComment')->middleware('auth');
 Route::delete('/bgm/destroy', 'BgmController@destroy')->middleware('auth');
 /**
-* About Us
-*/
+ * About Us
+ */
 Route::get('/kebijakan-privasi', 'AboutController@kebijakanPrivasi');
 Route::get('/rules', 'AboutController@rules');
 Route::get('/tentang-kami', 'AboutController@about');
 
-Route::match(['get','post'], '/edit-tentang','AboutController@editAbout')->middleware('admin');
+Route::match(['get', 'post'], '/edit-tentang', 'AboutController@editAbout')->middleware('admin');
 
 Auth::routes();
 
@@ -83,24 +86,24 @@ Route::get('/twitter/callback', 'Auth\LoginController@callbackTwitter');
 Route::get('/profile/{provider_id}', 'UserController@profile');
 
 /**
-*
-* Setting
-*/
-Route::middleware('auth')->group(function() {
-  Route::get('/setting/profile', 'UserController@settingProfile');
-  Route::put('/setting/profile', 'UserController@settingProfileSubmit');
-  Route::get('/profile/notifikasi', 'UserController@notifikasi');
-  Route::get('/profile', 'UserController@profileku');
-  Route::post('/save/contact', 'UserController@saveContact');
-  Route::post('/send-token/fcm', 'UserController@sendToken');
+ *
+ * Setting
+ */
+Route::middleware('auth')->group(function () {
+    Route::get('/setting/profile', 'UserController@settingProfile');
+    Route::put('/setting/profile', 'UserController@settingProfileSubmit');
+    Route::get('/profile/notifikasi', 'UserController@notifikasi');
+    Route::get('/profile', 'UserController@profileku');
+    Route::post('/save/contact', 'UserController@saveContact');
+    Route::post('/send-token/fcm', 'UserController@sendToken');
 });
 
 // fill stats
 Route::prefix('fill_stats')->group(base_path('routes/fill.php'));
 
 /**
-* skills
-*/
+ * skills
+ */
 Route::prefix('skill')->group(base_path('routes/skill.php'));
 
 // Searching
@@ -108,8 +111,8 @@ Route::prefix('skill')->group(base_path('routes/skill.php'));
 Route::get('/search', 'SearchController@search');
 
 /**
-* Monster routes
-*/
+ * Monster routes
+ */
 Route::get('/leveling', 'LevelingController@show');
 Route::get('/peta', 'MonsterController@index');
 Route::get('/peta/{id}', 'MonsterController@peta');
@@ -119,8 +122,8 @@ Route::prefix('monster')->group(base_path('routes/monster.php'));
 
 
 /**
-* Item(s) routes
-*/
+ * Item(s) routes
+ */
 
 Route::get('/items', 'ItemController@showAllItems');
 Route::get('/items/{id}', 'ItemController@showItems');
@@ -129,9 +132,9 @@ Route::prefix('item')->group(base_path('routes/item.php'));
 
 
 /**
-* Appearance
-*/
-Route::prefix('appearance')->group(function() {
+ * Appearance
+ */
+Route::prefix('appearance')->group(function () {
     Route::get('/', 'AppearanceController@show');
     Route::get('/{type}', 'AppearanceController@type');
 });
@@ -152,14 +155,14 @@ Route::get('/npc', 'NpcController@show');
 Route::get('/npc/npc-{id}', 'NpcController@quest');
 Route::get('/npc/quest/{id}', 'NpcController@singleQuest');
 
-Route::middleware(['admin'])->group(function(){
-  Route::match(['get', 'post'], '/npc/store', 'NpcController@store');
-  Route::match(['get', 'post'], '/npc/store/quest', 'NpcController@storeQuest');
+Route::middleware(['admin'])->group(function () {
+    Route::match(['get', 'post'], '/npc/store', 'NpcController@store');
+    Route::match(['get', 'post'], '/npc/store/quest', 'NpcController@storeQuest');
 
-  Route::get('/npc/edit/{id}', 'NpcController@editNpc');
-  Route::put('/npc/edit', 'NpcController@editNpcSubmit');
-  Route::delete('/npc/delete-quest/{id}', 'NpcController@deleteQuest');
-  Route::delete('/npc/delete-npc/{id}', 'NpcController@deleteNpc');
+    Route::get('/npc/edit/{id}', 'NpcController@editNpc');
+    Route::put('/npc/edit', 'NpcController@editNpcSubmit');
+    Route::delete('/npc/delete-quest/{id}', 'NpcController@deleteQuest');
+    Route::delete('/npc/delete-npc/{id}', 'NpcController@deleteNpc');
 });
 // --NPC
 
@@ -170,8 +173,8 @@ Route::middleware(['admin'])->group(function(){
 Route::prefix('admin')->middleware('admin')->group(base_path('routes/admin.php'));
 
 /**
-* Forum Routes
-*/
+ * Forum Routes
+ */
 
 Route::prefix('forum')->group(base_path('routes/forum.php'));
 
@@ -179,38 +182,38 @@ Route::prefix('forum')->group(base_path('routes/forum.php'));
 Route::get('f/{id}', 'ForumController@bacaId');
 
 /**
-*
-*
-* Gallery
-*/
+ *
+ *
+ * Gallery
+ */
 Route::prefix('gallery')->group(base_path('routes/gallery.php'));
 
 // temp routes
 Route::prefix('temp')->group(base_path('routes/temp.php'));
 
 /**
-*
-* Quiz routes
-*/
+ *
+ * Quiz routes
+ */
 Route::prefix('quiz')->group(base_path('routes/quiz.php'));
 
 /**
-* Emblem Route
-*/
+ * Emblem Route
+ */
 Route::prefix('prestasi')->group(base_path('routes/prestasi.php'));
 
 // Mails
-Route::prefix('email')->middleware('admin')->group(function(){
-	Route::view('write', 'emails.write');
-  	// send email to specific user
-  	Route::post('send', 'SendMailController@mailToUser');
- 	// send to all users
-  	Route::post('sendtoall', 'SendMailController@mailToAllUser');
+Route::prefix('email')->middleware('admin')->group(function () {
+    Route::view('write', 'emails.write');
+    // send email to specific user
+    Route::post('send', 'SendMailController@mailToUser');
+    // send to all users
+    Route::post('sendtoall', 'SendMailController@mailToAllUser');
 
-  	Route::get('user_emails', 'SendMailController@hasEmail');
-  	Route::view('history', 'emails.history');
-  	Route::get('baca/{id}', 'SendMailController@getLog');
-  	Route::get('log', 'SendMailController@logMail');
+    Route::get('user_emails', 'SendMailController@hasEmail');
+    Route::view('history', 'emails.history');
+    Route::get('baca/{id}', 'SendMailController@getLog');
+    Route::get('log', 'SendMailController@logMail');
 });
 
 Route::resource('guilds', 'GuildController');
