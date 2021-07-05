@@ -15,6 +15,10 @@ class CreateSecretMessagesTable extends Migration
     {
         Schema::create('secret_messages', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->text('message');
+            $table->boolean('privacy')->default(1);
+            $table->integer('parent_id')->nullable();  // for reply
             $table->timestamps();
         });
     }

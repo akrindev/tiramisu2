@@ -25,7 +25,11 @@ Route::prefix('en')->middleware('locale:en')->group(base_path('routes/en.php'));
 Route::view('/registlet', 'registled.show');
 
 // secrets message
-Route::get('/secrets/{user:username}', 'SecretMessageController@show');
+Route::prefix('secrets')->group(function () {
+    Route::get('/{user:username}', 'SecretMessageController@show');
+    Route::post('/{user:username}/post', 'SecretMessageController@store');
+    Route::post('/{user:username}/reply', 'SecretMessageController@reply');
+});
 
 Route::view('/cb', 'cb');
 

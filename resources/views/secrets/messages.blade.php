@@ -10,6 +10,8 @@
 </head>
 <body>
     <div id="react-root"></div>
+
+    <div id="user-data" data-user="{{ $user->id }}"></div>
     <script src="/js/secrets-app.js"></script>
 </body>
 </html>
