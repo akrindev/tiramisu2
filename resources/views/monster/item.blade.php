@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title', $item->name)
+@section('title', $item->name . ' [' . __($item->dropType->name) . ']')
 @section('description', $item->name . ': ' . strip_tags(toHtml(optional($item->note)['monster'] ?? optional($item->note)['npc'])) ?? '' )
 @section('image', !is_null($item->picture) ? asset($item->picture) : to_img())
 
@@ -8,7 +8,7 @@
 <div class="my-5">
   <div class="container">
     <div class="page-header">
-      <h1 class="page-title">{{ $item->name }}</h1>
+      <span class="page-title">{{ $item->name }} [{{ __($item->dropType->name) }}]</span>
     </div>
 
     <div class="row">

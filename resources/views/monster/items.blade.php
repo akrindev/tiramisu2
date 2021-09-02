@@ -1,7 +1,7 @@
 @extends('layouts.tabler')
 
 @section('title',  __(ucfirst($type)))
-@section('description', 'Drop list ' . __(ucfirst($type) . ' cari tau gambar dan status drop list items'))
+@section('description', 'Drop list ' . __(ucfirst($type)))
 @section('image', to_img())
 
 @push('canonical')

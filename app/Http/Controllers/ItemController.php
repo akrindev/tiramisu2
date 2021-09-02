@@ -13,26 +13,26 @@ class ItemController extends Controller
 
     public function showThem()
     {
-        if($name = request()->get('name')) {
+        if ($name = request()->get('name')) {
             $data = Drop::when(Str::contains($name, ' '), function ($query) use ($name) {
                 $words = explode(' ', $name);
                 $words = array_unique($words);
 
                 $query->where(function ($query) use ($words) {
                     foreach ($words as $word) {
-                        $query->orWhere('name', 'like', '%'. $word .'%')
-                            ->orWhere('name_en', 'like', '%'. $word .'%');
+                        $query->orWhere('name', 'like', '%' . $word . '%')
+                            ->orWhere('name_en', 'like', '%' . $word . '%');
                     }
                 });
             }, function ($query) use ($name) {
                 $query->search('name', $name);
             })
-            ->when(\request()->get('did'), function ($query) {
-                $query->where('drop_type_id', '=', \request()->get('did'));
-            })
-            ->orderByDesc('drop_type_id')->paginate();
+                ->when(\request()->get('did'), function ($query) {
+                    $query->where('drop_type_id', '=', \request()->get('did'));
+                })
+                ->orderByDesc('drop_type_id')->paginate();
 
-            $type = "Related Item: $name";
+            $type = '[Related ' . __($data[0]->dropType->name) . '] ' . $name;
 
             return view('monster.items', compact('data', 'type'));
         }
@@ -46,33 +46,33 @@ class ItemController extends Controller
     public function showItem($id)
     {
         $item = Drop::with([
-        'monsters' => function ($query) {
-            $query->with([
-                // 'map',
-                // 'element',
-                'drops'
-            ]);
-        },
-        'dropType'
+            'monsters' => function ($query) {
+                $query->with([
+                    // 'map',
+                    // 'element',
+                    'drops'
+                ]);
+            },
+            'dropType'
         ])->findOrFail($id);
 
-        if(Str::contains($item->name, ' ') || Str::contains($item->name_en, ' ')) {
+        if (Str::contains($item->name, ' ') || Str::contains($item->name_en, ' ')) {
             $words = array_merge(explode(' ', $item->name_en), explode(' ', $item->name));
             $words = array_unique($words);
             $dropid = $item->drop_type_id;
 
             $relateds = Drop::where('id', '!=', $item->id) // bukan data item itu sendiri
-            ->whereDropTypeId($dropid)
-            ->where(function ($query) use ($words, $dropid) {
+                ->whereDropTypeId($dropid)
+                ->where(function ($query) use ($words, $dropid) {
 
-                foreach ($words as $word) {
-                    $query->orWhere('name', 'like', '%'. $word .'%')
-                        ->orWhere('name_en', 'like', '%'. $word .'%');
-                }
-            })->inRandomOrder()->take(10)->get();
+                    foreach ($words as $word) {
+                        $query->orWhere('name', 'like', '%' . $word . '%')
+                            ->orWhere('name_en', 'like', '%' . $word . '%');
+                    }
+                })->inRandomOrder()->take(10)->get();
 
             // jika tidak ada similiar items, yuk tampilin random items dengan type yang sama
-            if(!$relateds->count()) {
+            if (!$relateds->count()) {
                 $relateds = $this->getRandomRelated($item->drop_type_id, $item->id);
             }
         } else {
@@ -86,10 +86,10 @@ class ItemController extends Controller
     private function getRandomRelated($type, $id)
     {
         return Drop::whereDropTypeId($type)
-                            ->where('id', '!=', $id) // bukan data item itu sendiri
-                            ->inRandomOrder()
-                            ->take(10)
-                            ->get();
+            ->where('id', '!=', $id) // bukan data item itu sendiri
+            ->inRandomOrder()
+            ->take(10)
+            ->get();
     }
 
     /*
@@ -109,47 +109,45 @@ class ItemController extends Controller
     {
         $item = Drop::findOrFail($id);
 
-        if(request()->hasFile('picture'))
-        {
+        if (request()->hasFile('picture')) {
             $file = request()->file('picture')->getRealPath();
 
-            $nama = 'imgs/mobs/'.str_slug(strtolower(request('name'))).'-'.rand(00000,99999).'.png';
+            $nama = 'imgs/mobs/' . str_slug(strtolower(request('name'))) . '-' . rand(00000, 99999) . '.png';
 
             $save = (new Image)->file($file)->name($nama)->save();
 
             $item->picture = $nama;
         }
 
-        if(request()->hasFile('fullimage'))
-        {
+        if (request()->hasFile('fullimage')) {
             $file = request()->file('fullimage')->getRealPath();
 
-            $fullimage = 'imgs/mobs/'.str_slug(strtolower(request('name'))).'-'.rand(00000,99999).'.png';
+            $fullimage = 'imgs/mobs/' . str_slug(strtolower(request('name'))) . '-' . rand(00000, 99999) . '.png';
 
             $save = (new Image)->file($file)->name($fullimage)->save();
 
             $item->fullimage = $fullimage;
         }
 
-        $item->name		= request()->name;
-        $item->name_en	= request('name_en') ?? request('name');
+        $item->name        = request()->name;
+        $item->name_en    = request('name_en') ?? request('name');
         $item->drop_type_id = request()->type;
-        $item->proses	= request()->proses;
-        $item->sell		= request()->sell;
+        $item->proses    = request()->proses;
+        $item->sell        = request()->sell;
         $item->released = request()->released;
 
-        if(! is_null(request()->noteMonster) || ! is_null(request()->noteNpc)) {
+        if (!is_null(request()->noteMonster) || !is_null(request()->noteNpc)) {
             $item->note = [
-            'monster' => request()->noteMonster ?? null,
-            'npc'     => request()->noteNpc ?? null,
+                'monster' => request()->noteMonster ?? null,
+                'npc'     => request()->noteNpc ?? null,
             ];
         }
 
         $item->save();
 
         return response()->json([
-            'success'	=>	true,
-            'redirect'	=> $id
+            'success'    =>    true,
+            'redirect'    => $id
         ]);
     }
 
@@ -177,8 +175,8 @@ class ItemController extends Controller
             'resep'
         ])->orderByDesc('id')->paginate(15);
 
-        if(!$data->count()) {
-        return abort(404);
+        if (!$data->count()) {
+            return abort(404);
         }
 
         $type = $data[0]->dropType->name;
@@ -194,12 +192,12 @@ class ItemController extends Controller
         $type = 'Semua Items';
 
         $data = Drop::with([
-                'monsters' => function($q){
-                    $q->with('map');
-                },
-                'dropType',
-                'resep'
-            ])->orderByDesc('id')->paginate(15);
+            'monsters' => function ($q) {
+                $q->with('map');
+            },
+            'dropType',
+            'resep'
+        ])->orderByDesc('id')->paginate(15);
 
         return view('monster.items', compact('type', 'data'));
     }
