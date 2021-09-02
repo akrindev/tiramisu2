@@ -13,6 +13,8 @@ class UpdatedMonster extends Component
 {
     use WithPagination;
 
+    protected $paginationTheme = 'bootstrap';
+
     protected $listeners = [
         'done'
     ];
@@ -28,9 +30,9 @@ class UpdatedMonster extends Component
     {
         $maps = Map::get();
         $elements = Element::get();
-        $monsters = TempMonster::with(['user', 'monster'])->latest()->whereApproved(0)
-                        ->whereNotNull('monster_id')
-                        ->paginate();
+        $monsters = TempMonster::with(['user', 'monster', 'drops'])->latest()->whereApproved(0)
+            ->whereNotNull('monster_id')
+            ->simplePaginate();
 
         return view('livewire.temp.review.updated-monster', [
             'monsters' => $monsters,

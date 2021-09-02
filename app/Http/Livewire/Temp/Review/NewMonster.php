@@ -28,10 +28,10 @@ class NewMonster extends Component
     {
         $maps = Map::get();
         $elements = Element::get();
-        $monsters = TempMonster::with(['drops', 'element'])->latest()
-                        ->whereNull('monster_id')
-                        ->whereApproved(0)
-                        ->paginate();
+        $monsters = TempMonster::with(['drops', 'element', 'user', 'map'])->latest()
+            ->whereNull('monster_id')
+            ->whereApproved(0)
+            ->paginate();
 
         return view('livewire.temp.review.new-monster', [
             'monsters' => $monsters,

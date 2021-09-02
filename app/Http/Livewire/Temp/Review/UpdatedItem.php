@@ -24,11 +24,11 @@ class UpdatedItem extends Component
 
     public function render()
     {
-        $items = TempDrop::with('drop')->latest()
-                        ->whereNotNull('drop_id')
-                        ->whereApproved(0)
-                        ->paginate();
+        $items = TempDrop::with('drop', 'user')->latest()
+            ->whereNotNull('drop_id')
+            ->whereApproved(0)
+            ->paginate();
 
-        return view('livewire.temp.review.updated-item', [ 'items' => $items ]);
+        return view('livewire.temp.review.updated-item', ['items' => $items]);
     }
 }

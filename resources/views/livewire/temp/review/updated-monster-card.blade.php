@@ -128,7 +128,7 @@
             <div class="form-group">
               <label class="form-label">Screenshot before <i class="text-muted">(optional)</i></label>
               <div id="preview">
-                      <img src="/{{ $pmonster->picture }}" style="width: 100%" alt="">
+                      <img src="/{{ $monster->picture }}" style="width: 100%" alt="">
                     </div>
                 </div>
             @endif
