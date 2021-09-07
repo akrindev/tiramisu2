@@ -1,8 +1,21 @@
-# Tiramisu2
+<p align="center">
+    <img src="/public/img/logo.png" width="200px" height="200px"/>
+</p>
 
-adalah situs fansite dari game online MMO
+### Apa itu tiramisu2?
+<p align="center">
+Tiramisu2 merupakan web untuk mencari atau mengexplore data yang ada di dalam suatu game MMORPG Android dan iOS. bukan hanya database gamenya saja, disini terdapat beberapa tools yang dapat digunakan untuk mensimulasikan fitur yang ada di game tersebut.
+</p>
+
+## Tech yang digunakan
+- laravel 8
+- livewire
+- tabler 
+- datatable
+- sb admin
 
 ## Ada apa saja?
+Baik pengguna ataupun member yang telah login dapat menggunakan fitur-fitur yang tersedia. tentu saja, pengguna yang telah login mendapat fitur khusus.
 
 - [x] Items (type)
 - [x] Item
