@@ -51,7 +51,7 @@ class UpdatedMonsterCard extends Component
     {
         $temp = TempMonster::findOrFail($this->monster->id);
 
-        $monster = Monster::findOrFail($this->monster->id);
+        $monster = Monster::findOrFail($temp->monster_id);
         $monster->update([
             'name'    => $this->name,
             'name_en'    => $this->name_en ?? $this->name,
