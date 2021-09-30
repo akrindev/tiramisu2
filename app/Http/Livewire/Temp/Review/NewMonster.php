@@ -28,7 +28,7 @@ class NewMonster extends Component
     {
         $maps = Map::get();
         $elements = Element::get();
-        $monsters = TempMonster::with(['drops', 'element', 'user', 'map'])->latest()
+        $monsters = TempMonster::with(['drops', 'element', 'user'])->latest()
             ->whereNull('monster_id')
             ->whereApproved(0)
             ->paginate();

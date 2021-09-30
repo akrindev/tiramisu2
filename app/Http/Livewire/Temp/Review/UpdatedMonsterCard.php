@@ -51,36 +51,37 @@ class UpdatedMonsterCard extends Component
     {
         $temp = TempMonster::findOrFail($this->monster->id);
 
-        $monster = Monster::findOrFail($this->monster->id)->update([
-            'name'	=> $this->name,
-            'name_en'	=> $this->name_en ?? $this->name,
-            'map_id'	=> $this->mapid,
-            'element_id'	=> $this->element,
-            'level'	=> $this->level,
-            'type'	=> $this->type,
-            'hp'	=> $this->hp,
-            'xp'	=> $this->xp,
-            'pet'	=> $this->pet ? 'y' : 'n'
+        $monster = Monster::findOrFail($this->monster->id);
+        $monster->update([
+            'name'    => $this->name,
+            'name_en'    => $this->name_en ?? $this->name,
+            'map_id'    => $this->mapid,
+            'element_id'    => $this->element,
+            'level'    => $this->level,
+            'type'    => $this->type,
+            'hp'    => $this->hp,
+            'xp'    => $this->xp,
+            'pet'    => $this->pet ? 'y' : 'n'
         ]);
 
-		$monster->drops()->attach($this->drops);
+        $monster->drops()->attach($this->drops);
 
-        $rename = Str::slug($this->name).\str_random(5).'png';
+        $rename = Str::slug($this->name) . \str_random(5) . 'png';
 
         if ($this->picture) {
-            (new Filesystem)->move(\public_path($this->picture), \public_path('imgs/mobs/'.$rename));
+            (new Filesystem)->move(\public_path($this->picture), \public_path('imgs/mobs/' . $rename));
 
-            $monster->picture = 'imgs/mobs/'.$rename;
+            $monster->picture = 'imgs/mobs/' . $rename;
             $monster->save();
         }
 
         $temp->approved = 1;
         $temp->save();
 
-        if(! is_null($this->monster->user_id)) {
-            tap(Contribution::updateOrCreate([ 'user_id' => $this->monster->user_id ]), function ($contribution) {
-				$contribution->increment('point');
-			});
+        if (!is_null($this->monster->user_id)) {
+            tap(Contribution::updateOrCreate(['user_id' => $this->monster->user_id]), function ($contribution) {
+                $contribution->increment('point');
+            });
         }
 
         $this->emitUp('done', 'added');
@@ -94,7 +95,7 @@ class UpdatedMonsterCard extends Component
         // jika guest yang memasukan data
         // dan terdapat foto
         // hapus fotonya
-        if(! $temp->user_id && $temp->picture) {
+        if (!$temp->user_id && $temp->picture) {
 
             (new Filesystem)->delete(\public_path($temp->picture));
 

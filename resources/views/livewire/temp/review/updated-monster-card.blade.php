@@ -51,6 +51,8 @@
                 <option value="{{ $map->id }}" {{ $mapid == $map->id ? 'selected' : ''}}> {{ $map->name }} </option>
               @endforeach
               </select>
+              map before:
+                <input type="text" class="form-control" value="{{ $monster->map->name }}" disabled>
             </div>
 
             <div class="row">

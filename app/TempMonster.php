@@ -11,7 +11,7 @@ class TempMonster extends Model
 
     protected $guarded = [];
 
-    protected $with = ['map'];
+    // protected $with = ['map'];
 
     public function monster()
     {
