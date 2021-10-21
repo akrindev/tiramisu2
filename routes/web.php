@@ -100,6 +100,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', 'UserController@profileku');
     Route::post('/save/contact', 'UserController@saveContact');
     Route::post('/send-token/fcm', 'UserController@sendToken');
+
+    // account deletion
+    Route::delete('/setting/user/delete', 'UserController@deleteAccount')->name('user.delete');
 });
 
 // fill stats

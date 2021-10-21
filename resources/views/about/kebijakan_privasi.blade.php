@@ -35,6 +35,17 @@ Post yang telah ditulis sepenuhnya menjadi tanggung jawab penulis
 
         </div>
       </div>
+
+      <div class="card mt-5" id="account-deletion">
+          <div class="card-header">
+              <h3 class="card-title">Account Deletion</h3>
+          </div>
+          <div class="card-body">
+              <p>We provide account deletion in case you are not using our services anymore or in any conditions. </p>
+              <p>You can delete your account through profile setting. there will be menu to delete permanently your account. <span class="text-danger"> Once your account has been deleted, your data will be removed permanently form our database, including your name, facebook id, twitter id, name, email. </span> </p>
+          </div>
+      </div>
+
     </div>
     </div>
   </div>

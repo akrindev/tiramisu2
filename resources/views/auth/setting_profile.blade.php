@@ -231,16 +231,16 @@
       @csrf
       <b> Data kontak</b>
 
-      <div class="form-group">
-        <label class="form-label">
-          ID Line:
-        </label>
-        <input type="text" name="line" class="form-control {{ $errors->has('line') ? 'is-invalid':''}}" value="{{$data->contact->line ?? ''}}">
-        @if ($errors->has('line'))
-        <small class="text-danger">
-          {{ $errors->first('line') }}
-        </small>
-        @endif
+        <div class="form-group">
+            <label class="form-label">
+            ID Line:
+            </label>
+            <input type="text" name="line" class="form-control {{ $errors->has('line') ? 'is-invalid':''}}" value="{{$data->contact->line ?? ''}}">
+            @if ($errors->has('line'))
+            <small class="text-danger">
+            {{ $errors->first('line') }}
+            </small>
+            @endif
       </div>
 
       <div class="form-group">
@@ -271,6 +271,24 @@
       {!! form_close() !!}
     </div>
   </div>
+
+  <div class="card mt-5">
+      <div class="card-header">
+          <h3 class="card-title">Delete account</h3>
+      </div>
+      <div class="card-body">
+          <strong class="text-danger">*Once you delete your account, your data (fbid, twitterid, email, name) including login to facebook / twitter will be removed permanently from our database.</strong>
+        </div>
+        <div class="card-footer">
+
+            <form action="{{ route('user.delete') }}" method="POST" id="form-user-delete">
+                @csrf
+                @method('delete')
+                <button type="button" id="btn-delete-user" class="btn btn-danger">yes, delete</button>
+            </form>
+      </div>
+  </div>
+
   </div>
     </div>
   </div>
@@ -279,12 +297,33 @@
 @endsection
 
 @section('footer')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const cooking1 = document.getElementById('cooking1')
         const cooking2 = document.getElementById('cooking2')
         const cookingval1 = document.getElementById('cookingval1')
         const cookingval2 = document.getElementById('cookingval2')
+
+        const formDelete = document.getElementById('form-user-delete')
+        const btnDelete = document.getElementById('btn-delete-user')
+
+        btnDelete.addEventListener('click', (e) => {
+
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this account!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((res) => {
+                if (res) {
+                    formDelete.submit()
+                }
+            })
+
+        })
 
         if(!cooking1.value) {
           cookingval1.disabled = true
