@@ -177,4 +177,67 @@ class UserController extends Controller
 
         return redirect('/');
     }
+
+    public function confirmDeletionAccount($code)
+    {
+        $user = User::where('deletion_code', $code)->firstOrFail();
+
+        if ($user->provider_id == null) {
+            return response()->json([
+                'status'    => 'This account has been deleted'
+            ]);
+        }
+
+        Auth::login($user);
+
+        return view('auth.account-deletion', compact('user'));
+    }
+
+    public function requestDeletionAccount()
+    {
+        $signed_request = request('signed_request');
+
+        $data = $this->parse_signed_request($signed_request);
+        $user_id = $data['user_id'];
+
+        $user = User::where('provider_id', $user_id)->firstOrFail();
+
+        $user->update([
+            'deletion_code' => str_random(10)
+        ]);
+
+        $status_url =  route('user.account.deletion', ['code' => $user->deletion_code]); // URL to track the deletion
+
+        $data = [
+            'url' => $status_url,
+            'confirmation_code' => $user->deletion_code
+        ];
+
+        return response()->json($data);
+    }
+
+    public function parse_signed_request($signed_request)
+    {
+        list($encoded_sig, $payload) = explode('.', $signed_request, 2);
+
+        $secret = config('services.facebook.client_secret'); // Use your app secret here
+
+        // decode the data
+        $sig = $this->base64_url_decode($encoded_sig);
+        $data = json_decode($this->base64_url_decode($payload), true);
+
+        // confirm the signature
+        $expected_sig = hash_hmac('sha256', $payload, $secret, $raw = true);
+        if ($sig !== $expected_sig) {
+            error_log('Bad Signed JSON signature!');
+            return null;
+        }
+
+        return $data;
+    }
+
+    private function base64_url_decode($input)
+    {
+        return base64_decode(strtr($input, '-_', '+/'));
+    }
 }

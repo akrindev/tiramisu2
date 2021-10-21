@@ -104,6 +104,8 @@ Route::middleware('auth')->group(function () {
     // account deletion
     Route::delete('/setting/user/delete', 'UserController@deleteAccount')->name('user.delete');
 });
+Route::get('/account-deletion/details/{code}', 'UserController@confirmDeletionAccount')->name('user.delete.request');
+Route::post('/account-deletion/request', 'UserController@requestDeletionAccount');
 
 // fill stats
 Route::prefix('fill_stats')->group(base_path('routes/fill.php'));
