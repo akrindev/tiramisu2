@@ -721,6 +721,14 @@ const MQ = [
     "episodeid": "Manusia Hutan Eumano",
     "episodeen": "Eumanos the Forest Dwellers",
     "exp": 53400000
+  }, {
+    "chapter": 11,
+    "chapterid": "Off to Toram",
+    "chapteren": "Off to Toram",
+    "episode": 91,
+    "episodeid": "Kaum Bertunas",
+    "episodeen": "A Sproutling is Born",
+    "exp": 55700000
   },
 ];
 
