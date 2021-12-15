@@ -303,6 +303,29 @@
  <script src="/assets/js/lazy.js"></script>
  <script src="/assets/js/vendors/bootstrap.bundle.min.js"></script>
 
+ <div id="discordnya-ray">
+    <a href="https://discord.com/invite/deN74tRyVP">
+        <img src="/img/discord.png" height="45px" width="60px" alt="join our discord">
+    </a>
+ </div>
+<style>
+  #discordnya-ray {
+  display: block; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 40px; /* Place the button at the bottom of the page */
+  left: 20px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+ /* border: none; /* Remove borders */
+  /*outline: none; /* Remove outline */
+ /* background-color: red; /* Set a background color */
+ /* color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+ /* padding: 15px; /* Some padding */
+/*  border-radius: 10px; /* Rounded corners */
+ /* font-size: 18px; /* Increase font size */
+}
+</style>
+
 @if(!app()->isLocal())
 <!-- Google Analytics -->
 <script>
