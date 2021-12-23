@@ -45,7 +45,7 @@
         </span>
     </div>
   <div class="col-md-6">
-  <h6>Sponsor Fansite</h6>
+  <h6>Sponsor & Media Partner Fansite</h6>
 
     <ul class="list-unstyled d-flex">
       <li><a href="https://www.youtube.com/channel/UCWjnDhpItCasRJghdyXbpjQ" target="_blank">

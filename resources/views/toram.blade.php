@@ -22,6 +22,10 @@
 	</div>
   @endif
 
+  <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v12.0&appId=2002599206670692&autoLogAppEvents=1" nonce="uDDFAC1K"></script>
+
+
 	<div class="my-5">
       <div class="container">
 
@@ -42,6 +46,11 @@
            <i class="small">Cute logo by <a href="https://facebook.com/rinando.rinando.39" rel="_nofollow">Nurina Laila</a> ^0^ </i> <br>
            <i class="small">In game screenshot is &copy; <u>ASOBIMO,Inc.</u></i>
         @includeUnless(app()->isLocal(), 'inc.ads_mobile')
+        <div class="mb-5"></div>
+            <div class="mb-5">
+                <center><b>Media Partner</b></center>
+            </div>
+                <div class="fb-page" data-href="https://web.facebook.com/U28Blog" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://web.facebook.com/U28Blog" class="fb-xfbml-parse-ignore"><a href="https://web.facebook.com/U28Blog">Ultimate Blogger</a></blockquote></div>
           </div>
 
          <div class="col-md-4">
