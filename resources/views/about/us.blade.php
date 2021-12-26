@@ -24,6 +24,18 @@
         </div>
       </div>
       </div>
+
+      {{-- trakteer --}}
+      <div class="col-md-4">
+          <div class="card">
+              <div class="card-header">
+                  <h2 class="card-title">Merasa terbantu dengan website ini?</h2>
+              </div>
+              <div class="card-body">
+                  <script type='text/javascript' src='https://cdn.trakteer.id/js/embed/trbtn.min.js'></script><script type='text/javascript'>(function(){var trbtnId=trbtn.init('Dukung Saya di Trakteer','#be1e2d','https://trakteer.id/akrindev/tip','https://cdn.trakteer.id/images/embed/trbtn-icon.png','40');trbtn.draw(trbtnId);})();</script>
+              </div>
+          </div>
+      </div>
     </div>
   </div>
 </div>
