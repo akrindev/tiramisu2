@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Drop;
-use App\DropType;
 use App\Helpers\SaveAsImage as Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -11,6 +10,11 @@ use Illuminate\Support\Str;
 class ItemController extends Controller
 {
 
+    /**
+     * show related items
+     *
+     * @return void
+     */
     public function showThem()
     {
         if ($name = request()->get('name')) {
@@ -83,6 +87,13 @@ class ItemController extends Controller
         return view('monster.item', compact('item', 'relateds'));
     }
 
+    /**
+     * get related random items
+     *
+     * @param  string $type
+     * @param  int $id
+     * @return void
+     */
     private function getRandomRelated($type, $id)
     {
         return Drop::whereDropTypeId($type)

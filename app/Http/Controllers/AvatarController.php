@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class AvatarController extends Controller
 {
+    /**
+     * show all avatar list
+     *
+     * @return void
+     */
     public function show()
     {
         $avatars = Avatar::with('lists')->get();
@@ -16,6 +21,12 @@ class AvatarController extends Controller
         return view('avatar.home', compact('avatars'));
     }
 
+    /**
+     * show single avatar list
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function showAvatar($id)
     {
         $avatar = Avatar::with('lists')->findOrFail($id);
@@ -26,27 +37,32 @@ class AvatarController extends Controller
     // admin
     public function getListAvatarJson()
     {
-        $lists = AvatarList::where('title', 'like', '%'. request()->q .'%')->paginate(20);
+        $lists = AvatarList::where('title', 'like', '%' . request()->q . '%')->paginate(20);
 
         return $lists;
     }
 
+    /**
+     * add new avatar list
+     *
+     * @return void
+     */
     public function storeAvatar()
     {
         request()->validate([
-        	'title'	=> 'required',
-            'cover'	=> 'required|image'
+            'title'    => 'required',
+            'cover'    => 'required|image'
         ]);
 
 
         $file = request()->file('cover')->getRealPath();
 
-        $location = '/img/avatar/'.str_slug(strtolower(request('title'))).'-'.rand(00000,99999).'.png';
+        $location = '/img/avatar/' . str_slug(strtolower(request('title'))) . '-' . rand(00000, 99999) . '.png';
 
         $make = Image::make($file);
 
-        $make->text('toram-id.info',15,25, function($font) {
-        	$font->file(public_path('/assets/fonts/roboto.ttf'));
+        $make->text('toram-id.info', 15, 25, function ($font) {
+            $font->file(public_path('/assets/fonts/roboto.ttf'));
             $font->size(20);
             $font->color('#ffffff');
             $font->align('left');
@@ -58,9 +74,9 @@ class AvatarController extends Controller
         $make->save(public_path($location));
 
         $avatar = Avatar::create([
-        	'title'		=> request('title'),
-            'title_en'	=> request('title_en') ?? request('title'),
-            'cover'		=> $location
+            'title'        => request('title'),
+            'title_en'    => request('title_en') ?? request('title'),
+            'cover'        => $location
         ]);
 
         $avatar->lists()->sync($lists);
@@ -68,21 +84,26 @@ class AvatarController extends Controller
         return response()->json(['success' => true]);
     }
 
+    /**
+     * storeAvatarList
+     *
+     * @return void
+     */
     public function storeAvatarList()
     {
         request()->validate([
-        	'title'		=> 'required',
-            'image'		=> 'required|image'
+            'title'        => 'required',
+            'image'        => 'required|image'
         ]);
 
         $file = request()->file('image')->getRealPath();
 
-        $location = '/img/avatar/'.str_slug(strtolower(request('title'))).'-'.rand(00000,99999).'.png';
+        $location = '/img/avatar/' . str_slug(strtolower(request('title'))) . '-' . rand(00000, 99999) . '.png';
 
         $make = Image::make($file);
 
-        $make->text('toram-id.info', 20, 50, function($font) {
-        	$font->file(public_path('/assets/fonts/roboto.ttf'));
+        $make->text('toram-id.info', 20, 50, function ($font) {
+            $font->file(public_path('/assets/fonts/roboto.ttf'));
             $font->size(34);
             $font->color('#ffffff');
             $font->align('left');
@@ -92,12 +113,12 @@ class AvatarController extends Controller
         $make->save(public_path($location));
 
         $avatar = AvatarList::create([
-        	'title'		=> request('title'),
-            'title_en'	=> request('title_en') ?? request('title'),
-            'rate'		=> request('rate'),
-            'value'		=> request('value'),
-            'type'		=> request('type'),
-            'image'		=> $location
+            'title'        => request('title'),
+            'title_en'    => request('title_en') ?? request('title'),
+            'rate'        => request('rate'),
+            'value'        => request('value'),
+            'type'        => request('type'),
+            'image'        => $location
         ]);
 
         return response()->json(['success' => true]);
@@ -106,7 +127,7 @@ class AvatarController extends Controller
     // edit avatar
     public function editAvatar($id)
     {
-        if(request()->isMethod('GET')){
+        if (request()->isMethod('GET')) {
             $data = Avatar::findOrFail($id);
 
             return view('avatar.admin.edit_avatar', compact('data'));
@@ -115,18 +136,17 @@ class AvatarController extends Controller
         $avatar = Avatar::findOrFail($id);
 
         request()->validate([
-        	'title'	=> 'required',
+            'title'    => 'required',
         ]);
 
-        if(request()->hasFile('cover'))
-        {
+        if (request()->hasFile('cover')) {
             $file = request()->file('cover')->getRealPath();
 
-            $location = '/img/avatar/'.str_slug(strtolower(request('title'))).'-'.rand(00000,99999).'.png';
+            $location = '/img/avatar/' . str_slug(strtolower(request('title'))) . '-' . rand(00000, 99999) . '.png';
 
             $make = Image::make($file);
 
-            $make->text('toram-id.info',15,25, function($font) {
+            $make->text('toram-id.info', 15, 25, function ($font) {
                 $font->file(public_path('/assets/fonts/roboto.ttf'));
                 $font->size(20);
                 $font->color('#ffffff');
@@ -140,9 +160,9 @@ class AvatarController extends Controller
         $lists = AvatarList::findOrFail(request()->lists);
 
         $avatar->update([
-        	'title'		=> request('title'),
-            'title_en'	=> request('title_en') ?? request('title'),
-            'cover'		=> $location ?? $avatar->cover
+            'title'        => request('title'),
+            'title_en'    => request('title_en') ?? request('title'),
+            'cover'        => $location ?? $avatar->cover
         ]);
 
         $avatar->lists()->sync($lists);
@@ -150,9 +170,15 @@ class AvatarController extends Controller
         return response()->json(['success' => true]);
     }
 
+    /**
+     * editAvatarList
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function editAvatarList($id)
     {
-        if(request()->isMethod('GET')){
+        if (request()->isMethod('GET')) {
             $data = AvatarList::findOrFail($id);
 
             return view('avatar.admin.edit_lists', compact('data', 'id'));
@@ -160,18 +186,17 @@ class AvatarController extends Controller
         $avatar = AvatarList::findOrFail($id);
 
         request()->validate([
-        	'title'	=> 'required',
+            'title'    => 'required',
         ]);
 
-        if(request()->hasFile('image'))
-        {
+        if (request()->hasFile('image')) {
             $file = request()->file('image')->getRealPath();
 
-            $location = '/img/avatar/'.str_slug(strtolower(request('title'))).'-'.rand(00000,99999).'.png';
+            $location = '/img/avatar/' . str_slug(strtolower(request('title'))) . '-' . rand(00000, 99999) . '.png';
 
             $make = Image::make($file);
 
-            $make->text('toram-id.info', 20, 50, function($font) {
+            $make->text('toram-id.info', 20, 50, function ($font) {
                 $font->file(public_path('/assets/fonts/roboto.ttf'));
                 $font->size(34);
                 $font->color('#ffffff');
@@ -185,11 +210,11 @@ class AvatarController extends Controller
         }
 
         $avatar->update([
-        	'title'		=> request('title'),
-            'title_en'	=> request('title_en') ?? request('title'),
-            'rate'		=> request('rate'),
-            'value'		=> request('value'),
-            'type'		=> request('type')
+            'title'        => request('title'),
+            'title_en'    => request('title_en') ?? request('title'),
+            'rate'        => request('rate'),
+            'value'        => request('value'),
+            'type'        => request('type')
         ]);
 
         return response()->json(['success' => true]);
@@ -204,20 +229,31 @@ class AvatarController extends Controller
         return $data;
     }
 
+    /**
+     * deleteAvatar
+     *
+     * @return void
+     */
     public function deleteAvatar()
     {
         $id = request()->id;
         $avatar = Avatar::findOrFail($id);
         $avatar->delete();
 
-        return response()->json(['success'	=> true]);
+        return response()->json(['success'    => true]);
     }
 
+    /**
+     * deleteAvatarList
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function deleteAvatarList($id)
     {
         $avatar = AvatarList::findOrFail($id);
         $avatar->delete();
 
-        return response()->json(['success'	=> true]);
+        return response()->json(['success'    => true]);
     }
 }

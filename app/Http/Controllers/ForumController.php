@@ -9,11 +9,18 @@ use App\Tag;
 use App\Forum;
 use App\ForumsDesc;
 use App\ForumCategory;
-use Cookie;
 use Image;
 
+/**
+ * ForumController
+ */
 class ForumController extends Controller
 {
+    /**
+     * feed
+     *
+     * @return void
+     */
     public function feed()
     {
         $forums = Forum::with(['user', 'comment'])->orderByDesc('pinned')
@@ -27,6 +34,11 @@ class ForumController extends Controller
         return view('forum.feed', compact('forums', 'categories', 'title', 'f_title'));
     }
 
+    /**
+     * post a forum post
+     *
+     * @return void
+     */
     public function buat()
     {
         $tags = Tag::get();
@@ -35,6 +47,11 @@ class ForumController extends Controller
         return view('forum.buat', compact('tags', 'categories'));
     }
 
+    /**
+     * store forum post
+     *
+     * @return void
+     */
     public function buatSubmit()
     {
         request()->validate([
@@ -70,6 +87,12 @@ class ForumController extends Controller
         return redirect('/forum/' . $slug)->with('sukses', 'Thread berhasil dibuat');
     }
 
+    /**
+     * read forum post
+     *
+     * @param  string $slug
+     * @return void
+     */
     public function baca($slug)
     {
         $baca = Forum::with([
@@ -92,6 +115,12 @@ class ForumController extends Controller
         ]);
     }
 
+    /**
+     * read forum post by id
+     *
+     * @param  int $id
+     * @return void
+     */
     public function bacaId($id)
     {
         $baca = Forum::findOrFail($id);
@@ -99,6 +128,12 @@ class ForumController extends Controller
         return redirect('/forum/' . $baca->slug);
     }
 
+    /**
+     * comment to forum post
+     *
+     * @param  string $slug
+     * @return void
+     */
     public function comment($slug)
     {
         $forum = Forum::where('slug', $slug)->firstOrFail();
@@ -135,11 +170,15 @@ class ForumController extends Controller
             }
         }
 
-        if ($comment) {
-            return back()->with('sukses_comment', 'Komentar di tambahkan');
-        }
+        return back()->with('sukses_comment', 'Komentar di tambahkan');
     }
 
+    /**
+     * reply to comment forum post
+     *
+     * @param  mixed $slug
+     * @return void
+     */
     public function commentReply($slug)
     {
         $forum = Forum::where('slug', $slug)->firstOrFail();
@@ -181,9 +220,7 @@ class ForumController extends Controller
             }
         }
 
-        if ($comment) {
-            return back()->with('sukses_reply-' . $id, 'balasan di tambahkan');
-        }
+        return back()->with('sukses_reply-' . $id, 'balasan di tambahkan');
     }
 
     /**
@@ -204,6 +241,12 @@ class ForumController extends Controller
         return view('forum.edit', compact('data', 'categories'));
     }
 
+    /**
+     * update forum post
+     *
+     * @param  string $slug
+     * @return void
+     */
     public function editSubmit($slug)
     {
         $thread = Forum::where('slug', $slug)->firstOrFail();
@@ -241,6 +284,11 @@ class ForumController extends Controller
         return redirect('/forum/' . $thread->slug)->with('sukses', 'Thread Updated!!');
     }
 
+    /**
+     * editKategori
+     *
+     * @return void
+     */
     public function editKategori()
     {
         $categories = ForumCategory::get();
@@ -248,6 +296,11 @@ class ForumController extends Controller
         return view('forum.admin.storeKategori', compact('categories'));
     }
 
+    /**
+     * storeKategori
+     *
+     * @return void
+     */
     public function storeKategori()
     {
         request()->validate([
@@ -262,6 +315,11 @@ class ForumController extends Controller
         return back()->with('success', 'Kategori baru telah di tambahkan');
     }
 
+    /**
+     * postEditKategori
+     *
+     * @return void
+     */
     public function postEditKategori()
     {
         $kategori = ForumCategory::findOrFail(request()->id);
@@ -290,6 +348,12 @@ class ForumController extends Controller
         return view('forum.feed', compact('forums', 'categories', 'title'));
     }
 
+    /**
+     * category
+     *
+     * @param  mixed $slug
+     * @return void
+     */
     public function category($slug)
     {
         $category = ForumCategory::whereSlug($slug)->firstOrFail();
@@ -444,6 +508,11 @@ class ForumController extends Controller
         return response()->json(["sukses" => true]);
     }
 
+    /**
+     * like reply comment
+     *
+     * @return void
+     */
     public function postLikeReply()
     {
         $reply = ForumsDesc::findOrFail(request()->id);

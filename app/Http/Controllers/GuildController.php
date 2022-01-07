@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
-use \File;
 use App\Helpers\SaveAsImage as Image;
-use App\Helpers\Food;
 
 use App\Guild;
 use App\User;

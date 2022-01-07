@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Drop;
 use App\TempDrop;
-use App\DropType;
 use App\Helpers\SaveAsImage as Image;
 
 class TempDropController extends Controller
@@ -28,54 +27,64 @@ class TempDropController extends Controller
         ]);
 
         // cek apakah terdapat gambar
-        if(request()->hasFile('picture'))
-        {
-          $file = request()->file('picture')->getRealPath();
+        if (request()->hasFile('picture')) {
+            $file = request()->file('picture')->getRealPath();
 
-          $nama = "/temp/".str_slug(strtolower(request('name'))).'-'.rand(00000,99999).'.png';
+            $nama = "/temp/" . str_slug(strtolower(request('name'))) . '-' . rand(00000, 99999) . '.png';
 
-          $save = (new Image)->file($file)->name($nama)->save();
+            $save = (new Image)->file($file)->name($nama)->save();
 
-          $item->picture = $nama;
+            $item->picture = $nama;
         }
 
         // cek apakah item punya type gabbar yang lain
-        if(request()->hasFile('fullimage'))
-        {
-          $file = request()->file('fullimage')->getRealPath();
+        if (request()->hasFile('fullimage')) {
+            $file = request()->file('fullimage')->getRealPath();
 
-          $fullimage = '/temp/'.str_slug(strtolower(request('name'))).'-'.rand(00000,99999).'.png';
+            $fullimage = '/temp/' . str_slug(strtolower(request('name'))) . '-' . rand(00000, 99999) . '.png';
 
-          $save = (new Image)->file($file)->name($fullimage)->save();
+            $save = (new Image)->file($file)->name($fullimage)->save();
 
-          $item->fullimage = $fullimage;
+            $item->fullimage = $fullimage;
         }
 
         $item->name         = $request->name;
-        $item->name_en	    = $request->name_en ?? $request->name;
+        $item->name_en        = $request->name_en ?? $request->name;
         $item->drop_type_id = $request->type;
 
-        if(! is_null(request()->noteMonster) || ! is_null(request()->noteNpc)) {
-          $item->note = [
-            'monster' => $request->noteMonster ?? null,
-            'npc'     => $request->noteNpc ?? null,
-          ];
+        if (!is_null(request()->noteMonster) || !is_null(request()->noteNpc)) {
+            $item->note = [
+                'monster' => $request->noteMonster ?? null,
+                'npc'     => $request->noteNpc ?? null,
+            ];
         }
 
         $item->save();
 
         return response()->json([
-            'success'	=>	true,
+            'success'    =>    true,
         ]);
     }
 
+    /**
+     * edit
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function edit($id)
     {
         $item = Drop::findOrFail($id);
 
-        return view('temp.drop.edit', [ 'item' => $item ]);
+        return view('temp.drop.edit', ['item' => $item]);
     }
 
+    /**
+     * update
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function update(Request $request)
     {
         // pastikan item tersebut sudah ada
@@ -97,44 +106,41 @@ class TempDropController extends Controller
         ]);
 
         // cek apakah terdapat gambar
-        if(request()->hasFile('picture'))
-        {
-          $file = request()->file('picture')->getRealPath();
+        if (request()->hasFile('picture')) {
+            $file = request()->file('picture')->getRealPath();
 
-          $nama = '/temp/'.str_slug(strtolower(request('name'))).'-'.rand(00000,99999).'.png';
+            $nama = '/temp/' . str_slug(strtolower(request('name'))) . '-' . rand(00000, 99999) . '.png';
 
-          $save = (new Image)->file($file)->name($nama)->save();
+            $save = (new Image)->file($file)->name($nama)->save();
         }
 
         // cek apakah item punya type gambar yang lain
-        if(request()->hasFile('fullimage'))
-        {
+        if (request()->hasFile('fullimage')) {
             $file = request()->file('fullimage')->getRealPath();
 
-            $fullimage = '/temp/'.str_slug(strtolower(request('name'))).'-'.rand(00000,99999).'.png';
+            $fullimage = '/temp/' . str_slug(strtolower(request('name'))) . '-' . rand(00000, 99999) . '.png';
 
             $save = (new Image)->file($file)->name($fullimage)->save();
-
         }
 
         $item->name         = $request->name;
-        $item->name_en	    = $request->name_en ?? $request->name;
+        $item->name_en        = $request->name_en ?? $request->name;
         $item->drop_type_id = $request->type;
 
         $item->picture = $nama ?? null;
         $item->fullimage = $fullimage ?? null;
 
-        if(! is_null(request()->noteMonster) || ! is_null(request()->noteNpc)) {
-          $item->note = [
-            'monster' => $request->noteMonster ?? null,
-            'npc'     => $request->noteNpc ?? null,
-          ];
+        if (!is_null(request()->noteMonster) || !is_null(request()->noteNpc)) {
+            $item->note = [
+                'monster' => $request->noteMonster ?? null,
+                'npc'     => $request->noteNpc ?? null,
+            ];
         }
 
         $item->save();
 
         return response()->json([
-            'success'	=>	true,
+            'success'    =>    true,
             'redirect'  => $drop->id
         ]);
     }

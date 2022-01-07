@@ -12,12 +12,18 @@ use App\{
     HistoryLogin,
     Drop,
     Monster,
-    Formula
+    Formula,
+    Tag
 };
 
 
 class AdminController extends Controller
 {
+    /**
+     * home
+     *
+     * @return void
+     */
     public function home()
     {
         $users = User::count();
@@ -60,6 +66,11 @@ class AdminController extends Controller
             ->make(true);
     }
 
+    /**
+     * users
+     *
+     * @return void
+     */
     public function users()
     {
         return datatables()->of(User::with('contact')->orderBy('created_at', 'desc'))
@@ -85,6 +96,11 @@ class AdminController extends Controller
             ->make(true);
     }
 
+    /**
+     * lastLogin
+     *
+     * @return void
+     */
     public function lastLogin()
     {
         return datatables()->of(HistoryLogin::with('user')->orderByDesc('created_at'))
@@ -104,6 +120,11 @@ class AdminController extends Controller
             ->make(true);
     }
 
+    /**
+     * changeUser to be banned or remve banned
+     *
+     * @return void
+     */
     public function changeUser()
     {
         $user = User::findOrFail(request()->id);
@@ -129,6 +150,12 @@ class AdminController extends Controller
         return response()->json(['success' => true]);
     }
 
+    /**
+     * fetchTag
+     *
+     * @param  mixed $i
+     * @return void
+     */
     public function fetchTag($i)
     {
         $tag = Tag::find($i);
@@ -136,6 +163,11 @@ class AdminController extends Controller
         return response()->json(['tag' => $tag->name, 'id' => $tag->id]);
     }
 
+    /**
+     * editTag
+     *
+     * @return void
+     */
     public function editTag()
     {
         $tag = Tag::find(request()->id);
@@ -145,48 +177,14 @@ class AdminController extends Controller
         return response()->json(['success' => true]);
     }
 
+    /**
+     * tagHapus
+     *
+     * @return void
+     */
     public function tagHapus()
     {
         $tag = Tag::find(request()->id);
-        $tag->delete();
-
-        return response()->json(['success' => true]);
-    }
-
-    /**
-     * scamer kategori
-     */
-
-    public function addKategoriScam()
-    {
-        $tag = new \App\CatScammer;
-        $tag->name = request()->kategori;
-        $tag->save();
-
-        return response()->json(['success' => true]);
-    }
-
-
-    public function fetchScam($i)
-    {
-        $tag = \App\CatScammer::find($i);
-
-        return response()->json(['kat' => $tag->name, 'id' => $tag->id]);
-    }
-
-    public function editScam()
-    {
-        $tag = \App\CatScammer::find(request()->id);
-        $tag->name = request()->kat;
-        $tag->save();
-
-        return response()->json(['success' => true]);
-    }
-
-
-    public function hapusScam()
-    {
-        $tag = \App\CatScammer::find(request()->id);
         $tag->delete();
 
         return response()->json(['success' => true]);
