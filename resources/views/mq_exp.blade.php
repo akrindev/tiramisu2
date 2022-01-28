@@ -97,5 +97,5 @@
 
 @section('footer')
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
- <script src="/assets/js/mq.js?3"></script>
+ <script src="/assets/js/mq.js?20221"></script>
 @endsection

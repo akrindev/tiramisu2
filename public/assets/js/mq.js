@@ -729,6 +729,14 @@ const MQ = [
     "episodeid": "Kaum Bertunas",
     "episodeen": "A Sproutling is Born",
     "exp": 55700000
+  }, {
+    "chapter": 11,
+    "chapterid": "Off to Toram",
+    "chapteren": "Off to Toram",
+    "episode": 92,
+    "episodeid": "Kaum BertunasSang Pembawa Berkah",
+    "episodeen": "The Blessing-Bearer",
+    "exp": 58100000
   },
 ];
 
