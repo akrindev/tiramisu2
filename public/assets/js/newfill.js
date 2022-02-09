@@ -56,10 +56,10 @@ const OPTIONS = [
     { "name": "Reduce Dmg (Floor) %", "mat": "Wood", "pot": 4, "cost": 15, "cat": "Enhance Defense", "type": "a", nonega: true, max: BONUS_STEPS },
 
 
-    { "name": "Accuracy", "mat": "Medicine", "pot": 10, "cost": 50, "cat": "Enhance Accuracy", "type": "w", bonus: 2, bonusratio: 1, bonusdeduction: 1 },
+    { "name": "Accuracy", "mat": "Medicine", "pot": 10, "cost": 50, "cat": "Enhance Accuracy", "type": "w", bonus: 2, bonusratio: 0.75, bonusdeduction: 1 },
     { "name": "Accuracy %", "mat": "Medicine", "pot": 20, "cost": 100, "cat": "Enhance Accuracy", "type": "w" },
 
-    { "name": "Dodge", "mat": "Cloth", "pot": 10, "cost": 50, "cat": "Enhance Dodge", "type": "a", bonus: 2, bonusratio: 1, bonusdeduction: 1 },
+    { "name": "Dodge", "mat": "Cloth", "pot": 10, "cost": 50, "cat": "Enhance Dodge", "type": "a", bonus: 2, bonusratio: 0.75, bonusdeduction: 1 },
     { "name": "Dodge %", "mat": "Cloth", "pot": 20, "cost": 100, "cat": "Enhance Dodge", "type": "a" },
 
     { "name": "ASPD", "mat": "Cloth", "pot": 1, "cost": "1.49", "cat": "Enhance Speed", "type": "u", bonus: 16 },
