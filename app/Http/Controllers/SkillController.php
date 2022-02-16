@@ -114,14 +114,14 @@ class SkillController extends Controller
         foreach ($to->values()->all() as $pesan) {
             $pesan->notify(new SkillReplied('juga berkomentar', $skill));
 
-            fcm()->to([$pesan->user->fcm->token])
-                ->notification([
-                    'title' => 'Seseorang juga berkomentar di ' . $skill->name,
-                    'body' => explode(' ', auth()->user()->name)[0] . ' juga berkomentar di ' . $skill->name,
-                    'icon'    => 'https://graph.facebook.com/' . auth()->user()->provider_id . '/picture?type=normal',
-                    'click_action' => url('/skill/child/' . $id)
-                ])
-                ->send();
+            // fcm()->to([$pesan->user->fcm->token])
+            //     ->notification([
+            //         'title' => 'Seseorang juga berkomentar di ' . $skill->name,
+            //         'body' => explode(' ', auth()->user()->name)[0] . ' juga berkomentar di ' . $skill->name,
+            //         'icon'    => 'https://graph.facebook.com/' . auth()->user()->provider_id . '/picture?type=normal',
+            //         'click_action' => url('/skill/child/' . $id)
+            //     ])
+            //     ->send();
         }
 
         return back()->with('sukses_comment', 'komentar telah di tambahkan');

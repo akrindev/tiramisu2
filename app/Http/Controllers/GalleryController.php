@@ -194,16 +194,16 @@ class GalleryController extends Controller
             );
 
 
-            if ($gallery->user->fcm()->count() > 0) {
-                fcm()->to([$gallery->user->fcm->token])
-                    ->notification([
-                        'title' => 'Gambar anda mendapat komentar',
-                        'body' => explode(' ', auth()->user()->name)[0] . ' Mengomentari gambar anda ',
-                        'icon'    => 'https://graph.facebook.com/' . auth()->user()->provider_id . '/picture?type=normal',
-                        'click_action' => 'https://toram-id.info/gallery/' . $gallery->id
-                    ])
-                    ->send();
-            }
+            // if ($gallery->user->fcm()->count() > 0) {
+            //     fcm()->to([$gallery->user->fcm->token])
+            //         ->notification([
+            //             'title' => 'Gambar anda mendapat komentar',
+            //             'body' => explode(' ', auth()->user()->name)[0] . ' Mengomentari gambar anda ',
+            //             'icon'    => 'https://graph.facebook.com/' . auth()->user()->provider_id . '/picture?type=normal',
+            //             'click_action' => 'https://toram-id.info/gallery/' . $gallery->id
+            //         ])
+            //         ->send();
+            // }
         }
 
         return back()->with('sukses_comment', 'Komentar ditambahkan');

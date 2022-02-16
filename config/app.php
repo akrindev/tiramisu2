@@ -151,11 +151,10 @@ return [
          * Package Service Providers...
          */
 
-      Laravel\Socialite\SocialiteServiceProvider::class,
-      Intervention\Image\ImageServiceProvider::class,
-      Yajra\Datatables\DatatablesServiceProvider::class,
-	  Kawankoding\Fcm\FcmServiceProvider::class,
-      /*
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
+        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
@@ -165,7 +164,7 @@ return [
         //App\Providers\TelescopeServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-		App\Providers\CloudinaryServiceProvider::class,
+        App\Providers\CloudinaryServiceProvider::class,
 
     ],
 
@@ -216,12 +215,11 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-      // custom
+        // custom
 
-      'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-      'Image' => Intervention\Image\Facades\Image::class,
-      'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-      'Fcm' => Kawankoding\Fcm\FcmFacade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Image' => Intervention\Image\Facades\Image::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     ],
 
 ];

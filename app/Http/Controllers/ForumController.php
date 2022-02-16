@@ -158,16 +158,16 @@ class ForumController extends Controller
                 )
             );
 
-            if ($forum->user->fcm()->count() > 0) {
-                fcm()->to([$forum->user->fcm->token])
-                    ->notification([
-                        'title' => 'Forum anda mendapat komentar',
-                        'body' => explode(' ', auth()->user()->name)[0] . ' Menjawab pada ' . $forum->judul,
-                        'icon'    => 'https://graph.facebook.com/' . auth()->user()->provider_id . '/picture?type=normal',
-                        'click_action' => 'https://toram-id.info/forum/' . $forum->slug
-                    ])
-                    ->send();
-            }
+            // if ($forum->user->fcm()->count() > 0) {
+            //     fcm()->to([$forum->user->fcm->token])
+            //         ->notification([
+            //             'title' => 'Forum anda mendapat komentar',
+            //             'body' => explode(' ', auth()->user()->name)[0] . ' Menjawab pada ' . $forum->judul,
+            //             'icon'    => 'https://graph.facebook.com/' . auth()->user()->provider_id . '/picture?type=normal',
+            //             'click_action' => 'https://toram-id.info/forum/' . $forum->slug
+            //         ])
+            //         ->send();
+            // }
         }
 
         return back()->with('sukses_comment', 'Komentar di tambahkan');
@@ -208,16 +208,16 @@ class ForumController extends Controller
             );
 
 
-            if ($replied->user->fcm()->count() > 0) {
-                fcm()->to([$replied->user->fcm->token])
-                    ->notification([
-                        'title' => 'Komentar anda mendapat balasan',
-                        'body' => explode(' ', auth()->user()->name)[0] . ' Membalas pada ' . $forum->judul,
-                        'icon'    => 'https://graph.facebook.com/' . auth()->user()->provider_id . '/picture?type=normal',
-                        'click_action' => 'https://toram-id.info/forum/' . $forum->slug
-                    ])
-                    ->send();
-            }
+            // if ($replied->user->fcm()->count() > 0) {
+            //     fcm()->to([$replied->user->fcm->token])
+            //         ->notification([
+            //             'title' => 'Komentar anda mendapat balasan',
+            //             'body' => explode(' ', auth()->user()->name)[0] . ' Membalas pada ' . $forum->judul,
+            //             'icon'    => 'https://graph.facebook.com/' . auth()->user()->provider_id . '/picture?type=normal',
+            //             'click_action' => 'https://toram-id.info/forum/' . $forum->slug
+            //         ])
+            //         ->send();
+            // }
         }
 
         return back()->with('sukses_reply-' . $id, 'balasan di tambahkan');
