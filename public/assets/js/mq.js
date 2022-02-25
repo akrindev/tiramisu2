@@ -737,6 +737,14 @@ const MQ = [
     "episodeid": "Sang Pembawa Berkah",
     "episodeen": "The Blessing-Bearer",
     "exp": 58100000
+  }, {
+    "chapter": 11,
+    "chapterid": "Off to Toram",
+    "chapteren": "Off to Toram",
+    "episode": 93,
+    "episodeid": "Pertarungan Sengit di Markas Coenubia",
+    "episodeen": "Intense Battle in Coenubia's Stronghold",
+    "exp": 60500000
   },
 ];
 
