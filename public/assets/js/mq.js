@@ -745,6 +745,14 @@ const MQ = [
     "episodeid": "Pertarungan Sengit di Markas Coenubia",
     "episodeen": "Intense Battle in Coenubia's Stronghold",
     "exp": 60500000
+  }, {
+    "chapter": 11,
+    "chapterid": "Off to Toram",
+    "chapteren": "Off to Toram",
+    "episode": 94,
+    "episodeid": "Bayangan Gunung Berasap",
+    "episodeen": "The Shadow of a Smoky Mountain",
+    "exp": 63000000
   },
 ];
 
