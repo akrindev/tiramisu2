@@ -12,27 +12,28 @@
 
 @section('content')
 <div class="my-3 my-md-5">
-  <div class="container">
-      	@includeUnless(app()->isLocal(), 'inc.ads_article')
-    <div class="page-header">
-      <h1 class="page-title"> Fill Stats Formula</h1>
-    </div>
-     @include('inc.cari')
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title"> Fill Stats Formula</h1>
+        </div>
 
-      <div class="alert alert-info">
+        @includeUnless(app()->isLocal(), 'inc.ads_horizontal')
+        @include('inc.cari')
+
+        <div class="alert alert-info">
           Simulasi Fill Stats <a href="/fill_stats/simulator">Updated</a> <hr class="my-2"/>
 
           <strong>NEW!!</strong> <br />
           Please Login, so you can give love and automaticaly save the formula
-      </div>
+        </div>
 
         <div class="alert alert-danger">
         	Before using this statting simulator, ensure that you learn these statting skills (3 skills on the bottom) and level up to max level
 
-          <img src="https://lh3.googleusercontent.com/0vK72CbQLCkstI9OuN9hcxbFG5s8vHKt5hAZSwzz0oSkcF58BaFNS4PI9m2C3uxsjXHg-vz_D5fbbxYgK5T3aAvRsZPG0qJFKOnt47pUiyHfVaZ6fhSMlFmRr7KUuUHSKFFXb7AFOQ" class="my-2 d-block" />
-          and <b>Max</b> your <b>TECH</b> stats to 255 point.
+            <img src="https://lh3.googleusercontent.com/0vK72CbQLCkstI9OuN9hcxbFG5s8vHKt5hAZSwzz0oSkcF58BaFNS4PI9m2C3uxsjXHg-vz_D5fbbxYgK5T3aAvRsZPG0qJFKOnt47pUiyHfVaZ6fhSMlFmRr7KUuUHSKFFXb7AFOQ" class="my-2 d-block" />
+            and <b>Max</b> your <b>TECH</b> stats to 255 point.
 
-<img src="https://lh3.googleusercontent.com/LLhAS04wxga6HuLB6Q5pYZvgYdjURvQMLBYvgSYhOWKa5Z6cPiSZ5cDU6PWlmH1Gg68F-e91a0-JN46wruAPAoHPiiKKqo9IRuJsS5BzlBGCyeRJ5Z8c89H8zGbmwUZkuKYP2eW9AA=w1920-h1080" class="my-2 d-block">
+            <img src="https://lh3.googleusercontent.com/LLhAS04wxga6HuLB6Q5pYZvgYdjURvQMLBYvgSYhOWKa5Z6cPiSZ5cDU6PWlmH1Gg68F-e91a0-JN46wruAPAoHPiiKKqo9IRuJsS5BzlBGCyeRJ5Z8c89H8zGbmwUZkuKYP2eW9AA=w1920-h1080" class="my-2 d-block">
         </div>
 
        <div class="my-2">

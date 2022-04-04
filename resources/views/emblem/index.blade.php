@@ -22,30 +22,38 @@
     @endif
 
 <div class="my-5">
-  <div class="container">
-  <div class="page-header">
-    <h3 class="page-title">Toram List Emblem / Prestasi</h3>
-  </div>
+    <div class="container">
+        <div class="page-header">
+            <h3 class="page-title">Toram List Emblem / Prestasi</h3>
+        </div>
 
-    <div class="row">
-      <div class="col-md-8">
-      <div class="card">
-        <div class="card-alert alert alert-info">
-Cara melihat prestasi. <br> "Menu" &gt; "Karakter" &gt; "Prestasi"
+        <div class="row">
+            <div class="col-md-12">
+                @includeUnless(app()->isLocal(), 'inc.ads_horizontal')
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-alert alert alert-info">
+                        Cara melihat prestasi. <br> "Menu" &gt; "Karakter" &gt; "Prestasi"
+                    </div>
+
+                    <div class="card-body p-3">
+                        <div class="mb-5">
+                            <b>Tampilkan reward: </b> <a href="/prestasi/reward/orb">Orb</a>, <a href="/prestasi/reward/karcis kostum">Karcis Kostum</a>, <a href="/prestasi/reward/poin status">Poin Status</a>, <a href="/prestasi/reward/poin skill">Poin Skill</a>, <a href="/prestasi/reward/exp gain">EXP Gain</a>, <a href="/prestasi/reward/spina">Spina</a>, <a href="/prestasi/reward/ruang tokoh">Ruang Tokoh</a>
+                        </div>
+                        @foreach($emblems as $emblem)
+                        <div class="mb-1">
+                            <img src="/img/prestasi.png" class="avatar avatar-sm"> <a href="/prestasi/{{ $emblem->id }}" class="ml-2">{{ $emblem->name }}</a>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                @include('inc.menu')
+            </div>
         </div>
-        <div class="card-body p-3">
-          <div class="mb-5">
-          <b>Tampilkan reward: </b> <a href="/prestasi/reward/orb">Orb</a>, <a href="/prestasi/reward/karcis kostum">Karcis Kostum</a>, <a href="/prestasi/reward/poin status">Poin Status</a>, <a href="/prestasi/reward/poin skill">Poin Skill</a>, <a href="/prestasi/reward/exp gain">EXP Gain</a>, <a href="/prestasi/reward/spina">Spina</a>, <a href="/prestasi/reward/ruang tokoh">Ruang Tokoh</a>
-          </div>
-          @foreach($emblems as $emblem)
-          <div class="mb-1">
-          <img src="/img/prestasi.png" class="avatar avatar-sm"> <a href="/prestasi/{{ $emblem->id }}" class="ml-2">{{ $emblem->name }}</a>
-          </div>
-          @endforeach
-        </div>
-      </div>
-      </div>
     </div>
-  </div>
 </div>
 @endsection

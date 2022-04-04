@@ -33,6 +33,9 @@
     </div>
 
     @foreach ($formulas as $formula)
+        @if(($loop->index + 1) % 5 == 0)
+            @includeUnless(app()->isLocal(), 'inc.ads_article')
+        @endif
         @livewire('card-formula', ['formula' => $formula], key($formula->id))
     @endforeach
 

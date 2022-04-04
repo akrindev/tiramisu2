@@ -5,31 +5,25 @@
 
 @section('content')
 <div class="my-5">
-  <div class="container">
+    <div class="container">
 
-  <div class="page-header">
-    <h3 class="page-title">Registlet Gem Case List</h3>
-  </div>
+        <div class="page-header">
+            <h3 class="page-title">Registlet Gem Case List</h3>
+        </div>
 
-	  <div class="row">
+        <div class="row">
+            <div class="col-md-12">
+                @includeUnless(app()->isLocal(), 'inc.ads_article')
+            </div>
+            <div class="col-md-8">
+                <livewire:registled.show />
+            </div>
 
-		  <div class="col-md-8">
-			<div class="mt-2 d-block">
-        		@includeUnless(app()->isLocal(), 'inc.ads_article')
-			</div>
-
-			  <livewire:registled.show />
-
-		  </div>
-
-		  <div class="col-md-4">
-		  	@include('inc.menu')
-		  </div>
-
-
-	  </div>
-
-  </div>
+            <div class="col-md-4">
+                @include('inc.menu')
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection

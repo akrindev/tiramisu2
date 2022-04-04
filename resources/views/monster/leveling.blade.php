@@ -16,13 +16,11 @@
 
     <div class="row">
       <div class="col-12">
-      @include('inc.cari')
+          @includeUnless(app()->isLocal(), 'inc.ads_horizontal')
+          @include('inc.cari')
       </div>
 
       <div class="col-md-8">
-
-        @includeUnless(app()->isLocal(), 'inc.ads_article')
-
         <div class="card">
             <form action="/leveling" method="get" accept-charset="utf8">
           <div class="card-body p-3">
@@ -91,7 +89,7 @@
         </div>
 
 		<div class="mt-2 d-block">
-        	@includeUnless(app()->isLocal(), 'inc.ads_mobile')
+        	@includeUnless(app()->isLocal(), 'inc.ads_article')
 		</div>
 
         <div class="card mt-5">
@@ -100,7 +98,6 @@
             <b>Level:</b> {{ request('level') }} ke {{ request('level', 49)+1 }}<br>
             <b>Bonus Exp:</b> {{ request('bonusexp', 0) }}%<br>
             <b>Jarak:</b> {{ request('range', 5) }}
-
 
           <span class="text-center d-block">Butuh <b class="text-primary"><u>{{ number_format($expNeed) }}</u></b> EXP</span>
 
@@ -122,13 +119,13 @@
 
           <div class="tab-content" id="myTabContent">
             <!-- leveling list -->
-          <div class="tab-pane fade show active" id="leveling" role="tabpanel" aria-labelledby="leveling-tab">
+            <div class="tab-pane fade show active" id="leveling" role="tabpanel" aria-labelledby="leveling-tab">
 
-              <livewire:leveling
-                                 :level="request('level', 60)"
-                                 :bonusexp="request('bonusexp', 0)"
-                                 :range="request('range', 5)"
-                                 />
+                <livewire:leveling
+                    :level="request('level', 60)"
+                    :bonusexp="request('bonusexp', 0)"
+                    :range="request('range', 5)"
+                    />
             </div>
             <!-- info exp gain -->
             <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">

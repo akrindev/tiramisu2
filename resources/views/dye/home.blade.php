@@ -11,27 +11,28 @@
 
 @section('content')
 <div class="my-5">
-  <div class="container">
-  <div class="page-header">
-    <h3 class="page-title">Dye Bulanan (Monthly Dye)</h3>
-  </div>
-
-    <div class="row">
-
-      <div class="col-md-8">
-        @includeUnless(app()->isLocal(), 'inc.ads_article')
-        <livewire:dye/>
-        @includeUnless(app()->isLocal(), 'inc.ads_article')
-      </div>
-
-      <div class="col-md-4">
-        <div class="card">
-          <img class="img img-fluid" src="/img/dye_code.png" alt="toram dye code"/>
+    <div class="container">
+        <div class="page-header">
+            <h3 class="page-title">Dye Bulanan (Monthly Dye)</h3>
         </div>
-        @include('inc.menu')
-      </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                @includeUnless(app()->isLocal(), 'inc.ads_horizontal')
+            </div>
+            <div class="col-md-8">
+                <livewire:dye/>
+                @includeUnless(app()->isLocal(), 'inc.ads_article')
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                <img class="img img-fluid" src="/img/dye_code.png" alt="toram dye code"/>
+                </div>
+                @include('inc.menu')
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 @auth

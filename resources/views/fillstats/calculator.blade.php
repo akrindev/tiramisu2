@@ -12,36 +12,34 @@
 @section('content')
 <div class="my-5" onload="App.loadLanguage(); App.loadSettings(); App.loadFromStorage()">
 
-  <div class="container">
+    <div class="container">
 
-     @includeUnless(app()->isLocal(), 'inc.ads_article')
+        @includeUnless(app()->isLocal(), 'inc.ads_horizontal')
 
-    <div class="page-header">
-      <h1 class="page-title"> Fill Stat Simulator</h1>
-    </div>
-
-    <div class="row">
-      <div class="col-12">
-      @include('inc.cari')
-      </div>
-
-      <div class="mb-5 col-12">
-        <div class="alert alert-info">
-        Untuk melihat fill stats formula <a href="/fill_stats/formula">klik disini</a>
+        <div class="page-header">
+        <h1 class="page-title"> Fill Stat Simulator</h1>
         </div>
 
-        <div class="alert alert-danger">
-        	Before using this statting simulator, ensure that you learn these statting skills (3 skills on the bottom) and level up to max level
+        <div class="row">
+            <div class="col-12">
+            @include('inc.cari')
+            </div>
 
-          <img src="https://lh3.googleusercontent.com/0vK72CbQLCkstI9OuN9hcxbFG5s8vHKt5hAZSwzz0oSkcF58BaFNS4PI9m2C3uxsjXHg-vz_D5fbbxYgK5T3aAvRsZPG0qJFKOnt47pUiyHfVaZ6fhSMlFmRr7KUuUHSKFFXb7AFOQ" class="my-2 d-block" />
-          and <b>Max</b> your <b>TECH</b> stats to 255 point.
+            <div class="mb-5 col-12">
+                <div class="alert alert-info">
+                    Untuk melihat fill stats formula <a href="/fill_stats/formula">klik disini</a>
+                </div>
 
-<img src="https://lh3.googleusercontent.com/LLhAS04wxga6HuLB6Q5pYZvgYdjURvQMLBYvgSYhOWKa5Z6cPiSZ5cDU6PWlmH1Gg68F-e91a0-JN46wruAPAoHPiiKKqo9IRuJsS5BzlBGCyeRJ5Z8c89H8zGbmwUZkuKYP2eW9AA=w1920-h1080" class="my-2 d-block">
+                <div class="alert alert-danger">
+                    Before using this statting simulator, ensure that you learn these statting skills (3 skills on the bottom) and level up to max level
+
+                    <img src="https://lh3.googleusercontent.com/0vK72CbQLCkstI9OuN9hcxbFG5s8vHKt5hAZSwzz0oSkcF58BaFNS4PI9m2C3uxsjXHg-vz_D5fbbxYgK5T3aAvRsZPG0qJFKOnt47pUiyHfVaZ6fhSMlFmRr7KUuUHSKFFXb7AFOQ" class="my-2 d-block" />
+                    and <b>Max</b> your <b>TECH</b> stats to 255 point.
+
+                    <img src="https://lh3.googleusercontent.com/LLhAS04wxga6HuLB6Q5pYZvgYdjURvQMLBYvgSYhOWKa5Z6cPiSZ5cDU6PWlmH1Gg68F-e91a0-JN46wruAPAoHPiiKKqo9IRuJsS5BzlBGCyeRJ5Z8c89H8zGbmwUZkuKYP2eW9AA=w1920-h1080" class="my-2 d-block">
+                </div>
+            </div>
         </div>
-
-      </div>
-
-    </div>
 
     <div class="row equal justify-content-center">
       <div class="mb-5 col-md-5 {{ session()->has('data') ?  '' : '' }}">
@@ -146,7 +144,7 @@
             <div class="mt-3">
               <small class="text-muted">Credit: <a href="https://sparkychildcharlie.github.io/statting_simulator" rel="nofollow" target="_blank">Charlie Kobayashi</a></small>
 				<div class="my-1">
-					@includeUnless(app()->isLocal(), 'inc.ads_mobile')
+					@includeUnless(app()->isLocal(), 'inc.ads_article')
 				</div>
             </div>
           </div>
@@ -160,7 +158,7 @@
                     <h3 class="card-title">WorkSpace</h3>
                 </div>
                 <div class="p-3 card-body">
-                  <div id="stat-details"></div>
+                    <div id="stat-details"></div>
                     <div id="navigation_bar"></div>
                     Save your formula to server <br />
                     <div class="form-group">
@@ -179,77 +177,64 @@
 
                     <hr class="my-2">
 
-			<div class="dimmer">
-  				<div class="loader"></div>
-  				<div class="dimmer-content">
-                    <div id="saved-formula" class="o-auto" style="height: 160px">
-                        Save public atau <a href="/fb-login">Login</a> untuk melihat formula yang telah kamu simpan <br />
+                    <div class="dimmer">
+                        <div class="loader"></div>
+                        <div class="dimmer-content">
+                            <div id="saved-formula" class="o-auto" style="height: 160px">
+                                Save public atau <a href="/fb-login">Login</a> untuk melihat formula yang telah kamu simpan <br />
+                            </div>
+                            <div id="love-formula" class="o-auto" style="height: 165px"> empty
+                            </div>
+                        </div>
                     </div>
-                    <div id="love-formula" class="o-auto" style="height: 165px"> empty
-                    </div>
-  				</div>
-			</div>
-
-
-
                 </div>
             </div>
         </div>
 		@else
 		<input type="hidden" id="stat-details"/>
 		<input type="hidden" id="navigation_bar"/>
-			@livewire('card-formula', ['formula' => session('data')], key(session('data')->id))
+		@livewire('card-formula', ['formula' => session('data')], key(session('data')->id))
 		@endif
 
         <div class="mb-5 col-md-3" id="ads">
         		@includeUnless(app()->isLocal(), 'inc.ads_article')
         </div>
 
-      <div class="w-100"></div>
-      <div class="mb-5 col-md-5">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Status</h3>
-          </div>
-          <div class="p-3 card-body">
-            <div class="form-group">
-              <div class="p-3 row gutter-xs" id="workspace">
-				stats will appear here.
-				</div>
+        <div class="w-100"></div>
+        <div class="mb-5 col-md-5">
+            <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Status</h3>
+            </div>
+            <div class="p-3 card-body">
+                <div class="form-group">
+                <div class="p-3 row gutter-xs" id="workspace">
+                    stats will appear here.
+                    </div>
+                </div>
+
+                <div class="mt-2 d-block">
+                    @includeUnless(app()->isLocal(), 'inc.ads_article')
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="hidden mb-5 col-md-7" id="show-formula">
+            <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Formula</h3>
+                <div class="card-options"> <button class="btn btn-sm btn-outline-primary" onclick="document.getElementById('wk').scrollIntoView();document.getElementById('note').focus()">save</button> </div>
+            </div>
+            <div class="row p-3">
+
+                <div class="col-md-6 card-body p-0 pb-5" id="formula_display" style="font-size:14px"></div>
+                <div class="col-md-6 card-body p-0" id="material_display"></div>
             </div>
 
-			<div class="mt-2 d-block">
-        		@includeUnless(app()->isLocal(), 'inc.ads_mobile')
-			</div>
-          </div>
+            </div>
         </div>
-      </div>
-
-      <div class="hidden mb-5 col-md-7" id="show-formula">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Formula</h3>
-              <div class="card-options"> <button class="btn btn-sm btn-outline-primary" onclick="document.getElementById('wk').scrollIntoView();document.getElementById('note').focus()">save</button> </div>
-          </div>
-          <div class="row p-3">
-
-              <div class="col-md-6 card-body p-0 pb-5" id="formula_display" style="font-size:14px"></div>
-              <div class="col-md-6 card-body p-0" id="material_display"></div>
-          </div>
-
-        </div>
-      </div>
-
-      {{-- <div class="hidden mb-5 col-md-3">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Material Used</h3>
-          </div>
-        </div>
-      </div> --}}
-
     </div>
-
   </div>
 </div>
 
