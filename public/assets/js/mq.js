@@ -855,6 +855,15 @@ const MQ = [
         episodeen: "The Weredragons & the Underground World",
         exp: 65500000,
     },
+    {
+        chapter: 12,
+        chapterid: "Langit yang berlangit-langit",
+        chapteren: "The Sky with a Ceiling",
+        episode: 96,
+        episodeid: "The Weredragon's Vital point",
+        episodeen: "The Weredragon's Vital point",
+        exp: 71400000,
+    },
 ];
 
 class Main {
