@@ -2,7 +2,7 @@
 // https://github.com/sparkychildcharlie/
 
 const MAX_STEPS = 20;
-const BONUS_STEPS = 4; // 27 Januari 2022
+const BONUS_STEPS = 5; // 23 Juni 2022
 const SLOTS = 8;
 
 const PENALTY_DATA = [0, 0, 20, 45, 80, 125, 180, 245, 320];
