@@ -282,6 +282,7 @@
           <div class="row align-items-center flex-row-reverse">
             <div class="col-auto ml-lg-auto">
               <div class="text-center">
+                <a href="/developer">Developer API</a> .
                 <a href="/kebijakan-privasi">Kebijakan privasi</a> .
                 <a href="/rules">Rules / Peraturan</a> .
                 <a href="/tentang-kami">Tentang Kami</a>

@@ -4,7 +4,8 @@
     </div>
 
     <div class="card-body">
-        <p>You can use token to access toram id public API</p>
+        <p>You can use token to access toram id public API.</p>
+        <a href="/developer">Read documentation here</a>
     </div>
 
     <div class="card-footer">
