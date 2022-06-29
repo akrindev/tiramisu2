@@ -10,12 +10,14 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     // items
     Route::get('/items', [PubicAPIController::class, 'getItems']);
     Route::get('/items/type', [PubicAPIController::class, 'itemsType']);
+    Route::get('/items/search/{query}', [PubicAPIController::class, 'searchItems']);
     Route::get('/items/{items}', [PubicAPIController::class, 'itemsByType']);
     Route::get('/item/{item}', [PubicAPIController::class, 'getItem']);
 
     // monster
     Route::get('/monsters', [PubicAPIController::class, 'getMonsters']);
     Route::get('/monsters/{type}', [PubicAPIController::class, 'getMonstersByType']);
+    Route::get('/monsters/search/{query}', [PubicAPIController::class, 'searchMonsters']);
     Route::get('/monster/{monster}', [PubicAPIController::class, 'getMonster']);
 });
 /*

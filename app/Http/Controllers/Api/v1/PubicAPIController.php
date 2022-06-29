@@ -30,6 +30,11 @@ class PubicAPIController extends Controller
         return Drop::findOrFail($item);
     }
 
+    public function searchItems($query)
+    {
+        return Drop::search('name', $query)->paginate();
+    }
+
     public function getMonsters()
     {
         return Monster::orderByDesc('id')->take(15)->get();
@@ -55,5 +60,15 @@ class PubicAPIController extends Controller
             },
             'map'
         ])->where('type', $type)->paginate();
+    }
+
+    public function searchMonsters($query)
+    {
+        return Monster::with([
+            'drops' => function ($query) {
+                $query->without('monsters')->take(20);
+            },
+            'map'
+        ])->search('name', $query)->paginate();
     }
 }
