@@ -33,7 +33,7 @@
               edited to: {{ $drop->name }} <br>
               On: {{ $drop->created_at->diffForHumans() }} <br>
               @if(! is_null($drop->picture))
-              <img src="/{{ $drop->picture }}" width="120px" height="120px" class="my-2 rounded">
+              <img src="{{ $drop->picture }}" width="120px" height="120px" class="my-2 rounded">
               <div style="font-size:11px;font-weight:400">@parsedown(nl2br(e($drop->note)))
               </div>
               @endif

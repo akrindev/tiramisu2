@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -25,5 +26,12 @@ class DropType extends Model
   public function drop()
   {
     return $this->hasMany(Drop::class, 'drop_type_id');
+  }
+
+  public function url(): Attribute
+  {
+    return new Attribute(
+        get: fn ($value) => $value ? url($value) : null
+    );
   }
 }

@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 
 use App;
 use App\Traits\Searchable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 /**
  * App\Drop
@@ -91,6 +92,20 @@ class Drop extends Model
   	public function dropDone()
     {
       return $this->hasOne(DropDone::class, 'drop_id');
+    }
+
+    public function picture(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => $value ? url($value) : null
+        );
+    }
+
+    public function fullimage(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => $value ? url($value) : null
+        );
     }
 
   	public function getNameAttribute()

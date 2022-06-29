@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\Searchable;
 
 use App;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 /**
  * App\Monster
@@ -65,6 +66,13 @@ class Monster extends Model
     public function element()
     {
         return $this->belongsTo(Element::class);
+    }
+
+    public function picture(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => $value ? url($value) : null
+        );
     }
 
     /*

@@ -1,17 +1,23 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+use App\Http\Controllers\Api\v1\PubicAPIController;
+
+
+Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
+    // items
+    Route::get('/items', [PubicAPIController::class, 'getItems']);
+    Route::get('/items/type', [PubicAPIController::class, 'itemsType']);
+    Route::get('/items/{items}', [PubicAPIController::class, 'itemsByType']);
+    Route::get('/item/{item}', [PubicAPIController::class, 'getItem']);
+
+    // monster
+    Route::get('/monsters', [PubicAPIController::class, 'getMonsters']);
+    Route::get('/monsters/{type}', [PubicAPIController::class, 'getMonstersByType']);
+    Route::get('/monster/{monster}', [PubicAPIController::class, 'getMonster']);
+});
 /*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

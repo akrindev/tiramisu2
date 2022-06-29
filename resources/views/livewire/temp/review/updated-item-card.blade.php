@@ -56,7 +56,7 @@
                     @if ($item->drop->picture)
 
                         <label class='form-label'>before</label>
-                        <img src="/{{ $item->drop->picture }}" style="max-width: 100%" class="d-block"/>
+                        <img src="{{ $item->drop->picture }}" style="max-width: 100%" class="d-block"/>
                     @endif
                 </div>
             </div>
