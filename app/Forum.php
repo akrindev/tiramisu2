@@ -7,6 +7,52 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use App\Traits\Searchable;
 
+/**
+ * App\Forum
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string $judul
+ * @property string $body
+ * @property string $slug
+ * @property string $tags
+ * @property string $color
+ * @property int $views
+ * @property int $pinned
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property int $forum_category_id
+ * @property-read \App\ForumCategory|null $category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ForumsDesc[] $comment
+ * @property-read int|null $comment_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Like[] $likes
+ * @property-read int|null $likes_count
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read int|null $notifications_count
+ * @property-read \App\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Forum newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Forum newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Forum onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Forum query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Forum search($column, $key)
+ * @method static \Illuminate\Database\Eloquent\Builder|Forum whereBody($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Forum whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Forum whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Forum whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Forum whereForumCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Forum whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Forum whereJudul($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Forum wherePinned($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Forum whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Forum whereTags($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Forum whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Forum whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Forum whereViews($value)
+ * @method static \Illuminate\Database\Query\Builder|Forum withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Forum withoutTrashed()
+ * @mixin \Eloquent
+ */
 class Forum extends Model
 {
   use SoftDeletes, Notifiable, Searchable;

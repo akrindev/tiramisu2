@@ -5,6 +5,41 @@ namespace App;
 use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Formula
+ *
+ * @property int $id
+ * @property int|null $user_id
+ * @property string|null $note
+ * @property string $final_step
+ * @property array $body
+ * @property int $starting_pot
+ * @property int $highest_mats
+ * @property string $type
+ * @property int $success_rate
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\User|null $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $users
+ * @property-read int|null $users_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Formula exclude(...$columns)
+ * @method static \Illuminate\Database\Eloquent\Builder|Formula newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Formula newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Formula query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Formula search($column, $key)
+ * @method static \Illuminate\Database\Eloquent\Builder|Formula whereBody($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Formula whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Formula whereFinalStep($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Formula whereHighestMats($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Formula whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Formula whereNote($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Formula whereStartingPot($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Formula whereSuccessRate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Formula whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Formula whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Formula whereUserId($value)
+ * @mixin \Eloquent
+ */
 class Formula extends Model
 {
     use Searchable;
