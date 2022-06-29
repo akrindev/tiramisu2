@@ -22,7 +22,7 @@ class PubicAPIController extends Controller
 
     public function itemsByType($items)
     {
-        return Drop::whereRelation('dropType', 'id', $items)->paginate();
+        return Drop::whereRelation('dropType', 'id', $items)->orderByDesc('id')->paginate();
     }
 
     public function getItem($item)
@@ -41,6 +41,7 @@ class PubicAPIController extends Controller
             'drops' => function ($query) {
                 $query->without('monsters')->take(20);
             },
+            'map'
         ]);
 
         return $monster;
@@ -52,6 +53,7 @@ class PubicAPIController extends Controller
             'drops' => function ($query) {
                 $query->without('monsters')->take(20);
             },
+            'map'
         ])->where('type', $type)->paginate();
     }
 }
