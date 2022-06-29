@@ -179,13 +179,13 @@ axios.get('https://toram-id.info/api/v1/items', {
 				"monster": "Base DEF: 1\r\n\r\nKebal Api +2%\r\nKebal Angin +2%\r\nKebal Air +2%\r\nKebal Bumi +2%",
 				"npc": "Base DEF: 40\n\nKebal Api -10%\nDark Resistance +15%\nAggro +9%\nShort Range Damage +3%"
 			},
-			"picture": "http:\/\/tiramisu2.test\/imgs\/mobs\/bunga-akakuefkfw.png",
+			"picture": "https:\/\/toram-id.info\/imgs\/mobs\/bunga-akakuefkfw.png",
 			"fullimage": null,
 			"released": null,
 			"drop_type": {
 				"id": 33,
 				"name": "Perkakas Tambahan",
-				"url": "http:\/\/tiramisu2.test\/img\/drop\/pelengkap.jpg"
+				"url": "https:\/\/toram-id.info\/img\/drop\/pelengkap.jpg"
 			},
 			"monsters": []
 		},
@@ -203,7 +203,7 @@ axios.get('https://toram-id.info/api/v1/items', {
 			"drop_type": {
 				"id": 16,
 				"name": "box b",
-				"url": "http:\/\/tiramisu2.test\/img\/drop\/box_b.jpg"
+				"url": "https:\/\/toram-id.info\/img\/drop\/box_b.jpg"
 			},
 			"monsters": [
 				{
@@ -217,7 +217,7 @@ axios.get('https://toram-id.info/api/v1/items', {
 					"hp": null,
 					"xp": 38,
 					"pet": "n",
-					"picture": "http:\/\/tiramisu2.test\/imgs\/mobs\/fimera-42180.png",
+					"picture": "https:\/\/toram-id.info\/imgs\/mobs\/fimera-42180.png",
 					"pivot": {
 						"drop_id": 1019,
 						"monster_id": 50
@@ -238,7 +238,7 @@ axios.get('https://toram-id.info/api/v1/items', {
 					"hp": null,
 					"xp": null,
 					"pet": "y",
-					"picture": "http:\/\/tiramisu2.test\/imgs\/mobs\/nepenthe-62029.png",
+					"picture": "https:\/\/toram-id.info\/imgs\/mobs\/nepenthe-62029.png",
 					"pivot": {
 						"drop_id": 1019,
 						"monster_id": 277
@@ -259,7 +259,7 @@ axios.get('https://toram-id.info/api/v1/items', {
 					"hp": null,
 					"xp": null,
 					"pet": "y",
-					"picture": "http:\/\/tiramisu2.test\/imgs\/mobs\/nepenthe-54493.png",
+					"picture": "https:\/\/toram-id.info\/imgs\/mobs\/nepenthe-54493.png",
 					"pivot": {
 						"drop_id": 1019,
 						"monster_id": 278
@@ -280,7 +280,7 @@ axios.get('https://toram-id.info/api/v1/items', {
 					"hp": null,
 					"xp": null,
 					"pet": "y",
-					"picture": "http:\/\/tiramisu2.test\/imgs\/mobs\/nepenthe-88760.png",
+					"picture": "https:\/\/toram-id.info\/imgs\/mobs\/nepenthe-88760.png",
 					"pivot": {
 						"drop_id": 1019,
 						"monster_id": 279
@@ -301,7 +301,7 @@ axios.get('https://toram-id.info/api/v1/items', {
 					"hp": null,
 					"xp": null,
 					"pet": "y",
-					"picture": "http:\/\/tiramisu2.test\/imgs\/mobs\/floral-bee-51123.png",
+					"picture": "https:\/\/toram-id.info\/imgs\/mobs\/floral-bee-51123.png",
 					"pivot": {
 						"drop_id": 1019,
 						"monster_id": 337
@@ -322,7 +322,7 @@ axios.get('https://toram-id.info/api/v1/items', {
 					"hp": null,
 					"xp": 44880,
 					"pet": "n",
-					"picture": "http:\/\/tiramisu2.test\/imgs\/mobs\/lobalawar-91091.png",
+					"picture": "https:\/\/toram-id.info\/imgs\/mobs\/lobalawar-91091.png",
 					"pivot": {
 						"drop_id": 1019,
 						"monster_id": 1128
@@ -348,7 +348,7 @@ axios.get('https://toram-id.info/api/v1/items', {
 			"drop_type": {
 				"id": 5,
 				"name": "obat",
-				"url": "http:\/\/tiramisu2.test\/img\/drop\/obat.png"
+				"url": "https:\/\/toram-id.info\/img\/drop\/obat.png"
 			},
 			"monsters": [
 				{
@@ -362,7 +362,7 @@ axios.get('https://toram-id.info/api/v1/items', {
 					"hp": null,
 					"xp": 184,
 					"pet": "y",
-					"picture": "http:\/\/tiramisu2.test\/imgs\/mobs\/mewte-99639.png",
+					"picture": "https:\/\/toram-id.info\/imgs\/mobs\/mewte-99639.png",
 					"pivot": {
 						"drop_id": 1026,
 						"monster_id": 70
@@ -383,7 +383,7 @@ axios.get('https://toram-id.info/api/v1/items', {
 					"hp": null,
 					"xp": 202,
 					"pet": "y",
-					"picture": "http:\/\/tiramisu2.test\/imgs\/mobs\/mewte-77455.png",
+					"picture": "https:\/\/toram-id.info\/imgs\/mobs\/mewte-77455.png",
 					"pivot": {
 						"drop_id": 1026,
 						"monster_id": 71
@@ -396,10 +396,10 @@ axios.get('https://toram-id.info/api/v1/items', {
 			]
 		},
 	],
-	"first_page_url": "http:\/\/tiramisu2.test\/api\/v1\/items\/search\/bunga?page=1",
+	"first_page_url": "https:\/\/toram-id.info\/api\/v1\/items\/search\/bunga?page=1",
 	"from": 1,
 	"last_page": 2,
-	"last_page_url": "http:\/\/tiramisu2.test\/api\/v1\/items\/search\/bunga?page=2",
+	"last_page_url": "https:\/\/toram-id.info\/api\/v1\/items\/search\/bunga?page=2",
 	"links": [
 		{
 			"url": null,
@@ -407,23 +407,23 @@ axios.get('https://toram-id.info/api/v1/items', {
 			"active": false
 		},
 		{
-			"url": "http:\/\/tiramisu2.test\/api\/v1\/items\/search\/bunga?page=1",
+			"url": "https:\/\/toram-id.info\/api\/v1\/items\/search\/bunga?page=1",
 			"label": "1",
 			"active": true
 		},
 		{
-			"url": "http:\/\/tiramisu2.test\/api\/v1\/items\/search\/bunga?page=2",
+			"url": "https:\/\/toram-id.info\/api\/v1\/items\/search\/bunga?page=2",
 			"label": "2",
 			"active": false
 		},
 		{
-			"url": "http:\/\/tiramisu2.test\/api\/v1\/items\/search\/bunga?page=2",
+			"url": "https:\/\/toram-id.info\/api\/v1\/items\/search\/bunga?page=2",
 			"label": "Next &raquo;",
 			"active": false
 		}
 	],
-	"next_page_url": "http:\/\/tiramisu2.test\/api\/v1\/items\/search\/bunga?page=2",
-	"path": "http:\/\/tiramisu2.test\/api\/v1\/items\/search\/bunga",
+	"next_page_url": "https:\/\/toram-id.info\/api\/v1\/items\/search\/bunga?page=2",
+	"path": "https:\/\/toram-id.info\/api\/v1\/items\/search\/bunga",
 	"per_page": 15,
 	"prev_page_url": null,
 	"to": 15,
@@ -667,7 +667,7 @@ axios.get('https://toram-id.info/api/v1/items', {
 						"monster": null,
 						"npc": "\r\n        Magical Resistance -6%, Critical Damage 4, Additional Melee 25%\r\n        Potensi 24\r\n       proses: Logam x30"
 					},
-					"picture": "http:\/\/tiramisu2.test\/imgs\/mobs\/tombak-paladin-54912.png",
+					"picture": "https:\/\/toram-id.info\/imgs\/mobs\/tombak-paladin-54912.png",
 					"fullimage": null,
 					"released": null,
 					"pivot": {
@@ -677,7 +677,7 @@ axios.get('https://toram-id.info/api/v1/items', {
 					"drop_type": {
 						"id": 29,
 						"name": "tombak",
-						"url": "http:\/\/tiramisu2.test\/img\/drop\/tombak.jpg"
+						"url": "https:\/\/toram-id.info\/img\/drop\/tombak.jpg"
 					}
 				},
 				{
@@ -698,7 +698,7 @@ axios.get('https://toram-id.info/api/v1/items', {
 					"drop_type": {
 						"id": 2,
 						"name": "kain",
-						"url": "http:\/\/tiramisu2.test\/img\/drop\/kain.png"
+						"url": "https:\/\/toram-id.info\/img\/drop\/kain.png"
 					}
 				},
                 ...
@@ -711,10 +711,10 @@ axios.get('https://toram-id.info/api/v1/items', {
 		},
         ...
 	],
-	"first_page_url": "http:\/\/tiramisu2.test\/api\/v1\/monsters\/search\/machina?page=1",
+	"first_page_url": "https:\/\/toram-id.info\/api\/v1\/monsters\/search\/machina?page=1",
 	"from": 1,
 	"last_page": 4,
-	"last_page_url": "http:\/\/tiramisu2.test\/api\/v1\/monsters\/search\/machina?page=4",
+	"last_page_url": "https:\/\/toram-id.info\/api\/v1\/monsters\/search\/machina?page=4",
 	"links": [
 		{
 			"url": null,
@@ -722,33 +722,33 @@ axios.get('https://toram-id.info/api/v1/items', {
 			"active": false
 		},
 		{
-			"url": "http:\/\/tiramisu2.test\/api\/v1\/monsters\/search\/machina?page=1",
+			"url": "https:\/\/toram-id.info\/api\/v1\/monsters\/search\/machina?page=1",
 			"label": "1",
 			"active": true
 		},
 		{
-			"url": "http:\/\/tiramisu2.test\/api\/v1\/monsters\/search\/machina?page=2",
+			"url": "https:\/\/toram-id.info\/api\/v1\/monsters\/search\/machina?page=2",
 			"label": "2",
 			"active": false
 		},
 		{
-			"url": "http:\/\/tiramisu2.test\/api\/v1\/monsters\/search\/machina?page=3",
+			"url": "https:\/\/toram-id.info\/api\/v1\/monsters\/search\/machina?page=3",
 			"label": "3",
 			"active": false
 		},
 		{
-			"url": "http:\/\/tiramisu2.test\/api\/v1\/monsters\/search\/machina?page=4",
+			"url": "https:\/\/toram-id.info\/api\/v1\/monsters\/search\/machina?page=4",
 			"label": "4",
 			"active": false
 		},
 		{
-			"url": "http:\/\/tiramisu2.test\/api\/v1\/monsters\/search\/machina?page=2",
+			"url": "https:\/\/toram-id.info\/api\/v1\/monsters\/search\/machina?page=2",
 			"label": "Next &raquo;",
 			"active": false
 		}
 	],
-	"next_page_url": "http:\/\/tiramisu2.test\/api\/v1\/monsters\/search\/machina?page=2",
-	"path": "http:\/\/tiramisu2.test\/api\/v1\/monsters\/search\/machina",
+	"next_page_url": "https:\/\/toram-id.info\/api\/v1\/monsters\/search\/machina?page=2",
+	"path": "https:\/\/toram-id.info\/api\/v1\/monsters\/search\/machina",
 	"per_page": 15,
 	"prev_page_url": null,
 	"to": 15,
