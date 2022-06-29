@@ -28,7 +28,7 @@
                 <div class="row">
                     @if(! is_null($mons->picture))
                     <div class="col-md-3">
-                        <img src="/img/ball-triangle.svg" data-src="/{{ $mons->picture }}"
+                        <img src="/img/ball-triangle.svg" data-src="{{ $mons->picture }}"
                             class="rounded my-2 d-block lazyload" width="170px" height="170px" alt="{{ $mons->name }}">
                     </div>
                     @endif

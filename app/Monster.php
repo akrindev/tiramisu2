@@ -6,7 +6,43 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\Searchable;
 
 use App;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
+/**
+ * App\Monster
+ *
+ * @property int $id
+ * @property int $map_id
+ * @property int $element_id
+ * @property string $name
+ * @property string|null $name_en
+ * @property int $level
+ * @property int $type
+ * @property int|null $hp
+ * @property int|null $xp
+ * @property string $pet
+ * @property string|null $picture
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Drop[] $drops
+ * @property-read int|null $drops_count
+ * @property-read \App\Element|null $element
+ * @property-read \App\Map|null $map
+ * @method static \Illuminate\Database\Eloquent\Builder|Monster newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Monster newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Monster query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Monster search($column, $key)
+ * @method static \Illuminate\Database\Eloquent\Builder|Monster whereElementId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Monster whereHp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Monster whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Monster whereLevel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Monster whereMapId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Monster whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Monster whereNameEn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Monster wherePet($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Monster wherePicture($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Monster whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Monster whereXp($value)
+ * @mixin \Eloquent
+ */
 class Monster extends Model
 {
     use Searchable;
@@ -30,6 +66,13 @@ class Monster extends Model
     public function element()
     {
         return $this->belongsTo(Element::class);
+    }
+
+    public function picture(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => $value ? url($value) : null
+        );
     }
 
     /*

@@ -7,6 +7,25 @@ use App\Traits\Searchable;
 
 use App;
 
+/**
+ * App\Map
+ *
+ * @property int $id
+ * @property string $name
+ * @property string|null $name_en
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Monster[] $monster
+ * @property-read int|null $monster_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Npc[] $npc
+ * @property-read int|null $npc_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Map newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Map newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Map query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Map search($column, $key)
+ * @method static \Illuminate\Database\Eloquent\Builder|Map whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Map whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Map whereNameEn($value)
+ * @mixin \Eloquent
+ */
 class Map extends Model
 {
     use Searchable;

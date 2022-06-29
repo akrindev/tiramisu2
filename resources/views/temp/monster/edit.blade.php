@@ -157,7 +157,7 @@
           <div class="form-group">
             <label class="form-label">Screenshot <i class="text-muted">(optional)</i></label>
             <div id="preview" class="mb-5">
-            <img src="/{{ $monster->picture }}"/>
+            <img src="{{ $monster->picture }}"/>
             </div>
             <input type="file" name="picture" class="form-control" accept="image/*" id="picture">
             <small class="text-muted">max 500KB</small>

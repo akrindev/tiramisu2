@@ -272,6 +272,8 @@
     </div>
   </div>
 
+  <livewire:token.show>
+
   <div class="card mt-5">
       <div class="card-header">
           <h3 class="card-title">Delete account</h3>
@@ -296,7 +298,12 @@
 
 @endsection
 
+@section('head')
+    @livewireStyles
+@endsection
+
 @section('footer')
+@livewireScripts
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>

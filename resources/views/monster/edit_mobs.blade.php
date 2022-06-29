@@ -119,7 +119,7 @@
           <div class="form-group">
             <label class="form-label">Screenshot</label>
             <div id="preview" class="mb-5">
-            <img src="/{{ $data->picture }}"/>
+            <img src="{{ $data->picture }}"/>
             </div>
             <input type="file" name="picture" class="form-control" accept="image/*" id="picture">
           </div>

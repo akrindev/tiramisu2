@@ -21,10 +21,10 @@
 <div id="carousel-controls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="my-2 d-block lazyload" src="/img/ball-triangle.svg" data-src="/{{ $item->picture}}" alt="{{ request()->segment(1) != 'en' ? $item->name : $item->name_en }}" data-holder-rendered="true" width="200px" height="200px">
+            <img class="my-2 d-block lazyload" src="/img/ball-triangle.svg" data-src="{{ $item->picture}}" alt="{{ request()->segment(1) != 'en' ? $item->name : $item->name_en }}" data-holder-rendered="true" width="200px" height="200px">
         </div>
         <div class="carousel-item">
-            <img class="my-2 d-block lazyload" src="/img/ball-triangle.svg" data-src="/{{ $item->fullimage }}" alt="{{ request()->segment(1) != 'en' ? $item->name : $item->name_en }}" data-holder-rendered="true" width="200px" height="200px">
+            <img class="my-2 d-block lazyload" src="/img/ball-triangle.svg" data-src="{{ $item->fullimage }}" alt="{{ request()->segment(1) != 'en' ? $item->name : $item->name_en }}" data-holder-rendered="true" width="200px" height="200px">
         </div>
     </div>
             <a class="carousel-control-prev" href="#carousel-controls" role="button" data-slide="prev">
@@ -41,7 +41,7 @@
 
 @if(! is_null($item->picture) && is_null($item->fullimage))
 <div class="col-md-4 my-2">
-    <img src="/img/ball-triangle.svg" data-src="/{{ $item->picture }}" alt="{{ request()->segment(1) != 'en' ? $item->name : $item->name_en }}" class="rounded my-2 d-block lazyload" width="200px" height="200px">
+    <img src="/img/ball-triangle.svg" data-src="{{ $item->picture }}" alt="{{ request()->segment(1) != 'en' ? $item->name : $item->name_en }}" class="rounded my-2 d-block lazyload" width="200px" height="200px">
 </div>
 @endif
 

@@ -178,7 +178,7 @@
                         </dt>
                         <dd>
                             @if ($mons->picture != null)
-                                <img src="/{{ $mons->picture }}" alt="{{ $mons->name }}" class="rounded my-2 d-block" width="150px" height="150px">
+                                <img src="{{ $mons->picture }}" alt="{{ $mons->name }}" class="rounded my-2 d-block" width="150px" height="150px">
                             @endif
                             <b>{{ __('Unsur') }}:</b> <span> {{ __(ucfirst($mons->element->name)) }}</span> <br>
                             <b>{{ __('Peta') }}:</b> <a href="{{ request()->segment(1) == 'en' ? '/en' : '' }}/peta/{{ $mons->map->id }}">{{ $mons->map->name }} </a>

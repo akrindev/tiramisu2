@@ -24,6 +24,9 @@ Route::prefix('en')->middleware('locale:en')->group(base_path('routes/en.php'));
 // Registled
 Route::view('/registlet', 'registled.show');
 
+// developer documentation api
+Route::view('developer', 'developer.api');
+
 // secrets message
 Route::prefix('secrets')->group(function () {
     Route::get('/{user:username}', 'SecretMessageController@show');

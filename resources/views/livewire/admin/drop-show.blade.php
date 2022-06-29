@@ -34,7 +34,7 @@
 
 @if(! is_null($item->picture) && is_null($item->fullimage))
 <div class="col-md-4 my-2">
-<img src="/img/ball-triangle.svg" data-src="/{{ $item->picture }}" class="rounded my-2 d-block lazyload" width="210px" height="210px">
+<img src="/img/ball-triangle.svg" data-src="{{ $item->picture }}" class="rounded my-2 d-block lazyload" width="210px" height="210px">
 </div>
 @endif
 
