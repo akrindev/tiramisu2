@@ -44,8 +44,9 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            'throttle:30,1',
+            'throttle:50,1',
             'bindings',
+            'force.json',
         ],
     ];
 
@@ -57,7 +58,8 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
+        // 'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
+        'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
@@ -69,5 +71,6 @@ class Kernel extends HttpKernel
 
         'admin' => \App\Http\Middleware\RedirectIfNotAdmin::class,
         'locale' => \App\Http\Middleware\Locale::class,
+        'force.json' => \App\Http\Middleware\ForceJsonResponse::class,
     ];
 }
