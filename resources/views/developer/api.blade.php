@@ -461,6 +461,10 @@ axios.get('https://toram-id.info/api/v1/items')
                     <li>
                         <strong>Menampilkan monster yang terakhir ditambahkan.</strong> <br>
                         <code>GET https://toram-id.info/api/v1/monsters</code> <br>
+                        tampilkan berdasarkan level <br>
+                        <code>GET https://toram-id.info/api/v1/monsters?level=120</code> <br>
+                        tampilkan berdasarkan level dan rentang level <br>
+                        <code>GET https://toram-id.info/api/v1/monsters?level=120&between=8</code> <br>
                         <details>
                             <summary>
                                 <strong>Contoh response</strong> <br>
@@ -516,6 +520,10 @@ axios.get('https://toram-id.info/api/v1/items')
                     <br>
                     <code>GET https://toram-id.info/api/v1/monsters/{jenis_id}</code> <br>
                     <code>GET https://toram-id.info/api/v1/monsters/3</code>
+                        tampilkan berdasarkan level <br>
+                        <code>GET https://toram-id.info/api/v1/monsters/3?level=120</code> <br>
+                        tampilkan berdasarkan level dan rentang level <br>
+                        <code>GET https://toram-id.info/api/v1/monsters/3?level=120&between=8</code> <br>
                     <details>
                         <summary>
                             <strong>Contoh response</strong> <br>
