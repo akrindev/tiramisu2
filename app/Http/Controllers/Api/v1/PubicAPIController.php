@@ -52,19 +52,19 @@ class PubicAPIController extends Controller
 
     public function getMonsters()
     {
-        $level = '?level=' . request()->has('level') ? request()->level : '';
-        $between = '&between=' . request()->has('between') ? request()->between : '';
+        $level = '?level=' . request()->has('level') ? intval(request()->level) : '';
+        $between = '&between=' . request()->has('between') ? intval(request()->between) : '';
 
         return Cache::remember('latest-monsters' . $level . $between, now()->addMinutes(10), function () {
             return Monster::with('map')->when(request()->has('level'), function ($query) {
                 return $query->when(request()->has('between'), function ($query) {
 
-                    $between = request()->between;
-                    $level = request()->level;
+                    $between = intval(request()->between);
+                    $level = intval(request()->level);
 
                     return $query->whereBetween('level', [$level-$between, $level+$between]);
                 }, function ($query) {
-                    return $query->where('level', request()->level);
+                    return $query->where('level', intval(request()->level));
                 });
             })->orderByDesc('id')->take(15)->get();
         });
@@ -89,8 +89,8 @@ class PubicAPIController extends Controller
     public function getMonstersByType($type)
     {
         $page = '?page=' . request()->has('page') ? request()->page : 1;
-        $level = '&level=' . request()->has('level') ? request()->level : '';
-        $between = '&between=' . request()->has('between') ? request()->between : '';
+        $level = '&level=' . request()->has('level') ? intval(request()->level) : '';
+        $between = '&between=' . request()->has('between') ? intval(request()->between) : '';
 
         return Cache::remember('monster-by-type' . $type . $page. $level . $between, now()->addMinutes(10), function () use ($type) {
             return Monster::with([
@@ -103,12 +103,12 @@ class PubicAPIController extends Controller
             ->when(request()->has('level'), function ($query) {
                 $query->when(request()->has('between'), function ($query) {
 
-                    $between = request()->between;
-                    $level = request()->level;
+                    $between = intval(request()->between);
+                    $level = intval(request()->level);
 
                     return $query->whereBetween('level', [$level-$between, $level+$between]);
                 }, function ($query) {
-                    return $query->where('level', request()->level);
+                    return $query->where('level', intval(request()->level));
                 });
             })->paginate();
         });
