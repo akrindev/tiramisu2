@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Api\v1\PubicAPIController;
+use App\Http\Middleware\ForceJsonResponse;
 
-
-Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
+Route::middleware([ForceJsonResponse::class, 'auth:sanctum'])->prefix('v1')->group(function () {
     // items
     Route::get('/items', [PubicAPIController::class, 'getItems']);
     Route::get('/items/type', [PubicAPIController::class, 'itemsType']);
