@@ -52,8 +52,21 @@ class PubicAPIController extends Controller
 
     public function getMonsters()
     {
-        return Cache::remember('latest-monsters', now()->addMinutes(10), function () {
-            return Monster::orderByDesc('id')->take(15)->get();
+        $level = '?level=' . request()->has('level') ? request()->level : '';
+        $between = '&between=' . request()->has('between') ? request()->between : '';
+
+        return Cache::remember('latest-monsters' . $level . $between, now()->addMinutes(10), function () {
+            return Monster::with('map')->when(request()->has('level'), function ($query) {
+                return $query->when(request()->has('between'), function ($query) {
+
+                    $between = request()->between;
+                    $level = request()->level;
+
+                    return $query->whereBetween('level', [$level-$between, $level+$between]);
+                }, function ($query) {
+                    return $query->where('level', request()->level);
+                });
+            })->orderByDesc('id')->take(15)->get();
         });
     }
 
@@ -76,14 +89,28 @@ class PubicAPIController extends Controller
     public function getMonstersByType($type)
     {
         $page = '?page=' . request()->has('page') ? request()->page : 1;
+        $level = '&level=' . request()->has('level') ? request()->level : '';
+        $between = '&between=' . request()->has('between') ? request()->between : '';
 
-        return Cache::remember('monster-by-type' . $type . $page, now()->addMinutes(10), function () use ($type) {
+        return Cache::remember('monster-by-type' . $type . $page. $level . $between, now()->addMinutes(10), function () use ($type) {
             return Monster::with([
                 'drops' => function ($query) {
                     $query->without('monsters')->take(20);
                 },
                 'map'
-            ])->where('type', $type)->paginate();
+            ])
+            ->where('type', $type)
+            ->when(request()->has('level'), function ($query) {
+                $query->when(request()->has('between'), function ($query) {
+
+                    $between = request()->between;
+                    $level = request()->level;
+
+                    return $query->whereBetween('level', [$level-$between, $level+$between]);
+                }, function ($query) {
+                    return $query->where('level', request()->level);
+                });
+            })->paginate();
         });
 
     }
