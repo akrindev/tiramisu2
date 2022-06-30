@@ -33,18 +33,25 @@
                 <img src="https://cloudflare-ipfs.com/ipfs/QmbdmhnpxwCSBMWNXVEowiMZMsB4oAZBf5SP4BQc17181t" alt="generate token" class="">
             </p>
             <p>
-                Berikut ini adalah contoh menggunakan bearer token.
+                Berikut ini adalah contoh menggunakan bearer token dengan javascript dan axios.
                 <pre>
-                    <code class="language-javascript">const token = '{{ str()->random(40) }}';
+                    <code class="language-javascript">import axios from 'axios';
 
-axios.get('https://toram-id.info/api/v1/items', {
+const token = '{{ str()->random(40) }}';
+
+// contoh menggunakan axios https://axios-http.com/
+// atau kamu dapat menggunakan fetch https://developer.mozilla.org/en-US/docs/Web/API/fetch
+
+axios.defaults.headers =  {
     headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
         Authorization: 'Bearer ' + token
     }
-})
-.then((response) => console.log(response))
+}
+
+axios.get('https://toram-id.info/api/v1/items')
+.then((response) => console.log(response.data))
 .catch((err) => console.error(err));</code></pre>
 
             </p>
