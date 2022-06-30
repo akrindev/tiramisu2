@@ -27,7 +27,9 @@ class PubicAPIController extends Controller
 
     public function itemsByType($items)
     {
-        return Cache::remember('items-by-type-' . $items, now()->addMinutes(10), function () use ($items) {
+        $page = '?page=' . request()->has('page') ? request()->page : 1;
+
+        return Cache::remember('items-by-type-' . $items . $page, now()->addMinutes(10), function () use ($items) {
             return Drop::whereRelation('dropType', 'id', $items)->orderByDesc('id')->paginate();
         });
     }
@@ -41,7 +43,9 @@ class PubicAPIController extends Controller
 
     public function searchItems($query)
     {
-        return Cache::remember('item-search-' . $query, now()->addMinutes(10), function () use ($query) {
+        $page = '?page=' . request()->has('page') ? request()->page : 1;
+
+        return Cache::remember('item-search-' . $query . $page, now()->addMinutes(10), function () use ($query) {
             return Drop::search('name', $query)->paginate();
         });
     }
@@ -71,7 +75,9 @@ class PubicAPIController extends Controller
 
     public function getMonstersByType($type)
     {
-        return Cache::remember('monster-by-type' . $type, now()->addMinutes(10), function () use ($type) {
+        $page = '?page=' . request()->has('page') ? request()->page : 1;
+
+        return Cache::remember('monster-by-type' . $type . $page, now()->addMinutes(10), function () use ($type) {
             return Monster::with([
                 'drops' => function ($query) {
                     $query->without('monsters')->take(20);
@@ -84,7 +90,9 @@ class PubicAPIController extends Controller
 
     public function searchMonsters($query)
     {
-        return Cache::remember('monsters-search-' . $query, now()->addMinutes(10), function () use ($query) {
+        $page = '?page=' . request()->has('page') ? request()->page : 1;
+
+        return Cache::remember('monsters-search-' . $query . $page, now()->addMinutes(10), function () use ($query) {
             return Monster::with([
                 'drops' => function ($query) {
                     $query->without('monsters')->take(20);
