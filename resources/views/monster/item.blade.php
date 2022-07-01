@@ -44,12 +44,12 @@
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
                                     <img class="d-block w-100 lazyload" src="/img/ball-triangle.svg"
-                                        data-src="/{{ $item->picture}}"
+                                        data-src="{{ $item->picture}}"
                                         data-holder-rendered="true" alt="{{ $item->name }}">
                                 </div>
                                 <div class="carousel-item">
                                     <img class="d-block w-100 lazyload"
-                                        src="/img/ball-triangle.svg" data-src="/{{ $item->fullimage }}"
+                                        src="/img/ball-triangle.svg" data-src="{{ $item->fullimage }}"
                                         data-holder-rendered="true" alt="{{ $item->name }}">
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
 
                     @if(! is_null($item->picture) && is_null($item->fullimage))
                     <div class="col-12">
-                        <img src="/img/ball-triangle.svg" data-src="/{{ $item->picture }}"
+                        <img src="/img/ball-triangle.svg" data-src="{{ $item->picture }}"
                             class="rounded my-2 d-block lazyload"
                             width="85%" height="85%" alt="{{ $item->name }}">
                     </div>
