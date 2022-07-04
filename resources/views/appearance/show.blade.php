@@ -82,7 +82,7 @@
         <div class="col-md-4">
                 <div class="card p-0">
               <a href="{{ app()->isLocale('en') ? '/en' : '' }}/item/{{ $app->id }}">
-                <img src="//toram-id.info/{{ $app->fullimage }}" alt="{{ $app->name }}" style="min-width: 100%; min-height: 370px; object-fit: cover">
+                <img src="{{ $app->fullimage }}" alt="{{ $app->name }}" style="min-width: 100%; min-height: 370px; object-fit: cover">
               </a>
 
               <div class="d-flex align-items-center p-3">
