@@ -139,7 +139,7 @@
 @endsection
 
 @section('head')
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/vue@2.7.8/dist/vue.min.js"></script>
 @endsection
 
 @section('footer')
