@@ -39,7 +39,7 @@
                     <tr>
                         <td>
                             <strong>{{ $audit->event }}</strong> <br>
-                            {{ $audit->user->name }}
+                            {{ $audit->user?->name ?? 'unknown' }}
                         </td>
                         <td>
                             <strong>{{ $audit->auditable_type }}</strong> <br>
