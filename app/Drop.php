@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use App;
 use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * App\Drop
@@ -47,9 +48,9 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
  * @method static \Illuminate\Database\Eloquent\Builder|Drop whereSell($value)
  * @mixin \Eloquent
  */
-class Drop extends Model
+class Drop extends Model implements Auditable
 {
-  	use Searchable;
+  	use Searchable, \OwenIt\Auditing\Auditable;
 
   	protected $casts = [
     	'note'	=> 'json'

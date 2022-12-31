@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Forum;
 use App\ForumsDesc;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
@@ -120,7 +121,20 @@ class User extends Authenticatable
 
   	public function isAdmin()
     {
-      return $this->role == 'admin' ? true : false;
+      return $this->role == 'admin' || $this->isSuperAdmin();
+    }
+
+    public function isSuperAdmin()
+    {
+        return $this->attributes['role'] == 'superadmin';
+    }
+
+    public function role(): Attribute
+    {
+        // if it super admin, also return as admin
+        return new Attribute(
+            get: fn ($value) => $this->attributes['role'] == 'superadmin' ? 'admin' : $this->attributes['role']
+        );
     }
 
     public function isTopContributor()

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use App\Traits\Searchable;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * App\Forum
@@ -53,9 +54,9 @@ use App\Traits\Searchable;
  * @method static \Illuminate\Database\Query\Builder|Forum withoutTrashed()
  * @mixin \Eloquent
  */
-class Forum extends Model
+class Forum extends Model implements Auditable
 {
-  use SoftDeletes, Notifiable, Searchable;
+  use SoftDeletes, Notifiable, Searchable, \OwenIt\Auditing\Auditable;
 
     protected $fillable = [
         'user_id', 'judul', 'body' , 'pinned',

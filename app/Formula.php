@@ -4,6 +4,7 @@ namespace App;
 
 use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * App\Formula
@@ -40,9 +41,20 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Formula whereUserId($value)
  * @mixin \Eloquent
  */
-class Formula extends Model
+class Formula extends Model implements Auditable
 {
-    use Searchable;
+    use Searchable, \OwenIt\Auditing\Auditable;
+
+    /**
+     * Auditable events.
+     *
+     * @var array
+     */
+    protected $auditEvents = [
+        'updated',
+        'deleted',
+        'restored',
+    ];
 
     protected $guarded = [];
 

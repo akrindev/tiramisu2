@@ -23,6 +23,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.0",
         "livewire/livewire": "^2.0",
+        "owen-it/laravel-auditing": "^13.0",
         "sentry/sentry-laravel": "^2.3",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
