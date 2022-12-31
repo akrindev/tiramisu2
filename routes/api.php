@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-
 use App\Http\Controllers\Api\v1\PubicAPIController;
 use App\Http\Middleware\ForceJsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 Route::middleware([ForceJsonResponse::class, 'auth:sanctum'])->prefix('v1')->group(function () {
     // items

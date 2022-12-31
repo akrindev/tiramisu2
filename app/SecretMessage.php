@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|SecretMessage[] $reply
  * @property-read int|null $reply_count
  * @property-read \App\User|null $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|SecretMessage newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SecretMessage newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SecretMessage publicMessage()
@@ -29,6 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|SecretMessage wherePrivacy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SecretMessage whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SecretMessage whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class SecretMessage extends Model
@@ -38,7 +40,7 @@ class SecretMessage extends Model
     protected $guarded = [];
 
     public $with = [
-        'reply'
+        'reply',
     ];
 
     public function user()

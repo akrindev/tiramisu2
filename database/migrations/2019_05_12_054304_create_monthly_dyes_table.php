@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateMonthlyDyesTable extends Migration
 {
@@ -15,9 +15,9 @@ class CreateMonthlyDyesTable extends Migration
     {
         Schema::create('monthly_dyes', function (Blueprint $table) {
             $table->increments('id');
-          	$table->integer('monster_id');
-          	$table->integer('dye_id');
-          	$table->string('type', 1);
+            $table->integer('monster_id');
+            $table->integer('dye_id');
+            $table->string('type', 1);
             $table->timestamps();
         });
     }

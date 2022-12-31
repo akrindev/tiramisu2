@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Drop;
 use App\Helpers\SaveAsImage as Image;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class ItemController extends Controller
 {
-
     /**
      * show related items
      *
@@ -24,8 +22,8 @@ class ItemController extends Controller
 
                 $query->where(function ($query) use ($words) {
                     foreach ($words as $word) {
-                        $query->orWhere('name', 'like', '%' . $word . '%')
-                            ->orWhere('name_en', 'like', '%' . $word . '%');
+                        $query->orWhere('name', 'like', '%'.$word.'%')
+                            ->orWhere('name_en', 'like', '%'.$word.'%');
                     }
                 });
             }, function ($query) use ($name) {
@@ -36,7 +34,7 @@ class ItemController extends Controller
                 })
                 ->orderByDesc('drop_type_id')->paginate();
 
-            $type = '[Related ' . __($data[0]->dropType->name) . '] ' . $name;
+            $type = '[Related '.__($data[0]->dropType->name).'] '.$name;
 
             return view('monster.items', compact('data', 'type'));
         }
@@ -54,10 +52,10 @@ class ItemController extends Controller
                 $query->with([
                     // 'map',
                     // 'element',
-                    'drops'
+                    'drops',
                 ]);
             },
-            'dropType'
+            'dropType',
         ])->findOrFail($id);
 
         if (Str::contains($item->name, ' ') || Str::contains($item->name_en, ' ')) {
@@ -67,22 +65,20 @@ class ItemController extends Controller
 
             $relateds = Drop::where('id', '!=', $item->id) // bukan data item itu sendiri
                 ->whereDropTypeId($dropid)
-                ->where(function ($query) use ($words, $dropid) {
-
+                ->where(function ($query) use ($words) {
                     foreach ($words as $word) {
-                        $query->orWhere('name', 'like', '%' . $word . '%')
-                            ->orWhere('name_en', 'like', '%' . $word . '%');
+                        $query->orWhere('name', 'like', '%'.$word.'%')
+                            ->orWhere('name_en', 'like', '%'.$word.'%');
                     }
                 })->inRandomOrder()->take(10)->get();
 
             // jika tidak ada similiar items, yuk tampilin random items dengan type yang sama
-            if (!$relateds->count()) {
+            if (! $relateds->count()) {
                 $relateds = $this->getRandomRelated($item->drop_type_id, $item->id);
             }
         } else {
             $relateds = $this->getRandomRelated($item->drop_type_id, $item->id);
         }
-
 
         return view('monster.item', compact('item', 'relateds'));
     }
@@ -90,8 +86,8 @@ class ItemController extends Controller
     /**
      * get related random items
      *
-     * @param  string $type
-     * @param  int $id
+     * @param  string  $type
+     * @param  int  $id
      * @return void
      */
     private function getRandomRelated($type, $id)
@@ -123,7 +119,7 @@ class ItemController extends Controller
         if (request()->hasFile('picture')) {
             $file = request()->file('picture')->getRealPath();
 
-            $nama = 'imgs/mobs/' . str_slug(strtolower(request('name'))) . '-' . rand(00000, 99999) . '.png';
+            $nama = 'imgs/mobs/'.str_slug(strtolower(request('name'))).'-'.rand(00000, 99999).'.png';
 
             $save = (new Image)->file($file)->name($nama)->save();
 
@@ -133,32 +129,32 @@ class ItemController extends Controller
         if (request()->hasFile('fullimage')) {
             $file = request()->file('fullimage')->getRealPath();
 
-            $fullimage = 'imgs/mobs/' . str_slug(strtolower(request('name'))) . '-' . rand(00000, 99999) . '.png';
+            $fullimage = 'imgs/mobs/'.str_slug(strtolower(request('name'))).'-'.rand(00000, 99999).'.png';
 
             $save = (new Image)->file($file)->name($fullimage)->save();
 
             $item->fullimage = $fullimage;
         }
 
-        $item->name        = request()->name;
-        $item->name_en    = request('name_en') ?? request('name');
+        $item->name = request()->name;
+        $item->name_en = request('name_en') ?? request('name');
         $item->drop_type_id = request()->type;
-        $item->proses    = request()->proses;
-        $item->sell        = request()->sell;
+        $item->proses = request()->proses;
+        $item->sell = request()->sell;
         $item->released = request()->released;
 
-        if (!is_null(request()->noteMonster) || !is_null(request()->noteNpc)) {
+        if (! is_null(request()->noteMonster) || ! is_null(request()->noteNpc)) {
             $item->note = [
                 'monster' => request()->noteMonster ?? null,
-                'npc'     => request()->noteNpc ?? null,
+                'npc' => request()->noteNpc ?? null,
             ];
         }
 
         $item->save();
 
         return response()->json([
-            'success'    =>    true,
-            'redirect'    => $id
+            'success' => true,
+            'redirect' => $id,
         ]);
     }
 
@@ -183,10 +179,10 @@ class ItemController extends Controller
                 $query->with('map');
             },
             'dropType',
-            'resep'
+            'resep',
         ])->orderByDesc('id')->paginate(15);
 
-        if (!$data->count()) {
+        if (! $data->count()) {
             return abort(404);
         }
 
@@ -207,7 +203,7 @@ class ItemController extends Controller
                 $q->with('map');
             },
             'dropType',
-            'resep'
+            'resep',
         ])->orderByDesc('id')->paginate(15);
 
         return view('monster.items', compact('type', 'data'));

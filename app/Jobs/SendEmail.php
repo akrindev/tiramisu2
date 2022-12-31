@@ -2,21 +2,21 @@
 
 namespace App\Jobs;
 
+use App\Mail\SendMailTo;
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\Mail\SendMailTo;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Mail;
 
 class SendEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-  	public $details;
+    public $details;
 
-  	public $email;
+    public $email;
 
     /**
      * Create a new job instance.
@@ -25,7 +25,7 @@ class SendEmail implements ShouldQueue
      */
     public function __construct($email, $details)
     {
-      	$this->email = $email;
+        $this->email = $email;
         $this->details = $details;
     }
 
@@ -36,6 +36,6 @@ class SendEmail implements ShouldQueue
      */
     public function handle()
     {
-      Mail::to($this->email)->send(new SendMailTo($this->details));
+        Mail::to($this->email)->send(new SendMailTo($this->details));
     }
 }

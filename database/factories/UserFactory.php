@@ -19,9 +19,9 @@ $factory->define(App\User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'provider_id' => '1488304441314963', // secret
         'remember_token' => str_random(10),
-      	'username' => $faker->name,
-		'biodata' => str_random(40),
-      	'link' => '-',
-      	'alamat' => $faker->address
+        'username' => $faker->name,
+        'biodata' => str_random(40),
+        'link' => '-',
+        'alamat' => $faker->address,
     ];
 });

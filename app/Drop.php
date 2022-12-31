@@ -2,12 +2,10 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
-
 use App;
 use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 
 /**
@@ -32,6 +30,7 @@ use OwenIt\Auditing\Contracts\Auditable;
  * @property-read \App\Registled|null $registled
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Resep[] $resep
  * @property-read int|null $resep_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Drop newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Drop newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Drop query()
@@ -46,53 +45,54 @@ use OwenIt\Auditing\Contracts\Auditable;
  * @method static \Illuminate\Database\Eloquent\Builder|Drop whereProses($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Drop whereReleased($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Drop whereSell($value)
+ *
  * @mixin \Eloquent
  */
 class Drop extends Model implements Auditable
 {
-  	use Searchable, \OwenIt\Auditing\Auditable;
+    use Searchable, \OwenIt\Auditing\Auditable;
 
-  	protected $casts = [
-    	'note'	=> 'json'
+    protected $casts = [
+        'note' => 'json',
     ];
 
     protected $with = [
         'dropType',
-        'monsters'
+        'monsters',
     ];
 
     protected $guarded = [];
 
-  	public $timestamps = false;
+    public $timestamps = false;
 
-  	public function dropType()
+    public function dropType()
     {
-      return $this->belongsTo(DropType::class);
+        return $this->belongsTo(DropType::class);
     }
 
-  	public function monsters()
+    public function monsters()
     {
-      return $this->belongsToMany(Monster::class, 'monster_drop');
+        return $this->belongsToMany(Monster::class, 'monster_drop');
     }
 
-	public function registled()
-	{
-		return $this->hasOne(Registled::class);
-	}
-
-  	public function resep()
+    public function registled()
     {
-      return $this->hasMany(Resep::class);
+        return $this->hasOne(Registled::class);
     }
 
-  	public function fromQuest()
+    public function resep()
     {
-      return $this->hasMany(NpcReward::class);
+        return $this->hasMany(Resep::class);
     }
 
-  	public function dropDone()
+    public function fromQuest()
     {
-      return $this->hasOne(DropDone::class, 'drop_id');
+        return $this->hasMany(NpcReward::class);
+    }
+
+    public function dropDone()
+    {
+        return $this->hasOne(DropDone::class, 'drop_id');
     }
 
     public function picture(): Attribute
@@ -109,13 +109,12 @@ class Drop extends Model implements Auditable
         );
     }
 
-  	public function getNameAttribute()
+    public function getNameAttribute()
     {
-        if(App::isLocale('en')) {
+        if (App::isLocale('en')) {
             return $this->attributes['name_en'];
         }
 
         return $this->attributes['name'];
     }
-
 }

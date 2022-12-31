@@ -19,13 +19,13 @@ class CreateAvatarListsTable extends Migration
             $table->string('title_en');
             $table->tinyInteger('type')->default(1);
             $table->integer('rate')->default(1);
-            $table->string('value')->default("1.00");
+            $table->string('value')->default('1.00');
             $table->string('image');
             $table->timestamps();
         });
 
         Schema::create('avatar_avatar_lists', function (Blueprint $table) {
-        	$table->id();
+            $table->id();
             $table->integer('avatar_id');
             $table->integer('avatar_list_id');
         });

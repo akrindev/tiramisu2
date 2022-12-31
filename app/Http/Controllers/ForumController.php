@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Notifications\ThreadReplied;
-use Auth;
-use App\Tag;
 use App\Forum;
-use App\ForumsDesc;
 use App\ForumCategory;
+use App\ForumsDesc;
+use App\Notifications\ThreadReplied;
+use App\Tag;
+use Auth;
+use Illuminate\Http\Request;
 use Image;
 
 /**
@@ -56,10 +56,10 @@ class ForumController extends Controller
     {
         request()->validate([
             'judul' => 'required|min:5',
-            'deskripsi'    => 'required|min:20',
+            'deskripsi' => 'required|min:20',
         ]);
 
-        $slug = substr(str_slug(request('judul')), 0, 20) . '-' . substr(sha1(now()), 0, 8);
+        $slug = substr(str_slug(request('judul')), 0, 20).'-'.substr(sha1(now()), 0, 8);
 
         $tags = request('tags');
 
@@ -68,29 +68,30 @@ class ForumController extends Controller
         foreach ($tags as $tag) {
             $secondTags[] = $tag;
             $i++;
-            if ($i == 4) break;
+            if ($i == 4) {
+                break;
+            }
         }
 
         $category = ForumCategory::find(request('kategori', 1));
 
         $forum = Forum::create([
             'user_id' => Auth::user()->id,
-            'judul'    => request('judul'),
+            'judul' => request('judul'),
             'slug' => $slug,
-            'body'    => request('deskripsi'),
-            'tags'    => implode(',', $secondTags),
-            'color'    => request('color') ?? 'yellow',
-            'forum_category_id'    => $category->id
+            'body' => request('deskripsi'),
+            'tags' => implode(',', $secondTags),
+            'color' => request('color') ?? 'yellow',
+            'forum_category_id' => $category->id,
         ]);
 
-
-        return redirect('/forum/' . $slug)->with('sukses', 'Thread berhasil dibuat');
+        return redirect('/forum/'.$slug)->with('sukses', 'Thread berhasil dibuat');
     }
 
     /**
      * read forum post
      *
-     * @param  string $slug
+     * @param  string  $slug
      * @return void
      */
     public function baca($slug)
@@ -100,7 +101,7 @@ class ForumController extends Controller
             'comment' => function ($query) {
                 $query->with(['user', 'likes', 'getReply']);
             },
-            'category'
+            'category',
         ])
             ->where('slug', $slug)->firstOrFail();
 
@@ -108,30 +109,29 @@ class ForumController extends Controller
 
         $baca->increment('views');
 
-
         return view('forum.baca', [
             'data' => $baca,
-            'comments' => $comments
+            'comments' => $comments,
         ]);
     }
 
     /**
      * read forum post by id
      *
-     * @param  int $id
+     * @param  int  $id
      * @return void
      */
     public function bacaId($id)
     {
         $baca = Forum::findOrFail($id);
 
-        return redirect('/forum/' . $baca->slug);
+        return redirect('/forum/'.$baca->slug);
     }
 
     /**
      * comment to forum post
      *
-     * @param  string $slug
+     * @param  string  $slug
      * @return void
      */
     public function comment($slug)
@@ -139,15 +139,14 @@ class ForumController extends Controller
         $forum = Forum::where('slug', $slug)->firstOrFail();
 
         request()->validate([
-            'body'    => 'required'
+            'body' => 'required',
         ]);
 
         $comment = ForumsDesc::create([
             'user_id' => Auth::user()->id,
-            'forum_id'    => $forum->id,
-            'body'    => request('body')
+            'forum_id' => $forum->id,
+            'body' => request('body'),
         ]);
-
 
         if (auth()->id() != $forum->user_id) {
             $forum->notify(
@@ -176,7 +175,7 @@ class ForumController extends Controller
     /**
      * reply to comment forum post
      *
-     * @param  mixed $slug
+     * @param  mixed  $slug
      * @return void
      */
     public function commentReply($slug)
@@ -186,14 +185,14 @@ class ForumController extends Controller
         $id = request('id');
 
         request()->validate([
-            'reply'    => 'required'
+            'reply' => 'required',
         ]);
 
         $comment = $forum->comment()->create([
             'user_id' => Auth::user()->id,
-            'forum_id'    => $forum->id,
+            'forum_id' => $forum->id,
             'parent_id' => $id,
-            'body'    => request('reply')
+            'body' => request('reply'),
         ]);
 
         $replied = ForumsDesc::find($id);
@@ -207,7 +206,6 @@ class ForumController extends Controller
                 )
             );
 
-
             // if ($replied->user->fcm()->count() > 0) {
             //     fcm()->to([$replied->user->fcm->token])
             //         ->notification([
@@ -220,14 +218,12 @@ class ForumController extends Controller
             // }
         }
 
-        return back()->with('sukses_reply-' . $id, 'balasan di tambahkan');
+        return back()->with('sukses_reply-'.$id, 'balasan di tambahkan');
     }
 
     /**
-     *
      * edit thread
      */
-
     public function edit($slug)
     {
         $data = Forum::where('slug', $slug)->firstOrFail();
@@ -244,7 +240,7 @@ class ForumController extends Controller
     /**
      * update forum post
      *
-     * @param  string $slug
+     * @param  string  $slug
      * @return void
      */
     public function editSubmit($slug)
@@ -257,9 +253,8 @@ class ForumController extends Controller
 
         request()->validate([
             'judul' => 'required|min:5',
-            'deskripsi'    => 'required|min:20',
+            'deskripsi' => 'required|min:20',
         ]);
-
 
         $tags = request('tags');
 
@@ -268,20 +263,22 @@ class ForumController extends Controller
         foreach ($tags as $tag) {
             $secondTags[] = $tag;
             $i++;
-            if ($i == 4) break;
+            if ($i == 4) {
+                break;
+            }
         }
 
         $category = ForumCategory::find(request('kategori'));
 
         $thread->update([
-            'judul'    => request('judul'),
-            'body'    => request('deskripsi'),
-            'tags'    => implode(',', $secondTags),
-            'color'    => request('color') ?? 'yellow',
-            'forum_category_id'    => $category->id
+            'judul' => request('judul'),
+            'body' => request('deskripsi'),
+            'tags' => implode(',', $secondTags),
+            'color' => request('color') ?? 'yellow',
+            'forum_category_id' => $category->id,
         ]);
 
-        return redirect('/forum/' . $thread->slug)->with('sukses', 'Thread Updated!!');
+        return redirect('/forum/'.$thread->slug)->with('sukses', 'Thread Updated!!');
     }
 
     /**
@@ -304,12 +301,12 @@ class ForumController extends Controller
     public function storeKategori()
     {
         request()->validate([
-            'name'    => 'required',
+            'name' => 'required',
         ]);
 
         ForumCategory::create([
-            'name'    => request()->name,
-            'slug'    => str_slug(request('slug', request()->name))
+            'name' => request()->name,
+            'slug' => str_slug(request('slug', request()->name)),
         ]);
 
         return back()->with('success', 'Kategori baru telah di tambahkan');
@@ -333,16 +330,15 @@ class ForumController extends Controller
     }
 
     /**
-     *
      * Show by tag
      */
     public function byTag($nya)
     {
-        $forums = Forum::where('tags', 'like', '%' . $nya . '%')
+        $forums = Forum::where('tags', 'like', '%'.$nya.'%')
             ->latest()
             ->paginate(20);
 
-        $title = 'Tag Forum : ' . $nya;
+        $title = 'Tag Forum : '.$nya;
         $categories = ForumCategory::get();
 
         return view('forum.feed', compact('forums', 'categories', 'title'));
@@ -351,7 +347,7 @@ class ForumController extends Controller
     /**
      * category
      *
-     * @param  mixed $slug
+     * @param  mixed  $slug
      * @return void
      */
     public function category($slug)
@@ -366,27 +362,25 @@ class ForumController extends Controller
     }
 
     /**
-     *
      * cari berdasarkan judul forum
      */
     public function cari()
     {
         $key = request('key');
-        $forums = Forum::where('judul', 'like', '%' . $key . '%')->latest()->paginate(20);
+        $forums = Forum::where('judul', 'like', '%'.$key.'%')->latest()->paginate(20);
 
         $categories = ForumCategory::with('forum')->get();
 
         $title = 'Forum Toram Online Indonesia';
-        $f_title = 'Pencarian: ' . $key;
+        $f_title = 'Pencarian: '.$key;
 
         return view('forum.feed', compact('forums', 'title', 'f_title', 'categories'));
     }
+
     /**
-     *
      * pin the thread
      * hanya admin yang bisa melakukan pin thread
      */
-
     public function pinned($slug)
     {
         $forum = Forum::where('slug', $slug)->firstOrFail();
@@ -409,7 +403,6 @@ class ForumController extends Controller
     }
 
     /**
-     *
      * Delete thread
      */
     public function delete($slug)
@@ -440,10 +433,8 @@ class ForumController extends Controller
     }
 
     /**
-     *
      * delete komentar
      */
-
     public function deleteComment()
     {
         $forum = ForumsDesc::findOrFail(request('cid'));
@@ -463,7 +454,7 @@ class ForumController extends Controller
         if (request()->hasFile('gambar')) {
             $gambar = request()->file('gambar')->getRealPath();
 
-            $name = substr(md5(now()), 0, 8) . '.png';
+            $name = substr(md5(now()), 0, 8).'.png';
 
             $img = Image::make($gambar);
             $img->text('toram-id.info', 15, 30, function ($font) {
@@ -472,23 +463,22 @@ class ForumController extends Controller
                 $font->color('#ffffff');
                 $font->align('left');
             });
-            $img->save(public_path() . '/uploads/' . $name);
+            $img->save(public_path().'/uploads/'.$name);
 
-            $up = app('cloudinary')->uploadImg(public_path() . '/uploads/' . $name);
+            $up = app('cloudinary')->uploadImg(public_path().'/uploads/'.$name);
 
-            unlink(public_path() . '/uploads/' . $name);
+            unlink(public_path().'/uploads/'.$name);
 
             $url_img = $up['secure_url'];
 
             return response()->json([
-                'url'    => $url_img,
-                'token'    => csrf_token()
+                'url' => $url_img,
+                'token' => csrf_token(),
             ]);
         }
 
         return false;
     }
-
 
     /**
      * forum like
@@ -497,15 +487,15 @@ class ForumController extends Controller
     {
         $thread = Forum::findOrFail(request()->id);
 
-        if (auth()->user()->hasLikedThread($thread) || !auth()->check()) {
-            return response()->json(["sukses" => false]);
+        if (auth()->user()->hasLikedThread($thread) || ! auth()->check()) {
+            return response()->json(['sukses' => false]);
         }
 
         $like = $thread->likes()->create([
-            'user_id'    => auth()->id()
+            'user_id' => auth()->id(),
         ]);
 
-        return response()->json(["sukses" => true]);
+        return response()->json(['sukses' => true]);
     }
 
     /**
@@ -517,14 +507,14 @@ class ForumController extends Controller
     {
         $reply = ForumsDesc::findOrFail(request()->id);
 
-        if (auth()->user()->hasLikedThreadReply($reply) || !auth()->check()) {
-            return response()->json(["sukses" => false]);
+        if (auth()->user()->hasLikedThreadReply($reply) || ! auth()->check()) {
+            return response()->json(['sukses' => false]);
         }
 
         $like = $reply->likes()->create([
-            'user_id'    => auth()->id()
+            'user_id' => auth()->id(),
         ]);
 
-        return response()->json(["sukses" => true]);
+        return response()->json(['sukses' => true]);
     }
 }

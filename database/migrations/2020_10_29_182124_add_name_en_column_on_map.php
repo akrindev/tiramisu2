@@ -14,7 +14,7 @@ class AddNameEnColumnOnMap extends Migration
     public function up()
     {
         Schema::table('maps', function (Blueprint $table) {
-        	$table->string('name_en')->after('name')->nullable();
+            $table->string('name_en')->after('name')->nullable();
         });
     }
 
@@ -25,10 +25,10 @@ class AddNameEnColumnOnMap extends Migration
      */
     public function down()
     {
-      if(Schema::hasColumn('maps', 'name_en')) {
-        Schema::table('maps', function (Blueprint $table) {
-        	$table->dropColumn(['name_en']);
-        });
-      }
+        if (Schema::hasColumn('maps', 'name_en')) {
+            Schema::table('maps', function (Blueprint $table) {
+                $table->dropColumn(['name_en']);
+            });
+        }
     }
 }

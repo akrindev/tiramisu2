@@ -16,7 +16,7 @@ class Index extends Component
     public $auditType;
 
     public $queryString = [
-        'eventType', 'auditType'
+        'eventType', 'auditType',
     ];
 
     protected $paginationView = 'bootstrap';
@@ -24,10 +24,10 @@ class Index extends Component
     public function getAuditsProperty()
     {
         return Audit::with(['auditable', 'user'])
-            ->when(!is_null($this->eventType) && $this->eventType != 'all', function ($query) {
+            ->when(! is_null($this->eventType) && $this->eventType != 'all', function ($query) {
                 $query->whereEvent($this->eventType);
             })
-            ->when(!is_null($this->auditType) && $this->auditType != 'all', function ($query) {
+            ->when(! is_null($this->auditType) && $this->auditType != 'all', function ($query) {
                 $query->where('auditable_type', $this->auditType);
             })
             ->latest()->simplePaginate();

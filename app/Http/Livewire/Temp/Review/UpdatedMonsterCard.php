@@ -2,31 +2,41 @@
 
 namespace App\Http\Livewire\Temp\Review;
 
+use App\Contribution;
+use App\Monster;
+use App\TempMonster;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
-use App\Monster;
-use App\TempMonster;
-use App\User;
-use App\Contribution;
-
 class UpdatedMonsterCard extends Component
 {
     public $monster;
+
     public $maps;
+
     public $elements;
 
     public $name;
+
     public $name_en;
+
     public $type;
+
     public $mapid;
+
     public $pet;
+
     public $level;
+
     public $hp;
+
     public $xp;
+
     public $drops;
+
     public $element;
+
     public $picture;
 
     public function mount($monster, $maps, $elements)
@@ -34,17 +44,17 @@ class UpdatedMonsterCard extends Component
         $this->monster = $monster;
         $this->maps = $maps;
         $this->elements = $elements;
-        $this->name     = $monster->name;
-        $this->name_en  = $monster->name_en;
-        $this->type     = $monster->type;
-        $this->mapid    = $monster->map_id;
-        $this->pet      = $monster->pet;
-        $this->level    = $monster->level;
-        $this->hp       = $monster->hp;
-        $this->xp       = $monster->xp;
-        $this->drops    = $monster->drops;
-        $this->element  = $monster->element_id;
-        $this->picture  = $monster->picture;
+        $this->name = $monster->name;
+        $this->name_en = $monster->name_en;
+        $this->type = $monster->type;
+        $this->mapid = $monster->map_id;
+        $this->pet = $monster->pet;
+        $this->level = $monster->level;
+        $this->hp = $monster->hp;
+        $this->xp = $monster->xp;
+        $this->drops = $monster->drops;
+        $this->element = $monster->element_id;
+        $this->picture = $monster->picture;
     }
 
     public function accept()
@@ -53,32 +63,32 @@ class UpdatedMonsterCard extends Component
 
         $monster = Monster::findOrFail($temp->monster_id);
         $monster->update([
-            'name'    => $this->name,
-            'name_en'    => $this->name_en ?? $this->name,
-            'map_id'    => $this->mapid,
-            'element_id'    => $this->element,
-            'level'    => $this->level,
-            'type'    => $this->type,
-            'hp'    => $this->hp,
-            'xp'    => $this->xp,
-            'pet'    => $this->pet ? 'y' : 'n'
+            'name' => $this->name,
+            'name_en' => $this->name_en ?? $this->name,
+            'map_id' => $this->mapid,
+            'element_id' => $this->element,
+            'level' => $this->level,
+            'type' => $this->type,
+            'hp' => $this->hp,
+            'xp' => $this->xp,
+            'pet' => $this->pet ? 'y' : 'n',
         ]);
 
         $monster->drops()->attach($this->drops);
 
-        $rename = Str::slug($this->name) . \str_random(5) . 'png';
+        $rename = Str::slug($this->name).\str_random(5).'png';
 
         if ($this->picture) {
-            (new Filesystem)->move(\public_path($this->picture), \public_path('imgs/mobs/' . $rename));
+            (new Filesystem)->move(\public_path($this->picture), \public_path('imgs/mobs/'.$rename));
 
-            $monster->picture = 'imgs/mobs/' . $rename;
+            $monster->picture = 'imgs/mobs/'.$rename;
             $monster->save();
         }
 
         $temp->approved = 1;
         $temp->save();
 
-        if (!is_null($this->monster->user_id)) {
+        if (! is_null($this->monster->user_id)) {
             tap(Contribution::updateOrCreate(['user_id' => $this->monster->user_id]), function ($contribution) {
                 $contribution->increment('point');
             });
@@ -95,8 +105,7 @@ class UpdatedMonsterCard extends Component
         // jika guest yang memasukan data
         // dan terdapat foto
         // hapus fotonya
-        if (!$temp->user_id && $temp->picture) {
-
+        if (! $temp->user_id && $temp->picture) {
             (new Filesystem)->delete(\public_path($temp->picture));
 
             $temp->picture = null;

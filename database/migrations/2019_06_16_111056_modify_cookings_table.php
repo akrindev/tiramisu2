@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class ModifyCookingsTable extends Migration
 {
@@ -13,15 +13,15 @@ class ModifyCookingsTable extends Migration
      */
     public function up()
     {
-      //drop table cookings
+        //drop table cookings
         Schema::dropIfExists('cookings');
-      // then recreate it
+        // then recreate it
         Schema::create('cookings', function (Blueprint $table) {
-          	$table->increments('id');
-          	$table->string('name')->nullable();
-          	$table->string('buff');
-          	$table->integer('stat');
-          	$table->integer('pt')->nullable();
+            $table->increments('id');
+            $table->string('name')->nullable();
+            $table->string('buff');
+            $table->integer('stat');
+            $table->integer('pt')->nullable();
         });
     }
 

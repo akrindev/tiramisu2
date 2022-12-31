@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
+use App\Fcm;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\User;
-use App\Contact;
-use App\Forum;
-use App\Fcm;
-use DB;
 
 class UserController extends Controller
 {
@@ -34,9 +32,9 @@ class UserController extends Controller
 
         $threads = $user->thread()->latest()->paginate(8);
 
-        return view("profile_user", [
+        return view('profile_user', [
             'profile' => $user,
-            'threads'    => $threads
+            'threads' => $threads,
         ]);
     }
 
@@ -45,20 +43,17 @@ class UserController extends Controller
         $notif = auth()->user()->notifications()->paginate(25);
 
         return view('auth.notifikasi', [
-            'data'    =>    $notif
+            'data' => $notif,
         ]);
     }
 
-
     /**
-     *
      * Setting
      */
-
     public function settingProfile()
     {
         return view('auth.setting_profile', [
-            'data'    => auth()->user()
+            'data' => auth()->user(),
         ]);
     }
 
@@ -67,25 +62,25 @@ class UserController extends Controller
         $user = User::findOrFail(auth()->id());
 
         request()->validate([
-            'username'    => 'required|alpha_num|max:10|unique:users,username,' . $user->id,
-            'ign'    => 'required',
-            'email'        => 'email',
-            'biodata'    => 'required|max:180',
-            'alamat'    => 'required|max:160',
-            'cooking'    => 'nullable|integer|max:38',
-            'cooklv'    => 'nullable|integer|max:10',
-            'second_cooking'    => 'nullable|integer|max:38',
-            'second_cooklv'    => 'nullable|integer|max:10'
+            'username' => 'required|alpha_num|max:10|unique:users,username,'.$user->id,
+            'ign' => 'required',
+            'email' => 'email',
+            'biodata' => 'required|max:180',
+            'alamat' => 'required|max:160',
+            'cooking' => 'nullable|integer|max:38',
+            'cooklv' => 'nullable|integer|max:10',
+            'second_cooking' => 'nullable|integer|max:38',
+            'second_cooklv' => 'nullable|integer|max:10',
         ]);
 
         $gender = request()->gender;
 
         switch ($gender) {
             case 1:
-                $gen = "cowok";
+                $gen = 'cowok';
                 break;
             case 2:
-                $gen = "cewek";
+                $gen = 'cewek';
                 break;
             default:
                 $gen = 'hode';
@@ -124,16 +119,16 @@ class UserController extends Controller
     public function saveContact()
     {
         request()->validate([
-            'whatsapp' => 'max:15'
+            'whatsapp' => 'max:15',
         ]);
 
         Contact::updateOrCreate([
-            'user_id' => auth()->id()
+            'user_id' => auth()->id(),
         ], [
-            'line'    => request('line'),
-            'whatsapp'    => request('whatsapp'),
-            'facebook'  => request('facebook'),
-            'twitter' => request('twitter')
+            'line' => request('line'),
+            'whatsapp' => request('whatsapp'),
+            'facebook' => request('facebook'),
+            'twitter' => request('twitter'),
         ]);
 
         return back()->with('c-sukses', 'data telah di simpan!!');
@@ -141,17 +136,17 @@ class UserController extends Controller
 
     public function sendToken()
     {
-        if (!auth()->check()) {
-            return response()->json(["success" => false]);
+        if (! auth()->check()) {
+            return response()->json(['success' => false]);
         }
 
         Fcm::updateOrCreate([
-            'user_id'    => auth()->id()
+            'user_id' => auth()->id(),
         ], [
-            'token'    => request()->token
+            'token' => request()->token,
         ]);
 
-        return response()->json(["success" => true]);
+        return response()->json(['success' => true]);
     }
 
     /*
@@ -159,13 +154,12 @@ class UserController extends Controller
     */
     public function deleteAccount(Request $request)
     {
-
         // temp delete account
         $request->user()->update([
-            'provider_id'   => null,
-            'twitter_id'    => null,
-            'name'          => '[deleted account]',
-            'email'        => 'null',
+            'provider_id' => null,
+            'twitter_id' => null,
+            'name' => '[deleted account]',
+            'email' => 'null',
         ]);
 
         Auth::logout();
@@ -184,7 +178,7 @@ class UserController extends Controller
 
         if ($user->provider_id == null) {
             return response()->json([
-                'status'    => 'This account has been deleted'
+                'status' => 'This account has been deleted',
             ]);
         }
 
@@ -203,14 +197,14 @@ class UserController extends Controller
         $user = User::where('provider_id', $user_id)->firstOrFail();
 
         $user->update([
-            'deletion_code' => str_random(10)
+            'deletion_code' => str_random(10),
         ]);
 
-        $status_url =  route('user.account.deletion', ['code' => $user->deletion_code]); // URL to track the deletion
+        $status_url = route('user.account.deletion', ['code' => $user->deletion_code]); // URL to track the deletion
 
         $data = [
             'url' => $status_url,
-            'confirmation_code' => $user->deletion_code
+            'confirmation_code' => $user->deletion_code,
         ];
 
         return response()->json($data);
@@ -218,7 +212,7 @@ class UserController extends Controller
 
     public function parse_signed_request($signed_request)
     {
-        list($encoded_sig, $payload) = explode('.', $signed_request, 2);
+        [$encoded_sig, $payload] = explode('.', $signed_request, 2);
 
         $secret = config('services.facebook.client_secret'); // Use your app secret here
 
@@ -230,6 +224,7 @@ class UserController extends Controller
         $expected_sig = hash_hmac('sha256', $payload, $secret, $raw = true);
         if ($sig !== $expected_sig) {
             error_log('Bad Signed JSON signature!');
+
             return null;
         }
 

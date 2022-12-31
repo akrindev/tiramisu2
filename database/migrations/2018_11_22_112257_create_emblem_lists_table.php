@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateEmblemListsTable extends Migration
 {
@@ -15,10 +15,10 @@ class CreateEmblemListsTable extends Migration
     {
         Schema::create('emblem_lists', function (Blueprint $table) {
             $table->increments('id');
-          	$table->integer('emblem_id');
-          	$table->string('name');
-          	$table->string('body');
-          	$table->string('reward');
+            $table->integer('emblem_id');
+            $table->string('name');
+            $table->string('body');
+            $table->string('reward');
         });
     }
 

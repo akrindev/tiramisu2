@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateScammersTable extends Migration
 {
@@ -15,30 +15,30 @@ class CreateScammersTable extends Migration
     {
         Schema::create('scammers', function (Blueprint $table) {
             $table->increments('id');
-          	$table->integer('user_id');
-          	$table->integer('cat_scammer_id');
-          	$table->string('judul');
-          	$table->longText('body');
-          	$table->string('facebook')->nullable();
-          	$table->string('line')->nullable();
-          	$table->string('ign')->nullable();
-          	$table->integer('spina')->nullable();
-          	$table->string('slug');
+            $table->integer('user_id');
+            $table->integer('cat_scammer_id');
+            $table->string('judul');
+            $table->longText('body');
+            $table->string('facebook')->nullable();
+            $table->string('line')->nullable();
+            $table->string('ign')->nullable();
+            $table->integer('spina')->nullable();
+            $table->string('slug');
             $table->timestamps();
-          	$table->softDeletes();
+            $table->softDeletes();
         });
 
-      	Schema::create('cat_scammers', function (Blueprint $table) {
+        Schema::create('cat_scammers', function (Blueprint $table) {
             $table->increments('id');
-          	$table->string('name');
+            $table->string('name');
             $table->timestamps();
         });
 
-      	Schema::create('scammer_pics', function (Blueprint $table) {
+        Schema::create('scammer_pics', function (Blueprint $table) {
             $table->increments('id');
-          	$table->integer('user_id');
-          	$table->integer('scammer_id');
-          	$table->text('url');
+            $table->integer('user_id');
+            $table->integer('scammer_id');
+            $table->text('url');
             $table->timestamps();
         });
     }
@@ -53,6 +53,5 @@ class CreateScammersTable extends Migration
         Schema::dropIfExists('scammers');
         Schema::dropIfExists('scammer_pics');
         Schema::dropIfExists('cat_scammers');
-
     }
 }

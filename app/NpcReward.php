@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $many
  * @property-read \App\Drop|null $drop
  * @property-read \App\NpcQuest|null $quest
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|NpcReward newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|NpcReward newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|NpcReward query()
@@ -20,22 +21,24 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|NpcReward whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|NpcReward whereMany($value)
  * @method static \Illuminate\Database\Eloquent\Builder|NpcReward whereNpcQuestId($value)
+ *
  * @mixin \Eloquent
  */
 class NpcReward extends Model
 {
-  public $timestamps = false;
-  public $fillable = [
-  	'drop_id', 'many'
-  ];
+    public $timestamps = false;
 
-  public function quest()
-  {
-    return $this->belongsTo(NpcQuest::class,'npc_quest_id');
-  }
+    public $fillable = [
+        'drop_id', 'many',
+    ];
 
-  public function drop()
-  {
-    return $this->belongsTo(Drop::class);
-  }
+    public function quest()
+    {
+        return $this->belongsTo(NpcQuest::class, 'npc_quest_id');
+    }
+
+    public function drop()
+    {
+        return $this->belongsTo(Drop::class);
+    }
 }

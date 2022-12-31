@@ -23,6 +23,7 @@ use OwenIt\Auditing\Contracts\Auditable;
  * @property-read \App\User|null $user
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $users
  * @property-read int|null $users_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Formula exclude(...$columns)
  * @method static \Illuminate\Database\Eloquent\Builder|Formula newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Formula newQuery()
@@ -39,6 +40,7 @@ use OwenIt\Auditing\Contracts\Auditable;
  * @method static \Illuminate\Database\Eloquent\Builder|Formula whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Formula whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Formula whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class Formula extends Model implements Auditable
@@ -59,10 +61,11 @@ class Formula extends Model implements Auditable
     protected $guarded = [];
 
     protected $casts = [
-    	'body'	=> 'json'
+        'body' => 'json',
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
@@ -74,12 +77,12 @@ class Formula extends Model implements Auditable
     /**
      * Scope a query to only exclude specific Columns
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeExclude($query, ...$columns)
     {
-        return $query->select( array_diff( $this->getTableColumns(),$columns) );
+        return $query->select(array_diff($this->getTableColumns(), $columns));
     }
 
     /**
@@ -88,6 +91,7 @@ class Formula extends Model implements Auditable
      * @author Manojkiran.A <manojkiran10031998@gmail.com>
      * If You need to get all the Columns of the Model Table.
      * Useful while including the columns in search
+     *
      * @return array
      **/
     public function getTableColumns()

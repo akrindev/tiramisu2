@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class ModifyEmblemDateColumns extends Migration
 {
@@ -13,8 +13,8 @@ class ModifyEmblemDateColumns extends Migration
      */
     public function up()
     {
-        Schema::table('emblem_lists', function(Blueprint $table){
-        	$table->date('update')->nullable();
+        Schema::table('emblem_lists', function (Blueprint $table) {
+            $table->date('update')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class ModifyEmblemDateColumns extends Migration
      */
     public function down()
     {
-        Schema::table('emblem_lists', function(Blueprint $table){
-        	$table->dropColumn('update');
+        Schema::table('emblem_lists', function (Blueprint $table) {
+            $table->dropColumn('update');
         });
     }
 }

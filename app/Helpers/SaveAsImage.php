@@ -7,6 +7,7 @@ use Image;
 class SaveAsImage
 {
     public $file;
+
     public $name;
 
     public function file($image)
@@ -27,7 +28,7 @@ class SaveAsImage
     {
         $make = Image::make($this->file);
 
-        $make->text('toram-id.info',15,30, function($font) {
+        $make->text('toram-id.info', 15, 30, function ($font) {
             $font->file(3);
             $font->size(34);
             $font->color('#ffffff');

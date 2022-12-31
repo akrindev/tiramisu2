@@ -9,5 +9,5 @@ return [
 
  So it is advisable to use different weapons so that the types of colored weapons you get are also different.
 
- **📔 Note:** Weapons & Shield Colors change on the first day of each month (every 1st).'
+ **📔 Note:** Weapons & Shield Colors change on the first day of each month (every 1st).',
 ];

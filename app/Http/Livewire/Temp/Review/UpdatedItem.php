@@ -2,17 +2,16 @@
 
 namespace App\Http\Livewire\Temp\Review;
 
+use App\TempDrop;
 use Livewire\Component;
 use Livewire\WithPagination;
-
-use App\TempDrop;
 
 class UpdatedItem extends Component
 {
     use WithPagination;
 
     protected $listeners = [
-        'done'
+        'done',
     ];
 
     public function done($value)

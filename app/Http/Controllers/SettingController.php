@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Setting;
-use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
@@ -27,7 +26,7 @@ class SettingController extends Controller
     public function updateBadword()
     {
         $data = [
-            'badword'    => request()->badword
+            'badword' => request()->badword,
         ];
 
         $setting = Setting::first();

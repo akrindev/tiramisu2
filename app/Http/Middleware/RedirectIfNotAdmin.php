@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use Auth;
+use Closure;
 
 class RedirectIfNotAdmin
 {
@@ -16,9 +16,8 @@ class RedirectIfNotAdmin
      */
     public function handle($request, Closure $next, $guard = null)
     {
-      	if(Auth::guard($guard)->check() && $request->user()->isAdmin())
-        {
-        	return $next($request);
+        if (Auth::guard($guard)->check() && $request->user()->isAdmin()) {
+            return $next($request);
         }
 
         return redirect('/')->with('gagal', 'Tidak punya akses');

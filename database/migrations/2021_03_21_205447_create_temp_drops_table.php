@@ -21,9 +21,9 @@ class CreateTempDropsTable extends Migration
             $table->tinyInteger('approved')->default(0);
             $table->string('name');
             $table->string('name_en');
-          	$table->json('note')->nullable();
-          	$table->string('picture')->nullable();
-          	$table->string('fullimage')->nullable();
+            $table->json('note')->nullable();
+            $table->string('picture')->nullable();
+            $table->string('fullimage')->nullable();
             $table->timestamps();
         });
     }

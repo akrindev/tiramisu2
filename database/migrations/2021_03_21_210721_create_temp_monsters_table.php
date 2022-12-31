@@ -20,21 +20,20 @@ class CreateTempMonstersTable extends Migration
             $table->tinyInteger('approved')->default(0);
             $table->integer('map_id');
             $table->tinyInteger('element_id');
-          	$table->string('name');
-          	$table->string('name_en');
-          	$table->integer('level');
-          	$table->tinyInteger('type');
-          	$table->integer('hp')->nullable();
-          	$table->integer('xp')->nullable();
-          	$table->enum('pet',['y', 'n']);
-          	$table->string('picture')->nullable();
+            $table->string('name');
+            $table->string('name_en');
+            $table->integer('level');
+            $table->tinyInteger('type');
+            $table->integer('hp')->nullable();
+            $table->integer('xp')->nullable();
+            $table->enum('pet', ['y', 'n']);
+            $table->string('picture')->nullable();
             $table->timestamps();
         });
 
-
         Schema::create('temp_monster_drop', function (Blueprint $table) {
-          	$table->integer('temp_monster_id');
-          	$table->integer('drop_id');
+            $table->integer('temp_monster_id');
+            $table->integer('drop_id');
         });
     }
 

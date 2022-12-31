@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Drop;
+use Illuminate\Support\Str;
 
 class AppearanceController extends Controller
 {
@@ -16,7 +15,7 @@ class AppearanceController extends Controller
     protected $items = [
         26, 27, 28, 29,
         13, 14, 30, 15,
-        25, 31, 33, 43
+        25, 31, 33, 43,
     ];
 
     /**
@@ -38,7 +37,7 @@ class AppearanceController extends Controller
     /**
      * show items that has image by type
      *
-     * @param  mixed $type
+     * @param  mixed  $type
      * @return void
      */
     public function type($type)

@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Map|null $map
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\NpcQuest[] $quest
  * @property-read int|null $quest_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Npc newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Npc newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Npc query()
@@ -21,22 +22,24 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Npc whereMapId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Npc whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Npc wherePicture($value)
+ *
  * @mixin \Eloquent
  */
 class Npc extends Model
 {
-  public $timestamps = false;
-  public $fillable = [
-  	'name', 'map_id', 'picture'
-  ];
+    public $timestamps = false;
 
-  public function quest()
-  {
-    return $this->hasMany(NpcQuest::class);
-  }
+    public $fillable = [
+        'name', 'map_id', 'picture',
+    ];
 
-  public function map()
-  {
-    return $this->belongsTo(Map::class);
-  }
+    public function quest()
+    {
+        return $this->hasMany(NpcQuest::class);
+    }
+
+    public function map()
+    {
+        return $this->belongsTo(Map::class);
+    }
 }

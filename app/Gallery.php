@@ -22,6 +22,7 @@ use Illuminate\Notifications\Notifiable;
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \App\User|null $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Gallery newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Gallery newQuery()
  * @method static \Illuminate\Database\Query\Builder|Gallery onlyTrashed()
@@ -36,28 +37,29 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|Gallery whereViews($value)
  * @method static \Illuminate\Database\Query\Builder|Gallery withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Gallery withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class Gallery extends Model
 {
     use SoftDeletes, Notifiable;
 
-  	protected $fillable = [
-    	'user_id', 'body', 'gambar'
+    protected $fillable = [
+        'user_id', 'body', 'gambar',
     ];
 
-  	public function user()
+    public function user()
     {
-      return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
-  	public function comments()
+    public function comments()
     {
-      return $this->hasMany(GalleryComment::class);
+        return $this->hasMany(GalleryComment::class);
     }
 
-  	public function notify($notify)
+    public function notify($notify)
     {
-      return $this->user->notify($notify);
+        return $this->user->notify($notify);
     }
 }

@@ -2,17 +2,16 @@
 
 namespace App\Http\Livewire;
 
+use App\Formula as WorkSpace;
 use Livewire\Component;
 use Livewire\WithPagination;
-
-use App\User;
-use App\Formula as WorkSpace;
 
 class MyFormula extends Component
 {
     use WithPagination;
 
     public $type;
+
     public $ctype;
 
     protected $paginationTheme = 'bootstrap';
@@ -27,7 +26,7 @@ class MyFormula extends Component
     {
         $type = $this->type;
 
-        if($this->ctype == 's') {
+        if ($this->ctype == 's') {
             $formulas = WorkSpace::with('users')->whereUserId(auth()->id())->exclude('body')
                 ->when($this->type != 'all', function ($query) use ($type) {
                     return $query->whereType($type);
@@ -52,7 +51,7 @@ class MyFormula extends Component
     public function save($id)
     {
         $formula = WorkSpace::find($id);
-        
+
         auth()->user()->savedFormulas()->attach($formula);
     }
 
@@ -60,7 +59,7 @@ class MyFormula extends Component
     {
         $this->resetPage();
 
-        if(in_array($type, ['all', 'a', 'w'])) {
+        if (in_array($type, ['all', 'a', 'w'])) {
             $this->type = $type;
         }
     }

@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $description
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\SkillList[] $child
  * @property-read int|null $child_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Skill newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Skill newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Skill query()
@@ -22,17 +23,19 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Skill whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Skill wherePicture($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Skill whereType($value)
+ *
  * @mixin \Eloquent
  */
 class Skill extends Model
 {
-  public $timestamps = false;
-  public $fillable = [
-  	'name', 'type', 'picture', 'description'
-  ];
+    public $timestamps = false;
 
-  public function child()
-  {
-    return $this->hasMany(SkillList::class, 'skill_id');
-  }
+    public $fillable = [
+        'name', 'type', 'picture', 'description',
+    ];
+
+    public function child()
+    {
+        return $this->hasMany(SkillList::class, 'skill_id');
+    }
 }

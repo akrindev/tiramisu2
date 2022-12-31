@@ -4,8 +4,6 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 
 class GalleryCommented extends Notification
 {
@@ -18,9 +16,9 @@ class GalleryCommented extends Notification
      */
     public function __construct($q, $gallery, $comment)
     {
-      	$this->q = $q;
+        $this->q = $q;
         $this->gallery = $gallery;
-      	$this->comment = $comment;
+        $this->comment = $comment;
     }
 
     /**
@@ -43,10 +41,10 @@ class GalleryCommented extends Notification
     public function toArray($notifiable)
     {
         return [
-            'by'	=> explode(' ',auth()->user()->name)[0],
-            'message' => $this->q . ' ' . str_limit($this->gallery->body,30),
+            'by' => explode(' ', auth()->user()->name)[0],
+            'message' => $this->q.' '.str_limit($this->gallery->body, 30),
 
-          	'link'	=> url('/gallery/'.$this->gallery->id.'#reply'.$this->comment->id)
+            'link' => url('/gallery/'.$this->gallery->id.'#reply'.$this->comment->id),
         ];
     }
 }

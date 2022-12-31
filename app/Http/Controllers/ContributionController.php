@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\{
-    Contribution,
-    ContributionDrop as CoDrop,
-    DropDone,
-    Drop
-};
+use App\Contribution;
+use App\ContributionDrop as CoDrop;
+use App\Drop;
+use App\DropDone;
 use Image;
 
 /**
@@ -39,14 +36,14 @@ class ContributionController extends Controller
     public function edit()
     {
         $drop = auth()->user()->contributionDrop()->create([
-            'drop_id'    => request('id'),
-            'name'        => request('name'),
+            'drop_id' => request('id'),
+            'name' => request('name'),
         ]);
 
         if (request()->hasFile('picture')) {
             $file = request()->file('picture')->getRealPath();
 
-            $nama = 'imgs/mobs/' . str_slug(strtolower(request('name'))) . '-' . rand(00000, 99999) . '.png';
+            $nama = 'imgs/mobs/'.str_slug(strtolower(request('name'))).'-'.rand(00000, 99999).'.png';
 
             $make = Image::make($file);
 
@@ -60,12 +57,11 @@ class ContributionController extends Controller
 
             $make->save(public_path($nama));
 
-
             $drop->picture = $nama;
             $drop->save();
         }
 
-        return response()->json(["success" => true]);
+        return response()->json(['success' => true]);
     }
 
     /**
@@ -106,11 +102,11 @@ class ContributionController extends Controller
 
         $to->name = $from->name;
 
-        if (!is_null($from->picture)) :
+        if (! is_null($from->picture)) {
             $to->picture = $from->picture;
 
             Contribution::updateOrCreate(['user_id' => $from->user_id])->increment('point', 5);
-        endif;
+        }
 
         $from->accepted = 1;
 
@@ -121,14 +117,13 @@ class ContributionController extends Controller
 
         Contribution::updateOrCreate(['user_id' => $from->user_id])->increment('point', 3);
 
-
         return response()->json(['success' => true]);
     }
 
     /**
      * fetch
      *
-     * @param  mixed $id
+     * @param  mixed  $id
      * @return void
      */
     public function fetch($id)

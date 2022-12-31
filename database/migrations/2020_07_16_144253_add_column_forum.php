@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class AddColumnForum extends Migration
 {
@@ -13,7 +13,7 @@ class AddColumnForum extends Migration
      */
     public function up()
     {
-        Schema::table('forums', function(Blueprint $table){
+        Schema::table('forums', function (Blueprint $table) {
             $table->bigInteger('forum_category_id')->default(1);
         });
     }
@@ -25,10 +25,10 @@ class AddColumnForum extends Migration
      */
     public function down()
     {
-        if(Schema::hasColumn('forums', 'forum_category_id')) {
-        	Schema::table('forums', function (Blueprint $table) {
-        		$table->dropColumn(['forum_category_id']);
-        	});
-      	}
+        if (Schema::hasColumn('forums', 'forum_category_id')) {
+            Schema::table('forums', function (Blueprint $table) {
+                $table->dropColumn(['forum_category_id']);
+            });
+        }
     }
 }

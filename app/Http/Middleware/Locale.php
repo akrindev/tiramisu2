@@ -16,7 +16,7 @@ class Locale
      */
     public function handle(Request $request, Closure $next, $locale = 'id')
     {
-        if($locale == 'en') {
+        if ($locale == 'en') {
             app()->setLocale('en');
         }
 

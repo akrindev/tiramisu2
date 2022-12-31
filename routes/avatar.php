@@ -1,10 +1,8 @@
 <?php
 
-
 Route::view('/', 'avatar.home');
 Route::view('/all', 'avatar.all_list');
 Route::get('/{id}', 'AvatarController@showAvatar')->where('id', '[0-9]+');
-
 
 Route::middleware('admin')->group(function () {
     Route::get('/get/list', 'AvatarController@getListAvatarJson');

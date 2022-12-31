@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Forum[] $forum
  * @property-read int|null $forum_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|ForumCategory newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ForumCategory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ForumCategory query()
@@ -22,14 +23,15 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|ForumCategory whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ForumCategory whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ForumCategory whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class ForumCategory extends Model
 {
     protected $guarded = [];
 
-  	public function forum()
+    public function forum()
     {
-      return $this->hasMany(Forum::class);
+        return $this->hasMany(Forum::class);
     }
 }

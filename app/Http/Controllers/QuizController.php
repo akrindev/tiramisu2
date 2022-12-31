@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Quiz;
-use App\QuizScore;
 use App\QuizCode;
+use App\QuizScore;
 use App\QuizScoreCode;
 use App\User;
 use Auth;
@@ -33,21 +32,21 @@ class QuizController extends Controller
 
         $i = 1;
 
-        foreach ($quizzes as $k) :
+        foreach ($quizzes as $k) {
             // taruh quiz di session
-            session()->put('q-' . $i, [
-                'quiz_id'    => $k->id,
-                'by'        => $k->user->name,
-                'question'    => $k->question,
-                'jawaban_a'    => $k->answer_a,
-                'jawaban_b'    => $k->answer_b,
-                'jawaban_c'    => $k->answer_c,
-                'jawaban_d'    => $k->answer_d,
+            session()->put('q-'.$i, [
+                'quiz_id' => $k->id,
+                'by' => $k->user->name,
+                'question' => $k->question,
+                'jawaban_a' => $k->answer_a,
+                'jawaban_b' => $k->answer_b,
+                'jawaban_c' => $k->answer_c,
+                'jawaban_d' => $k->answer_d,
             ]);
 
             // nomer quiz
             $i++;
-        endforeach;
+        }
 
         session()->put('qkey', sha1(now()));
 
@@ -61,7 +60,7 @@ class QuizController extends Controller
      */
     public function kerjakan()
     {
-        if (!session('qkey')) {
+        if (! session('qkey')) {
             return redirect('/quiz');
         }
 
@@ -71,13 +70,13 @@ class QuizController extends Controller
     /**
      * ajax
      *
-     * @param  mixed $id
+     * @param  mixed  $id
      * @return void
      */
     public function ajax($id)
     {
-        if (!request()->ajax() || !session('qkey')) {
-            die('Miaww senpai chann *-*)/');
+        if (! request()->ajax() || ! session('qkey')) {
+            exit('Miaww senpai chann *-*)/');
         }
 
         session(request()->except('_token'));
@@ -85,8 +84,8 @@ class QuizController extends Controller
         $id = ($id > 10) ? 1 : $id;
 
         return view('quiz.ajax', [
-            'data'    => session('q-' . $id),
-            'id' => $id
+            'data' => session('q-'.$id),
+            'id' => $id,
         ]);
     }
 
@@ -97,14 +96,14 @@ class QuizController extends Controller
      */
     public function ajaxTerjawab()
     {
-        if (!request()->ajax() || !session('qkey')) {
-            die('Miaww senpai chann *-*)/');
+        if (! request()->ajax() || ! session('qkey')) {
+            exit('Miaww senpai chann *-*)/');
         }
 
         $terjawab = 0;
 
         for ($i = 1; $i <= 10; $i++) {
-            $terjawab += session('jawaban-' . $i) ? 1 : 0;
+            $terjawab += session('jawaban-'.$i) ? 1 : 0;
         }
 
         return view('quiz.terjawab', compact('terjawab'));
@@ -130,7 +129,7 @@ class QuizController extends Controller
     public function koreksi()
     {
         // jika kunci quiz tidak ada
-        if (!session('qkey')) {
+        if (! session('qkey')) {
             return redirect('/quiz');
         }
 
@@ -141,8 +140,8 @@ class QuizController extends Controller
 
         // koreksi 10 soal
         for ($i = 1; $i <= 10; $i++) {
-            $jawaban = session('jawaban-' . $i);
-            $true = session('q-' . $i);
+            $jawaban = session('jawaban-'.$i);
+            $true = session('q-'.$i);
 
             $true_answer = Quiz::where('id', $true['quiz_id'])->first();
 
@@ -156,7 +155,7 @@ class QuizController extends Controller
             }
 
             // hapys sesi
-            session()->forget(['jawaban-' . $i, 'q-' . $i]);
+            session()->forget(['jawaban-'.$i, 'q-'.$i]);
             // session()->forget('q-'.$i);
         }
 
@@ -192,12 +191,12 @@ class QuizController extends Controller
 
         $score = QuizScore::updateOrCreate(
             [
-                'user_id' => auth()->id()
+                'user_id' => auth()->id(),
             ],
             [
-                'benar'     => $benarku + $benar,
-                'salah'        => $salahku + $salah,
-                'point'        => $pointku + $point
+                'benar' => $benarku + $benar,
+                'salah' => $salahku + $salah,
+                'point' => $pointku + $point,
             ]
         );
 
@@ -205,7 +204,7 @@ class QuizController extends Controller
             'benar' => $benar,
             'salah' => $salah,
             'point' => $point,
-            'score'    => Auth::user()->quizScore
+            'score' => Auth::user()->quizScore,
         ]);
     }
 
@@ -219,7 +218,7 @@ class QuizController extends Controller
         $quizzes = Auth::user()->quiz()->latest()->paginate(10);
 
         return view('auth.quiz', [
-            'quizzes' => $quizzes
+            'quizzes' => $quizzes,
         ]);
     }
 
@@ -240,45 +239,42 @@ class QuizController extends Controller
      */
     public function tambahSubmit()
     {
-
         $val = \Validator::make(request()->all(), [
             'pertanyaan' => 'required',
             'jawaban_a' => 'required',
             'jawaban_b' => 'required',
             'jawaban_c' => 'required',
             'jawaban_d' => 'required',
-            'benar'    => 'required'
+            'benar' => 'required',
         ], [
-            'required' => 'Kolom ini nggak boleh di kosongin'
+            'required' => 'Kolom ini nggak boleh di kosongin',
         ]);
-
 
         $response = [
             'success' => true,
             'messages' => [],
-            'csrfHash' => csrf_token()
+            'csrfHash' => csrf_token(),
         ];
 
         if ($val->fails() === true) {
             $response = [
                 'success' => false,
-                'messages' => $val->getMessageBag()->toArray()
+                'messages' => $val->getMessageBag()->toArray(),
             ];
         }
 
         $quiz = Quiz::create([
-            'user_id'    => auth()->id(),
-            'question'    => request()->pertanyaan,
-            'answer_a'    => request()->jawaban_a,
-            'answer_b'    => request()->jawaban_b,
-            'answer_c'    => request()->jawaban_c,
-            'answer_d'    => request()->jawaban_d,
-            'correct'    => request()->benar,
-            'approved'    => 0
+            'user_id' => auth()->id(),
+            'question' => request()->pertanyaan,
+            'answer_a' => request()->jawaban_a,
+            'answer_b' => request()->jawaban_b,
+            'answer_c' => request()->jawaban_c,
+            'answer_d' => request()->jawaban_d,
+            'correct' => request()->benar,
+            'approved' => 0,
         ]);
 
         if ($quiz) {
-
             return response()->json($response)
                 ->header('Content-Type', 'application/json');
         }
@@ -287,7 +283,7 @@ class QuizController extends Controller
     /**
      * edit
      *
-     * @param  mixed $id
+     * @param  mixed  $id
      * @return void
      */
     public function edit($id)
@@ -295,7 +291,7 @@ class QuizController extends Controller
         $quiz = Quiz::findOrFail($id);
 
         return view('quiz.edit', [
-            "data" => $quiz
+            'data' => $quiz,
         ]);
     }
 
@@ -309,18 +305,18 @@ class QuizController extends Controller
             'jawaban_b' => 'required',
             'jawaban_c' => 'required',
             'jawaban_d' => 'required',
-            'benar'    => 'required'
+            'benar' => 'required',
         ], [
-            'required' => 'Kolom ini nggak boleh di kosongin'
+            'required' => 'Kolom ini nggak boleh di kosongin',
         ]);
 
         $updated = $quiz->update([
-            'question'    => request()->pertanyaan,
-            'answer_a'    => request()->jawaban_a,
-            'answer_b'    => request()->jawaban_b,
-            'answer_c'    => request()->jawaban_c,
-            'answer_d'    => request()->jawaban_d,
-            'correct'    => request()->benar
+            'question' => request()->pertanyaan,
+            'answer_a' => request()->jawaban_a,
+            'answer_b' => request()->jawaban_b,
+            'answer_c' => request()->jawaban_c,
+            'answer_d' => request()->jawaban_d,
+            'correct' => request()->benar,
         ]);
 
         return redirect('/quiz/admin')->with('sukses', 'Data berhasil di ubah yey *-*)/');
@@ -336,13 +332,11 @@ class QuizController extends Controller
         $scores = QuizScore::with('user')->orderBy('point', 'desc')->orderBy('benar', 'desc')->paginate(50);
 
         return view('quiz.all_score', [
-            'scores' => $scores
+            'scores' => $scores,
         ]);
     }
 
-
     /**
-     *
      * Quiz ini khusus dibuat untuk mengerjakan sekali
      * quiz, tidak bisa di ulang setelah ngerjain
      * quiz di ambil dari user tersebut tidak di acak atau
@@ -356,8 +350,8 @@ class QuizController extends Controller
             ->paginate(50);
 
         return view('quiz.quiz_code', [
-            'data'    => $quiz->soal,
-            'scores'    => $scores
+            'data' => $quiz->soal,
+            'scores' => $scores,
         ]);
     }
 
@@ -369,9 +363,8 @@ class QuizController extends Controller
             ->where('user_id', auth()->id())
             ->first();
 
-
         if ($bisa) {
-            return redirect('/quiz/kode/' . $code)->with('gagal', 'kamu sudah mengerjakan kuis ini');
+            return redirect('/quiz/kode/'.$code)->with('gagal', 'kamu sudah mengerjakan kuis ini');
         }
 
         $quizzes = collect(explode(',', $quiz->soal->soal))->take(10);
@@ -382,23 +375,22 @@ class QuizController extends Controller
 
         $i = 1;
 
-        foreach ($randQuizzes as $ki) :
-
+        foreach ($randQuizzes as $ki) {
             $k = Quiz::find($ki);
             // taruh quiz di session
-            session()->put('q-' . $i, [
-                'quiz_id'    => $k->id,
-                'by'        => $k->user->name,
-                'question'    => $k->question,
-                'jawaban_a'    => $k->answer_a,
-                'jawaban_b'    => $k->answer_b,
-                'jawaban_c'    => $k->answer_c,
-                'jawaban_d'    => $k->answer_d,
+            session()->put('q-'.$i, [
+                'quiz_id' => $k->id,
+                'by' => $k->user->name,
+                'question' => $k->question,
+                'jawaban_a' => $k->answer_a,
+                'jawaban_b' => $k->answer_b,
+                'jawaban_c' => $k->answer_c,
+                'jawaban_d' => $k->answer_d,
             ]);
 
             // nomer quiz
             $i++;
-        endforeach;
+        }
 
         session()->put('qkey', sha1(now()));
         session()->put('the-code', $code);
@@ -413,13 +405,12 @@ class QuizController extends Controller
      */
     public function kerjakanByCode()
     {
-        if (!session('qkey')) {
+        if (! session('qkey')) {
             return redirect('/quiz');
         }
 
         return view('quiz.begin_code');
     }
-
 
     /**
      * koreksiByCode
@@ -429,7 +420,7 @@ class QuizController extends Controller
     public function koreksiByCode()
     {
         // jika kunci quiz tidak ada
-        if (!session('qkey')) {
+        if (! session('qkey')) {
             return redirect('/quiz');
         }
 
@@ -439,8 +430,8 @@ class QuizController extends Controller
 
         // koreksi 10 soal
         for ($i = 1; $i <= 10; $i++) {
-            $jawaban = session('jawaban-' . $i);
-            $true = session('q-' . $i);
+            $jawaban = session('jawaban-'.$i);
+            $true = session('q-'.$i);
 
             $true_answer = Quiz::where('id', $true['quiz_id'])->first();
 
@@ -454,7 +445,7 @@ class QuizController extends Controller
             }
 
             // hapys sesi
-            session()->forget(['jawaban-' . $i, 'q-' . $i]);
+            session()->forget(['jawaban-'.$i, 'q-'.$i]);
             // session()->forget('q-'.$i);
         }
 
@@ -470,10 +461,9 @@ class QuizController extends Controller
         $skor->salah = $salah;
         $skor->save();
 
-
         return view('quiz.result_code', [
             'benar' => $benar,
-            'salah' => $salah
+            'salah' => $salah,
         ]);
     }
 
@@ -498,10 +488,10 @@ class QuizController extends Controller
     {
         request()->validate([
             'body' => 'required|min:25',
-            'terpilih'    => 'required|min:10'
+            'terpilih' => 'required|min:10',
         ], [
-            'required'    => 'Data ini di butuhkan',
-            'min'    => 'minimal terdapat :min'
+            'required' => 'Data ini di butuhkan',
+            'min' => 'minimal terdapat :min',
         ]);
 
         $terpilih = request()->terpilih;
@@ -520,7 +510,7 @@ class QuizController extends Controller
 
         while ($ada) {
             $ko = QuizCode::whereCode($rand)->first();
-            if (!$ko) {
+            if (! $ko) {
                 $ada = false;
             }
         }
@@ -531,11 +521,11 @@ class QuizController extends Controller
         $code->save();
 
         $code->soal()->create([
-            'body'    => request()->body,
-            'soal'    => implode(',', $terpilih)
+            'body' => request()->body,
+            'soal' => implode(',', $terpilih),
         ]);
 
-        return back()->with('sukses', 'Kode quiz telah di buat <b>' . $rand . '</b>');
+        return back()->with('sukses', 'Kode quiz telah di buat <b>'.$rand.'</b>');
     }
 
     /**
@@ -549,10 +539,10 @@ class QuizController extends Controller
 
         $quiz = QuizCode::whereCode($kode)->first();
 
-        if (!$quiz) {
+        if (! $quiz) {
             return response()->json([
-                "success"    =>    false,
-                "reason"    =>    "kode tidak di temukan!"
+                'success' => false,
+                'reason' => 'kode tidak di temukan!',
             ]);
         }
 
@@ -560,19 +550,18 @@ class QuizController extends Controller
 
         if ($wu->count() < 1) {
             return response()->json([
-                "success"    =>    false,
-                "reason"    =>    "kesalahan"
+                'success' => false,
+                'reason' => 'kesalahan',
             ]);
         }
 
         return response()->json([
-            'success'    => true,
-            'reason'    => "kode telah di temukan <a href='/quiz/kode/$quiz->code'>lanjutkan...</a>"
+            'success' => true,
+            'reason' => "kode telah di temukan <a href='/quiz/kode/$quiz->code'>lanjutkan...</a>",
         ]);
     }
 
     // -- end quiz codes --//
-
 
     /**
      * Only admin can do this action
@@ -592,9 +581,9 @@ class QuizController extends Controller
         $scores = QuizScore::get();
 
         return view('quiz.admin', [
-            'quiz'        => Quiz::get(),
-            'quizzes'    => $quizzes,
-            'scores'    => $scores
+            'quiz' => Quiz::get(),
+            'quizzes' => $quizzes,
+            'scores' => $scores,
         ]);
     }
 }

@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\User|null $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|SendMail newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SendMail newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SendMail query()
@@ -25,21 +26,22 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|SendMail whereSubject($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SendMail whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SendMail whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class SendMail extends Model
 {
     protected $fillable = [
-    	'subject', 'user_id', 'body', 'sender'
+        'subject', 'user_id', 'body', 'sender',
     ];
 
-  	public function user()
+    public function user()
     {
-      return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
-  	public function getBodyAttribute($value)
+    public function getBodyAttribute($value)
     {
-      return e(toHtml($value));
+        return e(toHtml($value));
     }
 }

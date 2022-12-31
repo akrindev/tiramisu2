@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $update
  * @property-read \App\Emblem|null $emblem
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|EmblemList newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|EmblemList newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|EmblemList query()
@@ -27,16 +28,17 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|EmblemList whereReward($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EmblemList whereUpdate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EmblemList whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class EmblemList extends Model
 {
-  protected $fillable = [
-  	'name', 'body', 'reward', 'update'
-  ];
+    protected $fillable = [
+        'name', 'body', 'reward', 'update',
+    ];
 
-  public function emblem()
-  {
-    return $this->belongsTo(Emblem::class);
-  }
+    public function emblem()
+    {
+        return $this->belongsTo(Emblem::class);
+    }
 }

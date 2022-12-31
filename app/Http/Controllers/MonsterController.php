@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Monster;
 use App\Drop;
 use App\Map;
+use App\Monster;
 use App\Resep;
 use Image;
 
@@ -26,7 +25,7 @@ class MonsterController extends Controller
     /**
      * show single map
      *
-     * @param  int $id
+     * @param  int  $id
      * @return void
      */
     public function peta($id)
@@ -38,10 +37,10 @@ class MonsterController extends Controller
                         $q->with('dropType');
                     },
                     'map',
-                    'element'
+                    'element',
                 ]);
             },
-            'npc'
+            'npc',
         ])
             ->findOrFail($id);
 
@@ -56,11 +55,11 @@ class MonsterController extends Controller
     public function addMap()
     {
         Map::create([
-            'name'    => request()->name,
-            'name_en'    => request()->name_en ?? request()->name,
+            'name' => request()->name,
+            'name_en' => request()->name_en ?? request()->name,
         ]);
 
-        return response()->json(["success" => true]);
+        return response()->json(['success' => true]);
     }
 
     /**
@@ -78,7 +77,7 @@ class MonsterController extends Controller
             $map->name_en = request()->name_en ?? request()->nama;
             $map->save();
 
-            return response()->json(["success" => true]);
+            return response()->json(['success' => true]);
         }
 
         $peta = Map::orderByDesc('id')->get();
@@ -95,7 +94,7 @@ class MonsterController extends Controller
     /**
      * show monster info by id
      *
-     * @param  int $id
+     * @param  int  $id
      * @return void
      */
     public function showMons($id)
@@ -105,7 +104,7 @@ class MonsterController extends Controller
                 $query->with('dropType');
             },
             'map',
-            'element'
+            'element',
         ])
             ->findOrFail($id);
 
@@ -120,12 +119,12 @@ class MonsterController extends Controller
     /**
      * show monster by type
      *
-     * @param  mixed $name
+     * @param  mixed  $name
      * @return void
      */
     public function showMonsType($name)
     {
-        $type = 'list ' . $name;
+        $type = 'list '.$name;
 
         switch ($name) {
             case 'boss':
@@ -146,7 +145,7 @@ class MonsterController extends Controller
                 $query->with('dropType');
             },
             'map',
-            'element'
+            'element',
         ])->whereType($tipe)->orderByDesc('id')->paginate(20);
 
         return view('monster.type', compact('data', 'type'));
@@ -159,14 +158,14 @@ class MonsterController extends Controller
      */
     public function showAllMons()
     {
-        $type = "Semua Monster";
+        $type = 'Semua Monster';
 
         $data = Monster::with([
             'drops' => function ($query) {
                 $query->with('dropType');
             },
             'map',
-            'element'
+            'element',
         ])->orderByDesc('id')->paginate(20);
 
         return view('monster.type', compact('data', 'type'));
@@ -175,7 +174,7 @@ class MonsterController extends Controller
     /**
      * show all mosnter by element
      *
-     * @param  mixed $type
+     * @param  mixed  $type
      * @return void
      */
     public function showMonsEl($type)
@@ -195,10 +194,10 @@ class MonsterController extends Controller
                 $query->with('dropType');
             },
             'map',
-            'element'
+            'element',
         ])->whereElementId($el)->orderBy('level')->paginate(15);
 
-        $type = __('Unsur') . ' ' . ucfirst($type);
+        $type = __('Unsur').' '.ucfirst($type);
 
         return view('monster.type', compact('data', 'type'));
     }
@@ -206,7 +205,7 @@ class MonsterController extends Controller
     /**
      * editMons
      *
-     * @param  int $id
+     * @param  int  $id
      * @return void
      */
     public function editMons($id)
@@ -219,7 +218,7 @@ class MonsterController extends Controller
     /**
      * update monster
      *
-     * @param  mixed $id
+     * @param  mixed  $id
      * @return void
      */
     public function editMobPost($id)
@@ -229,7 +228,7 @@ class MonsterController extends Controller
         if (request()->hasFile('picture')) {
             $file = request()->file('picture')->getRealPath();
 
-            $nama = 'imgs/mobs/' . str_slug(strtolower(request('nama'))) . '-' . rand(00000, 99999) . '.png';
+            $nama = 'imgs/mobs/'.str_slug(strtolower(request('nama'))).'-'.rand(00000, 99999).'.png';
 
             $make = Image::make($file);
 
@@ -243,33 +242,31 @@ class MonsterController extends Controller
 
             $make->save(public_path($nama));
 
-
             $mons->picture = $nama;
         }
 
-
-        $mons->name    = request()->nama;
-        $mons->name_en    = request()->name_en ?? request()->nama;
-        $mons->map_id    = request()->map;
-        $mons->element_id    = request()->element;
-        $mons->level    = request()->level;
-        $mons->type    = request()->type;
-        $mons->hp    = request()->hp;
-        $mons->xp    = request()->xp;
-        $mons->pet    = request()->pet ? 'y' : 'n';
+        $mons->name = request()->nama;
+        $mons->name_en = request()->name_en ?? request()->nama;
+        $mons->map_id = request()->map;
+        $mons->element_id = request()->element;
+        $mons->level = request()->level;
+        $mons->type = request()->type;
+        $mons->hp = request()->hp;
+        $mons->xp = request()->xp;
+        $mons->pet = request()->pet ? 'y' : 'n';
         $mons->save();
 
         $drops = Drop::find(request()->drop);
 
         $mons->drops()->sync($drops);
 
-        return response()->json(["success" => true]);
+        return response()->json(['success' => true]);
     }
 
     /**
      * delete monster
      *
-     * @param  int $id
+     * @param  int  $id
      * @return void
      */
     public function monsHapus($id)
@@ -289,7 +286,7 @@ class MonsterController extends Controller
     {
         if (request()->input()) {
             $q = request()->q;
-            $drops = Drop::with('dropType')->where('name', 'like', '%' . $q . '%')->orderBy('name')->paginate(15);
+            $drops = Drop::with('dropType')->where('name', 'like', '%'.$q.'%')->orderBy('name')->paginate(15);
 
             return response()->json($drops);
         }
@@ -305,21 +302,21 @@ class MonsterController extends Controller
     public function storeMob()
     {
         $mons = Monster::create([
-            'name'    => request()->nama,
-            'name_en'    => request()->name_en ?? request()->nama,
-            'map_id'    => request()->map,
-            'element_id'    => request()->element,
-            'level'    => request()->level,
-            'type'    => request()->type,
-            'hp'    => request()->hp,
-            'xp'    => request()->xp,
-            'pet'    => request()->pet ? 'y' : 'n'
+            'name' => request()->nama,
+            'name_en' => request()->name_en ?? request()->nama,
+            'map_id' => request()->map,
+            'element_id' => request()->element,
+            'level' => request()->level,
+            'type' => request()->type,
+            'hp' => request()->hp,
+            'xp' => request()->xp,
+            'pet' => request()->pet ? 'y' : 'n',
         ]);
 
         if (request()->hasFile('picture')) {
             $file = request()->file('picture')->getRealPath();
 
-            $nama = 'imgs/mobs/' . str_slug(strtolower(request('nama'))) . '-' . rand(00000, 99999) . '.png';
+            $nama = 'imgs/mobs/'.str_slug(strtolower(request('nama'))).'-'.rand(00000, 99999).'.png';
 
             $make = Image::make($file);
 
@@ -341,7 +338,7 @@ class MonsterController extends Controller
 
         $mons->drops()->attach($drops);
 
-        return response()->json(["success" => true]);
+        return response()->json(['success' => true]);
     }
 
     public function storeResep()
@@ -352,19 +349,18 @@ class MonsterController extends Controller
             $bahan = array_filter(request()->bahan, 'strlen');
             $butuh = array_filter(request()->butuh, 'strlen');
 
-
             $resep->resep()->create([
-                'material'    => implode(',', $bahan),
-                'jumlah'    => implode(',', $butuh),
-                'fee'    => request()->fee,
-                'level'    => request()->level,
-                'diff'    => request()->diff,
-                'set'    => request()->set,
-                'pot'    => request()->pot,
-                'base'    => request()->base
+                'material' => implode(',', $bahan),
+                'jumlah' => implode(',', $butuh),
+                'fee' => request()->fee,
+                'level' => request()->level,
+                'diff' => request()->diff,
+                'set' => request()->set,
+                'pot' => request()->pot,
+                'base' => request()->base,
             ]);
 
-            return response()->json(["success" => true]);
+            return response()->json(['success' => true]);
         }
 
         return view('monster.add_resep');
@@ -375,7 +371,7 @@ class MonsterController extends Controller
         $resep = Resep::findOrFail($id);
         $resep->delete();
 
-        return response()->json(["success" => true]);
+        return response()->json(['success' => true]);
     }
 
     public function fetchI($id)

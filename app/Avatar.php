@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\AvatarList[] $lists
  * @property-read int|null $lists_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Avatar newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Avatar newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Avatar query()
@@ -24,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Avatar whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Avatar whereTitleEn($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Avatar whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Avatar extends Model

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Carbon\Carbon;
 use App\BgMusic;
 use App\BgMusicComment as Comment;
+use Carbon\Carbon;
 
 class BgmController extends Controller
 {
@@ -19,14 +18,14 @@ class BgmController extends Controller
         $bgm = BgMusic::all();
 
         return view('bgm.show', [
-            'musics' => $bgm
+            'musics' => $bgm,
         ]);
     }
 
     /**
      * single
      *
-     * @param  mixed $slug
+     * @param  mixed  $slug
      * @return void
      */
     public function single($slug)
@@ -36,14 +35,14 @@ class BgmController extends Controller
 
         return view('bgm.single', [
             'bgm' => $bgm,
-            'random' => $random
+            'random' => $random,
         ]);
     }
 
     /**
      * postComment
      *
-     * @param  mixed $slug
+     * @param  mixed  $slug
      * @return void
      */
     public function postComment($slug)
@@ -51,7 +50,7 @@ class BgmController extends Controller
         $bgm = BgMusic::where('slug', $slug)->firstOrFail();
 
         request()->validate([
-            'body' => 'required'
+            'body' => 'required',
         ]);
 
         $comment = new Comment;
@@ -101,7 +100,6 @@ class BgmController extends Controller
 
     private function grab($url)
     {
-
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -138,5 +136,4 @@ class BgmController extends Controller
     // //       }
 
     //     }
-
 }

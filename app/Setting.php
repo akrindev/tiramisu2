@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property array $body
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Setting newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Setting newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Setting query()
@@ -18,15 +19,16 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Setting extends Model
 {
-  protected $casts = [
-  	'body' => 'json'
-  ];
+    protected $casts = [
+        'body' => 'json',
+    ];
 
-  public $fillable = [
-  	'body'
-  ];
+    public $fillable = [
+        'body',
+    ];
 }

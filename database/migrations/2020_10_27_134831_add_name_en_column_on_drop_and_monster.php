@@ -14,11 +14,11 @@ class AddNameEnColumnOnDropAndMonster extends Migration
     public function up()
     {
         Schema::table('drops', function (Blueprint $table) {
-        	$table->string('name_en')->after('name')->nullable();
+            $table->string('name_en')->after('name')->nullable();
         });
 
         Schema::table('monsters', function (Blueprint $table) {
-        	$table->string('name_en')->after('name')->nullable();
+            $table->string('name_en')->after('name')->nullable();
         });
     }
 
@@ -29,16 +29,16 @@ class AddNameEnColumnOnDropAndMonster extends Migration
      */
     public function down()
     {
-      if(Schema::hasColumn('drops', 'name_en')) {
-        Schema::table('drops', function (Blueprint $table) {
-        	$table->dropColumn(['name_en']);
-        });
-      }
+        if (Schema::hasColumn('drops', 'name_en')) {
+            Schema::table('drops', function (Blueprint $table) {
+                $table->dropColumn(['name_en']);
+            });
+        }
 
-      if(Schema::hasColumn('monsters', 'name_en')) {
-        Schema::table('monsters', function (Blueprint $table) {
-        	$table->dropColumn(['name_en']);
-        });
-      }
+        if (Schema::hasColumn('monsters', 'name_en')) {
+            Schema::table('monsters', function (Blueprint $table) {
+                $table->dropColumn(['name_en']);
+            });
+        }
     }
 }

@@ -2,19 +2,18 @@
 
 namespace App\Http\Livewire\Temp\Review;
 
+use App\Element;
+use App\Map;
+use App\TempMonster;
 use Livewire\Component;
 use Livewire\WithPagination;
-
-use App\TempMonster;
-use App\Map;
-use App\Element;
 
 class NewMonster extends Component
 {
     use WithPagination;
 
     protected $listeners = [
-        'done'
+        'done',
     ];
 
     public function done($value)
@@ -35,8 +34,8 @@ class NewMonster extends Component
 
         return view('livewire.temp.review.new-monster', [
             'monsters' => $monsters,
-            'maps'      => $maps,
-            'elements'  => $elements
+            'maps' => $maps,
+            'elements' => $elements,
         ]);
     }
 }

@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\User|null $manager
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|UserGuild newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserGuild newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserGuild query()
@@ -25,6 +26,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @method static \Illuminate\Database\Eloquent\Builder|UserGuild whereRole($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserGuild whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserGuild whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class UserGuild extends Pivot

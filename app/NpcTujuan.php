@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Drop|null $drop
  * @property-read \App\Monster|null $monster
  * @property-read \App\NpcQuest|null $quest
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|NpcTujuan newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|NpcTujuan newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|NpcTujuan query()
@@ -25,28 +26,31 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|NpcTujuan whereMany($value)
  * @method static \Illuminate\Database\Eloquent\Builder|NpcTujuan whereMonsterId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|NpcTujuan whereNpcQuestId($value)
+ *
  * @mixin \Eloquent
  */
 class NpcTujuan extends Model
 {
-  protected $table = 'npc_tujuan';
-  public $timestamps = false;
-  public $fillable = [
-  	'defeat', 'drop_id', 'monster_id', 'many'
-  ];
+    protected $table = 'npc_tujuan';
 
-  public function quest()
-  {
-    return $this->belongsTo(NpcQuest::class);
-  }
+    public $timestamps = false;
 
-  public function drop()
-  {
-    return $this->belongsTo(Drop::class);
-  }
+    public $fillable = [
+        'defeat', 'drop_id', 'monster_id', 'many',
+    ];
 
-  public function monster()
-  {
-    return $this->belongsTo(Monster::class);
-  }
+    public function quest()
+    {
+        return $this->belongsTo(NpcQuest::class);
+    }
+
+    public function drop()
+    {
+        return $this->belongsTo(Drop::class);
+    }
+
+    public function monster()
+    {
+        return $this->belongsTo(Monster::class);
+    }
 }

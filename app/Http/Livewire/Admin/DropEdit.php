@@ -3,26 +3,32 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Drop;
-use App\DropType;
-
-use Livewire\Component;
-
-use Livewire\WithFileUploads;
 use App\Helpers\SaveAsImage as Image;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class DropEdit extends Component
 {
     use WithFileUploads;
 
     public $kunci;
+
     public $name;
+
     public $name_en;
+
     public $tipe;
+
     public $monster;
+
     public $npc;
+
     public $picture;
+
     public $fullimage;
+
     public $newPicture;
+
     public $newFullimage;
 
     protected $listeners = [
@@ -75,34 +81,34 @@ class DropEdit extends Component
         $item->picture = $this->picture;
         $item->fullimage = $this->fullimage;
 
-        if($this->newPicture) {
+        if ($this->newPicture) {
             $file = $this->newPicture->getRealPath();
 
-            $nama = 'imgs/mobs/'.str_slug(strtolower($this->name)).'-'.rand(00000,99999).'.png';
+            $nama = 'imgs/mobs/'.str_slug(strtolower($this->name)).'-'.rand(00000, 99999).'.png';
 
             $save = (new Image)->file($file)->name($nama)->save();
 
             $item->picture = $nama;
         }
 
-        if($this->newFullimage) {
+        if ($this->newFullimage) {
             $file = $this->newFullimage->getRealPath();
 
-            $fullimage = 'imgs/mobs/'.str_slug(strtolower($this->name)).'-'.rand(00000,99999).'.png';
+            $fullimage = 'imgs/mobs/'.str_slug(strtolower($this->name)).'-'.rand(00000, 99999).'.png';
 
             $save = (new Image)->file($file)->name($fullimage)->save();
 
             $item->fullimage = $fullimage;
         }
 
-        $item->name		= $this->name;
-        $item->name_en	= $this->name_en ?? $this->name;
+        $item->name = $this->name;
+        $item->name_en = $this->name_en ?? $this->name;
         $item->drop_type_id = $this->tipe;
 
-        if(! is_null($this->monster) || ! is_null($this->npc)) {
+        if (! is_null($this->monster) || ! is_null($this->npc)) {
             $item->note = [
                 'monster' => $this->monster ?? null,
-                'npc'     => $this->npc ?? null,
+                'npc' => $this->npc ?? null,
             ];
         }
 

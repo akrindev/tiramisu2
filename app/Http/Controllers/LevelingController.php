@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Helpers\Level;
 
 class LevelingController extends Controller
 {
+    public function show()
+    {
+        $lvl = (int) request()->input('level', 60);
 
-  public function show()
-  {
-    $lvl = (int) request()->input('level', 60);
+        $expNeed = (new Level)->expNeed($lvl);
 
-    $expNeed = (new Level)->expNeed($lvl);
-
-    return view('monster.leveling', compact('lvl','expNeed'));
-  }
+        return view('monster.leveling', compact('lvl', 'expNeed'));
+    }
 }

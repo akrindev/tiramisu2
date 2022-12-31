@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $quiz_score_count
  * @property-read \App\QuizSoalCode|null $soal
  * @property-read \App\User|null $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|QuizCode newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|QuizCode newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|QuizCode query()
@@ -24,22 +25,23 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|QuizCode whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|QuizCode whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|QuizCode whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class QuizCode extends Model
 {
     public function soal()
     {
-      return $this->hasOne(QuizSoalCode::class);
+        return $this->hasOne(QuizSoalCode::class);
     }
 
-  	public function user()
+    public function user()
     {
-      return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
-  	public function quizScore()
+    public function quizScore()
     {
-      return $this->hasMany(QuizScoreCode::class);
+        return $this->hasMany(QuizScoreCode::class);
     }
 }

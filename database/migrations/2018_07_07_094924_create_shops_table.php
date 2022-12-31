@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateShopsTable extends Migration
 {
@@ -15,17 +15,17 @@ class CreateShopsTable extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->increments('id');
-          	$table->integer('user_id');
-          	$table->string('nama_barang');
-          	$table->integer('harga');
-          	$table->text('deskripsi');
-          	$table->text('gambar');
-          	$table->integer('views')->default(0);
-          	$table->string('slug');
-          	$table->integer('cat_id');
-          	$table->integer('laku')->default(0);
+            $table->integer('user_id');
+            $table->string('nama_barang');
+            $table->integer('harga');
+            $table->text('deskripsi');
+            $table->text('gambar');
+            $table->integer('views')->default(0);
+            $table->string('slug');
+            $table->integer('cat_id');
+            $table->integer('laku')->default(0);
             $table->timestamps();
-          	$table->softDeletes();
+            $table->softDeletes();
         });
     }
 
