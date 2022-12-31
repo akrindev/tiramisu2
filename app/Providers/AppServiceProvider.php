@@ -2,13 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Str;
-
 use App;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,20 +18,19 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-       Paginator::useBootstrap();
+        Paginator::useBootstrap();
 
-       Schema::defaultStringLength(191);
-		if (env('APP_ENV') === 'production')
-        {
-     		\URL::forceScheme('https');
+        Schema::defaultStringLength(191);
+        if (env('APP_ENV') === 'production') {
+            \URL::forceScheme('https');
         }
 
-		$locale = Str::contains(request()->getHttpHost(), 'en') ? 'en' : 'id';
+        $locale = Str::contains(request()->getHttpHost(), 'en') ? 'en' : 'id';
 
         App::setLocale($locale);
 
-        Blade::directive('canonical', function($exp) {
-        	return "<?php echo canonical()->toHtml(); ?>";
+        Blade::directive('canonical', function ($exp) {
+            return '<?php echo canonical()->toHtml(); ?>';
         });
     }
 

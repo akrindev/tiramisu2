@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\BgMusic|null $bgMusic
  * @property-read \App\User|null $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|BgMusicComment newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BgMusicComment newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BgMusicComment query()
@@ -24,13 +25,14 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|BgMusicComment whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BgMusicComment whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BgMusicComment whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class BgMusicComment extends Model
 {
     public function user()
     {
-      return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function bgMusic()

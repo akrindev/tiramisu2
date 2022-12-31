@@ -4,8 +4,6 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 
 class SkillReplied extends Notification
 {
@@ -18,8 +16,8 @@ class SkillReplied extends Notification
      */
     public function __construct($pesan, $skill)
     {
-      $this->pesan = $pesan;
-      $this->skill = $skill;
+        $this->pesan = $pesan;
+        $this->skill = $skill;
     }
 
     /**
@@ -42,9 +40,9 @@ class SkillReplied extends Notification
     public function toArray($notifiable)
     {
         return [
-            'by'	=> explode(' ',auth()->user()->name)[0],
-          	'message'	=> $this->pesan . ' di ' . $this->skill->name,
-          	'link'	=> url('/skill/'. str_replace(' ', '-', $this->skill->skill->name). '/'. str_replace(' ', '-', $this->skill->name))
+            'by' => explode(' ', auth()->user()->name)[0],
+            'message' => $this->pesan.' di '.$this->skill->name,
+            'link' => url('/skill/'.str_replace(' ', '-', $this->skill->skill->name).'/'.str_replace(' ', '-', $this->skill->name)),
         ];
     }
 }

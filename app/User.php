@@ -2,12 +2,9 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Model as Eloquent;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Forum;
-use App\ForumsDesc;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
@@ -74,6 +71,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property-read int|null $thread_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
@@ -102,6 +100,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUsername($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereVisibility($value)
+ *
  * @mixin \Eloquent
  */
 class User extends Authenticatable
@@ -116,12 +115,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-         'remember_token',
+        'remember_token',
     ];
 
-  	public function isAdmin()
+    public function isAdmin()
     {
-      return $this->role == 'admin' || $this->isSuperAdmin();
+        return $this->role == 'admin' || $this->isSuperAdmin();
     }
 
     public function isSuperAdmin()
@@ -144,134 +143,129 @@ class User extends Authenticatable
         return auth()->check() && ($this->isAdmin() || \in_array(auth()->id(), $topContributor));
     }
 
-	public function getAvatar()
-	{
-		if(!is_null($this->attributes['provider_id'])) {
-			return "https://graph.facebook.com/{$this->attributes['provider_id']}/picture?type=normal";
-		}
-
-		return $this->attributes['avatar'];
-	}
-
-  	public function fcm()
+    public function getAvatar()
     {
-      return $this->hasOne(Fcm::class);
+        if (! is_null($this->attributes['provider_id'])) {
+            return "https://graph.facebook.com/{$this->attributes['provider_id']}/picture?type=normal";
+        }
+
+        return $this->attributes['avatar'];
     }
 
-  	public function historyLogin()
+    public function fcm()
     {
-      return $this->hasMany(HistoryLogin::class);
+        return $this->hasOne(Fcm::class);
     }
 
-  	/**
-    *
-    * User likes
-    */
-  	public function likes()
+    public function historyLogin()
     {
-      return $this->morphMany(Like::class, 'likeable');
+        return $this->hasMany(HistoryLogin::class);
     }
 
-  	public function myLovedThread()
+    /**
+     * User likes
+     */
+    public function likes()
     {
-      return $this->hasMany(Like::class);
+        return $this->morphMany(Like::class, 'likeable');
     }
 
-  	public function hasLikedThread(Forum $forum)
+    public function myLovedThread()
     {
-      return (bool) $forum->likes
-        ->where('likeable_id', $forum->id)
-        ->where('likeable_type', get_class($forum))
-        ->where('user_id', $this->id)
-        ->count();
+        return $this->hasMany(Like::class);
     }
 
-  	public function hasLikedThreadReply(ForumsDesc $reply)
+    public function hasLikedThread(Forum $forum)
     {
-      return (bool) $reply->likes
-        ->where('likeable_id', $reply->id)
-        ->where('likeable_type', get_class($reply))
-        ->where('user_id', $this->id)
-        ->count();
+        return (bool) $forum->likes
+          ->where('likeable_id', $forum->id)
+          ->where('likeable_type', get_class($forum))
+          ->where('user_id', $this->id)
+          ->count();
     }
 
-
-
-  	public function contact()
+    public function hasLikedThreadReply(ForumsDesc $reply)
     {
-      return $this->hasOne(Contact::class);
+        return (bool) $reply->likes
+          ->where('likeable_id', $reply->id)
+          ->where('likeable_type', get_class($reply))
+          ->where('user_id', $this->id)
+          ->count();
     }
 
-  	public function quiz()
+    public function contact()
     {
-      return $this->hasMany(Quiz::class);
+        return $this->hasOne(Contact::class);
     }
 
-  	public function quizScore()
+    public function quiz()
     {
-      return $this->hasOne(QuizScore::class);
+        return $this->hasMany(Quiz::class);
     }
 
-  	public function quizCode()
+    public function quizScore()
     {
-      return $this->hasMany(QuizCode::class);
-    }
-  	/**
-    *
-    * Thread by User
-    */
-  	public function thread()
-    {
-      return $this->hasMany(Forum::class);
+        return $this->hasOne(QuizScore::class);
     }
 
-  	/**
-    *
-    * Comment by user
-    */
-  	public function comment()
+    public function quizCode()
     {
-      return $this->hasMany(ForumsDesc::class);
+        return $this->hasMany(QuizCode::class);
     }
 
-  	public function gallerycomment()
+    /**
+     * Thread by User
+     */
+    public function thread()
     {
-      return $this->hasMany(GalleryComment::class);
+        return $this->hasMany(Forum::class);
     }
 
-  	/**
-    *
-    * User gallery
-    */
-  	public function gallery()
+    /**
+     * Comment by user
+     */
+    public function comment()
     {
-      return $this->hasMany(Gallery::class);
+        return $this->hasMany(ForumsDesc::class);
     }
 
-  	/**
-    * User Contribution
-    */
-  	public function contribution()
+    public function gallerycomment()
     {
-      return $this->hasOne(Contribution::class);
+        return $this->hasMany(GalleryComment::class);
     }
 
-  	public function contributionDrop()
+    /**
+     * User gallery
+     */
+    public function gallery()
     {
-      return $this->hasMany(ContributionDrop::class);
+        return $this->hasMany(Gallery::class);
     }
 
-  	/**
-    * User hasOne Cooking
-    */
-  	public function cooking()
+    /**
+     * User Contribution
+     */
+    public function contribution()
     {
-      return $this->belongsTo(Cooking::class);
+        return $this->hasOne(Contribution::class);
+    }
+
+    public function contributionDrop()
+    {
+        return $this->hasMany(ContributionDrop::class);
+    }
+
+    /**
+     * User hasOne Cooking
+     */
+    public function cooking()
+    {
+        return $this->belongsTo(Cooking::class);
     }
 
     public function secondCooking()
     {
-      return $this->belongsTo(Cooking::class, 'second_cooking_id');
+        return $this->belongsTo(Cooking::class, 'second_cooking_id');
     }
 
     /*
@@ -286,7 +280,7 @@ class User extends Authenticatable
     // user saved formula
     public function savedFormulas()
     {
-      return $this->belongsToMany(Formula::class, 'user_formula', 'user_id', "formula_id")->using(UserFormula::class);
+        return $this->belongsToMany(Formula::class, 'user_formula', 'user_id', 'formula_id')->using(UserFormula::class);
     }
 
     // guild

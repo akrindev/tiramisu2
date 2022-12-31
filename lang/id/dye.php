@@ -1,8 +1,7 @@
 <?php
 
-
 return [
-	'info' => '**Monthly Dye (Pewarna Bulanan)** adalah sebuah fitur dimana anda bisa mendapatkan item drop **"⚔ senjata dan 🛡 perisai berwarna"** dengan mengalahkan Bos Monster, pada tingkat kesulitan (difficulty) Nightmare & Ultimate Mode. Setiap bulan pada **tanggal pertama** (tanggal ke-1) "senjata dan perisai berwarna" selalu **berubah-ubah** atau diatur ulang di setiap **👾 Bos Monster**.
+    'info' => '**Monthly Dye (Pewarna Bulanan)** adalah sebuah fitur dimana anda bisa mendapatkan item drop **"⚔ senjata dan 🛡 perisai berwarna"** dengan mengalahkan Bos Monster, pada tingkat kesulitan (difficulty) Nightmare & Ultimate Mode. Setiap bulan pada **tanggal pertama** (tanggal ke-1) "senjata dan perisai berwarna" selalu **berubah-ubah** atau diatur ulang di setiap **👾 Bos Monster**.
 
 Pada Mode **Nightmare** senjata & perisai ❌ **tidak bisa dibarter (trade)**, sedangkan pada Mode **Ultimate** senjata & perisai ✔ **bisa dibarter (trade)**. Jadi jika ingin mendapatkan senjata dan perisai berwarna yang bisa dibarter (trade) pilihlah Mode Ultimate.
 
@@ -10,5 +9,5 @@ Perolehan senjata berwarna **bergantung** pada senjata yang dipakai oleh seluruh
 
 Jadi disarankan untuk memakai senjata yang berbeda-beda agar jenis senjata berwarna yang diperoleh juga berbeda.
 
-**📔 Catatan:** Senjata & Perisai Berwarna berubah-ubah pada tanggal pertama setiap bulannya (setiap tanggal 1).'
+**📔 Catatan:** Senjata & Perisai Berwarna berubah-ubah pada tanggal pertama setiap bulannya (setiap tanggal 1).',
 ];

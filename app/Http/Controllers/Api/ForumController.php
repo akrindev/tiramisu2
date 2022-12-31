@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Forum;
+use App\Http\Controllers\Controller;
 
 class ForumController extends Controller
 {
@@ -35,7 +34,7 @@ class ForumController extends Controller
     /**
      * show
      *
-     * @param  mixed $id
+     * @param  mixed  $id
      * @return void
      */
     public function show($id)
@@ -47,10 +46,10 @@ class ForumController extends Controller
                     'user:id,name,provider_id',
                     'getReply' => function ($q) {
                         $q->with('user:id,name,provider_id');
-                    }
+                    },
                 ])
                     ->where('parent_id', null);
-            }
+            },
         ])->first(); //dd(collect($read));
 
         $item->body = (new \Parsedown)->text(e($item->body));
@@ -72,7 +71,6 @@ class ForumController extends Controller
 
             return $i;
         });
-
 
         return response()->json($item, 200, [], JSON_PRETTY_PRINT)
             ->header('Access-Control-Allow-Origin', '*');

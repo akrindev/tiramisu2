@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +21,6 @@ Route::view('/', 'toram');
 |---
 */
 Route::prefix('en')->middleware('locale:en')->group(base_path('routes/en.php'));
-
 
 // Registled
 Route::view('/registlet', 'registled.show');
@@ -57,9 +57,7 @@ Route::get('/latest_search', 'SitemapController@show');
 Route::view('/refine', 'refine.index');
 Route::view('/refine/simulasi', 'refine.simulasi');
 
-
 /**
- *
  * Background Music
  */
 Route::get('/bgm', 'BgmController@show');
@@ -94,7 +92,6 @@ Route::get('/twitter/callback', 'Auth\LoginController@callbackTwitter');
 Route::get('/profile/{provider_id}', 'UserController@profile');
 
 /**
- *
  * Setting
  */
 Route::middleware('auth')->group(function () {
@@ -133,16 +130,13 @@ Route::get('/peta/{id}', 'MonsterController@peta');
 Route::get('/monsters', 'MonsterController@showAllMons');
 Route::prefix('monster')->group(base_path('routes/monster.php'));
 
-
 /**
  * Item(s) routes
  */
-
 Route::get('/items', 'ItemController@showAllItems');
 Route::get('/items/{id}', 'ItemController@showItems');
 
 Route::prefix('item')->group(base_path('routes/item.php'));
-
 
 /**
  * Appearance
@@ -188,15 +182,12 @@ Route::prefix('admin')->middleware('admin')->group(base_path('routes/admin.php')
 /**
  * Forum Routes
  */
-
 Route::prefix('forum')->group(base_path('routes/forum.php'));
 
 // short forum link
 Route::get('f/{id}', 'ForumController@bacaId');
 
 /**
- *
- *
  * Gallery
  */
 Route::prefix('gallery')->group(base_path('routes/gallery.php'));
@@ -205,7 +196,6 @@ Route::prefix('gallery')->group(base_path('routes/gallery.php'));
 Route::prefix('temp')->group(base_path('routes/temp.php'));
 
 /**
- *
  * Quiz routes
  */
 Route::prefix('quiz')->group(base_path('routes/quiz.php'));

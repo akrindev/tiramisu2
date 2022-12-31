@@ -13,8 +13,8 @@ class ForumCategoryTableSeeder extends Seeder
     public function run()
     {
         ForumCategory::create([
-        	'name'	=> 'Diskusi Umum',
-          	'slug'	=> 'diskusi-umum'
+            'name' => 'Diskusi Umum',
+            'slug' => 'diskusi-umum',
         ]);
     }
 }

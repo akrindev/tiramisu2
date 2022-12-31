@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use App\Helpers\Cloudinary as Cloud;
+use Illuminate\Support\ServiceProvider;
 
 class CloudinaryServiceProvider extends ServiceProvider
 {
@@ -15,7 +15,7 @@ class CloudinaryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('cloudinary', function () {
-			return new Cloud();
-		});
+            return new Cloud();
+        });
     }
 }

@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $reward_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\NpcTujuan[] $tujuan
  * @property-read int|null $tujuan_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|NpcQuest newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|NpcQuest newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|NpcQuest query()
@@ -27,27 +28,29 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|NpcQuest whereLevel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|NpcQuest whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|NpcQuest whereNpcId($value)
+ *
  * @mixin \Eloquent
  */
 class NpcQuest extends Model
 {
-  public $timestamps = false;
-  public $fillable = [
-  	'name', 'npc_id', 'level', 'exp', 'detail'
-  ];
+    public $timestamps = false;
 
-  public function npc()
-  {
-    return $this->belongsTo(Npc::class);
-  }
+    public $fillable = [
+        'name', 'npc_id', 'level', 'exp', 'detail',
+    ];
 
-  public function tujuan()
-  {
-    return $this->hasMany(NpcTujuan::class);
-  }
+    public function npc()
+    {
+        return $this->belongsTo(Npc::class);
+    }
 
-  public function reward()
-  {
-    return $this->hasMany(NpcReward::class);
-  }
+    public function tujuan()
+    {
+        return $this->hasMany(NpcTujuan::class);
+    }
+
+    public function reward()
+    {
+        return $this->hasMany(NpcReward::class);
+    }
 }

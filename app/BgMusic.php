@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\BgMusicComment[] $comments
  * @property-read int|null $comments_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|BgMusic newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BgMusic newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BgMusic query()
@@ -30,15 +31,15 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|BgMusic whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BgMusic whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BgMusic whereVideoId($value)
+ *
  * @mixin \Eloquent
  */
 class BgMusic extends Model
 {
-
-  	protected $table = 'bg_musics';
+    protected $table = 'bg_musics';
 
     public function comments()
     {
-      return $this->hasMany(BgMusicComment::class);
+        return $this->hasMany(BgMusicComment::class);
     }
 }

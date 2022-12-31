@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateMonstersTable extends Migration
 {
@@ -15,22 +15,22 @@ class CreateMonstersTable extends Migration
     {
         Schema::create('monsters', function (Blueprint $table) {
             $table->increments('id');
-          	$table->integer('map_id');
-          	$table->tinyInteger('element_id');
-          	$table->string('name');
-          	$table->integer('level');
-          	$table->tinyInteger('type');
-          	$table->integer('hp')->nullable();
-          	$table->integer('xp')->nullable();
-          	$table->enum('pet',['y', 'n']);
-          	$table->string('picture')->nullable();
+            $table->integer('map_id');
+            $table->tinyInteger('element_id');
+            $table->string('name');
+            $table->integer('level');
+            $table->tinyInteger('type');
+            $table->integer('hp')->nullable();
+            $table->integer('xp')->nullable();
+            $table->enum('pet', ['y', 'n']);
+            $table->string('picture')->nullable();
         });
 
         Schema::create('monster_drop', function (Blueprint $table) {
             $table->increments('id');
-          	$table->integer('monster_id')->references('id')->on('drops')->onDelete('cascade');
+            $table->integer('monster_id')->references('id')->on('drops')->onDelete('cascade');
 
-          	$table->integer('drop_id')->references('id')->on('monsters')->onDelete('cascade');
+            $table->integer('drop_id')->references('id')->on('monsters')->onDelete('cascade');
         });
     }
 

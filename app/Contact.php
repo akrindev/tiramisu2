@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\User|null $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Contact newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Contact newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Contact query()
@@ -27,19 +28,20 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Contact whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Contact whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Contact whereWhatsapp($value)
+ *
  * @mixin \Eloquent
  */
 class Contact extends Model
 {
-  protected $guarded = [];
+    protected $guarded = [];
 
-  public function user()
-  {
-      return $this->belongsTo(User::class);
-  }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
-  public function getWhatsappAttribute($value)
-  {
-    return is_null($value) ? null : preg_replace('/(^[0])/', '+62', $value);
-  }
+    public function getWhatsappAttribute($value)
+    {
+        return is_null($value) ? null : preg_replace('/(^[0])/', '+62', $value);
+    }
 }

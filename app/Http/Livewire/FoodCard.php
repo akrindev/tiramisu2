@@ -12,7 +12,7 @@ class FoodCard extends Component
     {
         $this->food = $food;
     }
-    
+
     public function render()
     {
         return view('livewire.food-card');

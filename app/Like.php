@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Model|\Eloquent $likeable
  * @property-read \App\User|null $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Like newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Like newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Like query()
@@ -24,20 +25,22 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Like whereLikeableType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Like whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Like whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class Like extends Model
 {
-  	protected $fillable = [
-    	'user_id', 'likeable_id', 'likeable_type'
+    protected $fillable = [
+        'user_id', 'likeable_id', 'likeable_type',
     ];
+
     public function likeable()
     {
-      return $this->morphTo();
+        return $this->morphTo();
     }
 
-  	public function user()
+    public function user()
     {
-      return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }

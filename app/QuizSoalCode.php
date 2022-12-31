@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\QuizCode|null $quizCode
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|QuizSoalCode newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|QuizSoalCode newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|QuizSoalCode query()
@@ -23,16 +24,17 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|QuizSoalCode whereQuizCodeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|QuizSoalCode whereSoal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|QuizSoalCode whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class QuizSoalCode extends Model
 {
     protected $fillable = [
-    	'body', 'soal'
+        'body', 'soal',
     ];
 
-  	public function quizCode()
+    public function quizCode()
     {
-      return $this->belongsTo(QuizCode::class);
+        return $this->belongsTo(QuizCode::class);
     }
 }

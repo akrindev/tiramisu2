@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Drop|null $drop
  * @property-read \App\DropType|null $dropType
  * @property-read \App\User|null $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|TempDrop newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TempDrop newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TempDrop query()
@@ -38,6 +39,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|TempDrop wherePicture($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TempDrop whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TempDrop whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class TempDrop extends Model
@@ -46,8 +48,8 @@ class TempDrop extends Model
 
     protected $guarded = [];
 
-  	protected $casts = [
-    	'note'	=> 'json'
+    protected $casts = [
+        'note' => 'json',
     ];
 
     protected $with = ['dropType'];
@@ -57,15 +59,15 @@ class TempDrop extends Model
         return $this->belongsTo(Drop::class);
     }
 
-  	public function dropType()
+    public function dropType()
     {
         return $this->belongsTo(DropType::class);
     }
 
-  	public function user()
+    public function user()
     {
         return $this->belongsTo(User::class)->withDefault([
-            'name' => 'guest'
+            'name' => 'guest',
         ]);
     }
 }

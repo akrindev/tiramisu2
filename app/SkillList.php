@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $comment_count
  * @property-read \App\Element|null $element
  * @property-read \App\Skill|null $skill
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|SkillList newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SkillList newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SkillList query()
@@ -40,29 +41,31 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|SkillList whereRange($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SkillList whereSkillId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SkillList whereType($value)
+ *
  * @mixin \Eloquent
  */
 class SkillList extends Model
 {
-  public $timestamps = false;
-  public $fillable = [
-  	'skill_id', 'name', 'type', 'element_id',
-    'for', 'mp', 'range', 'level',
-    'combo_awal', 'combo_tengah', 'description', 'picture'
-  ];
+    public $timestamps = false;
 
-  public function skill()
-  {
-    return $this->belongsTo(Skill::class);
-  }
+    public $fillable = [
+        'skill_id', 'name', 'type', 'element_id',
+        'for', 'mp', 'range', 'level',
+        'combo_awal', 'combo_tengah', 'description', 'picture',
+    ];
 
-  public function element()
-  {
-    return $this->belongsTo(Element::class);
-  }
+    public function skill()
+    {
+        return $this->belongsTo(Skill::class);
+    }
 
-  public function comment()
-  {
-    return $this->hasMany(SkillComment::class);
-  }
+    public function element()
+    {
+        return $this->belongsTo(Element::class);
+    }
+
+    public function comment()
+    {
+        return $this->hasMany(SkillComment::class);
+    }
 }

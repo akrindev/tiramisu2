@@ -2,15 +2,16 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
-
 use App;
 use App\Helpers\Level;
+use Livewire\Component;
 
 class Leveling extends Component
 {
     public $level;
+
     public $bonusExp;
+
     public $range;
 
     public function mount($level, $bonusexp, $range)
@@ -23,11 +24,11 @@ class Leveling extends Component
     public function render()
     {
         $lvl = $this->level;
-    	$bonusExp = $this->bonusExp;
-    	$range = $this->range;
+        $bonusExp = $this->bonusExp;
+        $range = $this->range;
 
-    	$min = $lvl-$range;
-    	$max = $lvl+$range;
+        $min = $lvl - $range;
+        $max = $lvl + $range;
 
         $mobs = (new Level)->getListMons($lvl, $min, $max, $bonusExp);
 
@@ -36,7 +37,7 @@ class Leveling extends Component
 
     public function switchLocalization($locale)
     {
-        if(in_array($locale, ['en', 'id'])) {
+        if (in_array($locale, ['en', 'id'])) {
             App::setLocale($locale);
         }
     }

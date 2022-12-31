@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $pot
  * @property int|null $base
  * @property-read \App\Drop|null $drop
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Resep newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Resep newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Resep query()
@@ -31,18 +32,20 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Resep whereMaterial($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Resep wherePot($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Resep whereSet($value)
+ *
  * @mixin \Eloquent
  */
 class Resep extends Model
 {
-  protected $fillable = [
-  	'drop_id', 'material', 'jumlah',
-    'fee', 'level', 'diff', 'set', 'pot', 'base'
-  ];
-  public $timestamps = false;
+    protected $fillable = [
+        'drop_id', 'material', 'jumlah',
+        'fee', 'level', 'diff', 'set', 'pot', 'base',
+    ];
 
-  public function drop()
-  {
-    return $this->belongsTo(Drop::class);
-  }
+    public $timestamps = false;
+
+    public function drop()
+    {
+        return $this->belongsTo(Drop::class);
+    }
 }

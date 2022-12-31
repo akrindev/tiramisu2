@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Quiz|null $quiz
  * @property-read \App\User|null $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|QuizScore newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|QuizScore newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|QuizScore query()
@@ -26,21 +27,22 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|QuizScore whereSalah($value)
  * @method static \Illuminate\Database\Eloquent\Builder|QuizScore whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|QuizScore whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class QuizScore extends Model
 {
     protected $fillable = [
-    	'user_id', 'benar', 'salah', 'point'
+        'user_id', 'benar', 'salah', 'point',
     ];
 
-  	public function quiz()
+    public function quiz()
     {
-      return $this->belongsTo(Quiz::class);
+        return $this->belongsTo(Quiz::class);
     }
 
-  	public function user()
+    public function user()
     {
-      return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }

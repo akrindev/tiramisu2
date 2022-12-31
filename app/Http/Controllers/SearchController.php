@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\{LogSearch, Setting};
+use App\Setting;
 
 class SearchController extends Controller
 {
-
     /**
      * search
      *

@@ -2,23 +2,30 @@
 
 namespace App\Http\Livewire;
 
+use App;
+use App\Drop;
+use App\Formula;
+use App\Forum;
+use App\LogSearch;
+use App\Map;
+use App\Monster;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App;
-use App\{Drop, Monster, Map, Forum, Formula, LogSearch};
 
 class Search extends Component
 {
     use WithPagination;
 
     public $q;
+
     public $type;
+
     public $locale;
 
     protected $queryString = ['q', 'type'];
 
     protected $listeners = [
-    	'getResult'
+        'getResult',
     ];
 
     public function mount($q)
@@ -31,15 +38,13 @@ class Search extends Component
     {
         $q = $this->q;
 
-		// dont write log if it bot
-		if(! $this->isBot()) {
-
-			LogSearch::create([
-				'user_id'	=> auth()->id() ?? null,
-				'q'			=> $q
-			]);
-
-		}
+        // dont write log if it bot
+        if (! $this->isBot()) {
+            LogSearch::create([
+                'user_id' => auth()->id() ?? null,
+                'q' => $q,
+            ]);
+        }
 
         $type = $this->type == 'status_only' ? 'note' : 'name';
 
@@ -47,32 +52,32 @@ class Search extends Component
 
         $drops = Drop::search($type, $q)
             ->when($type == 'name', function ($query) use ($q) {
-        		return $query->orWhere('name_en', 'like', '%'.$q.'%');
-        	})
+                return $query->orWhere('name_en', 'like', '%'.$q.'%');
+            })
             ->when($type == 'note', function ($query) use ($q) {
                 $term = translate($q, true);
 
-            	return $query->orWhere('note', 'like', '%'.$term.'%');
+                return $query->orWhere('note', 'like', '%'.$term.'%');
             })
            ->with([
                'monsters' => function ($query) {
                    $query->with(['map', 'element']);
                },
-               'dropType'
-        	])
+               'dropType',
+           ])
             ->orderBy('drop_type_id')
             ->paginate(50);
 
         $monsters = Monster::search('name', $q)
             ->when($type == 'name', function ($query) use ($q) {
-        		return $query->orWhere('name_en', 'like', '%'.$q.'%');
-        	})
+                return $query->orWhere('name_en', 'like', '%'.$q.'%');
+            })
             ->with([
-                'drops'=> function($query) {
+                'drops' => function ($query) {
                     $query->with('dropType');
                 },
                 'map',
-                'element'
+                'element',
             ])
             ->orderBy('name')->get();
 
@@ -84,7 +89,7 @@ class Search extends Component
                     ->orderBy('judul')
                     ->get();
 
-        $formulas =Formula::search('note', $q)
+        $formulas = Formula::search('note', $q)
                     ->latest()->take(50)
                     ->get();
 
@@ -104,16 +109,16 @@ class Search extends Component
 
     public function setLocale($locale)
     {
-        if(in_array($locale, ['en', 'id'])) {
+        if (in_array($locale, ['en', 'id'])) {
             App::setLocale($locale);
         }
     }
 
-	// check if it a bot
-	private function isBot()
-	{
-		if(preg_match('/mediapartners|googlebot|bingbot|bot/i', request()->server('HTTP_USER_AGENT'))) {
-			return true;
-		}
-	}
+    // check if it a bot
+    private function isBot()
+    {
+        if (preg_match('/mediapartners|googlebot|bingbot|bot/i', request()->server('HTTP_USER_AGENT'))) {
+            return true;
+        }
+    }
 }

@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\User;
-use App\SecretMessage;
 use App\Http\Resources\SecretMessageCollection;
+use App\SecretMessage;
+use App\User;
 
 class SecretMessageController extends Controller
 {
     public function show(User $user)
     {
         if (request()->expectsJson()) {
-
             $secrets = SecretMessage::whereUserId($user->id)
                 ->when(true, function ($query) {
                     $isOwnser = (auth()->check() && auth()->id() == $query->user_id) ? true : false;
 
-                    if (!$isOwnser) {
+                    if (! $isOwnser) {
                         return $query->publicMessage();
                     }
                 })
@@ -33,8 +31,8 @@ class SecretMessageController extends Controller
     {
         $data = request()->validate([
             'user_id' => ['required', 'exists:users,id'],
-            'message'   => ['required', 'min:3', 'max:400'],
-            'privacy'   => ['required']
+            'message' => ['required', 'min:3', 'max:400'],
+            'privacy' => ['required'],
         ]);
 
         $secret = SecretMessage::create($data);
@@ -46,8 +44,8 @@ class SecretMessageController extends Controller
     {
         $data = request()->validate([
             'user_id' => ['required', 'exists:users,id'],
-            'message'   => ['required', 'min:3', 'max:400'],
-            'parent_id'   => ['required']
+            'message' => ['required', 'min:3', 'max:400'],
+            'parent_id' => ['required'],
         ]);
 
         $secret = SecretMessage::create($data);

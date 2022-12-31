@@ -4,8 +4,6 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 
 class ScammerReplied extends Notification
 {
@@ -16,11 +14,11 @@ class ScammerReplied extends Notification
      *
      * @return void
      */
-    public function __construct($q,$thread, $reply)
+    public function __construct($q, $thread, $reply)
     {
-      	$this->q = $q;
+        $this->q = $q;
         $this->thread = $thread;
-      	$this->reply = $reply;
+        $this->reply = $reply;
     }
 
     /**
@@ -40,13 +38,13 @@ class ScammerReplied extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-  	public function toArray($notifiable)
+    public function toArray($notifiable)
     {
         return [
-          	'by'	=> explode(' ',auth()->user()->name)[0],
-            'message' => $this->q . ' ' . $this->thread->judul,
+            'by' => explode(' ', auth()->user()->name)[0],
+            'message' => $this->q.' '.$this->thread->judul,
 
-          	'link'	=> url('/scammer/r/'.$this->thread->slug.'#reply'.$this->reply->id)
+            'link' => url('/scammer/r/'.$this->thread->slug.'#reply'.$this->reply->id),
         ];
     }
 }

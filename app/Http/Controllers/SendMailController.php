@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Mail\SendMailTo;
-use App\User;
 use App\SendMail;
+use App\User;
 
 class SendMailController extends Controller
 {
@@ -17,9 +16,9 @@ class SendMailController extends Controller
     public function mailToUser()
     {
         $mail = request()->validate([
-            'subject'    => 'required|min:5',
-            'body'        => 'required|min:15',
-            'user_id'    => 'required'
+            'subject' => 'required|min:5',
+            'body' => 'required|min:15',
+            'user_id' => 'required',
         ]);
 
         $user = User::findOrFail($mail['user_id']);
@@ -28,7 +27,6 @@ class SendMailController extends Controller
 
         \Mail::to($user->email)
             ->send(new SendMailTo($mail));
-
 
         return back()->with('success', 'email sent');
     }
@@ -41,8 +39,8 @@ class SendMailController extends Controller
     public function mailToAllUser()
     {
         $mail = request()->validate([
-            'subject'    => 'required|min:5',
-            'body'        => 'required|min:15',
+            'subject' => 'required|min:5',
+            'body' => 'required|min:15',
         ]);
 
         set_time_limit(0);
@@ -89,7 +87,7 @@ class SendMailController extends Controller
     /**
      * getLog
      *
-     * @param  mixed $id
+     * @param  mixed  $id
      * @return void
      */
     public function getLog($id)
@@ -101,7 +99,7 @@ class SendMailController extends Controller
 
     public function hasEmail()
     {
-        $users = User::where('name', 'like', '%' . request('q') . '%')->take(15)->get();
+        $users = User::where('name', 'like', '%'.request('q').'%')->take(15)->get();
 
         return $users;
     }

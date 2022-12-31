@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateDyesTable extends Migration
 {
@@ -15,8 +15,8 @@ class CreateDyesTable extends Migration
     {
         Schema::create('dyes', function (Blueprint $table) {
             $table->increments('id');
-          	$table->integer('color');
-          	$table->string('hex');
+            $table->integer('color');
+            $table->string('hex');
         });
     }
 

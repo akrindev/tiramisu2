@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Gallery;
 use App\GalleryComment;
-use App\User;
 use App\Notifications\GalleryCommented;
+use App\User;
 use Image;
 
 /**
@@ -24,14 +23,14 @@ class GalleryController extends Controller
         $galleries = Gallery::latest()->paginate(15);
 
         return view('gallery.index', [
-            'data'    => $galleries
+            'data' => $galleries,
         ]);
     }
 
     /**
      * show single image
      *
-     * @param  int $id
+     * @param  int  $id
      * @return void
      */
     public function single($id)
@@ -41,7 +40,7 @@ class GalleryController extends Controller
         $img->increment('views');
 
         return view('gallery.single', [
-            'pos' => $img
+            'pos' => $img,
         ]);
     }
 
@@ -55,9 +54,9 @@ class GalleryController extends Controller
         $galleries = auth()->user()->gallery()->latest()->paginate(15);
 
         return view('gallery.my_gallery', [
-            'by'    => auth()->user()->name,
-            'data'    => $galleries,
-            'total'    => auth()->user()->gallery->count()
+            'by' => auth()->user()->name,
+            'data' => $galleries,
+            'total' => auth()->user()->gallery->count(),
         ]);
     }
 
@@ -68,23 +67,23 @@ class GalleryController extends Controller
         $galleries = Gallery::where('user_id', $user->id);
 
         return view('gallery.my_gallery', [
-            'by'    => $user->name,
-            'data'    => $galleries->latest()->paginate(20),
-            'total'    => $galleries->count()
+            'by' => $user->name,
+            'data' => $galleries->latest()->paginate(20),
+            'total' => $galleries->count(),
         ]);
     }
 
     public function getByTag($tag)
     {
-        $galleries = Gallery::where('body', 'like', '%#' . $tag . '%')
+        $galleries = Gallery::where('body', 'like', '%#'.$tag.'%')
             ->latest()
             ->paginate(20);
-        $count = Gallery::where('body', 'like', '%#' . $tag . '%')->distinct()->count();
+        $count = Gallery::where('body', 'like', '%#'.$tag.'%')->distinct()->count();
 
         return view('gallery.index_tag', [
-            'data'    => $galleries,
+            'data' => $galleries,
             'tag' => $tag,
-            'total' => $count
+            'total' => $count,
         ]);
     }
 
@@ -92,11 +91,11 @@ class GalleryController extends Controller
     {
         request()->validate(
             [
-                'body'    => 'min:5|max:140',
-                'gambar'    => 'required|image|mimes:jpg,png,jpeg,gif|dimensions:min_width=300,min_height=150'
+                'body' => 'min:5|max:140',
+                'gambar' => 'required|image|mimes:jpg,png,jpeg,gif|dimensions:min_width=300,min_height=150',
             ],
             [
-                'dimensions' => 'Lebar min 300px dan tinggi min 150px'
+                'dimensions' => 'Lebar min 300px dan tinggi min 150px',
             ]
         );
 
@@ -105,7 +104,7 @@ class GalleryController extends Controller
         if (request()->hasFile('gambar')) {
             $gambar = request()->file('gambar')->getRealPath();
 
-            $name = substr(md5(now()), 0, 8) . '.png';
+            $name = substr(md5(now()), 0, 8).'.png';
 
             $img = Image::make($gambar);
             $img->text('toram-id.info', 15, 30, function ($font) {
@@ -115,19 +114,19 @@ class GalleryController extends Controller
                 $font->align('left');
             });
 
-            $img->save(public_path() . '/uploads/' . $name);
+            $img->save(public_path().'/uploads/'.$name);
 
-            $up = app('cloudinary')->uploadImg(public_path() . '/uploads/' . $name);
+            $up = app('cloudinary')->uploadImg(public_path().'/uploads/'.$name);
 
-            unlink(public_path() . '/uploads/' . $name);
+            unlink(public_path().'/uploads/'.$name);
 
             $url_img = $up['secure_url'];
         }
 
         Gallery::create([
             'user_id' => auth()->id(),
-            'body'    => $body,
-            'gambar'    => $url_img
+            'body' => $body,
+            'gambar' => $url_img,
         ]);
 
         return response()->json(['success' => true]);
@@ -142,7 +141,7 @@ class GalleryController extends Controller
         }
 
         return view('gallery.edit', [
-            'data' => $img
+            'data' => $img,
         ]);
     }
 
@@ -155,11 +154,11 @@ class GalleryController extends Controller
         }
 
         request()->validate([
-            'body'    => 'required|min:5|max:140'
+            'body' => 'required|min:5|max:140',
         ]);
 
         $img->update([
-            'body'    => e(request()->body)
+            'body' => e(request()->body),
         ]);
 
         return back()->with('sukses', 'Data telah di ubah!');
@@ -168,7 +167,7 @@ class GalleryController extends Controller
     /**
      * comment to gallery image
      *
-     * @param  int $id
+     * @param  int  $id
      * @return void
      */
     public function comment($id)
@@ -176,12 +175,12 @@ class GalleryController extends Controller
         $gallery = Gallery::findOrFail($id);
 
         request()->validate([
-            'body'    => 'required|min:5'
+            'body' => 'required|min:5',
         ]);
 
         $gallery->comments()->create([
-            'user_id'    => auth()->id(),
-            'body'    => e(request()->body)
+            'user_id' => auth()->id(),
+            'body' => e(request()->body),
         ]);
 
         if (auth()->id() != $gallery->user_id) {
@@ -192,7 +191,6 @@ class GalleryController extends Controller
                     $gallery->comments()->latest()->first()
                 )
             );
-
 
             // if ($gallery->user->fcm()->count() > 0) {
             //     fcm()->to([$gallery->user->fcm->token])
@@ -208,8 +206,8 @@ class GalleryController extends Controller
 
         return back()->with('sukses_comment', 'Komentar ditambahkan');
     }
+
     /**
-     *
      * Admin / gambar milik user berhak menghapus
      */
     public function destroy()

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateHistoryLoginsTable extends Migration
 {
@@ -15,10 +15,10 @@ class CreateHistoryLoginsTable extends Migration
     {
         Schema::create('history_logins', function (Blueprint $table) {
             $table->increments('id');
-          	$table->integer('user_id');
-          	$table->ipAddress('ip');
-          	$table->text('browser');
-          	$table->text('extra')->nullable();
+            $table->integer('user_id');
+            $table->ipAddress('ip');
+            $table->text('browser');
+            $table->text('extra')->nullable();
             $table->timestamps();
         });
     }

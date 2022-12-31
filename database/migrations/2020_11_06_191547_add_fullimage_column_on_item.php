@@ -14,7 +14,7 @@ class AddFullimageColumnOnItem extends Migration
     public function up()
     {
         Schema::table('drops', function (Blueprint $table) {
-        	$table->string('fullimage')->after('picture')->nullable();
+            $table->string('fullimage')->after('picture')->nullable();
         });
     }
 
@@ -25,10 +25,10 @@ class AddFullimageColumnOnItem extends Migration
      */
     public function down()
     {
-      if(Schema::hasColumn('drops', 'fullimage')) {
-        Schema::table('drops', function (Blueprint $table) {
-        	$table->dropColumn(['fullimage']);
-        });
-      }
+        if (Schema::hasColumn('drops', 'fullimage')) {
+            Schema::table('drops', function (Blueprint $table) {
+                $table->dropColumn(['fullimage']);
+            });
+        }
     }
 }

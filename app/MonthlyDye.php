@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Dye|null $dye
  * @property-read \App\Monster|null $monster
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyDye newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyDye newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyDye query()
@@ -24,19 +25,20 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyDye whereMonsterId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyDye whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyDye whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class MonthlyDye extends Model
 {
     protected $guarded = [];
 
-  	public function monster()
+    public function monster()
     {
-      return $this->belongsTo(Monster::class);
+        return $this->belongsTo(Monster::class);
     }
 
-  	public function dye()
+    public function dye()
     {
-      return $this->belongsTo(Dye::class);
+        return $this->belongsTo(Dye::class);
     }
 }

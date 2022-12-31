@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateQuizScoresTable extends Migration
 {
@@ -15,10 +15,10 @@ class CreateQuizScoresTable extends Migration
     {
         Schema::create('quiz_scores', function (Blueprint $table) {
             $table->increments('id');
-          	$table->integer('user_id');
-          	$table->integer('benar')->default(0);
-          	$table->integer('salah')->default(0);
-          	$table->integer('point')->default(0);
+            $table->integer('user_id');
+            $table->integer('benar')->default(0);
+            $table->integer('salah')->default(0);
+            $table->integer('point')->default(0);
             $table->timestamps();
         });
     }

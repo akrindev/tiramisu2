@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $deleted_at
  * @property-read \App\User|null $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Quiz newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Quiz newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Quiz query()
@@ -41,18 +42,19 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Quiz whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Quiz whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Quiz whereViews($value)
+ *
  * @mixin \Eloquent
  */
 class Quiz extends Model
 {
     protected $fillable = [
-    	'user_id', 'question',
-        'answer_a','answer_b','answer_c','answer_d',
-      	'correct', 'approved'
+        'user_id', 'question',
+        'answer_a', 'answer_b', 'answer_c', 'answer_d',
+        'correct', 'approved',
     ];
 
-  	public function user()
+    public function user()
     {
-      return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }

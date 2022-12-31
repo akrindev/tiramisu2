@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Formula;
 
 class FormulaController extends Controller
@@ -13,19 +12,19 @@ class FormulaController extends Controller
     public function store()
     {
         request()->validate([
-        	'body' => 'required',
-            'note'	=> 'max:40'
+            'body' => 'required',
+            'note' => 'max:40',
         ]);
 
         Formula::create([
-        	'user_id'	=> auth()->id() ?? null,
-            'note'		=> request()->note,
-            'final_step'=> request()->final,
-            'body'		=> request()->body,
-            'type'		=> request()->type,
-            'starting_pot'	=> request()->starting_pot,
-            'highest_mats'	=> request()->highest_mats,
-            'success_rate'	=> request()->success_rate
+            'user_id' => auth()->id() ?? null,
+            'note' => request()->note,
+            'final_step' => request()->final,
+            'body' => request()->body,
+            'type' => request()->type,
+            'starting_pot' => request()->starting_pot,
+            'highest_mats' => request()->highest_mats,
+            'success_rate' => request()->success_rate,
         ]);
 
         return response()->json(['success' => true]);
@@ -47,15 +46,15 @@ class FormulaController extends Controller
 
     public function loadSaved()
     {
-		if(!auth()->check()) {
-			$formula = Formula::select('id', 'note', 'created_at')->latest()->take(10)->get();
+        if (! auth()->check()) {
+            $formula = Formula::select('id', 'note', 'created_at')->latest()->take(10)->get();
 
-			$formula->map(function($formula) {
-        		$formula->created = $formula->created_at->format('d-M-Y H:i:s');
-        	});
+            $formula->map(function ($formula) {
+                $formula->created = $formula->created_at->format('d-M-Y H:i:s');
+            });
 
-			return ['saved' => $formula, 'loved' => []];
-		}
+            return ['saved' => $formula, 'loved' => []];
+        }
 
         $formulas['saved'] = Formula::select('id', 'note', 'created_at')
             ->whereUserId(auth()->id())
@@ -63,8 +62,8 @@ class FormulaController extends Controller
             ->take(50)
             ->get();
 
-        $formulas['saved']->map(function($formula) {
-        	$formula->created = $formula->created_at->format('d-M-Y H:i:s');
+        $formulas['saved']->map(function ($formula) {
+            $formula->created = $formula->created_at->format('d-M-Y H:i:s');
         });
 
         $formulas['loved'] = auth()->user()->savedFormulas;

@@ -3,8 +3,6 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Drop;
-use App\DropType;
-
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -37,7 +35,7 @@ class DropSee extends Component
     public function render()
     {
         return view('livewire.admin.drop-see', [
-            'items' => $this->showDrops()
+            'items' => $this->showDrops(),
         ]);
     }
 
@@ -46,8 +44,8 @@ class DropSee extends Component
         $items = Drop::when($this->type != 0, function ($query) {
             $query->whereDropTypeId($this->type);
         })->when(\strlen($this->search) > 2, function ($query) {
-            $query->where('name', 'like', '%' . $this->search . '%')
-            ->orWhere('name_en', 'like', '%' . $this->search . '%');
+            $query->where('name', 'like', '%'.$this->search.'%')
+            ->orWhere('name_en', 'like', '%'.$this->search.'%');
         })
         ->orderByDesc('id')->paginate(10);
 

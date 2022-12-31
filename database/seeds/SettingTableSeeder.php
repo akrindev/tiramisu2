@@ -12,12 +12,12 @@ class SettingTableSeeder extends Seeder
      */
     public function run()
     {
-      $data = [
-      	'body' => [
-          'badword' => 'porno'
-        ]
-      ];
+        $data = [
+            'body' => [
+                'badword' => 'porno',
+            ],
+        ];
 
-      Setting::create($data);
+        Setting::create($data);
     }
 }

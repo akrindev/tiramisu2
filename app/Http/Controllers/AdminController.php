@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\{
-    User,
-    Forum,
-    Quiz,
-    Gallery,
-    LogSearch,
-    HistoryLogin,
-    Drop,
-    Monster,
-    Formula,
-    Tag
-};
-
+use App\Drop;
+use App\Formula;
+use App\Forum;
+use App\Gallery;
+use App\HistoryLogin;
+use App\LogSearch;
+use App\Monster;
+use App\Quiz;
+use App\Tag;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -76,15 +72,15 @@ class AdminController extends Controller
         return datatables()->of(User::with('contact')->orderBy('created_at', 'desc'))
             ->addColumn('action', function ($user) {
                 return $user->banned == 1 ?
-                    '<a href="#" data-id="' . $user->id . '" class="btn btn-sm btn-outline-danger change">banned</a>' :
-                    '<a href="#" data-id="' . $user->id . '" class="btn btn-sm btn-outline-success change">active</a>';
+                    '<a href="#" data-id="'.$user->id.'" class="btn btn-sm btn-outline-danger change">banned</a>' :
+                    '<a href="#" data-id="'.$user->id.'" class="btn btn-sm btn-outline-success change">active</a>';
             })
             ->addColumn('pic', function ($user) {
                 return "<div><div style='width:2rem;height:2rem;border-radius:50%;display:inline-block;background-image: url({$user->getAvatar()})' class='avatar m-1 ml-1 float-left'></div></div> ";
             })
             ->addColumn('contact', function ($user) {
-                return "<div>  " . optional($user->contact)['line'] .
-                    "<br>  " . optional($user->contact)['whatsapp'] . " </div>";
+                return '<div>  '.optional($user->contact)['line'].
+                    '<br>  '.optional($user->contact)['whatsapp'].' </div>';
             })
             ->editColumn('name', function ($user) {
                 return "<div><strong class='mr-2 mb-2 text-center'>$user->name</strong><br><small class='text-muted'>@$user->username</small></div>";
@@ -133,8 +129,8 @@ class AdminController extends Controller
         $user->save();
 
         return response()->json([
-            'success'    =>    true,
-            'ban'        => $user->banned
+            'success' => true,
+            'ban' => $user->banned,
         ]);
     }
 
@@ -153,7 +149,7 @@ class AdminController extends Controller
     /**
      * fetchTag
      *
-     * @param  mixed $i
+     * @param  mixed  $i
      * @return void
      */
     public function fetchTag($i)

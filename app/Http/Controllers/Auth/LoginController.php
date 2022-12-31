@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
-use Socialite;
-use Auth;
 use App\User;
+use Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Socialite;
 
 class LoginController extends Controller
 {
@@ -41,86 +40,84 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-  	public function showLoginForm()
+    public function showLoginForm()
     {
-      return redirect('/fb-login');
+        return redirect('/fb-login');
     }
 
-  	public function redirect()
+    public function redirect()
     {
-      return Socialite::driver('facebook')
-        ->usingGraphVersion('v7.0')->redirect();
+        return Socialite::driver('facebook')
+          ->usingGraphVersion('v7.0')->redirect();
     }
 
-	/*
-	* redirect OAuth twitter
-	*/
-	public function redirectTwitter()
-	{
-		return Socialite::driver('twitter')->redirect();
-	}
+    /*
+    * redirect OAuth twitter
+    */
+    public function redirectTwitter()
+    {
+        return Socialite::driver('twitter')->redirect();
+    }
 
-	/*
-	* twitter callback
-	*/
-	public function callbackTwitter()
-	{
-		$twitter = Socialite::driver('twitter')->user();
+    /*
+    * twitter callback
+    */
+    public function callbackTwitter()
+    {
+        $twitter = Socialite::driver('twitter')->user();
 
-		$user = $this->findOrCreate('twitter_id', $twitter);
+        $user = $this->findOrCreate('twitter_id', $twitter);
 
-		return $this->accessProfile($user);
-	}
+        return $this->accessProfile($user);
+    }
 
-  	public function callback()
+    public function callback()
     {
         $facebook = Socialite::driver('facebook')->user();
 
         $user = $this->findOrCreate('provider_id', $facebook);
 
-		return $this->accessProfile($user);
+        return $this->accessProfile($user);
     }
 
-  	public function findOrCreate($auth, $social)
+    public function findOrCreate($auth, $social)
     {
         $user = $this->findSocialId($auth, $social);
 
-		if(!$user) {
-			$user = $this->createNewUser($auth, $social);
-		}
+        if (! $user) {
+            $user = $this->createNewUser($auth, $social);
+        }
 
         return $user;
     }
 
+    protected function findSocialId($auth, $social)
+    {
+        $user = User::where($auth, $social->getId())->first();
 
-	protected function findSocialId($auth, $social)
-	{
-		$user = User::where($auth, $social->getId())->first();
+        return $user;
+    }
 
-		return $user;
-	}
-
-	protected function createNewUser($auth, $social)
-	{
+    protected function createNewUser($auth, $social)
+    {
         $raw = $social->getRaw();
 
         $uname = $social->getName();
 
-        $uname = explode(' ',$uname);
-        $name = str_slug($uname[0]).rand(000,999);
+        $uname = explode(' ', $uname);
+        $name = str_slug($uname[0]).rand(000, 999);
 
         $gender = $raw['gender'] ?? 'hode';
 
-        switch($gender)
-        {
-          case 'male':
-            $gender = 'cowok';
-            break;
-          case 'female':
-            $gender = 'cewek';
-            break;
-          default:
-            $gender = 'hode';
+        switch($gender) {
+            case 'male':
+                $gender = 'cowok';
+                break;
+            case 'female':
+                $gender = 'cewek';
+                break;
+            default:
+                $gender = 'hode';
         }
 
         $user = new User;
@@ -133,55 +130,52 @@ class LoginController extends Controller
         $user->gender = $gender;
         $user->alamat = 'Bumi, Indonesia';
         $user->link = $raw['link'] ?? '-';
-		$user->avatar = $social->getAvatar();
+        $user->avatar = $social->getAvatar();
         $user->save();
 
-		return $user;
-	}
+        return $user;
+    }
 
     public function accessProfile($user)
-	{
-        if($user->banned == 1)
-        {
+    {
+        if ($user->banned == 1) {
             return redirect('/')->with('gagal', 'Akun di banned!! hubungi admin untuk menindak lanjuti');
         }
 
         Auth::login($user, true);
 
         $user->historyLogin()->create([
-        	'ip'	=> request()->ip(),
-            'browser'	=> request()->userAgent(),
-            'extra'		=> 'Logged In!!'
+            'ip' => request()->ip(),
+            'browser' => request()->userAgent(),
+            'extra' => 'Logged In!!',
         ]);
 
         return redirect($this->redirectTo);
-	}
-
-  	public function devLogin()
-    {
-      // must be only in development
-      if(! app()->isLocal())
-      {
-        return $this->redirect();
-      }
-
-      // login as admin
-
-      if (request()->has('user')) {
-        $user = User::find(1326);
-      } else {
-        $user = User::find(1);
-      }
-
-      Auth::login($user, true);
-
-      $user->historyLogin()->create([
-      	'ip'	=> request()->ip(),
-        'browser'	=> request()->userAgent(),
-        'extra'		=> 'Logged In as Development!!'
-      ]);
-
-      return redirect($this->redirectTo);
     }
 
+    public function devLogin()
+    {
+        // must be only in development
+        if (! app()->isLocal()) {
+            return $this->redirect();
+        }
+
+        // login as admin
+
+        if (request()->has('user')) {
+            $user = User::find(1326);
+        } else {
+            $user = User::find(1);
+        }
+
+        Auth::login($user, true);
+
+        $user->historyLogin()->create([
+            'ip' => request()->ip(),
+            'browser' => request()->userAgent(),
+            'extra' => 'Logged In as Development!!',
+        ]);
+
+        return redirect($this->redirectTo);
+    }
 }

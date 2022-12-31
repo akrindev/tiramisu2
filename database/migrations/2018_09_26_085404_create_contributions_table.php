@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateContributionsTable extends Migration
 {
@@ -15,24 +15,24 @@ class CreateContributionsTable extends Migration
     {
         Schema::create('contributions', function (Blueprint $table) {
             $table->increments('id');
-          	$table->integer('user_id');
-          	$table->integer('point')->default(0);
+            $table->integer('user_id');
+            $table->integer('point')->default(0);
             $table->timestamps();
         });
 
-      	Schema::create('contribution_drops', function (Blueprint $table) {
+        Schema::create('contribution_drops', function (Blueprint $table) {
             $table->increments('id');
-          	$table->integer('user_id');
-          	$table->integer('drop_id');
-          	$table->string('name');
-          	$table->string('picture')->nullable();
-          	$table->integer('accepted')->default(0);
+            $table->integer('user_id');
+            $table->integer('drop_id');
+            $table->string('name');
+            $table->string('picture')->nullable();
+            $table->integer('accepted')->default(0);
             $table->timestamps();
         });
 
-      	Schema::create('drop_done', function (Blueprint $table) {
-        	$table->increments('id');
-          	$table->integer('drop_id');
+        Schema::create('drop_done', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('drop_id');
         });
     }
 

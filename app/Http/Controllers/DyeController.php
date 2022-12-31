@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use App;
 use App\Dye;
 use App\Monster;
 use App\MonthlyDye;
+use Illuminate\Support\Str;
 
 /**
  * DyeController
@@ -44,7 +42,6 @@ class DyeController extends Controller
 
         $monsters
             ->map(function ($item) {
-
                 $item->name = Str::contains($item->name, '(Ultimate)') ? explode('(', $item->name)[0] : $item->name;
 
                 return $item;
@@ -61,9 +58,9 @@ class DyeController extends Controller
     public function storeDye()
     {
         MonthlyDye::create([
-            'monster_id'    => request('monster'),
-            'dye_id'        => request('dye'),
-            'type'            => request('type')
+            'monster_id' => request('monster'),
+            'dye_id' => request('dye'),
+            'type' => request('type'),
         ]);
 
         return response()->json(['success' => true]);

@@ -9,13 +9,12 @@ Route::get('/child/{id}', 'SkillController@singleChild');
 
 Route::get('/{parent}/{child}', 'SkillController@single');
 
-Route::middleware('auth')->group(function() {
-  Route::post('/child/{id}', 'SkillController@comment');
+Route::middleware('auth')->group(function () {
+    Route::post('/child/{id}', 'SkillController@comment');
 });
 
-Route::middleware(['admin'])->group(function() {
-
-	Route::get('/e/{id}/edit', 'SkillController@edit');
-  	Route::post('/e/{id}/save', 'SkillController@save');
-  	Route::delete('/skill-delete-comment', 'SkillController@deleteComment');
+Route::middleware(['admin'])->group(function () {
+    Route::get('/e/{id}/edit', 'SkillController@edit');
+    Route::post('/e/{id}/save', 'SkillController@save');
+    Route::delete('/skill-delete-comment', 'SkillController@deleteComment');
 });

@@ -30,6 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Map|null $map
  * @property-read \App\Monster|null $monster
  * @property-read \App\User|null $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|TempMonster newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TempMonster newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TempMonster query()
@@ -49,6 +50,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|TempMonster whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TempMonster whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TempMonster whereXp($value)
+ *
  * @mixin \Eloquent
  */
 class TempMonster extends Model

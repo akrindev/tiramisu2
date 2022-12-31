@@ -15,12 +15,11 @@ class CreateRegistledsTable extends Migration
     {
         Schema::create('registleds', function (Blueprint $table) {
             $table->id();
-			$table->bigInteger('drop_id')->references('id')->on('drops');
-			$table->integer('max_level')->nullable()->default(1);
-			$table->string('recommended_lv')->nullable();
-			$table->string('box')->nullable();
+            $table->bigInteger('drop_id')->references('id')->on('drops');
+            $table->integer('max_level')->nullable()->default(1);
+            $table->string('recommended_lv')->nullable();
+            $table->string('box')->nullable();
             $table->timestamps();
-
         });
     }
 

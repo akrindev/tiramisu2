@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Avatar;
 use App\AvatarList;
 use Image;
-use Illuminate\Http\Request;
 
 class AvatarController extends Controller
 {
@@ -24,7 +23,7 @@ class AvatarController extends Controller
     /**
      * show single avatar list
      *
-     * @param  mixed $id
+     * @param  mixed  $id
      * @return void
      */
     public function showAvatar($id)
@@ -37,7 +36,7 @@ class AvatarController extends Controller
     // admin
     public function getListAvatarJson()
     {
-        $lists = AvatarList::where('title', 'like', '%' . request()->q . '%')->paginate(20);
+        $lists = AvatarList::where('title', 'like', '%'.request()->q.'%')->paginate(20);
 
         return $lists;
     }
@@ -50,14 +49,13 @@ class AvatarController extends Controller
     public function storeAvatar()
     {
         request()->validate([
-            'title'    => 'required',
-            'cover'    => 'required|image'
+            'title' => 'required',
+            'cover' => 'required|image',
         ]);
-
 
         $file = request()->file('cover')->getRealPath();
 
-        $location = '/img/avatar/' . str_slug(strtolower(request('title'))) . '-' . rand(00000, 99999) . '.png';
+        $location = '/img/avatar/'.str_slug(strtolower(request('title'))).'-'.rand(00000, 99999).'.png';
 
         $make = Image::make($file);
 
@@ -74,9 +72,9 @@ class AvatarController extends Controller
         $make->save(public_path($location));
 
         $avatar = Avatar::create([
-            'title'        => request('title'),
-            'title_en'    => request('title_en') ?? request('title'),
-            'cover'        => $location
+            'title' => request('title'),
+            'title_en' => request('title_en') ?? request('title'),
+            'cover' => $location,
         ]);
 
         $avatar->lists()->sync($lists);
@@ -92,13 +90,13 @@ class AvatarController extends Controller
     public function storeAvatarList()
     {
         request()->validate([
-            'title'        => 'required',
-            'image'        => 'required|image'
+            'title' => 'required',
+            'image' => 'required|image',
         ]);
 
         $file = request()->file('image')->getRealPath();
 
-        $location = '/img/avatar/' . str_slug(strtolower(request('title'))) . '-' . rand(00000, 99999) . '.png';
+        $location = '/img/avatar/'.str_slug(strtolower(request('title'))).'-'.rand(00000, 99999).'.png';
 
         $make = Image::make($file);
 
@@ -113,12 +111,12 @@ class AvatarController extends Controller
         $make->save(public_path($location));
 
         $avatar = AvatarList::create([
-            'title'        => request('title'),
-            'title_en'    => request('title_en') ?? request('title'),
-            'rate'        => request('rate'),
-            'value'        => request('value'),
-            'type'        => request('type'),
-            'image'        => $location
+            'title' => request('title'),
+            'title_en' => request('title_en') ?? request('title'),
+            'rate' => request('rate'),
+            'value' => request('value'),
+            'type' => request('type'),
+            'image' => $location,
         ]);
 
         return response()->json(['success' => true]);
@@ -136,13 +134,13 @@ class AvatarController extends Controller
         $avatar = Avatar::findOrFail($id);
 
         request()->validate([
-            'title'    => 'required',
+            'title' => 'required',
         ]);
 
         if (request()->hasFile('cover')) {
             $file = request()->file('cover')->getRealPath();
 
-            $location = '/img/avatar/' . str_slug(strtolower(request('title'))) . '-' . rand(00000, 99999) . '.png';
+            $location = '/img/avatar/'.str_slug(strtolower(request('title'))).'-'.rand(00000, 99999).'.png';
 
             $make = Image::make($file);
 
@@ -160,9 +158,9 @@ class AvatarController extends Controller
         $lists = AvatarList::findOrFail(request()->lists);
 
         $avatar->update([
-            'title'        => request('title'),
-            'title_en'    => request('title_en') ?? request('title'),
-            'cover'        => $location ?? $avatar->cover
+            'title' => request('title'),
+            'title_en' => request('title_en') ?? request('title'),
+            'cover' => $location ?? $avatar->cover,
         ]);
 
         $avatar->lists()->sync($lists);
@@ -173,7 +171,7 @@ class AvatarController extends Controller
     /**
      * editAvatarList
      *
-     * @param  mixed $id
+     * @param  mixed  $id
      * @return void
      */
     public function editAvatarList($id)
@@ -186,13 +184,13 @@ class AvatarController extends Controller
         $avatar = AvatarList::findOrFail($id);
 
         request()->validate([
-            'title'    => 'required',
+            'title' => 'required',
         ]);
 
         if (request()->hasFile('image')) {
             $file = request()->file('image')->getRealPath();
 
-            $location = '/img/avatar/' . str_slug(strtolower(request('title'))) . '-' . rand(00000, 99999) . '.png';
+            $location = '/img/avatar/'.str_slug(strtolower(request('title'))).'-'.rand(00000, 99999).'.png';
 
             $make = Image::make($file);
 
@@ -210,11 +208,11 @@ class AvatarController extends Controller
         }
 
         $avatar->update([
-            'title'        => request('title'),
-            'title_en'    => request('title_en') ?? request('title'),
-            'rate'        => request('rate'),
-            'value'        => request('value'),
-            'type'        => request('type')
+            'title' => request('title'),
+            'title_en' => request('title_en') ?? request('title'),
+            'rate' => request('rate'),
+            'value' => request('value'),
+            'type' => request('type'),
         ]);
 
         return response()->json(['success' => true]);
@@ -240,13 +238,13 @@ class AvatarController extends Controller
         $avatar = Avatar::findOrFail($id);
         $avatar->delete();
 
-        return response()->json(['success'    => true]);
+        return response()->json(['success' => true]);
     }
 
     /**
      * deleteAvatarList
      *
-     * @param  mixed $id
+     * @param  mixed  $id
      * @return void
      */
     public function deleteAvatarList($id)
@@ -254,6 +252,6 @@ class AvatarController extends Controller
         $avatar = AvatarList::findOrFail($id);
         $avatar->delete();
 
-        return response()->json(['success'    => true]);
+        return response()->json(['success' => true]);
     }
 }

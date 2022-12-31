@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Gallery|null $gallery
  * @property-read \App\User|null $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|GalleryComment newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|GalleryComment newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|GalleryComment query()
@@ -24,17 +25,18 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|GalleryComment whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|GalleryComment whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|GalleryComment whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class GalleryComment extends Model
 {
     protected $fillable = [
-    	'user_id', 'body'
+        'user_id', 'body',
     ];
 
-  	public function user()
+    public function user()
     {
-      return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function gallery()

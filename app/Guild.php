@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\User|null $manager
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $users
  * @property-read int|null $users_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Guild newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Guild newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Guild query()
@@ -30,6 +31,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Guild whereManagerId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Guild whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Guild whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Guild extends Model
@@ -39,7 +41,7 @@ class Guild extends Model
     protected $guarded = [];
 
     protected $with = [
-        'manager', 'users'
+        'manager', 'users',
     ];
 
     public function users()
@@ -58,7 +60,7 @@ class Guild extends Model
     {
         $role = $this->users()->wherePivot('user_id', $id)->first();
 
-        if(! $role) {
+        if (! $role) {
             return false;
         }
 
@@ -67,7 +69,6 @@ class Guild extends Model
         if (! is_null($opt)) {
             \array_push($roles, $opt);
         }
-
 
         return \in_array($role->pivot->role, $roles);
     }

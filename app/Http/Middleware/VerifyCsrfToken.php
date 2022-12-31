@@ -13,9 +13,9 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/quiz/buat',
-      	'/admin/change-user',
-      	'/admin/taghapus',
-      	'/forum/likereply',
-      	'/send-token/fcm',
+        '/admin/change-user',
+        '/admin/taghapus',
+        '/forum/likereply',
+        '/send-token/fcm',
     ];
 }

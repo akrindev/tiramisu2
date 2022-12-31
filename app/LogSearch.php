@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\User|null $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|LogSearch newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|LogSearch newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|LogSearch query()
@@ -21,16 +22,17 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|LogSearch whereQ($value)
  * @method static \Illuminate\Database\Eloquent\Builder|LogSearch whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|LogSearch whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class LogSearch extends Model
 {
-  protected $fillable = [
-  	'user_id', 'q'
-  ];
+    protected $fillable = [
+        'user_id', 'q',
+    ];
 
-  public function user()
-  {
-    return $this->belongsTo(User::class);
-  }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

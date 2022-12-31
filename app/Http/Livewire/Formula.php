@@ -2,10 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Formula as WorkSpace;
 use Livewire\Component;
 use Livewire\WithPagination;
-
-use App\Formula as WorkSpace;
 
 class Formula extends Component
 {
@@ -13,9 +12,9 @@ class Formula extends Component
 
     public $type;
 
-	public $search;
+    public $search;
 
-	protected $queryString = ['search'];
+    protected $queryString = ['search'];
 
     protected $paginationTheme = 'bootstrap';
 
@@ -27,15 +26,15 @@ class Formula extends Component
     public function render()
     {
         $type = $this->type;
-		$search = $this->search;
+        $search = $this->search;
 
         $formulas = WorkSpace::with('users')->exclude('body')
             ->when($this->type != 'all', function ($query) use ($type) {
-            	return $query->whereType($type);
+                return $query->whereType($type);
             })
-			->when($this->search != null, function ($query) use ($search) {
-				return $query->where('note', 'like', '%'.$search.'%');
-			})
+            ->when($this->search != null, function ($query) use ($search) {
+                return $query->where('note', 'like', '%'.$search.'%');
+            })
             ->latest()->paginate(21);
 
         return view('livewire.formula', compact('formulas'));
@@ -50,7 +49,7 @@ class Formula extends Component
     {
         $this->resetPage();
 
-        if(in_array($type, ['all', 'a', 'w'])) {
+        if (in_array($type, ['all', 'a', 'w'])) {
             $this->type = $type;
         }
     }

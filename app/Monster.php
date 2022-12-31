@@ -2,11 +2,10 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Traits\Searchable;
-
 use App;
+use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 
 /**
@@ -27,6 +26,7 @@ use OwenIt\Auditing\Contracts\Auditable;
  * @property-read int|null $drops_count
  * @property-read \App\Element|null $element
  * @property-read \App\Map|null $map
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Monster newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Monster newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Monster query()
@@ -42,6 +42,7 @@ use OwenIt\Auditing\Contracts\Auditable;
  * @method static \Illuminate\Database\Eloquent\Builder|Monster wherePicture($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Monster whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Monster whereXp($value)
+ *
  * @mixin \Eloquent
  */
 class Monster extends Model implements Auditable

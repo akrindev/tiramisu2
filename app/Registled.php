@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Drop|null $drop
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Registled newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Registled newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Registled query()
@@ -26,21 +27,22 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Registled whereMaxLevel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Registled whereRecommendedLv($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Registled whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Registled extends Model
 {
     use HasFactory;
 
-	protected $guarded = [];
+    protected $guarded = [];
 
-	public $casts = [
-		'recommended_lv' => 'array',
-		'box'	=> 'array',
-	];
+    public $casts = [
+        'recommended_lv' => 'array',
+        'box' => 'array',
+    ];
 
-	public function drop()
-	{
-		return $this->belongsTo(Drop::class);
-	}
+    public function drop()
+    {
+        return $this->belongsTo(Drop::class);
+    }
 }

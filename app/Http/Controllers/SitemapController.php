@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\LogSearch;
 
 class SitemapController extends Controller
 {
-  	public function show()
+    public function show()
     {
-      $searchTotal = LogSearch::count();
-      $searches = LogSearch::latest()->select('q')->paginate(250);
+        $searchTotal = LogSearch::count();
+        $searches = LogSearch::latest()->select('q')->paginate(250);
 
-      return view('sitemap.latest_search', compact('searches', 'searchTotal'));
+        return view('sitemap.latest_search', compact('searches', 'searchTotal'));
     }
 }

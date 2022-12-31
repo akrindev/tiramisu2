@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\{
-    Skill,
-    SkillList,
-    SkillComment
-};
 use App\Notifications\SkillReplied;
+use App\Skill;
+use App\SkillComment;
+use App\SkillList;
 use Image;
 
 class SkillController extends Controller
@@ -28,7 +25,7 @@ class SkillController extends Controller
     /**
      * show
      *
-     * @param  mixed $name
+     * @param  mixed  $name
      * @return void
      */
     public function show($name)
@@ -43,7 +40,7 @@ class SkillController extends Controller
     /**
      * showId
      *
-     * @param  mixed $id
+     * @param  mixed  $id
      * @return void
      */
     public function showId($id)
@@ -57,8 +54,8 @@ class SkillController extends Controller
     /**
      * single
      *
-     * @param  mixed $parent
-     * @param  mixed $child
+     * @param  mixed  $parent
+     * @param  mixed  $child
      * @return void
      */
     public function single($parent, $child)
@@ -77,7 +74,7 @@ class SkillController extends Controller
     /**
      * singleChild
      *
-     * @param  mixed $id
+     * @param  mixed  $id
      * @return void
      */
     public function singleChild($id)
@@ -91,20 +88,20 @@ class SkillController extends Controller
     /**
      * comment
      *
-     * @param  mixed $id
+     * @param  mixed  $id
      * @return void
      */
     public function comment($id)
     {
         request()->validate([
-            'body'    => 'required|min:15'
+            'body' => 'required|min:15',
         ]);
 
         $skill = SkillList::findOrFail($id);
 
         $skill->comment()->create([
-            'user_id'    => auth()->user()->id,
-            'body'        => request('body')
+            'user_id' => auth()->user()->id,
+            'body' => request('body'),
         ]);
 
         $notify = $skill->comment()->where('user_id', '!=', auth()->id())->get();
@@ -130,7 +127,7 @@ class SkillController extends Controller
     /**
      * edit
      *
-     * @param  mixed $id
+     * @param  mixed  $id
      * @return void
      */
     public function edit($id)
@@ -168,27 +165,27 @@ class SkillController extends Controller
         $skill = SkillList::findOrFail($id);
 
         request()->validate([
-            'name'    => 'required',
-            'type'    => 'required',
-            'body'    => 'required'
+            'name' => 'required',
+            'type' => 'required',
+            'body' => 'required',
         ]);
 
         $skill->skill_id = request('skill');
         $skill->name = request('name');
         $skill->type = implode(',', request('type'));
-        $skill->mp   = request('mp');
+        $skill->mp = request('mp');
         $skill->range = request('range');
         $skill->for = implode(',', request('for'));
         $skill->level = request('level');
         $skill->combo_awal = request('combo_awal');
         $skill->combo_tengah = request('combo_tengah');
-        $skill->element_id    = request('element');
-        $skill->description    = request('body');
+        $skill->element_id = request('element');
+        $skill->description = request('body');
 
         if (request()->hasFile('icon')) {
             $icon = request()->file('icon')->getRealPath();
 
-            $path = '/img/skill/thumb/' . str_slug(request()->name) . '.png';
+            $path = '/img/skill/thumb/'.str_slug(request()->name).'.png';
 
             $img = Image::make($icon);
             $img->save(public_path($path));
@@ -198,9 +195,8 @@ class SkillController extends Controller
 
         $skill->save();
 
-        return redirect('/skill/' . request()->skill)->with('sukses', 'data berhasil di ubah');
+        return redirect('/skill/'.request()->skill)->with('sukses', 'data berhasil di ubah');
     }
-
 
     /**
      * showEdit
@@ -234,16 +230,16 @@ class SkillController extends Controller
         if (request()->hasFile('icon')) {
             $icon = request()->file('icon')->getRealPath();
 
-            $path = '/img/skill/thumb/' . str_slug(request()->name) . '.png';
+            $path = '/img/skill/thumb/'.str_slug(request()->name).'.png';
 
             $img = Image::make($icon);
             $img->save(public_path($path));
 
             $skill = Skill::create([
-                'name'    => request()->name,
-                'type'    => request()->type,
-                'description'    => request()->body,
-                'picture'    => $path
+                'name' => request()->name,
+                'type' => request()->type,
+                'description' => request()->body,
+                'picture' => $path,
             ]);
         }
 
@@ -267,7 +263,7 @@ class SkillController extends Controller
         if (request()->hasFile('icon')) {
             $icon = request()->file('icon')->getRealPath();
 
-            $path = '/img/skill/thumb/' . str_slug(request()->name) . rand(00, 99) . '.png';
+            $path = '/img/skill/thumb/'.str_slug(request()->name).rand(00, 99).'.png';
 
             $img = Image::make($icon);
             $img->save(public_path($path));
@@ -300,24 +296,24 @@ class SkillController extends Controller
         if (request()->hasFile('icon')) {
             $icon = request()->file('icon')->getRealPath();
 
-            $path = "/img/skill/thumb/" . str_slug(request()->name) . rand(00, 99) . '.png';
+            $path = '/img/skill/thumb/'.str_slug(request()->name).rand(00, 99).'.png';
 
             $img = Image::make($icon);
             $img->save(public_path($path));
 
             $skill = SkillList::create([
-                'name'    => request()->name,
-                'skill_id'    => request()->skill,
-                'type'        => implode(',', request('type')),
-                'mp'        => request()->mp,
-                'range'        => request()->range,
-                'for'        => implode(',', request('for')),
-                'level'        => request()->level,
-                'combo_awal'    => request()->combo_awal,
-                'combo_tengah'    => request()->combo_tengah,
-                'element_id'    => request()->element,
-                'description'    => request()->body,
-                'picture'        => $path
+                'name' => request()->name,
+                'skill_id' => request()->skill,
+                'type' => implode(',', request('type')),
+                'mp' => request()->mp,
+                'range' => request()->range,
+                'for' => implode(',', request('for')),
+                'level' => request()->level,
+                'combo_awal' => request()->combo_awal,
+                'combo_tengah' => request()->combo_tengah,
+                'element_id' => request()->element,
+                'description' => request()->body,
+                'picture' => $path,
             ]);
         }
 
@@ -326,7 +322,7 @@ class SkillController extends Controller
 
     public function deleteChild()
     {
-        $id = request("id");
+        $id = request('id');
 
         $skill = SkillList::findOrFail($id);
         $skill->delete();

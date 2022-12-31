@@ -9,7 +9,7 @@ class ReviewComponent extends Component
     public $component;
 
     protected $listeners = [
-        'component'
+        'component',
     ];
 
     public function mount()

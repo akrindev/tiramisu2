@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Fill_stat as Fill;
+use App\Http\Controllers\Controller;
 
 class FillController extends Controller
 {
     /**
      * show
      *
-     * @param  mixed $type
-     * @param  mixed $plus
+     * @param  mixed  $type
+     * @param  mixed  $plus
      * @return void
      */
     public function show($type, $plus)

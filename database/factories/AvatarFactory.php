@@ -10,17 +10,14 @@ $factory->define(Avatar::class, function (Faker $faker) {
     return [
         'title' => 'Name avatar',
         'title_en' => $faker->word,
-        'cover'	=> '/img/logo.png'
+        'cover' => '/img/logo.png',
     ];
 });
 
 $factory->define(AvatarList::class, function (Faker $faker) {
     return [
-    	'title'	=> 'name avatar',
-        'title_en'	=> $faker->word,
-        'image'	=> '/img/logo.png'
+        'title' => 'name avatar',
+        'title_en' => $faker->word,
+        'image' => '/img/logo.png',
     ];
 });
-
-
-

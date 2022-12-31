@@ -22,6 +22,7 @@ use OwenIt\Auditing\Contracts\Auditable;
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \App\User|null $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|ForumsDesc newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ForumsDesc newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ForumsDesc query()
@@ -32,43 +33,43 @@ use OwenIt\Auditing\Contracts\Auditable;
  * @method static \Illuminate\Database\Eloquent\Builder|ForumsDesc whereParentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ForumsDesc whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ForumsDesc whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class ForumsDesc extends Model implements Auditable
 {
-  use Notifiable, \OwenIt\Auditing\Auditable;
+    use Notifiable, \OwenIt\Auditing\Auditable;
 
     protected $fillable = [
-      'user_id', 'forum_id', 'body', 'parent_id'
+        'user_id', 'forum_id', 'body', 'parent_id',
     ];
 
     protected $with = [
-        'user', 'likes', 'getReply'
+        'user', 'likes', 'getReply',
     ];
 
-  	public function user()
+    public function user()
     {
-      return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
-  	public function forum()
+    public function forum()
     {
-      return $this->belongsTo(Forum::class);
+        return $this->belongsTo(Forum::class);
     }
 
-  	public function getReply()
+    public function getReply()
     {
-      return $this->hasMany(ForumsDesc::class,'parent_id');
+        return $this->hasMany(ForumsDesc::class, 'parent_id');
     }
-
 
   public function notify($notify)
   {
-    return $this->user->notify($notify);
+      return $this->user->notify($notify);
   }
 
   public function likes()
   {
-    return $this->morphMany(Like::class, 'likeable');
+      return $this->morphMany(Like::class, 'likeable');
   }
 }

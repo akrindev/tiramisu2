@@ -23,7 +23,7 @@ return [
     |
     */
     'skip' => [
-      	'monster/*/edit',
+        'monster/*/edit',
         '*.xml',
         '*.less',
         '*.pdf',
@@ -55,7 +55,7 @@ return [
         '*.iso',
         '*.flv',
         '*.m4v',
-        '*.torrent'
+        '*.torrent',
     ],
 
 ];

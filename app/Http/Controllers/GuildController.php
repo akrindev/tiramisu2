@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Guild;
+use App\Helpers\SaveAsImage as Image;
+use App\User;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
-
-use App\Helpers\SaveAsImage as Image;
-
-use App\Guild;
-use App\User;
 
 class GuildController extends Controller
 {
@@ -24,10 +22,10 @@ class GuildController extends Controller
         $guilds = Guild::with([
             'users' => function ($query) {
                 $query->with('contribution');
-            }
+            },
         ])
             ->when(request()->has('search'), function ($query) {
-                $query->where('name', 'like', '%' . request()->search . '%');
+                $query->where('name', 'like', '%'.request()->search.'%');
             })
             ->latest()->paginate();
 
@@ -60,14 +58,14 @@ class GuildController extends Controller
             'name' => ['required', 'max:16', 'unique:guilds,name'],
             'description' => ['required'],
             'logo' => ['required', 'image', 'max:1024'],
-            'level' => ['required', 'integer', 'min:1', 'max:49']
+            'level' => ['required', 'integer', 'min:1', 'max:49'],
         ], [
-            'name.unique'   => 'Nama guild ini sudah digunakan'
+            'name.unique' => 'Nama guild ini sudah digunakan',
         ]);
 
         $file = $request->file('logo')->getRealPath();
 
-        $name = '/img/guild/' . Str::slug($request->name) . '-' . time() . '.png';
+        $name = '/img/guild/'.Str::slug($request->name).'-'.time().'.png';
 
         (new Image)->file($file)->name($name)->save();
 
@@ -78,7 +76,7 @@ class GuildController extends Controller
         $guild->users()->attach($request->user(), [
             'role' => 'ketua',
             'manager_id' => auth()->id(),
-            'accept'    => 1
+            'accept' => 1,
         ]);
 
         session()->flash('success', 'Guild baru telah di buat');
@@ -97,7 +95,7 @@ class GuildController extends Controller
         $guild = Guild::with([
             'users' => function ($query) {
                 $query->with(['cooking', 'secondCooking', 'contribution']);
-            }
+            },
         ])->findOrFail($id);
 
         return view('guild.show', compact('guild'));
@@ -128,10 +126,10 @@ class GuildController extends Controller
 
         $data = \request()->validate([
             'name' => ['required', 'exists:users,username'],
-            'role'  => ['required', 'in:wakil,inviter,member']
+            'role' => ['required', 'in:wakil,inviter,member'],
         ], [
-            'name.exists'   => 'username tidak di temukan',
-            'role.in'   => 'role tidak valid'
+            'name.exists' => 'username tidak di temukan',
+            'role.in' => 'role tidak valid',
         ]);
 
         $user = \App\User::where('username', '=', $data['name'])->first();
@@ -141,11 +139,11 @@ class GuildController extends Controller
             // ->wherePivot('accept', '=', 0)
             ->first();
 
-        if (!$has) {
+        if (! $has) {
             $guild->users()->attach($user->id, [
-                'role'  => $data['role'],
+                'role' => $data['role'],
                 'manager_id' => auth()->id(),
-                'accept' => 0
+                'accept' => 0,
             ]);
 
             session()->flash('success', 'Undangan guild telah di kirimkan, dan menunggu user untuk menerima undangan guild anda');
@@ -155,13 +153,14 @@ class GuildController extends Controller
 
         return \back();
     }
+
     /**
      * remove member
      */
     public function removeMember($id)
     {
         request()->validate([
-            'memid' => ['required']
+            'memid' => ['required'],
         ]);
 
         $guild = Guild::findOrFail($id);
@@ -179,7 +178,7 @@ class GuildController extends Controller
     public function pindahKetuaSerikat($id)
     {
         request()->validate([
-            'memid' => ['required']
+            'memid' => ['required'],
         ]);
 
         $guild = Guild::findOrFail($id);
@@ -200,12 +199,12 @@ class GuildController extends Controller
         auth()->user()->guilds()->updateExistingPivot($guild->id, ['role' => 'wakil']);
         $user->guilds()->updateExistingPivot($guild->id, ['role' => 'ketua']);
         $guild->forceFill([
-            'manager_id'    => $user->id
+            'manager_id' => $user->id,
         ])->save();
 
         session()->flash('success', 'Ketua guild telah di ganti');
 
-        return redirect('guilds/' . $guild->id);
+        return redirect('guilds/'.$guild->id);
     }
 
     // acceptable guild invitation
@@ -222,7 +221,7 @@ class GuildController extends Controller
             $guild->users()->detach($user->id);
         }
 
-        return redirect('guilds/' . $guild->id);
+        return redirect('guilds/'.$guild->id);
     }
 
     /**
@@ -242,20 +241,19 @@ class GuildController extends Controller
             'name' => [
                 Rule::requiredIf($guild->isManager()),
                 'max:16',
-                'unique:guilds,name,' . $guild->id
+                'unique:guilds,name,'.$guild->id,
             ],
             'description' => ['required'],
             'logo' => ['image', 'max:1024'],
-            'level' => ['required', 'integer', 'min:1', 'max:49']
+            'level' => ['required', 'integer', 'min:1', 'max:49'],
         ], [
-            'name.unique'   => 'Nama guild ini sudah digunakan'
+            'name.unique' => 'Nama guild ini sudah digunakan',
         ]);
 
         if ($request->hasFile('logo')) {
-
             $file = $request->file('logo')->getRealPath();
 
-            $name = '/img/guild/' . Str::slug($request->name) . '-' . time() . '.png';
+            $name = '/img/guild/'.Str::slug($request->name).'-'.time().'.png';
 
             (new Image)->file($file)->name($name)->save();
             (new Filesystem)->delete(public_path($guild->logo));
@@ -263,12 +261,11 @@ class GuildController extends Controller
             $data['logo'] = $name;
         }
 
-
         $guild->update($data);
 
         session()->flash('success', 'Guild telah di edit');
 
-        return \redirect('guilds/' . $guild->id);
+        return \redirect('guilds/'.$guild->id);
     }
 
     /**

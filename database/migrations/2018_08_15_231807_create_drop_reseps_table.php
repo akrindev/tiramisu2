@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateDropResepsTable extends Migration
 {
@@ -15,13 +15,13 @@ class CreateDropResepsTable extends Migration
     {
         Schema::create('reseps', function (Blueprint $table) {
             $table->increments('id');
-          	$table->integer('drop_id');
-          	$table->string('material');
-          	$table->string('jumlah');
-          	$table->integer('fee')->nullable();
-          	$table->integer('level')->nullable();
-          	$table->integer('diff')->nullable();
-          	$table->integer('set')->nullable();
+            $table->integer('drop_id');
+            $table->string('material');
+            $table->string('jumlah');
+            $table->integer('fee')->nullable();
+            $table->integer('level')->nullable();
+            $table->integer('diff')->nullable();
+            $table->integer('set')->nullable();
         });
     }
 

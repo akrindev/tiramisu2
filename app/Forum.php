@@ -2,10 +2,10 @@
 
 namespace App;
 
+use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-use App\Traits\Searchable;
 use OwenIt\Auditing\Contracts\Auditable;
 
 /**
@@ -32,6 +32,7 @@ use OwenIt\Auditing\Contracts\Auditable;
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \App\User|null $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Forum newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Forum newQuery()
  * @method static \Illuminate\Database\Query\Builder|Forum onlyTrashed()
@@ -52,53 +53,63 @@ use OwenIt\Auditing\Contracts\Auditable;
  * @method static \Illuminate\Database\Eloquent\Builder|Forum whereViews($value)
  * @method static \Illuminate\Database\Query\Builder|Forum withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Forum withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class Forum extends Model implements Auditable
 {
-  use SoftDeletes, Notifiable, Searchable, \OwenIt\Auditing\Auditable;
+    use SoftDeletes, Notifiable, Searchable, \OwenIt\Auditing\Auditable;
 
     protected $fillable = [
-        'user_id', 'judul', 'body' , 'pinned',
+        'user_id', 'judul', 'body', 'pinned',
         'slug', 'tags', 'views', 'color',
-        'forum_category_id'
+        'forum_category_id',
     ];
 
     protected $with = [
-        'category', 'user', 'comment', 'likes'
+        'category', 'user', 'comment', 'likes',
     ];
 
-  public function user()
-  {
-    return $this->belongsTo(User::class);
-  }
+    /**
+     * Attributes to exclude from the Audit.
+     *
+     * @var array
+     */
+    protected $auditExclude = [
+        'views',
+    ];
 
-  public function category()
-  {
-    return $this->belongsTo(ForumCategory::class, 'forum_category_id')
-      ->withDefault([
-        	'name'	=> 'Diskusi Umum',
-          	'slug'	=> 'diskusi-umum'
-        ]);
-  }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
-  public function comment()
-  {
-    return $this->hasMany(ForumsDesc::class);
-  }
+    public function category()
+    {
+        return $this->belongsTo(ForumCategory::class, 'forum_category_id')
+          ->withDefault([
+              'name' => 'Diskusi Umum',
+              'slug' => 'diskusi-umum',
+          ]);
+    }
 
-  public function notify($notify)
-  {
-    return $this->user->notify($notify);
-  }
+    public function comment()
+    {
+        return $this->hasMany(ForumsDesc::class);
+    }
 
-  public function likes()
-  {
-    return $this->morphMany(Like::class, 'likeable');
-  }
+    public function notify($notify)
+    {
+        return $this->user->notify($notify);
+    }
 
-  public function myLike(\App\Like $like)
-  {
-    return $like->where('user_id',$this->id);
-  }
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likeable');
+    }
+
+    public function myLike(Like $like)
+    {
+        return $like->where('user_id', $this->id);
+    }
 }
