@@ -126,14 +126,14 @@ class User extends Authenticatable
 
     public function isSuperAdmin()
     {
-        return $this->attributes['role'] == 'superadmin';
+        return $this->role == 'superadmin';
     }
 
     public function role(): Attribute
     {
         // if it super admin, also return as admin
         return new Attribute(
-            get: fn ($value) => $this->attributes['role'] == 'superadmin' ? 'admin' : $this->attributes['role']
+            get: fn ($value) => $value == 'superadmin' ? 'admin' : $value
         );
     }
 
