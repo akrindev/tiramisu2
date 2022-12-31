@@ -7,6 +7,7 @@ use App\Traits\Searchable;
 
 use App;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * App\Monster
@@ -43,9 +44,9 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
  * @method static \Illuminate\Database\Eloquent\Builder|Monster whereXp($value)
  * @mixin \Eloquent
  */
-class Monster extends Model
+class Monster extends Model implements Auditable
 {
-    use Searchable;
+    use Searchable, \OwenIt\Auditing\Auditable;
 
     protected $guarded = [];
 

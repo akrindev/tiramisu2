@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 // Admin Routes
 Route::get('/', 'AdminController@home');
 Route::get('/users', 'AdminController@users');

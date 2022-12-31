@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * App\ForumsDesc
@@ -33,9 +34,9 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|ForumsDesc whereUserId($value)
  * @mixin \Eloquent
  */
-class ForumsDesc extends Model
+class ForumsDesc extends Model implements Auditable
 {
-  use Notifiable;
+  use Notifiable, \OwenIt\Auditing\Auditable;
 
     protected $fillable = [
       'user_id', 'forum_id', 'body', 'parent_id'

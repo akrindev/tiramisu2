@@ -26,6 +26,12 @@
       </li>
 
       <li class="nav-item">
+        <a class="nav-link" href="{{ route('audit') }}">
+          <i class="fas fa-fw fa-history"></i>
+          <span>Audit</span></a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link" href="/temp/review">
           <i class="fas fa-fw fa-eye"></i>
           <span>Review Contributions</span></a>
