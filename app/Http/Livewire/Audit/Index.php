@@ -30,12 +30,21 @@ class Index extends Component
             ->when(! is_null($this->auditType) && $this->auditType != 'all', function ($query) {
                 $query->where('auditable_type', $this->auditType);
             })
-            ->latest()->simplePaginate();
+            ->latest()->paginate();
     }
 
     public function getAuditableTypeProperty()
     {
         return DB::table('audits')->selectRaw('distinct(auditable_type)')->get();
+    }
+
+    public function restoreFromAudit(Audit $audit)
+    {
+        $class = new $audit->auditable_type();
+
+        $class->fill($audit->old_values)->save();
+
+        dd($audit->old_values, $class);
     }
 
     public function render()

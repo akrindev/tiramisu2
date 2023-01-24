@@ -21,6 +21,9 @@
                 @endforeach
             </select>
         </div>
+        <div class="col-md-4">
+            total: {{ $this->audits->total() }}
+        </div>
     </div>
 
     <div class="card">
@@ -39,7 +42,10 @@
                     <tr>
                         <td>
                             <strong>{{ $audit->event }}</strong> <br>
-                            {{ $audit->user?->name ?? 'unknown' }}
+                            {{ $audit->user?->name ?? 'unknown' }} <br>
+                            @if (str($audit->event)->contains('deleted'))
+                                <button class="btn btn-primary" wire:click="restoreFromAudit({{ $audit->id }})">restore</button>
+                            @endif
                         </td>
                         <td>
                             <strong>{{ $audit->auditable_type }}</strong> <br>
@@ -81,7 +87,7 @@
 
     @if ($this->audits->hasPages())
     <div class="py-3 w-full">
-        {{ $this->audits->links() }}
+        {{ $this->audits->links('vendor.livewire.simple-bootstrap') }}
     </div>
     @endif
 </div>
