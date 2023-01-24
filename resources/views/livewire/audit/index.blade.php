@@ -48,7 +48,9 @@
                             @endif
                         </td>
                         <td>
-                            <strong>{{ $audit->auditable_type }}</strong> <br>
+                            <a href="{{ $audit->auditable->routes ?? '/' }}">
+                                <strong>{{ $audit->auditable_type }}</strong>
+                            </a> <br>
                             {{ $audit->updated_at->format('d F Y H:i') }}
                         </td>
                         <td width="30%">

@@ -94,4 +94,12 @@ class Monster extends Model implements Auditable
 
         return $this->attributes['name'];
     }
+
+
+    public function routes(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => url('/monster/' . $this->attributes['id'])
+        );
+    }
 }
