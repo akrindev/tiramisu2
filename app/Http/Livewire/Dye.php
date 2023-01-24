@@ -10,11 +10,12 @@ class Dye extends Component
 {
     public function render()
     {
-        $dyes = MonthlyDye::with([
-            'monster' => function ($query) {
-                $query->with('map');
-            }, 'dye',
-        ])->whereMonth('created_at', now()->month)
+        $dyes = MonthlyDye::whereHas('monster', function ($query) {
+            $query->with([
+                'monster.map', 'dye',
+            ]);
+        })
+        ->whereMonth('created_at', now()->month)
             ->whereYear('created_at', now()->year)
             ->get()
             ->sortBy('monster.name');
