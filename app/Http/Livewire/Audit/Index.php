@@ -40,11 +40,10 @@ class Index extends Component
 
     public function restoreFromAudit(Audit $audit)
     {
+
         $class = new $audit->auditable_type();
 
-        $class->fill($audit->old_values)->save();
-
-        dd($audit->old_values, $class);
+        $class->withTrashed()->whereId($audit->auditable_id)->restore();
     }
 
     public function render()
