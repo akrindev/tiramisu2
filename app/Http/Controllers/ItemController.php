@@ -34,7 +34,7 @@ class ItemController extends Controller
                 })
                 ->orderByDesc('drop_type_id')->paginate();
 
-            $type = '[Related '.__($data[0]->dropType->name).'] '.$name;
+            $type = '[Related] ' . $name;
 
             return view('monster.items', compact('data', 'type'));
         }
@@ -186,7 +186,7 @@ class ItemController extends Controller
             return abort(404);
         }
 
-        $type = $data[0]->dropType->name;
+        $type = str($data[0]->dropType->name)->title();
 
         return view('monster.items', compact('data', 'type'));
     }

@@ -882,6 +882,15 @@ const MQ = [
         episodeen: "Weredragon Couple and A Baby",
         exp: 79300000,
     },
+    {
+        chapter: 12,
+        chapterid: "The Weredragon's Vital point",
+        chapteren: "The Weredragon's Vital point",
+        episode: 99,
+        episodeid: "Intense Battle in the Propulsion System",
+        episodeen: "Intense Battle in the Propulsion System",
+        exp: 85300000,
+    },
 ];
 
 class Main {
