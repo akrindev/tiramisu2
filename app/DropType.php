@@ -25,6 +25,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class DropType extends Model
 {
+    protected $guarded = [];
+
+    public $timestamps = false;
+
     public function drop()
     {
         return $this->hasMany(Drop::class, 'drop_type_id');
