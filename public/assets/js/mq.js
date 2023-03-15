@@ -900,6 +900,24 @@ const MQ = [
         episodeen: "Intense Battle in the Propulsion System",
         exp: 85300000,
     },
+    {
+        chapter: 12,
+        chapterid: "The Weredragon's Vital point",
+        chapteren: "The Weredragon's Vital point",
+        episode: 101,
+        episodeid: "Mencengkeram Teknologi Baru",
+        episodeen: "Mencengkeram Teknologi Baru",
+        exp: 44200000,
+    },
+    {
+        chapter: 12,
+        chapterid: "The Weredragon's Vital point",
+        chapteren: "The Weredragon's Vital point",
+        episode: 102,
+        episodeid: "Perbaikan Bahtera",
+        episodeen: "Perbaikan Bahtera",
+        exp: 92700000,
+    },
 ];
 
 class Main {
