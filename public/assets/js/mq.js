@@ -918,6 +918,15 @@ const MQ = [
         episodeen: "Perbaikan Bahtera",
         exp: 92700000,
     },
+    {
+        chapter: 12,
+        chapterid: "The Weredragon's Vital point",
+        chapteren: "The Weredragon's Vital point",
+        episode: 103,
+        episodeid: "Perselisihan Manusia Naga",
+        episodeen: "Weredragon Dispute",
+        exp: 96000000,
+    },
 ];
 
 class Main {
