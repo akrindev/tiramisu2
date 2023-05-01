@@ -87,6 +87,18 @@
     }, 0);
   });
 </script>
+
+@if (app()->isProduction())
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H74EJRL0QX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-H74EJRL0QX');
+</script>
+@endif
     @yield('head')
 
     @includeUnless(app()->isLocal(), 'inc.ads')
@@ -326,16 +338,5 @@
  /* font-size: 18px; /* Increase font size */
 }
 </style>
-
-@if(!app()->isLocal())
-<!-- Google Analytics -->
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-109854426-2', 'auto');
-ga('send', 'pageview');
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-<!-- End Google Analytics -->
-@endif
   </body>
 </html>
