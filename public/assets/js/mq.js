@@ -927,6 +927,24 @@ const MQ = [
         episodeen: "Weredragon Dispute",
         exp: 96000000,
     },
+    {
+        chapter: 12,
+        chapterid: "The Weredragon's Vital point",
+        chapteren: "The Weredragon's Vital point",
+        episode: 104,
+        episodeid: "Kepompong dalam dinding Es",
+        episodeen: "Cocoon in the ice wall",
+        exp: 99300000,
+    },
+    {
+        chapter: 13,
+        chapterid: "Suku Air dan Coenubia",
+        chapteren: "The Water Tribe and Coenubia",
+        episode: 105,
+        episodeid: "Penduduk bawah air",
+        episodeen: "Underwater Inhabitants",
+        exp: 112600000,
+    },
 ];
 
 class Main {

@@ -49,7 +49,7 @@
           </div>
           <div class="card-alert alert alert-info">
             <b>Updated</b> Skill tree level 4 <br>
-            <small>updated: <i> 23 Juni 2022</i> Lv cap 250 </small>
+            <small>updated: <i> 1 Juli 2023</i> Lv cap 270 </small>
           </div>
 
           <div class="p-3 card-body" style="font-size:14px;font-weight:400">
@@ -271,7 +271,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/assets/js/saveFormula.js"></script>
-<script src="/assets/js/newfill.js"></script>
+<script src="/assets/js/newfill.js?v211"></script>
 <script src="/assets/js/math.js"></script>
 
 @if(session()->has('data'))
