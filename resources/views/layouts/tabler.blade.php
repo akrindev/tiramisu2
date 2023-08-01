@@ -254,16 +254,16 @@
                     <a href="/bgm" class="nav-link"><i class="fe fe-music"></i>Background music</a>
                   </li>
 
-            <li class="nav-item dropdown">
-                  <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-list"></i> Lainnya</a>
-              <div class="dropdown-menu dropdown-menu-arrow">
-                <a href="/prestasi" class="dropdown-item">Emblem / Prestasi</a>
-                <a href="/cooking" class="dropdown-item">Cooking / Masakan</a>
-                <a href="/dye" class="dropdown-item">Dye Bulanan</a>
-				<a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance" class="dropdown-item">App Showcase (Appearance)</a>
-				<a href="/registlet" class="dropdown-item">Registlet Gem Case List</a>
-				<a href="/guilds" class="dropdown-item">Guild List</a>
-              </div>
+                  <li class="nav-item dropdown">
+                    <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-list"></i> Lainnya</a>
+                    <div class="dropdown-menu dropdown-menu-arrow">
+                      <a href="/prestasi" class="dropdown-item">Emblem / Prestasi</a>
+                      <a href="/cooking" class="dropdown-item">Cooking / Masakan</a>
+                      <a href="/dye" class="dropdown-item">Dye Bulanan</a>
+                      <a href="{{ app()->isLocale('en') ? '/en' : '' }}/appearance" class="dropdown-item">App Showcase (Appearance)</a>
+                      <a href="/registlet" class="dropdown-item">Registlet Gem Case List</a>
+                      <a href="/guilds" class="dropdown-item">Guild List</a>
+                    </div>
                   </li>
 
                 </ul>
@@ -282,12 +282,11 @@
             </div>
         </div>
         @endauth
-
-
-  @yield('content')
-
-
+          @yield('content')
          </div>
+
+        @includeWhen(!app()->isLocal(), 'inc.ads_multiplex')
+
       <footer class="footer">
         <div class="container">
           @include('partnerSite.show')

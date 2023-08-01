@@ -7,7 +7,7 @@
      style="display:block"
      data-ad-format="autorelaxed"
      data-ad-client="ca-pub-3650356173552443"
-     data-ad-slot="9728567624"></ins>
+     data-ad-slot="6399909006"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
