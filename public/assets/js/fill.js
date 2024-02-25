@@ -633,7 +633,7 @@ function show_details(pot) {
   }
 
   buffer += '</table>';
-  buffer += '<div class="mt-3 mr-5 text-right"> <img src="/img/potum.png" class="mr-4" width="50px" height="50px"> <span class="text-primary">toram-id.info</span></div>';
+  buffer += '<div class="mt-3 mr-5 text-right"> <img src="/img/potum.png" class="mr-4" width="50px" height="50px"> <span class="text-primary">toram-id.com</span></div>';
 
   document.getElementById('details').innerHTML = buffer;
 }
@@ -746,7 +746,7 @@ function saveAsImg() {
   }).then((canvas) => {
   	let img = canvas.toDataURL("image/png");
     dl.href = img;
-    dl.download = 'fill_stats '+ Math.floor(Math.random()*22) +'(toram-id.info).png'
+    dl.download = 'fill_stats '+ Math.floor(Math.random()*22) +'(toram-id.com).png'
     imgDoc.src = img;
   });
 

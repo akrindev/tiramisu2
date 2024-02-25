@@ -1,5 +1,5 @@
 // consignment board toram
-// toram-id.info
+// toram-id.com
 
 class ConsignmentBoard {
   constructor() {

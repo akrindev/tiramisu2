@@ -29,8 +29,8 @@
     <meta name="MobileOptimized" content="320">
 
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="apple-mobile-web-app-title" content="toram-id.info">
-    <meta name="application-name" content="toram-id.info">
+    <meta name="apple-mobile-web-app-title" content="toram-id.com">
+    <meta name="application-name" content="toram-id.com">
 
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 

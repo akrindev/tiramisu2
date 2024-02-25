@@ -59,7 +59,7 @@ class AvatarController extends Controller
 
         $make = Image::make($file);
 
-        $make->text('toram-id.info', 15, 25, function ($font) {
+        $make->text('toram-id.com', 15, 25, function ($font) {
             $font->file(public_path('/assets/fonts/roboto.ttf'));
             $font->size(20);
             $font->color('#ffffff');
@@ -100,7 +100,7 @@ class AvatarController extends Controller
 
         $make = Image::make($file);
 
-        $make->text('toram-id.info', 20, 50, function ($font) {
+        $make->text('toram-id.com', 20, 50, function ($font) {
             $font->file(public_path('/assets/fonts/roboto.ttf'));
             $font->size(34);
             $font->color('#ffffff');
@@ -144,7 +144,7 @@ class AvatarController extends Controller
 
             $make = Image::make($file);
 
-            $make->text('toram-id.info', 15, 25, function ($font) {
+            $make->text('toram-id.com', 15, 25, function ($font) {
                 $font->file(public_path('/assets/fonts/roboto.ttf'));
                 $font->size(20);
                 $font->color('#ffffff');
@@ -194,7 +194,7 @@ class AvatarController extends Controller
 
             $make = Image::make($file);
 
-            $make->text('toram-id.info', 20, 50, function ($font) {
+            $make->text('toram-id.com', 20, 50, function ($font) {
                 $font->file(public_path('/assets/fonts/roboto.ttf'));
                 $font->size(34);
                 $font->color('#ffffff');

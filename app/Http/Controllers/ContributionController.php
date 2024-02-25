@@ -47,7 +47,7 @@ class ContributionController extends Controller
 
             $make = Image::make($file);
 
-            $make->text('toram-id.info', 15, 30, function ($font) {
+            $make->text('toram-id.com', 15, 30, function ($font) {
                 $font->file(3);
                 $font->size(34);
                 $font->color('#ffffff');

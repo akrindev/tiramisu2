@@ -38,7 +38,7 @@
 
         	<h1 class="text-center">{{ __('Selamat Datang') }}!</h1>
           <div class="logo text-center mb-5">
-          	<img src="/img/logo.png" alt="toram-id.info logo" class="animated pulse infinite" style="height:50%;width:50%">
+          	<img src="/img/logo.png" alt="toram-id.com logo" class="animated pulse infinite" style="height:50%;width:50%">
           </div>
            Jelajahi informasi Toram Online, senjata, armor, drop dan lainnya. <br><br>
            <i class="small">Unofficial site of Toram Online, Fansite Toram online. </i>

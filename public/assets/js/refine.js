@@ -173,7 +173,7 @@ function build_table() {
    buffer += '<tr>'
   }
   buffer += '</table>';
-  buffer += '<div class="mt-3 mr-5 text-right"> <img src="/img/potum.png" class="mr-4" width="50px" height="50px"> <span class="text-primary">toram-id.info</span></div>';
+  buffer += '<div class="mt-3 mr-5 text-right"> <img src="/img/potum.png" class="mr-4" width="50px" height="50px"> <span class="text-primary">toram-id.com</span></div>';
 
   table.innerHTML = buffer
 }

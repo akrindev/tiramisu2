@@ -77,7 +77,7 @@ $tags = explode(',', $tags);
             <div class="body-text">
             {{ toHtml($data->body, true) }}
 
-              <small class="text-muted">Short link: <i><u id="srt">https://toram-id.info/f/{{ $data->id }}</u></i> <i class="ml-1 fe fe-copy" style="cursor:pointer;" onClick="copyToClipboard('srt');"></i></small>
+              <small class="text-muted">Short link: <i><u id="srt">https://toram-id.com/f/{{ $data->id }}</u></i> <i class="ml-1 fe fe-copy" style="cursor:pointer;" onClick="copyToClipboard('srt');"></i></small>
 
            <div class="my-3">
              {!! form_open('/',["id"=>"likeme"]) !!}

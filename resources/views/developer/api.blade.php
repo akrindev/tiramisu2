@@ -50,7 +50,7 @@ axios.defaults.headers =  {
     }
 }
 
-axios.get('https://toram-id.info/api/v1/items')
+axios.get('https://toram-id.com/api/v1/items')
 .then((response) => console.log(response.data))
 .catch((err) => console.error(err));</code></pre>
 
@@ -62,7 +62,7 @@ axios.get('https://toram-id.info/api/v1/items')
                 <ul>
                     <li>
                         <strong>Menampilkan items yang terakhir ditambahkan</strong> <br>
-                        <code>GET https://toram-id.info/api/v1/items</code> <br>
+                        <code>GET https://toram-id.com/api/v1/items</code> <br>
                         <details>
                             <summary>
                                 <strong>Contoh response</strong> <br>
@@ -85,7 +85,7 @@ axios.get('https://toram-id.info/api/v1/items')
             "drop_type": {
                 "id": 32,
                 "name": "Perkakas Special",
-                "url": "https:\/\/toram-id.info\/img\/drop\/tambahan.jpg"
+                "url": "https:\/\/toram-id.com\/img\/drop\/tambahan.jpg"
             },
             "monsters": []
         },
@@ -95,7 +95,7 @@ axios.get('https://toram-id.info/api/v1/items')
                     </li>
                     <li>
                         <strong>Menampilkan jenis items atau kategori items. contoh: pedang, staff, zirah, etc</strong> <br>
-                        <code>GET https://toram-id.info/api/v1/items/type</code> <br>
+                        <code>GET https://toram-id.com/api/v1/items/type</code> <br>
                         <details>
                             <summary>
                                 <strong>Contoh response</strong> <br>
@@ -104,17 +104,17 @@ axios.get('https://toram-id.info/api/v1/items')
         {
             "id": 1,
             "name": "logam",
-            "url": "https:\/\/toram-id.info\/img\/drop\/logam.png"
+            "url": "https:\/\/toram-id.com\/img\/drop\/logam.png"
         },
         {
             "id": 2,
             "name": "kain",
-            "url": "https:\/\/toram-id.info\/img\/drop\/kain.png"
+            "url": "https:\/\/toram-id.com\/img\/drop\/kain.png"
         },
         {
             "id": 3,
             "name": "fauna",
-            "url": "https:\/\/toram-id.info\/img\/drop\/fauna.png"
+            "url": "https:\/\/toram-id.com\/img\/drop\/fauna.png"
         },
         ...
     ]</code></pre>
@@ -122,8 +122,8 @@ axios.get('https://toram-id.info/api/v1/items')
                     </li>
                     <li>
                         <strong>Menampilkan items berdasarkan jenisnya.</strong> <br>
-                        <code>GET https://toram-id.info/api/v1/items/{items_type}</code> <br>
-                        <code>GET https://toram-id.info/api/v1/items/31</code> <br>
+                        <code>GET https://toram-id.com/api/v1/items/{items_type}</code> <br>
+                        <code>GET https://toram-id.com/api/v1/items/31</code> <br>
                         <details>
                             <summary>
                                 <strong>Contoh response</strong> <br>
@@ -148,7 +148,7 @@ axios.get('https://toram-id.info/api/v1/items')
                 "drop_type": {
                     "id": 31,
                     "name": "zirah",
-                    "url": "https:\/\/toram-id.info\/img\/drop\/zirah.jpg"
+                    "url": "https:\/\/toram-id.com\/img\/drop\/zirah.jpg"
                 },
                 "monsters": []
             },
@@ -158,8 +158,8 @@ axios.get('https://toram-id.info/api/v1/items')
                     </li>
                     <li>
                         <strong>Menampilkan item yang dipilih.</strong> <br>
-                        <code>GET https://toram-id.info/api/v1/item/{item_id}</code> <br>
-                        <code>GET https://toram-id.info/api/v1/item/2000</code> <br>
+                        <code>GET https://toram-id.com/api/v1/item/{item_id}</code> <br>
+                        <code>GET https://toram-id.com/api/v1/item/2000</code> <br>
                         <details>
                             <summary>
                                 <strong>Contoh response</strong> <br>
@@ -178,7 +178,7 @@ axios.get('https://toram-id.info/api/v1/items')
         "drop_type": {
             "id": 4,
             "name": "kayu",
-            "url": "https:\/\/toram-id.info\/img\/drop\/kayu.png"
+            "url": "https:\/\/toram-id.com\/img\/drop\/kayu.png"
         },
         "monsters": [],
     }</code></pre>
@@ -186,8 +186,8 @@ axios.get('https://toram-id.info/api/v1/items')
                     </li>
                     <li>
                         <strong>Mencari items dengan kata kucni.</strong> <br>
-                        <code>GET https://toram-id.info/api/v1/items/search/{query}</code> <br>
-                        <code>GET https://toram-id.info/api/v1/items/search/bunga</code> <br>
+                        <code>GET https://toram-id.com/api/v1/items/search/{query}</code> <br>
+                        <code>GET https://toram-id.com/api/v1/items/search/bunga</code> <br>
                         <details>
                             <summary>
                                 <strong>Contoh response</strong> <br>
@@ -206,13 +206,13 @@ axios.get('https://toram-id.info/api/v1/items')
                     "monster": "Base DEF: 1\r\n\r\nKebal Api +2%\r\nKebal Angin +2%\r\nKebal Air +2%\r\nKebal Bumi +2%",
                     "npc": "Base DEF: 40\n\nKebal Api -10%\nDark Resistance +15%\nAggro +9%\nShort Range Damage +3%"
                 },
-                "picture": "https:\/\/toram-id.info\/imgs\/mobs\/bunga-akakuefkfw.png",
+                "picture": "https:\/\/toram-id.com\/imgs\/mobs\/bunga-akakuefkfw.png",
                 "fullimage": null,
                 "released": null,
                 "drop_type": {
                     "id": 33,
                     "name": "Perkakas Tambahan",
-                    "url": "https:\/\/toram-id.info\/img\/drop\/pelengkap.jpg"
+                    "url": "https:\/\/toram-id.com\/img\/drop\/pelengkap.jpg"
                 },
                 "monsters": []
             },
@@ -230,7 +230,7 @@ axios.get('https://toram-id.info/api/v1/items')
                 "drop_type": {
                     "id": 16,
                     "name": "box b",
-                    "url": "https:\/\/toram-id.info\/img\/drop\/box_b.jpg"
+                    "url": "https:\/\/toram-id.com\/img\/drop\/box_b.jpg"
                 },
                 "monsters": [
                     {
@@ -244,7 +244,7 @@ axios.get('https://toram-id.info/api/v1/items')
                         "hp": null,
                         "xp": 38,
                         "pet": "n",
-                        "picture": "https:\/\/toram-id.info\/imgs\/mobs\/fimera-42180.png",
+                        "picture": "https:\/\/toram-id.com\/imgs\/mobs\/fimera-42180.png",
                         "pivot": {
                             "drop_id": 1019,
                             "monster_id": 50
@@ -265,7 +265,7 @@ axios.get('https://toram-id.info/api/v1/items')
                         "hp": null,
                         "xp": null,
                         "pet": "y",
-                        "picture": "https:\/\/toram-id.info\/imgs\/mobs\/nepenthe-62029.png",
+                        "picture": "https:\/\/toram-id.com\/imgs\/mobs\/nepenthe-62029.png",
                         "pivot": {
                             "drop_id": 1019,
                             "monster_id": 277
@@ -286,7 +286,7 @@ axios.get('https://toram-id.info/api/v1/items')
                         "hp": null,
                         "xp": null,
                         "pet": "y",
-                        "picture": "https:\/\/toram-id.info\/imgs\/mobs\/nepenthe-54493.png",
+                        "picture": "https:\/\/toram-id.com\/imgs\/mobs\/nepenthe-54493.png",
                         "pivot": {
                             "drop_id": 1019,
                             "monster_id": 278
@@ -307,7 +307,7 @@ axios.get('https://toram-id.info/api/v1/items')
                         "hp": null,
                         "xp": null,
                         "pet": "y",
-                        "picture": "https:\/\/toram-id.info\/imgs\/mobs\/nepenthe-88760.png",
+                        "picture": "https:\/\/toram-id.com\/imgs\/mobs\/nepenthe-88760.png",
                         "pivot": {
                             "drop_id": 1019,
                             "monster_id": 279
@@ -328,7 +328,7 @@ axios.get('https://toram-id.info/api/v1/items')
                         "hp": null,
                         "xp": null,
                         "pet": "y",
-                        "picture": "https:\/\/toram-id.info\/imgs\/mobs\/floral-bee-51123.png",
+                        "picture": "https:\/\/toram-id.com\/imgs\/mobs\/floral-bee-51123.png",
                         "pivot": {
                             "drop_id": 1019,
                             "monster_id": 337
@@ -349,7 +349,7 @@ axios.get('https://toram-id.info/api/v1/items')
                         "hp": null,
                         "xp": 44880,
                         "pet": "n",
-                        "picture": "https:\/\/toram-id.info\/imgs\/mobs\/lobalawar-91091.png",
+                        "picture": "https:\/\/toram-id.com\/imgs\/mobs\/lobalawar-91091.png",
                         "pivot": {
                             "drop_id": 1019,
                             "monster_id": 1128
@@ -375,7 +375,7 @@ axios.get('https://toram-id.info/api/v1/items')
                 "drop_type": {
                     "id": 5,
                     "name": "obat",
-                    "url": "https:\/\/toram-id.info\/img\/drop\/obat.png"
+                    "url": "https:\/\/toram-id.com\/img\/drop\/obat.png"
                 },
                 "monsters": [
                     {
@@ -389,7 +389,7 @@ axios.get('https://toram-id.info/api/v1/items')
                         "hp": null,
                         "xp": 184,
                         "pet": "y",
-                        "picture": "https:\/\/toram-id.info\/imgs\/mobs\/mewte-99639.png",
+                        "picture": "https:\/\/toram-id.com\/imgs\/mobs\/mewte-99639.png",
                         "pivot": {
                             "drop_id": 1026,
                             "monster_id": 70
@@ -410,7 +410,7 @@ axios.get('https://toram-id.info/api/v1/items')
                         "hp": null,
                         "xp": 202,
                         "pet": "y",
-                        "picture": "https:\/\/toram-id.info\/imgs\/mobs\/mewte-77455.png",
+                        "picture": "https:\/\/toram-id.com\/imgs\/mobs\/mewte-77455.png",
                         "pivot": {
                             "drop_id": 1026,
                             "monster_id": 71
@@ -423,10 +423,10 @@ axios.get('https://toram-id.info/api/v1/items')
                 ]
             },
         ],
-        "first_page_url": "https:\/\/toram-id.info\/api\/v1\/items\/search\/bunga?page=1",
+        "first_page_url": "https:\/\/toram-id.com\/api\/v1\/items\/search\/bunga?page=1",
         "from": 1,
         "last_page": 2,
-        "last_page_url": "https:\/\/toram-id.info\/api\/v1\/items\/search\/bunga?page=2",
+        "last_page_url": "https:\/\/toram-id.com\/api\/v1\/items\/search\/bunga?page=2",
         "links": [
             {
                 "url": null,
@@ -434,23 +434,23 @@ axios.get('https://toram-id.info/api/v1/items')
                 "active": false
             },
             {
-                "url": "https:\/\/toram-id.info\/api\/v1\/items\/search\/bunga?page=1",
+                "url": "https:\/\/toram-id.com\/api\/v1\/items\/search\/bunga?page=1",
                 "label": "1",
                 "active": true
             },
             {
-                "url": "https:\/\/toram-id.info\/api\/v1\/items\/search\/bunga?page=2",
+                "url": "https:\/\/toram-id.com\/api\/v1\/items\/search\/bunga?page=2",
                 "label": "2",
                 "active": false
             },
             {
-                "url": "https:\/\/toram-id.info\/api\/v1\/items\/search\/bunga?page=2",
+                "url": "https:\/\/toram-id.com\/api\/v1\/items\/search\/bunga?page=2",
                 "label": "Next &raquo;",
                 "active": false
             }
         ],
-        "next_page_url": "https:\/\/toram-id.info\/api\/v1\/items\/search\/bunga?page=2",
-        "path": "https:\/\/toram-id.info\/api\/v1\/items\/search\/bunga",
+        "next_page_url": "https:\/\/toram-id.com\/api\/v1\/items\/search\/bunga?page=2",
+        "path": "https:\/\/toram-id.com\/api\/v1\/items\/search\/bunga",
         "per_page": 15,
         "prev_page_url": null,
         "to": 15,
@@ -460,11 +460,11 @@ axios.get('https://toram-id.info/api/v1/items')
                     </li>
                     <li>
                         <strong>Menampilkan monster yang terakhir ditambahkan.</strong> <br>
-                        <code>GET https://toram-id.info/api/v1/monsters</code> <br>
+                        <code>GET https://toram-id.com/api/v1/monsters</code> <br>
                         tampilkan berdasarkan level <br>
-                        <code>GET https://toram-id.info/api/v1/monsters?level=120</code> <br>
+                        <code>GET https://toram-id.com/api/v1/monsters?level=120</code> <br>
                         tampilkan berdasarkan level dan rentang level <br>
-                        <code>GET https://toram-id.info/api/v1/monsters?level=120&between=8</code> <br>
+                        <code>GET https://toram-id.com/api/v1/monsters?level=120&between=8</code> <br>
                         <details>
                             <summary>
                                 <strong>Contoh response</strong> <br>
@@ -481,7 +481,7 @@ axios.get('https://toram-id.info/api/v1/items')
             "hp": "4,260,000",
             "xp": 20600,
             "pet": "y",
-            "picture": "https:\/\/toram-id.info\/imgs\/mobs\/velum13Grypng",
+            "picture": "https:\/\/toram-id.com\/imgs\/mobs\/velum13Grypng",
             "element": {
                 "id": 7,
                 "name": "netral"
@@ -518,12 +518,12 @@ axios.get('https://toram-id.info/api/v1/items')
                         </ul>
                     </p>
                     <br>
-                    <code>GET https://toram-id.info/api/v1/monsters/{jenis_id}</code> <br>
-                    <code>GET https://toram-id.info/api/v1/monsters/3</code>
+                    <code>GET https://toram-id.com/api/v1/monsters/{jenis_id}</code> <br>
+                    <code>GET https://toram-id.com/api/v1/monsters/3</code>
                         tampilkan berdasarkan level <br>
-                        <code>GET https://toram-id.info/api/v1/monsters/3?level=120</code> <br>
+                        <code>GET https://toram-id.com/api/v1/monsters/3?level=120</code> <br>
                         tampilkan berdasarkan level dan rentang level <br>
-                        <code>GET https://toram-id.info/api/v1/monsters/3?level=120&between=8</code> <br>
+                        <code>GET https://toram-id.com/api/v1/monsters/3?level=120&between=8</code> <br>
                     <details>
                         <summary>
                             <strong>Contoh response</strong> <br>
@@ -566,7 +566,7 @@ axios.get('https://toram-id.info/api/v1/items')
                         "drop_type": {
                             "id": 3,
                             "name": "fauna",
-                            "url": "https:\/\/toram-id.info\/img\/drop\/fauna.png"
+                            "url": "https:\/\/toram-id.com\/img\/drop\/fauna.png"
                         }
                     },
                     {
@@ -587,7 +587,7 @@ axios.get('https://toram-id.info/api/v1/items')
                         "drop_type": {
                             "id": 3,
                             "name": "fauna",
-                            "url": "https:\/\/toram-id.info\/img\/drop\/fauna.png"
+                            "url": "https:\/\/toram-id.com\/img\/drop\/fauna.png"
                         }
                     },
                     ...
@@ -599,7 +599,7 @@ axios.get('https://toram-id.info/api/v1/items')
                     </li>
                     <li>
                         <strong>Menampilkan monster yang dipilih.</strong> <br>
-                        <code>GET https://toram-id.info/api/v1/monster/{monster_id}</code> <br>
+                        <code>GET https://toram-id.com/api/v1/monster/{monster_id}</code> <br>
                         <details>
                             <summary>
                                 <strong>Contoh response</strong> <br>
@@ -642,7 +642,7 @@ axios.get('https://toram-id.info/api/v1/items')
                 "drop_type": {
                     "id": 46,
                     "name": "panah",
-                    "url": "https:\/\/toram-id.info\/img\/drop\/panah.jpg"
+                    "url": "https:\/\/toram-id.com\/img\/drop\/panah.jpg"
                 }
             },
             {
@@ -656,7 +656,7 @@ axios.get('https://toram-id.info/api/v1/items')
                     "monster": "Base DEF: 35\r\n\r\nCritical Rate +14\r\nDaya Jarak Dekat +1%\r\nDaya Jarak Jauh -1%",
                     "npc": null
                 },
-                "picture": "https:\/\/toram-id.info\/imgs\/mobs\/topi-gotik-54721.png",
+                "picture": "https:\/\/toram-id.com\/imgs\/mobs\/topi-gotik-54721.png",
                 "fullimage": null,
                 "released": null,
                 "pivot": {
@@ -666,7 +666,7 @@ axios.get('https://toram-id.info/api/v1/items')
                 "drop_type": {
                     "id": 33,
                     "name": "Perkakas Tambahan",
-                    "url": "https:\/\/toram-id.info\/img\/drop\/pelengkap.jpg"
+                    "url": "https:\/\/toram-id.com\/img\/drop\/pelengkap.jpg"
                 }
             },
             ...
@@ -681,8 +681,8 @@ axios.get('https://toram-id.info/api/v1/items')
                     </li>
                     <li>
                         <strong>Mencari monsters dengan kata kunci.</strong> <br>
-                        <code>GET https://toram-id.info/api/v1/monsters/search/{query}</code> <br>
-                        <code>GET https://toram-id.info/api/v1/monsters/search/machina</code> <br>
+                        <code>GET https://toram-id.com/api/v1/monsters/search/{query}</code> <br>
+                        <code>GET https://toram-id.com/api/v1/monsters/search/machina</code> <br>
                         <details>
                             <summary>
                                 <strong>Contoh response</strong> <br>
@@ -718,7 +718,7 @@ axios.get('https://toram-id.info/api/v1/items')
                             "monster": null,
                             "npc": "\r\n        Magical Resistance -6%, Critical Damage 4, Additional Melee 25%\r\n        Potensi 24\r\n       proses: Logam x30"
                         },
-                        "picture": "https:\/\/toram-id.info\/imgs\/mobs\/tombak-paladin-54912.png",
+                        "picture": "https:\/\/toram-id.com\/imgs\/mobs\/tombak-paladin-54912.png",
                         "fullimage": null,
                         "released": null,
                         "pivot": {
@@ -728,7 +728,7 @@ axios.get('https://toram-id.info/api/v1/items')
                         "drop_type": {
                             "id": 29,
                             "name": "tombak",
-                            "url": "https:\/\/toram-id.info\/img\/drop\/tombak.jpg"
+                            "url": "https:\/\/toram-id.com\/img\/drop\/tombak.jpg"
                         }
                     },
                     {
@@ -749,7 +749,7 @@ axios.get('https://toram-id.info/api/v1/items')
                         "drop_type": {
                             "id": 2,
                             "name": "kain",
-                            "url": "https:\/\/toram-id.info\/img\/drop\/kain.png"
+                            "url": "https:\/\/toram-id.com\/img\/drop\/kain.png"
                         }
                     },
                     ...
@@ -762,10 +762,10 @@ axios.get('https://toram-id.info/api/v1/items')
             },
             ...
         ],
-        "first_page_url": "https:\/\/toram-id.info\/api\/v1\/monsters\/search\/machina?page=1",
+        "first_page_url": "https:\/\/toram-id.com\/api\/v1\/monsters\/search\/machina?page=1",
         "from": 1,
         "last_page": 4,
-        "last_page_url": "https:\/\/toram-id.info\/api\/v1\/monsters\/search\/machina?page=4",
+        "last_page_url": "https:\/\/toram-id.com\/api\/v1\/monsters\/search\/machina?page=4",
         "links": [
             {
                 "url": null,
@@ -773,33 +773,33 @@ axios.get('https://toram-id.info/api/v1/items')
                 "active": false
             },
             {
-                "url": "https:\/\/toram-id.info\/api\/v1\/monsters\/search\/machina?page=1",
+                "url": "https:\/\/toram-id.com\/api\/v1\/monsters\/search\/machina?page=1",
                 "label": "1",
                 "active": true
             },
             {
-                "url": "https:\/\/toram-id.info\/api\/v1\/monsters\/search\/machina?page=2",
+                "url": "https:\/\/toram-id.com\/api\/v1\/monsters\/search\/machina?page=2",
                 "label": "2",
                 "active": false
             },
             {
-                "url": "https:\/\/toram-id.info\/api\/v1\/monsters\/search\/machina?page=3",
+                "url": "https:\/\/toram-id.com\/api\/v1\/monsters\/search\/machina?page=3",
                 "label": "3",
                 "active": false
             },
             {
-                "url": "https:\/\/toram-id.info\/api\/v1\/monsters\/search\/machina?page=4",
+                "url": "https:\/\/toram-id.com\/api\/v1\/monsters\/search\/machina?page=4",
                 "label": "4",
                 "active": false
             },
             {
-                "url": "https:\/\/toram-id.info\/api\/v1\/monsters\/search\/machina?page=2",
+                "url": "https:\/\/toram-id.com\/api\/v1\/monsters\/search\/machina?page=2",
                 "label": "Next &raquo;",
                 "active": false
             }
         ],
-        "next_page_url": "https:\/\/toram-id.info\/api\/v1\/monsters\/search\/machina?page=2",
-        "path": "https:\/\/toram-id.info\/api\/v1\/monsters\/search\/machina",
+        "next_page_url": "https:\/\/toram-id.com\/api\/v1\/monsters\/search\/machina?page=2",
+        "path": "https:\/\/toram-id.com\/api\/v1\/monsters\/search\/machina",
         "per_page": 15,
         "prev_page_url": null,
         "to": 15,
