@@ -38,10 +38,10 @@
 
   <div class="col-md-6 mb-5">
 		<div class="mb-4 text-center d-flex justify-content-center">
-			<a href="/" class="mr-5 d-flex align-items-center"><i class="flag flag-id mr-2" style="width:1rem;height:0.8rem"></i>Indonesia</a> <a href="//en.toram-id.info" class="d-flex align-items-center"><i class="flag flag-us mr-2" style="width:1rem;height:0.8rem"></i>English</a>
+			<a href="/" class="mr-5 d-flex align-items-center"><i class="flag flag-id mr-2" style="width:1rem;height:0.8rem"></i>Indonesia</a> <a href="//en.toram-id.com" class="d-flex align-items-center"><i class="flag flag-us mr-2" style="width:1rem;height:0.8rem"></i>English</a>
 		</div>
         <span class="text-muted">
-             <b>toram-id.info</b> is not affiliated with or endorsed by <b>Asobimo</b>. <b>toram-id.info</b> is a Database and Tools for the Toram Online game for mobile game app on iOS and Android.
+             <b>toram-id.com</b> is not affiliated with or endorsed by <b>Asobimo</b>. <b>toram-id.com</b> is a Database and Tools for the Toram Online game for mobile game app on iOS and Android.
         </span>
     </div>
   <div class="col-md-6">

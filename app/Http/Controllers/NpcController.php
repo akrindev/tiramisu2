@@ -48,7 +48,7 @@ class NpcController extends Controller
 
                 $make = Image::make($file);
 
-                $make->text('(c) toram-id.info', 15, 30, function ($font) {
+                $make->text('(c) toram-id.com', 15, 30, function ($font) {
                     $font->file(3);
                     $font->size(34);
                     $font->color('#ffffff');
@@ -168,7 +168,7 @@ class NpcController extends Controller
 
             $make = Image::make($file);
 
-            $make->text('(c) toram-id.info', 15, 30, function ($font) {
+            $make->text('(c) toram-id.com', 15, 30, function ($font) {
                 $font->file(3);
                 $font->size(34);
                 $font->color('#ffffff');

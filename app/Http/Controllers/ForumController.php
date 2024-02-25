@@ -163,7 +163,7 @@ class ForumController extends Controller
             //             'title' => 'Forum anda mendapat komentar',
             //             'body' => explode(' ', auth()->user()->name)[0] . ' Menjawab pada ' . $forum->judul,
             //             'icon'    => 'https://graph.facebook.com/' . auth()->user()->provider_id . '/picture?type=normal',
-            //             'click_action' => 'https://toram-id.info/forum/' . $forum->slug
+            //             'click_action' => 'https://toram-id.com/forum/' . $forum->slug
             //         ])
             //         ->send();
             // }
@@ -212,7 +212,7 @@ class ForumController extends Controller
             //             'title' => 'Komentar anda mendapat balasan',
             //             'body' => explode(' ', auth()->user()->name)[0] . ' Membalas pada ' . $forum->judul,
             //             'icon'    => 'https://graph.facebook.com/' . auth()->user()->provider_id . '/picture?type=normal',
-            //             'click_action' => 'https://toram-id.info/forum/' . $forum->slug
+            //             'click_action' => 'https://toram-id.com/forum/' . $forum->slug
             //         ])
             //         ->send();
             // }
@@ -457,7 +457,7 @@ class ForumController extends Controller
             $name = substr(md5(now()), 0, 8).'.png';
 
             $img = Image::make($gambar);
-            $img->text('toram-id.info', 15, 30, function ($font) {
+            $img->text('toram-id.com', 15, 30, function ($font) {
                 $font->file(3);
                 $font->size(34);
                 $font->color('#ffffff');
