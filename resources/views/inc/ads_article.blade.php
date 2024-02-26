@@ -1,4 +1,4 @@
-@if (!(new \App\User)->isTopContributor())
+@if (!(new \App\User)->isTopContributor() || config('ads.disable') == false)
 
 <div class="my-3">
      <div class="card text-center p-2">

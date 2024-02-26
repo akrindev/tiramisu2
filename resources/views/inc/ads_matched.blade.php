@@ -1,4 +1,4 @@
-@if (!(new \App\User)->isTopContributor())
+@if (!(new \App\User)->isTopContributor() || config('ads.disable') == false)
 
 <div class="my-5 container-fluid">
     <!-- Matched Pom -->
