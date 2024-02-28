@@ -4,9 +4,7 @@
 @section('description','Forum toram online indonesia, diskusi tentang toram online, informasi menarik dan lainnya.')
 @section('image',to_img())
 
-@push('canonical')
-	@canonical
-@endpush
+
 
 @section('content')
 

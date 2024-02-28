@@ -4,9 +4,7 @@
 @section('description','Toram Online Database Bahasa Indonesia. Jelajahi data monster, equip, crysta, tools dan berita toram lainnya disini')
 @section('image',to_img())
 
-@push('canonical')
-	@canonical
-@endpush
+
 
 @section('content')
 

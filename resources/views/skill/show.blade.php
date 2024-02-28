@@ -4,9 +4,7 @@
 @section('description', 'Informasi skill '. $name .' toram online full skill list')
 @section('image', to_img())
 
-@push('canonical')
-	@canonical
-@endpush
+
 
 @section('content')
 

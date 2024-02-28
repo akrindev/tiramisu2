@@ -5,9 +5,7 @@
 @section('image',to_img())
 
 
-@push('canonical')
-	@canonical
-@endpush
+
 
 @section('content')
 <div class="my-5" onload="App.loadFromStorage()">

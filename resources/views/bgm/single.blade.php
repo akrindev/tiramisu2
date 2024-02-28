@@ -5,9 +5,7 @@
 @section('image','https://ytimg.googleusercontent.com/vi/'.$bgm->video_id.'/sddefault.jpg')
 
 
-@push('canonical')
-	@canonical
-@endpush
+
 
 @section('content')
 <div class="my-5">
