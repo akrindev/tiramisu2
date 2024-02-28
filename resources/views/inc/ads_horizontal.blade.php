@@ -1,4 +1,4 @@
-@if (!(new \App\User)->isTopContributor() || config('ads.disable') == false)
+@if (config('ads.disable') == false || !(new \App\User)->isTopContributor())
 
 <div class="my-3 ads">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3650356173552443"
