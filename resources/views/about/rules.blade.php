@@ -4,9 +4,7 @@
 @section('description','Rules / Peraturan yang harus di patuhi untuk setiap member yang bergabung baik ketika menulis pada forum, jual beli, gallery atau lainnya yang masih bersangkutan dengan fansite ini')
 @section('image',to_img())
 
-@push('canonical')
-	@canonical
-@endpush
+
 
 @section('content')
 <div class="my-5">

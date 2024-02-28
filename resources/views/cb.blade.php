@@ -3,10 +3,6 @@
 @section('title', 'Toram Papan Market calculator')
 @section('description', 'Kalkulasi penjualan di papan toram')
 
-@push('canonical')
-	@canonical
-@endpush
-
 @section('content')
 <div class="my-5">
   <div class="container">

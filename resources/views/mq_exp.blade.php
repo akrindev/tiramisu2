@@ -4,10 +4,6 @@
 @section('description','Kalkulasi jumlah exp yang di dapat dari MQ untuk menghitung kenaikan level')
 @section('image','https://i.ibb.co/k1zFdBv/Level-CAP.png')
 
-@push('canonical')
-	@canonical
-@endpush
-
 @section('content')
 <div class="my-3 my-md-5">
     <div class="container">

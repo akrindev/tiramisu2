@@ -3,10 +3,6 @@
 @section('title', 'Potensi Kalkulator')
 @section('description', 'Kalkulasi perhitungan potensi pada char blacksmith toram berdasarkan status / potential calculator toram online')
 
-@push('canonical')
-	@canonical
-@endpush
-
 @section('content')
 <div class="my-5" id="app">
   <div class="container">

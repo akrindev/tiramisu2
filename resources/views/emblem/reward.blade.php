@@ -4,9 +4,7 @@
 @section('description', 'List of emblems Toram Online, Daftar Prestasi ' . $rewardName )
 @section('image', to_img())
 
-@push('canonical')
-	@canonical
-@endpush
+
 
 @section('content')
 <div class="my-5">

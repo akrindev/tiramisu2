@@ -4,9 +4,7 @@
 @section('description', 'Toram simulasi refine, guide refine toram, toram refine success rate, toram table success rate refine, refine guide toram, toram refine simulator')
 @section('image', '/img/refine.png')
 
-@push('canonical')
-	@canonical
-@endpush
+
 
 @section('content')
 <div class="my-5">

@@ -3,9 +3,7 @@
 @section('title','Toram Gallery tag '. $tag)
 @section('description','Toram Online '. $tag .' gallery, images, foto garam, cinta, hoax dan lainnya')
 
-@push('canonical')
-	@canonical
-@endpush
+
 
 @section('content')
 

@@ -4,9 +4,7 @@
 @section('description','Kalkulasi jumlah exp yang di butuhkan dari Nc, bnut sampai Quest. kuy cek disini')
 @section('image','https://i.ibb.co/k1zFdBv/Level-CAP.png')
 
-@push('canonical')
-	@canonical
-@endpush
+
 
 @section('content')
   <div class="my-3 my-md-5">

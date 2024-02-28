@@ -4,9 +4,7 @@
 @section('description', 'Drop list ' . __(ucfirst($type)))
 @section('image', to_img())
 
-@push('canonical')
-	@canonical
-@endpush
+
 
 @section('content')
 <div class="my-5">

@@ -5,9 +5,7 @@
 @section('description', 'Toram Online Monthly Dye (Dye Bulanan)')
 
 
-@push('canonical')
-	@canonical
-@endpush
+
 
 @section('content')
 <div class="my-5">

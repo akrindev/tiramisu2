@@ -6,9 +6,7 @@
 @section('image',to_img($data->body))
 
 
-@push('canonical')
-	@canonical
-@endpush
+
 @section('content')
 
 @php

@@ -5,9 +5,7 @@
 @section('image',$pos->gambar)
 
 
-@push('canonical')
-	@canonical
-@endpush
+
 
 @section('content')
 <style>

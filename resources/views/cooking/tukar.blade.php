@@ -5,9 +5,7 @@
 @section('image', 'https://i.ibb.co/8Dqtxvz/FB-IMG-15607680360251846-picsay.jpg')
 
 
-@push('canonical')
-	@canonical
-@endpush
+
 
 @section('content')
 <div class="my-5">
@@ -29,7 +27,7 @@
            <livewire:food-member />
          </div>
 
-         
+
       </div>
       <div class="col-md-12">
         <div class="card">

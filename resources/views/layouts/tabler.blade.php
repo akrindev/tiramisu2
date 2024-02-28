@@ -52,8 +52,6 @@
     <meta name="keywords"
         content="Toram Id, RPG Toram Online, Toram Online Wiki, Toram Online Database, Drop list, Monster list, Fill Stat formula, Fill stat simulator, calculator, forum, Toram Online Indonesia, MMORPG Android and iOS game" />
 
-    @stack('canonical')
-
     <script type='application/ld+json'>
     {
         "@context": "http://schema.org",
