@@ -26,13 +26,13 @@
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 
-    <title>@yield('title') | RPG Toram Online Database & Wiki - Toram ID INFO</title>
+    <title>@yield('title') - RPG Toram Online Database & Wiki | Toram ID INFO</title>
 
     <!-- open graph -->
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:type" content="article" />
     <meta content='RPG Toram Online Indonesia' property='og:site_name' />
-    <meta property="og:title" content="@yield('title')  | RPG Toram Online Database & Wiki - Toram ID INFO" />
+    <meta property="og:title" content="@yield('title')  - RPG Toram Online Database & Wiki | Toram ID INFO" />
     <meta property="og:description" content="@yield('description')" />
     <meta property="og:image" content="@yield('image')" />
     <meta property="fb:app_id" content="2008283499456981" />
@@ -48,7 +48,7 @@
     {{-- tw --}}
 
     <meta name="google-site-verification" content="da3qNV1VnD0nhZNfFMx3Ov_6dnyvYMlUT7OChWqSbmY" />
-    <meta name="description" content="@yield('description')  | RPG Toram Online Database & Wiki - Toram ID INFO">
+    <meta name="description" content="@yield('description') - RPG Toram Online Database & Wiki | Toram ID INFO">
     <meta name="keywords"
         content="Toram Id, RPG Toram Online, Toram Online Wiki, Toram Online Database, Drop list, Monster list, Fill Stat formula, Fill stat simulator, calculator, forum, Toram Online Indonesia, MMORPG Android and iOS game" />
 
