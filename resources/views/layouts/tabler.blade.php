@@ -91,7 +91,7 @@
 
     @if (app()->isProduction())
         <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-H74EJRL0QX"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6G67MWM7YX"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
 
@@ -100,7 +100,7 @@
             }
             gtag('js', new Date());
 
-            gtag('config', 'G-H74EJRL0QX');
+            gtag('config', 'G-6G67MWM7YX');
         </script>
     @endif
     @yield('head')
