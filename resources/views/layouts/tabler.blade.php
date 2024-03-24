@@ -353,7 +353,7 @@
     <script src="/assets/js/lazy.js"></script>
     <script src="/assets/js/vendors/bootstrap.bundle.min.js"></script>
 
-    <div id="discordnya-ray">
+    {{-- <div id="discordnya-ray">
         <a href="https://discord.com/invite/deN74tRyVP">
             <img src="/img/discord.png" height="45px" width="60px" alt="join our discord">
         </a>
@@ -380,7 +380,7 @@
             /*  border-radius: 10px; /* Rounded corners */
             /* font-size: 18px; /* Increase font size */
         }
-    </style>
+    </style> --}}
 </body>
 
 </html>
