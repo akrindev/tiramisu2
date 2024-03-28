@@ -1,6 +1,8 @@
 <div class="card">
   <div class="card-body p-2" style="font-size:13px;font-weight:400">
 
+    @includeUnless(app()->isLocal(), 'inc.ads_mobile')
+
     	<!-- Tab head -->
         <ul class="nav nav-tabs justify-content-center" id="statusTab" role="tablist">
             <li class="nav-item">
@@ -78,5 +80,5 @@
 
     <hr class="my-1">
 
-    @includeUnless(app()->isLocal(), 'inc.ads_matched')
+    @includeUnless(app()->isLocal(), 'inc.ads_mobile')
 </div>

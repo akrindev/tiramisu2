@@ -6,12 +6,14 @@
         <div class="card-body p-0" style="font-size:15px">
             <ul class="nav nav-tabs justify-content-center m-0" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="indo-tab" data-toggle="tab" href="#indo" role="tab" aria-controls="indo" aria-selected="true">
-                Indonesian</a>
+                    <a class="nav-link active" id="indo-tab" data-toggle="tab" href="#indo" role="tab"
+                        aria-controls="indo" aria-selected="true">
+                        Indonesian</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="en-tab" data-toggle="tab" href="#en" role="tab" aria-controls="en" aria-selected="false">English
-                    <span class="nav-unread"></span>
+                    <a class="nav-link" id="en-tab" data-toggle="tab" href="#en" role="tab"
+                        aria-controls="en" aria-selected="false">English
+                        <span class="nav-unread"></span>
                     </a>
                 </li>
             </ul>
@@ -36,7 +38,9 @@
         </div>
     </div>
 
-    @includeUnless(app()->isLocal(), 'inc.ads_mobile')
+    <div wire:ignore>
+        @includeUnless(app()->isLocal(), 'inc.ads_mobile')
+    </div>
 
     <div class="card">
         <div class="card-header">
@@ -46,11 +50,13 @@
         <div class="card-body p-3">
             <div class="selectgroup w-100">
                 <label class="selectgroup-item">
-                    <input type="radio" name="value" value="id" class="selectgroup-input" checked="" wire:click="switchLocalization('id')">
+                    <input type="radio" name="value" value="id" class="selectgroup-input" checked=""
+                        wire:click="switchLocalization('id')">
                     <span class="selectgroup-button">Indonesia</span>
                 </label>
                 <label class="selectgroup-item">
-                    <input type="radio" name="value" value="en" class="selectgroup-input" wire:click="switchLocalization('en')">
+                    <input type="radio" name="value" value="en" class="selectgroup-input"
+                        wire:click="switchLocalization('en')">
                     <span class="selectgroup-button">English</span>
                 </label>
             </div>
@@ -58,39 +64,52 @@
 
         <div class="card-table">
             <table class="card-table table table-striped" style="font-size:14px">
-            @if($dyes->count())
-                <caption class="p-3">  Dye {{ now()->formatLocalized('%B %Y') }} </caption>
-                <thead>
+                @if ($dyes->count())
+                    <caption class="p-3"> Dye {{ now()->formatLocalized('%B %Y') }} </caption>
+                    <thead>
+                        <tr>
+                            <th> Nama Boss </th>
+                            <th> A </th>
+                            <th> B </th>
+                            <th> C </th>
+                        </tr>
+                    </thead>
+                @endif
+                @forelse($dyes as $dye)
                     <tr>
-                    <th> Nama Boss </th>
-                    <th> A </th>
-                    <th> B </th>
-                    <th> C </th>
-                    </tr>
-                </thead>
-            @endif
-            @forelse($dyes as $dye)
-                <tr>
-                    <td class="p-2">
-                        <div>
-                            <b><a href="/monster/{{ $dye->monster->id }}" style="color:black">{{ $dye->monster->name }}</a></b>
-                            <br/>
-                        <small class="text-muted">
-                            {{ $dye->monster->map->name }}
-                        </small>
-                        </div>
+                        <td class="p-2">
+                            <div>
+                                <b><a href="/monster/{{ $dye->monster->id }}"
+                                        style="color:black">{{ $dye->monster->name }}</a></b>
+                                <br />
+                                <small class="text-muted">
+                                    {{ $dye->monster->map->name }}
+                                </small>
+                            </div>
 
-                    @auth
-                        @if(auth()->user()->isAdmin())[<a href="#" class="dd text-danger" data-id="{{ $dye->id }}">hapus</a>] @endif
-                    @endauth
-                    </td>
-                    <td class="p-2" {!! $dye->type == 'a' ? "style='color:white;text-shadow:0 0 8px black, 0 0 4px blue;text-align:center;background:#{$dye->dye->hex}'" : '' !!}> {{ $dye->type == 'a' ? $dye->dye->color : '' }}</td>
-                    <td class="p-2" {!! $dye->type == 'b' ? "style='color:white;text-shadow:0 0 8px black, 0 0 4px blue;text-align:center;background:#{$dye->dye->hex}'" : '' !!}> {{ $dye->type == 'b' ? $dye->dye->color : '' }}</td>
-                    <td class="p-2" {!! $dye->type == 'c' ? "style='color:white;text-shadow:0 0 8px black, 0 0 4px blue;text-align:center;background:#{$dye->dye->hex}'" : '' !!}> {{ $dye->type == 'c' ? $dye->dye->color : '' }}</td>
-                </tr>
-            @empty
-                <tr class="p-5 font-weight-bold"><td> Wait for update</td></tr>
-            @endforelse
+                            @auth
+                                @if (auth()->user()->isAdmin())
+                                    [<a href="#" class="dd text-danger" data-id="{{ $dye->id }}">hapus</a>]
+                                @endif
+                            @endauth
+                        </td>
+                        <td class="p-2" {!! $dye->type == 'a'
+                            ? "style='color:white;text-shadow:0 0 8px black, 0 0 4px blue;text-align:center;background:#{$dye->dye->hex}'"
+                            : '' !!}> {{ $dye->type == 'a' ? $dye->dye->color : '' }}</td>
+                        <td class="p-2" {!! $dye->type == 'b'
+                            ? "style='color:white;text-shadow:0 0 8px black, 0 0 4px blue;text-align:center;background:#{$dye->dye->hex}'"
+                            : '' !!}> {{ $dye->type == 'b' ? $dye->dye->color : '' }}
+                        </td>
+                        <td class="p-2" {!! $dye->type == 'c'
+                            ? "style='color:white;text-shadow:0 0 8px black, 0 0 4px blue;text-align:center;background:#{$dye->dye->hex}'"
+                            : '' !!}> {{ $dye->type == 'c' ? $dye->dye->color : '' }}
+                        </td>
+                    </tr>
+                @empty
+                    <tr class="p-5 font-weight-bold">
+                        <td> Wait for update</td>
+                    </tr>
+                @endforelse
             </table>
         </div>
     </div>
@@ -99,21 +118,23 @@
         <div id="disqus_thread"></div>
         <script>
             /**
-            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+             *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+             *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
 
-            var disqus_config = function () {
-                this.page.url = "{{ url()->current() }}";  // Replace PAGE_URL with your page's canonical URL variable
+            var disqus_config = function() {
+                this.page.url = "{{ url()->current() }}"; // Replace PAGE_URL with your page's canonical URL variable
                 this.page.identifier = "dye"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://toram-id.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
+                var d = document,
+                    s = d.createElement('script');
+                s.src = 'https://toram-id.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
             })();
         </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+                Disqus.</a></noscript>
     </div>
 </div>
