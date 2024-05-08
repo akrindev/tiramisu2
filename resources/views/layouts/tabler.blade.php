@@ -121,7 +121,7 @@
                                 alt="toram-id.com logo"> Toram Online
                         </a>
                         <div class="d-flex order-lg-2 ml-auto">
-                            {{-- @guest
+                            @guest
                                 @include('inc.login')
                             @else
                                 <div class="nav-item d-md-flex">
@@ -161,7 +161,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endauth --}}
+                            @endauth
                         </div>
                         <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse"
                             data-target="#headerMenuCollapse">
@@ -313,7 +313,7 @@
 
             <div class="alert alert-info">
                 <marquee class="">
-                    <strong>NEW!!</strong> perubahan domain toram-id.info menjadi toram-id.com. akses login ditutup dan akan dibuka kembali pada mei 2024.
+                    <strong>NEW!!</strong> perubahan domain toram-id.info menjadi toram-id.com.
                 </marquee>
             </div>
 

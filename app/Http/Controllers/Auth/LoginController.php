@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Socialite;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -48,7 +48,7 @@ class LoginController extends Controller
     public function redirect()
     {
         return Socialite::driver('facebook')
-          ->usingGraphVersion('v7.0')->redirect();
+          ->usingGraphVersion('v19.0')->redirect();
     }
 
     /*
