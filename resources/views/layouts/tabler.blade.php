@@ -102,6 +102,8 @@
 
             gtag('config', 'G-6G67MWM7YX');
         </script>
+
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="0207e97b-1ae4-4824-9107-fafa54e792ee"></script>
     @endif
     @yield('head')
 
