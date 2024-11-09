@@ -59,6 +59,11 @@ class LoginController extends Controller
         return Socialite::driver('twitter')->redirect();
     }
 
+    public function redirectGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
     /*
     * twitter callback
     */
@@ -67,6 +72,15 @@ class LoginController extends Controller
         $twitter = Socialite::driver('twitter')->user();
 
         $user = $this->findOrCreate('twitter_id', $twitter);
+
+        return $this->accessProfile($user);
+    }
+
+    public function callbackGoogle()
+    {
+        $google = Socialite::driver('google')->user();
+
+        $user = $this->findOrCreate('google_id', $google);
 
         return $this->accessProfile($user);
     }
@@ -98,26 +112,26 @@ class LoginController extends Controller
         return $user;
     }
 
+    /**
+     * Create a new user from the given socialite user.
+     *
+     * @param  string  $auth
+     * @param  \Laravel\Socialite\Contracts\User  $social
+     * @return \App\User
+     */
     protected function createNewUser($auth, $social)
     {
-        $raw = $social->getRaw();
-
         $uname = $social->getName();
 
         $uname = explode(' ', $uname);
         $name = str_slug($uname[0]).rand(000, 999);
 
-        $gender = $raw['gender'] ?? 'hode';
-
-        switch($gender) {
-            case 'male':
-                $gender = 'cowok';
-                break;
-            case 'female':
-                $gender = 'cewek';
-                break;
-            default:
-                $gender = 'hode';
+        // Check if user exists with this email
+        $existingUser = User::where('email', $social->getEmail())->first();
+        if ($existingUser) {
+            $existingUser->{$auth} = $social->getId();
+            $existingUser->save();
+            return $existingUser;
         }
 
         $user = new User;
@@ -127,7 +141,7 @@ class LoginController extends Controller
         $user->biodata = 'Saya pemain Toram!';
         $user->ign = '-';
         $user->username = $name;
-        $user->gender = $gender;
+        $user->gender = 'cowok';
         $user->alamat = 'Bumi, Indonesia';
         $user->link = $raw['link'] ?? '-';
         $user->avatar = $social->getAvatar();
