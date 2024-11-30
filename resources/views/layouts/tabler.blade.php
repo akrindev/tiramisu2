@@ -112,13 +112,11 @@
 
 <body itemscope itemtype="https://schema.org/WebSite">
     @production
-        <div id="g_id_onload"
-         data-client_id="{{ config('services.google.client_id') }}"
-         data-context="signin"
-         data-ux_mode="popup"
-         data-callback="handleCredentialResponse"
-         data-auto_prompt="true">
-    </div>
+        @guest
+            <div id="g_id_onload" data-client_id="{{ config('services.google.client_id') }}" data-context="signin"
+                data-ux_mode="popup" data-callback="handleCredentialResponse" data-auto_prompt="true">
+            </div>
+        @endguest
     @endproduction
     <meta itemprop="url" content="{{ url('/') }}">
     <div class="page">
@@ -394,32 +392,35 @@
     </style> --}}
 
     @production
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script>
-        function handleCredentialResponse(response) {
-            fetch('{{ route("auth.google.onetap") }}', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                },
-                body: JSON.stringify({
-                    credential: response.credential
-                })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    window.location.href = data.redirect_url;
-                } else {
-                    console.error('Login failed:', data.message);
+        @guest
+
+            <script src="https://accounts.google.com/gsi/client" async defer></script>
+            <script>
+                function handleCredentialResponse(response) {
+                    fetch('{{ route('auth.google.onetap') }}', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                            },
+                            body: JSON.stringify({
+                                credential: response.credential
+                            })
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.success) {
+                                window.location.href = data.redirect_url;
+                            } else {
+                                console.error('Login failed:', data.message);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
                 }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
-    </script>
+            </script>
+        @endguest
     @endproduction
 </body>
 
