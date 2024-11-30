@@ -90,6 +90,7 @@
     </script>
 
     @if (app()->isProduction())
+        <script src="https://accounts.google.com/gsi/client" async></script>
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-6G67MWM7YX"></script>
         <script>
@@ -111,6 +112,15 @@
 </head>
 
 <body itemscope itemtype="https://schema.org/WebSite">
+    @production
+        <div id="g_id_onload"
+            data-client_id="323254082549-tihknjf7874oc07l6sknno8qcs4k48s8.apps.googleusercontent.com"
+            data-context="signin"
+            data-login_uri="https://toram-id.com/google/callback"
+            data-auto_select="true"
+            data-itp_support="true">
+        </div>
+    @endproduction
     <meta itemprop="url" content="{{ url('/') }}">
     <div class="page">
         <div class="page-main">
