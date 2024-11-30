@@ -101,27 +101,35 @@ class LoginController extends Controller
     public function handleGoogleOneTap(Request $request)
     {
         try {
-            $client = new Client([
-                'client_id' => config('services.google.client_id'),
-                'client_secret' => config('services.google.client_secret'),
-            ]);
+            $client = new Client();
+            $client->setClientId(config('services.google.client_id'));
 
-            $user = $client->verifyIdToken($request->credential);
+            // Verify the token
+            $payload = $client->verifyIdToken($request->credential);
 
-            if ($user) {
+            if ($payload) {
                 // Create a socialite-like object for compatibility with existing code
-                $googleUser = (new TwoUser)->setRaw($user)->map([
-                    'avatar' => Arr::get($user, 'picture'),
-                    'email' => Arr::get($user, 'email'),
-                    'email_verified' => Arr::get($user, 'email_verified'),
-                    'host_domain' => Arr::get($user, 'hd'),
-                    'id' => Arr::get($user, 'sub'),
-                    'name' => Arr::get($user, 'name'),
+                $googleUser = (new TwoUser)->map([
+                    'id' => $payload['sub'],
+                    'name' => $payload['name'],
+                    'email' => $payload['email'],
+                    'avatar' => $payload['picture'] ?? null,
+                    'email_verified' => $payload['email_verified'] ?? false,
+                    'host_domain' => $payload['hd'] ?? null,
                 ]);
 
                 $user = $this->findOrCreate('google_id', $googleUser);
 
-                // return $this->accessProfile($user);
+                // Log the user in and get profile access
+                Auth::login($user, true);
+
+                // Create login history
+                $user->historyLogin()->create([
+                    'ip' => request()->ip(),
+                    'browser' => request()->userAgent(),
+                    'extra' => 'Logged In via Google One Tap!',
+                ]);
+
                 return response()->json([
                     'success' => true,
                     'redirect_url' => $this->redirectTo,
@@ -134,6 +142,8 @@ class LoginController extends Controller
                 'message' => 'Invalid token'
             ], 400);
         } catch (\Exception $e) {
+            logger()->error('Google One Tap Error: ' . $e->getMessage());
+
             return response()->json([
                 'success' => false,
                 'message' => 'Authentication failed'
