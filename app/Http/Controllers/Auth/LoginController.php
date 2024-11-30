@@ -98,14 +98,14 @@ class LoginController extends Controller
         return $this->accessProfile($user);
     }
 
-    public function handleGoogleOneTap(Request $request)
+    public function handleGoogleOneTap()
     {
         try {
             $client = new Client();
             $client->setClientId(config('services.google.client_id'));
 
             // Verify the token
-            $payload = $client->verifyIdToken($request->input('credential'));
+            $payload = $client->verifyIdToken(request('credential'));
 
             if ($payload) {
                 // Create a socialite-like object for compatibility with existing code
