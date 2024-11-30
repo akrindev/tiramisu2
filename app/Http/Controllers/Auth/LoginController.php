@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\User;
 use Auth;
+use Google\Client;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Request;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Two\User as TwoUser;
 
 class LoginController extends Controller
 {
@@ -48,7 +52,7 @@ class LoginController extends Controller
     public function redirect()
     {
         return Socialite::driver('facebook')
-          ->usingGraphVersion('v19.0')->redirect();
+            ->usingGraphVersion('v19.0')->redirect();
     }
 
     /*
@@ -94,6 +98,49 @@ class LoginController extends Controller
         return $this->accessProfile($user);
     }
 
+    public function handleGoogleOneTap(Request $request)
+    {
+        try {
+            $client = new Client([
+                'client_id' => config('services.google.client_id'),
+                'client_secret' => config('services.google.client_secret'),
+            ]);
+
+            $user = $client->verifyIdToken($request->credential);
+
+            if ($user) {
+                // Create a socialite-like object for compatibility with existing code
+                $googleUser = (new TwoUser)->setRaw($user)->map([
+                    'avatar' => Arr::get($user, 'picture'),
+                    'email' => Arr::get($user, 'email'),
+                    'email_verified' => Arr::get($user, 'email_verified'),
+                    'host_domain' => Arr::get($user, 'hd'),
+                    'id' => Arr::get($user, 'sub'),
+                    'name' => Arr::get($user, 'name'),
+                ]);
+
+                $user = $this->findOrCreate('google_id', $googleUser);
+
+                // return $this->accessProfile($user);
+                return response()->json([
+                    'success' => true,
+                    'redirect_url' => $this->redirectTo,
+                    'message' => 'Login successful'
+                ]);
+            }
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid token'
+            ], 400);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Authentication failed'
+            ], 400);
+        }
+    }
+
     public function findOrCreate($auth, $social)
     {
         $user = $this->findSocialId($auth, $social);
@@ -124,7 +171,7 @@ class LoginController extends Controller
         $uname = $social->getName();
 
         $uname = explode(' ', $uname);
-        $name = str_slug($uname[0]).rand(000, 999);
+        $name = str_slug($uname[0]) . rand(000, 999);
 
         // Check if user exists with this email
         $existingUser = User::where('email', $social->getEmail())->first();
