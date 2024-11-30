@@ -105,7 +105,7 @@ class LoginController extends Controller
             $client->setClientId(config('services.google.client_id'));
 
             // Verify the token
-            $payload = $client->verifyIdToken($request->credential);
+            $payload = $client->verifyIdToken($request->post('credential'));
 
             if ($payload) {
                 // Create a socialite-like object for compatibility with existing code
