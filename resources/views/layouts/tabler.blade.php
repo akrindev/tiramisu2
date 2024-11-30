@@ -90,7 +90,6 @@
     </script>
 
     @if (app()->isProduction())
-        <script src="https://accounts.google.com/gsi/client" async></script>
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-6G67MWM7YX"></script>
         <script>
@@ -114,12 +113,12 @@
 <body itemscope itemtype="https://schema.org/WebSite">
     @production
         <div id="g_id_onload"
-            data-client_id="323254082549-tihknjf7874oc07l6sknno8qcs4k48s8.apps.googleusercontent.com"
-            data-context="signin"
-            data-login_uri="https://toram-id.com/google/callback"
-            data-auto_select="true"
-            data-itp_support="true">
-        </div>
+         data-client_id="{{ config('services.google.client_id') }}"
+         data-context="signin"
+         data-ux_mode="popup"
+         data-callback="handleCredentialResponse"
+         data-auto_prompt="true">
+    </div>
     @endproduction
     <meta itemprop="url" content="{{ url('/') }}">
     <div class="page">
@@ -393,6 +392,35 @@
             /* font-size: 18px; /* Increase font size */
         }
     </style> --}}
+
+    @production
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        function handleCredentialResponse(response) {
+            fetch('{{ route("auth.google.onetap") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({
+                    credential: response.credential
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = data.redirect_url;
+                } else {
+                    console.error('Login failed:', data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+    @endproduction
 </body>
 
 </html>

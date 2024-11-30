@@ -91,7 +91,7 @@ Route::get('/facebook/callback', 'Auth\LoginController@callback');
 Route::get('/twitter/callback', 'Auth\LoginController@callbackTwitter');
 Route::get('/google/callback', 'Auth\LoginController@callbackGoogle');
 
-Route::post('/google/one-tap', 'Auth\LoginController@handleGoogleOneTap');
+Route::post('/google/one-tap', 'Auth\LoginController@handleGoogleOneTap')->name('auth.google.onetap');
 
 Route::get('/profile/{provider_id}', 'UserController@profile');
 

@@ -121,7 +121,12 @@ class LoginController extends Controller
 
                 $user = $this->findOrCreate('google_id', $googleUser);
 
-                return $this->accessProfile($user);
+                // return $this->accessProfile($user);
+                return response()->json([
+                    'success' => true,
+                    'redirect_url' => $this->redirectTo,
+                    'message' => 'Login successful'
+                ]);
             }
 
             return response()->json([
