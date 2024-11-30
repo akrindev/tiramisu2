@@ -87,9 +87,11 @@ Route::get('/fb-login', 'Auth\LoginController@redirect');
 Route::get('/tw-login', 'Auth\LoginController@redirectTwitter');
 Route::get('/google-login', 'Auth\LoginController@redirectGoogle');
 
-Route::match(['get', 'post'], '/facebook/callback', 'Auth\LoginController@callback');
-Route::match(['get', 'post'], '/twitter/callback', 'Auth\LoginController@callbackTwitter');
-Route::match(['get', 'post'], '/google/callback', 'Auth\LoginController@callbackGoogle');
+Route::get('/facebook/callback', 'Auth\LoginController@callback');
+Route::get('/twitter/callback', 'Auth\LoginController@callbackTwitter');
+Route::get('/google/callback', 'Auth\LoginController@callbackGoogle');
+
+Route::post('/google/one-tap', 'Auth\LoginController@handleGoogleOneTap');
 
 Route::get('/profile/{provider_id}', 'UserController@profile');
 
