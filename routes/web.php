@@ -83,9 +83,10 @@ Route::view('/potensi/kalkulator', 'potensi_kalkulator');
 
 // LOGIN
 Route::get('/logindev', 'Auth\LoginController@devLogin');
-Route::get('/fb-login', 'Auth\LoginController@redirect');
-Route::get('/tw-login', 'Auth\LoginController@redirectTwitter');
-Route::get('/google-login', 'Auth\LoginController@redirectGoogle');
+
+Route::match(['get', 'post'], '/fb-login', 'Auth\LoginController@redirect');
+Route::match(['get', 'post'], '/tw-login', 'Auth\LoginController@redirectTwitter');
+Route::match(['get', 'post'], '/google-login', 'Auth\LoginController@redirectGoogle');
 
 Route::match(['get', 'post'], '/facebook/callback', 'Auth\LoginController@callback');
 Route::match(['get', 'post'], '/twitter/callback', 'Auth\LoginController@callbackTwitter');

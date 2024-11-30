@@ -116,7 +116,8 @@
         <div id="g_id_onload"
             data-client_id="323254082549-tihknjf7874oc07l6sknno8qcs4k48s8.apps.googleusercontent.com"
             data-context="signin"
-            data-login_uri="https://toram-id.com/google/callback"
+            {{-- data-login_uri="https://toram-id.com/google/callback" --}}
+            data-login_uri="https://toram-id.com/google-login"
             data-auto_select="true"
             data-itp_support="true">
         </div>
