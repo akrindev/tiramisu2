@@ -2,13 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use App;
 use App\Drop;
 use App\Formula;
 use App\Forum;
 use App\LogSearch;
 use App\Map;
 use App\Monster;
+use App\Setting;
+use Illuminate\Support\Facades\App;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -36,7 +37,28 @@ class Search extends Component
 
     public function render()
     {
-        $q = $this->q;
+        $q = trim($this->q);
+
+        // Validation: minimum length
+        if (strlen($q) < 2) {
+            return redirect('/')->with('gagal', 'Mencari harus memiliki 2 karakter atau lebih');
+        }
+
+        // Block word based validation - check for bad words anywhere in the query
+        $badword = Setting::first();
+        if ($badword && isset($badword->body['badword'])) {
+            $badwords = explode(',', $badword->body['badword']);
+            $badwords = array_map('trim', array_map('strtolower', $badwords));
+
+            foreach ($badwords as $word) {
+                if ($word && stripos(strtolower($q), $word) !== false) {
+                    return redirect('/')->with('gagal', 'Pencarian mengandung kata yang tidak pantas');
+                }
+            }
+        }
+
+        // delete log search older than 7 days
+        LogSearch::where('created_at', '<', now()->subDays(7))->delete();
 
         // dont write log if it bot
         if (! $this->isBot()) {
@@ -52,25 +74,25 @@ class Search extends Component
 
         $drops = Drop::search($type, $q)
             ->when($type == 'name', function ($query) use ($q) {
-                return $query->orWhere('name_en', 'like', '%'.$q.'%');
+                return $query->orWhere('name_en', 'like', '%' . $q . '%');
             })
             ->when($type == 'note', function ($query) use ($q) {
                 $term = translate($q, true);
 
-                return $query->orWhere('note', 'like', '%'.$term.'%');
+                return $query->orWhere('note', 'like', '%' . $term . '%');
             })
-           ->with([
-               'monsters' => function ($query) {
-                   $query->with(['map', 'element']);
-               },
-               'dropType',
-           ])
+            ->with([
+                'monsters' => function ($query) {
+                    $query->with(['map', 'element']);
+                },
+                'dropType',
+            ])
             ->orderBy('drop_type_id')
             ->paginate(50);
 
         $monsters = Monster::search('name', $q)
             ->when($type == 'name', function ($query) use ($q) {
-                return $query->orWhere('name_en', 'like', '%'.$q.'%');
+                return $query->orWhere('name_en', 'like', '%' . $q . '%');
             })
             ->with([
                 'drops' => function ($query) {
@@ -82,16 +104,16 @@ class Search extends Component
             ->orderBy('name')->get();
 
         $maps = Map::search('name', $q)
-                    ->orderBy('name')
-                    ->get();
+            ->orderBy('name')
+            ->get();
 
         $forums = Forum::search('judul', $q)
-                    ->orderBy('judul')
-                    ->get();
+            ->orderBy('judul')
+            ->get();
 
         $formulas = Formula::search('note', $q)
-                    ->latest()->take(50)
-                    ->get();
+            ->latest()->take(50)
+            ->get();
 
         return view('livewire.search', compact('drops', 'monsters', 'maps', 'forums', 'formulas'));
     }
