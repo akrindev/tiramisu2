@@ -20,7 +20,7 @@
     <meta name="MobileOptimized" content="320">
 
     <meta name="apple-mobile-web-app-title" content="toram-id">
-    <meta name="application-name" content="toram-id.com">
+    <meta name="application-name" content="toram-id.space">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
@@ -127,7 +127,7 @@
                         <a class="header-brand"
                             href="/{{ request()->segment(1) === 'en' || app()->isLocale('en') ? 'en' : '' }}">
                             <img src="/img/logo.png" class="header-brand-img lazyload animated rotateIn"
-                                alt="toram-id.com logo"> Toram Online
+                                alt="toram-id.space logo"> Toram Online
                         </a>
                         <div class="d-flex order-lg-2 ml-auto">
                             @guest
@@ -322,7 +322,7 @@
 
             <div class="alert alert-info">
                 <marquee class="">
-                    <strong>NEW!!</strong> perubahan domain toram-id.info menjadi toram-id.com.
+                    <strong>NEW!!</strong> perubahan domain toram-id.info (sebelumnya toram-id.com) menjadi toram-id.space.
                 </marquee>
             </div>
 
