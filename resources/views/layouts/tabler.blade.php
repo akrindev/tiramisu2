@@ -322,7 +322,7 @@
 
             <div class="alert alert-info">
                 <marquee class="">
-                    <strong>NEW!!</strong> perubahan domain toram-id.info menjadi toram-id.space.
+                    <strong>NEW!!</strong> perubahan domain toram-id.info (sebelumnya toram-id.com) menjadi toram-id.space.
                 </marquee>
             </div>
 
