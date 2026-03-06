@@ -1,7 +1,7 @@
 @extends('layouts.tabler')
 
 @section('title','Kebijakan Privasi')
-@section('description','Kebijakan layanan penggunaan pada website toram-id.com')
+@section('description','Kebijakan layanan penggunaan pada website toram-id.space')
 @section('image',to_img())
 
 
