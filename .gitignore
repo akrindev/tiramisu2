@@ -19,3 +19,5 @@ yarn-error.log
 _ide_helper_models.php
 _ide_helper.php
 .htaccess
+/docs
+/crawl

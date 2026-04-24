@@ -170,7 +170,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endauth
+                            @endguest
                         </div>
                         <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse"
                             data-target="#headerMenuCollapse">
