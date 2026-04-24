@@ -15,7 +15,8 @@ return Application::configure(basePath: dirname(__DIR__))
             Route::middleware('web')
                 ->group(base_path('routes/audit.php'));
 
-            Route::middleware('web')
+            Route::middleware(['web', 'admin'])
+                ->prefix('admin')
                 ->namespace('App\Http\Controllers')
                 ->group(base_path('routes/admin.php'));
         },
