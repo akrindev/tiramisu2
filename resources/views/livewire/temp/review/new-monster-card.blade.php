@@ -1,6 +1,6 @@
 <div class="card mb-3">
     <div class="card-body p-3">
-        <form enctype="multipart/form-data" wire:submit.prevent="accept" method="post">
+        <form enctype="multipart/form-data" wire:submit="accept" method="post">
 
             <div class="form-group">
                 <label class="form-label d-block">Di tambahkan oleh</label>
@@ -9,29 +9,29 @@
 
             <div class="form-group">
               <label class="form-label">Name (indo) <i class="text-danger">*</i></label>
-              <input type="text" class="form-control" name="name" placeholder="Nama monster dalam bahasa indonesia" wire:model.defer='name' required>
+              <input type="text" class="form-control" name="name" placeholder="Nama monster dalam bahasa indonesia" wire:model='name' required>
             </div>
 
             <div class="form-group">
               <label class="form-label">Name (english) <i class="text-muted">(optional)</i></label>
-              <input type="text" class="form-control" name="name_en"  wire:model.defer='name_en' placeholder="Nama monster dalam bahasa inggris">
+              <input type="text" class="form-control" name="name_en"  wire:model='name_en' placeholder="Nama monster dalam bahasa inggris">
             </div>
 
             <div class="form-group">
                 <label class="form-label">Type <i class="text-danger">*</i></label>
                 <div class="selectgroup selectgroup-pills">
                     <label class="selectgroup-item">
-                        <input type="radio" name="type" class="selectgroup-input" value="1"  wire:model.defer='type'>
+                        <input type="radio" name="type" class="selectgroup-input" value="1"  wire:model='type'>
                         <span class="selectgroup-button">Normal monster</span>
                     </label>
 
                     <label class="selectgroup-item">
-                        <input type="radio" name="type"  wire:model.defer='type' class="selectgroup-input" value="2">
+                        <input type="radio" name="type"  wire:model='type' class="selectgroup-input" value="2">
                         <span class="selectgroup-button">Mini Boss</span>
                     </label>
 
                     <label class="selectgroup-item">
-                        <input type="radio" name="type" wire:model.defer='type' class="selectgroup-input" value="3">
+                        <input type="radio" name="type" wire:model='type' class="selectgroup-input" value="3">
                         <span class="selectgroup-button">Boss</span>
                     </label>
                 </div>
@@ -52,7 +52,7 @@
 
                 <div class="form-group">
                     <label class="form-label">level <i class="text-danger">*</i></label>
-                    <input type="number" class="form-control" name="level" placeholder="level" wire:model.defer='level' required>
+                    <input type="number" class="form-control" name="level" placeholder="level" wire:model='level' required>
                 </div>
 
               </div>
@@ -61,7 +61,7 @@
 
                 <div class="form-group">
                     <label class="form-label">HP</label>
-                    <input type="number" class="form-control" name="hp" placeholder="hp" wire:model.defer='hp'>
+                    <input type="number" class="form-control" name="hp" placeholder="hp" wire:model='hp'>
                 </div>
 
               </div>
@@ -71,7 +71,7 @@
 
                 <div class="form-group">
                     <label class="form-label">XP</label>
-                    <input type="number" class="form-control" name="xp" placeholder="xp" wire:model.defer='xp'>
+                    <input type="number" class="form-control" name="xp" placeholder="xp" wire:model='xp'>
                 </div>
 
               </div>

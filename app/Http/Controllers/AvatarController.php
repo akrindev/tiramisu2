@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Avatar;
 use App\AvatarList;
-use Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class AvatarController extends Controller
 {
@@ -57,10 +58,11 @@ class AvatarController extends Controller
 
         $location = '/img/avatar/'.str_slug(strtolower(request('title'))).'-'.rand(00000, 99999).'.png';
 
-        $make = Image::make($file);
+        $manager = new ImageManager(new Driver());
+        $image = $manager->read($file);
 
-        $make->text('toram-id.space', 15, 25, function ($font) {
-            $font->file(public_path('/assets/fonts/roboto.ttf'));
+        $image->text('toram-id.space', 15, 25, function ($font) {
+            $font->filename(public_path('/assets/fonts/roboto.ttf'));
             $font->size(20);
             $font->color('#ffffff');
             $font->align('left');
@@ -69,7 +71,7 @@ class AvatarController extends Controller
 
         $lists = AvatarList::findOrFail(request()->lists);
 
-        $make->save(public_path($location));
+        $image->save(public_path($location));
 
         $avatar = Avatar::create([
             'title' => request('title'),
@@ -98,17 +100,18 @@ class AvatarController extends Controller
 
         $location = '/img/avatar/'.str_slug(strtolower(request('title'))).'-'.rand(00000, 99999).'.png';
 
-        $make = Image::make($file);
+        $manager = new ImageManager(new Driver());
+        $image = $manager->read($file);
 
-        $make->text('toram-id.space', 20, 50, function ($font) {
-            $font->file(public_path('/assets/fonts/roboto.ttf'));
+        $image->text('toram-id.space', 20, 50, function ($font) {
+            $font->filename(public_path('/assets/fonts/roboto.ttf'));
             $font->size(34);
             $font->color('#ffffff');
             $font->align('left');
             $font->valign('bottom');
         });
 
-        $make->save(public_path($location));
+        $image->save(public_path($location));
 
         $avatar = AvatarList::create([
             'title' => request('title'),
@@ -142,17 +145,18 @@ class AvatarController extends Controller
 
             $location = '/img/avatar/'.str_slug(strtolower(request('title'))).'-'.rand(00000, 99999).'.png';
 
-            $make = Image::make($file);
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($file);
 
-            $make->text('toram-id.space', 15, 25, function ($font) {
-                $font->file(public_path('/assets/fonts/roboto.ttf'));
+            $image->text('toram-id.space', 15, 25, function ($font) {
+                $font->filename(public_path('/assets/fonts/roboto.ttf'));
                 $font->size(20);
                 $font->color('#ffffff');
                 $font->align('left');
                 $font->valign('bottom');
             });
 
-            $make->save(public_path($location));
+            $image->save(public_path($location));
         }
 
         $lists = AvatarList::findOrFail(request()->lists);
@@ -192,17 +196,18 @@ class AvatarController extends Controller
 
             $location = '/img/avatar/'.str_slug(strtolower(request('title'))).'-'.rand(00000, 99999).'.png';
 
-            $make = Image::make($file);
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($file);
 
-            $make->text('toram-id.space', 20, 50, function ($font) {
-                $font->file(public_path('/assets/fonts/roboto.ttf'));
+            $image->text('toram-id.space', 20, 50, function ($font) {
+                $font->filename(public_path('/assets/fonts/roboto.ttf'));
                 $font->size(34);
                 $font->color('#ffffff');
                 $font->align('left');
                 $font->valign('bottom');
             });
 
-            $make->save(public_path($location));
+            $image->save(public_path($location));
             $avatar->image = $location;
             $avatar->save();
         }

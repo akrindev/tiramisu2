@@ -6,7 +6,8 @@ use App\Contribution;
 use App\ContributionDrop as CoDrop;
 use App\Drop;
 use App\DropDone;
-use Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 /**
  * Contribution
@@ -45,17 +46,18 @@ class ContributionController extends Controller
 
             $nama = 'imgs/mobs/'.str_slug(strtolower(request('name'))).'-'.rand(00000, 99999).'.png';
 
-            $make = Image::make($file);
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($file);
 
-            $make->text('toram-id.space', 15, 30, function ($font) {
-                $font->file(3);
+            $image->text('toram-id.space', 15, 30, function ($font) {
+                $font->filename(3);
                 $font->size(34);
                 $font->color('#ffffff');
                 $font->align('left');
                 $font->valign('bottom');
             });
 
-            $make->save(public_path($nama));
+            $image->save(public_path($nama));
 
             $drop->picture = $nama;
             $drop->save();

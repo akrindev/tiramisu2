@@ -20,7 +20,7 @@
             @endif
                 <div class="col-md-5">
                     <div class="form-group">
-                        <select name="type" wire:model="type" id="" class="form-control form-select">
+                        <select name="type" wire:model.live="type" id="" class="form-control form-select">
                             <option value=0>All</option>
                             @foreach (App\DropType::get() as $d)
                                 <option value={{ $d->id }}> {{ $d->name }} </option>
@@ -31,7 +31,7 @@
 
                <div class="col-md-7">
                    <div class="form-group">
-                       <input type="search" wire:model="search" min=3 class="form-control" placeholder="search here . . ."/>
+                       <input type="search" wire:model.live="search" min=3 class="form-control" placeholder="search here . . ."/>
                    </div>
                </div>
 

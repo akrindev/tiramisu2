@@ -13,7 +13,7 @@
 
 			<div class="form-group">
 				<label class="form-label">Max Level</label>
-				<input type="number" class="form-control col-3" placeholder="max level" wire:model="maxlv" />
+				<input type="number" class="form-control col-3" placeholder="max level" wire:model.live="maxlv" />
 			</div>
 
 			<div class="form-group">
@@ -23,7 +23,7 @@
                 <div class="selectgroup selectgroup-pills {{  $errors->has('tags') ? 'is-invalid': '' }}">
                     @foreach([10,30,50,70,90,110,130,150,170] as $lv)
                             <label class="selectgroup-item">
-                                <input type="checkbox" wire:model="rLv.{{ $lv }}" name="rLv.{{ $lv }}" class="selectgroup-input">
+                                <input type="checkbox" wire:model.live="rLv.{{ $lv }}" name="rLv.{{ $lv }}" class="selectgroup-input">
                                 <span class="selectgroup-button">{{ $lv }}</span>
                             </label>
                     @endforeach
@@ -36,7 +36,7 @@
 				<div class="selectgroup selectgroup-pills {{  $errors->has('tags') ? 'is-invalid': '' }}">
 				@foreach([1,2,3,4,5] as $box)
                           <label class="selectgroup-item">
-                            <input type="checkbox"  wire:model="chest.{{ $box }}" name="chest.{{ $box }}" class="selectgroup-input">
+                            <input type="checkbox"  wire:model.live="chest.{{ $box }}" name="chest.{{ $box }}" class="selectgroup-input">
                            <span class="selectgroup-button"> <img src="/img/drop/{{ $box }}.jpg" class="avatar avatar-sm" style="width:21px; height:21px; border-radius: 50%"/>
 							  </span>
                           </label>

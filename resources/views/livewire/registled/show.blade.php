@@ -1,6 +1,6 @@
 <div>
 	<div class="form-group">
-		<input type="text" class="form-control" wire:model.debounce.500ms="query" placeholder="search name" />
+		<input type="text" class="form-control" wire:model.live.debounce.500ms="query" placeholder="search name" />
 		<div wire:loading class="text-success"> searching . . . </div>
 	</div>
 	@forelse($registleds as $registled)

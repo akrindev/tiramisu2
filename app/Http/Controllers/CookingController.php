@@ -6,7 +6,8 @@ use App\Cooking;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class CookingController extends Controller
 {
@@ -113,9 +114,10 @@ class CookingController extends Controller
 
         $nama = '/img/cooking/'.str_slug(strtolower(request('nama'))).'-'.rand(00000,99999).'.png';
 
-        $make = Image::make($file);
-        $make->resize(100, 100);
-        $make->save(public_path($nama));
+        $manager = new ImageManager(new Driver());
+        $image = $manager->read($file);
+        $image->resize(100, 100);
+        $image->save(public_path($nama));
 
         $picture = $nama;
 
