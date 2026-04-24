@@ -6,16 +6,14 @@ use App\Element;
 use App\Map;
 use App\TempMonster;
 use Livewire\Component;
+use Livewire\Attributes\On;
 use Livewire\WithPagination;
 
 class NewMonster extends Component
 {
     use WithPagination;
 
-    protected $listeners = [
-        'done',
-    ];
-
+    #[On('done')]
     public function done($value)
     {
         $message = $value == 'added' ? 'Data monster di tambahkan' : 'Data monster di tolak';

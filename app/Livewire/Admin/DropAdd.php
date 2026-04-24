@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use App\Drop;
 use App\DropType;
 use App\Helpers\SaveAsImage as Image;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -28,8 +29,6 @@ class DropAdd extends Component
 
     public $released;
 
-    protected $listeners = ['changeTipe'];
-
     public function mount()
     {
         $this->tipe = 1;
@@ -40,6 +39,7 @@ class DropAdd extends Component
         return view('livewire.admin.drop-add');
     }
 
+    #[On('changeTipe')]
     public function changeTipe($value)
     {
         $this->tipe = $value;

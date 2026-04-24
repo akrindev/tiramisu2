@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Drop;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -18,8 +19,7 @@ class DropSee extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    protected $listeners = ['editItem', 'onCancel', 'saved', 'deleted'];
-
+    #[On('editItem')]
     public function editItem($id)
     {
         $data = Drop::findOrFail($id)->toArray();
@@ -27,9 +27,22 @@ class DropSee extends Component
         $this->dispatch('getData', $data);
     }
 
+    #[On('saved')]
     public function saved($value = true)
     {
         session()->flash('saved', 'Item drop berhasil di update!');
+    }
+
+    #[On('onCancel')]
+    public function onCancel()
+    {
+        //
+    }
+
+    #[On('deleted')]
+    public function deleted()
+    {
+        //
     }
 
     public function render()

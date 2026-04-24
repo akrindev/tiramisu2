@@ -3,14 +3,11 @@
 namespace App\Livewire\Temp;
 
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class ReviewComponent extends Component
 {
     public $component;
-
-    protected $listeners = [
-        'component',
-    ];
 
     public function mount()
     {
@@ -22,6 +19,7 @@ class ReviewComponent extends Component
         return view('livewire.temp.review-component');
     }
 
+    #[On('component')]
     public function component($name = 'new_item')
     {
         $this->component = $name;

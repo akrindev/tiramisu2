@@ -4,16 +4,14 @@ namespace App\Livewire\Temp\Review;
 
 use App\TempDrop;
 use Livewire\Component;
+use Livewire\Attributes\On;
 use Livewire\WithPagination;
 
 class UpdatedItem extends Component
 {
     use WithPagination;
 
-    protected $listeners = [
-        'done',
-    ];
-
+    #[On('done')]
     public function done($value)
     {
         $message = $value == 'updated' ? 'item telah di edit' : 'item di tolak';

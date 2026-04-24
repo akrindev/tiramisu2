@@ -4,16 +4,14 @@ namespace App\Livewire\Temp\Review;
 
 use App\TempDrop;
 use Livewire\Component;
+use Livewire\Attributes\On;
 use Livewire\WithPagination;
 
 class NewItem extends Component
 {
     use WithPagination;
 
-    protected $listeners = [
-        'done',
-    ];
-
+    #[On('done')]
     public function done($value)
     {
         $message = $value == 'added' ? 'item telah di tambahkan' : 'item di tolak';

@@ -6,7 +6,8 @@ use App\Notifications\SkillReplied;
 use App\Skill;
 use App\SkillComment;
 use App\SkillList;
-use Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class SkillController extends Controller
 {
@@ -187,8 +188,9 @@ class SkillController extends Controller
 
             $path = '/img/skill/thumb/'.str_slug(request()->name).'.png';
 
-            $img = Image::make($icon);
-            $img->save(public_path($path));
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($icon);
+            $image->save(public_path($path));
 
             $skill->picture = $path;
         }
@@ -232,8 +234,9 @@ class SkillController extends Controller
 
             $path = '/img/skill/thumb/'.str_slug(request()->name).'.png';
 
-            $img = Image::make($icon);
-            $img->save(public_path($path));
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($icon);
+            $image->save(public_path($path));
 
             $skill = Skill::create([
                 'name' => request()->name,
@@ -265,8 +268,9 @@ class SkillController extends Controller
 
             $path = '/img/skill/thumb/'.str_slug(request()->name).rand(00, 99).'.png';
 
-            $img = Image::make($icon);
-            $img->save(public_path($path));
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($icon);
+            $image->save(public_path($path));
 
             $skill->picture = $path;
         }
@@ -298,8 +302,9 @@ class SkillController extends Controller
 
             $path = '/img/skill/thumb/'.str_slug(request()->name).rand(00, 99).'.png';
 
-            $img = Image::make($icon);
-            $img->save(public_path($path));
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($icon);
+            $image->save(public_path($path));
 
             $skill = SkillList::create([
                 'name' => request()->name,

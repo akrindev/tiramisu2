@@ -10,6 +10,7 @@ use App\Map;
 use App\Monster;
 use App\Setting;
 use Illuminate\Support\Facades\App;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -24,10 +25,6 @@ class Search extends Component
     public $locale;
 
     protected $queryString = ['q', 'type'];
-
-    protected $listeners = [
-        'getResult',
-    ];
 
     public function mount($q)
     {
@@ -118,6 +115,7 @@ class Search extends Component
         return view('livewire.search', compact('drops', 'monsters', 'maps', 'forums', 'formulas'));
     }
 
+    #[On('getResult')]
     public function getResult($q)
     {
         $this->q = $q[0];

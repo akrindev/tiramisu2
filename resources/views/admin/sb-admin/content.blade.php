@@ -270,10 +270,8 @@
 @endsection
 
 @section('head')
-    @livewireStyles
 @endsection
 @section('footer')
-  @livewireScripts
 <link rel="stylesheet" href="//cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
 
 <link rel="stylesheet" href="//datatables.net/media/css/site.css">

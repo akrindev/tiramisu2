@@ -6,6 +6,7 @@ use App\Element;
 use App\Map;
 use App\TempMonster;
 use Livewire\Component;
+use Livewire\Attributes\On;
 use Livewire\WithPagination;
 
 class UpdatedMonster extends Component
@@ -14,10 +15,7 @@ class UpdatedMonster extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    protected $listeners = [
-        'done',
-    ];
-
+    #[On('done')]
     public function done($value)
     {
         $message = $value == 'added' ? 'Data monster di tambahkan' : 'Data monster di tolak';

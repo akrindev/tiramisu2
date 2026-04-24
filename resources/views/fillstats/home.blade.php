@@ -77,7 +77,6 @@
 @endsection
 
 @section('head')
-    @livewireStyles
     <script>
         $('#filler').ready(function() {
             $("#filload").remove();
@@ -104,5 +103,4 @@
 @endsection
 
 @section('footer')
-    @livewireScripts
 @endsection

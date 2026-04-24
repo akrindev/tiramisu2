@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use App\Drop;
 use App\Helpers\SaveAsImage as Image;
 use Livewire\Component;
+use Livewire\Attributes\On;
 use Livewire\WithFileUploads;
 
 class DropEdit extends Component
@@ -31,12 +32,7 @@ class DropEdit extends Component
 
     public $newFullimage;
 
-    protected $listeners = [
-        'getData',
-        'delete',
-        'changeTipe' => 'updatedTipe',
-    ];
-
+    #[On('getData')]
     public function getData($data)
     {
         $this->kunci = $data['id'];
@@ -51,17 +47,18 @@ class DropEdit extends Component
 
     public function cancel()
     {
-        $this->emitUp('onCancel', 1);
+        $this->dispatch('onCancel');
         $this->resetForm();
     }
 
+    #[On('delete')]
     public function delete($value)
     {
         $item = Drop::findOrFail($this->kunci);
 
         $item->delete();
 
-        $this->emitUp('deleted', 1);
+        $this->dispatch('deleted');
     }
 
     public function deletePicture()
@@ -114,8 +111,7 @@ class DropEdit extends Component
 
         $item->save();
 
-        $this->emitUp('saved', 1);
-        $this->dispatch('saved', 1);
+        $this->dispatch('saved');
         $this->resetForm();
     }
 
@@ -124,6 +120,7 @@ class DropEdit extends Component
         return view('livewire.admin.drop-edit');
     }
 
+    #[On('changeTipe')]
     public function updatedTipe($value)
     {
         $this->tipe = $value;

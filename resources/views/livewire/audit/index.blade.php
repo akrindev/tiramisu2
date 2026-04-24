@@ -95,10 +95,8 @@
 </div>
 
 @section('head')
-@livewireStyles
 <script src="//unpkg.com/alpinejs" defer></script>
 @endsection
 
 @section('footer')
-    @livewireScripts
 @endsection
