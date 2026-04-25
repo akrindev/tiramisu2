@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title', 'Fill Stat Simulator')
+@section('title', 'Fill Stat Simulator Cap Level 320')
 @section('description', 'Toram Online Fill Stats Skill level 4 Simulator')
 @section('image', to_img())
 
@@ -292,7 +292,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="/assets/js/saveFormula.js"></script>
-    <script src="/assets/js/newfill.js?v241"></script>
+    <script src="/assets/js/newfill.js?v320"></script>
     <script src="/assets/js/math.js"></script>
 
     @if (session()->has('data'))
