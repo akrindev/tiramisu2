@@ -23,7 +23,7 @@
                     <div class="card">
                         <div class="card-body p-3" style="font-size:14px;font-weight:400">
                             <a href="/temp/drop/edit/{{ $item->id }}" rel="nofollow" target="_blank"
-                                class="float-right small text-muted"><span data-nosnippet> [<i class="">sarankan
+                                class="small text-muted float-right"><span data-nosnippet> [<i class="">sarankan
                                         edit</i>]</span></a>
 
                             <dl>
@@ -74,7 +74,7 @@
                                     @if (!is_null($item->picture) && is_null($item->fullimage))
                                         <div class="col-12">
                                             <img src="/img/ball-triangle.svg" data-src="{{ $item->picture }}"
-                                                class="rounded my-2 d-block lazyload" width="85%" height="85%"
+                                                class="d-block lazyload my-2 rounded" width="85%" height="85%"
                                                 alt="{{ $item->name }}">
                                         </div>
                                     @endif
@@ -123,7 +123,7 @@
                                                 <div class="my-5">
                                                     @if (!is_null(optional($item->note)['monster']))
                                                         <dl> <!-- dl start -->
-                                                            {{ toHtml(translate(optional($item->note)['monster'])) }}
+                                                            {{ toHtml(translate(optional($item->note)['monster']), true) }}
                                                         </dl>
                                                     @else
                                                         <small class="text-muted">-- an item --</small>
@@ -136,7 +136,7 @@
                                                 <div class="my-5">
                                                     @if (!is_null(optional($item->note)['npc']))
                                                         <dl> <!-- dl start -->
-                                                            {{ toHtml(translate(optional($item->note)['npc'])) }}
+                                                            {{ toHtml(translate(optional($item->note)['npc']), true) }}
                                                         </dl>
                                                     @else
                                                         <small class="text-muted">-- an item --</small>
@@ -197,7 +197,7 @@
                                                     <dd>
                                                         @if ($mons->picture != null)
                                                             <img src="{{ $mons->picture }}" alt="{{ $mons->name }}"
-                                                                class="rounded my-2 d-block" width="150px" height="150px">
+                                                                class="d-block my-2 rounded" width="150px" height="150px">
                                                         @endif
                                                         <b>{{ __('Unsur') }}:</b> <span>
                                                             {{ __(ucfirst($mons->element->name)) }}</span> <br>

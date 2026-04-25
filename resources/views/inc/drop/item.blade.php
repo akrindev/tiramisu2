@@ -15,7 +15,7 @@
             @endif
 
             <a rel="nofollow" target="_blank" href="/temp/drop/edit/{{ $item->id }}"
-                class="float-right small text-muted"><span data-nosnippet>[<i class="">sarankan
+                class="small text-muted float-right"><span data-nosnippet>[<i class="">sarankan
                         pengeditan</i>]</span></a>
 
             <div class="row">
@@ -26,13 +26,13 @@
                         <div id="carousel-controls" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img class="my-2 d-block lazyload" src="/img/ball-triangle.svg"
+                                    <img class="d-block lazyload my-2" src="/img/ball-triangle.svg"
                                         data-src="{{ $item->picture }}"
                                         alt="{{ request()->segment(1) != 'en' ? $item->name : $item->name_en }}"
                                         data-holder-rendered="true" width="200px" height="200px">
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="my-2 d-block lazyload" src="/img/ball-triangle.svg"
+                                    <img class="d-block lazyload my-2" src="/img/ball-triangle.svg"
                                         data-src="{{ $item->fullimage }}"
                                         alt="{{ request()->segment(1) != 'en' ? $item->name : $item->name_en }}"
                                         data-holder-rendered="true" width="200px" height="200px">
@@ -54,7 +54,7 @@
                     <div class="col-md-4 my-2">
                         <img src="/img/ball-triangle.svg" data-src="{{ $item->picture }}"
                             alt="{{ request()->segment(1) != 'en' ? $item->name : $item->name_en }}"
-                            class="rounded my-2 d-block lazyload" width="200px" height="200px">
+                            class="d-block lazyload my-2 rounded" width="200px" height="200px">
                     </div>
                 @endif
 
@@ -97,7 +97,7 @@
                                 <div class="my-5">
                                     @if (!is_null($item->note['monster']))
                                         <dl> <!-- dl start -->
-                                            {{ toHtml(translate($item->note['monster'])) }}
+                                            {{ toHtml(translate($item->note['monster']), true) }}
                                         </dl>
                                     @else
                                         <small class="text-muted">-- tidak ada --</small>
@@ -110,7 +110,7 @@
                                 <div class="my-5">
                                     @if (!is_null($item->note['npc']))
                                         <dl> <!-- dl start -->
-                                            {{ toHtml(translate($item->note['npc'])) }}
+                                            {{ toHtml(translate($item->note['npc']), true) }}
                                         </dl>
                                     @else
                                         <small class="text-muted">-- tidak ada --</small>
