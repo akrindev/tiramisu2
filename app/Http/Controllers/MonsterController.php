@@ -6,7 +6,8 @@ use App\Drop;
 use App\Map;
 use App\Monster;
 use App\Resep;
-use Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class MonsterController extends Controller
 {
@@ -230,17 +231,18 @@ class MonsterController extends Controller
 
             $nama = 'imgs/mobs/'.str_slug(strtolower(request('nama'))).'-'.rand(00000, 99999).'.png';
 
-            $make = Image::make($file);
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($file);
 
-            $make->text('toram-id.space', 15, 30, function ($font) {
-                $font->file(3);
+            $image->text('toram-id.space', 15, 30, function ($font) {
+                $font->filename(3);
                 $font->size(34);
                 $font->color('#ffffff');
                 $font->align('left');
                 $font->valign('bottom');
             });
 
-            $make->save(public_path($nama));
+            $image->save(public_path($nama));
 
             $mons->picture = $nama;
         }
@@ -318,17 +320,18 @@ class MonsterController extends Controller
 
             $nama = 'imgs/mobs/'.str_slug(strtolower(request('nama'))).'-'.rand(00000, 99999).'.png';
 
-            $make = Image::make($file);
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($file);
 
-            $make->text('toram-id.space', 15, 30, function ($font) {
-                $font->file(3);
+            $image->text('toram-id.space', 15, 30, function ($font) {
+                $font->filename(3);
                 $font->size(34);
                 $font->color('#ffffff');
                 $font->align('left');
                 $font->valign('bottom');
             });
 
-            $make->save(public_path($nama));
+            $image->save(public_path($nama));
 
             $mons->picture = $nama;
             $mons->save();

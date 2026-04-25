@@ -6,7 +6,6 @@
 @endsection
 
 @section('head')
-	@livewireStyles
 
 
   <style>
@@ -184,5 +183,4 @@ select.form-control:not([size]):not([multiple]) {
 @endsection
 
 @section('footer')
-	@livewireScripts
 @endsection

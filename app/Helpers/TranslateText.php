@@ -2,8 +2,8 @@
 
 namespace App\Helpers;
 
-use App;
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 
 class TranslateText
@@ -165,12 +165,12 @@ class TranslateText
         foreach ($lines as $line) {
             if (Str::contains($line, '-')) {
                 $line = trim($line);
-                $newLine[] = "<span class='text-danger'>${line}</span>";
+                $newLine[] = "<span class='text-danger'>{$line}</span>";
             } else {
                 $newLine[] = trim($line);
             }
         }
 
-        return implode(PHP_EOL, $newLine);
+        return implode('<br>' . PHP_EOL, $newLine);
     }
 }

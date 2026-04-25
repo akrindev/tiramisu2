@@ -11,17 +11,17 @@
         <div class="card-alert alert alert-info">Jika telah selesai menambahkan drop, tambahkan mobs beserta drop <a href="/mons/store">disini</a> </div>
         <div class="card-body" style="font-size:13px;font-weight:400">
 
-          <form wire:submit.prevent="save" enctype="multipart/form-data" method="post" accept-charset="utf8" id="tambah-drop">
+          <form wire:submit="save" enctype="multipart/form-data" method="post" accept-charset="utf8" id="tambah-drop">
 
           <div class="form-group">
             <label class="form-label">Nama</label>
-            <input type="text" wire:model.defer="name" name="name" class="form-control" required>
+            <input type="text" wire:model="name" name="name" class="form-control" required>
           </div>
 
 
           <div class="form-group">
             <label class="form-label">Name English *optional</label>
-            <input type="text" wire:model.defer="name_en" name="name_en" class="form-control">
+            <input type="text" wire:model="name_en" name="name_en" class="form-control">
           </div>
 
 
@@ -47,31 +47,31 @@
    --}}
             <div class="form-group">
               <label class="form-label">Deskripsi item (MONSTER) <small class="text-muted">boleh kosong</small></label>
-              <textarea wire:model.defer="monster" name="noteMonster" rows="5" class="form-control" placeholder="Status Monster . . ."></textarea>
+              <textarea wire:model="monster" name="noteMonster" rows="5" class="form-control" placeholder="Status Monster . . ."></textarea>
             </div>
 
             <div class="form-group">
               <label class="form-label">Deskripsi Status item (NPC) <small class="text-muted">boleh kosong</small></label>
-              <textarea wire:model.defer="npc" name="noteNpc" rows="5" class="form-control" placeholder="Status Npc . . ."></textarea>
+              <textarea wire:model="npc" name="noteNpc" rows="5" class="form-control" placeholder="Status Npc . . ."></textarea>
             </div>
 
 
             <div class="form-group">
               <label class="form-label">Screenshot</label>
               <div id="preview" wire:ignore></div>
-              <input type="file" wire:model="picture" name="picture" class="form-control" accept="image/*" id="picture">
+              <input type="file" wire:model.live="picture" name="picture" class="form-control" accept="image/*" id="picture">
             </div>
 
             <div class="form-group">
               <label class="form-label">Screenshot full image for armor</label>
               <div id="preview2" wire:ignore></div>
-              <input type="file" wire:model="fullimage" name="fullimage" class="form-control" accept="image/*" id="fullimage">
+              <input type="file" wire:model.live="fullimage" name="fullimage" class="form-control" accept="image/*" id="fullimage">
             </div>
 
 
           <div class="form-group">
               <label class="form-label">Released Date</label>
-              <input type="date" wire:model.defer="released" class="form-control" id="">
+              <input type="date" wire:model="released" class="form-control" id="">
           </div>
 
 

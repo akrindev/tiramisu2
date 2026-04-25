@@ -299,11 +299,9 @@
 @endsection
 
 @section('head')
-    @livewireStyles
 @endsection
 
 @section('footer')
-@livewireScripts
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>

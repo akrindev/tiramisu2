@@ -1,7 +1,7 @@
 <div class="card mb-3">
     <div class="card-body p-3">
 
-        <form wire:submit.prevent='accept' enctype="multipart/form-data" method="post">
+        <form wire:submit='accept' enctype="multipart/form-data" method="post">
 
         <div class="form-group">
             <label class="form-label d-block">Di tambahkan oleh</label>
@@ -9,14 +9,14 @@
         </div>
         <div class="form-group">
             <label class="form-label">Nama indo</label>
-            <input type="text" wire:model.defer="name" class="form-control" required>
+            <input type="text" wire:model="name" class="form-control" required>
             <label class="form-label">before</label>
             <input type="text" class="form-control" value="{{ $item->drop->name }}" disabled>
         </div>
 
         <div class="form-group">
             <label class="form-label">Nama english</label>
-            <input type="text" wire:model.defer="name_en" class="form-control" required>
+            <input type="text" wire:model="name_en" class="form-control" required>
             <label class="form-label">before</label>
             <input type="text" class="form-control" value="{{ $item->drop->name_en }}" disabled>
         </div>
@@ -31,14 +31,14 @@
 
         <div class="form-group">
             <label class="form-label">Tambahan / Note (Monster) <small class="text-muted">boleh kosong</small></label>
-            <textarea name="monster" wire:model.defer='monster' rows="5" class="form-control" placeholder="Status Monster . . ."></textarea>
+            <textarea name="monster" wire:model='monster' rows="5" class="form-control" placeholder="Status Monster . . ."></textarea>
             <label class="form-label">before</label>
             <textarea name="monster" rows="5" class="form-control" placeholder="Status Monster . . ." disabled>{{ optional($item->drop->note)['monster'] }}</textarea>
         </div>
 
         <div class="form-group">
             <label class="form-label">Tambahan / Note (NPC) <small class="text-muted">boleh kosong</small></label>
-            <textarea name="npc" wire:model.defer='npc' rows="5" class="form-control" placeholder="Status NPC . . ."></textarea>
+            <textarea name="npc" wire:model='npc' rows="5" class="form-control" placeholder="Status NPC . . ."></textarea>
             <label class="form-label">before</label>
             <textarea name="monster" rows="5" class="form-control" placeholder="Status npc . . ." disabled>{{ optional($item->drop->note)['npc'] }}</textarea>
         </div>
@@ -83,10 +83,10 @@
         <div class="form-group">
             <label class="form-label d-block"> tambahkan beserta gambar ? </label>
             <label for="true">
-                <input type="radio" name="withpic" wire:model="withpic" value="true" id="true" checked> yes
+                <input type="radio" name="withpic" wire:model.live="withpic" value="true" id="true" checked> yes
             </label>
             <label for="false">
-                <input type="radio" id="false" name="withpic" wire:model="withpic" value="false"> no
+                <input type="radio" id="false" name="withpic" wire:model.live="withpic" value="false"> no
             </label>
         </div>
 

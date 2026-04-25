@@ -5,7 +5,7 @@
 
     <div class="row mb-3">
         <div class="col-md-4">
-            <select name="event" id="event" class="form-control" wire:model='eventType'>
+            <select name="event" id="event" class="form-control" wire:model.live='eventType'>
                 <option value="all">All Event</option>
                 <option value="created">Created</option>
                 <option value="updated">Updated</option>
@@ -14,7 +14,7 @@
             </select>
         </div>
         <div class="col-md-4">
-            <select name="event" id="event" class="form-control" wire:model='auditType'>
+            <select name="event" id="event" class="form-control" wire:model.live='auditType'>
                 <option value="all">All Type</option>
                 @foreach ($this->auditableType as $type)
                     <option value="{{ $type->auditable_type }}">{{ $type->auditable_type }}</option>
@@ -95,10 +95,8 @@
 </div>
 
 @section('head')
-@livewireStyles
 <script src="//unpkg.com/alpinejs" defer></script>
 @endsection
 
 @section('footer')
-    @livewireScripts
 @endsection

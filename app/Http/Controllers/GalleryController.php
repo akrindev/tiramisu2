@@ -6,7 +6,8 @@ use App\Gallery;
 use App\GalleryComment;
 use App\Notifications\GalleryCommented;
 use App\User;
-use Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 /**
  * GalleryController
@@ -106,9 +107,10 @@ class GalleryController extends Controller
 
             $name = substr(md5(now()), 0, 8).'.png';
 
-            $img = Image::make($gambar);
+            $manager = new ImageManager(new Driver());
+            $img = $manager->read($gambar);
             $img->text('toram-id.space', 15, 30, function ($font) {
-                $font->file(3);
+                $font->filename(3);
                 $font->size(34);
                 $font->color('#ffffff');
                 $font->align('left');

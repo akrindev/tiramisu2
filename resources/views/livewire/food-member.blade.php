@@ -2,7 +2,7 @@
 
     <div class="col-md-4">
         <div class="form-group">
-            <select name="buff" wire:model="buff" id="" class="form-control">
+            <select name="buff" wire:model.live="buff" id="" class="form-control">
                 <option value="all">All</option>
                 @foreach (\App\Cooking::get() as $buff)
                     <option value="{{ $buff->id }}"> {{ $buff->buff }} </option>

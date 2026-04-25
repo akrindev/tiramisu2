@@ -9,7 +9,8 @@ use App\Notifications\ThreadReplied;
 use App\Tag;
 use Auth;
 use Illuminate\Http\Request;
-use Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 /**
  * ForumController
@@ -456,9 +457,10 @@ class ForumController extends Controller
 
             $name = substr(md5(now()), 0, 8).'.png';
 
-            $img = Image::make($gambar);
+            $manager = new ImageManager(new Driver());
+            $img = $manager->read($gambar);
             $img->text('toram-id.space', 15, 30, function ($font) {
-                $font->file(3);
+                $font->filename(3);
                 $font->size(34);
                 $font->color('#ffffff');
                 $font->align('left');

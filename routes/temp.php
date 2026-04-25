@@ -1,20 +1,24 @@
 <?php
 
+use App\Http\Controllers\TempDropController;
+use App\Http\Controllers\TempMonsterController;
+use Illuminate\Support\Facades\Route;
+
 // create drop / item
 Route::view('/drop/create', 'temp.drop.create');
-Route::post('/drop/store', 'TempDropController@store');
-Route::post('/drop/edit/update', 'TempDropController@update');
-Route::get('/drop/edit/{id}', 'TempDropController@edit');
+Route::post('/drop/store', [TempDropController::class, 'store']);
+Route::post('/drop/edit/update', [TempDropController::class, 'update']);
+Route::get('/drop/edit/{id}', [TempDropController::class, 'edit']);
 
 // ------------------------------ //
 
 // create monster
 Route::view('/monster/create', 'temp.monster.create');
-Route::post('/monster/store', 'TempMonsterController@store');
-Route::get('/monster/dl', 'TempMonsterController@getList');
-Route::get('/monster/fetch/{id}', 'TempMonsterController@fetchItem');
-Route::post('/monster/edit/update', 'TempMonsterController@update');
-Route::get('/monster/edit/{id}', 'TempMonsterController@edit');
+Route::post('/monster/store', [TempMonsterController::class, 'store']);
+Route::get('/monster/dl', [TempMonsterController::class, 'getList']);
+Route::get('/monster/fetch/{id}', [TempMonsterController::class, 'fetchItem']);
+Route::post('/monster/edit/update', [TempMonsterController::class, 'update']);
+Route::get('/monster/edit/{id}', [TempMonsterController::class, 'edit']);
 
 // ------------------------------ //
 Route::middleware('admin')->group(function () {

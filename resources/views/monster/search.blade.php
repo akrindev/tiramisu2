@@ -27,9 +27,7 @@
 @endsection
 
 @section('head')
-    @livewireStyles
 @endsection
 
 @section('footer')
-    @livewireScripts
 @endsection

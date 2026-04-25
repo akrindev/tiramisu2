@@ -57,6 +57,28 @@ class Drop extends Model implements Auditable
         'note' => 'json',
     ];
 
+    public function getNoteAttribute($value)
+    {
+        if ($value === null || $value === '') {
+            return null;
+        }
+
+        if (is_array($value)) {
+            return $value;
+        }
+
+        $decoded = json_decode($value, true);
+
+        if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+            return $decoded;
+        }
+
+        return [
+            'monster' => $value,
+            'npc' => null,
+        ];
+    }
+
     protected $with = [
         'dropType',
         'monsters',

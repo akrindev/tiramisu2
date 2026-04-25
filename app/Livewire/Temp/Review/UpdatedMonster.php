@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Livewire\Temp\Review;
+
+use App\Element;
+use App\Map;
+use App\TempMonster;
+use Livewire\Component;
+use Livewire\Attributes\On;
+use Livewire\WithPagination;
+
+class UpdatedMonster extends Component
+{
+    use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
+
+    #[On('done')]
+    public function done($value)
+    {
+        $message = $value == 'added' ? 'Data monster di tambahkan' : 'Data monster di tolak';
+
+        session()->flash('success', $message);
+    }
+
+    public function render()
+    {
+        $maps = Map::get();
+        $elements = Element::get();
+        $monsters = TempMonster::with(['user', 'monster', 'drops'])->latest()->whereApproved(0)
+            ->whereNotNull('monster_id')
+            ->simplePaginate();
+
+        return view('livewire.temp.review.updated-monster', [
+            'monsters' => $monsters,
+            'maps' => $maps,
+            'elements' => $elements,
+        ]);
+    }
+}

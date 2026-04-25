@@ -38,7 +38,7 @@ return [
     | Audit Resolvers
     |--------------------------------------------------------------------------
     |
-    | Define the User, IP Address, User Agent and URL resolver implementations.
+    | Define the IP Address, User Agent and URL resolver implementations.
     |
     */
     'resolvers' => [
@@ -101,10 +101,23 @@ return [
     |
     */
 
-    'empty_values' => false,
+    'empty_values' => true,
     'allowed_empty_values' => [
         'retrieved',
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Allowed Array Values
+    |--------------------------------------------------------------------------
+    |
+    | Should the array values be audited?
+    |
+    | By default, array values are not allowed. This is to prevent performance
+    | issues when storing large amounts of data. You can override this by
+    | setting allow_array_values to true.
+    */
+    'allowed_array_values' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -115,7 +128,7 @@ return [
     |
     */
 
-    'timestamps' => true,
+    'timestamps' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -154,6 +167,22 @@ return [
             'table' => 'audits',
             'connection' => null,
         ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Audit Queue Configurations
+    |--------------------------------------------------------------------------
+    |
+    | Available audit queue configurations.
+    |
+    */
+
+    'queue' => [
+        'enable' => false,
+        'connection' => 'sync',
+        'queue' => 'default',
+        'delay' => 0,
     ],
 
     /*

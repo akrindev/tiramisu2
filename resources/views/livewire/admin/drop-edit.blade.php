@@ -3,21 +3,21 @@
     <div class="card">
         <div class="card-body" style="font-size:13px;font-weight:400">
 
-        <form wire:submit.prevent="save" enctype="multipart/form-data" method="post" accept-charset="utf8" id="edit-drop">
+        <form wire:submit="save" enctype="multipart/form-data" method="post" accept-charset="utf8" id="edit-drop">
 
           <div class="form-group">
             <label class="form-label">Nama</label>
-            <input type="text" wire:model.defer='name' name="name" class="form-control" required>
+            <input type="text" wire:model='name' name="name" class="form-control" required>
           </div>
 
             <div class="form-group">
             <label class="form-label">Name English *optional</label>
-            <input type="text" wire:model.defer='name_en' name="name_en" class="form-control">
+            <input type="text" wire:model='name_en' name="name_en" class="form-control">
           </div>
 
           <div class="form-group" wire:ignore>
             <label class="form-label">Type</label>
-            <select name="type" wire:model.defer='tipe' id="select-type" class="form-control custom-select" required>
+            <select name="type" wire:model='tipe' id="select-type" class="form-control custom-select" required>
             @foreach((new App\DropType)->get() as $type)
               <option value="{{$type->id}}" data-data='{"image": "{{ $type->url }}"}'>{{$type->name}}</option>
             @endforeach
@@ -26,13 +26,13 @@
 
         <div class="form-group">
             <label class="form-label">Tambahan / Note (Monster) <small class="text-muted">boleh kosong</small></label>
-            <textarea name="monster" wire:model.defer='monster' rows="5" class="form-control" placeholder="Status Monster . . ."></textarea>
+            <textarea name="monster" wire:model='monster' rows="5" class="form-control" placeholder="Status Monster . . ."></textarea>
         </div>
 
 
             <div class="form-group">
               <label class="form-label">Tambahan / Note (NPC) <small class="text-muted">boleh kosong</small></label>
-              <textarea name="npc" wire:model.defer='npc' rows="5" class="form-control" placeholder="Status NPC . . ."></textarea>
+              <textarea name="npc" wire:model='npc' rows="5" class="form-control" placeholder="Status NPC . . ."></textarea>
             </div>
 
 
@@ -51,7 +51,7 @@
 
                 <div id="preview" wire:ignore></div>
 
-                <input type="file" wire:model='newPicture' name="picture" class="form-control" accept="image/*" id="picture">
+                <input type="file" wire:model.live='newPicture' name="picture" class="form-control" accept="image/*" id="picture">
             </div>
 
 
@@ -69,7 +69,7 @@
             @endif
 
             <div id="preview2" wire:ignore></div>
-                <input type="file" wire:model='newFullimage' name="fullimage" class="form-control" accept="image/*" id="fullimage"/>
+                <input type="file" wire:model.live='newFullimage' name="fullimage" class="form-control" accept="image/*" id="fullimage"/>
         </div>
 
           <div class="form-group">

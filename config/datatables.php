@@ -1,98 +1,135 @@
 <?php
 
+use Yajra\DataTables\ApiResourceDataTable;
+use Yajra\DataTables\CollectionDataTable;
+use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\PaginatorDataTable;
+use Yajra\DataTables\QueryDataTable;
+
 return [
-    /**
+    /*
      * DataTables search options.
      */
     'search' => [
-        /**
+        /*
          * Smart search will enclose search keyword with wildcard string "%keyword%".
          * SQL: column LIKE "%keyword%"
          */
         'smart' => true,
 
-        /**
+        /*
+         * Multi-term search will explode search keyword using spaces resulting into multiple term search.
+         */
+        'multi_term' => true,
+
+        /*
          * Case insensitive will search the keyword in lower case format.
          * SQL: LOWER(column) LIKE LOWER(keyword)
          */
         'case_insensitive' => true,
 
-        /**
+        /*
          * Wild card will add "%" in between every characters of the keyword.
          * SQL: column LIKE "%k%e%y%w%o%r%d%"
          */
         'use_wildcards' => false,
+
+        /*
+         * Perform a search which starts with the given keyword.
+         * SQL: column LIKE "keyword%"
+         */
+        'starts_with' => false,
     ],
 
-    /**
-     * DataTables fractal configurations.
-     */
-    'fractal' => [
-        /**
-         * Request key name to parse includes on fractal.
-         */
-        'includes' => 'include',
-
-        /**
-         * Default fractal serializer.
-         */
-        'serializer' => 'League\Fractal\Serializer\DataArraySerializer',
-    ],
-
-    /**
-     * DataTables script view template.
-     */
-    'script_template' => 'datatables::script',
-
-    /**
+    /*
      * DataTables internal index id response column name.
      */
-    'index_column' => 'DT_Row_Index',
+    'index_column' => 'DT_RowIndex',
 
-    /**
-     * Namespaces used by the generator.
+    /*
+     * List of available builders for DataTables.
+     * This is where you can register your custom DataTables builder.
      */
-    'namespace' => [
-        /**
-         * Base namespace/directory to create the new file.
-         * This is appended on default Laravel namespace.
-         * Usage: php artisan datatables:make User
-         * Output: App\DataTables\UserDataTable
-         * With Model: App\User (default model)
-         * Export filename: users_timestamp
-         */
-        'base' => 'DataTables',
-
-        /**
-         * Base namespace/directory where your model's are located.
-         * This is appended on default Laravel namespace.
-         * Usage: php artisan datatables:make Post --model
-         * Output: App\DataTables\PostDataTable
-         * With Model: App\Post
-         * Export filename: posts_timestamp
-         */
-        'model' => '',
+    'engines' => [
+        'eloquent' => EloquentDataTable::class,
+        'query' => QueryDataTable::class,
+        'collection' => CollectionDataTable::class,
+        'paginator' => PaginatorDataTable::class,
+        'resource' => ApiResourceDataTable::class,
     ],
 
-    /**
-     * PDF generator to be used when converting the table to pdf.
-     * Available generators: excel, snappy
-     * Snappy package: barryvdh/laravel-snappy
-     * Excel package: maatwebsite/excel
+    /*
+     * DataTables accepted builder to engine mapping.
+     * This is where you can override which engine a builder should use
+     * Note, only change this if you know what you are doing!
      */
-    'pdf_generator' => 'excel',
-
-    /**
-     * Snappy PDF options.
-     */
-    'snappy' => [
-        'options' => [
-            'no-outline' => true,
-            'margin-left' => '0',
-            'margin-right' => '0',
-            'margin-top' => '10mm',
-            'margin-bottom' => '10mm',
-        ],
-        'orientation' => 'landscape',
+    'builders' => [
+        // Illuminate\Database\Eloquent\Relations\Relation::class => 'eloquent',
+        // Illuminate\Database\Eloquent\Builder::class            => 'eloquent',
+        // Illuminate\Database\Query\Builder::class               => 'query',
+        // Illuminate\Support\Collection::class                   => 'collection',
+        // Illuminate\Pagination\LengthAwarePaginator::class      => 'paginator',
     ],
+
+    /*
+     * Nulls last sql pattern for PostgreSQL & Oracle.
+     * For MySQL, use 'CASE WHEN :column IS NULL THEN 1 ELSE 0 END, :column :direction'
+     */
+    'nulls_last_sql' => ':column :direction NULLS LAST',
+
+    /*
+     * User friendly message to be displayed on user if error occurs.
+     * Possible values:
+     * null             - The exception message will be used on error response.
+     * 'throw'          - Throws a \Yajra\DataTables\Exceptions\Exception. Use your custom error handler if needed.
+     * 'custom message' - Any friendly message to be displayed to the user. You can also use translation key.
+     */
+    'error' => env('DATATABLES_ERROR', null),
+
+    /*
+     * Default columns definition of DataTable utility functions.
+     */
+    'columns' => [
+        /*
+         * List of columns hidden/removed on json response.
+         */
+        'excess' => ['rn', 'row_num'],
+
+        /*
+         * List of columns to be escaped. If set to *, all columns are escape.
+         * Note: You can set the value to empty array to disable XSS protection.
+         */
+        'escape' => '*',
+
+        /*
+         * List of columns that are allowed to display html content.
+         * Note: Adding columns to list will make us available to XSS attacks.
+         */
+        'raw' => ['action'],
+
+        /*
+         * List of columns are forbidden from being searched/sorted.
+         */
+        'blacklist' => ['password', 'remember_token'],
+
+        /*
+         * List of columns that are only allowed for search/sort.
+         * If set to *, all columns are allowed.
+         */
+        'whitelist' => '*',
+    ],
+
+    /*
+     * JsonResponse header and options config.
+     */
+    'json' => [
+        'header' => [],
+        'options' => 0,
+    ],
+
+    /*
+     * Default condition to determine if a parameter is a callback or not.
+     * Callbacks needs to start by those terms, or they will be cast to string.
+     */
+    'callback' => ['$', '$.', 'function'],
 ];

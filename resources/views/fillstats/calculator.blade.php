@@ -1,6 +1,6 @@
 @extends('layouts.tabler')
 
-@section('title', 'Fill Stat Simulator')
+@section('title', 'Fill Stat Simulator Cap Level 320')
 @section('description', 'Toram Online Fill Stats Skill level 4 Simulator')
 @section('image', to_img())
 
@@ -20,7 +20,7 @@
                     @include('inc.cari')
                 </div>
 
-                <div class="mb-5 col-12">
+                <div class="col-12 mb-5">
                     <div class="alert alert-info">
                         Untuk melihat fill stats formula <a href="/fill_stats/formula">klik disini</a>
                     </div>
@@ -30,27 +30,27 @@
                         bottom) and level up to max level
 
                         <img src="https://lh3.googleusercontent.com/0vK72CbQLCkstI9OuN9hcxbFG5s8vHKt5hAZSwzz0oSkcF58BaFNS4PI9m2C3uxsjXHg-vz_D5fbbxYgK5T3aAvRsZPG0qJFKOnt47pUiyHfVaZ6fhSMlFmRr7KUuUHSKFFXb7AFOQ"
-                            class="my-2 d-block" />
+                            class="d-block my-2" />
                         and <b>Max</b> your <b>TECH</b> stats to 255 point.
 
                         <img src="https://lh3.googleusercontent.com/LLhAS04wxga6HuLB6Q5pYZvgYdjURvQMLBYvgSYhOWKa5Z6cPiSZ5cDU6PWlmH1Gg68F-e91a0-JN46wruAPAoHPiiKKqo9IRuJsS5BzlBGCyeRJ5Z8c89H8zGbmwUZkuKYP2eW9AA=w1920-h1080"
-                            class="my-2 d-block">
+                            class="d-block my-2">
                     </div>
                 </div>
             </div>
 
             <div class="row equal justify-content-center">
-                <div class="mb-5 col-md-5 {{ session()->has('data') ? '' : '' }}">
+                <div class="col-md-5 {{ session()->has('data') ? '' : '' }} mb-5">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title"> Resep status </h3>
                         </div>
                         <div class="card-alert alert alert-info">
                             <b>Updated</b> Skill tree level 4 <br>
-                            <small>updated: <i> 21 Feb 2024</i> Lv cap 280 </small>
+                            <small>updated: <i> 25 Apr 2026</i> Lv cap 320 </small>
                         </div>
 
-                        <div class="p-3 card-body" style="font-size:14px;font-weight:400">
+                        <div class="card-body p-3" style="font-size:14px;font-weight:400">
                             <div class="form-group">
                                 <label class="form-label">Type</label>
                                 <div class="selectgroup w-100">
@@ -138,10 +138,10 @@
                             </div>
 
                             <div class="form-group">
-                                <button class="m-1 btn btn-outline-primary btn-pill"
+                                <button class="btn btn-outline-primary btn-pill m-1"
                                     onclick="App.spawn();setTimeout(() => { document.getElementById('workspace').scrollIntoView() }, 400)">Start!</button>
 
-                                <a href="/fill_stats/formula" class="m-1 btn btn-pill btn-outline-warning"><i
+                                <a href="/fill_stats/formula" class="btn btn-pill btn-outline-warning m-1"><i
                                         class="fe fe-folder"></i> Explore Formula</a>
 
                             </div>
@@ -160,12 +160,12 @@
                 </div>
 
                 @if (!session()->has('data'))
-                    <div class="mb-5 col-md-4" id="wk">
+                    <div class="col-md-4 mb-5" id="wk">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">WorkSpace</h3>
                             </div>
-                            <div class="p-3 card-body">
+                            <div class="card-body p-3">
                                 <div id="stat-details"></div>
                                 <div id="navigation_bar"></div>
                                 Save your formula to server <br />
@@ -181,7 +181,7 @@
 
                                         @auth
                                             <a href='/fill_stats/myformula'
-                                                class="ml-2 btn btn-pill btn-outline-primary animated infinite pulse text-primary">show
+                                                class="btn btn-pill btn-outline-primary animated infinite pulse text-primary ml-2">show
                                                 all my formula</a>
                                         @endauth
                                     </div>
@@ -209,35 +209,35 @@
                     @livewire('card-formula', ['formula' => session('data')], key(session('data')->id))
                 @endif
 
-                <div class="mb-5 col-md-3" id="ads">
+                <div class="col-md-3 mb-5" id="ads">
                     @includeUnless(app()->isLocal(), 'inc.ads_article')
                 </div>
 
                 <div class="w-100"></div>
-                <div class="mb-5 col-md-5">
+                <div class="col-md-5 mb-5">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Status</h3>
                         </div>
-                        <div class="p-3 card-body">
-                            <div class="mt-2 d-block">
+                        <div class="card-body p-3">
+                            <div class="d-block mt-2">
                                 @includeUnless(app()->isLocal(), 'inc.ads_mobile')
                             </div>
 
                             <div class="form-group">
-                                <div class="p-3 row gutter-xs" id="workspace">
+                                <div class="row gutter-xs p-3" id="workspace">
                                     stats will appear here.
                                 </div>
                             </div>
 
-                            <div class="mt-2 d-block">
+                            <div class="d-block mt-2">
                                 @includeUnless(app()->isLocal(), 'inc.ads_mobile')
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="hidden mb-5 col-md-7" id="show-formula">
+                <div class="col-md-7 mb-5 hidden" id="show-formula">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Formula</h3>
@@ -292,7 +292,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="/assets/js/saveFormula.js"></script>
-    <script src="/assets/js/newfill.js?v241"></script>
+    <script src="/assets/js/newfill.js?v320"></script>
     <script src="/assets/js/math.js"></script>
 
     @if (session()->has('data'))

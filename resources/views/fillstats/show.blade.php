@@ -202,7 +202,6 @@
 @endsection
 
 @section('head')
-  @livewireStyles
 <style>
   @media (min-width: 768px) {
   .equal {
@@ -226,7 +225,6 @@
 @endsection
 
 @section('footer')
-  @livewireScripts
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/assets/js/saveFormula.js?v2"></script>
