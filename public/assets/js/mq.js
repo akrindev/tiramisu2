@@ -862,7 +862,7 @@ const MQ = [
         episode: 96,
         episodeid: "Langit yang berlangit-langit",
         episodeen: "The Sky with a Ceiling",
-        exp: 71400000,
+        exp: 73400000,
     },
     {
         chapter: 12,
@@ -945,6 +945,204 @@ const MQ = [
         episodeen: "Underwater Inhabitants",
         exp: 112600000,
     },
+    {
+        chapter: 13,
+        chapterid: "Suku Air dan Coenubia",
+        chapteren: "The Water Tribe and Coenubia",
+        episode: 106,
+        episodeid: "Kubah Air",
+        episodeen: "Water Dome",
+        exp: 116500000,
+    },
+    {
+        chapter: 13,
+        chapterid: "Suku Air dan Coenubia",
+        chapteren: "The Water Tribe and Coenubia",
+        episode: 107,
+        episodeid: "Kota Bawah Air",
+        episodeen: "Underwater City",
+        exp: 60200000,
+    },
+    {
+        chapter: 13,
+        chapterid: "Suku Air dan Coenubia",
+        chapteren: "The Water Tribe and Coenubia",
+        episode: 108,
+        episodeid: "Sesuatu di Distrik Terbengkalai",
+        episodeen: "The Thing in the Abandoned District",
+        exp: 125800000,
+    },
+    {
+        chapter: 13,
+        chapterid: "Suku Air dan Coenubia",
+        chapteren: "The Water Tribe and Coenubia",
+        episode: 109,
+        episodeid: "Bayangan dari Jurang",
+        episodeen: "Shadow from the Abyss",
+        exp: 129900000,
+    },
+    {
+        chapter: 13,
+        chapterid: "Suku Air dan Coenubia",
+        chapteren: "The Water Tribe and Coenubia",
+        episode: 110,
+        episodeid: "Dewan Tanpa Belas Kasihan",
+        episodeen: "The Ruthless Council",
+        exp: 67000000,
+    },
+    {
+        chapter: 13,
+        chapterid: "Suku Air dan Coenubia",
+        chapteren: "The Water Tribe and Coenubia",
+        episode: 111,
+        episodeid: "Entitas Misterius di Kuil Kecil",
+        episodeen: "Mysterious Entity in the Little Shrine",
+        exp: 139900000,
+    },
+    {
+        chapter: 13,
+        chapterid: "Suku Air dan Coenubia",
+        chapteren: "The Water Tribe and Coenubia",
+        episode: 112,
+        episodeid: "Pertempuran Besar di Bawah Air",
+        episodeen: "The Great Battle Underwater",
+        exp: 144200000,
+    },
+    {
+        chapter: 14,
+        chapterid: "Daratan Utama Toram",
+        chapteren: "Mainland Toram",
+        episode: 113,
+        episodeid: "Krisis di Langit",
+        episodeen: "Crisis in the Sky",
+        exp: 159100000,
+    },
+    {
+        chapter: 14,
+        chapterid: "Daratan Utama Toram",
+        chapteren: "Mainland Toram",
+        episode: 114,
+        episodeid: "Saudara yang Bertahan Hidup",
+        episodeen: "The Surviving Siblings",
+        exp: 164000000,
+    },
+    {
+        chapter: 14,
+        chapterid: "Daratan Utama Toram",
+        chapteren: "Mainland Toram",
+        episode: 115,
+        episodeid: "Situasi Kacau",
+        episodeen: "Chaotic Situation",
+        exp: 168900000,
+    },
+    {
+        chapter: 14,
+        chapterid: "Daratan Utama Toram",
+        chapteren: "Mainland Toram",
+        episode: 116,
+        episodeid: "Kebenaran yang Pahit",
+        episodeen: "The Bitter Truth",
+        exp: 173800000,
+    },
+    {
+        chapter: 14,
+        chapterid: "Daratan Utama Toram",
+        chapteren: "Mainland Toram",
+        episode: 117,
+        episodeid: "Pangeran Rana yang Kasar",
+        episodeen: "The Uncouth Rana Prince",
+        exp: 178800000,
+    },
+    {
+        chapter: 14,
+        chapterid: "Daratan Utama Toram",
+        chapteren: "Mainland Toram",
+        episode: 118,
+        episodeid: "Desa Coenubia Mutan",
+        episodeen: "Mutant Coenubia Village",
+        exp: 183900000,
+    },
+    {
+        chapter: 14,
+        chapterid: "Daratan Utama Toram",
+        chapteren: "Mainland Toram",
+        episode: 119,
+        episodeid: "Pertempuran Sengit dengan Mutan Lixis",
+        episodeen: "Fierce Battle with Mutant Lixis",
+        exp: 189000000,
+    },
+    {
+        chapter: 15,
+        chapterid: "Kebangkitan Coenubia",
+        chapteren: "Coenubia's Awakening",
+        episode: 120,
+        episodeid: "Krisis Bahtera",
+        episodeen: "Ark Crisis",
+        exp: 210500000,
+    },
+    {
+        chapter: 15,
+        chapterid: "Kebangkitan Coenubia",
+        chapteren: "Coenubia's Awakening",
+        episode: 121,
+        episodeid: "Bentrokan di Pesisir",
+        episodeen: "Coastal Clash",
+        exp: 216300000,
+    },
+    {
+        chapter: 15,
+        chapterid: "Kebangkitan Coenubia",
+        chapteren: "Coenubia's Awakening",
+        episode: 122,
+        episodeid: "Operasi Penyelamatan Unda",
+        episodeen: "Unda's Rescue Operation",
+        exp: 222200000,
+    },
+    {
+        chapter: 15,
+        chapterid: "Kebangkitan Coenubia",
+        chapteren: "Coenubia's Awakening",
+        episode: 123,
+        episodeid: "Kembalinya Unda",
+        episodeen: "Unda's Return",
+        exp: 228100000,
+    },
+    {
+        chapter: 15,
+        chapterid: "Kebangkitan Coenubia",
+        chapteren: "Coenubia's Awakening",
+        episode: 124,
+        episodeid: "Pemuda dan Pohon Tua",
+        episodeen: "The Young Man and The Old Tree",
+        exp: 234000000,
+    },
+    {
+        chapter: 15,
+        chapterid: "Kebangkitan Coenubia",
+        chapteren: "Coenubia's Awakening",
+        episode: 125,
+        episodeid: "Desa Lixis",
+        episodeen: "The Village of Lixis",
+        exp: 240000000,
+    },
+    {
+        chapter: 15,
+        chapterid: "Kebangkitan Coenubia",
+        chapteren: "Coenubia's Awakening",
+        episode: 126,
+        episodeid: "Penglihatan dari Masa Lalu yang Jauh",
+        episodeen: "Visions of a Distant Past",
+        exp: 246000000,
+    },
+    {
+        chapter: 15,
+        chapterid: "Kebangkitan Coenubia",
+        chapteren: "Coenubia's Awakening",
+        episode: 127,
+        episodeid: "Saat Akar Mulai Terungkap",
+        episodeen: "As the Roots Come to Light",
+        exp: 252100000,
+    },
 ];
 
 class Main {
@@ -972,28 +1170,23 @@ class Main {
     }
 
     buildDisplay(end = false) {
-        let buffer = `<select class="form-control" id="bab_${
-            end ? "start" : "end"
-        }" onchange="App.calculate()">`;
+        let buffer = `<select class="form-control" id="bab_${end ? "start" : "end"
+            }" onchange="App.calculate()">`;
         let last_cap = "";
 
         for (let data of MQ) {
             // option header
             if (last_cap != data.chapter) {
-                buffer += `<option value="-1" disabled="disabled" style="color: blue">&gt;-- Chapter ${
-                    data.chapter
-                } : ${
-                    this.locale == 1 ? data.chapterid : data.chapteren
-                } --&lt;</option>`;
+                buffer += `<option value="-1" disabled="disabled" style="color: blue">&gt;-- Chapter ${data.chapter
+                    } : ${this.locale == 1 ? data.chapterid : data.chapteren
+                    } --&lt;</option>`;
 
                 last_cap = data.chapter;
             }
 
-            buffer += `<option value="${data.episode}" ${
-                !end && this.bab_end == data.episode ? "selected" : ""
-            }> Eps ${data.episode}:  ${
-                this.locale == 1 ? data.episodeid : data.episodeen
-            }</option>`;
+            buffer += `<option value="${data.episode}" ${!end && this.bab_end == data.episode ? "selected" : ""
+                }> Eps ${data.episode}:  ${this.locale == 1 ? data.episodeid : data.episodeen
+                }</option>`;
         }
 
         buffer += "</select>";
@@ -1039,7 +1232,7 @@ class Main {
 
         let exp = Math.floor(
             (level / 2) * (level * level * level * 0.0500000007450581) +
-                level * 2
+            level * 2
         );
         let left = Math.floor(((100 - Number(percent)) / 100) * exp);
         //console.log(left)
@@ -1054,7 +1247,7 @@ class Main {
                 level++;
                 exp = Math.floor(
                     (level / 2) * (level * level * level * 0.0500000007450581) +
-                        level * 2
+                    level * 2
                 );
                 need = exp;
                 //  console.log(need)  console.log("level " + level)
