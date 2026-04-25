@@ -2,7 +2,7 @@
 // https://github.com/sparkychildcharlie/
 
 const MAX_STEPS = 20;
-const BONUS_STEPS = 8; // 21 feb 2024
+const BONUS_STEPS = 10;
 const SLOTS = 8;
 
 const PENALTY_DATA = [0, 0, 20, 45, 80, 125, 180, 245, 320];
@@ -391,6 +391,8 @@ const OPTIONS = [
         cost: 100,
         cat: "Enhance Accuracy",
         type: "w",
+        bonus: 1,
+        bonusratio: 1 / 5,
     },
 
     {
@@ -484,6 +486,8 @@ const OPTIONS = [
         cost: 50,
         cat: "Enhance Critical",
         type: "u",
+        bonus: 1,
+        bonusratio: 1 / 8,
     },
 
     {
@@ -1113,9 +1117,8 @@ class Slot {
             text = `${text} ${positive}${this.futureStat}`;
         }
 
-        text = `<span class="${save ? "d-block" : "d-inline-block"} ${
-            this.futureStat < 0 ? "text-danger" : ""
-        } mr-1"> ${text} </span>`;
+        text = `<span class="${save ? "d-block" : "d-inline-block"} ${this.futureStat < 0 ? "text-danger" : ""
+            } mr-1"> ${text} </span>`;
 
         return text;
     }
@@ -1142,8 +1145,8 @@ class Slot {
         const max_normal_value = this.max
             ? this.max / change_per_step
             : step_max > MAX_STEPS
-            ? MAX_STEPS
-            : step_max;
+                ? MAX_STEPS
+                : step_max;
 
         if (value < max_normal_value) {
             value = value * (this.stat_data.step || 1);
@@ -1166,8 +1169,8 @@ class Slot {
         const max_normal_value = this.max
             ? this.max
             : step_max > MAX_STEPS
-            ? MAX_STEPS * change_per_step
-            : step_max * change_per_step;
+                ? MAX_STEPS * change_per_step
+                : step_max * change_per_step;
         //const max_normal_value = this.max ? this.max * change_per_step : step_max > MAX_STEPS ? MAX_STEPS * change_per_step : step_max * change_per_step;
 
         let future_steps;
@@ -1491,9 +1494,8 @@ class Stat {
         ).innerHTML = `<b>Potential: ${this.future_pot} / ${this.pot}</b>`;
         document.getElementById(
             "success_rate_display"
-        ).innerHTML = `<span class="${
-            this.getSuccessRate() < 100 ? "text-danger" : ""
-        }">Success Rate: ${this.getSuccessRate()}%</span>`;
+        ).innerHTML = `<span class="${this.getSuccessRate() < 100 ? "text-danger" : ""
+            }">Success Rate: ${this.getSuccessRate()}%</span>`;
         document.getElementById("confirm_button").disabled =
             this.pot === this.future_pot;
     }
@@ -1502,9 +1504,8 @@ class Stat {
         let buffer = `<div class='d-block mt-5 ml-5'><h1>Material</h1></div>`;
         buffer += `<table class="card-table table table-hover table-striped"><tr><th style="width: 40%; text-align: left">Material</th><th style="text-align: left">Cost</th></tr>`;
         for (let mat in this.mats) {
-            buffer += `<tr class="${
-                this.mats[mat] < 1 ? "text-muted" : ""
-            }"><td>${mat}</td><td>${this.mats[mat]}</td></tr>`;
+            buffer += `<tr class="${this.mats[mat] < 1 ? "text-muted" : ""
+                }"><td>${mat}</td><td>${this.mats[mat]}</td></tr>`;
         }
         buffer += `<tr><td><b>Highest / Step</b></td><td>${this.max_mats}</td></tr>`;
         buffer += `</table>`;
@@ -1527,25 +1528,20 @@ class Stat {
 
         Cloud.setFinal(finalSave);
         // if (typeof this.finished === 'number') {
-        display += `<br /> <span class="mx-3 ${
-            this.getSuccessRate() < 100 ? "text-danger" : "text-success"
-        }"> Success Rate: ${this.getSuccessRate()}%</span>`;
+        display += `<br /> <span class="mx-3 ${this.getSuccessRate() < 100 ? "text-danger" : "text-success"
+            }"> Success Rate: ${this.getSuccessRate()}%</span>`;
 
         // display += `<br /><span style="color: blue; font-size: 10px">Mats: ${Object.keys(this.mats).filter(mat => this.mats[mat]).map(mat => `${this.mats[mat]} ${mat}`).join(' / ')} (Max: ${this.max_mats})</span>`;
         // }
 
-        let buffer = `<div class="px-3 pt-3"><b>Type:</b> <b class="${
-            this.type === "w" ? "text-success" : "text-primary"
-        }">${
-            this.type === "w" ? "Weapon" : "Armor"
-        }</b> <br /> <b>Recipe Potential:</b> ${
-            this.recipe_pot
-        } <br /> <b>Starting Potential:</b> ${
-            this.starting_pot
-        }</div><div class="d-block px-3 mb-2"><b>Final Stats: </b><br /> <div style="background-color:#f5f9ff;padding:2px 4px;border:1px solid #ddd;border-radius:3px">${final} </div></div> ${this.getSettingsDisplay(
-            '<span class="ml-4 text-success">',
-            "</span>"
-        )}<br />${display}`;
+        let buffer = `<div class="px-3 pt-3"><b>Type:</b> <b class="${this.type === "w" ? "text-success" : "text-primary"
+            }">${this.type === "w" ? "Weapon" : "Armor"
+            }</b> <br /> <b>Recipe Potential:</b> ${this.recipe_pot
+            } <br /> <b>Starting Potential:</b> ${this.starting_pot
+            }</div><div class="d-block px-3 mb-2"><b>Final Stats: </b><br /> <div style="background-color:#f5f9ff;padding:2px 4px;border:1px solid #ddd;border-radius:3px">${final} </div></div> ${this.getSettingsDisplay(
+                '<span class="ml-4 text-success">',
+                "</span>"
+            )}<br />${display}`;
 
         document.getElementById("formula_display").innerHTML = buffer;
 
@@ -1873,9 +1869,8 @@ class Formula {
             changes = `${stat} ${positive} ${delta_stat}`;
         }
 
-        changed = `<span class="d-block ${
-            delta_step > 0 ? "" : "text-danger"
-        }"> ${changes} </span>`;
+        changed = `<span class="d-block ${delta_step > 0 ? "" : "text-danger"
+            }"> ${changes} </span>`;
 
         this.step_changes.push(changed);
         this.step_code_changes.push([slot, delta_step, new_stat || null]);
@@ -1886,7 +1881,7 @@ class Formula {
 
         const finished =
             this.stat.slots.every((slot) => slot.stat_name) ||
-            this.stat.future_pot <= 0
+                this.stat.future_pot <= 0
                 ? this.stat.getSuccessRate()
                 : false;
 
@@ -1950,16 +1945,12 @@ class Formula {
                         .filter(([k, v]) => v)
                         .map(
                             ([k, i]) =>
-                                `<span class="text-primary"><img src="/img/drop/${
-                                    mats[k]
-                                }.png" class="avatar avatar-sm mr-1" style="max-width:18px;max-height:18px"/>: ${i}${
-                                    step.repeat > 1 ? " (total)" : ""
+                                `<span class="text-primary"><img src="/img/drop/${mats[k]
+                                }.png" class="avatar avatar-sm mr-1" style="max-width:18px;max-height:18px"/>: ${i}${step.repeat > 1 ? " (total)" : ""
                                 }</span>`
                         )
-                        .join(", ")} </td><td>${
-                        step.repeat > 1 ? ` x${step.repeat}` : "x1"
-                    } <br/> <small class="text-muted">(${
-                        step.pot_after
+                        .join(", ")} </td><td>${step.repeat > 1 ? ` x${step.repeat}` : "x1"
+                    } <br/> <small class="text-muted">(${step.pot_after
                     }pot)</small></td></tr>`
             )
             .join(" ");
@@ -1998,7 +1989,7 @@ class MainApp {
         let data;
         try {
             data = JSON.parse(raw);
-        } catch (e) {}
+        } catch (e) { }
 
         if (!data) return;
 
@@ -2015,7 +2006,7 @@ class MainApp {
         let data;
         try {
             data = JSON.parse(raw);
-        } catch (e) {}
+        } catch (e) { }
 
         if (!data) return;
 
@@ -2030,7 +2021,7 @@ class MainApp {
         let data;
         try {
             data = JSON.parse(raw_data);
-        } catch (e) {}
+        } catch (e) { }
 
         if (!data) return;
 
@@ -2086,10 +2077,9 @@ class MainApp {
             const focused = workspace_id === this.current;
 
             buffer.push(
-                `<div style="display: inline-block; border: solid 1px blue; border-radius: 7px; padding: 3px;${
-                    focused
-                        ? " background-color: lightpink"
-                        : " background-color: none"
+                `<div style="display: inline-block; border: solid 1px blue; border-radius: 7px; padding: 3px;${focused
+                    ? " background-color: lightpink"
+                    : " background-color: none"
                 }"><button style="border: none; background: none" onclick="App.setCurrent('${workspace_id}')">${workspace_id}</button><button onclick="App.despawn('${workspace_id}')" style="color: red; border: none; background: none">x</button></div>`
             );
         }
