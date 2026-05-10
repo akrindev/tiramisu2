@@ -48,7 +48,7 @@
     {{-- tw --}}
 
     @php
-        $shouldNoIndex = request()->query() || request()->is('search') || request()->is('en/search') || request()->is('latest_search') || request()->is('en/latest_search') || request()->is('profile*') || request()->is('secrets*');
+        $shouldNoIndex = ((request()->is('item') || request()->is('en/item')) && request()->has('name')) || (request()->is('leveling') && request()->has('level')) || request()->is('search') || request()->is('en/search') || request()->is('latest_search') || request()->is('en/latest_search') || request()->is('profile*') || request()->is('secrets*');
         $canonicalUrl = request()->is('item') && request()->query() ? url('/items') : request()->url();
         $canonicalUrl = request()->is('en/item') && request()->query() ? url('/en/items') : $canonicalUrl;
         $canonicalUrl = trim($__env->yieldContent('canonical', $canonicalUrl));
