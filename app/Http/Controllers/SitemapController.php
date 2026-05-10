@@ -191,7 +191,9 @@ class SitemapController extends Controller
 
     private function xmlResponse(string $xml)
     {
-        return response($xml, 200)->header('Content-Type', 'application/xml');
+        return response($xml, 200)
+            ->header('Content-Type', 'application/xml')
+            ->header('Cache-Control', 'public, max-age=3600');
     }
 
     private function absoluteUrl(string $path): string
