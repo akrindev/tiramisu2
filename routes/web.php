@@ -32,6 +32,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'toram');
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
 /*
 | -- English Route

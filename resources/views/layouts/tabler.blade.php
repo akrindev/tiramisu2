@@ -47,7 +47,14 @@
     <meta name="twitter:description" content="@yield('description')">
     {{-- tw --}}
 
+    @php
+        $shouldNoIndex = request()->query() || request()->is('search') || request()->is('en/search') || request()->is('latest_search') || request()->is('en/latest_search') || request()->is('profile*') || request()->is('secrets*');
+        $robotsContent = trim($__env->yieldContent('robots', $shouldNoIndex ? 'noindex, follow' : 'index, follow'));
+    @endphp
+
     <meta name="google-site-verification" content="da3qNV1VnD0nhZNfFMx3Ov_6dnyvYMlUT7OChWqSbmY" />
+    <meta name="robots" content="{{ $robotsContent }}">
+    <link rel="canonical" href="{{ request()->url() }}" />
     <meta name="description" content="@yield('description') - RPG Toram Online Database & Wiki | Toram ID INFO">
     <meta name="keywords"
         content="Toram Id, RPG Toram Online, Toram Online Wiki, Toram Online Database, Drop list, Monster list, Fill Stat formula, Fill stat simulator, calculator, forum, Toram Online Indonesia, MMORPG Android and iOS game" />

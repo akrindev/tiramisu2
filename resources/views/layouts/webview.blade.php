@@ -46,10 +46,15 @@
 <meta property="fb:app_id" content="2008283499456981"/>
 
 <!-- // open graph -->
+@php
+    $shouldNoIndex = request()->query() || request()->is('search') || request()->is('en/search') || request()->is('latest_search') || request()->is('en/latest_search') || request()->is('profile*') || request()->is('secrets*');
+    $robotsContent = trim($__env->yieldContent('robots', $shouldNoIndex ? 'noindex, follow' : 'index, follow'));
+@endphp
 <meta name="google-site-verification" content="da3qNV1VnD0nhZNfFMx3Ov_6dnyvYMlUT7OChWqSbmY" />
 <meta name="description" content="@yield('description')">
 <meta name='language' content='id_id'/>
-<meta name='robots' content='all,index,follow'/>
+<meta name="robots" content="{{ $robotsContent }}">
+<link rel="canonical" href="{{ request()->url() }}" />
 <meta content='follow, all' name='alexabot'/>
 <meta content='id' name='language'/>
 <meta content='Indonesia' name='geo.placename'/>
@@ -68,7 +73,7 @@
 
 <script type='application/ld+json'>
 {
-	 "@context": "http://schema.org",
+	 "@@context": "http://schema.org",
 	 "@type": "WebSite",
 	 "url": "{{ url('/') }}"
  }
@@ -139,7 +144,7 @@ if('serviceWorker' in navigator)
  <script src="/assets/js/vendors/bootstrap.bundle.min.js"></script>
 
 
-@if(env('APP_ENV') === 'production')
+@production
 <!-- Google Analytics -->
 <script>
 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -148,6 +153,6 @@ ga('send', 'pageview');
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 <!-- End Google Analytics -->
-@endif
+@endproduction
   </body>
 </html>
