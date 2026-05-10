@@ -49,12 +49,25 @@
 
     @php
         $shouldNoIndex = request()->query() || request()->is('search') || request()->is('en/search') || request()->is('latest_search') || request()->is('en/latest_search') || request()->is('profile*') || request()->is('secrets*');
+        $canonicalUrl = request()->is('item') && request()->query() ? url('/items') : request()->url();
+        $canonicalUrl = request()->is('en/item') && request()->query() ? url('/en/items') : $canonicalUrl;
+        $canonicalUrl = trim($__env->yieldContent('canonical', $canonicalUrl));
+        $path = request()->path();
+        $hasEnglishMirror = ! request()->query() && request()->is('/', 'peta', 'peta/*', 'items', 'items/*', 'item', 'item/*', 'monster/*', 'appearance', 'appearance/*', 'en', 'en/peta', 'en/peta/*', 'en/items', 'en/items/*', 'en/item', 'en/item/*', 'en/monster/*', 'en/appearance', 'en/appearance/*');
+        $idPath = request()->segment(1) === 'en' ? preg_replace('#^en/?#', '', $path) : $path;
+        $idUrl = $idPath === '' ? url('/') : url('/'.$idPath);
+        $enUrl = $idPath === '' ? url('/en') : url('/en/'.$idPath);
         $robotsContent = trim($__env->yieldContent('robots', $shouldNoIndex ? 'noindex, follow' : 'index, follow'));
     @endphp
 
     <meta name="google-site-verification" content="da3qNV1VnD0nhZNfFMx3Ov_6dnyvYMlUT7OChWqSbmY" />
     <meta name="robots" content="{{ $robotsContent }}">
-    <link rel="canonical" href="{{ request()->url() }}" />
+    <link rel="canonical" href="{{ $canonicalUrl }}" />
+    @if ($hasEnglishMirror)
+        <link rel="alternate" hreflang="id" href="{{ $idUrl }}" />
+        <link rel="alternate" hreflang="en" href="{{ $enUrl }}" />
+        <link rel="alternate" hreflang="x-default" href="{{ $idUrl }}" />
+    @endif
     <meta name="description" content="@yield('description') - RPG Toram Online Database & Wiki | Toram ID INFO">
     <meta name="keywords"
         content="Toram Id, RPG Toram Online, Toram Online Wiki, Toram Online Database, Drop list, Monster list, Fill Stat formula, Fill stat simulator, calculator, forum, Toram Online Indonesia, MMORPG Android and iOS game" />

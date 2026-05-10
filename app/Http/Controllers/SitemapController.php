@@ -12,7 +12,7 @@ class SitemapController extends Controller
 {
     public function index()
     {
-        $xml = Cache::remember('sitemap.xml.'.sha1(url('/')), now()->addHour(), function () {
+        $xml = Cache::remember('sitemap.xml.v2.'.sha1(url('/')), now()->addHour(), function () {
             $urls = [];
 
             foreach ($this->staticPaths() as $path) {
@@ -80,12 +80,8 @@ class SitemapController extends Controller
             '/peta',
             '/en/peta',
             '/monsters',
-            '/monster',
-            '/en/monster',
             '/items',
             '/en/items',
-            '/item',
-            '/en/item',
             '/skill',
             '/avatar',
             '/avatar/all',
