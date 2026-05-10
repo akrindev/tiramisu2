@@ -17,8 +17,13 @@ use App\Http\Controllers\SendMailController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\XpController;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Illuminate\Cookie\Middleware\EncryptCookies;
+use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
+use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,14 +37,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'toram');
-Route::get('/sitemap.xml', [SitemapController::class, 'index']);
-Route::get('/sitemap-pages.xml', [SitemapController::class, 'pages']);
-Route::get('/sitemap-items.xml', [SitemapController::class, 'items']);
-Route::get('/sitemap-items-{page}.xml', [SitemapController::class, 'items'])->whereNumber('page');
-Route::get('/sitemap-monsters.xml', [SitemapController::class, 'monsters']);
-Route::get('/sitemap-monsters-{page}.xml', [SitemapController::class, 'monsters'])->whereNumber('page');
-Route::get('/sitemap-maps.xml', [SitemapController::class, 'maps']);
-Route::get('/sitemap-maps-{page}.xml', [SitemapController::class, 'maps'])->whereNumber('page');
+Route::withoutMiddleware([
+    EncryptCookies::class,
+    AddQueuedCookiesToResponse::class,
+    StartSession::class,
+    ShareErrorsFromSession::class,
+    ValidateCsrfToken::class,
+])->group(function () {
+    Route::get('/sitemap.xml', [SitemapController::class, 'index']);
+    Route::get('/sitemap-pages.xml', [SitemapController::class, 'pages']);
+    Route::get('/sitemap-items.xml', [SitemapController::class, 'items']);
+    Route::get('/sitemap-items-{page}.xml', [SitemapController::class, 'items'])->whereNumber('page');
+    Route::get('/sitemap-monsters.xml', [SitemapController::class, 'monsters']);
+    Route::get('/sitemap-monsters-{page}.xml', [SitemapController::class, 'monsters'])->whereNumber('page');
+    Route::get('/sitemap-maps.xml', [SitemapController::class, 'maps']);
+    Route::get('/sitemap-maps-{page}.xml', [SitemapController::class, 'maps'])->whereNumber('page');
+});
 
 /*
 | -- English Route
