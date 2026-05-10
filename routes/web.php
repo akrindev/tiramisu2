@@ -32,6 +32,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'toram');
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
+Route::get('/sitemap-pages.xml', [SitemapController::class, 'pages']);
+Route::get('/sitemap-items.xml', [SitemapController::class, 'items']);
+Route::get('/sitemap-items-{page}.xml', [SitemapController::class, 'items'])->whereNumber('page');
+Route::get('/sitemap-monsters.xml', [SitemapController::class, 'monsters']);
+Route::get('/sitemap-monsters-{page}.xml', [SitemapController::class, 'monsters'])->whereNumber('page');
+Route::get('/sitemap-maps.xml', [SitemapController::class, 'maps']);
+Route::get('/sitemap-maps-{page}.xml', [SitemapController::class, 'maps'])->whereNumber('page');
 
 /*
 | -- English Route
