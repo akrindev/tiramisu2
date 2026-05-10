@@ -19,7 +19,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\XpController;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
-use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
+use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -42,7 +42,7 @@ Route::withoutMiddleware([
     AddQueuedCookiesToResponse::class,
     StartSession::class,
     ShareErrorsFromSession::class,
-    ValidateCsrfToken::class,
+    PreventRequestForgery::class,
 ])->group(function () {
     Route::get('/sitemap.xml', [SitemapController::class, 'index']);
     Route::get('/sitemap-pages.xml', [SitemapController::class, 'pages']);
