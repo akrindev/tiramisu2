@@ -21,3 +21,33 @@ _ide_helper.php
 .htaccess
 /docs
 /crawl
+
+# --- local tool / AI agent dirs ---
+.claude/
+.serena/
+
+# --- composer ---
+composer.phar
+
+# --- runtime logs ---
+error_log
+public/error_log
+
+# --- user uploads (keep on disk, do not version) ---
+public/uploads/
+public/img/
+public/ucapan/
+
+# --- generated / stray assets ---
+public/gambar.png
+public/ky.jpg
+public/notification.js
+
+# --- SEO / verification files ---
+public/.well-known/
+public/500.shtml
+public/BingSiteAuth.xml
+public/fcm.html
+public/fire.json
+public/google00bc6f062ee03ce3.html
+public/loaderio-*.txt
