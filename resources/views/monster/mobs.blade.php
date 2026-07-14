@@ -1,6 +1,14 @@
 @extends('layouts.tabler')
 
 @section('title', $data->name . ' (Lv ' . $data->level . ')')
+@php
+    if (app()->isLocale('en')) {
+        $monsterDesc = $data->name . ' (Lv ' . $data->level . ') is a monster / boss in Toram Online. Find complete drops, element, map location, and exp info for ' . $data->name . ' at Toram ID.';
+    } else {
+        $monsterDesc = $data->name . ' (Lv ' . $data->level . ') adalah monster / boss di Toram Online. Temukan info lengkap drop, unsur, lokasi peta, dan exp dari ' . $data->name . ' di Toram ID.';
+    }
+@endphp
+@section('description', $monsterDesc)
 @section('image', !is_null($data->picture) ? '/' . $data->picture : to_img())
 
 
@@ -53,11 +61,24 @@
                         @includeUnless(app()->isLocal(), 'inc.ads_mobile')
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     @include('inc.menu')
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('head')
+    <script type="application/ld+json">
+    {
+        "@@context": "https://schema.org",
+        "@@type": "Thing",
+        "name": "{{ $data->name }}",
+        "description": "{{ $monsterDesc }}",
+        "image": "{{ !is_null($data->picture) ? url($data->picture) : to_img() }}",
+        "mainEntityOfPage": "{{ rtrim(config('app.url'), '/') . '/' . ltrim(request()->path(), '/') }}",
+        "identifier": "{{ $data->id }}"
+    }
+    </script>
 @endsection

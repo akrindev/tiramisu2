@@ -1,6 +1,15 @@
 @extends('layouts.tabler')
 
 @section('title', 'Toram Online Monster: ' . __(ucfirst($type)))
+@php
+    $typeTranslation = __(ucfirst($type));
+    if (app()->isLocale('en')) {
+        $typeDesc = 'List of Toram Online monsters: ' . $typeTranslation . '. Find monster drop lists, HP, Exp, elements, and locations at Toram ID.';
+    } else {
+        $typeDesc = 'Daftar monster Toram Online: ' . $typeTranslation . '. Cari data drop monster, HP, Exp, unsur, dan lokasi peta di Toram ID.';
+    }
+@endphp
+@section('description', $typeDesc)
 @section('image', to_img())
 
 

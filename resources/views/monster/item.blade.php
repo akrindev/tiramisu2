@@ -1,8 +1,20 @@
 @extends('layouts.tabler')
 
 @section('title', $item->name . ' [' . __($item->dropType->name) . ']')
-@section('description', $item->name . ': ' . strip_tags(toHtml(optional($item->note)['monster'] ??
-    optional($item->note)['npc'])) ?? '')
+@php
+    $rawDesc = strip_tags(toHtml(optional($item->note)['monster'] ?? optional($item->note)['npc'] ?? ''));
+    $desc = $item->name . ' [' . __($item->dropType->name) . ']';
+    if ($rawDesc) {
+        $desc .= ': ' . $rawDesc;
+    } else {
+        if (app()->isLocale('en')) {
+            $desc .= ' is a drop item in Toram Online. Find stats, recipes, drop monsters, and map locations for ' . $item->name . ' at Toram ID.';
+        } else {
+            $desc .= ' adalah item drop di Toram Online. Cari status, resep, monster drop, dan lokasi peta dari ' . $item->name . ' di Toram ID.';
+        }
+    }
+@endphp
+@section('description', $desc)
 @section('image', !is_null($item->picture) ? asset($item->picture) : to_img())
 
 @section('content')
@@ -261,4 +273,18 @@
                 </div>
             </div>
         </div>
+    @endsection
+
+    @section('head')
+        <script type="application/ld+json">
+        {
+            "@@context": "https://schema.org",
+            "@@type": "Thing",
+            "name": "{{ $item->name }}",
+            "description": "{{ $desc }}",
+            "image": "{{ $item->picture ?? to_img() }}",
+            "mainEntityOfPage": "{{ rtrim(config('app.url'), '/') . '/' . ltrim(request()->path(), '/') }}",
+            "identifier": "{{ $item->id }}"
+        }
+        </script>
     @endsection

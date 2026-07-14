@@ -48,14 +48,29 @@
 <!-- // open graph -->
 @php
     $shouldNoIndex = ((request()->is('item') || request()->is('en/item')) && request()->has('name')) || (request()->is('leveling') && request()->has('level')) || request()->is('search') || request()->is('en/search') || request()->is('latest_search') || request()->is('en/latest_search') || request()->is('profile*') || request()->is('secrets*');
-    $canonicalUrl = request()->is('item') && request()->query() ? url('/items') : request()->url();
-    $canonicalUrl = request()->is('en/item') && request()->query() ? url('/en/items') : $canonicalUrl;
-    $canonicalUrl = trim($__env->yieldContent('canonical', $canonicalUrl));
+    
+    $baseUrl = rtrim(config('app.url'), '/');
     $path = request()->path();
+    
+    // Force primary domain for canonicals to prevent cross-subdomain duplicate index issues
+    $canonicalUrl = request()->is('item') && request()->query() ? $baseUrl . '/items' : $baseUrl . '/' . ltrim($path, '/');
+    $canonicalUrl = request()->is('en/item') && request()->query() ? $baseUrl . '/en/items' : $canonicalUrl;
+    
+    // Retain page parameter in canonical tag for correct paginated indexing
+    $page = request()->query('page');
+    if ($page) {
+        $canonicalUrl .= '?page=' . $page;
+    }
+    
+    $canonicalUrl = trim($__env->yieldContent('canonical', $canonicalUrl));
+    
     $hasEnglishMirror = ! request()->query() && request()->is('/', 'peta', 'peta/*', 'items', 'items/*', 'item', 'item/*', 'monster/*', 'appearance', 'appearance/*', 'en', 'en/peta', 'en/peta/*', 'en/items', 'en/items/*', 'en/item', 'en/item/*', 'en/monster/*', 'en/appearance', 'en/appearance/*');
     $idPath = request()->segment(1) === 'en' ? preg_replace('#^en/?#', '', $path) : $path;
-    $idUrl = $idPath === '' ? url('/') : url('/'.$idPath);
-    $enUrl = $idPath === '' ? url('/en') : url('/en/'.$idPath);
+    
+    // Force primary domain for hreflang links
+    $idUrl = $idPath === '' ? $baseUrl : $baseUrl . '/' . ltrim($idPath, '/');
+    $enUrl = $idPath === '' ? $baseUrl . '/en' : $baseUrl . '/en/' . ltrim($idPath, '/');
+    
     $robotsContent = trim($__env->yieldContent('robots', $shouldNoIndex ? 'noindex, follow' : 'index, follow'));
 @endphp
 <meta name="google-site-verification" content="da3qNV1VnD0nhZNfFMx3Ov_6dnyvYMlUT7OChWqSbmY" />
